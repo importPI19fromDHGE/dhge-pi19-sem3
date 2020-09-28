@@ -4,8 +4,8 @@
 
 [Playlist](https://www.youtube.com/playlist?list=PL2Elw_whlm_uhHPNk-HoCOpvkvAQC6vK2)
 
-- [ ] Überblick
-- [ ] Begriffe
+- [X] Überblick
+- [X] Begriffe
 - [ ] Architekturansätze
 - [ ] vorrelationale Datenmodelle
 - [ ] Relationales Datenmodell - Strukturelemente
@@ -49,12 +49,10 @@
 - [ ] Anfrageoptimierung
 - [ ] Benutzerverwaltung
 
-
-
 ## MAT - Statistik/Optimierung
 
 ## RES - Betriebssystemverwaltung
 
-## RES - Rechnernetze
+## NET - Rechnernetze
 
 ## SWE - Systementwicklung

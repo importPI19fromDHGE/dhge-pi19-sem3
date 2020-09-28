@@ -6,7 +6,7 @@
 
 - [X] Überblick
 - [X] Begriffe
-- [ ] Architekturansätze
+- [X] Architekturansätze
 - [ ] vorrelationale Datenmodelle
 - [ ] Relationales Datenmodell - Strukturelemente
 - [ ] Relationale Operationen

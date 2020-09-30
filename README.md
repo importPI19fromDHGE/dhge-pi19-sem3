@@ -8,7 +8,7 @@
 - [X] Begriffe
 - [X] Architekturansätze
 - [X] vorrelationale Datenmodelle
-- [ ] Relationales Datenmodell - Strukturelemente
+- [X] Relationales Datenmodell - Strukturelemente
 - [ ] Relationale Operationen
 - [ ] Objektorientiertes Datenmodell
 - [ ] B-Bäume Teil 1

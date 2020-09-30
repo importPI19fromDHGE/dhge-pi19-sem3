@@ -130,3 +130,9 @@ $$R \subset A \times B$$
 - Klassenbildung: Zusammenfassen mehrerer Entities zu einem Entitätstyp
 - Entitätsmenge: Menge der Entities die durch einen Entity-Typ beschrieben werden
 - Beziehungstyen: Verallgemeinerung von Beziehungen zwischen Objekten (Entitäten)
+
+### Operationen
+
+- **Selektion:** Auswählen von Zeilen eines Datensatzes, die eine bestimmte Bedingung erfüllen
+- **Projektion:** Auswahl bestimmter Felder eines Datensatzes
+- **Join:** Verbinden zweier Datensätze

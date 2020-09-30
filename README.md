@@ -9,7 +9,7 @@
 - [X] Architekturansätze
 - [X] vorrelationale Datenmodelle
 - [X] Relationales Datenmodell - Strukturelemente
-- [ ] Relationale Operationen
+- [X] Relationale Operationen
 - [ ] Objektorientiertes Datenmodell
 - [ ] B-Bäume Teil 1
 - [ ] B-Bäume Teil 2

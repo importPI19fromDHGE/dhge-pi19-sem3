@@ -1,9 +1,11 @@
 # Betriebssystemverwaltung
 
+<!---
 created by Maximilian Kerst, 05.10.2020
 
 Disclaimer von Max: was ich hier reinschreibe, ist zT sehr oberflächlich, da wir hier erstmal Basics behandeln.
 Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
+-->
 
 ## Vorteile Virtualisierung
 

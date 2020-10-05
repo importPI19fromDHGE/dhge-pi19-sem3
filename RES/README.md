@@ -1,4 +1,5 @@
-# Betriebssystemverwaltung
+Betriebssystemverwaltung
+========================
 
 <!---
 created by Maximilian Kerst, 05.10.2020
@@ -7,7 +8,7 @@ Disclaimer von Max: was ich hier reinschreibe, ist zT sehr oberflächlich, da wi
 Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 -->
 
-## Vorteile Virtualisierung
+# Vorteile Virtualisierung
 
 - System anhalten, Snapshots, etc
 - Experimente ohne Schäden
@@ -17,9 +18,9 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 
 uvm
 
-## Grundlagen
+# Grundlagen
 
-### Terminal
+## Terminal
 
 - ``ls`` zeigt aktuelles Verzeichnis an
 - ``cd`` wechselt Verzeichnis
@@ -48,7 +49,7 @@ sudo apt update # Paketlisten aktualisieren --> sind nur Listen über die Pakete
 sudo apt full-upgrade # oder: sudo apt-get dist-upgrade - macht dasselbe
 ```
 
-### VBox Guest Additions installieren
+## VBox Guest Additions installieren
 
 - Gasterweiterungen einlegen
 - mounten via Dateiverwaltung oder ``mount`` Befehl

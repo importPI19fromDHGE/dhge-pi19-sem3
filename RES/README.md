@@ -30,10 +30,17 @@ uvm
 - ``..`` übergeordnetes Verzeichnis
 - ``apt`` bzw ``apt-get`` Debian erweiterte Paketverwaltung
 - Linux Rechtesystem: ``rwxrwxrwx`` bzw ``777`` Notationen:
-  - r = read
-  - w = write
-  - x = execute bzw Recht, Ordner zu betreten
-  - RWX-Blöcke aneinandergereiht, 1. für Besitzer, 2. für Gruppe, 3. für alle anderen
+  - 6 Buchstaben:
+    - r = read
+    - w = write
+    - x = execute bzw Recht, Ordner zu betreten
+    - RWX-Blöcke aneinandergereiht, 1. für Besitzer, 2. für Gruppe, 3. für alle anderen
+  - Drei Ziffern:
+    - 2^0 (1) = execute / Verzeichnis betreten
+    - 2^1 (2) = write
+    - 2^2 (4) = read
+    - diese addieren, z.B: ich möchte lesen und ausführen, aber nicht schreiben erlauben: 4 + 1 = 5
+    - 3 Ziffern aneinandergereiht: 1. für Besitzer, 2. für Gruppe, 3. für alle anderen
 
 Proxy installieren: global in die Umgebung: ``/etc/environment``
 

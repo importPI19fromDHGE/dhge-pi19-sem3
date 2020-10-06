@@ -1,6 +1,7 @@
-on: 
+on:
   push:
-    branches: [ main ]
+    branches:
+      - '!main'
 
 name: TOC Generator
 jobs:
@@ -14,4 +15,4 @@ jobs:
         # Git commit name.
         COMMIT_NAME: "TOCGEN"
         CREATE_PR: false
-        TARGET_PATHS: . 
+        TARGET_PATHS: .

@@ -25,7 +25,7 @@ festen Integrationsvorschriften (Zuordnung zu Objekt- und Beziehungstypen) und O
 
 ### Aufgaben von DBMS
 
-- Definition der eigentlichen Daten, Zugriffshilfen und Benutzersichten
+- Definition der eigentlichen Daten, Zugriffshilfen (bspw. Indices) und Benutzersichten (views)
 - Datenmanipulation: Retrieval, Update
 - Datenverwaltung: Laden und Entladen der DB, Modifizieren von Speicherstrukturen, Reorganisation
 - Datensicherheit: Zugriffskontrolle, Sicherung der Integrität, Synchronisation von Mehrfachzugriffen
@@ -109,6 +109,7 @@ Ablauf zur Verarbeitung von Anfragen:
 - heute üblicher Standard für die Datenspeicherung
 - Beziehungen zwischen Objekten werden durch deren Eigenschaftsausprägungen dargestellt (flexibler als Zeiger)
 - Speicherung von Daten in einfacher Tabellenform (ohne mengenwertige oder zusammengesetzte Attribute)
+- Zeilen -> Objekte, Spalten -> Eigenschaften der Objekte
 - Reihenfolge der Attribute, Tupel einer Tabelle sind nicht vorgeschrieben
 - Tabellen können ungeordnete Folgen von Datensätzen abbilden
 - Indexierung bestimmter Attribute zur Beschleunigung von Suchoperationen
@@ -126,10 +127,11 @@ $$R \subset A \times B$$
 - es existieren Beziehungen zwischen diesen Objekten
 - diese Beziehungen haben wiederum bestimmte Merkmale
 - Der Wertebereich eines Attributs wird als Domäne bezeichnet
-- Entität: bestimmte Kombination von Attributwerten für ein Objekt
-- Klassenbildung: Zusammenfassen mehrerer Entities zu einem Entitätstyp
-- Entitätsmenge: Menge der Entities die durch einen Entity-Typ beschrieben werden
-- Beziehungstyen: Verallgemeinerung von Beziehungen zwischen Objekten (Entitäten)
+- **Entität:** bestimmte Kombination von Attributwerten für ein Objekt
+- **Klassenbildung:** Zusammenfassen mehrerer Entities zu einem Entitätstyp
+- **Entitätsmenge:** Menge der Entities die durch einen Entity-Typ beschrieben werden
+- **Beziehungstypen:** Verallgemeinerung von Beziehungen zwischen Objekten (Entitäten)
+- **Datenintegrität:** "Makelosigkeit" der Daten
 
 ### Operationen
 

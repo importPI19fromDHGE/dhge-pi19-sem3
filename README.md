@@ -10,7 +10,7 @@
 - [X] vorrelationale Datenmodelle
 - [X] Relationales Datenmodell - Strukturelemente
 - [X] Relationale Operationen
-- [ ] Objektorientiertes Datenmodell
+- [X] Objektorientiertes Datenmodell
 - [ ] B-Bäume Teil 1
 - [ ] B-Bäume Teil 2
 - [ ] Sprachschnittstellen (Benutzergruppen)

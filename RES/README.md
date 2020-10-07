@@ -1,3 +1,6 @@
+Betriebssystemverwaltung
+========================
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
@@ -10,9 +13,6 @@
   - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-sch%C3%A4den-sch%C3%BCtzen)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-Betriebssystemverwaltung
-========================
 
 <!---
 created by Maximilian Kerst, 05.10.2020

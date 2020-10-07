@@ -5,7 +5,6 @@ Datenbanken
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Datenbanken](#datenbanken)
 - [Grundlagen](#grundlagen)
   - [Begriffe](#begriffe)
     - [Vorteile von Datenbanken](#vorteile-von-datenbanken)

@@ -5,7 +5,6 @@ Betriebssystemverwaltung
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Betriebssystemverwaltung](#betriebssystemverwaltung)
 - [Vorteile Virtualisierung](#vorteile-virtualisierung)
 - [Grundlagen](#grundlagen)
   - [Terminal](#terminal)

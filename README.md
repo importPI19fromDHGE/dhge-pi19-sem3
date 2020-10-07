@@ -1,3 +1,16 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Inhaltsverzeichnis**
+
+- [DHGE - Praktische Informatik - Matrikel 19 - Semester 3](#dhge---praktische-informatik---matrikel-19---semester-3)
+  - [DBS - Datenbanken](#dbs---datenbanken)
+  - [MAT - Statistik/Optimierung](#mat---statistikoptimierung)
+  - [RES - Betriebssystemverwaltung](#res---betriebssystemverwaltung)
+  - [NET - Rechnernetze](#net---rechnernetze)
+  - [SWE - Systementwicklung](#swe---systementwicklung)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # DHGE - Praktische Informatik - Matrikel 19 - Semester 3
 
 ## DBS - Datenbanken

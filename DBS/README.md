@@ -1,3 +1,28 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Inhaltsverzeichnis**
+
+- [Datenbanken](#datenbanken)
+- [Grundlagen](#grundlagen)
+  - [Begriffe](#begriffe)
+    - [Vorteile von Datenbanken](#vorteile-von-datenbanken)
+    - [Aufgaben von DBMS](#aufgaben-von-dbms)
+  - [Architekturen von DBMS](#architekturen-von-dbms)
+    - [Drei-Ebenen-Konzept](#drei-ebenen-konzept)
+    - [Weitere Komponenten eines DBMS](#weitere-komponenten-eines-dbms)
+    - [DBMS im Schichtenmodell](#dbms-im-schichtenmodell)
+  - [Datenzugriffe](#datenzugriffe)
+- [Datenmodelle](#datenmodelle)
+  - [Hierarchisches Datenmodell](#hierarchisches-datenmodell)
+    - [Datenspeicherung](#datenspeicherung)
+    - [Grenzen](#grenzen)
+  - [Netzwerkmodell](#netzwerkmodell)
+  - [Das relationale Datenmodell](#das-relationale-datenmodell)
+    - [Begriffe](#begriffe-1)
+    - [Operationen](#operationen)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 Datenbanken
 ===========
 

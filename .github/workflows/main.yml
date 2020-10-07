@@ -1,12 +1,10 @@
-on:
-  push:
-    branches: [ main ]
+on: pull_request
 name: TOC Generator
 jobs:
   generateTOC:
     runs-on: ubuntu-latest
     steps:
-    - uses: technote-space/toc-generator@v2.4.0
+    - uses: technote-space/toc-generator@v2
       with:
         GITHUB_TOKEN: ${{ github.token }}
         TOC_TITLE: "**Inhaltsverzeichnis**"

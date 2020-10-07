@@ -1,3 +1,20 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Inhaltsverzeichnis**
+
+- [IT-Trends](#it-trends)
+- [Einleitung](#einleitung)
+- [IT-Trends nach IDC](#it-trends-nach-idc)
+  - [die dritte Plattform der IT](#die-dritte-plattform-der-it)
+- [Agile Methoden und Disruptionen](#agile-methoden-und-disruptionen)
+- [Cloud Computing](#cloud-computing)
+  - [Edge Computing](#edge-computing)
+- [Künstliche Intelligenz](#k%C3%BCnstliche-intelligenz)
+- [Agile Entwicklung und DevOps-Methoden als Schlüssel für hohe Entwicklungsgeschwindigkeit](#agile-entwicklung-und-devops-methoden-als-schl%C3%BCssel-f%C3%BCr-hohe-entwicklungsgeschwindigkeit)
+- [IT-Sicherheit](#it-sicherheit)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 IT-Trends
 =========
 

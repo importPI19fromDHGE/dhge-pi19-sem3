@@ -9,6 +9,7 @@
 - [RES - Betriebssystemverwaltung](#res---betriebssystemverwaltung)
 - [NET - Rechnernetze](#net---rechnernetze)
 - [SWE - Systementwicklung](#swe---systementwicklung)
+- [PRO - IT-Trends](#pro---it-trends)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

@@ -56,3 +56,13 @@
 ## NET - Rechnernetze
 
 ## SWE - Systementwicklung
+
+## PRO - IT-Trends
+
+- [ ] Einleitung
+- [ ] IT-Trends nach IDC
+- [ ] Agile Methoden und Disruptionen
+- [ ] Cloud Computing
+- [ ] Künstliche Intelligenz
+- [ ] Agile Entwicklung und DevOps-Methoden als Schlüssel für hohe Entwicklungsgeschwindigkeit
+- [ ] IT-Sicherheit

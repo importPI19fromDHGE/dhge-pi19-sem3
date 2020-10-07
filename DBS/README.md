@@ -1,3 +1,6 @@
+Datenbanken
+===========
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
@@ -22,9 +25,6 @@
     - [Operationen](#operationen)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-Datenbanken
-===========
 
 # Grundlagen
 

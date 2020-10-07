@@ -1,3 +1,5 @@
+# DHGE - Praktische Informatik - Matrikel 19 - Semester 3
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
@@ -10,8 +12,6 @@
   - [SWE - Systementwicklung](#swe---systementwicklung)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# DHGE - Praktische Informatik - Matrikel 19 - Semester 3
 
 ## DBS - Datenbanken
 

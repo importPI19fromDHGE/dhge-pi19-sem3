@@ -59,9 +59,9 @@
 
 ## PRO - IT-Trends
 
-- [ ] Einleitung
-- [ ] IT-Trends nach IDC
-- [ ] Agile Methoden und Disruptionen
+- [X] Einleitung
+- [X] IT-Trends nach IDC
+- [X] Agile Methoden und Disruptionen
 - [ ] Cloud Computing
 - [ ] Künstliche Intelligenz
 - [ ] Agile Entwicklung und DevOps-Methoden als Schlüssel für hohe Entwicklungsgeschwindigkeit

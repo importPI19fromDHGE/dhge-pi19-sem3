@@ -165,3 +165,28 @@ $$R \subset A \times B$$
 - **Selektion:** Auswählen von Zeilen eines Datensatzes, die eine bestimmte Bedingung erfüllen
 - **Projektion:** Auswahl bestimmter Felder eines Datensatzes
 - **Join:** Verbinden zweier Datensätze
+
+## Objektorientiertes Datenmodell
+
+- objektorientierte Datenbanksysteme bestehen aus einer Sammlung von Objekten
+- Objekte besitzen eindeutige unveränderliche Identifikatoren
+- Objekte können Attribute und weitere Objekte beinhalten (= komplexe Objekte)
+- Aufwendige Verbundoperationen wie in relationalen Datenbanken entfallen
+- Optimierung der Objekte auf die auf sie anzuwendenden Operationen (Widerspruch der Datenunabhängigkeit)
+- Erfassung von mehr Semantik im Vergleich zu traditionellen Datenmodellen
+- Kriterien für Objektorientierte DBMS: komplexe Objekte, Sicherstellung der Objektidentität, Kapselung, Klassen- und Typhierarchie, ...
+
+## Objektrelationale Systeme
+
+- Verknüpfung von relationalen Systemen und Objektorientierung
+- Basis: zwischen relationalen und objektorientierten Modellen vorhandene Entsprechungen (Entität = Objekt, Entitätstyp = Klasse)
+
+# Sprachschnittstellen zu DBMS
+
+Der Zugriff auf Datenbanken erfolgt auf verschiedenen Ebenen/durch unterschiedliche Nutzergruppen:
+
+- Endnutzer: nahezu ausschließliche Arbeit mit Datenbankinhalten unter Verwendung von Datenmanipulationsanweisungen (Datenmanipulationssprache - DML)
+- Anwendungsprogrammierer: Nutzen eines breiten Spektrum an Befehlen und Funktionen in speziellen Programmiersprachen oder durch Einbettungen von Datenmanipulations- bzw. Datendefinitionsanweisungen
+	- Präprozessor verarbeitet eingebettete Datenbankanweisungen in Anweisungen und Funktionsaufrufe der Trägersprache oder
+	- Zugriff auf Datenbanken über Funktionsaufrufe (Datenbankanweisungen als Parameter)
+- Datenbankadministratoren: Verwaltung der internen Speicherungsstrukturen mit Datendefinitionsanweisungen (Datendefinitionssprache - DDL)

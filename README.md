@@ -79,3 +79,5 @@
 - [X] Künstliche Intelligenz
 - [X] Agile Entwicklung und DevOps-Methoden als Schlüssel für hohe Entwicklungsgeschwindigkeit
 - [X] IT-Sicherheit
+
+## Testing

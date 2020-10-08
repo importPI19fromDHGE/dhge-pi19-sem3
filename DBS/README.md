@@ -151,3 +151,13 @@ $$R \subset A \times B$$
 
 - Verknüpfung von relationalen Systemen und Objektorientierung
 - Basis: zwischen relationalen und objektorientierten Modellen vorhandene Entsprechungen (Entität = Objekt, Entitätstyp = Klasse)
+
+# Sprachschnittstellen zu DBMS
+
+Der Zugriff auf Datenbanken erfolgt auf verschiedenen Ebenen/durch unterschiedliche Nutzergruppen:
+
+- Endnutzer: nahezu ausschließliche Arbeit mit Datenbankinhalten unter Verwendung von Datenmanipulationsanweisungen (Datenmanipulationssprache - DML)
+- Anwendungsprogrammierer: Nutzen eines breiten Spektrum an Befehlen und Funktionen in speziellen Programmiersprachen oder durch Einbettungen von Datenmanipulations- bzw. Datendefinitionsanweisungen
+	- Präprozessor verarbeitet eingebettete Datenbankanweisungen in Anweisungen und Funktionsaufrufe der Trägersprache oder
+	- Zugriff auf Datenbanken über Funktionsaufrufe (Datenbankanweisungen als Parameter)
+- Datenbankadministratoren: Verwaltung der internen Speicherungsstrukturen mit Datendefinitionsanweisungen (Datendefinitionssprache - DDL)

@@ -2,6 +2,20 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Inhaltsverzeichnis**
+
+- [Einführung / Überblick](#einf%C3%BChrung--%C3%BCberblick)
+  - [User Story Format](#user-story-format)
+  - [Was gehört alles zur Systemanalyse?](#was-geh%C3%B6rt-alles-zur-systemanalyse)
+- [Regeln für Software-Entwicklung](#regeln-f%C3%BCr-software-entwicklung)
+  - [(1) Klartext](#1-klartext)
+    - [**Wasserfallmodell**](#wasserfallmodell)
+    - [**Agil**](#agil)
+  - [(2) Gründliche Vertragsgestaltung](#2-gr%C3%BCndliche-vertragsgestaltung)
+    - [**Wasserfallmodell**](#wasserfallmodell-1)
+    - [**Agil**](#agil-1)
+  - [(3) Wandelnde Anforderungen: Wie gehe ich damit um?](#3-wandelnde-anforderungen-wie-gehe-ich-damit-um)
+    - [**Change Request Prozess:**](#change-request-prozess)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

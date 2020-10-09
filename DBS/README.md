@@ -22,6 +22,9 @@ Datenbanken
   - [Das relationale Datenmodell](#das-relationale-datenmodell)
     - [Begriffe](#begriffe-1)
     - [Operationen](#operationen)
+  - [Objektorientiertes Datenmodell](#objektorientiertes-datenmodell)
+  - [Objektrelationale Systeme](#objektrelationale-systeme)
+- [Sprachschnittstellen zu DBMS](#sprachschnittstellen-zu-dbms)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

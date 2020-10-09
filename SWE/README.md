@@ -66,3 +66,5 @@ Zum Beispiel: keine Zusatzleistungen bzw. E-Mail/mündlich
 Request -> Impact, Analysis -> Approve / Deny -> Implementation -> Business
 
 **14 Tage Cycle:** Planning, Review, Retro
+
+**MMM:** Mensch, Maschine, Methode

@@ -1,3 +1,31 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Inhaltsverzeichnis**
+
+- [Betriebssystemverwaltung](#betriebssystemverwaltung)
+- [mögliche Prüfungsfragen](#m%C3%B6gliche-pr%C3%BCfungsfragen)
+- [Vorteile Virtualisierung](#vorteile-virtualisierung)
+- [Grundlagen Linux](#grundlagen-linux)
+  - [Terminal](#terminal)
+  - [VBox Guest Additions installieren](#vbox-guest-additions-installieren)
+  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-sch%C3%A4den-sch%C3%BCtzen)
+- [Grundlagen Windows](#grundlagen-windows)
+  - [Features hinzufügen / entfernen](#features-hinzuf%C3%BCgen--entfernen)
+  - [Verwaltungsaufgaben](#verwaltungsaufgaben)
+  - [Netzlaufwerk verbinden](#netzlaufwerk-verbinden)
+    - [Via Explorer](#via-explorer)
+    - [via CMD](#via-cmd)
+    - [Automatisieren: Skript](#automatisieren-skript)
+  - [Leere Datei anlegen](#leere-datei-anlegen)
+  - [Netzwerkconfig ausgeben](#netzwerkconfig-ausgeben)
+  - [ICMPv4 (Ping) eingehend in der Firewall zulassen](#icmpv4-ping-eingehend-in-der-firewall-zulassen)
+    - [Grafik](#grafik)
+  - [Ping of Death](#ping-of-death)
+    - [Windows](#windows)
+    - [Linux](#linux)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 Betriebssystemverwaltung
 ========================
 

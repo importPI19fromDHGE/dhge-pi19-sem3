@@ -8,6 +8,13 @@ Disclaimer von Max: was ich hier reinschreibe, ist zT sehr oberflächlich, da wi
 Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 -->
 
+# mögliche Prüfungsfragen
+
+<!---unvollständig!!! (LG Max)-->
+
+- wie Windows ISO beziehen?
+- Wie ermittelt man die Windows-Version / RAM-Menge / CPU-Kerne
+
 # Vorteile Virtualisierung
 
 - System anhalten, Snapshots, etc
@@ -18,7 +25,7 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 
 uvm
 
-# Grundlagen
+# Grundlagen Linux
 
 ## Terminal
 
@@ -74,3 +81,19 @@ sudo apt full-upgrade # oder: sudo apt-get dist-upgrade - macht dasselbe
 - im Fehlerfall: Snapshot zurückführen
 - wenn alles gut: Snapshot kann gelöscht werden
 - es können mehrere unabhängige Snapshots erstellt werden, zwischen deren Zuständen man wechseln kann
+
+# Grundlagen Windows
+
+- Skipped: Installation, Updates
+
+## Features hinzufügen / entfernen
+
+- Win+R --> ``optionalfeatures``
+- In Kommandozeile: ``DISM.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux``
+                    ``DISM.exe /online /disable-feature /featurename:Microsoft-Windows-Subsystem-Linux``
+
+## Verwaltungsaufgaben
+
+- Eventlog öffnen:
+  - Rechtsklick auf Start --> Ereignisanzeige
+  - auf Kommandozeile: ``eventvwr.msc``

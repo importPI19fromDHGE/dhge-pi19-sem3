@@ -5,6 +5,7 @@ Datenbanken
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
+- [Datenbanken](#datenbanken)
 - [Grundlagen](#grundlagen)
   - [Begriffe](#begriffe)
     - [Vorteile von Datenbanken](#vorteile-von-datenbanken)
@@ -162,6 +163,8 @@ $$R \subset A \times B$$
 - **Entitätsmenge:** Menge der Entities die durch einen Entity-Typ beschrieben werden
 - **Beziehungstypen:** Verallgemeinerung von Beziehungen zwischen Objekten (Entitäten)
 - **Datenintegrität:** "Makelosigkeit" der Daten
+
+![zusätzliche Begriffe aus dem Video](resources/db_begriffe_screenshot.png)
 
 ### Operationen
 

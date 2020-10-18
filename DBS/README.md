@@ -163,6 +163,8 @@ $$R \subset A \times B$$
 - **Beziehungstypen:** Verallgemeinerung von Beziehungen zwischen Objekten (Entitäten)
 - **Datenintegrität:** "Makelosigkeit" der Daten
 
+![zusätzliche Begriffe aus dem Video](resources/db_begriffe_screenshot.png)
+
 ### Operationen
 
 - **Selektion:** Auswählen von Zeilen eines Datensatzes, die eine bestimmte Bedingung erfüllen

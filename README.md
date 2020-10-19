@@ -1,5 +1,18 @@
 # DHGE - Praktische Informatik - Matrikel 19 - Semester 3
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Inhaltsverzeichnis**
+
+- [DBS - Datenbanken](#dbs---datenbanken)
+- [MAT - Statistik/Optimierung](#mat---statistikoptimierung)
+- [RES - Betriebssystemverwaltung](#res---betriebssystemverwaltung)
+- [NET - Rechnernetze](#net---rechnernetze)
+- [SWE - Systementwicklung](#swe---systementwicklung)
+- [PRO - IT-Trends](#pro---it-trends)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## DBS - Datenbanken
 
 [Playlist](https://www.youtube.com/playlist?list=PL2Elw_whlm_uhHPNk-HoCOpvkvAQC6vK2)
@@ -56,3 +69,13 @@
 ## NET - Rechnernetze
 
 ## SWE - Systementwicklung
+
+## PRO - IT-Trends
+
+- [X] Einleitung
+- [X] IT-Trends nach IDC
+- [X] Agile Methoden und Disruptionen
+- [X] Cloud Computing
+- [X] Künstliche Intelligenz
+- [X] Agile Entwicklung und DevOps-Methoden als Schlüssel für hohe Entwicklungsgeschwindigkeit
+- [X] IT-Sicherheit

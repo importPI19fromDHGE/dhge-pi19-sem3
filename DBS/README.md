@@ -1,6 +1,33 @@
 Datenbanken
 ===========
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Inhaltsverzeichnis**
+
+- [Grundlagen](#grundlagen)
+  - [Begriffe](#begriffe)
+    - [Vorteile von Datenbanken](#vorteile-von-datenbanken)
+    - [Aufgaben von DBMS](#aufgaben-von-dbms)
+  - [Architekturen von DBMS](#architekturen-von-dbms)
+    - [Drei-Ebenen-Konzept](#drei-ebenen-konzept)
+    - [Weitere Komponenten eines DBMS](#weitere-komponenten-eines-dbms)
+    - [DBMS im Schichtenmodell](#dbms-im-schichtenmodell)
+  - [Datenzugriffe](#datenzugriffe)
+- [Datenmodelle](#datenmodelle)
+  - [Hierarchisches Datenmodell](#hierarchisches-datenmodell)
+    - [Datenspeicherung](#datenspeicherung)
+    - [Grenzen](#grenzen)
+  - [Netzwerkmodell](#netzwerkmodell)
+  - [Das relationale Datenmodell](#das-relationale-datenmodell)
+    - [Begriffe](#begriffe-1)
+    - [Operationen](#operationen)
+  - [Objektorientiertes Datenmodell](#objektorientiertes-datenmodell)
+  - [Objektrelationale Systeme](#objektrelationale-systeme)
+- [Sprachschnittstellen zu DBMS](#sprachschnittstellen-zu-dbms)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Grundlagen
 
 ## Begriffe
@@ -13,6 +40,9 @@ Datenbanken
 festen Integrationsvorschriften (Zuordnung zu Objekt- und Beziehungstypen) und Operationen
 - **Schema:** formalisierte Darstellung des Modells (grafisch oder normalsprachlich) nach bestimmten Vorschriften
 	- Schema-Mapping: Abbilden von Objekten eines höheren Schemas auf ein tieferes Schema
+	- grafisch werden Schemata üblicherweise mittels Entity Relationship Model (ERM) dargestellt:
+	- ![Beispiel-ERM: Menschen sind Halter von Fahrzeugen](./resources/erm-bsp.svg)
+	- Leseregel für ERM: von links nach rechts und oben nach unten, sodass ein sinnvoller Satz gebildet werden kann
 
 ### Vorteile von Datenbanken
 
@@ -25,7 +55,7 @@ festen Integrationsvorschriften (Zuordnung zu Objekt- und Beziehungstypen) und O
 
 ### Aufgaben von DBMS
 
-- Definition der eigentlichen Daten, Zugriffshilfen und Benutzersichten
+- Definition der eigentlichen Daten, Zugriffshilfen (bspw. Indices) und Benutzersichten (views)
 - Datenmanipulation: Retrieval, Update
 - Datenverwaltung: Laden und Entladen der DB, Modifizieren von Speicherstrukturen, Reorganisation
 - Datensicherheit: Zugriffskontrolle, Sicherung der Integrität, Synchronisation von Mehrfachzugriffen
@@ -109,6 +139,7 @@ Ablauf zur Verarbeitung von Anfragen:
 - heute üblicher Standard für die Datenspeicherung
 - Beziehungen zwischen Objekten werden durch deren Eigenschaftsausprägungen dargestellt (flexibler als Zeiger)
 - Speicherung von Daten in einfacher Tabellenform (ohne mengenwertige oder zusammengesetzte Attribute)
+- Zeilen -> Objekte, Spalten -> Eigenschaften der Objekte
 - Reihenfolge der Attribute, Tupel einer Tabelle sind nicht vorgeschrieben
 - Tabellen können ungeordnete Folgen von Datensätzen abbilden
 - Indexierung bestimmter Attribute zur Beschleunigung von Suchoperationen
@@ -126,10 +157,13 @@ $$R \subset A \times B$$
 - es existieren Beziehungen zwischen diesen Objekten
 - diese Beziehungen haben wiederum bestimmte Merkmale
 - Der Wertebereich eines Attributs wird als Domäne bezeichnet
-- Entität: bestimmte Kombination von Attributwerten für ein Objekt
-- Klassenbildung: Zusammenfassen mehrerer Entities zu einem Entitätstyp
-- Entitätsmenge: Menge der Entities die durch einen Entity-Typ beschrieben werden
-- Beziehungstyen: Verallgemeinerung von Beziehungen zwischen Objekten (Entitäten)
+- **Entität:** bestimmte Kombination von Attributwerten für ein Objekt
+- **Klassenbildung:** Zusammenfassen mehrerer Entities zu einem Entitätstyp
+- **Entitätsmenge:** Menge der Entities die durch einen Entity-Typ beschrieben werden
+- **Beziehungstypen:** Verallgemeinerung von Beziehungen zwischen Objekten (Entitäten)
+- **Datenintegrität:** "Makelosigkeit" der Daten
+
+![zusätzliche Begriffe aus dem Video](resources/db_begriffe_screenshot.png)
 
 ### Operationen
 
@@ -203,3 +237,4 @@ WHERE imbetriebseit<=1992 AND brutto<1000
 
 - Basis: Tabellenskelett bzw. Abfragemaske -> Eingabe von Auswahlkriterien
 - Vertreter: MS Access
+

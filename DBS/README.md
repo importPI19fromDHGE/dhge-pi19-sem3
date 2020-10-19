@@ -25,6 +25,11 @@ Datenbanken
   - [Objektorientiertes Datenmodell](#objektorientiertes-datenmodell)
   - [Objektrelationale Systeme](#objektrelationale-systeme)
 - [Sprachschnittstellen zu DBMS](#sprachschnittstellen-zu-dbms)
+  - [Grundlagen von Datenmanipulations- und Abfragesprachen](#grundlagen-von-datenmanipulations--und-abfragesprachen)
+    - [Relationenalgebra-Sprachen](#relationenalgebra-sprachen)
+    - [Relationenkalkül-Sprachen](#relationenkalk%C3%BCl-sprachen)
+    - [Abbildungsorientierte Sprachen](#abbildungsorientierte-sprachen)
+    - [Grafikorientierte Sprachen](#grafikorientierte-sprachen)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -195,3 +200,46 @@ Der Zugriff auf Datenbanken erfolgt auf verschiedenen Ebenen/durch unterschiedli
 	- Präprozessor verarbeitet eingebettete Datenbankanweisungen in Anweisungen und Funktionsaufrufe der Trägersprache oder
 	- Zugriff auf Datenbanken über Funktionsaufrufe (Datenbankanweisungen als Parameter)
 - Datenbankadministratoren: Verwaltung der internen Speicherungsstrukturen mit Datendefinitionsanweisungen (Datendefinitionssprache - DDL)
+
+## Grundlagen von Datenmanipulations- und Abfragesprachen
+
+- **Navigierende Sprachen:** Suche nach Datensätzen (ohne Kriterien, evtl. Abbruch nach Auffinden hinreichender Datenmenge)
+- **Desktiptive Sprachen:** Suche nach Daten die bestimmte Kriterien erfüllen
+
+### Relationenalgebra-Sprachen
+
+- **Algebra:** Lehre von Beziehungen zwischen mathematischen Größen
+- Operationen (Selektion, Projektion, Join, Differenz...) werden auf Relationen durchgeführt -> Vergleichen die Werte von Attributen
+- Beispiel: aus der Relation Mitarbeiter sollen diejenigen gewählt werden, die min. seit 1992 im Betrieb sind und unter 1000 Euro brutto verdienen
+
+```js
+MITARBEITER[imbetriebseit <=1992 & brutto < 1000][persnr, name, vorname]
+```
+
+### Relationenkalkül-Sprachen
+
+- **Kalkül:** Rechenoperation, Berechnung, Überlegung
+- Durchsuchen einer Zielliste mit Selektionsprädikaten
+- Vertreter: QUEL (Query Language)
+
+```js
+RANGE OF m IS mitarbeiter
+RETRIEVE (m.persnr,m.name,m.vorname)
+WHERE m.imbetriebseit<=1992 AND m.brutto<1000
+```
+
+### Abbildungsorientierte Sprachen
+
+- Verknüpfung von Relationenalgebra und Relationenkalkül (in Anlehnung an natürliche Sprachen)
+- Basis für die heute verbreitetste Datenmanipulationssprache **S**tructured **Q**uery **L**anguage
+
+```SQL
+SELECT persnr, name, vorname FROM mitarbeiter
+WHERE imbetriebseit<=1992 AND brutto<1000
+```
+
+### Grafikorientierte Sprachen
+
+- Basis: Tabellenskelett bzw. Abfragemaske -> Eingabe von Auswahlkriterien
+- Vertreter: MS Access
+

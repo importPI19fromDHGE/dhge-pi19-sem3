@@ -25,6 +25,11 @@ Datenbanken
   - [Objektorientiertes Datenmodell](#objektorientiertes-datenmodell)
   - [Objektrelationale Systeme](#objektrelationale-systeme)
 - [Sprachschnittstellen zu DBMS](#sprachschnittstellen-zu-dbms)
+  - [Grundlagen von Datenmanipulations- und Abfragesprachen](#grundlagen-von-datenmanipulations--und-abfragesprachen)
+    - [Relationenalgebra-Sprachen](#relationenalgebra-sprachen)
+    - [Relationenkalkül-Sprachen](#relationenkalk%C3%BCl-sprachen)
+    - [Abbildungsorientierte Sprachen](#abbildungsorientierte-sprachen)
+    - [Grafikorientierte Sprachen](#grafikorientierte-sprachen)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

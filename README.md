@@ -28,8 +28,8 @@
 - [ ] B-Bäume Teil 2
 - [X] Sprachschnittstellen (Benutzergruppen)
 - [ ] Entwurfsansätze für Anfragesprachen
-- [ ] SQL-Praktikumsumgebung einrichten
-- [ ] SQL-Überblick
+- [X] SQL-Praktikumsumgebung einrichten
+- [X] SQL-Überblick
 - [ ] SQL-Praktikumsdatenbanken
 - [ ] Verwalten von Tabellen
 - [ ] Verwalten von Indexen

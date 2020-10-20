@@ -195,3 +195,49 @@ Der Zugriff auf Datenbanken erfolgt auf verschiedenen Ebenen/durch unterschiedli
 	- Präprozessor verarbeitet eingebettete Datenbankanweisungen in Anweisungen und Funktionsaufrufe der Trägersprache oder
 	- Zugriff auf Datenbanken über Funktionsaufrufe (Datenbankanweisungen als Parameter)
 - Datenbankadministratoren: Verwaltung der internen Speicherungsstrukturen mit Datendefinitionsanweisungen (Datendefinitionssprache - DDL)
+
+## SQL
+
+### Überblick
+
+**Datendefinitionsanweisungen (DDL)**
+
+- `CREATE`: Anlegen von Schemaelementen (z.B. `CREATE TABLE t (id INT PRIMARY KEY, name VARCHAR NOT NULL);`)
+- `ALTER`: Ändern der Eigenschaften von Schemaelementen (z.B. `ALTER TABLE t ADD column;`)
+- `DROP`: Löschen von Schemaelementen (z.B. `DROP TABLE t;`)
+
+**Datenmanipulationsanweisungen (DML)**
+
+- `INSERT`: Einfügen von Tupeln (z.B. `INSERT INTO t(column_list) VALUES(value_list);`)
+- `UPDATE`: Ändern von Attributwerten (z.B. `UPDATE t SET name = new_value;`)
+- `DELETE`: Löschen von Tupeln (z.B. `DELETE FROM t WHERE condition;`)
+
+**Datenabfrage (DQL):** `SELECT` (z.B. `SELECT * FROM t;`)
+
+**Vergabe von Rechten und Privilegien (DCL)**
+
+- `GRANT`: Erteilen von Rechten
+- `REVOKE`: Entziehen von Rechten
+
+**Transaktionsverwaltung (DCL)**
+
+- `COMMIT`: erfolgreicher Transaktionsabschluss
+- `REVOKE`: Transaktionsabbruch
+- `BEGIN TRANSACTION`: Beginn einer Transaktionsklammer
+
+**Verbindungsaufbau**
+
+- `CONNECT`
+
+#### Namenskonventionen
+
+- Leerzeichen, Sonderzeichen, Umlaute meiden
+- selbsterklärende Bezeichner verwenden
+- in TSQL Bezeichner zur Begrenzung in eckigen Klammern möglich
+
+#### Sprachliche Unterschiede im Vergleich zur Programmiersprache C
+
+- Arrays mit runden statt eckigen Klammern
+- `=` und `<>` statt `==` und `!=`
+- `'string'` statt `"string"`
+- `NOT, AND, OR` statt `!, &&, ||`

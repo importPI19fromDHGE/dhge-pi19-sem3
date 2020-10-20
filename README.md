@@ -27,7 +27,7 @@
 - [ ] B-Bäume Teil 1
 - [ ] B-Bäume Teil 2
 - [X] Sprachschnittstellen (Benutzergruppen)
-- [ ] Entwurfsansätze für Anfragesprachen
+- [X] Entwurfsansätze für Anfragesprachen
 - [X] SQL-Praktikumsumgebung einrichten
 - [X] SQL-Überblick
 - [ ] SQL-Praktikumsdatenbanken

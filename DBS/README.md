@@ -30,6 +30,10 @@ Datenbanken
     - [Relationenkalkül-Sprachen](#relationenkalk%C3%BCl-sprachen)
     - [Abbildungsorientierte Sprachen](#abbildungsorientierte-sprachen)
     - [Grafikorientierte Sprachen](#grafikorientierte-sprachen)
+  - [SQL](#sql)
+    - [Überblick](#%C3%BCberblick)
+      - [Namenskonventionen](#namenskonventionen)
+      - [Sprachliche Unterschiede im Vergleich zur Programmiersprache C](#sprachliche-unterschiede-im-vergleich-zur-programmiersprache-c)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -242,4 +246,49 @@ WHERE imbetriebseit<=1992 AND brutto<1000
 
 - Basis: Tabellenskelett bzw. Abfragemaske -> Eingabe von Auswahlkriterien
 - Vertreter: MS Access
+
+## SQL
+
+### Überblick
+
+**Datendefinitionsanweisungen (DDL)**
+
+- `CREATE`: Anlegen von Schemaelementen (z.B. `CREATE TABLE t (id INT PRIMARY KEY, name VARCHAR NOT NULL);`)
+- `ALTER`: Ändern der Eigenschaften von Schemaelementen (z.B. `ALTER TABLE t ADD column;`)
+- `DROP`: Löschen von Schemaelementen (z.B. `DROP TABLE t;`)
+
+**Datenmanipulationsanweisungen (DML)**
+
+- `INSERT`: Einfügen von Tupeln (z.B. `INSERT INTO t(column_list) VALUES(value_list);`)
+- `UPDATE`: Ändern von Attributwerten (z.B. `UPDATE t SET name = new_value;`)
+- `DELETE`: Löschen von Tupeln (z.B. `DELETE FROM t WHERE condition;`)
+
+**Datenabfrage (DQL):** `SELECT` (z.B. `SELECT * FROM t;`)
+
+**Vergabe von Rechten und Privilegien (DCL)**
+
+- `GRANT`: Erteilen von Rechten
+- `REVOKE`: Entziehen von Rechten
+
+**Transaktionsverwaltung (DCL)**
+
+- `COMMIT`: erfolgreicher Transaktionsabschluss
+- `REVOKE`: Transaktionsabbruch
+- `BEGIN TRANSACTION`: Beginn einer Transaktionsklammer
+
+**Verbindungsaufbau:** `CONNECT`
+
+#### Namenskonventionen
+
+- Leerzeichen, Sonderzeichen, Umlaute meiden
+- selbsterklärende Bezeichner verwenden
+- in TSQL Bezeichner zur Begrenzung in eckigen Klammern möglich
+
+#### Sprachliche Unterschiede im Vergleich zur Programmiersprache C
+
+- Arrays mit runden statt eckigen Klammern
+- `=` und `<>` statt `==` und `!=`
+- `'string'` statt `"string"`
+- `NOT, AND, OR` statt `!, &&, ||`
+
 

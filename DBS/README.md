@@ -276,9 +276,7 @@ WHERE imbetriebseit<=1992 AND brutto<1000
 - `REVOKE`: Transaktionsabbruch
 - `BEGIN TRANSACTION`: Beginn einer Transaktionsklammer
 
-**Verbindungsaufbau**
-
-- `CONNECT`
+**Verbindungsaufbau:** `CONNECT`
 
 #### Namenskonventionen
 

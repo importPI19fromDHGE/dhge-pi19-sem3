@@ -129,7 +129,7 @@ sudo apt full-upgrade # oder: sudo apt-get dist-upgrade - macht dasselbe
 
 ## Netzlaufwerk verbinden
 
-### Via Explorer
+### via Explorer
 
 - IP-Adresse eines Fileservers im Explorer eingeben
 - Rechtsklick auf eine Freigabe
@@ -216,7 +216,7 @@ ipconfig /all
 
 - ``wf.msc`` öffnen
 - eine Variante: Firewall abschalten
-  - in der Übersicht "Widnows Defender Firewall Properties" das betreffende Profil im Feld "Firewal state" abschalten
+  - in der Übersicht "Windows Defender Firewall Properties" das betreffende Profil im Feld "Firewall state" abschalten
 - weitere Variante: Firewall-Regel aktivieren
   - in "Inbound Rules" "File and Printer Sharing (Echo Request - ICMPv4-In)" für das entsprechende Netzwerkprofil öffnen
   - Haken bei "Enabled" setzen

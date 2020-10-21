@@ -1,8 +1,10 @@
+Betriebssystemverwaltung
+========================
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Betriebssystemverwaltung](#betriebssystemverwaltung)
 - [mögliche Prüfungsfragen](#m%C3%B6gliche-pr%C3%BCfungsfragen)
 - [Vorteile Virtualisierung](#vorteile-virtualisierung)
 - [Grundlagen Linux](#grundlagen-linux)
@@ -20,14 +22,13 @@
   - [Netzwerkconfig ausgeben](#netzwerkconfig-ausgeben)
   - [ICMPv4 (Ping) eingehend in der Firewall zulassen](#icmpv4-ping-eingehend-in-der-firewall-zulassen)
     - [Grafik](#grafik)
+    - [CMD: vorhandene Regel aktivieren](#cmd-vorhandene-regel-aktivieren)
+    - [CMD: neue Regel erstellen](#cmd-neue-regel-erstellen)
   - [Ping of Death](#ping-of-death)
     - [Windows](#windows)
     - [Linux](#linux)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-Betriebssystemverwaltung
-========================
 
 <!---
 created by Maximilian Kerst, 05.10.2020
@@ -220,6 +221,21 @@ ipconfig /all
   - in "Inbound Rules" "File and Printer Sharing (Echo Request - ICMPv4-In)" für das entsprechende Netzwerkprofil öffnen
   - Haken bei "Enabled" setzen
 
+### CMD: vorhandene Regel aktivieren
+
+```bat
+@echo off
+netsh advfirewall firewall set rule name="File and Printer Sharing (Echo Request - ICMPv4-In)" new enabled=yes
+pause
+```
+
+### CMD: neue Regel erstellen
+
+```bat
+@echo off
+netsh advfirewall firewall add rule name="Custom IPv4 allow" new action=allow profile=any protocol=icmpv4:8,any dir=in enable=yes
+pause
+```
 
 ## Ping of Death
 

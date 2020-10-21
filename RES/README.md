@@ -3,14 +3,14 @@
 **Inhaltsverzeichnis**
 
 - [Betriebssystemverwaltung](#betriebssystemverwaltung)
-- [mögliche Prüfungsfragen](#m%C3%B6gliche-pr%C3%BCfungsfragen)
+- [mögliche Prüfungsfragen](#mögliche-prüfungsfragen)
 - [Vorteile Virtualisierung](#vorteile-virtualisierung)
 - [Grundlagen Linux](#grundlagen-linux)
   - [Terminal](#terminal)
   - [VBox Guest Additions installieren](#vbox-guest-additions-installieren)
-  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-sch%C3%A4den-sch%C3%BCtzen)
+  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-schäden-schützen)
 - [Grundlagen Windows](#grundlagen-windows)
-  - [Features hinzufügen / entfernen](#features-hinzuf%C3%BCgen--entfernen)
+  - [Features hinzufügen / entfernen](#features-hinzufügen--entfernen)
   - [Verwaltungsaufgaben](#verwaltungsaufgaben)
   - [Netzlaufwerk verbinden](#netzlaufwerk-verbinden)
     - [Via Explorer](#via-explorer)
@@ -20,6 +20,8 @@
   - [Netzwerkconfig ausgeben](#netzwerkconfig-ausgeben)
   - [ICMPv4 (Ping) eingehend in der Firewall zulassen](#icmpv4-ping-eingehend-in-der-firewall-zulassen)
     - [Grafik](#grafik)
+    - [CMD: vorhandene Regel aktivieren](#cmd-vorhandene-regel-aktivieren)
+    - [CMD: neue Regel erstellen](#cmd-neue-regel-erstellen)
   - [Ping of Death](#ping-of-death)
     - [Windows](#windows)
     - [Linux](#linux)
@@ -220,6 +222,21 @@ ipconfig /all
   - in "Inbound Rules" "File and Printer Sharing (Echo Request - ICMPv4-In)" für das entsprechende Netzwerkprofil öffnen
   - Haken bei "Enabled" setzen
 
+### CMD: vorhandene Regel aktivieren
+
+```bat
+@echo off
+netsh advfirewall firewall set rule name="File and Printer Sharing (Echo Request - ICMPv4-In)" new enabled=yes
+pause
+```
+
+### CMD: neue Regel erstellen
+
+```bat
+@echo off
+netsh advfirewall firewall add rule name="Custom IPv4 allow" new action=allow profile=any protocol=icmpv4:8,any dir=in enable=yes
+pause
+```
 
 ## Ping of Death
 

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="ERD_Bestandteile.svg"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 84.300003 123.8"
+   height="123.8mm"
+   width="84.300003mm">
+  <title
+     id="title40">Bestandteile eines ERD</title>
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     inkscape:window-maximized="1"
+     inkscape:window-y="-9"
+     inkscape:window-x="-9"
+     inkscape:window-height="1001"
+     inkscape:window-width="1920"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="mm"
+     inkscape:cy="148.11452"
+     inkscape:cx="451.81119"
+     inkscape:zoom="0.98994949"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Bestandteile eines ERD</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Ebene 1">
+    <text
+       id="text12"
+       y="11.52532"
+       x="5.3633766"
+       style="font-style:normal;font-weight:normal;font-size:8.46667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       xml:space="preserve"><tspan
+         style="font-size:8.46667px;stroke-width:0.264583"
+         y="11.52532"
+         x="5.3633766"
+         id="tspan10"
+         sodipodi:role="line">Student</tspan></text>
+    <rect
+       y="0.29894999"
+       x="0.29894999"
+       height="17.281319"
+       width="43.6021"
+       id="rect14"
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.3979" />
+    <text
+       id="text18"
+       y="12.327127"
+       x="53.435802"
+       style="font-style:normal;font-weight:normal;font-size:8.46667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       xml:space="preserve"><tspan
+         style="font-size:8.46667px;stroke-width:0.264583"
+         y="12.327127"
+         x="53.435802"
+         id="tspan16"
+         sodipodi:role="line">Entität</tspan></text>
+    <text
+       id="text22"
+       y="52.952095"
+       x="14.989666"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       xml:space="preserve"><tspan
+         style="font-size:8.46667px;stroke-width:0.264583"
+         y="52.952095"
+         x="14.989666"
+         id="tspan20"
+         sodipodi:role="line">hat</tspan></text>
+    <rect
+       transform="matrix(0.70314339,0.71104808,-0.71100463,0.70318733,0,0)"
+       y="4.866642"
+       x="36.686108"
+       height="30.111242"
+       width="29.778351"
+       id="rect24"
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.360038" />
+    <text
+       id="text28"
+       y="106.3099"
+       x="9.5326309"
+       style="font-style:normal;font-weight:normal;font-size:8.46667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       xml:space="preserve"><tspan
+         style="font-size:8.46667px;stroke-width:0.264583"
+         y="106.3099"
+         x="9.5326309"
+         id="tspan26"
+         sodipodi:role="line">Name</tspan></text>
+    <circle
+       r="20.889757"
+       cy="102.74204"
+       cx="22.099998"
+       id="path30"
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.3979" />
+    <text
+       id="text34"
+       y="51.615746"
+       x="50.579128"
+       style="font-style:normal;font-weight:normal;font-size:8.46667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       xml:space="preserve"><tspan
+         style="font-size:8.46667px;stroke-width:0.264583"
+         y="51.615746"
+         x="50.579128"
+         id="tspan32"
+         sodipodi:role="line">Relation</tspan></text>
+    <text
+       id="text38"
+       y="106.44044"
+       x="51.343937"
+       style="font-style:normal;font-weight:normal;font-size:8.46672px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264584"
+       xml:space="preserve"><tspan
+         style="font-size:8.46672px;stroke-width:0.264584"
+         y="106.44044"
+         x="51.343937"
+         id="tspan36"
+         sodipodi:role="line">Attribut</tspan></text>
+  </g>
+</svg>

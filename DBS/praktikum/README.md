@@ -2,6 +2,17 @@ Datenbanken-Praktikum
 =====================
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Inhaltsverzeichnis**
+
+- [Formen von Kundenanforderungen](#formen-von-kundenanforderungen)
+- [Schematische Darstellung](#schematische-darstellung)
+  - [Entity Relationship Diagramm (ERD)](#entity-relationship-diagramm-erd)
+  - [Tabellenschema](#tabellenschema)
+- [Constraints und Kardinalitäten](#constraints-und-kardinalit%C3%A4ten)
+- [Vorgehensweise zur Modellierung einer Datenbank](#vorgehensweise-zur-modellierung-einer-datenbank)
+- [Relationship-Matrix](#relationship-matrix)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Formen von Kundenanforderungen

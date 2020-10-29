@@ -29,6 +29,9 @@ Betriebssystemverwaltung
     - [Windows](#windows)
     - [Linux](#linux)
   - [Windows-Netzwerkeinstellungen via Skript ändern](#windows-netzwerkeinstellungen-via-skript-ändern)
+  - [Vorträge](#vorträge)
+    - [Themen](#themen)
+    - [Was soll rein?](#was-soll-rein)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -291,3 +294,26 @@ goto end
 :end
 pause
 ```
+
+## Vorträge
+
+### Themen
+
+- Vorstellung DHCP-Server
+- Vorstellung Samba-Server
+- Datensicherung mit ``rsync``
+- Vorstellung FTP-Server
+- Vorstellung Jail
+- Vorstellung SSH --> im Sysadmin-Kontext: Installation, Benutzung, Verwaltung, Nutzung Windows ...
+- Aufsetzung eines Webservers
+- "Nextcloud???"
+
+### Was soll rein?
+
+- Verwaltung
+- Zweck
+- Beispielkonfigurationen
+- Notwendige Konfiguration
+- "der Weg dahin"
+
+<!--Max und Basti machen SSH-->

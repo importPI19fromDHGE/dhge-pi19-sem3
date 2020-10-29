@@ -15,7 +15,7 @@ Betriebssystemverwaltung
   - [Features hinzufügen / entfernen](#features-hinzuf%C3%BCgen--entfernen)
   - [Verwaltungsaufgaben](#verwaltungsaufgaben)
   - [Netzlaufwerk verbinden](#netzlaufwerk-verbinden)
-    - [Via Explorer](#via-explorer)
+    - [via Explorer](#via-explorer)
     - [via CMD](#via-cmd)
     - [Automatisieren: Skript](#automatisieren-skript)
   - [Leere Datei anlegen](#leere-datei-anlegen)

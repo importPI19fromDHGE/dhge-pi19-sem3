@@ -5,17 +5,18 @@ Betriebssystemverwaltung
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [mögliche Prüfungsfragen](#m%C3%B6gliche-pr%C3%BCfungsfragen)
+- [Betriebssystemverwaltung](#betriebssystemverwaltung)
+- [mögliche Prüfungsfragen](#mögliche-prüfungsfragen)
 - [Vorteile Virtualisierung](#vorteile-virtualisierung)
 - [Grundlagen Linux](#grundlagen-linux)
   - [Terminal](#terminal)
   - [VBox Guest Additions installieren](#vbox-guest-additions-installieren)
-  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-sch%C3%A4den-sch%C3%BCtzen)
+  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-schäden-schützen)
 - [Grundlagen Windows](#grundlagen-windows)
-  - [Features hinzufügen / entfernen](#features-hinzuf%C3%BCgen--entfernen)
+  - [Features hinzufügen / entfernen](#features-hinzufügen--entfernen)
   - [Verwaltungsaufgaben](#verwaltungsaufgaben)
   - [Netzlaufwerk verbinden](#netzlaufwerk-verbinden)
-    - [Via Explorer](#via-explorer)
+    - [via Explorer](#via-explorer)
     - [via CMD](#via-cmd)
     - [Automatisieren: Skript](#automatisieren-skript)
   - [Leere Datei anlegen](#leere-datei-anlegen)
@@ -27,6 +28,7 @@ Betriebssystemverwaltung
   - [Ping of Death](#ping-of-death)
     - [Windows](#windows)
     - [Linux](#linux)
+  - [Windows-Netzwerkeinstellungen via Skript ändern](#windows-netzwerkeinstellungen-via-skript-ändern)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -255,3 +257,37 @@ for /l %%x (1, 1, 200) do start ping -t -l 65500 127.0.0.1
 ### Linux
 
 <!---//TODO-->
+
+## Windows-Netzwerkeinstellungen via Skript ändern
+
+- Nutzung von NetSh
+- Was muss geändert werden?
+  - IP-Adresse
+  - Subnetzmaske
+  - Gateway
+  - DNS
+
+```bat
+@echo off
+
+REM Lässt sich auch mit if + Klammern realisieren
+REM %~1 --> keine Parameter angegeben, stelle Original wieder her
+if "%~1" == "" goto orig
+if "%1" == "orig" goto orig
+if "%1" == "neu" goto neu
+goto end
+
+:orig
+netsh interface ip set address name="Ethernet" dhcp
+netsh interface ip set dns name="Ethernet" source=dhcp
+goto end
+
+:neu
+netsh interface ip set address name="Ethernet" source=static addr=10.42.69.2 mask=255.255.255.0 gateway=10.42.69.1 gwmetric=0
+netsh interface ip set dns name="Ethernet" source=static addr=1.1.1.1
+REM Dass der DNS-Server ungültig wäre, ist lediglich eine Warnung. Er wird dennoch übernommen.
+goto end
+
+:end
+pause
+```

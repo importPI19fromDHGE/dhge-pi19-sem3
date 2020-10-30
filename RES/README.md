@@ -5,15 +5,14 @@ Betriebssystemverwaltung
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Betriebssystemverwaltung](#betriebssystemverwaltung)
-- [mögliche Prüfungsfragen](#mögliche-prüfungsfragen)
+- [mögliche Prüfungsfragen](#m%C3%B6gliche-pr%C3%BCfungsfragen)
 - [Vorteile Virtualisierung](#vorteile-virtualisierung)
 - [Grundlagen Linux](#grundlagen-linux)
   - [Terminal](#terminal)
   - [VBox Guest Additions installieren](#vbox-guest-additions-installieren)
-  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-schäden-schützen)
+  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-sch%C3%A4den-sch%C3%BCtzen)
 - [Grundlagen Windows](#grundlagen-windows)
-  - [Features hinzufügen / entfernen](#features-hinzufügen--entfernen)
+  - [Features hinzufügen / entfernen](#features-hinzuf%C3%BCgen--entfernen)
   - [Verwaltungsaufgaben](#verwaltungsaufgaben)
   - [Netzlaufwerk verbinden](#netzlaufwerk-verbinden)
     - [via Explorer](#via-explorer)
@@ -28,8 +27,8 @@ Betriebssystemverwaltung
   - [Ping of Death](#ping-of-death)
     - [Windows](#windows)
     - [Linux](#linux)
-  - [Windows-Netzwerkeinstellungen via Skript ändern](#windows-netzwerkeinstellungen-via-skript-ändern)
-  - [Vorträge](#vorträge)
+  - [Windows-Netzwerkeinstellungen via Skript ändern](#windows-netzwerkeinstellungen-via-skript-%C3%A4ndern)
+  - [Vorträge](#vortr%C3%A4ge)
     - [Themen](#themen)
     - [Was soll rein?](#was-soll-rein)
 

@@ -27,6 +27,10 @@ Betriebssystemverwaltung
   - [Ping of Death](#ping-of-death)
     - [Windows](#windows)
     - [Linux](#linux)
+  - [Windows-Netzwerkeinstellungen via Skript ändern](#windows-netzwerkeinstellungen-via-skript-%C3%A4ndern)
+  - [Vorträge](#vortr%C3%A4ge)
+    - [Themen](#themen)
+    - [Was soll rein?](#was-soll-rein)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -255,3 +259,65 @@ for /l %%x (1, 1, 200) do start ping -t -l 65500 127.0.0.1
 ### Linux
 
 <!---//TODO-->
+
+## Windows-Netzwerkeinstellungen via Skript ändern
+
+- Nutzung von NetSh
+- Was muss geändert werden?
+  - IP-Adresse
+  - Subnetzmaske
+  - Gateway
+  - DNS
+
+```bat
+@echo off
+
+REM Lässt sich auch mit if + Klammern realisieren
+REM %~1 --> keine Parameter angegeben, stelle Original wieder her
+if "%~1" == "" goto orig
+if "%1" == "orig" goto orig
+if "%1" == "neu" goto neu
+goto end
+
+:orig
+netsh interface ip set address name="Ethernet" dhcp
+netsh interface ip set dns name="Ethernet" source=dhcp
+goto end
+
+:neu
+netsh interface ip set address name="Ethernet" source=static addr=10.42.69.2 mask=255.255.255.0 gateway=10.42.69.1 gwmetric=0
+netsh interface ip set dns name="Ethernet" source=static addr=1.1.1.1
+REM Dass der DNS-Server ungültig wäre, ist lediglich eine Warnung. Er wird dennoch übernommen.
+goto end
+
+:end
+pause
+```
+
+## Vorträge
+
+Für die kommenden Stunden sollen Einführungsvorträge für verschiedene Themen erarbeitet werden und dann (ohne Note) für die anderen vorgetragen werden.
+Als Redezeit ist 15min pro Redner vorgesehen.
+Es soll nicht unbedingt zu sehr in die Tiefe gehen - der Fokus soll auf Sysadmin-Aufgaben liegen, sodass man also schonmal was von den wichtigsten Sachen gehört hat
+
+### Themen
+
+- Vorstellung DHCP-Server
+- Vorstellung Samba-Server
+- Datensicherung mit ``rsync``
+- Apache2 <!--Kampfwebserver-->
+- Vorstellung FTP-Server
+- Vorstellung Jail
+- Vorstellung SSH --> im Sysadmin-Kontext: Installation, Benutzung, Verwaltung, Nutzung Windows ...
+- Aufsetzung eines Webservers
+- "Nextcloud???"
+
+### Was soll rein?
+
+- Verwaltung
+- Zweck
+- Beispielkonfigurationen
+- Notwendige Konfiguration
+- "der Weg dahin"
+
+<!--Max und Basti machen SSH-->

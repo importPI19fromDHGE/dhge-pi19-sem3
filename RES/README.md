@@ -302,6 +302,7 @@ pause
 - Vorstellung DHCP-Server
 - Vorstellung Samba-Server
 - Datensicherung mit ``rsync``
+- Apache2 <!--Kampfwebserver-->
 - Vorstellung FTP-Server
 - Vorstellung Jail
 - Vorstellung SSH --> im Sysadmin-Kontext: Installation, Benutzung, Verwaltung, Nutzung Windows ...

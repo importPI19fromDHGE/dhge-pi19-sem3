@@ -296,6 +296,10 @@ pause
 
 ## Vorträge
 
+Für die kommenden Stunden sollen Einführungsvorträge für verschiedene Themen erarbeitet werden und dann (ohne Note) für die anderen vorgetragen werden.
+Als Redezeit ist 15min pro Redner vorgesehen.
+Es soll nicht unbedingt zu sehr in die Tiefe gehen - der Fokus soll auf Sysadmin-Aufgaben liegen, sodass man also schonmal was von den wichtigsten Sachen gehört hat
+
 ### Themen
 
 - Vorstellung DHCP-Server

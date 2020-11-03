@@ -105,3 +105,75 @@ Es wird folgende Reihenfolge vorgeschlagen:
 | Abteilungsleiter | leitet    | xxxxxxxxxxxxxxxx | ist            |             |
 | Mitarbeiter      | gehört zu | ist              | xxxxxxxxxxxxxx | arbeitet an |
 | Projekt          |           |                  | ist zugeordnet | xxxxxxxxxxx |
+
+# SQL
+
+## Datenbanken
+
+**Datenbank erstellen**
+```sql
+CREATE DATABASE bibliothek
+ON PRIMARY ( name = 'bibliothek', filename= N'c:\DB\bibliothek.mdf', size = 20MB, filegrowth= 5%)
+LOG ON ( name = 'bibliothek_log', filename= N'c:\DB\bibliothek.ldf', size = 5MB, filegrowth= 1MB, maxsize= 50MB);
+```
+
+**Datenbank auswählen**
+```sql
+USE bibliothek;
+go
+```
+
+**Datenbank löschen**
+```sql
+DROP DATABASE bibliothek;
+```
+
+## Datentypen
+
+| Datentyp                        | Beschreibung                                          |
+|---------------------------------|-------------------------------------------------------|
+| `smallint, integer, bigint`     | Ganze Zahlen                                          |
+| `numeric, decimal, number(n,m)` | Festkommazahlen                                       |
+| `float, double`                 | Gleitkommazahlen                                      |
+| `char(n)`                       | Zeichenkette der Länge n (`nchar` für Unicode)        |
+| `varchar(max)`                  | Zeichenkette variabler Länge (`nvarchar` für Unicode) |
+| `date, time, datetime`          | Datums- und Zeitangaben                               |
+| `bit`                           | Einzelner Bit (Wahrheitswert)                         |
+
+## Tabellen
+
+### Tabellen erstellen
+
+```sql
+CREATE TABLE Autor (
+	id bigint PRIMARY KEY IDENTITY(0,1),
+	name nvarchar(100) NOT NULL,
+	vorname nvarchar(100) NOT NULL,
+	geb_jahr smallint,
+);
+
+CREATE TABLE Buch (
+	id bigint PRIMARY KEY IDENTITY(0,1),
+	isbn varchar(30) UNIQUE NOT NULL,
+	titel nvarchar(100) NOT NULL,
+	preis numeric(6,2),
+	leihbar bit DEFAULT 1,
+	erschienen_am date,
+);
+
+CREATE TABLE Buch2Autor(
+	autor_id bigint NOT NULL FOREIGN KEY REFERENCES Autor(id),
+	buch_id bigint NOT NULL FOREIGN KEY REFERENCES Buch(id),
+	CONSTRAINT pk_buch2autor PRIMARY KEY (buch_id, autor_id)
+);
+```
+
+### Eigenschaften für Tabellenspalten
+
+| Attribut        | Beschreibung                                                                                 |
+|-----------------|----------------------------------------------------------------------------------------------|
+| `PRIMARY KEY`   | Primärschlüssel                                                                              |
+| `IDENTITY(n,m)` | Wert dieser Spalte wird automatisch gesetzt (aufsteigend beginnend bei n mit Schrittweite m) |
+| `NOT NULL`      | Wert dieser Spalte darf nicht leer sein                                                      |
+| `UNIQUE`        | Wert dieser Spalte muss innerhalb der Spalte einzigartig sein                                |
+| `DEFAULT 0`     | Standartwert für die Spalte                                                                  |

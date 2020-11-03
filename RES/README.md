@@ -5,14 +5,15 @@ Betriebssystemverwaltung
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [mögliche Prüfungsfragen](#m%C3%B6gliche-pr%C3%BCfungsfragen)
+- [Betriebssystemverwaltung](#betriebssystemverwaltung)
+- [mögliche Prüfungsfragen](#mögliche-prüfungsfragen)
 - [Vorteile Virtualisierung](#vorteile-virtualisierung)
 - [Grundlagen Linux](#grundlagen-linux)
   - [Terminal](#terminal)
   - [VBox Guest Additions installieren](#vbox-guest-additions-installieren)
-  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-sch%C3%A4den-sch%C3%BCtzen)
+  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-schäden-schützen)
 - [Grundlagen Windows](#grundlagen-windows)
-  - [Features hinzufügen / entfernen](#features-hinzuf%C3%BCgen--entfernen)
+  - [Features hinzufügen / entfernen](#features-hinzufügen--entfernen)
   - [Verwaltungsaufgaben](#verwaltungsaufgaben)
   - [Netzlaufwerk verbinden](#netzlaufwerk-verbinden)
     - [via Explorer](#via-explorer)
@@ -27,10 +28,15 @@ Betriebssystemverwaltung
   - [Ping of Death](#ping-of-death)
     - [Windows](#windows)
     - [Linux](#linux)
-  - [Windows-Netzwerkeinstellungen via Skript ändern](#windows-netzwerkeinstellungen-via-skript-%C3%A4ndern)
-  - [Vorträge](#vortr%C3%A4ge)
+  - [Windows-Netzwerkeinstellungen via Skript ändern](#windows-netzwerkeinstellungen-via-skript-ändern)
+  - [Vorträge](#vorträge)
     - [Themen](#themen)
     - [Was soll rein?](#was-soll-rein)
+  - [Linux: Nutzerverwaltung](#linux-nutzerverwaltung)
+    - [Nutzer im Terminal ändern](#nutzer-im-terminal-ändern)
+    - [alle Nutzer anzeigen](#alle-nutzer-anzeigen)
+  - [Linux: Skripte](#linux-skripte)
+    - [SMB-Share einbinden](#smb-share-einbinden)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -321,3 +327,46 @@ Es soll nicht unbedingt zu sehr in die Tiefe gehen - der Fokus soll auf Sysadmin
 - "der Weg dahin"
 
 <!--Max und Basti machen SSH-->
+
+## Linux: Nutzerverwaltung
+
+### Nutzer im Terminal ändern
+
+``sudo -iu nutzer programm`` --> öffnet Programm (z.B. ``bash``) als angegebenen Nutzer inkl. Environment
+
+### alle Nutzer anzeigen
+
+- vollst. Informationen: ``cat /etc/passwd``
+- ausschließlich Nutzernamen: ``cat /etc/passwd | cut -d: -f1`` --> trennt anhand von :, gibt das Erste aus
+- nach Nutzer suchen: ``cat /etc/passwd | cut -d: -f1 | egrep "test|root"`` --> sucht nach Nutzern mit "test" ODER "root"
+- Nutzer zählen: ``cat /etc/passwd | wc -l``
+
+## Linux: Skripte
+
+- Skripte sind Textdateien <!--doh-->
+- Anlegen einer leeren Datei: ``touch script.sh``
+- ausführbar machen einer Datei: ``chmod +x script.sh`` (gibt dem Besitzer Rechte zur Ausführung)
+- Skript in Texteditor öffnen: ``vim script.sh`` oder ``nano script.sh`` oder \[...\]
+
+Beispiel: einen Text variabel oft anhand eines Argumentes ausgeben:
+
+```bash
+#!/bin/bash
+
+for i in $( seq 1 $1 )
+do
+  echo $i
+  echo "haus:paula:günther:xaver"
+done
+```
+
+### SMB-Share einbinden
+
+```bash
+#!/bin/bash
+
+sudo apt update
+sudo apt install cifs-utils
+sudo mount -t cifs -o uid=1000,gid=1000,file_mode=0771,dir_mode=0771 //adresse/freigabe /mnt
+# bindet \\adresse\freigabe auf den /mnt-Ordner und gibt Nutzer 1000 sowie Gruppe 1000 volle Rechte
+```

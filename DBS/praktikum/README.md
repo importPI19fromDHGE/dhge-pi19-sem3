@@ -12,6 +12,12 @@ Datenbanken-Praktikum
 - [Constraints und Kardinalitäten](#constraints-und-kardinalit%C3%A4ten)
 - [Vorgehensweise zur Modellierung einer Datenbank](#vorgehensweise-zur-modellierung-einer-datenbank)
 - [Relationship-Matrix](#relationship-matrix)
+- [SQL](#sql)
+  - [Datenbanken](#datenbanken)
+  - [Datentypen](#datentypen)
+  - [Tabellen](#tabellen)
+    - [Tabellen erstellen](#tabellen-erstellen)
+    - [Eigenschaften für Tabellenspalten](#eigenschaften-f%C3%BCr-tabellenspalten)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

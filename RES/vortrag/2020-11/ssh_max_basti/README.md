@@ -30,10 +30,8 @@ SSH hat viele verschiedene Einsatzgebiete:
 
 ### Client
 
-<!--was kann der?-->
-
-- Debian und Verwandte: ``sudo apt install openssh-client``
-- Arch und Verwandte: ``sudo pacman -S openssh`` (Kombipaket aus Server und Client)
+- Debian und Verwandte: `sudo apt install openssh-client`
+- Arch und Verwandte: `sudo pacman -S openssh` (Kombipaket aus Server und Client)
 
 --> Info an Max: Live "Demo" der Man-Page
 
@@ -41,14 +39,11 @@ SSH hat viele verschiedene Einsatzgebiete:
 
 <!--Unterteilung in SSH und SFTP-Server-->
 
-- Debian und Verwandte: ``sudo apt install openssh-server`` und ``sudo apt install openssh-sftp-server``
-- Arch und Verwandte: ``sudo pacman -S openssh`` (Kombipaket aus Server und Client)
+- Debian und Verwandte: `sudo apt install openssh-server` und `sudo apt install openssh-sftp-server`
+- Arch und Verwandte: `sudo pacman -S openssh` (Kombipaket aus Server und Client)
 
-- Starten des Servers
-    - mit systemd: ``sudo systemctl start sshd``
-    - mit SystemV / Upstart: ``sudo service sshd start``
-- Autostart des Servers:
-    - mit systemd: ``sudo systemctl enable sshd``
+- Starten des Servers mit systemd: `sudo systemctl start sshd`
+- Autostart des Servers mit systemd: `sudo systemctl enable sshd`
 
 ## Konfiguration
 
@@ -94,7 +89,7 @@ Darüber hinaus keine besondere Config notwendig.
 
 Beispiel-Konfiguration:
 
-```conf
+```bash
 
 # This is the ssh client system-wide configuration file.  See
 # ssh_config(5) for more information.  This file provides defaults for
@@ -152,19 +147,219 @@ Host *
 
 <!--Absichern, Überblick, Umstellung auf Key-based Auth-->
 
+- Schlüssel werden automatisch generiert
+- Konfigurationsdatei: ``/etc/ssh/sshd_config``
+- Standardkonfiguration ist zwar ausreichend, aber für Produktivbetrieb kann verbessert werden:
+
+```conf
+AllowUsers user1 user2
+# erlaubt Zugriff nur für best. Nutzer
+
+AllowGroups group1 group2
+#erlaubt Zugriff nur für best. Gruppen
+
+Port 4269
+# ändert den Port, auf dem der Server lauscht
+
+PermitRoot no
+```
+
+``authorized_keys``-Datei vor unbefugten Zugriffen schützen: ``chmod 600 ~/.ssh/authorized_keys``
+
+Um Brute-Force Angriffen und schwachen Kennwörtern entgegenzuwirken, kann man die passwortbasierte Authentifizierung abschalten:
+
+- sicherstellen, dass SSH-Schlüssel mit ausreichenden Rechten dem Server bekannt sind
+- in ``/etc/sshd_config`` folgende Optionen setzen
+
+```bash
+PasswordAuthentication no
+PubkeyAuthentication yes
+ChallengeResponseAuthentication no
+```
+
+Beispiel-Konfiguration:
+
+```bash
+#       $OpenBSD: sshd_config,v 1.103 2018/04/09 20:41:22 tj Exp $
+
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
+
+# This sshd was compiled with PATH=/usr/bin:/bin:/usr/sbin:/sbin
+
+# The strategy used for options in the default sshd_config shipped with
+# OpenSSH is to specify options with their default value where
+# possible, but leave them commented.  Uncommented options override the
+# default value.
+
+#Port 22
+#AddressFamily any
+#ListenAddress 0.0.0.0
+#ListenAddress ::
+
+#HostKey /etc/ssh/ssh_host_rsa_key
+#HostKey /etc/ssh/ssh_host_ecdsa_key
+#HostKey /etc/ssh/ssh_host_ed25519_key
+
+# Ciphers and keying
+#RekeyLimit default none
+
+# Logging
+#SyslogFacility AUTH
+#LogLevel INFO
+
+# Authentication:
+
+#LoginGraceTime 2m
+PermitRootLogin no
+#StrictModes yes
+#MaxAuthTries 6
+#MaxSessions 10
+
+PubkeyAuthentication yes
+
+# Expect .ssh/authorized_keys2 to be disregarded by default in future.
+#AuthorizedKeysFile     .ssh/authorized_keys .ssh/authorized_keys2
+
+#AuthorizedPrincipalsFile none
+
+#AuthorizedKeysCommand none
+#AuthorizedKeysCommandUser nobody
+
+# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+#HostbasedAuthentication no
+# Change to yes if you don't trust ~/.ssh/known_hosts for
+# HostbasedAuthentication
+#IgnoreUserKnownHosts no
+# Don't read the user's ~/.rhosts and ~/.shosts files
+#IgnoreRhosts yes
+
+# To disable tunneled clear text passwords, change to no here!
+PasswordAuthentication no
+#PermitEmptyPasswords no
+
+# Change to yes to enable challenge-response passwords (beware issues with
+# some PAM modules and threads)
+ChallengeResponseAuthentication no
+
+# Kerberos options
+#KerberosAuthentication no
+#KerberosOrLocalPasswd yes
+#KerberosTicketCleanup yes
+#KerberosGetAFSToken no
+
+# GSSAPI options
+#GSSAPIAuthentication no
+#GSSAPICleanupCredentials yes
+#GSSAPIStrictAcceptorCheck yes
+#GSSAPIKeyExchange no
+
+# Set this to 'yes' to enable PAM authentication, account processing,
+# and session processing. If this is enabled, PAM authentication will
+# be allowed through the ChallengeResponseAuthentication and
+# PasswordAuthentication.  Depending on your PAM configuration,
+# PAM authentication via ChallengeResponseAuthentication may bypass
+# the setting of "PermitRootLogin without-password".
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and ChallengeResponseAuthentication to 'no'.
+UsePAM yes
+
+#AllowAgentForwarding yes
+#AllowTcpForwarding yes
+#GatewayPorts no
+X11Forwarding yes
+#X11DisplayOffset 10
+#X11UseLocalhost yes
+#PermitTTY yes
+PrintMotd no
+#PrintLastLog yes
+#TCPKeepAlive yes
+#PermitUserEnvironment no
+#Compression delayed
+#ClientAliveInterval 0
+#ClientAliveCountMax 3
+#UseDNS no
+#PidFile /var/run/sshd.pid
+#MaxStartups 10:30:100
+#PermitTunnel no
+#ChrootDirectory none
+#VersionAddendum none
+
+# no default banner path
+#Banner none
+
+# Allow client to pass locale environment variables
+AcceptEnv LANG LC_*
+
+# override default of no subsystems
+Subsystem       sftp    /usr/lib/openssh/sftp-server
+
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+#       X11Forwarding no
+#       AllowTcpForwarding no
+#       PermitTTY no
+#       ForceCommand cvs server
+
+Match Address 192.168.178.0/24
+        PasswordAuthentication yes
+```
+
 ## Nutzung
 
-<!--Todo: SSH-Shell, Dateitransfer, VPN (?), X11-Forwarding (?), SSHFS-->
+### Login auf Remote Shell (Cross-Plattform)
+
+```shell
+$ ssh pi@raspberry
+```
+
+### Dateitransfer mit Filezilla (Cross-Plattform)
+
+- Server: ``sftp://fqdn.oder.ip``
+- Benutzer: auf dem Server existierender Nutzer eingeben
+- Passwort analog
+- Port: SSH-Port vom Server
+
+im Falle Schlüsselbasiertes Auth:
+
+- Filezilla kann automatisch Putty-Agent "Pageant" nutzen
+- alternativ Pfad des priv. Schlüssels unter ``Bearbeiten - Einstellungen - SFTP``
+
+### Dateitransfer mit scp (Commandline)
+
+- vom Localhost zum Server: ``scp virus.exe nutzer@fqdn.oder.ip:/ziel/pfad/``
+- vom Server zum Localhost: ``scp nutzer@fqdn.oder.ip:/quell/pfad/virus.exe /ziel/pfad/``
+
+<!--Todo: SSH-Shell, Dateitransfer, VPN (?), SSHFS-->
 
 ## Absicherung mit Fail2Ban
 
+- nach best. Anzahl Fehlversuchen wird IP-Adresse in Firewall gesperrt
+- 
+
 ### Installation
 
+```shell
+$ sudo apt install fail2ban
+```
 <!--selbsterklärend-->
 
 ### Konfiguration
 
-<!--lediglich relevant: SSH, kann aber noch mehr-->
+Config: `/etc/fail2ban/jail.conf`
+
+```c
+ignoreip = 127.0.0.1/8
+bantime = 600 # sekunden
+findtime = 600 # sekunden
+maxretry = 3
+destemail = root@localhost
+sendername = Fail2Ban
+mta = sendmail
+```
+
+<!--lediglich relevant: SSH; kann aber noch mehr-->
 
 ## VPN mit SSH
 

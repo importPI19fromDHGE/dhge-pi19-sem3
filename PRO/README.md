@@ -180,7 +180,8 @@ z.B.:
 
 Diese können wiederum aus Microservices zusammengesetzt sein, die untereinander vernetzt sind, siehe Schaubild. 
 
-<!-- Hier noch Skizze ergänzen, vielleicht jemand einen Screenshot? -->
+<img src="./resources/microservice.svg" alt="SOA-Skizze" width=350>
+
 ## Dienste 
 
 1. Sind klein, überschaubar und einfach ersetzbar 

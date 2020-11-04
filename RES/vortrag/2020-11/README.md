@@ -20,3 +20,8 @@ Formale Richtlinien
     Ca. 20 - 40 Folien
     Folien mit Seitenzahlen und Namen
 ```
+
+## Wer macht was?
+
+- [ ] Max & Basti: SSH
+- [ ] Yannis & Luis: SSH <!--höhö-->

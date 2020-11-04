@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:xhtml="http://www.w3.org/1999/xhtml"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   id="svg102"
+   style="background-color: rgb(255, 255, 255);"
+   viewBox="-0.5 -0.5 441 341"
+   height="341px"
+   width="441px"
+   version="1.1">
+  <metadata
+     id="metadata106">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs2" />
+  <g
+     id="g92">
+    <path
+       id="path4"
+       pointer-events="stroke"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="none"
+       d="M 220 60 L 220 140 L 60 140 L 60 153.63" />
+    <path
+       id="path6"
+       pointer-events="all"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="#000000"
+       d="M 60 158.88 L 56.5 151.88 L 60 153.63 L 63.5 151.88 Z" />
+    <path
+       id="path8"
+       pointer-events="stroke"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="none"
+       d="M 220 60 L 220 153.63" />
+    <path
+       id="path10"
+       pointer-events="all"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="#000000"
+       d="M 220 158.88 L 216.5 151.88 L 220 153.63 L 223.5 151.88 Z" />
+    <path
+       id="path12"
+       pointer-events="stroke"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="none"
+       d="M 220 60 L 220 140 L 380 140 L 380 153.63" />
+    <path
+       id="path14"
+       pointer-events="all"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="#000000"
+       d="M 380 158.88 L 376.5 151.88 L 380 153.63 L 383.5 151.88 Z" />
+    <path
+       id="path16"
+       pointer-events="stroke"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="none"
+       d="M 280 30 L 380 30 L 380 53.63" />
+    <path
+       id="path18"
+       pointer-events="all"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="#000000"
+       d="M 380 58.88 L 376.5 51.88 L 380 53.63 L 383.5 51.88 Z" />
+    <rect
+       id="rect20"
+       pointer-events="all"
+       stroke="#000000"
+       fill="#ffffff"
+       ry="9"
+       rx="9"
+       height="60"
+       width="120"
+       y="0"
+       x="160" />
+    <g
+       id="g26"
+       transform="translate(-0.5 -0.5)">
+      <switch
+         id="switch24">
+        <foreignObject
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+           height="100%"
+           width="100%"
+           pointer-events="none"
+           style="overflow: visible; text-align: left;">
+          <xhtml:div
+             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 30px; margin-left: 161px;">
+            <xhtml:div
+               style="box-sizing: border-box; font-size: 0; text-align: center; ">
+              <xhtml:div
+                 style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                <xhtml:font
+                   style="font-size: 16px">UI</xhtml:font>
+              </xhtml:div>
+            </xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           id="text22"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           fill="#000000"
+           y="34"
+           x="220">UI</text>
+      </switch>
+    </g>
+    <path
+       id="path28"
+       pointer-events="stroke"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="none"
+       d="M 60 220 L 60 253.63" />
+    <path
+       id="path30"
+       pointer-events="all"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="#000000"
+       d="M 60 258.88 L 56.5 251.88 L 60 253.63 L 63.5 251.88 Z" />
+    <rect
+       id="rect32"
+       pointer-events="all"
+       stroke="#000000"
+       fill="#ffffff"
+       ry="9"
+       rx="9"
+       height="60"
+       width="120"
+       y="160"
+       x="0" />
+    <g
+       id="g38"
+       transform="translate(-0.5 -0.5)">
+      <switch
+         id="switch36">
+        <foreignObject
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+           height="100%"
+           width="100%"
+           pointer-events="none"
+           style="overflow: visible; text-align: left;">
+          <xhtml:div
+             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 190px; margin-left: 1px;">
+            <xhtml:div
+               style="box-sizing: border-box; font-size: 0; text-align: center; ">
+              <xhtml:div
+                 style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                <xhtml:font
+                   style="font-size: 16px">Microservice</xhtml:font>
+                <xhtml:span
+                   style="color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px">%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bfont%20style%3D%26quot%3Bfont-size%3A%2016px%26quot%3B%26gt%3BUI%26lt%3B%2Ffont%26gt%3B%22%20style%3D%22rounded%3D1%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22340%22%20y%3D%2280%22%20width%3D%22120%22%20height%3D%2260%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E</xhtml:span>
+              </xhtml:div>
+            </xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           id="text34"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           fill="#000000"
+           y="194"
+           x="60">Microservice</text>
+      </switch>
+    </g>
+    <path
+       id="path40"
+       pointer-events="stroke"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="none"
+       d="M 220 220 L 220 253.63" />
+    <path
+       id="path42"
+       pointer-events="all"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="#000000"
+       d="M 220 258.88 L 216.5 251.88 L 220 253.63 L 223.5 251.88 Z" />
+    <rect
+       id="rect44"
+       pointer-events="all"
+       stroke="#000000"
+       fill="#ffffff"
+       ry="9"
+       rx="9"
+       height="60"
+       width="120"
+       y="160"
+       x="160" />
+    <g
+       id="g50"
+       transform="translate(-0.5 -0.5)">
+      <switch
+         id="switch48">
+        <foreignObject
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+           height="100%"
+           width="100%"
+           pointer-events="none"
+           style="overflow: visible; text-align: left;">
+          <xhtml:div
+             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 190px; margin-left: 161px;">
+            <xhtml:div
+               style="box-sizing: border-box; font-size: 0; text-align: center; ">
+              <xhtml:div
+                 style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                <xhtml:font
+                   style="font-size: 16px">Microservice</xhtml:font>
+                <xhtml:span
+                   style="color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px">%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bfont%20style%3D%26quot%3Bfont-size%3A%2016px%26quot%3B%26gt%3BUI%26lt%3B%2Ffont%26gt%3B%22%20style%3D%22rounded%3D1%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22340%22%20y%3D%2280%22%20width%3D%22120%22%20height%3D%2260%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E</xhtml:span>
+              </xhtml:div>
+            </xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           id="text46"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           fill="#000000"
+           y="194"
+           x="220">Microservice</text>
+      </switch>
+    </g>
+    <path
+       id="path52"
+       pointer-events="stroke"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="none"
+       d="M 380 220 L 380 253.63" />
+    <path
+       id="path54"
+       pointer-events="all"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="#000000"
+       d="M 380 258.88 L 376.5 251.88 L 380 253.63 L 383.5 251.88 Z" />
+    <rect
+       id="rect56"
+       pointer-events="all"
+       stroke="#000000"
+       fill="#ffffff"
+       ry="9"
+       rx="9"
+       height="60"
+       width="120"
+       y="160"
+       x="320" />
+    <g
+       id="g62"
+       transform="translate(-0.5 -0.5)">
+      <switch
+         id="switch60">
+        <foreignObject
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+           height="100%"
+           width="100%"
+           pointer-events="none"
+           style="overflow: visible; text-align: left;">
+          <xhtml:div
+             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 190px; margin-left: 321px;">
+            <xhtml:div
+               style="box-sizing: border-box; font-size: 0; text-align: center; ">
+              <xhtml:div
+                 style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                <xhtml:font
+                   style="font-size: 16px">Microservice</xhtml:font>
+                <xhtml:span
+                   style="color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px">%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bfont%20style%3D%26quot%3Bfont-size%3A%2016px%26quot%3B%26gt%3BUI%26lt%3B%2Ffont%26gt%3B%22%20style%3D%22rounded%3D1%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22340%22%20y%3D%2280%22%20width%3D%22120%22%20height%3D%2260%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E</xhtml:span>
+              </xhtml:div>
+            </xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           id="text58"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           fill="#000000"
+           y="194"
+           x="380">Microservice</text>
+      </switch>
+    </g>
+    <path
+       id="path64"
+       pointer-events="stroke"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="none"
+       d="M 320 90 L 90 90 L 90 153.63" />
+    <path
+       id="path66"
+       pointer-events="all"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="#000000"
+       d="M 90 158.88 L 86.5 151.88 L 90 153.63 L 93.5 151.88 Z" />
+    <path
+       id="path68"
+       pointer-events="stroke"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="none"
+       d="M 410 120 L 410 153.63" />
+    <path
+       id="path70"
+       pointer-events="all"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="#000000"
+       d="M 410 158.88 L 406.5 151.88 L 410 153.63 L 413.5 151.88 Z" />
+    <rect
+       id="rect72"
+       pointer-events="all"
+       stroke="#000000"
+       fill="#ffffff"
+       ry="9"
+       rx="9"
+       height="60"
+       width="120"
+       y="60"
+       x="320" />
+    <g
+       id="g78"
+       transform="translate(-0.5 -0.5)">
+      <switch
+         id="switch76">
+        <foreignObject
+           requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"
+           height="100%"
+           width="100%"
+           pointer-events="none"
+           style="overflow: visible; text-align: left;">
+          <xhtml:div
+             style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 118px; height: 1px; padding-top: 90px; margin-left: 321px;">
+            <xhtml:div
+               style="box-sizing: border-box; font-size: 0; text-align: center; ">
+              <xhtml:div
+                 style="display: inline-block; font-size: 12px; font-family: Helvetica; color: #000000; line-height: 1.2; pointer-events: all; white-space: normal; word-wrap: normal; ">
+                <xhtml:font
+                   style="font-size: 16px">Microservice</xhtml:font>
+                <xhtml:span
+                   style="color: rgba(0 , 0 , 0 , 0) ; font-family: monospace ; font-size: 0px">%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bfont%20style%3D%26quot%3Bfont-size%3A%2016px%26quot%3B%26gt%3BUI%26lt%3B%2Ffont%26gt%3B%22%20style%3D%22rounded%3D1%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22340%22%20y%3D%2280%22%20width%3D%22120%22%20height%3D%2260%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E</xhtml:span>
+              </xhtml:div>
+            </xhtml:div>
+          </xhtml:div>
+        </foreignObject>
+        <text
+           id="text74"
+           text-anchor="middle"
+           font-size="12px"
+           font-family="Helvetica"
+           fill="#000000"
+           y="94"
+           x="380">Microservice</text>
+      </switch>
+    </g>
+    <path
+       id="path80"
+       pointer-events="all"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="#ffffff"
+       d="M 30 275 C 30 266.72 43.43 260 60 260 C 67.96 260 75.59 261.58 81.21 264.39 C 86.84 267.21 90 271.02 90 275 L 90 325 C 90 333.28 76.57 340 60 340 C 43.43 340 30 333.28 30 325 Z" />
+    <path
+       id="path82"
+       pointer-events="all"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="none"
+       d="M 90 275 C 90 283.28 76.57 290 60 290 C 43.43 290 30 283.28 30 275" />
+    <path
+       id="path84"
+       pointer-events="all"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="#ffffff"
+       d="M 190 275 C 190 266.72 203.43 260 220 260 C 227.96 260 235.59 261.58 241.21 264.39 C 246.84 267.21 250 271.02 250 275 L 250 325 C 250 333.28 236.57 340 220 340 C 203.43 340 190 333.28 190 325 Z" />
+    <path
+       id="path86"
+       pointer-events="all"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="none"
+       d="M 250 275 C 250 283.28 236.57 290 220 290 C 203.43 290 190 283.28 190 275" />
+    <path
+       id="path88"
+       pointer-events="all"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="#ffffff"
+       d="M 350 275 C 350 266.72 363.43 260 380 260 C 387.96 260 395.59 261.58 401.21 264.39 C 406.84 267.21 410 271.02 410 275 L 410 325 C 410 333.28 396.57 340 380 340 C 363.43 340 350 333.28 350 325 Z" />
+    <path
+       id="path90"
+       pointer-events="all"
+       stroke-miterlimit="10"
+       stroke="#000000"
+       fill="none"
+       d="M 410 275 C 410 283.28 396.57 290 380 290 C 363.43 290 350 283.28 350 275" />
+  </g>
+  <switch
+     id="switch100">
+    <g
+       id="g94"
+       requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" />
+    <a
+       id="a98"
+       target="_blank"
+       xlink:href="https://desk.draw.io/support/solutions/articles/16000042487"
+       transform="translate(0,-5)">
+      <text
+         id="text96"
+         y="100%"
+         x="50%"
+         font-size="10px"
+         text-anchor="middle">Viewer does not support full SVG 1.1</text>
+    </a>
+  </switch>
+</svg>

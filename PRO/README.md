@@ -135,3 +135,150 @@ Das ist:
   - Authentizität - Echtheit der Daten, keien Fälschung
   - Nichtabstreitbarkeit
 - Authentizität + Nichtabstreitbarkeit = Verlässlichkeit der Daten
+
+# Technologien der dritten Plattform IT
+
+1. Cloud
+2. Mobile
+3. Big Data & Analyse
+4. KI 
+5. Augmented Reality / Virtual Reality 
+6. IoT - Internet of Things
+7. Robotics
+8. 3D-Print 
+9. Next-Generation-Security 
+
+Alle diese Punkte bedingen neue Expertisen bei den Mitarbeitern in den betreffenden Unternehmen: 
+
+- LOW-Code-Entwicklerplattformen werden notwendig, dabei sind vorgefertigte Programmodule vorhanden: diese Module (File-Open, Sortierungen, ...) müssen dann von den Entwicklern nur noch zusammengestellt werden 
+- Lambda-Funktion in AWS 
+- NO-Code 
+
+Dev-Ops Methoden weiten sich auf das gesamte Unternehmen aus. 
+
+# Microservices und REST-Schnittstellen 
+
+## Microservices
+
+Sind Architekturmuster in der IT, bei der die Anwendungssoftware aus vielen voneinander unabhängigen Prozessen zusammengesetzt wird. 
+Damit diese Prozesse miteinander kombiniert werden können, gibt es eine unabhängige Programmierschnittstelle.
+Dabei wird von **Diensten** gesprochen, die entkoppelt sind. Der Aufbau ist modular.
+
+Das Drei-Schichten-Modell spielen dabei eine Rolle: 
+
+1. GUI 
+2. Logik 
+3. Daten 
+
+Es wird auf die Microservices übertragen. 
+
+z.B.: 
+
+1. Microservice UI 
+2. Microservice Logik 
+3. Daten 
+
+Diese können wiederum aus Microservices zusammengesetzt sein, die untereinander vernetzt sind, siehe Schaubild. 
+
+<img src="/resources/microservice.svg" alt="Microservice-Skizze" width=350>
+
+## Dienste 
+
+1. Sind klein, überschaubar und einfach ersetzbar 
+2. haben abgegrenzte Geschäftsfunktion 
+3. Schnittstellen 
+<br>z.B. HTTP-Requests: 
+  - sind gut testbar 
+  - bei allen Programmsprachen unterstützt 
+  - etablierte Technologie 
+
+4. Sind nutzergetrieben (UX)
+5. Sind voneinander unabhängig:
+  - Lebenszyklus
+  - Fehlerzustände werden nicht weitergeleitet 
+  - Programmiersprache 
+  - Datenbank
+  - Technologie-Stack 
+
+6. dezentral organisiert und horizontal skalierbar 
+7. Logging + Monitoring sind notwendig 
+8. Gemeinsame Authentifizierung, Authorisierung und Kryptographie 
+
+## Technologie
+
+- HTTP-Anfrage + REST-Schnittstelle 
+
+- Beispiel für horizontale Skalierung: 
+
+MS A muss auf MS B zugreifen, es sind mehrere Instanzen von MS B vorhanden. 
+Dazu muss ein **Load Balancer** die Zugriffe auf die n MS-B verwalten, leitet die Anfragen an diejenigen MS mit z.B. der geringsten Auslastung weiter. 
+
+## Pro/Contra Microservices
+
+|   Pro                                                     |   Contra                                      |
+|---------                                                  |-----------                                    |
+|kann billiger sein                                         |Netzwerk-Lastig (ggf. langsamer)               |
+|Service schneller austauschbar                             |Erstinstallation und -konfiguration ist komplex|
+|gute Skalierbarkeit                                        |Gefahr der Funktionsduplizierung               |
+|bei Dienstausfall sind restliche Funktionen noch vorhanden |Logging ist komplex  
+|Entwicklung kann unabhängig geschehen                      |Problem der "verteilten Uhren"
+|Wiederverwendung der Services in anderen Projekten         |
+
+## Wer verwendet Microservices? 
+
+- AWS  --> Simple Queue Service (SQS)
+- Google 
+- Netflix 
+- Zalando
+
+# Service-Orientierte-Architekturen (SOA)
+
+<img src="/resources/SOA-Example.png" alt="SOA-Skizze" width=350>
+
+
+## REST - Schnittstellen - Representational State Transfer
+
+- Zur Kommunikation von verteilten Systemen 
+- ist weder ein Protokoll, noch ein Standard
+- wurde parallel zu HTTP entwickelt
+  - WWW liefert REST-konforme Infrastruktur 
+
+### Eigenschaften von REST-Schnittstellen 
+
+- Client-Server-Modell 
+  - UI ist von der Datenhaltung getrennt
+- REST-Schnittstelle ist zustandslos 
+  - jede Anfrage muss alle relevanten Informationen enthalten 
+  - Server hat **keinen** gespeicherten Kontext 
+- Caching 
+  - gleiche Anfragen dürfen Cache verwenden 
+  - noncachable-Kennzeichnung möglich 
+- Schnittstellen einheitlich 
+  - vom Dienst entkoppelte Schnittstelle
+  - höhere Visibilität von Interaktionen, aber schlechtere Effizienz
+    - Binärdaten müssen HTTP-Konformes Format haben 
+- Layered System 
+  - schichtenbasiert -> der Einsatz eines Load-Balancers wird möglich 
+    - Anfragenlast kann verteilt werden 
+    - dadurch steigt aber auch die Latenz
+- Code-On-Demand 
+  - nachladbare Applets/Skripte für Clients sind möglich 
+
+### Aufbau von REST-Anfragen 
+
+http:// Adresse: Port/ beliebige Daten in HTTP konformer Syntax
+
+Vorname Nachname wird zu Vorname%20Nachname
+
+### Übung 
+
+**Aufgabe 1 (30 min):**
+
+1. Entwickeln Sie ein Microservice-Beispiel und visualisieren Sie ihre Idee 
+2. Begründen Sie die Microservice-Architektur 
+
+
+**Aufgabe 2:**
+
+1. Suchen und bedienen Sie eine REST-Schnittstelle (Senden und Empfangen von Daten)
+

@@ -113,8 +113,8 @@ Es wird folgende Reihenfolge vorgeschlagen:
 **Datenbank erstellen**
 ```sql
 CREATE DATABASE bibliothek
-ON PRIMARY ( name = 'bibliothek', filename= N'c:\DB\bibliothek.mdf', size = 20MB, filegrowth= 5%)
-LOG ON ( name = 'bibliothek_log', filename= N'c:\DB\bibliothek.ldf', size = 5MB, filegrowth= 1MB, maxsize= 50MB);
+ON PRIMARY ( name = 'bibliothek' /*logischer Name*/, filename= N'c:\DB\bibliothek.mdf'  /*UTF-8 kodierter Pfad (N-Prefix)*/, size = 20MB, filegrowth= 5%)
+LOG ON ( name = 'bibliothek_log', filename= N'c:\DB\bibliothek.ldf', size = 5MB, filegrowth= 1MB, maxsize= 50MB); /* Achtung: Keine Änderungen nach erreichen des Limits mehr möglich*/
 ```
 
 **Datenbank auswählen**
@@ -130,15 +130,15 @@ DROP DATABASE bibliothek;
 
 ## Datentypen
 
-| Datentyp                        | Beschreibung                                          |
-|---------------------------------|-------------------------------------------------------|
-| `smallint, integer, bigint`     | Ganze Zahlen                                          |
-| `numeric, decimal, number(n,m)` | Festkommazahlen                                       |
-| `float, double`                 | Gleitkommazahlen                                      |
-| `char(n)`                       | Zeichenkette der Länge n (`nchar` für Unicode)        |
-| `varchar(max)`                  | Zeichenkette variabler Länge (`nvarchar` für Unicode) |
-| `date, time, datetime`          | Datums- und Zeitangaben                               |
-| `bit`                           | Einzelner Bit (Wahrheitswert)                         |
+| Datentyp                        | Beschreibung                                                             |
+|---------------------------------|--------------------------------------------------------------------------|
+| `smallint, integer, bigint`     | Ganze Zahlen                                                             |
+| `numeric, decimal, number(n,m)` | Festkommazahlen                                                          |
+| `real, float`                   | Gleitkommazahlen                                                         |
+| `char(n)`                       | Zeichenkette der Länge n Bytes (`nchar` für Unicode)                     |
+| `varchar(n)`                    | Zeichenkette mit variabler Speicherreservierung (`nvarchar` für Unicode) |
+| `date, time, datetime`          | Datums- und Zeitangaben                                                  |
+| `bit`                           | Einzelner Bit (Wahrheitswert)                                            |
 
 ## Tabellen
 
@@ -176,4 +176,4 @@ CREATE TABLE Buch2Autor(
 | `IDENTITY(n,m)` | Wert dieser Spalte wird automatisch gesetzt (aufsteigend beginnend bei n mit Schrittweite m) |
 | `NOT NULL`      | Wert dieser Spalte darf nicht leer sein                                                      |
 | `UNIQUE`        | Wert dieser Spalte muss innerhalb der Spalte einzigartig sein                                |
-| `DEFAULT 0`     | Standartwert für die Spalte                                                                  |
+| `DEFAULT(n)`    | Standartwert für die Spalte                                                                  |

@@ -180,7 +180,7 @@ z.B.:
 
 Diese können wiederum aus Microservices zusammengesetzt sein, die untereinander vernetzt sind, siehe Schaubild. 
 
-<img src="./resources/microservice.svg" alt="SOA-Skizze" width=350>
+<img src="/resources/microservice.svg" alt="Microservice-Skizze" width=350>
 
 ## Dienste 
 
@@ -233,7 +233,7 @@ Dazu muss ein **Load Balancer** die Zugriffe auf die n MS-B verwalten, leitet di
 
 # Service-Orientierte-Architekturen (SOA)
 
-<img src="./resources/SOA-Example.png" alt="SOA-Skizze" width=350>
+<img src="/resources/SOA-Example.png" alt="SOA-Skizze" width=350>
 
 
 ## REST - Schnittstellen - Representational State Transfer
@@ -278,7 +278,7 @@ Vorname Nachname wird zu Vorname%20Nachname
 2. Begründen Sie die Microservice-Architektur 
 
 
-**Aufgabe 2: ()**
+**Aufgabe 2:**
 
 1. Suchen und bedienen Sie eine REST-Schnittstelle (Senden und Empfangen von Daten)
 

@@ -23,7 +23,7 @@ Systemanalyse
     - [Iteriertes Phasenmodell](#iteriertes-phasenmodell)
     - [Evolutionäre SW-Entwicklung](#evolution%C3%A4re-sw-entwicklung)
     - [Spiralen Modell](#spiralen-modell)
-    - [V Modell](#v-modell)
+    - [V-Modell](#v-modell)
     - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-auspr%C3%A4gung-des-v-modells-v-modell-xt)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -261,32 +261,22 @@ Hier wird immer wieder in eine Phase "zurück gesprungen", falls etwas nicht pas
 > Eine unendliche Entwicklung kann natürlich auch von Vorteil sein (bspw. bei SAAS)
 
 ### Spiralen Modell
-| **(1) ZIELE, Alternativen, Rahmenbedingungen** | **(2) Evaluierung der Alternativen, RISIKEN abschätzen, reduzieren** |
-| ---------------------------------------------- | -------------------------------------------------------------------- |
-| **(4) PLAN für nächsten Zyklus**               | **(3) REALISIERUNG + Überprüfung**                                   |
+
+| (1) | **ZIELE**, Alternativen, Rahmenbedingungen | (2) | Evaluierung der Alternativen, **RISIKEN** abschätzen, reduzieren |
+|-----|--------------------------------------------|-----|------------------------------------------------------------------|
+| (4) | **PLAN** für nächsten Zyklus               | (3) | **REALISIERUNG** + Überprüfung                                   |
 
 **USP:** Risikobetrachtung
 
-(Weiterentwicklung des Wasserfallmodells)
-
+- Weiterentwicklung des Wasserfallmodells
 - zyklische Wiederholung der Phasen -> Annäherung an Gesamt-Ziel
-
-Ziele ändern sich auch während des Projektfortschritts -> Spiralen-Modell versucht darauf zu reagieren
+- Ziele ändern sich auch während des Projektfortschritts -> Spiralen-Modell versucht darauf zu reagieren
 
 **Genereller Ablauf:**
 
-**Zyklus 1:**
-
-(1) Planung -> (2) Risiko, Prototyp 1 -> (3) Anforderungen -> (4) Entwicklungsplan
-
-
-**Zyklus 2:**
-
-(1) Ziele, Alternativen, Rahmenbedingungen -> (2) Risiko, Prototyp 2 -> (3) Grob-Entwurf -> (4) Testplan
-
-**Zyklus 3:**
-
-(1) Ziele, Alternativen, Rahmenbedingen -> (2) Risiko, Prototyp 3 (betriebsfähig) -> (3) Fein-Entwurf, Code, Integrieren, Testen -> (4) 
+- **Zyklus 1:** (1) Planung -> (2) Risiko, Prototyp 1 -> (3) Anforderungen -> (4) Entwicklungsplan
+- **Zyklus 2:** (1) Ziele, Alternativen, Rahmenbedingungen -> (2) Risiko, Prototyp 2 -> (3) Grob-Entwurf -> (4) Testplan
+- **Zyklus 3:** (1) Ziele, Alternativen, Rahmenbedingungen -> (2) Risiko, Prototyp 3 (betriebsfähig) -> (3) Fein-Entwurf, Code, Integrieren, Testen -> ...
 
 | Vorteile                             | Nachteile                                |
 | ------------------------------------ | ---------------------------------------- |
@@ -295,12 +285,12 @@ Ziele ändern sich auch während des Projektfortschritts -> Spiralen-Modell vers
 | frühe Fehlersichtbarkeit ist Möglich | unflexibel                               |
 | klarer Ablauf                        | zeitlich anspruchsvoll                   |
 
-### V Modell
+### V-Modell
 
 > bisher Vorgehensmodelle zur Verbesserung von Zeit, Kosten, Leistung
-
+>
 > Flächeninhalt von Dreieck (Zeit, Kosten, Leistung) ist konstant
-
+>
 > -> Zeit + Kosten + Leistung können nicht gleichzeitig verbessert werden
 
 Analyse -> High-Level-Design -> Low-Level-Design -> Implementierung -> Unit Tests -> Integrations-Tests -> Systemtests -> Akzeptanz-Tests
@@ -314,14 +304,11 @@ Analyse -> High-Level-Design -> Low-Level-Design -> Implementierung -> Unit Test
 
 ### Eine Ausprägung des V-Modells: "V-Modell XT"
 
-- kommt aus dem militärschen Bereich 
-
-- **Ziel:**
-
-  - (1)  Kosten transparent machen -> Kosten-Limitierung wird möglich
+- Ursprung: militärscher Bereich 
+- **Ziele:**
+  - (1) Kosten transparent machen -> Kosten-Limitierung wird möglich
   - (2) Mindeststandard an Qualitäts-Maßnahmen zu garantieren
   - (3) Vergleichbarkeit von Angeboten Dritter
-
 - **V Modell-93:** Richtschnur für IT-Vorhaben in BRD
 - **V Modell-93:** Objekt-Orientierung
 - **V Modell XT:** "Extreme Tailoring"
@@ -332,7 +319,7 @@ Analyse -> High-Level-Design -> Low-Level-Design -> Implementierung -> Unit Test
 
 2015: 900 A4 Seiten PDF-Doku => 500 Seiten
 
-**3 Säulen:** Meta-modell, freie Inhalte, Werkzeuge
+**3 Säulen:** Meta-Modell, freie Inhalte, Werkzeuge
 
 **Meta-Modell**
 - Rollen

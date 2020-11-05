@@ -23,7 +23,7 @@ Systemanalyse
     - [Iteriertes Phasenmodell](#iteriertes-phasenmodell)
     - [Evolutionäre SW-Entwicklung](#evolution%C3%A4re-sw-entwicklung)
     - [Spiralen Modell](#spiralen-modell)
-    - [V Modell](#v-modell)
+    - [V-Modell](#v-modell)
     - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-auspr%C3%A4gung-des-v-modells-v-modell-xt)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->

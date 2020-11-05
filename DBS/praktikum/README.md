@@ -5,11 +5,12 @@ Datenbanken-Praktikum
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
+- [Datenbanken-Praktikum](#datenbanken-praktikum)
 - [Formen von Kundenanforderungen](#formen-von-kundenanforderungen)
 - [Schematische Darstellung](#schematische-darstellung)
   - [Entity Relationship Diagramm (ERD)](#entity-relationship-diagramm-erd)
   - [Tabellenschema](#tabellenschema)
-- [Constraints und Kardinalitäten](#constraints-und-kardinalit%C3%A4ten)
+- [Constraints und Kardinalitäten](#constraints-und-kardinalitäten)
 - [Vorgehensweise zur Modellierung einer Datenbank](#vorgehensweise-zur-modellierung-einer-datenbank)
 - [Relationship-Matrix](#relationship-matrix)
 - [SQL](#sql)
@@ -17,7 +18,11 @@ Datenbanken-Praktikum
   - [Datentypen](#datentypen)
   - [Tabellen](#tabellen)
     - [Tabellen erstellen](#tabellen-erstellen)
-    - [Eigenschaften für Tabellenspalten](#eigenschaften-f%C3%BCr-tabellenspalten)
+    - [Eigenschaften für Tabellenspalten](#eigenschaften-für-tabellenspalten)
+    - [verändern von Tabellen](#verändern-von-tabellen)
+    - [Constraints](#constraints)
+  - [Daten einfügen](#daten-einfügen)
+  - [Daten lesen](#daten-lesen)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -167,6 +172,51 @@ CREATE TABLE Buch (
 	erschienen_am date,
 );
 
+create table Verlag (
+	id bigint PRIMARY KEY,
+	name nvarchar(50) NOT NULL,
+	plz char(6),
+	ort nvarchar(50) NOT NULL,
+	strasse nvarchar(100),
+	webseite nvarchar(200)
+	);
+
+create table nutzer(
+	id bigint PRIMARY KEY IDENTITY(1,1),
+	name nvarchar(50) NOT NULL,
+	vorname nvarchar(50) NOT NULL,
+	plz char(6),
+	ort nvarchar(100) NOT NULL,
+	strasse nvarchar(100)
+);
+
+create table ausleihe(
+	id bigint PRIMARY KEY IDENTITY(1,1),
+	exemplar_id bigint FOREIGN KEY REFERENCES exemplar(id) NOT NULL,
+	nutzer_id bigint FOREIGN KEY REFERENCES nutzer(id) NOT NULL,
+	leih_dat date DEFAULT(convert(date,getdate())) /*holt sich im Default die Systemzeit (als datetime) und wandelt es zu date um*/
+);
+```
+
+- Einfügen von Fremdschlüsseln beim CREATEn ist Implementierungs-spezifisch. MSSQL: ``buch_id bigint FOREIGN KEY REFERENCES Buch(id) NOT NULL``
+- Vorsicht: es gibt Syntax-Unterschiede zwischen CREATE und ALTER
+
+```sql
+create table Exemplar (
+	id bigint PRIMARY KEY, /*Spalte ID vom Typ BigInt, Primärschlüssel*/
+	buch_id bigint FOREIGN KEY REFERENCES Buch(id) NOT NULL,
+	anschaffung date,
+	standort nvarchar(40) NOT NULL, /*variabler Speicherplatz, aber maximal 100 Zeichen. Darf nicht leer sein*/
+	leihbar bit
+	);
+
+create table Buch2Verlag (
+	buch_id bigint FOREIGN KEY REFERENCES Buch(id) NOT NULL,
+	verlag_id bigint FOREIGN KEY REFERENCES Verlag(id) NOT NULL,
+	CONSTRAINT pk_buch2verlag PRIMARY KEY (buch_id, verlag_id)
+	/*erstellt einen Constraint vom Primärschlüssel-Typ --> buch_id und verlag_id sind PKs*/
+	);
+
 CREATE TABLE Buch2Autor(
 	autor_id bigint NOT NULL FOREIGN KEY REFERENCES Autor(id),
 	buch_id bigint NOT NULL FOREIGN KEY REFERENCES Buch(id),
@@ -182,4 +232,72 @@ CREATE TABLE Buch2Autor(
 | `IDENTITY(n,m)` | Wert dieser Spalte wird automatisch gesetzt (aufsteigend beginnend bei n mit Schrittweite m) |
 | `NOT NULL`      | Wert dieser Spalte darf nicht leer sein                                                      |
 | `UNIQUE`        | Wert dieser Spalte muss innerhalb der Spalte einzigartig sein                                |
-| `DEFAULT(n)`    | Standartwert für die Spalte                                                                  |
+| `DEFAULT(n)`    | Standardwert für die Spalte                                                                  |
+| `FOREIGN KEY`   | Fremdschlüssel                                                                               |
+
+### verändern von Tabellen
+
+```sql
+ALTER TABLE buch ALTER COLUMN preis numeric(6,2);
+/*ändert in der Tabelle Buch die Spalte preis*/
+
+ALTER TABLE buch ADD Auflage smallint DEFAULT 1;
+/*fügt in der Tabelle buch die Spalte Auflage hinzu*/
+
+ALTER TABLE tabellenName ADD
+CONSTRAINT constraintName PRIMARY KEY (col1, col2);
+/*fügt eine Constraint nachträglich hinzu*/
+
+ALTER TABLE tabellenName DROP CONSTRAINT constraintName;
+/*löscht Constraint*/
+
+ALTER TABLE	Buch2Verlag  ADD
+CONSTRAINT ck_buch2verlag_plz CHECK /*Check Constraint prüft, ob Daten in best. Form vorliegen*/
+(plz LIKE '[a-z] [0-9] [0-9] [0-9] [0-9] [0-9]');
+
+ALTER TABLE buch ADD Constraint ck_buch_seiten CHECK (seiten BETWEEN 1 AND 5000);
+```
+
+<!--TODO: welche Constraints gibt es?-->
+
+Wenn eine Spalte gelöscht wird / aktualisiert wird, kann man einen Trigger erstellen:
+
+```sql
+ALTER TABLE tabellenName ADD
+CONSTRAINT constraintName PRIMARY KEY (col1, col2)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
+```
+
+<!--TODO: welche Trigger gibt es?-->
+
+### Constraints
+
+- FOREIGN KEY und CHECK Constraints erlauben eine vorl. Deaktivierung
+  - Deaktivierung: ``ALTER TABLE Ausleihe NOCHECK CONSTRAINT FK_AusleihNutzer;``
+  - Reaktivierung: ``ALTER TABLE Ausleihe   CHECK CONSTRAINT FK_AusleihNutzer;``
+
+## Daten einfügen
+
+- Syntax: ``INSERT INTO (zu,befüllende,spalten) VALUES (daten,hier,eintragen)``
+  - die Spaltenliste und ``VALUES`` muss nicht angegeben werden, wenn alle Spalten in der richtigen Reihenfolge eingetragen werden
+
+## Daten lesen
+
+- Syntax: ``SELECT spalte1, spalte2 FROM tabelle``
+- alle Spalten: ``SELECT * FROM tabelle``
+- Angabe von Bedingungen: Schlüsselwort ``WHERE``: ``SELECT * FROM Buch WHERE Seiten = 128``
+  - Vergleichsoperatoren: ``=``, ``<``, ``>``, ``<=``, ``>=``, ``!=``, ``<>``, ``!>``, ``!<``
+  - Angabe von Bereichen mit ``BETWEEN``: ``SELECT * FROM buch WHERE Seiten BETWEEN 100 AND 500``
+  - logische Verknüpfungen möglich: ``SELECT * FROM Buch WHERE Seiten = 128 AND verlag_id = 7``
+  - logische Operatoren: ``NOT``, ``AND``, ``OR`` in genau dieser Rangreihenfolge
+  - Klammerung möglich
+- Select von Daten aus mehreren Tabellen: ``SELECT Titel, ISBN, Seiten FROM Buch, Verlag WHERE Verlag.id = Buch.Verlag_id AND Verlag.Name = 'Eichborn Verlag'``
+  - wenn es zu Namenskonflikten kommt, kann man auch die Spalten mit dem ``tabelle.spalte``-Syntax angeben
+  - Arbeit mit Wildcards mit ``like``: ``WHERE Verlag.Name like '%Eichborn'``
+  - akzeptierte Wildcards:
+    - ``%`` - beliebig viele Zeichen
+    - ``_`` - genau ein Zeichen
+    - ``[aeiou]%`` - beginnt mit Vokal
+    - ``[^aeiou]%`` - beginnt mit Konsonant
+    - ``[a-k]%`` - beginnt mit A bis K

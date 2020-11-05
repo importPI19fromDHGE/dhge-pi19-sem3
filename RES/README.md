@@ -50,12 +50,13 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 
 <!---unvollständig!!! (LG Max)-->
 
-- wie Windows ISO beziehen?
-- Wie ermittelt man die Windows-Version / RAM-Menge / CPU-Kerne
+- Wie bezieht man Windows ISOs?
+- Wie ermittelt man die Windows-Version / RAM-Menge / CPU-Kerne?
 - Zweck der Virtual Box Gasterweiterung
 - Nutzen von Hashing
 - Befehle und Parameter, ein Befehl kann zum Parameter werden (man pages)
-- Wie man Windows optionalfeatures (de)aktiviert
+- Wie man Windows optionalfeatures (de)aktiviert?
+- Welche Filesysteme sind Ihnen bekannt?
 
 # Vorteile Virtualisierung
 

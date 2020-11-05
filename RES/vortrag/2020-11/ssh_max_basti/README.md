@@ -305,6 +305,12 @@ Subsystem       sftp    /usr/lib/openssh/sftp-server
 Match Address 192.168.178.0/24
         PasswordAuthentication yes
 ```
+<!--Anmerkung auf Wunsch von Herr Günther: -->
+Nach Änderung der Config Neustart des Servers notwendig:
+
+```shell
+sudo systemctl restart sshd
+```
 
 ## Nutzung
 

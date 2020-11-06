@@ -8,21 +8,23 @@ Datenbanken-Praktikum
 - [Datenbanken-Praktikum](#datenbanken-praktikum)
 - [Formen von Kundenanforderungen](#formen-von-kundenanforderungen)
 - [Schematische Darstellung](#schematische-darstellung)
-  - [Entity Relationship Diagramm (ERD)](#entity-relationship-diagramm-erd)
-  - [Tabellenschema](#tabellenschema)
+	- [Entity Relationship Diagramm (ERD)](#entity-relationship-diagramm-erd)
+	- [Tabellenschema](#tabellenschema)
 - [Constraints und Kardinalitäten](#constraints-und-kardinalitäten)
 - [Vorgehensweise zur Modellierung einer Datenbank](#vorgehensweise-zur-modellierung-einer-datenbank)
 - [Relationship-Matrix](#relationship-matrix)
 - [SQL](#sql)
-  - [Datenbanken](#datenbanken)
-  - [Datentypen](#datentypen)
-  - [Tabellen](#tabellen)
-    - [Tabellen erstellen](#tabellen-erstellen)
-    - [Eigenschaften für Tabellenspalten](#eigenschaften-für-tabellenspalten)
-    - [verändern von Tabellen](#verändern-von-tabellen)
-    - [Constraints](#constraints)
-  - [Daten einfügen](#daten-einfügen)
-  - [Daten lesen](#daten-lesen)
+	- [Datenbanken](#datenbanken)
+	- [Datentypen](#datentypen)
+	- [Tabellen](#tabellen)
+		- [Tabellen erstellen](#tabellen-erstellen)
+		- [Eigenschaften für Tabellenspalten](#eigenschaften-für-tabellenspalten)
+		- [verändern von Tabellen](#verändern-von-tabellen)
+		- [Constraints](#constraints)
+	- [Daten einfügen](#daten-einfügen)
+	- [Daten lesen](#daten-lesen)
+	- [Aggregatsfunktionen](#aggregatsfunktionen)
+	- [Unterabfragen](#unterabfragen)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -253,7 +255,7 @@ ALTER TABLE tabellenName DROP CONSTRAINT constraintName;
 
 ALTER TABLE	Buch2Verlag  ADD
 CONSTRAINT ck_buch2verlag_plz CHECK /*Check Constraint prüft, ob Daten in best. Form vorliegen*/
-(plz LIKE '[a-z] [0-9] [0-9] [0-9] [0-9] [0-9]');
+(plz LIKE '[a-z][0-9][0-9][0-9][0-9][0-9]');
 
 ALTER TABLE buch ADD Constraint ck_buch_seiten CHECK (seiten BETWEEN 1 AND 5000);
 ```
@@ -270,6 +272,22 @@ ON UPDATE CASCADE;
 ```
 
 <!--TODO: welche Trigger gibt es?-->
+
+<!--
+Trigger-Aktionen ON DELETE:
+- CASCADE - kaskadierendes Löschen (wenn FK gelöscht, dann lösche auch diesen)
+- SET NULL
+- SET DEFAULT
+- NO ACTION
+-->
+
+<!--
+Trigger-Aktionen ON UPDATE:
+- CASCADE - wenn sich hier was ändert, ändere auch FK
+- SET NULL
+- SET DEFAULT
+- NO ACTION
+-->
 
 ### Constraints
 
@@ -301,3 +319,59 @@ ON UPDATE CASCADE;
     - ``[aeiou]%`` - beginnt mit Vokal
     - ``[^aeiou]%`` - beginnt mit Konsonant
     - ``[a-k]%`` - beginnt mit A bis K
+- Sortieren mit ``ORDER BY``: ``SELECT * FROM abteilung ORDER BY abteilung.bezeichnung``
+  - für umgekehrte Sortierung: anfügen des Schlüsselwortes ``DESC``
+- Aliase:
+  - ohne Sonderzeichen ``AS``: ``SELECT Mitarbeiter.vorname AS MA_Vorname``
+  - bei Sonderzeichen in eckigen Klammern: ``SELECT Mitarbeiter.vorname [MA Vorname]``
+  - Schlüsselwort ``AS`` optional
+  - kann auch im ``FROM`` stehen
+- Nach ``WHERE`` kann das Schlüsselwort ``IN`` folgen, um bspw. Auswahllisten abzufragen: ``SELECT * FROM Autor.Name IN ('Goethe', 'Schiller', 'Lessing')``
+  - nicht kombinierbar mit ``LIKE``
+- Limitieren von Ergebniszeilen mit Schlüsselwort ``TOP``: ``SELECT TOP (10) Titel, Seiten FROM buch ORDER BY Seiten``
+- bei der Verwendung von ``ORDER BY`` und ``TOP`` in Kombination kann das Schlüsselwort ``WITH TIES`` verwendet werden, damit "Ties" mit angezeigt werden: ``SELECT TOP (5) WITH TIES Titel, Seiten FROM buch ORDER BY Seiten`` --> zeigt ggf. mehr als 5 an
+- Beim Selektieren können Zeilen übersprungen werden:
+
+```sql
+-- diese Variante ist für kleinere Resultsets geeignet
+SELECT * FROM autor ORDER BY name
+OFFSET 6 ROWS
+FETCH NEXT 5 ROWS ONLY;
+```
+
+## Aggregatsfunktionen
+
+- Funktionen, die auf Ergebnisse angewendet werden
+- Bsp.: Nutzer zählen mit count(): ``SELECT COUNT(*) FROM nutzer``
+
+```sql
+-- zeigt alle Nutzer ohne Email-Adresse an
+SELECT COUNT(*) FROM nutzer
+WHERE email IS NULL
+OR email = '';
+
+-- zeigt das Buch mit größter Seitenzahl an:
+SELECT MAX(seiten) FROM buch
+```
+
+| Funktion       | Zweck              |
+| :------------- | :----------------- |
+| max()          | Maximum            |
+| min()          | Minimum            |
+| sum()          | Summe              |
+| avg()          | Durchschnitt       |
+| CHECKSUM_AGG() | Prüfsumme          | <!--welche?-->
+| STDEV()        | ???                |
+| STDEVP()       | Standardabweichung |
+| VAR()          | stat. Varianz      |
+
+## Unterabfragen
+
+- "Select im Select"
+- Bsp.: alle Bücher selektieren, die überdurchschnittlich viele Seiten haben:
+
+```sql
+SELECT buch.titel, buch.seiten FROM buch
+WHERE seiten > (SELECT AVG(seiten) FROM buch)
+ORDER BY seiten;
+```

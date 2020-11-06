@@ -341,7 +341,9 @@ FETCH NEXT 5 ROWS ONLY;
 
 ## Aggregatsfunktionen
 
+- [Microsoft Dokumentation](https://docs.microsoft.com/de-de/sql/t-sql/functions/aggregate-functions-transact-sql?view=sql-server-ver15)
 - Funktionen, die auf Ergebnisse angewendet werden
+- oft in Verbindung mit ``SELECT`` oder ``GROUP BY``
 - Bsp.: Nutzer zählen mit count(): ``SELECT COUNT(*) FROM nutzer``
 
 ```sql
@@ -354,16 +356,23 @@ OR email = '';
 SELECT MAX(seiten) FROM buch
 ```
 
-| Funktion       | Zweck              |
-| :------------- | :----------------- |
-| max()          | Maximum            |
-| min()          | Minimum            |
-| sum()          | Summe              |
-| avg()          | Durchschnitt       |
-| CHECKSUM_AGG() | Prüfsumme          | <!--welche?-->
-| STDEV()        | ???                |
-| STDEVP()       | Standardabweichung |
-| VAR()          | stat. Varianz      |
+| Funktion                | Zweck                                                              |
+| :---------------------- | :----------------------------------------------------------------- |
+| MAX()                   | Maximum                                                            |
+| MIN()                   | Minimum                                                            |
+| SUM()                   | Summe                                                              |
+| AVG()                   | Mittelwert                                                         |
+| COUNT()                 | zählt Ergebniszeilen                                               |
+| COUNT_BIG()             | wie Count, gibt bigint zurück                                      |
+| GROUPING()              | wird Spaltenabfrage in ``GROUP BY`` aggregiert?                    |
+| GROUPING_ID()           | berechnet Ebene der Gruppierung                                    |
+| STRING_AGG()            | Concat. Strings mit Trennzeichen                                   |
+| CHECKSUM_AGG()          | Prüfsumme                                                          |
+| STDEV()                 | Standardabweichung                                                 |
+| STDEVP()                | Standardabweichung für die Population                              |
+| VAR()                   | stat. Varianz                                                      |
+| VARP()                  | Varianz für die Population                                         |
+| APPROX_COUNT_DISTINCT() | ungefähre Anzahl von eindeutigen Nicht-Null-Werten in einer Gruppe |
 
 ## Unterabfragen
 

@@ -12,6 +12,18 @@
 - [Künstliche Intelligenz](#k%C3%BCnstliche-intelligenz)
 - [Agile Entwicklung und DevOps-Methoden als Schlüssel für hohe Entwicklungsgeschwindigkeit](#agile-entwicklung-und-devops-methoden-als-schl%C3%BCssel-f%C3%BCr-hohe-entwicklungsgeschwindigkeit)
 - [IT-Sicherheit](#it-sicherheit)
+- [Technologien der dritten Plattform IT](#technologien-der-dritten-plattform-it)
+- [Microservices und REST-Schnittstellen](#microservices-und-rest-schnittstellen)
+  - [Microservices](#microservices)
+  - [Dienste](#dienste)
+  - [Technologie](#technologie)
+  - [Pro/Contra Microservices](#procontra-microservices)
+  - [Wer verwendet Microservices?](#wer-verwendet-microservices)
+- [Service-Orientierte-Architekturen (SOA)](#service-orientierte-architekturen-soa)
+  - [REST - Schnittstellen - Representational State Transfer](#rest---schnittstellen---representational-state-transfer)
+    - [Eigenschaften von REST-Schnittstellen](#eigenschaften-von-rest-schnittstellen)
+    - [Aufbau von REST-Anfragen](#aufbau-von-rest-anfragen)
+    - [Übung](#%C3%BCbung)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

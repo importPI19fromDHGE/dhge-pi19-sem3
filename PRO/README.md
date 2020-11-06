@@ -170,13 +170,11 @@ Diese können wiederum aus Microservices zusammengesetzt sein, die untereinander
 
 1. Sind klein, überschaubar und einfach ersetzbar
 2. haben abgegrenzte Geschäftsfunktion
-3. Schnittstellen
-
-z.B. HTTP-Requests:
+3. Schnittstellen\
+	z.B. HTTP-Requests:
 	- sind gut testbar
 	- bei allen Programmsprachen unterstützt
 	- etablierte Technologie
-
 4. Sind nutzergetrieben (UX)
 5. Sind voneinander unabhängig:
 	- Lebenszyklus
@@ -184,7 +182,6 @@ z.B. HTTP-Requests:
 	- Programmiersprache
 	- Datenbank
 	- Technologie-Stack
-
 6. dezentral organisiert und horizontal skalierbar
 7. Logging + Monitoring sind notwendig
 8. Gemeinsame Authentifizierung, Authorisierung und Kryptographie

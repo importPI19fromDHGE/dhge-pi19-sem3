@@ -100,8 +100,10 @@ Request → Impact, Analysis → Approve / Deny → Implementation → Business
 
 **14 Tage Cycle:** Planning, Review, Retro
 
-**MMM:** Mensch, Maschine, Methode
-
+**MMM:** Mensch, Maschine, Methode  
+Zuerst schauen: "Habe ich die richtigen Mitarbeiter?"  
+Danach schauen: "Habe ich die richtige Hardware/Software?"  
+Zuletzt die Methode hinterfragen
 # Systementwicklung im Software-Engineering
 
 > orientiert sich an der Auto-Produktion
@@ -372,3 +374,84 @@ Wer, Was, Wann
 | sehr generisch gehalten                               | sehr generisch gehalten                                      |
 | viele Anpassungsmöglichkeiten (aber ad libitum) ->    | es gibt keinen Prozess, der nach Verbesserungen sucht        |
 |                                                       | vage Anforderungen führen nicht zu einem V-Modell XT Projekt |
+
+### Extreme Programming (XP)
+- leichtgewichtiges Vorgehensmodell
+- für kleine / mittlere Teams geeignet
+- bei vagen Anforderungen gut geeignet
+- schnelle Änderungen der Anforderungen
+
+> XP setzt bewährte Techniken im extremen Maße ein
+1. Paar-Programmierung  
+   kontinuirliche Review
+2. Testen  
+   kontinuirliches Testen
+3. Refactoring  
+   kontinuirliches Design / Redesign
+4. Feedback an Kunden  
+   kurze Release Zyklen
+
+- Story (einfache Lösung)-> neue Aufgabe, ist das Problem zu Komplex müssen die Stories neu definiert werden
+- Paar Bildung für Aufgaben -> Testentwurf -> Test nicht erfolgreich, wieder zurück zu Programmieren in Paaren
+- Ist der Code zu kompliziert -> Umstrukturierung -> resultiert in vereinfachtem Code
+- Es wird überprüft ob CI (Continuous Integration) Tests erfolgreich sind (wenn nicht -> zurück zum Pair Programming)
+- Tests erfolgreich -> Abnahme Tests, wenn erfolgreich -> Abnahme
+- Wenn Abnahme Tests nicht erfolgreich sind -> zurück zur neuen Aufgabe
+- bei Problemen können auch Paare neu eingeteilt werden
+
+<!-- Hier würde sich eine Grafik anbieten -->
+
+> - durch Stories und Tests getrieben  
+> - Programmierung steht im Mittelpunkt  
+> - viele Release Zyklen
+
+**Zu 1. (Paar-Programmierung)**  
+__Beispiel 1999 Utah:__  
+13 Einzelprogrammierer  
+14 Paar-Programmierer  
+4 Aufgaben in 6 Wochen  
+am Ende: Test der Programme  
+-> Paare hatten bessere Qualität und waren schneller fertig.  
+Paare hatten mehr Vertrauen in ihre Programme, hatten mehr Spaß und waren effizienter
+
+> ABER: Die Chemie in den Paaren muss stimmen!
+
+Weitere Beispiele: Windows 2000, Crysler Payroll-System
+
+**Zu 2. (Testen)**
+- Testfälle erstellen **bevor** Komponente implementiert wird
+- alle Tests laufen automatisch ab
+- Fehlerfall => zuerst neuen Test entwerfen, dann Fehler beheben
+- Testbarkeit => Entkopplung der Subsysteme
+
+**Zu 3. (Refactoring)**
+- "Alte Zöpfe ruhig abschneiden!"
+- XP = so einfach wie möglich
+- Design ist richtig <-> alle Tests sind OK, keine Redundanzen, Anzahl an Klassen / Methoden ist minimal
+- systematisches Redesign
+  1. Extract Methods: Code in Methoden auslagern
+  2. Move Methods: Methoden wandern von Klasse zu Klasse
+  3. Magic-Numbers (verhindern): symbolische Konstanten   
+     Beispiel: `if (filesOpen > MAXFILES)` anstatt `if (filesOpen > 3)`
+  4. Conditionals in Polymorphismus überführen
+
+**Zu 4. (Feedback an Kunden / kurze Release Zyklen)**
+- ganz nah am Kunden zu sein ist wichtig
+
+**Vor-und Nachteile**
+
+Allgemeine Kriterien: 
+- Kosten / Kosten
+- Qualität der Ergebnisse 
+- Flexibilität 
+- gegenseitiges Lernen
+- Overhead (Betreuung, Komplexität)
+- Tests
+- Kommunikationsprobleme sichtbar
+
+| Vorteile                                                      | Nachteile                           |
+| ------------------------------------------------------------- | ----------------------------------- |
+| geringere Anschaffungskosten                                  | Zeit-aufwändig                      |
+| Code Qualität                                                 | Personal-aufwändig                  |
+| Flexibilität (bezüglich neuer Nutzerwünsche, umstrukturieren) | Update Häufigkeit / Kundenakzeptanz |
+| Teams <--                                                     | Corona                              |

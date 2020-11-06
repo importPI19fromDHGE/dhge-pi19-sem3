@@ -264,8 +264,6 @@ CONSTRAINT ck_buch2verlag_plz CHECK /*Check Constraint prüft, ob Daten in best.
 ALTER TABLE buch ADD Constraint ck_buch_seiten CHECK (seiten BETWEEN 1 AND 5000);
 ```
 
-<!--TODO: welche Constraints gibt es?-->
-
 Wenn eine Spalte gelöscht wird / aktualisiert wird, kann man über ein Constraint eine Aktion ausführen:
 
 ```sql

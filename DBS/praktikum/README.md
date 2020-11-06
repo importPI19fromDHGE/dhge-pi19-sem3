@@ -241,6 +241,8 @@ CREATE TABLE Buch2Autor(
 
 ### verändern von Tabellen
 
+[Microsoft Dokumentation](https://docs.microsoft.com/de-de/sql/t-sql/statements/alter-table-table-constraint-transact-sql?view=sql-server-ver15)
+
 ```sql
 ALTER TABLE buch ALTER COLUMN preis numeric(6,2);
 /*ändert in der Tabelle Buch die Spalte preis*/

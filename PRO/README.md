@@ -164,7 +164,7 @@ z.B.:
 
 Diese können wiederum aus Microservices zusammengesetzt sein, die untereinander vernetzt sind, siehe Schaubild.
 
-<img src="/resources/microservice.svg" alt="Microservice-Skizze" width=350>
+<img src="./resources/microservice.svg" alt="Microservice-Skizze" width=350>
 
 ## Dienste
 
@@ -218,7 +218,7 @@ Dazu muss ein **Load Balancer** die Anfragen beispielsweise an diejenigen MS mit
 
 # Service-Orientierte-Architekturen (SOA)
 
-<img src="/resources/SOA-Example.png" alt="SOA-Skizze" width=350>
+<img src="./resources/SOA-Example.png" alt="SOA-Skizze" width=350>
 
 ## REST - Schnittstellen - Representational State Transfer
 

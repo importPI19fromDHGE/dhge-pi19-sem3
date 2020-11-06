@@ -236,6 +236,8 @@ CREATE TABLE Buch2Autor(
 | `UNIQUE`        | Wert dieser Spalte muss innerhalb der Spalte einzigartig sein                                |
 | `DEFAULT(n)`    | Standardwert für die Spalte                                                                  |
 | `FOREIGN KEY`   | Fremdschlüssel                                                                               |
+| `ON DELETE`     | Aktion beim Löschen der Zeile                                                                |
+| `ON UPDATE`     | Aktion beim Aktualisieren der Zeile (verändern der Daten)                                    |
 
 ### verändern von Tabellen
 
@@ -262,7 +264,7 @@ ALTER TABLE buch ADD Constraint ck_buch_seiten CHECK (seiten BETWEEN 1 AND 5000)
 
 <!--TODO: welche Constraints gibt es?-->
 
-Wenn eine Spalte gelöscht wird / aktualisiert wird, kann man einen Trigger erstellen:
+Wenn eine Spalte gelöscht wird / aktualisiert wird, kann man über ein Constraint eine Aktion ausführen:
 
 ```sql
 ALTER TABLE tabellenName ADD
@@ -271,23 +273,12 @@ ON DELETE CASCADE
 ON UPDATE CASCADE;
 ```
 
-<!--TODO: welche Trigger gibt es?-->
-
-<!--
-Trigger-Aktionen ON DELETE:
-- CASCADE - kaskadierendes Löschen (wenn FK gelöscht, dann lösche auch diesen)
-- SET NULL
-- SET DEFAULT
-- NO ACTION
--->
-
-<!--
-Trigger-Aktionen ON UPDATE:
-- CASCADE - wenn sich hier was ändert, ändere auch FK
-- SET NULL
-- SET DEFAULT
-- NO ACTION
--->
+| Aktion          | Zweck                               |
+| :-------------- | :---------------------------------- |
+| ``CASCADE``     | kaskadierendes Löschen / Update     |
+| ``SET NULL``    |              setze Zelle auf `NULL` |
+| ``SET DEFAULT`` | setze Zelle auf den Default-Wert    |
+| ``NO ACTION``   | ...                                 |
 
 ### Constraints
 

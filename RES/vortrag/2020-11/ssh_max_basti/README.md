@@ -21,7 +21,7 @@ SSH hat viele verschiedene Einsatzgebiete:
 [QUELLE](https://www.ionos.de/digitalguide/server/tools/secure-shell-ssh/)
 
 - Nutzung als VPN-Tunnel und X11-Forwarding (Remote Desktop) [QUELLE](https://wiki.archlinux.org/index.php/OpenSSH)
-
+nutzer
 ## Installation
 
 <!--Was hat man mit SSH auf dem Rechner? Verschiede Paketverwaltungen; SFTP-Server-->
@@ -30,31 +30,19 @@ SSH hat viele verschiedene Einsatzgebiete:
 
 ### Client - Linux
 
+- prüfen ob installiert: ``which ssh``
 - Debian und Verwandte: `sudo apt install openssh-client`
 - Arch und Verwandte: `sudo pacman -S openssh` (Kombipaket aus Server und Client)
 
---> Info an Max: Live "Demo" der Man-Page
-
 ### Client - Windows
 
-<!--TODO PuTTY by Basti-->
 - putty.org (Powershell hat einen vorinstallierten shh-Client)
-- PuTTY
-- Host Name: resnutzer@hobbyist-overlock.de
-- Logging: All session output
-- Passwort: resnutzer --> später Login per Key
-- PuTTYgen
-- Generate RSA-Key
-- ``nano ~/.ssh/authorized_keys``
-- Passwortauthentifizierung abstellen
-- Versuch der Verbindung über PuTTY --> Fehlschlag
-- Pagent --> Privatekey übergeben
-- Versuch der Verbindung über PuTTY funktioniert
-
 
 ### Server
 
 <!--Unterteilung in SSH und SFTP-Server-->
+
+--> Demo in VM nicht vergessen :-)
 
 - Debian und Verwandte: `sudo apt install openssh-server` und `sudo apt install openssh-sftp-server`
 - Arch und Verwandte: `sudo pacman -S openssh` (Kombipaket aus Server und Client)
@@ -63,102 +51,6 @@ SSH hat viele verschiedene Einsatzgebiete:
 - Autostart des Servers mit systemd: `sudo systemctl enable sshd`
 
 ## Konfiguration
-
-### Client
-
-<!--Keygen etc-->
-
-Um sich passwortlos gegenüber einem Server zu authentifizieren, benötigt man ein Schlüsselpaar:
-
-```shell
-$ ssh-keygen -t rsa
-Generating public/private rsa key pair.
-Enter file in which to save the key (C:\Users\User/.ssh/id_rsa):
-Enter passphrase (empty for no passphrase):
-Enter same passphrase again:
-Your identification has been saved in C:\Users\User/.ssh/id_rsa.
-Your public key has been saved in C:\Users\User/.ssh/id_rsa.pub.
-The key fingerprint is:
-SHA256:mstyW1phoEPqbMT3stzYUapfT6V/rBpMMyEHMmjiTp0 user@DESKTOP-EPNUPVN
-The key\'s randomart image is:
-+---[RSA 2048]----+
-|       .+        |
-|    . o. .       |
-|   ..+... o      |
-| . oo.E. o .     |
-|  +o+   S + .    |
-| + ..o * + =     |
-|  + . * + =  .   |
-| . ..O.B o o  o  |
-|    =+O.  o.oo   |
-+----[SHA256]-----+
-```
-
-Kopieren des öff. Schlüssels auf den Server (insofern passwortbasierte Auth aktiviert ist)
-
-```shell
-cat ~/.ssh/id_rsa.pub | ssh pi@raspberry "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >>  ~/.ssh/authorized_keys"
-```
-
-[Quelle](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-2)
-
-Darüber hinaus keine besondere Config notwendig.
-
-Beispiel-Konfiguration:
-
-```bash
-
-# This is the ssh client system-wide configuration file.  See
-# ssh_config(5) for more information.  This file provides defaults for
-# users, and the values can be changed in per-user configuration files
-# or on the command line.
-
-# Configuration data is parsed as follows:
-#  1. command line options
-#  2. user-specific file
-#  3. system-wide file
-# Any configuration value is only changed the first time it is set.
-# Thus, host-specific definitions should be at the beginning of the
-# configuration file, and defaults at the end.
-
-# Site-wide defaults for some commonly used options.  For a comprehensive
-# list of available options, their meanings and defaults, please see the
-# ssh_config(5) man page.
-
-Host *
-#   ForwardAgent no
-#   ForwardX11 no
-#   ForwardX11Trusted yes
-#   PasswordAuthentication yes
-#   HostbasedAuthentication no
-#   GSSAPIAuthentication no
-#   GSSAPIDelegateCredentials no
-#   GSSAPIKeyExchange no
-#   GSSAPITrustDNS no
-#   BatchMode no
-#   CheckHostIP yes
-#   AddressFamily any
-#   ConnectTimeout 0
-#   StrictHostKeyChecking ask
-#   IdentityFile ~/.ssh/id_rsa
-#   IdentityFile ~/.ssh/id_dsa
-#   IdentityFile ~/.ssh/id_ecdsa
-#   IdentityFile ~/.ssh/id_ed25519
-#   Port 22
-#   Protocol 2
-#   Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc
-#   MACs hmac-md5,hmac-sha1,umac-64@openssh.com
-#   EscapeChar ~
-#   Tunnel no
-#   TunnelDevice any:any
-#   PermitLocalCommand no
-#   VisualHostKey no
-#   ProxyCommand ssh -q -W %h:%p gateway.example.com
-#   RekeyLimit 1G 1h
-    SendEnv LANG LC_*
-    HashKnownHosts yes
-    GSSAPIAuthentication yes
-```
 
 ### Server
 
@@ -186,7 +78,7 @@ PermitRoot no
 Um Brute-Force Angriffen und schwachen Kennwörtern entgegenzuwirken, kann man die passwortbasierte Authentifizierung abschalten:
 
 - sicherstellen, dass SSH-Schlüssel mit ausreichenden Rechten dem Server bekannt sind
-- in ``/etc/sshd_config`` folgende Optionen setzen
+- in ``/etc/sshd_config`` folgende Optionen setzen:
 
 ```bash
 PasswordAuthentication no
@@ -328,6 +220,117 @@ Nach Änderung der Config Neustart des Servers notwendig:
 ```shell
 sudo systemctl restart sshd
 ```
+
+### Client - Linux
+
+<!--Keygen etc-->
+
+--> Demo nicht vergessen
+
+Um sich passwortlos gegenüber einem Server zu authentifizieren, benötigt man ein Schlüsselpaar:
+
+```shell
+$ ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (C:\Users\User/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in C:\Users\User/.ssh/id_rsa.
+Your public key has been saved in C:\Users\User/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:mstyW1phoEPqbMT3stzYUapfT6V/rBpMMyEHMmjiTp0 user@DESKTOP-EPNUPVN
+The key\'s randomart image is:
++---[RSA 2048]----+
+|       .+        |
+|    . o. .       |
+|   ..+... o      |
+| . oo.E. o .     |
+|  +o+   S + .    |
+| + ..o * + =     |
+|  + . * + =  .   |
+| . ..O.B o o  o  |
+|    =+O.  o.oo   |
++----[SHA256]-----+
+```
+
+Kopieren des öff. Schlüssels auf den Server (insofern passwortbasierte Auth aktiviert ist)
+
+```shell
+cat ~/.ssh/id_rsa.pub | ssh pi@raspberry "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >>  ~/.ssh/authorized_keys"
+```
+
+[Quelle](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-2)
+
+Darüber hinaus keine besondere Config notwendig.
+
+Beispiel-Konfiguration:
+
+```bash
+
+# This is the ssh client system-wide configuration file.  See
+# ssh_config(5) for more information.  This file provides defaults for
+# users, and the values can be changed in per-user configuration files
+# or on the command line.
+
+# Configuration data is parsed as follows:
+#  1. command line options
+#  2. user-specific file
+#  3. system-wide file
+# Any configuration value is only changed the first time it is set.
+# Thus, host-specific definitions should be at the beginning of the
+# configuration file, and defaults at the end.
+
+# Site-wide defaults for some commonly used options.  For a comprehensive
+# list of available options, their meanings and defaults, please see the
+# ssh_config(5) man page.
+
+Host *
+#   ForwardAgent no
+#   ForwardX11 no
+#   ForwardX11Trusted yes
+#   PasswordAuthentication yes
+#   HostbasedAuthentication no
+#   GSSAPIAuthentication no
+#   GSSAPIDelegateCredentials no
+#   GSSAPIKeyExchange no
+#   GSSAPITrustDNS no
+#   BatchMode no
+#   CheckHostIP yes
+#   AddressFamily any
+#   ConnectTimeout 0
+#   StrictHostKeyChecking ask
+#   IdentityFile ~/.ssh/id_rsa
+#   IdentityFile ~/.ssh/id_dsa
+#   IdentityFile ~/.ssh/id_ecdsa
+#   IdentityFile ~/.ssh/id_ed25519
+#   Port 22
+#   Protocol 2
+#   Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc
+#   MACs hmac-md5,hmac-sha1,umac-64@openssh.com
+#   EscapeChar ~
+#   Tunnel no
+#   TunnelDevice any:any
+#   PermitLocalCommand no
+#   VisualHostKey no
+#   ProxyCommand ssh -q -W %h:%p gateway.example.com
+#   RekeyLimit 1G 1h
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
+```
+
+### Client - PuTTY
+
+- Host Name: resnutzer@hobbyist-overlock.de
+- Logging: All session output
+- Passwort: resnutzer --> später Login per Key
+- PuTTYgen
+- Generate RSA-Key
+- ``nano ~/.ssh/authorized_keys``
+- Passwortauthentifizierung abstellen
+- Versuch der Verbindung über PuTTY --> Fehlschlag
+- Pagent --> Privatekey übergeben
+- Versuch der Verbindung über PuTTY funktioniert
 
 ## Nutzung
 

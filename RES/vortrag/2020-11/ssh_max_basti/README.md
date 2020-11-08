@@ -33,11 +33,24 @@ SSH hat viele verschiedene Einsatzgebiete:
 - Debian und Verwandte: `sudo apt install openssh-client`
 - Arch und Verwandte: `sudo pacman -S openssh` (Kombipaket aus Server und Client)
 
---> Info an Max: Demo Verbindung
+--> Info an Max: Live "Demo" der Man-Page
 
 ### Client - Windows
 
 <!--TODO PuTTY by Basti-->
+- putty.org (Powershell hat einen vorinstallierten shh-Client)
+- PuTTY
+- Host Name: resnutzer@hobbyist-overlock.de
+- Logging: All session output
+- Passwort: resnutzer --> später Login per Key
+- PuTTYgen
+- Generate RSA-Key
+- ``nano ~/.ssh/authorized_keys``
+- Passwortauthentifizierung abstellen
+- Versuch der Verbindung über PuTTY --> Fehlschlag
+- Pagent --> Privatekey übergeben
+- Versuch der Verbindung über PuTTY funktioniert
+
 
 ### Server
 
@@ -51,21 +64,7 @@ SSH hat viele verschiedene Einsatzgebiete:
 
 ## Konfiguration
 
-Nutzerdaten für Demo auf Max' Raspi4:
-
-Verbindung: resnutzer@hobbyist-overclock.de
-
-Nutzer: resnutzer
-
-Passwort: resnutzer
-
-Schlüsselpaar:
-
-```gpg
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDElRPc0rUkwPDHNlozdHKTrcZbRP0UQoZMKn/3KX+9XSNVCdwxN9SYH6OvSJiUqJJQjZjhTeL/tJOBQB5Sx3iEj0m3SN/d6RT2lX0CIt5/Yxr43c4zkOo8umymkNsRLAZOFkhvr0AuNeArPOWDNG8t9bBzUwYQVVz24L001Syw2s4UEg19E+VdjkacuxLrOlu83G9XDXLEklOk3Ygjh30Q98Ev89vK9QqMpk2sFkvvgFG4G/mKEqJfD3dYbocBLxnqrP2+HMTcuw2UR+nadKJ4jbFdJetJlN4FjEBZTA7elJrHcGspuP/rIBJWghIS7WT3y1TeCtgbINLG9TcMjTlX resnutzer@max-raspi4
-```
-
-### Client - Linux
+### Client
 
 <!--Keygen etc-->
 
@@ -160,10 +159,6 @@ Host *
     HashKnownHosts yes
     GSSAPIAuthentication yes
 ```
-
-### Client - PuTTY
-
-<!--TODO by Basti: Schlüsselpaar erstellen-->
 
 ### Server
 

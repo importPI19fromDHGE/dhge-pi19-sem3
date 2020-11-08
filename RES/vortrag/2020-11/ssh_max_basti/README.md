@@ -364,7 +364,7 @@ im Falle Schlüsselbasiertes Auth:
 ## Absicherung mit Fail2Ban
 
 - nach best. Anzahl Fehlversuchen wird IP-Adresse in Firewall gesperrt
-- 
+- schützt vor Botnet- und Brute-Force-Angriffen
 
 ### Installation
 
@@ -388,7 +388,3 @@ mta = sendmail
 ```
 
 <!--lediglich relevant: SSH; kann aber noch mehr-->
-
-## VPN mit SSH
-
-<!--es ist wohl möglich, mit SSH VPN Verbindungen zu machen-->

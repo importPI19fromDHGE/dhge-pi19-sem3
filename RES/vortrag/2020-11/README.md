@@ -24,4 +24,4 @@ Formale Richtlinien
 ## Wer macht was?
 
 - [ ] Max & Basti: SSH
-- [ ] Yannis & Luis: SSH <!--höhö-->
+- [x] Yannis & Luis: SSH <!--höhö-->

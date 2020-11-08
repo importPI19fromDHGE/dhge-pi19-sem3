@@ -28,12 +28,16 @@ SSH hat viele verschiedene Einsatzgebiete:
 
 - SSH-Client meist schon vorinstalliert
 
-### Client
+### Client - Linux
 
 - Debian und Verwandte: `sudo apt install openssh-client`
 - Arch und Verwandte: `sudo pacman -S openssh` (Kombipaket aus Server und Client)
 
 --> Info an Max: Live "Demo" der Man-Page
+
+### Client - Windows
+
+<!--TODO PuTTY by Basti-->
 
 ### Server
 

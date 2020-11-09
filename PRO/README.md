@@ -279,7 +279,7 @@ https://httpbin.org
 https://api.predic8.de
 
 
-Link zum Registrieren der Mailadresse für den Amazon-Cloud-Service für nächste Woche: https://vsbdx9uoxa.execute-api.eu-central-1.amazonaws.com/itt?
+Link zum Registrieren der Mailadresse für den Amazon-Cloud-Service für nächste Woche auf Anfrage
 
 
 # Cloud Computing 

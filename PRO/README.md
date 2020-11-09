@@ -279,7 +279,8 @@ https://httpbin.org
 https://api.predic8.de
 
 
-Link zum Registrieren der Mailadresse für den Amazon-Cloud-Service für nächste Woche auf Anfrage
+Link zum Registrieren der Mailadresse für den Amazon-Cloud-Service für nächste Woche im Backstage 
+https://backstage.dhge.de/course/view.php?id=2718
 
 
 # Cloud Computing 

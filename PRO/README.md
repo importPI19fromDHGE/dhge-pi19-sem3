@@ -271,3 +271,78 @@ Dazu muss ein **Load Balancer** die Anfragen beispielsweise an diejenigen MS mit
 **Aufgabe 2:**
 
 1. Suchen und bedienen Sie eine REST-Schnittstelle (Senden und Empfangen von Daten)
+
+Links zum Testen: 
+
+https://httpbin.org 
+
+https://api.predic8.de
+
+
+Link zum Registrieren der Mailadresse für den Amazon-Cloud-Service für nächste Woche im Backstage 
+https://backstage.dhge.de/course/view.php?id=2718
+
+
+# Cloud Computing 
+
+## Überblick 
+- Cloud als Buzzword
+- Daten in der Cloud
+- Rechnen in der Cloud 
+- Mythos: Ersetzt ein komplettes Rechenzentrum 
+- nahe Verwandte: 
+  - Grid-Computing 
+  - Cluster-Computing 
+
+## Ursprung: Parallelisierung 
+
+1. Parallelisierung auf CPU - Ebene 
+2. Parallelisierung auf Rechner - Ebene
+    - mehrere CPU pro Rechner 
+3. Parallelisierung auf Cluster-Ebene 
+    - n-Systeme, die sich wie Eines verhalten 
+4. Parallelisierung auf GRID-Ebene 
+    - mehrere zusammengefasste Cluster 
+
+<img src="./resources/Rechner_Cluster_Grid.png" alt="Abbildung Rechner Cluster Grid" width=350>
+
+### Cluster-Computing 
+
+- n-Systeme verhalten sich wie ein virtueller Supercomputer 
+- Problem: 
+  - zu lösende Aufgabe muss sinnvoll aufteilbar sein 
+  - "Teile und Herrsche"-Problem -> Parallelverarbeitung muss möglich sein 
+- Wenn Parallelisierung möglich ist: 
+  - **Load-Balancer** übernimmt die Verteilung der Einzelaufgaben 
+  - Cluster befindet sich an einem lokalen Standort 
+  - Buzzwords: 
+    - HPC - High Performance Computing 
+    - HA - High Availability 
+
+## GRID-Computing
+
+- zentraler GRID-Server, der die Verwaltung der heterogenen Rechner-/Clusterstruktur übernimmt 
+- GRID-Server übernimmt auch die dynamische Aufgabenverteilung
+- dazu wird eine GRID-Computing Software notwendig 
+- Buzzword: 
+  - Job-Orientierung
+    - Jobs werden der GRID-Software zur Verfügung gestellt, diese übernimmt die Abarbeitung 
+- Vorteil ist die gute Skalierbarkeit 
+- Ressourcen und Zugriff sind dezentral 
+
+<img src="./resources/GRID_Computing.png" alt="Abbildung GRID-Computing" width=350>
+
+## Warum (keine) Cloud 
+
+|   Pro                                                     |   Contra                                      |
+|---------                                                  |-----------                                    |
+|Hardware-Kosten sinken                                     |permanente Internetverbindung benötigt         | 
+|Gute Skalierbarkeit                                        |Vertraulichkeit muss sichergestellt sein       |
+|Hohe Verfügbarkeit                                         |Daten müssen sicher sein (z.B. DSGVO)          |
+|Verwaltungsaufwand sinkt für SW-Installation/Updates, Hardware Tausch, Backup                                              |Abhängigkeit von Dritten (Cloud-Anbieter)|
+|Zahlung nach Nutzung                                       |Kosten können ggf. höher sein|
+|24/7 Support                                               |Geschwindigkeit und Latenz|
+|Eigene neue Netzwerk-Topologien konfigurierbar             ||
+|Automatisierbarkeit                                        ||
+
+**Over-Subscription**: Cloud-Anbieter überbuchen ihre technischen Möglichkeiten, da nie von allen Kunden gleichzeitig alles genutzt wird

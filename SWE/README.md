@@ -492,7 +492,7 @@ Plan -> Do -> Check -> Act -> (zurück zu Plan)
 ## User-Story
 > Als ... möchte ich ... um ...
 
-- Erklärung eines Fteaures aus Sicht einer Person, die dieses Feature verwenden will
+- Erklärung eines Features aus Sicht einer Person, die dieses Feature verwenden will
 - Wert für den Kunden
 - Ziel
 - Jeder User-Story werden eine Priorität und sog. Story-Points zugeordnet

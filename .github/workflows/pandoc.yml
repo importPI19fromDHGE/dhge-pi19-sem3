@@ -21,9 +21,9 @@ jobs:
       - uses: docker://pandoc/latex:2.9
         with:
           args: --output=output/PRO.pdf --pdf-engine=xelatex -V geometry:margin=3cm PRO/README.md
-      - uses: docker://pandoc/latex:2.9
+      - uses: docker://rstropek/pandoc-latex:latest
         with:
-          args: --output=output/RES.pdf --pdf-engine=xelatex -V geometry:margin=3cm RES/README.md
+          args: --output=output/RES.pdf --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex -V geometry:margin=3cm RES/README.md
       - uses: actions/upload-artifact@master
         with:
           name: output

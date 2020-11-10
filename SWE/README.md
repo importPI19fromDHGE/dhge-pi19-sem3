@@ -48,9 +48,9 @@ Systemanalyse
 ## User Story Format
 
 > Als ...
-> 
+>
 > möchte ich ...
-> 
+>
 > um ... zu
 
 - selber so formulieren und einfordern
@@ -118,14 +118,14 @@ Zuletzt die Methode hinterfragen
 
 > orientiert sich an der Auto-Produktion
 
-- Autoproduktion: 
-  
+- Autoproduktion:
+
   - kalkulierbare Kosten + Risiken (Planung und Produktion sind getrennt)
   - vorhersagbares Ergebnis (Industrialisierung)
   - Qualität (ständiges Messen)
 
 - Software Produktion
-  
+
   - Kosten sind **nicht** zuverlässig vorhersagbar
   - viele Fehlschläge in der Branche
   - schlecht quantifizierbar
@@ -153,11 +153,13 @@ Zuletzt die Methode hinterfragen
 
 **5 Phasen** -> Stufenmodell
 
-- Analyse
-  - Design
-    - Programmierung
-      - Integration / Test
-        - Einsatz / Wartung
+```
+Analyse
+└─ Design
+  └─ Programmierung
+    └─ Integration / Test
+      └─ Einsatz / Wartung
+```
 
 **Analyse-Phase**
 
@@ -220,11 +222,13 @@ MVPs fehlen
 
 ### Iteriertes Phasenmodell
 
-- Analyse
-  - Design
-    - Programmierung
-      - Integration / Tests
-        - Einsatz / Wartung
+```
+Analyse
+└─ Design
+  └─ Programmierung
+    └─ Integration / Test
+      └─ Einsatz / Wartung
+```
 
 Hier wird immer wieder in eine Phase "zurück gesprungen", falls etwas nicht passt.
 
@@ -243,7 +247,7 @@ Hier wird immer wieder in eine Phase "zurück gesprungen", falls etwas nicht pas
 - zeigt ausgewählte Eigenschaften
 - darf bzw. **muss** quick & dirty sein
 
-**Gefahr:** 
+**Gefahr:**
 - wird nicht wieder weggeworfen
 - wird als Doku-Ersatz missbraucht
 - Aufwand ist relativ hoch
@@ -253,14 +257,14 @@ Hier wird immer wieder in eine Phase "zurück gesprungen", falls etwas nicht pas
 
 ### Evolutionäre SW-Entwicklung
 
-**evolutionär:** 
+**evolutionär:**
 
 - Bewährtes weiterentwickeln
 - unnötige Features abschalten
 
 -> Weiterentwicklung des Prototypen
 
--> Problem: 
+-> Problem:
 - ständige Änderungen im Quellcode
 - evolutionäre Dokumentation
 
@@ -316,7 +320,7 @@ Analyse -> High-Level-Design -> Low-Level-Design -> Implementierung -> Unit Test
 
 ### Eine Ausprägung des V-Modells: "V-Modell XT"
 
-- Ursprung: militärscher Bereich 
+- Ursprung: militärscher Bereich
 - **Ziele:**
   - (1) Kosten transparent machen -> Kosten-Limitierung wird möglich
   - (2) Mindeststandard an Qualitäts-Maßnahmen zu garantieren
@@ -450,10 +454,10 @@ Weitere Beispiele: Windows 2000, Crysler Payroll-System
 
 **Vor-und Nachteile**
 
-Allgemeine Kriterien: 
+Allgemeine Kriterien:
 - Kosten / Kosten
-- Qualität der Ergebnisse 
-- Flexibilität 
+- Qualität der Ergebnisse
+- Flexibilität
 - gegenseitiges Lernen
 - Overhead (Betreuung, Komplexität)
 - Tests
@@ -471,10 +475,10 @@ Allgemeine Kriterien:
 ## Empirische Prozess Kontrolle
 
 **PDCA Prinzip:**  
-Plan -> Do -> Check -> Act -> (zurück zu Plan) 
+Plan -> Do -> Check -> Act -> (zurück zu Plan)
 
 > - kurze Planungszeit, schnell in das Doing übergehen und nach kurzer Zeit prüfen  
-> - soll zu einer besseren Lösung führen 
+> - soll zu einer besseren Lösung führen
 
 - transparenter Prozess
 - Doing + Überprüfung + Anpassung
@@ -497,7 +501,7 @@ Plan -> Do -> Check -> Act -> (zurück zu Plan)
 - Ziel
 - Jeder User-Story werden eine Priorität und sog. Story-Points zugeordnet
 > Story-Points sind eine Aufwandsschätzung, die jedoch **nicht** die geschätzen Arbeitsstunden darstellen
-- desweiteren enthält die User-Story eine Risikoabschätzung 
+- desweiteren enthält die User-Story eine Risikoabschätzung
 - hinterher wird an der User-Story der tatsächliche Aufwand dokumentiert
 
 Tests auf der "Rückseite":  
@@ -532,7 +536,7 @@ Angenommen ... <Vork.> wenn ... <Aktion> dann ... <Ergebnis>
 - Prozessbeobachter
 - dokumentiert u.A. den Fortschritt der Entwicklung
 - hilft dem Team, Probleme zu lösen
-- idealerweise ist der SCRUM-Master ein fachfremder Mitarbeiter 
+- idealerweise ist der SCRUM-Master ein fachfremder Mitarbeiter
 
 ### Vorgehen in SCRUM
 1. Vision -> Produktbacklog  

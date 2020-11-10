@@ -21,7 +21,7 @@ SSH hat viele verschiedene Einsatzgebiete:
 [QUELLE](https://www.ionos.de/digitalguide/server/tools/secure-shell-ssh/)
 
 - Nutzung als VPN-Tunnel und X11-Forwarding (Remote Desktop) [QUELLE](https://wiki.archlinux.org/index.php/OpenSSH)
-nutzer
+
 ## Installation
 
 <!--Was hat man mit SSH auf dem Rechner? Verschiede Paketverwaltungen; SFTP-Server-->

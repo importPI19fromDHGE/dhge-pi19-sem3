@@ -1,3 +1,12 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Inhaltsverzeichnis**
+
+- [Vorträge vom 3. Semester / 11/2020](#vortr%C3%A4ge-vom-3-semester--112020)
+  - [Wer macht was?](#wer-macht-was)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 Vorträge vom 3. Semester / 11/2020
 ==================================
 

@@ -26,6 +26,15 @@ Systemanalyse
     - [V-Modell](#v-modell)
     - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-auspr%C3%A4gung-des-v-modells-v-modell-xt)
     - [Extreme Programming (XP)](#extreme-programming-xp)
+- [SCRUM](#scrum)
+  - [Empirische Prozess Kontrolle](#empirische-prozess-kontrolle)
+  - [SCRUM-Prozess](#scrum-prozess)
+  - [User-Story](#user-story)
+  - [Rollen im SCRUM-Prozess](#rollen-im-scrum-prozess)
+    - [Product Owner](#product-owner)
+    - [Entwickler Team](#entwickler-team)
+    - [SCRUM-Master](#scrum-master)
+    - [Vorgehen in SCRUM](#vorgehen-in-scrum)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -456,3 +465,85 @@ Allgemeine Kriterien:
 | Code Qualität                                                 | Personal-aufwändig                  |
 | Flexibilität (bezüglich neuer Nutzerwünsche, umstrukturieren) | Update Häufigkeit / Kundenakzeptanz |
 | Teams <--                                                     | Corona                              |
+
+# SCRUM
+
+## Empirische Prozess Kontrolle
+
+**PDCA Prinzip:**  
+Plan -> Do -> Check -> Act -> (zurück zu Plan) 
+
+> - kurze Planungszeit, schnell in das Doing übergehen und nach kurzer Zeit prüfen  
+> - soll zu einer besseren Lösung führen 
+
+- transparenter Prozess
+- Doing + Überprüfung + Anpassung
+- häufige Wiederholung
+
+## SCRUM-Prozess
+- (1) Produkt-Vision, gemeinsame Idee muss zunächst existieren
+- -> ein Workshop führt zu (2) einem Produkt-Backlog, gefüllt mit Epics
+> ein Epic ist ein höheres Anforderungsniveau -> keine Details -> nicht sofort umsetzbar  
+> Der Backlog enthält <= 150 Epics (wenn mehr -> zwei Produkte (Empfehlung))  
+> in der Regel besteht ein Epic aus 1-8 User-Stories
+- Der Product-Owner ist für die "Vision" und die Reihenfolge der Epics verantwortlich
+- Jeder soll/darf Epics in das Backlog "füttern" dürfen
+
+## User-Story
+> Als ... möchte ich ... um ...
+
+- Erklärung eines Features aus Sicht einer Person, die dieses Feature verwenden will
+- Wert für den Kunden
+- Ziel
+- Jeder User-Story werden eine Priorität und sog. Story-Points zugeordnet
+> Story-Points sind eine Aufwandsschätzung, die jedoch **nicht** die geschätzen Arbeitsstunden darstellen
+- desweiteren enthält die User-Story eine Risikoabschätzung 
+- hinterher wird an der User-Story der tatsächliche Aufwand dokumentiert
+
+Tests auf der "Rückseite":  
+Angenommen ... <Vork.> wenn ... <Aktion> dann ... <Ergebnis>  
+> Realisierbar mit: JIRA, ..., Empfehlung für den Anfang: taktile Variante (Papier)
+
+## Rollen im SCRUM-Prozess
+### Product Owner
+- muss eine "Brücke" zwischen Business und Development herstellen
+- muss ROI (Return of Investment) gewährleisten
+- ist die Schnittstelle zum Kunden -> muss die Kundenbedürfnisse verstehen und einordnen
+- **Value:** muss Kriterien für den Value definieren und ihn erhöhen -> Was? Warum?
+- ist für Sprint Reviews verantwortlich
+- muss Backlog Prioritäten setzen
+
+**Aus praktischer Erfahrung ist der PO:**
+- ein Full-Time Job
+- eine Authoritätsperson
+- genau eine Person
+
+### Entwickler Team
+- besteht idealerweise aus 7+-2 Mitarbeiter
+- selbstorganisierend
+- Mitarbeiter ist typischerweise "I-shaped" -> hat auf einem Gebiet extrem tiefes Wissen  
+  das Ziel ist jedoch ein "T-shaped" Mitarbeiter -> hat ein breites Wissen, mit einem Spezialbereich
+- sind Macher
+- sind nach außen geschützt
+
+### SCRUM-Master
+- Kümmerer (kümmert sich um Probleme seiner Mitarbeiter)
+- Diener + Führer in einer Person
+- Prozessbeobachter
+- dokumentiert u.A. den Fortschritt der Entwicklung
+- hilft dem Team, Probleme zu lösen
+- idealerweise ist der SCRUM-Master ein fachfremder Mitarbeiter 
+
+### Vorgehen in SCRUM
+1. Vision -> Produktbacklog  
+   im Produktbacklog ist die oberste Aufgabe die wichtigste
+
+2. Sprint-Planning  
+   Das **Team** erstellt ein Sprint-Backlog aus dem Produkt-Backlog
+   - ein Sprint-Ziel muss definiert werden
+
+3. Bearbeitung des Sprints (meist 14 Tage)
+   - Daily Meeting (jeder im Team erzählt ganz kurz, woran er gerade arbeitet)
+   - am Ende des Sprints: Sprint Review (bezieht sich konkret auf den Inhalt des Sprints)
+   - Retrospektive (bezieht sich auf den Prozess des Sprints)
+   - zurück zu 2.

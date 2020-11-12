@@ -36,6 +36,9 @@ Betriebssystemverwaltung
     - [alle Nutzer anzeigen](#alle-nutzer-anzeigen)
   - [Linux: Skripte](#linux-skripte)
     - [SMB-Share einbinden](#smb-share-einbinden)
+  - [FTP-Vortrag](#ftp-vortrag)
+  - [Samba](#samba)
+  - [DHCP](#dhcp)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -57,9 +60,16 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Befehle und Parameter, ein Befehl kann zum Parameter werden (man pages)
 - Wie man Windows optionalfeatures (de)aktiviert?
 - Welche Filesysteme sind Ihnen bekannt?
+- was ist ein Backup?
+  - Kopie von Daten, um sie später wiederherstellen zu können
+  - mögliche Tools: cp, scp, rsync,...
+- welchen Zweck hat ein DHCP-Server?
+  - automatische Netzwerkkonfiguration
+- welchen Zweck hat ein FTP-Server?
+  - Dateiübertragung über ein Netzwerk
 - Zweck von FTP
 - Was ist DD?
-- Die Zeichen ">>" bzw. ">" im Skript bzw. tee -a 
+- Die Zeichen ">>" bzw. ">" im Skript bzw. tee -a
 - Unterschied Datensicherung und Datenspiegelung
 - Unterschied Datenrate und Bandbreite
 
@@ -375,3 +385,95 @@ sudo apt install cifs-utils
 sudo mount -t cifs -o uid=1000,gid=1000,file_mode=0771,dir_mode=0771 //adresse/freigabe /mnt
 # bindet \\adresse\freigabe auf den /mnt-Ordner und gibt Nutzer 1000 sowie Gruppe 1000 volle Rechte
 ```
+
+## FTP-Vortrag
+
+- Kommunikationsprotokoll
+- Datenaustausch zwischen Computern
+- Clientgesteuerte Übertragung zw. zwei Servern
+- Steuerkanal: Port 21
+- Datenkanal: Port 20
+- aktives oder passives FTP --> passiv kan NAT umgehen
+- FTPS --> FTP mit TLS
+- Installation Client: ``sudo apt install ftp``
+- Installation Server: ``sudo apt vsftp``
+- Windows: Server als Windows-Feature oder mit Filezilla
+- interaktive FTP-Shell:
+  - ``put dateiname`` --> hochladen
+  - ``get dateiname`` --> herunterladen
+  - ``pass`` --> schalten in den passiven Modus
+
+Konfigurationsskript von Fabian und Charlotte:
+
+```sh
+#!/bin/bash
+
+# lokale nutzer erlauben?
+# -i(n-place: in der datei); s(earch); g(lobal: alle vorkommnisse)
+read -p "lokale benutzer erlauben? (y/n) " c
+
+if [ $c == "n" ]
+then
+ sudo sed -i 's/local_enable=YES/#local_enable=YES/g' /etc/vsftpd.conf
+fi
+
+# schreibzugriff erlauben?
+# -i(n-place: in der datei); s(earch); g(lobal: alle vorkommnisse)
+read -p "schreibzugriff erlauben? (y/n) " c
+
+if [ $c == "y" ]
+then
+ sudo sed -i 's/#write_enable=YES/write_enable=YES/g' /etc/vsftpd.conf
+fi
+
+# anonym erlauben?
+read -p "anonymen zugriff erlauben? (y/n) " c
+
+if [ $c == "y" ]
+then
+ sudo sed -i 's/anonymous_enable=NO/anonymous_enable=YES/g' /etc/vsftpd.conf
+fi
+
+# ftp user erstellen?
+read -p "ftp user erstellen? (y/n) " c
+
+if [ $c == "y" ]
+then
+ # zugriff auf ftpuser beschränken
+ echo "userlist_enable=YES
+userlist_file=/etc/vsftpd.user_list
+userlist_deny=NO" | sudo tee -a /etc/vsftpd.conf
+
+ # ftpuser anlegen und userliste schreiben
+ sudo adduser ftpuser --quiet --gecos "" --disabled-password
+ read -sp "passwort eingeben: " pw | sudo chpasswd "ftpuser:$pw"
+ echo "ftpuser" | sudo tee -a /etc/vsftpd.user_list
+fi
+
+# konfiguration übernehmen
+sudo systemctl restart vsftpd.service
+```
+
+- Scripting möglich: FTP-Kommandos können in eine Textdatei geschrieben werden. Aufruf mit ``ftp dateiname``
+
+## Samba
+
+- Open-Source Implementierung des SMB-Protokolls
+- Konfigurationsdatei in ``/etc/smb/smb.conf``
+
+Freigabeordner erstellen:
+
+```conf
+[freigabename]
+  path = pfad
+  valid users = nutzername
+  read only = no
+```
+
+- erstellen eines Nutzers: ``sudo smbpasswd -a nutzer``
+
+## DHCP
+
+- dynamische Zuweisung von IP-Adresse, Gateway, Subnetzmaske, DNS
+- "automatische Zuordnung" - Client wird für Netzwerk konfiguriert, Einstellungen werden gespeichert
+- "dynamische Zuordnung" - automatische Konfiguration, aber läuft nach Lease-Zeit ab

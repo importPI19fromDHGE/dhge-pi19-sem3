@@ -5,14 +5,15 @@ Betriebssystemverwaltung
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [mögliche Prüfungsfragen](#m%C3%B6gliche-pr%C3%BCfungsfragen)
+- [Betriebssystemverwaltung](#betriebssystemverwaltung)
+- [mögliche Prüfungsfragen](#mögliche-prüfungsfragen)
 - [Vorteile Virtualisierung](#vorteile-virtualisierung)
 - [Grundlagen Linux](#grundlagen-linux)
   - [Terminal](#terminal)
   - [VBox Guest Additions installieren](#vbox-guest-additions-installieren)
-  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-sch%C3%A4den-sch%C3%BCtzen)
+  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-schäden-schützen)
 - [Grundlagen Windows](#grundlagen-windows)
-  - [Features hinzufügen / entfernen](#features-hinzuf%C3%BCgen--entfernen)
+  - [Features hinzufügen / entfernen](#features-hinzufügen--entfernen)
   - [Verwaltungsaufgaben](#verwaltungsaufgaben)
   - [Netzlaufwerk verbinden](#netzlaufwerk-verbinden)
     - [via Explorer](#via-explorer)
@@ -27,15 +28,16 @@ Betriebssystemverwaltung
   - [Ping of Death](#ping-of-death)
     - [Windows](#windows)
     - [Linux](#linux)
-  - [Windows-Netzwerkeinstellungen via Skript ändern](#windows-netzwerkeinstellungen-via-skript-%C3%A4ndern)
-  - [Vorträge](#vortr%C3%A4ge)
+  - [Windows-Netzwerkeinstellungen via Skript ändern](#windows-netzwerkeinstellungen-via-skript-ändern)
+  - [Vorträge](#vorträge)
     - [Themen](#themen)
     - [Was soll rein?](#was-soll-rein)
   - [Linux: Nutzerverwaltung](#linux-nutzerverwaltung)
-    - [Nutzer im Terminal ändern](#nutzer-im-terminal-%C3%A4ndern)
+    - [Nutzer im Terminal ändern](#nutzer-im-terminal-ändern)
     - [alle Nutzer anzeigen](#alle-nutzer-anzeigen)
   - [Linux: Skripte](#linux-skripte)
     - [SMB-Share einbinden](#smb-share-einbinden)
+  - [FTP](#ftp)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -370,3 +372,73 @@ sudo apt install cifs-utils
 sudo mount -t cifs -o uid=1000,gid=1000,file_mode=0771,dir_mode=0771 //adresse/freigabe /mnt
 # bindet \\adresse\freigabe auf den /mnt-Ordner und gibt Nutzer 1000 sowie Gruppe 1000 volle Rechte
 ```
+
+## FTP
+
+- Kommunikationsprotokoll
+- Datenaustausch zwischen Computern
+- Clientgesteuerte Übertragung zw. zwei Servern
+- Steuerkanal: Port 21
+- Datenkanal: Port 20
+- aktives oder passives FTP --> passiv kan NAT umgehen
+- FTPS --> FTP mit TLS
+- Installation Client: ``sudo apt install ftp``
+- Installation Server: ``sudo apt vsftp``
+- Windows: Server als Windows-Feature oder mit Filezilla
+- interaktive FTP-Shell:
+  - ``put dateiname`` --> hochladen
+  - ``get dateiname`` --> herunterladen
+  - ``pass`` --> schalten in den passiven Modus
+
+Konfigurationsskript von Fabian und Charlotte:
+
+```sh
+#!/bin/bash
+
+# lokale nutzer erlauben?
+# -i(n-place: in der datei); s(earch); g(lobal: alle vorkommnisse)
+read -p "lokale benutzer erlauben? (y/n) " c
+
+if [ $c == "n" ]
+then
+ sudo sed -i 's/local_enable=YES/#local_enable=YES/g' /etc/vsftpd.conf
+fi
+
+# schreibzugriff erlauben?
+# -i(n-place: in der datei); s(earch); g(lobal: alle vorkommnisse)
+read -p "schreibzugriff erlauben? (y/n) " c
+
+if [ $c == "y" ]
+then
+ sudo sed -i 's/#write_enable=YES/write_enable=YES/g' /etc/vsftpd.conf
+fi
+
+# anonym erlauben?
+read -p "anonymen zugriff erlauben? (y/n) " c
+
+if [ $c == "y" ]
+then
+ sudo sed -i 's/anonymous_enable=NO/anonymous_enable=YES/g' /etc/vsftpd.conf
+fi
+
+# ftp user erstellen?
+read -p "ftp user erstellen? (y/n) " c
+
+if [ $c == "y" ]
+then
+ # zugriff auf ftpuser beschränken
+ echo "userlist_enable=YES
+userlist_file=/etc/vsftpd.user_list
+userlist_deny=NO" | sudo tee -a /etc/vsftpd.conf
+
+ # ftpuser anlegen und userliste schreiben
+ sudo adduser ftpuser --quiet --gecos "" --disabled-password
+ read -sp "passwort eingeben: " pw | sudo chpasswd "ftpuser:$pw"
+ echo "ftpuser" | sudo tee -a /etc/vsftpd.user_list
+fi
+
+# konfiguration übernehmen
+sudo systemctl restart vsftpd.service
+```
+
+- Scripting möglich: FTP-Kommandos können in eine Textdatei geschrieben werden. Aufruf mit ``ftp dateiname``

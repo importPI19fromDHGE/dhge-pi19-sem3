@@ -5,12 +5,11 @@ Datenbanken-Praktikum
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Datenbanken-Praktikum](#datenbanken-praktikum)
 - [Formen von Kundenanforderungen](#formen-von-kundenanforderungen)
 - [Schematische Darstellung](#schematische-darstellung)
   - [Entity Relationship Diagramm (ERD)](#entity-relationship-diagramm-erd)
   - [Tabellenschema](#tabellenschema)
-- [Constraints und Kardinalitäten](#constraints-und-kardinalitäten)
+- [Constraints und Kardinalitäten](#constraints-und-kardinalit%C3%A4ten)
 - [Vorgehensweise zur Modellierung einer Datenbank](#vorgehensweise-zur-modellierung-einer-datenbank)
 - [Relationship-Matrix](#relationship-matrix)
 - [SQL](#sql)
@@ -18,17 +17,17 @@ Datenbanken-Praktikum
   - [Datentypen](#datentypen)
   - [Tabellen](#tabellen)
     - [Tabellen erstellen](#tabellen-erstellen)
-    - [Eigenschaften für Tabellenspalten](#eigenschaften-für-tabellenspalten)
-    - [verändern von Tabellen](#verändern-von-tabellen)
+    - [Eigenschaften für Tabellenspalten](#eigenschaften-f%C3%BCr-tabellenspalten)
+    - [verändern von Tabellen](#ver%C3%A4ndern-von-tabellen)
     - [Constraints](#constraints)
-  - [Daten einfügen](#daten-einfügen)
+  - [Daten einfügen](#daten-einf%C3%BCgen)
   - [Daten lesen](#daten-lesen)
   - [Aggregatsfunktionen](#aggregatsfunktionen)
   - [Unterabfragen](#unterabfragen)
   - [Unions](#unions)
   - [Gruppieren](#gruppieren)
   - [Joins](#joins)
-  - [Daten verändern](#daten-verändern)
+  - [Daten verändern](#daten-ver%C3%A4ndern)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

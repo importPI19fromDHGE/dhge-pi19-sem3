@@ -62,6 +62,10 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Die Zeichen ">>" bzw. ">" im Skript bzw. tee -a 
 - Unterschied Datensicherung und Datenspiegelung
 - Unterschied Datenrate und Bandbreite
+- Welchen Zweck erfüllt `rsync`?
+- Was ist ein Backup? Wie kann man ein Backup erstellen?
+- Welche Informationen benötigt man um sich bei einem SSH-Server einzuloggen?
+- Wie verwendet Schleifen in Bash-Skripten?
 
 # Vorteile Virtualisierung
 

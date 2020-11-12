@@ -462,7 +462,7 @@ ORDER BY v1.ort;
 ```sql
 -- André Grimm --> André Kaudelwerk
 UPDATE nutzer SET name = 'Kaudelwerk' WHERE id =
-(SELECT id FROM NUTZER WHERE name = 'Grimm' AND vorname = 'Andre');
+(SELECT id FROM NUTZER WHERE name = 'Grimm' AND vorname = 'André');
 
 -- Rechnen ist erlaubt: alle Bücher +10 Seiten
 UPDATE buch SET seiten = seiten + 10;

@@ -37,7 +37,8 @@ Betriebssystemverwaltung
     - [alle Nutzer anzeigen](#alle-nutzer-anzeigen)
   - [Linux: Skripte](#linux-skripte)
     - [SMB-Share einbinden](#smb-share-einbinden)
-  - [FTP](#ftp)
+  - [FTP-Vortrag](#ftp-vortrag)
+  - [Samba](#samba)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -373,7 +374,7 @@ sudo mount -t cifs -o uid=1000,gid=1000,file_mode=0771,dir_mode=0771 //adresse/f
 # bindet \\adresse\freigabe auf den /mnt-Ordner und gibt Nutzer 1000 sowie Gruppe 1000 volle Rechte
 ```
 
-## FTP
+## FTP-Vortrag
 
 - Kommunikationsprotokoll
 - Datenaustausch zwischen Computern
@@ -442,3 +443,19 @@ sudo systemctl restart vsftpd.service
 ```
 
 - Scripting möglich: FTP-Kommandos können in eine Textdatei geschrieben werden. Aufruf mit ``ftp dateiname``
+
+## Samba
+
+- Open-Source Implementierung des SMB-Protokolls
+- Konfigurationsdatei in ``/etc/smb/smb.conf``
+
+Freigabeordner erstellen:
+
+```conf
+[freigabename]
+  path = pfad
+  valid users = nutzername
+  read only = no
+```
+
+- erstellen eines Nutzers: ``sudo smbpasswd -a nutzer``

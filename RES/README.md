@@ -39,6 +39,7 @@ Betriebssystemverwaltung
     - [SMB-Share einbinden](#smb-share-einbinden)
   - [FTP-Vortrag](#ftp-vortrag)
   - [Samba](#samba)
+  - [DHCP](#dhcp)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -60,6 +61,13 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Befehle und Parameter, ein Befehl kann zum Parameter werden (man pages)
 - Wie man Windows optionalfeatures (de)aktiviert?
 - Welche Filesysteme sind Ihnen bekannt?
+- was ist ein Backup?
+  - Kopie von Daten, um sie später wiederherstellen zu können
+  - mögliche Tools: cp, scp, rsync,...
+- welchen Zweck hat ein DHCP-Server?
+  - automatische Netzwerkkonfiguration
+- welchen Zweck hat ein FTP-Server?
+  - Dateiübertragung über ein Netzwerk
 
 # Vorteile Virtualisierung
 
@@ -459,3 +467,9 @@ Freigabeordner erstellen:
 ```
 
 - erstellen eines Nutzers: ``sudo smbpasswd -a nutzer``
+
+## DHCP
+
+- dynamische Zuweisung von IP-Adresse, Gateway, Subnetzmaske, DNS
+- "automatische Zuordnung" - Client wird für Netzwerk konfiguriert, Einstellungen werden gespeichert
+- "dynamische Zuordnung" - automatische Konfiguration, aber läuft nach Lease-Zeit ab

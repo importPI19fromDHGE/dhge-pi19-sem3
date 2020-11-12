@@ -57,6 +57,11 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Befehle und Parameter, ein Befehl kann zum Parameter werden (man pages)
 - Wie man Windows optionalfeatures (de)aktiviert?
 - Welche Filesysteme sind Ihnen bekannt?
+- Zweck von FTP
+- Was ist DD?
+- Die Zeichen ">>" bzw. ">" im Skript bzw. tee -a 
+- Unterschied Datensicherung und Datenspiegelung
+- Unterschied Datenrate und Bandbreite
 
 # Vorteile Virtualisierung
 

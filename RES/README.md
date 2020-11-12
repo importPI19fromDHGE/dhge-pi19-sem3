@@ -65,7 +65,7 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Welchen Zweck erfüllt `rsync`?
 - Was ist ein Backup? Wie kann man ein Backup erstellen?
 - Welche Informationen benötigt man um sich bei einem SSH-Server einzuloggen?
-- Wie verwendet Schleifen in Bash-Skripten?
+- Wie verwendet man Schleifen in Bash-Skripten?
 
 # Vorteile Virtualisierung
 

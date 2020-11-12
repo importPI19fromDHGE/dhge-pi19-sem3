@@ -68,6 +68,11 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
   - automatische Netzwerkkonfiguration
 - welchen Zweck hat ein FTP-Server?
   - Dateiübertragung über ein Netzwerk
+- Zweck von FTP
+- Was ist DD?
+- Die Zeichen ">>" bzw. ">" im Skript bzw. tee -a
+- Unterschied Datensicherung und Datenspiegelung
+- Unterschied Datenrate und Bandbreite
 
 # Vorteile Virtualisierung
 

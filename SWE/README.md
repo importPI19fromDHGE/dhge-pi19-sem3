@@ -5,14 +5,15 @@ Systemanalyse
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Einführung / Überblick](#einf%C3%BChrung--%C3%BCberblick)
+- [Systemanalyse](#systemanalyse)
+- [Einführung / Überblick](#einführung--überblick)
   - [User Story Format](#user-story-format)
-  - [Was gehört alles zur Systemanalyse?](#was-geh%C3%B6rt-alles-zur-systemanalyse)
-- [Regeln für Software-Entwicklung](#regeln-f%C3%BCr-software-entwicklung)
+  - [Was gehört alles zur Systemanalyse?](#was-gehört-alles-zur-systemanalyse)
+- [Regeln für Software-Entwicklung](#regeln-für-software-entwicklung)
   - [(1) Klartext](#1-klartext)
     - [Wasserfallmodell](#wasserfallmodell)
     - [Agil](#agil)
-  - [(2) Gründliche Vertragsgestaltung](#2-gr%C3%BCndliche-vertragsgestaltung)
+  - [(2) Gründliche Vertragsgestaltung](#2-gründliche-vertragsgestaltung)
     - [Wasserfallmodell](#wasserfallmodell-1)
     - [Agil](#agil-1)
   - [(3) Wandelnde Anforderungen: Wie gehe ich damit um?](#3-wandelnde-anforderungen-wie-gehe-ich-damit-um)
@@ -21,10 +22,10 @@ Systemanalyse
   - [Vorgehensmodelle](#vorgehensmodelle)
     - [Phasenmodell](#phasenmodell)
     - [Iteriertes Phasenmodell](#iteriertes-phasenmodell)
-    - [Evolutionäre SW-Entwicklung](#evolution%C3%A4re-sw-entwicklung)
+    - [Evolutionäre SW-Entwicklung](#evolutionäre-sw-entwicklung)
     - [Spiralen Modell](#spiralen-modell)
     - [V-Modell](#v-modell)
-    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-auspr%C3%A4gung-des-v-modells-v-modell-xt)
+    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-ausprägung-des-v-modells-v-modell-xt)
     - [Extreme Programming (XP)](#extreme-programming-xp)
 - [SCRUM](#scrum)
   - [Empirische Prozess Kontrolle](#empirische-prozess-kontrolle)
@@ -490,7 +491,7 @@ Plan -> Do -> Check -> Act -> (zurück zu Plan)
 > ein Epic ist ein höheres Anforderungsniveau -> keine Details -> nicht sofort umsetzbar  
 > Der Backlog enthält <= 150 Epics (wenn mehr -> zwei Produkte (Empfehlung))  
 > in der Regel besteht ein Epic aus 1-8 User-Stories
-- Der Product-Owner ist für die "Vision" und die Reihenfolge der Epics verantwortlich
+- Der Product Owner ist für die "Vision" und die Reihenfolge der Epics verantwortlich
 - Jeder soll/darf Epics in das Backlog "füttern" dürfen
 
 ## User-Story
@@ -518,8 +519,8 @@ Angenommen ... <Vork.> wenn ... <Aktion> dann ... <Ergebnis>
 - muss Backlog Prioritäten setzen
 
 **Aus praktischer Erfahrung ist der PO:**
-- ein Full-Time Job
-- eine Authoritätsperson
+- ein Full-Time Job  
+- eine Authoritätsperson  
 - genau eine Person
 
 ### Entwickler Team
@@ -549,5 +550,21 @@ Angenommen ... <Vork.> wenn ... <Aktion> dann ... <Ergebnis>
 3. Bearbeitung des Sprints (meist 14 Tage)
    - Daily Meeting (jeder im Team erzählt ganz kurz, woran er gerade arbeitet)
    - am Ende des Sprints: Sprint Review (bezieht sich konkret auf den Inhalt des Sprints)
-   - Retrospektive (bezieht sich auf den Prozess des Sprints)
+   - Retrospektive (bezieht sich auf den Prozess des Sprints, realisierbar durch KSSP)
    - zurück zu 2.
+
+> Die 4 festen Events sind nicht abwählbar (vs. Aussage: beim SCRUM kann vieles an Bedürfnisse vom Team angepasst werden)
+
+**Daily SCRUM Event**
+- Koordination des Teams bezüglich des Sprint-Ziels
+- Entwickler Team
+- am Kanboard
+- geführt wird es vom SCRUM-Master (!)
+- Timebox! 15 Minuten und nicht länger!
+- 3 Fragen:
+  - Was habe ich getan?
+  - Was werde ich tun?
+  - Was hat mich behindert
+- Product Owner darf als Gast dabei sein
+
+> Im Burn-Down-Chart ist die Reduzierung der Tasks anfangs oft sehr langsam, da noch kein/wenig Task-Grooming/Task-Refinement betrieben wurde.

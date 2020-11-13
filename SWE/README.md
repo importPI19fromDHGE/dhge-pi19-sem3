@@ -490,7 +490,7 @@ Plan -> Do -> Check -> Act -> (zurück zu Plan)
 > ein Epic ist ein höheres Anforderungsniveau -> keine Details -> nicht sofort umsetzbar  
 > Der Backlog enthält <= 150 Epics (wenn mehr -> zwei Produkte (Empfehlung))  
 > in der Regel besteht ein Epic aus 1-8 User-Stories
-- Der Product-Owner ist für die "Vision" und die Reihenfolge der Epics verantwortlich
+- Der Product Owner ist für die "Vision" und die Reihenfolge der Epics verantwortlich
 - Jeder soll/darf Epics in das Backlog "füttern" dürfen
 
 ## User-Story
@@ -518,8 +518,8 @@ Angenommen ... <Vork.> wenn ... <Aktion> dann ... <Ergebnis>
 - muss Backlog Prioritäten setzen
 
 **Aus praktischer Erfahrung ist der PO:**
-- ein Full-Time Job
-- eine Authoritätsperson
+- ein Full-Time Job  
+- eine Authoritätsperson  
 - genau eine Person
 
 ### Entwickler Team
@@ -549,5 +549,21 @@ Angenommen ... <Vork.> wenn ... <Aktion> dann ... <Ergebnis>
 3. Bearbeitung des Sprints (meist 14 Tage)
    - Daily Meeting (jeder im Team erzählt ganz kurz, woran er gerade arbeitet)
    - am Ende des Sprints: Sprint Review (bezieht sich konkret auf den Inhalt des Sprints)
-   - Retrospektive (bezieht sich auf den Prozess des Sprints)
+   - Retrospektive (bezieht sich auf den Prozess des Sprints, realisierbar durch KSSP)
    - zurück zu 2.
+
+> Die 4 festen Events sind nicht abwählbar (vs. Aussage: beim SCRUM kann vieles an Bedürfnisse vom Team angepasst werden)
+
+**Daily SCRUM Event**
+- Koordination des Teams bezüglich des Sprint-Ziels
+- Entwickler Team
+- am Kanboard
+- geführt wird es vom SCRUM-Master (!)
+- Timebox! 15 Minuten und nicht länger!
+- 3 Fragen:
+  - Was habe ich getan?
+  - Was werde ich tun?
+  - Was hat mich behindert
+- Product Owner darf als Gast dabei sein
+
+> Im Burn-Down-Chart ist die Reduzierung der Tasks anfangs oft sehr langsam, da noch kein/wenig Task-Grooming/Task-Refinement betrieben wurde.

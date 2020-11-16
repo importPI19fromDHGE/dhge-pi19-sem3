@@ -1,52 +1,10 @@
 # DHGE - Praktische Informatik - Matrikel 19 - Semester 3
 
-## DBS - Datenbanken
+Dieses Repository ist ein Projekt von Studierenden des Studiengangs "Praktische Informatik" der Dualen Hochschule Gera-Eisenach. Es werden hier alle Mitschriften aus den einzelnen Modulen gesammelt. Diese Skripte liegen im `markdown`-Format vor. Zur besseren Handhabung (und weil Github nur begrenzte `markdown`-Features bereitstellt) werden diese zusätzlich automatisch in [PDFs](https://github.com/importPI19fromDHGE/dhge-pi19-sem3/releases) umgewandelt und zur Verfügung gestellt. Alle Kommilitonen sind dazu eingeladen ihre eigenen Beiträge zu diesem Projekt zu leisten.
 
-[Playlist](https://www.youtube.com/playlist?list=PL2Elw_whlm_uhHPNk-HoCOpvkvAQC6vK2)
+## Module
 
-- [X] Überblick
-- [X] Begriffe
-- [X] Architekturansätze
-- [X] vorrelationale Datenmodelle
-- [X] Relationales Datenmodell - Strukturelemente
-- [X] Relationale Operationen
-- [X] Objektorientiertes Datenmodell
-- [ ] B-Bäume Teil 1
-- [ ] B-Bäume Teil 2
-- [X] Sprachschnittstellen (Benutzergruppen)
-- [X] Entwurfsansätze für Anfragesprachen
-- [X] SQL-Praktikumsumgebung einrichten
-- [X] SQL-Überblick
-- [ ] SQL-Praktikumsdatenbanken
-- [ ] Verwalten von Tabellen
-- [ ] Verwalten von Indexen
-- [ ] Einfügen von Daten
-- [ ] Abfragen, Grundlagen
-- [ ] Abfragen, Join-Operationen
-- [ ] Abfragen, Aggregatfunktionen
-- [ ] Abfragen, Views
-- [ ] Update und Delete
-- [ ] SQL, Benutzer und Rechteverwaltung
-- [ ] Stored Procedures und Trigger
-- [ ] SQL, Transaktionen
-- [ ] Embedded SQL C
-- [ ] Beispielprogramm JDBC
-- [ ] Datenbankentwurf 1
-- [ ] Datenbankentwurf 2
-- [ ] Datenbankentwurf 3, Beispiel "Fachbibliothek"
-- [ ] Datenbankentwurf, Besprechung der Aufgabenstellungen
-- [ ] Datenbankentwurf, Lösung Unternehmen PC-Produktion
-- [ ] Datenbankentwurf, Lösung Personalverwaltung
-- [ ] Datenbankentwurf, Lösung Waldschadensdatenbank
-- [ ] Datenbankentwurf 4, Normalisierung
-- [ ] Datenbankentwurf 5, Darstellungsformen
-- [ ] Transaktionskonzepte
-- [ ] Logging und Recovery
-- [ ] Sperrkonzepte
-- [ ] Pufferungskonzepte und Speichereinheiten
-- [ ] Speicherungs- und Zugriffskonzepte
-- [ ] Interne Speicherungsstruturen
-- [ ] Anfrageoptimierung
-- [ ] Benutzerverwaltung
-
-### TEST
+- [DBS - Datenbanken](./DBS)
+- [RES - Betriebssystemverwaltun](./RES)
+- [PRO - IT-Trends](./PRO)
+- [SWE - Systemanalyse](./SWE)

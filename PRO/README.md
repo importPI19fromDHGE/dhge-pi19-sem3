@@ -369,36 +369,36 @@ https://backstage.dhge.de/course/view.php?id=2718
 - **Private Cloud**
 	- Anbieter im eigenen Unternehmen (ggf. Outsourcing)
 	- komplette Infrastruktur wird ausschließlich selbst genutzt
-	- **virtuelle Private Cloud:** private Cloud auf anderen Servern
+	- **virtuelle Private Cloud:** private Cloud auf anderen Servern (z.b. AWS Government Cloud)
 - **Hybrid Cloud**
 	- mehrere eigenständige Cloud-Infrastrukturen
 	- Nutzung über standardisierte Schnittstelle
 	- z.B. Private Cloud + Public Cloud für Failover-Fall
- - **Virtual private cloud**
- 	-private cloud auf anderen Servern
-	z.b. AWS Government Cloud
 
 ## IT-Aufbau
 
 <img src="./resources/it-aufbau.svg" alt="IT-Aufbau" width=350>
 
 ## AWS-Einführung
-- Web-Oberflächenkram ist trivial
 
 **AWSCLI einrichten**
-- Download von https://docs.aws.amazon.com/de_de/cli/latest/userguide/install-cliv2.html
-- Einrichten mit ```aws configure```
+- Download von [https://docs.aws.amazon.com/de_de/cli/latest/userguide/install-cliv2.html](https://docs.aws.amazon.com/de_de/cli/latest/userguide/install-cliv2.html)
+- Einrichten mit `aws configure`
 - Daten aus Vocareum Workbench --> Account Details eintragen
-	- Linux: ~/.aws/
-	- Windows: %USERPROFILE%/.aws/
-- .aws/credentials sehen circa so aus:
-```[default]
+	- Linux: `~/.aws/`
+	- Windows: `%USERPROFILE%/.aws/`
+- `.aws/credentials` sehen circa so aus:
+
+```env
+[default]
 aws_access_key_id=
 aws_secret_access_key=
 aws_session_token= 
 ```
-- .aws/config  sollte so aussehen:
-```[default]
+- `.aws/config` sollte so aussehen:
+
+```env
+[default]
 region = us-east-1
 output = json
 ```

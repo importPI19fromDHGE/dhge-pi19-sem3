@@ -1,3 +1,9 @@
+
+
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Rechnernetzkonzepte und -architekturen 
 
 *16.11.2020*
@@ -194,3 +200,4 @@ Auch verwendetes Tool: Scapy
 # 6. Anwendungsschicht
 # 7. Software-defined Networking
 # 8. Netztechnologien
+

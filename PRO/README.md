@@ -381,3 +381,25 @@ https://backstage.dhge.de/course/view.php?id=2718
 ## IT-Aufbau
 
 <img src="./resources/it-aufbau.svg" alt="IT-Aufbau" width=350>
+
+## AWS-Einführung
+- Web-Oberflächenkram ist trivial
+
+**AWSCLI einrichten**
+- Download von https://docs.aws.amazon.com/de_de/cli/latest/userguide/install-cliv2.html
+- Einrichten mit ```aws configure```
+- Daten aus Vocareum Workbench --> Account Details eintragen
+	- Linux: ~/.aws/
+	- Windows: %USERPROFILE%/.aws/
+- .aws/credentials sehen circa so aus:
+```[default]
+aws_access_key_id=
+aws_secret_access_key=
+aws_session_token= 
+```
+- .aws/config  sollte so aussehen:
+```[default]
+region = us-east-1
+output = json
+```
+

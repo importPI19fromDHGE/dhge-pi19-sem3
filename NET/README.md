@@ -58,7 +58,7 @@ Wie läuft das Routing ab?
 
 #### Arbeitsgruppen  / IETF-Areas
 
-- IETF-Arbeitsgruppen sind einem von 8 Bereichen (Areas) zugeordnet
+- IETF-Arbeitsgruppen sind einem von 7 Bereichen (Areas) zugeordnet
     - Applications and Real-Time
     - Internet
     - Security 
@@ -66,7 +66,7 @@ Wie läuft das Routing ab?
     - Routing 
     - General 
     - Transport 
-    - ? 
+    
 
 ### 1.2.3 Begrifflichkeiten 
 

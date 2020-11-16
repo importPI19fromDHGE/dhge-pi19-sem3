@@ -5,17 +5,17 @@
 # 1. Einleitung / Übersicht
 ## 1.1 Veranstaltungsziele 
 Wissensvermittlung zu: 
-    - Übersichtswissen über Rechnernetze 
-    - Komponenten und Protokolle im Internet 
-    - Planung von Netzwerken 
-    - Konfiguration von Netzwerken
+- Übersichtswissen über Rechnernetze 
+- Komponenten und Protokolle im Internet 
+- Planung von Netzwerken 
+- Konfiguration von Netzwerken
 
 Prüfungsleistung: 
-    - wenn möglich schriftliche Prüfung 
-    - letzte Einheit ist für Prüfungsvorbereitung vorgesehen 
+- wenn möglich schriftliche Prüfung 
+- letzte Einheit ist für Prüfungsvorbereitung vorgesehen 
 
 Hilfsmittel bei Prüfung: 
-    - wahrscheinlich 1 DIN A4 - Zettel handschriftlicher eigener Notizen 
+- wahrscheinlich 1 DIN A4 - Zettel handschriftlicher eigener Notizen 
 
     
 ## 1.2 Inhaltlicher Teil 
@@ -70,8 +70,6 @@ Wie läuft das Routing ab?
 
 ### 1.2.3 Begrifflichkeiten 
 
-<br>
-
 **Übertragungsmodi** 
 
 |verbindungsorientiert| verbindunglos|
@@ -96,30 +94,30 @@ Im Großen und Ganzen ist "das Internet" paketvermittelt, Leitungsvermittlung ka
 <img src="./resources/ISO_OSI_Layer.png" alt="ISO/OSI Layer" width=500>
 
 #### 7 Anwendungsschicht
-    - Durch anwendungsspezifische Protokolle verwendet 
+- Durch anwendungsspezifische Protokolle verwendet 
 
 #### 6 Darstellungsschicht
-    - Umwandlung von Daten in unabhängiges Format 
+- Umwandlung von Daten in unabhängiges Format 
 
 #### 5 Sitzungsschicht
-    - 
+- 
 #### 4 Transportschicht
-    - fügt Zusatzinformationen in die Pakete ein, um die Verwendung auf Empfängerseite zu definieren
+- fügt Zusatzinformationen in die Pakete ein, um die Verwendung auf Empfängerseite zu definieren
 
 
 #### 3 Vermittlungsschicht
-    - Weiterleitung über lokale Netze hinaus / zwischen verschiedenen Netzen
-    - unabhängig vom Typ der verwendeten Netze
+- Weiterleitung über lokale Netze hinaus / zwischen verschiedenen Netzen
+- unabhängig vom Typ der verwendeten Netze
 
 #### 2 Sicherungsschicht
-    - einzelne Bitfolgen werden als Frames erfasst 
-    - Redundanzinformationen werden hinzugefügt um Fehlererkennung und -korrekturen (auch auf Empfängerseite) zu ermöglichen (z.B. Paritätsbits)
-    -  Beispielverfahren: CRC (Cyclic Redundancy Check)
+- einzelne Bitfolgen werden als Frames erfasst 
+- Redundanzinformationen werden hinzugefügt um Fehlererkennung und -korrekturen (auch auf Empfängerseite) zu ermöglichen (z.B. Paritätsbits)
+-  Beispielverfahren: CRC (Cyclic Redundancy Check)
 
 
 #### 1 Bitübertragungsschicht
-    - einzelne Bits in physikalische Signale umwandeln und umgekehrt 
-    - Modulation und Demodulation
+- einzelne Bits in physikalische Signale umwandeln und umgekehrt 
+- Modulation und Demodulation
 
 ### 1.2.5 TCP / IP-Modell 
  

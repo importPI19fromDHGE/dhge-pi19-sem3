@@ -24,6 +24,10 @@ Datenbanken-Praktikum
   - [Daten lesen](#daten-lesen)
   - [Aggregatsfunktionen](#aggregatsfunktionen)
   - [Unterabfragen](#unterabfragen)
+  - [Unions](#unions)
+  - [Gruppieren](#gruppieren)
+  - [Joins](#joins)
+  - [Daten verändern](#daten-ver%C3%A4ndern)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -329,6 +333,8 @@ OFFSET 6 ROWS
 FETCH NEXT 5 ROWS ONLY;
 ```
 
+- Schlüsselwort ``DISTINCT`` gibt nur einzigartige Zeilen aus, keine doppelten
+
 ## Aggregatsfunktionen
 
 - [Microsoft Dokumentation](https://docs.microsoft.com/de-de/sql/t-sql/functions/aggregate-functions-transact-sql?view=sql-server-ver15)
@@ -373,4 +379,90 @@ SELECT MAX(seiten) FROM buch
 SELECT buch.titel, buch.seiten FROM buch
 WHERE seiten > (SELECT AVG(seiten) FROM buch)
 ORDER BY seiten;
+```
+
+## Unions
+
+- ein Result Set aus mehreren Abfragen
+- funktioniert nur für ähnliche - sprich zusammenführbare - Spalten
+
+```sql
+SELECT name, vorname FROM nutzer UNION
+SELECT name, vorname FROM autor;
+```
+
+## Gruppieren
+
+**sehr klausurrelevant, so der Hinweis von Herr Grimm**
+
+- mit Schlüsselwort ``GROUP BY``
+- Bsp.: wie oft kommen Namen vor?
+
+```sql
+SELECT name, COUNT(*) anzahl FROM nutzer GROUP BY name ORDER BY anzahl DESC;
+```
+
+- mit ``HAVING`` kann weiter eingeschränkt werden: nur Nutzer ausgeben, die mind. 2 Mal vorkommen
+
+```sql
+SELECT name, COUNT(*) anzahl FROM nutzer GROUP BY name HAVING COUNT(*) > 1 ORDER BY anzahl DESC;
+```
+
+```sql
+-- alle Bücher, die mehr als 1 Autor haben
+SELECT titel, COUNT(*) [Anzahl Autoren] FROM buch, autor, Buch2Autor
+WHERE buch2autor.Autor_id = autor.id AND Buch2Autor.Buch_id = buch.id
+GROUP BY titel HAVING COUNT(*) > 1;
+
+-- alle Autoren, die mehr als 1 Buch geschrieben haben
+SELECT name, vorname, COUNT(*) [Anzahl Bücher] FROM buch, autor, Buch2Autor
+WHERE buch2autor.Autor_id = autor.id AND Buch2Autor.Buch_id = buch.id
+GROUP BY autor.name, autor.Vorname HAVING COUNT(*) > 1;
+```
+
+## Joins
+
+- Vereinigung von Abfragen
+
+![Übersicht von Joins](./resources/joins.png)
+
+```sql
+SELECT titel, name FROM buch, verlag WHERE buch.verlag_id = verlag.id;
+
+-- macht dasselbe wie
+
+SELECT titel, name FROM buch
+INNER JOIN verlag ON buch.Verlag_id = verlag.id;
+```
+
+```sql
+-- alle Nutzer mit ggf. ausgeliehenen Büchern
+SELECT name, vorname, titel FROM nutzer
+LEFT JOIN ausleihe ON nutzer.id = ausleihe.nutzer_id
+LEFT JOIN exemplar ON ausleihe.exemplar_id = exemplar.id
+LEFT JOIN buch on exemplar.buch_id = buch.id;
+
+-- Verlage in der gleichen Stadt
+SELECT DISTINCT v1.name, v1.ort, v1.plz FROM verlag v1
+JOIN verlag v2 ON v1.ort = v2.ort
+WHERE v1.id != v2.id
+ORDER BY v1.ort;
+```
+
+## Daten verändern
+
+- mit Schlüsselwort ``UPDATE``
+- angeben, welche Spalte welchen Wert erhält
+- ``UPDATE tabelle SET spalte = xyz WHERE bedingung``
+  - WHERE optional, aber dann wird ``UPDATE`` für jede Zeile ausgeführt
+- Rechnen ist mit folgenden Operatoren unterstützt: ``| & ^ + - * / %``
+  - alle Operatoren unterstützen auch die Form ``+=`` etc.
+
+```sql
+-- André Grimm --> André Kaudelwerk
+UPDATE nutzer SET name = 'Kaudelwerk' WHERE id =
+(SELECT id FROM NUTZER WHERE name = 'Grimm' AND vorname = 'André');
+
+-- Rechnen ist erlaubt: alle Bücher +10 Seiten
+UPDATE buch SET seiten = seiten + 10;
 ```

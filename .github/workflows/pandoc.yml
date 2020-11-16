@@ -1,0 +1,68 @@
+name: Create PDF release from markdown
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  convert_via_pandoc_and_release:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          mkdir output
+      - uses: docker://rstropek/pandoc-latex:latest
+        with:
+          args: --output=output/DBS.pdf --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex -V geometry:margin=3cm DBS/README.md
+      - uses: docker://rstropek/pandoc-latex:latest
+        with:
+          args: --output=output/SWE.pdf --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex -V geometry:margin=3cm SWE/README.md
+      - uses: docker://rstropek/pandoc-latex:latest
+        with:
+          args: --output=output/PRO.pdf --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex -V geometry:margin=3cm PRO/README.md
+      - uses: docker://rstropek/pandoc-latex:latest
+        with:
+          args: --output=output/RES.pdf --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex -V geometry:margin=3cm RES/README.md
+      - uses: actions/upload-artifact@master
+        with:
+          name: output
+          path: output
+      - run: |
+          zip --junk-paths pdfs output/DBS.pdf output/SWE.pdf output/RES.pdf output/PRO.pdf
+      - uses: meeDamian/github-release@2.0
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          tag: pdf-release
+          name: PDFs
+          body: Automated release
+          gzip: false
+          files: output/DBS.pdf
+          allow_override: true
+      - uses: meeDamian/github-release@2.0
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          tag: pdf-release
+          name: PDFs
+          body: Automated release
+          gzip: false
+          files: output/PRO.pdf
+          allow_override: true
+      - uses: meeDamian/github-release@2.0
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          tag: pdf-release
+          name: PDFs
+          body: Automated release
+          gzip: false
+          files: output/SWE.pdf
+          allow_override: true
+      - uses: meeDamian/github-release@2.0
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          tag: pdf-release
+          name: PDFs
+          body: Automated release
+          gzip: false
+          files: output/RES.pdf
+          allow_override: true

@@ -26,6 +26,12 @@ IT-Trends
     - [Eigenschaften von REST-Schnittstellen](#eigenschaften-von-rest-schnittstellen)
     - [Aufbau von REST-Anfragen](#aufbau-von-rest-anfragen)
     - [Übung](#%C3%BCbung)
+- [Cloud Computing](#cloud-computing-1)
+  - [Überblick](#%C3%BCberblick)
+  - [Ursprung: Parallelisierung](#ursprung-parallelisierung)
+    - [Cluster-Computing](#cluster-computing)
+  - [GRID-Computing](#grid-computing)
+  - [Warum (keine) Cloud](#warum-keine-cloud)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

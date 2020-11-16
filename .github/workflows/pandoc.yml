@@ -67,3 +67,12 @@ jobs:
           gzip: false
           files: output/NET.pdf
           allow_override: true
+      - uses: meeDamian/github-release@2.0 # override release to attach another pdf
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          tag: pdf-release
+          name: PDFs
+          body: Automated release
+          gzip: false
+          files: output/NET.pdf
+          allow_override: true

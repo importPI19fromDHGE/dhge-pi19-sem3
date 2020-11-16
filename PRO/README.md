@@ -352,3 +352,70 @@ https://backstage.dhge.de/course/view.php?id=2718
 |Automatisierbarkeit                                        ||
 
 **Over-Subscription**: Cloud-Anbieter überbuchen ihre technischen Möglichkeiten, da nie von allen Kunden gleichzeitig alles genutzt wird
+
+
+#  VA davor? 
+
+<!-- Servicemodelle fehlen hier in den Mitschriften noch komplett, hat jemand die letzte VA? !-->
+
+#  16.11.2020
+## Rückblick letzte VA 
+
+Siehe Kommentar 
+
+## Anwendungsmodelle 
+
+### Public Cloud 
+
+- öffentliche Cloud 
+- beliebige Personen und Unternehmen können den Service nutzen 
+- es gibt keine internen Anwendungen 
+- zu beachten: mögliche Probleme mit Datensicherheit 
+
+### Private Cloud 
+
+- Anbieter und Nutzer sind im selben Unternehmen 
+- ggf. ist der Anbieter outgesourced, die Infrastruktur wird aber nur von Einem (Unternehmen) benutzt
+
+### Hybrid Cloud
+
+- es werden mehrere Cloud-Infrastrukturen benutzt, die jeweils eigenständig sind
+- diese werden über eine standardisierte Schnittstelle gemeinsam genutzt
+- z.B.:
+	- Private Cloud + Cloud für Failover (<- Public Cloud)
+	- Private Cloud + Cloud bei Belastungsspitzen (<- zusätzlich genutzt)
+
+### Virtuelle Private Cloud 
+
+- private Cloud auf anderen Servern 
+- Beispiel: 
+	- AWS: Government Cloud 
+		- hier können Forderungen lokaler rechtlicher Bestimmungen (DSGVO) Rechnung getragen werden 
+
+### Was ist zu beachten? 
+
+Die Nutzung der Angebote muss von den jeweiligen Erfordernissen abhängig gemacht werden. Wo müssen meine Daten vorgehalten werden? Wie sieht es mit rechtlichen Bestimmungen aus. Wie muss meine Backup-Struktur aussehen? Ist es günstiger selbst HW anzusuchaffen oder ist es besser auszulagern? 
+
+# AWS-Anwendungsbeispiele: 
+
+## Speicher erstellen
+
+Services -> S3 -> Bucket erstellen 
+
+Anschließend ist der Bucket/Ordner vorhanden und Dateien können hochgeladen werden 
+
+Default: Buckets sind nicht von außen sichtbar 
+
+Dies kann unter "Berechtigungen" geändert werden. Dazu das Häkchen bei "Zugriff blockieren" entfernen. Anschließend die jeweiligen Objekte "öffentlich zugänglich machen". Danach ist ein öffentlicher Link zu den Dateien vorhanden und nutzbar. 
+
+In den Objekt(Datei-)eigenschaften sind weitere Konfigurationsmöglichkeiten vorhanden. Hier kann der Zugriff feingranularer gestaltet werden.
+
+
+
+
+
+
+
+
+
+

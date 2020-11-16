@@ -278,71 +278,71 @@ Dazu muss ein **Load Balancer** die Anfragen beispielsweise an diejenigen MS mit
 
 1. Suchen und bedienen Sie eine REST-Schnittstelle (Senden und Empfangen von Daten)
 
-Links zum Testen: 
+Links zum Testen:
 
-https://httpbin.org 
+https://httpbin.org
 
 https://api.predic8.de
 
 
-Link zum Registrieren der Mailadresse für den Amazon-Cloud-Service für nächste Woche im Backstage 
+Link zum Registrieren der Mailadresse für den Amazon-Cloud-Service für nächste Woche im Backstage
 https://backstage.dhge.de/course/view.php?id=2718
 
 
-# Cloud Computing 
+# Cloud Computing
 
-## Überblick 
+## Überblick
 - Cloud als Buzzword
 - Daten in der Cloud
-- Rechnen in der Cloud 
-- Mythos: Ersetzt ein komplettes Rechenzentrum 
-- nahe Verwandte: 
-  - Grid-Computing 
-  - Cluster-Computing 
+- Rechnen in der Cloud
+- Mythos: Ersetzt ein komplettes Rechenzentrum
+- nahe Verwandte:
+  - Grid-Computing
+  - Cluster-Computing
 
-## Ursprung: Parallelisierung 
+## Ursprung: Parallelisierung
 
-1. Parallelisierung auf CPU - Ebene 
+1. Parallelisierung auf CPU - Ebene
 2. Parallelisierung auf Rechner - Ebene
-    - mehrere CPU pro Rechner 
-3. Parallelisierung auf Cluster-Ebene 
-    - n-Systeme, die sich wie Eines verhalten 
-4. Parallelisierung auf GRID-Ebene 
-    - mehrere zusammengefasste Cluster 
+    - mehrere CPU pro Rechner
+3. Parallelisierung auf Cluster-Ebene
+    - n-Systeme, die sich wie Eines verhalten
+4. Parallelisierung auf GRID-Ebene
+    - mehrere zusammengefasste Cluster
 
 <img src="./resources/Rechner_Cluster_Grid.png" alt="Abbildung Rechner Cluster Grid" width=350>
 
-### Cluster-Computing 
+### Cluster-Computing
 
-- n-Systeme verhalten sich wie ein virtueller Supercomputer 
-- Problem: 
-  - zu lösende Aufgabe muss sinnvoll aufteilbar sein 
-  - "Teile und Herrsche"-Problem -> Parallelverarbeitung muss möglich sein 
-- Wenn Parallelisierung möglich ist: 
-  - **Load-Balancer** übernimmt die Verteilung der Einzelaufgaben 
-  - Cluster befindet sich an einem lokalen Standort 
-  - Buzzwords: 
-    - HPC - High Performance Computing 
-    - HA - High Availability 
+- n-Systeme verhalten sich wie ein virtueller Supercomputer
+- Problem:
+  - zu lösende Aufgabe muss sinnvoll aufteilbar sein
+  - "Teile und Herrsche"-Problem -> Parallelverarbeitung muss möglich sein
+- Wenn Parallelisierung möglich ist:
+  - **Load-Balancer** übernimmt die Verteilung der Einzelaufgaben
+  - Cluster befindet sich an einem lokalen Standort
+  - Buzzwords:
+    - HPC - High Performance Computing
+    - HA - High Availability
 
 ## GRID-Computing
 
-- zentraler GRID-Server, der die Verwaltung der heterogenen Rechner-/Clusterstruktur übernimmt 
+- zentraler GRID-Server, der die Verwaltung der heterogenen Rechner-/Clusterstruktur übernimmt
 - GRID-Server übernimmt auch die dynamische Aufgabenverteilung
-- dazu wird eine GRID-Computing Software notwendig 
-- Buzzword: 
+- dazu wird eine GRID-Computing Software notwendig
+- Buzzword:
   - Job-Orientierung
-    - Jobs werden der GRID-Software zur Verfügung gestellt, diese übernimmt die Abarbeitung 
-- Vorteil ist die gute Skalierbarkeit 
-- Ressourcen und Zugriff sind dezentral 
+    - Jobs werden der GRID-Software zur Verfügung gestellt, diese übernimmt die Abarbeitung
+- Vorteil ist die gute Skalierbarkeit
+- Ressourcen und Zugriff sind dezentral
 
 <img src="./resources/GRID_Computing.png" alt="Abbildung GRID-Computing" width=350>
 
-## Warum (keine) Cloud 
+## Warum (keine) Cloud
 
 |   Pro                                                     |   Contra                                      |
 |---------                                                  |-----------                                    |
-|Hardware-Kosten sinken                                     |permanente Internetverbindung benötigt         | 
+|Hardware-Kosten sinken                                     |permanente Internetverbindung benötigt         |
 |Gute Skalierbarkeit                                        |Vertraulichkeit muss sichergestellt sein       |
 |Hohe Verfügbarkeit                                         |Daten müssen sicher sein (z.B. DSGVO)          |
 |Verwaltungsaufwand sinkt für SW-Installation/Updates, Hardware Tausch, Backup                                              |Abhängigkeit von Dritten (Cloud-Anbieter)|
@@ -353,69 +353,57 @@ https://backstage.dhge.de/course/view.php?id=2718
 
 **Over-Subscription**: Cloud-Anbieter überbuchen ihre technischen Möglichkeiten, da nie von allen Kunden gleichzeitig alles genutzt wird
 
+<!-- Hier fehlen Mitschriften von der Vorlesung vom 13.11.2020 -->
 
-#  VA davor? 
+| SaaS | SW-Sammlungen                        |
+|------|--------------------------------------|
+| PaaS | Laufzeitumgebung von Dienstanbietern |
+| IaaS | virtualisierte Computer Hardware     |
 
-<!-- Servicemodelle fehlen hier in den Mitschriften noch komplett, hat jemand die letzte VA? !-->
+## Anwendungsmodelle
 
-#  16.11.2020
-## Rückblick letzte VA 
+- **Public Cloud** (öffentliche Cloud)
+	- von beliebigen Personen/Unternehmen benutzbar
+	- keinen internen Anwendungen
+	- Probleme mit Datensicherheit beachten
+- **Private Cloud**
+	- Anbieter im eigenen Unternehmen (ggf. Outsourcing)
+	- komplette Infrastruktur wird ausschließlich selbst genutzt
+	- **virtuelle Private Cloud:** private Cloud auf anderen Servern (z.b. AWS Government Cloud)
+- **Hybrid Cloud**
+	- mehrere eigenständige Cloud-Infrastrukturen
+	- Nutzung über standardisierte Schnittstelle
+	- z.B. Private Cloud + Public Cloud für Failover-Fall
 
-Siehe Kommentar 
+## IT-Aufbau
 
-## Anwendungsmodelle 
+<img src="./resources/it-aufbau.svg" alt="IT-Aufbau" width=350>
 
-### Public Cloud 
+## AWS-Einführung
 
-- öffentliche Cloud 
-- beliebige Personen und Unternehmen können den Service nutzen 
-- es gibt keine internen Anwendungen 
-- zu beachten: mögliche Probleme mit Datensicherheit 
+### S3 - Simple Storage Service
 
-### Private Cloud 
+- Bucket (Ordner) in die Dateien können hochgeladen werden 
+- Diverse Konfigurationsmöglichkeiten: Öffentlicher Zugriff, Versionierung, ...
 
-- Anbieter und Nutzer sind im selben Unternehmen 
-- ggf. ist der Anbieter outgesourced, die Infrastruktur wird aber nur von Einem (Unternehmen) benutzt
+### AWSCLI einrichten
+- Download von [https://docs.aws.amazon.com/de_de/cli/latest/userguide/install-cliv2.html](https://docs.aws.amazon.com/de_de/cli/latest/userguide/install-cliv2.html)
+- Einrichten mit `aws configure`
+- Daten aus Vocareum Workbench --> Account Details eintragen
+	- Linux: `~/.aws/`
+	- Windows: `%USERPROFILE%/.aws/`
+- `.aws/credentials` sehen circa so aus:
 
-### Hybrid Cloud
+```env
+[default]
+aws_access_key_id=
+aws_secret_access_key=
+aws_session_token= 
+```
+- `.aws/config` sollte so aussehen:
 
-- es werden mehrere Cloud-Infrastrukturen benutzt, die jeweils eigenständig sind
-- diese werden über eine standardisierte Schnittstelle gemeinsam genutzt
-- z.B.:
-	- Private Cloud + Cloud für Failover (<- Public Cloud)
-	- Private Cloud + Cloud bei Belastungsspitzen (<- zusätzlich genutzt)
-
-### Virtuelle Private Cloud 
-
-- private Cloud auf anderen Servern 
-- Beispiel: 
-	- AWS: Government Cloud 
-		- hier können Forderungen lokaler rechtlicher Bestimmungen (DSGVO) Rechnung getragen werden 
-
-### Was ist zu beachten? 
-
-Die Nutzung der Angebote muss von den jeweiligen Erfordernissen abhängig gemacht werden. Wo müssen meine Daten vorgehalten werden? Wie sieht es mit rechtlichen Bestimmungen aus. Wie muss meine Backup-Struktur aussehen? Ist es günstiger selbst HW anzusuchaffen oder ist es besser auszulagern? 
-
-# AWS-Anwendungsbeispiele: 
-
-## Speicher erstellen
-
-Services -> S3 -> Bucket erstellen 
-
-Anschließend ist der Bucket/Ordner vorhanden und Dateien können hochgeladen werden 
-
-Default: Buckets sind nicht von außen sichtbar 
-
-Dies kann unter "Berechtigungen" geändert werden. Dazu das Häkchen bei "Zugriff blockieren" entfernen. Anschließend die jeweiligen Objekte "öffentlich zugänglich machen". Danach ist ein öffentlicher Link zu den Dateien vorhanden und nutzbar. 
-
-In den Objekt(Datei-)eigenschaften sind weitere Konfigurationsmöglichkeiten vorhanden. Hier kann der Zugriff feingranularer gestaltet werden.
-
-
-
-
-
-
-
-
-
-
+```env
+[default]
+region = us-east-1
+output = json
+```

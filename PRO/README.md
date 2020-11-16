@@ -374,6 +374,9 @@ https://backstage.dhge.de/course/view.php?id=2718
 	- mehrere eigenständige Cloud-Infrastrukturen
 	- Nutzung über standardisierte Schnittstelle
 	- z.B. Private Cloud + Public Cloud für Failover-Fall
+ - **Virtual private cloud**
+ 	-private cloud auf anderen Servern
+	z.b. AWS Government Cloud
 
 ## IT-Aufbau
 

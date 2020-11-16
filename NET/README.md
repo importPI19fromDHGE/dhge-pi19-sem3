@@ -80,7 +80,6 @@ Wie läuft das Routing ab?
 |Beziehung zwischen Sender und Empfänger| Kommunikation kann ohne Verbindungsaufbau begonnen werden|
 |z.B. TCP| z.B. UDP|
 
-<br>
 
 |leitungsvermittelt| paketvermittelt|
 |----|----|
@@ -88,11 +87,8 @@ Wie läuft das Routing ab?
 |Ermöglicht Zusicherung von Eigenschaften (Quality of Service- Parameter)|Daten werden in Pakete aufgeteilt, die (direkt oder indirekt) Informationen für die Zuordnung zu einem Empfänger beinhalten|
 |zu beachten: es müssen dann soviele Leitungen vorhanden sein, wie genutzt werden sollen|zu beachten: Überlastsituationen können auftreten|
 
-<br>
-Im Großen und Ganzen ist "das Internet" paketvermittelt, Leitungsvermittlung kann in Spezialfällen vorhanden sein 
 
-<br>
-<br>
+Im Großen und Ganzen ist "das Internet" paketvermittelt, Leitungsvermittlung kann in Spezialfällen vorhanden sein 
 
 
 ### 1.2.4 ISO / OSI Referenzmodell  - Prüfungsrelevant
@@ -180,7 +176,7 @@ Zu beachten: Gibt es SPF (single point of failure) im Netz? Wenn ja: Ausfallsich
 
 **hier fehlen noch Dinge**
 
-<br>
+
 
 ### Tooling - Wireshark 
 

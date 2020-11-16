@@ -1,12 +1,4 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Inhaltsverzeichnis**
-
-- [DHGE - Praktische Informatik - Matrikel 19 - Semester 3](#dhge---praktische-informatik---matrikel-19---semester-3)
-  - [DBS - Datenbanken](#dbs---datenbanken)
-    - [TEST](#test)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DOCTOC SKIP -->
 
 # DHGE - Praktische Informatik - Matrikel 19 - Semester 3
 

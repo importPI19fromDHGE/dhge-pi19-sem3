@@ -381,7 +381,12 @@ https://backstage.dhge.de/course/view.php?id=2718
 
 ## AWS-Einführung
 
-**AWSCLI einrichten**
+### S3 - Simple Storage Service
+
+- Bucket (Ordner) in die Dateien können hochgeladen werden 
+- Diverse Konfigurationsmöglichkeiten: Öffentlicher Zugriff, Versionierung, ...
+
+### AWSCLI einrichten
 - Download von [https://docs.aws.amazon.com/de_de/cli/latest/userguide/install-cliv2.html](https://docs.aws.amazon.com/de_de/cli/latest/userguide/install-cliv2.html)
 - Einrichten mit `aws configure`
 - Daten aus Vocareum Workbench --> Account Details eintragen
@@ -402,4 +407,3 @@ aws_session_token=
 region = us-east-1
 output = json
 ```
-

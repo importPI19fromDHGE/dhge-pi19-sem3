@@ -68,11 +68,11 @@ Info-Seite -> https://docs.microsoft.com/de-de/sql/ssms/download-sql-server-mana
 
 Die Bestandteile:
 
-![Bestandteile eines ERD](resources/ERD_Bestandteile.svg)
+![Bestandteile eines ERD](resources/ERD_Bestandteile.svg){ width=400px }
 
 Beispiel-ERD:
 
-![Beispiel-ERD](resources/unternehmenERD.png)
+![Beispiel-ERD](resources/unternehmenERD.png){ width=400px }
 
 ## Tabellenschema
 
@@ -94,7 +94,7 @@ Beispiel-ERD:
 | höchstens eins             | optionale Beziehung, ?:1      |
 | keins oder eins oder viele | optionale Beziehung, ?:n      |
 
-![Arten von Constraints](resources/constraints.png)
+![Arten von Constraints](resources/constraints.png){ width=400px }
 
 - im Zweifelsfall das flexiblere verwenden, für den Fall, dass sich in der Zukunft die Anforderungen ändern
 
@@ -424,7 +424,7 @@ GROUP BY autor.name, autor.Vorname HAVING COUNT(*) > 1;
 
 - Vereinigung von Abfragen
 
-![Übersicht von Joins](./resources/joins.png)
+![Übersicht von Joins](./resources/joins.png){ width=500px }
 
 ```sql
 SELECT titel, name FROM buch, verlag WHERE buch.verlag_id = verlag.id;

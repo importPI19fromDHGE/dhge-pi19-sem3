@@ -65,7 +65,7 @@ created by Maximilian Kerst, 07.10.2020
 
 ## Cloud Computing
 
-![Skizze einer Cloud](resources/cloud-skizze.svg)
+![Skizze einer Cloud](resources/cloud-skizze.svg){ width=300px }
 
 **Vorteile:**
 
@@ -77,7 +77,7 @@ created by Maximilian Kerst, 07.10.2020
 
 ### Edge Computing
 
-![](resources/edge-computing-skizze.svg)
+![](resources/edge-computing-skizze.svg){ width=400px }
 
 - Anwendung: "am Rand des großen Netzwerks" --> für Geräte, die nicht in einem Netzwerk liegen (z.B. IoT-Sensoren)
 - Auslöser für Entwicklung:
@@ -179,7 +179,7 @@ z.B.:
 
 Diese können wiederum aus Microservices zusammengesetzt sein, die untereinander vernetzt sind, siehe Schaubild.
 
-![Microservice](resources/microservice.png){ width=250px }
+![Microservice](resources/microservice.png){ width=300px }
 
 ## Dienste
 
@@ -230,7 +230,7 @@ Dazu muss ein **Load Balancer** die Anfragen beispielsweise an diejenigen MS mit
 
 # Service-Orientierte-Architekturen (SOA)
 
-![Service-Orientierte-Architekturen](resources/SOA-Example.png)
+![Service-Orientierte-Architekturen](resources/SOA-Example.png){ width=400px }
 
 ## REST - Schnittstellen - Representational State Transfer
 
@@ -308,7 +308,7 @@ https://backstage.dhge.de/course/view.php?id=2718
 4. Parallelisierung auf GRID-Ebene
     - mehrere zusammengefasste Cluster
 
-![Abbildung Rechner Cluster Grid](resources/Rechner_Cluster_Grid.png)
+![Abbildung Rechner Cluster Grid](resources/Rechner_Cluster_Grid.png){ width=400px }
 
 ### Cluster-Computing
 
@@ -334,7 +334,7 @@ https://backstage.dhge.de/course/view.php?id=2718
 - Vorteil ist die gute Skalierbarkeit
 - Ressourcen und Zugriff sind dezentral
 
-![GRID-Computing](resources/GRID_Computing.png)
+![GRID-Computing](resources/GRID_Computing.png){ width=400px }
 
 ## Warum (keine) Cloud
 
@@ -375,7 +375,7 @@ https://backstage.dhge.de/course/view.php?id=2718
 
 ## IT-Aufbau
 
-![IT-Aufbau](resources/it-aufbau.png){ width=250px }
+![IT-Aufbau](resources/it-aufbau.png){ width=400px }
 
 ## AWS-Einführung
 

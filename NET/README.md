@@ -27,7 +27,7 @@ Hilfsmittel bei Prüfung:
 ## 1.2 Inhaltlicher Teil
 ### 1.2.1 Kommunikationsszenario
 
-![NIC](resources/NIC.png)
+![NIC](resources/NIC.png){ width=500px }
 
 Bei Abruf einer Website durch Host A von Server A sind vielfältige Technologien zur Realisierung des Szenarios erforderlich.
 
@@ -97,7 +97,7 @@ Im Großen und Ganzen ist "das Internet" paketvermittelt, Leitungsvermittlung ka
 
 ### 1.2.4 ISO / OSI Referenzmodell  - Prüfungsrelevant
 
-![ISO/OSI Layer](resources/ISO_OSI_Layer.png)
+![ISO/OSI Layer](resources/ISO_OSI_Layer.png){ width=500px }
 
 #### 7 Anwendungsschicht
 - Durch anwendungsspezifische Protokolle verwendet
@@ -136,7 +136,7 @@ Siehe Folie 15
 
 ### 1.2.7. Kopplungselemente
 
-![Switches und Router](resources/Switches_Router.png)
+![Switches und Router](resources/Switches_Router.png){ width=500px }
 
 #### **Switches**
 - verbinden Netzsegmente (Broadcast-Domains) und leiten Pakete zwischen diesen weiter

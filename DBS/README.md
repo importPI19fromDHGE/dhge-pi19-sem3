@@ -50,7 +50,7 @@ festen Integrationsvorschriften (Zuordnung zu Objekt- und Beziehungstypen) und O
 - **Schema:** formalisierte Darstellung des Modells (grafisch oder normalsprachlich) nach bestimmten Vorschriften
 	- Schema-Mapping: Abbilden von Objekten eines höheren Schemas auf ein tieferes Schema
 	- grafisch werden Schemata üblicherweise mittels Entity Relationship Model (ERM) dargestellt:
-	- ![Beispiel-ERM: Menschen sind Halter von Fahrzeugen](./resources/erm-bsp.png){ width=250px }
+	- ![Beispiel-ERM: Menschen sind Halter von Fahrzeugen](./resources/erm-bsp.png){ width=300px }
 	- Leseregel für ERM: von links nach rechts und oben nach unten, sodass ein sinnvoller Satz gebildet werden kann
 
 ### Vorteile von Datenbanken
@@ -170,9 +170,9 @@ $$R \subset A \times B$$
 - **Klassenbildung:** Zusammenfassen mehrerer Entities zu einem Entitätstyp
 - **Entitätsmenge:** Menge der Entities die durch einen Entity-Typ beschrieben werden
 - **Beziehungstypen:** Verallgemeinerung von Beziehungen zwischen Objekten (Entitäten)
-- **Datenintegrität:** "Makelosigkeit" der Daten
+- **Datenintegrität:** "Makellosigkeit" der Daten
 
-![zusätzliche Begriffe aus dem Video](resources/db_begriffe_screenshot.png)
+![zusätzliche Begriffe aus dem Video](resources/db_begriffe_screenshot.png){ width=500px }
 
 ### Operationen
 

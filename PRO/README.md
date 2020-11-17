@@ -65,8 +65,7 @@ created by Maximilian Kerst, 07.10.2020
 
 ## Cloud Computing
 
-<!---![Skizze einer Cloud](./resources/cloud-skizze.svg)-->
-<img src="./resources/cloud-skizze.svg" alt="Skizze einer Cloud" width=350>
+![Skizze einer Cloud](resources/cloud-skizze.svg)
 
 **Vorteile:**
 
@@ -78,8 +77,7 @@ created by Maximilian Kerst, 07.10.2020
 
 ### Edge Computing
 
-<!---![verbesserungswürdige Skizze von Edge Computing](resources/edge-computing-skizze.svg)-->
-<img src="./resources/edge-computing-skizze.svg" alt="Verbesserungswürdige Skizze von Edge Computing" width=350>
+![](resources/edge-computing-skizze.svg)
 
 - Anwendung: "am Rand des großen Netzwerks" --> für Geräte, die nicht in einem Netzwerk liegen (z.B. IoT-Sensoren)
 - Auslöser für Entwicklung:
@@ -181,7 +179,7 @@ z.B.:
 
 Diese können wiederum aus Microservices zusammengesetzt sein, die untereinander vernetzt sind, siehe Schaubild.
 
-<img src="./resources/microservice.svg" alt="Microservice-Skizze" width=350>
+![Microservice](resources/microservice.svg)
 
 ## Dienste
 
@@ -232,7 +230,7 @@ Dazu muss ein **Load Balancer** die Anfragen beispielsweise an diejenigen MS mit
 
 # Service-Orientierte-Architekturen (SOA)
 
-<img src="./resources/SOA-Example.png" alt="SOA-Skizze" width=350>
+![Service-Orientierte-Architekturen](resources/SOA-Example.png)
 
 ## REST - Schnittstellen - Representational State Transfer
 
@@ -310,7 +308,7 @@ https://backstage.dhge.de/course/view.php?id=2718
 4. Parallelisierung auf GRID-Ebene
     - mehrere zusammengefasste Cluster
 
-<img src="./resources/Rechner_Cluster_Grid.png" alt="Abbildung Rechner Cluster Grid" width=350>
+![Abbildung Rechner Cluster Grid](resources/Rechner_Cluster_Grid.png)
 
 ### Cluster-Computing
 
@@ -336,7 +334,7 @@ https://backstage.dhge.de/course/view.php?id=2718
 - Vorteil ist die gute Skalierbarkeit
 - Ressourcen und Zugriff sind dezentral
 
-<img src="./resources/GRID_Computing.png" alt="Abbildung GRID-Computing" width=350>
+![GRID-Computing](resources/GRID_Computing.png)
 
 ## Warum (keine) Cloud
 
@@ -377,13 +375,13 @@ https://backstage.dhge.de/course/view.php?id=2718
 
 ## IT-Aufbau
 
-<img src="./resources/it-aufbau.svg" alt="IT-Aufbau" width=350>
+![IT-Aufbau](resources/it-aufbau.svg)
 
 ## AWS-Einführung
 
 ### S3 - Simple Storage Service
 
-- Bucket (Ordner) in die Dateien können hochgeladen werden 
+- Bucket (Ordner) in die Dateien können hochgeladen werden
 - Diverse Konfigurationsmöglichkeiten: Öffentlicher Zugriff, Versionierung, ...
 
 ### AWSCLI einrichten
@@ -398,7 +396,7 @@ https://backstage.dhge.de/course/view.php?id=2718
 [default]
 aws_access_key_id=
 aws_secret_access_key=
-aws_session_token= 
+aws_session_token=
 ```
 - `.aws/config` sollte so aussehen:
 

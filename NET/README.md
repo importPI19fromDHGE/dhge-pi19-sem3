@@ -4,32 +4,32 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Rechnernetzkonzepte und -architekturen 
+# Rechnernetzkonzepte und -architekturen
 
 *16.11.2020*
 
 # 1. Einleitung / Übersicht
-## 1.1 Veranstaltungsziele 
-Wissensvermittlung zu: 
-- Übersichtswissen über Rechnernetze 
-- Komponenten und Protokolle im Internet 
-- Planung von Netzwerken 
+## 1.1 Veranstaltungsziele
+Wissensvermittlung zu:
+- Übersichtswissen über Rechnernetze
+- Komponenten und Protokolle im Internet
+- Planung von Netzwerken
 - Konfiguration von Netzwerken
 
-Prüfungsleistung: 
-- wenn möglich schriftliche Prüfung 
-- letzte Einheit ist für Prüfungsvorbereitung vorgesehen 
+Prüfungsleistung:
+- wenn möglich schriftliche Prüfung
+- letzte Einheit ist für Prüfungsvorbereitung vorgesehen
 
-Hilfsmittel bei Prüfung: 
-- wahrscheinlich 1 DIN A4 - Zettel handschriftlicher eigener Notizen 
+Hilfsmittel bei Prüfung:
+- wahrscheinlich 1 DIN A4 - Zettel handschriftlicher eigener Notizen
 
-    
-## 1.2 Inhaltlicher Teil 
-### 1.2.1 Kommunikationsszenario 
 
-<img src="./resources/NIC.png" alt="NIC_Abbildung" width=500>
+## 1.2 Inhaltlicher Teil
+### 1.2.1 Kommunikationsszenario
 
-Bei Abruf einer Website durch Host A von Server A sind vielfältige Technologien zur Realisierung des Szenarios erforderlich. 
+![NIC](resources/NIC.png)
+
+Bei Abruf einer Website durch Host A von Server A sind vielfältige Technologien zur Realisierung des Szenarios erforderlich.
 
 **Physische Verbindung**
 Auf welchem Weg gelangen die Daten von Host zu Server und zurück?
@@ -37,28 +37,28 @@ Auf welchem Weg gelangen die Daten von Host zu Server und zurück?
 **Weiterleitung von Daten über das Internet**
 - Protokolle, Header, ...
 
-Wie müssen diese Daten gestaltet sein, damit sie verwendet werden können? 
+Wie müssen diese Daten gestaltet sein, damit sie verwendet werden können?
 
 **Weiterleitung der Daten ans richtige Zielsystem**
-Wie läuft das Routing ab? 
+Wie läuft das Routing ab?
 
 
 ### 1.2.2 Standardisierung
 
-- ISO 
+- ISO
 - ITU
 - IEEE
-    - Fokus auf den "unteren" Schichten, nah an Physik 
+    - Fokus auf den "unteren" Schichten, nah an Physik
     - Ethernet, Netzwerkkarten, ...
 - IETF
     - Standardisierung der Protokolle
-    - HTTP, UDP, TCP, Mailprotokolle 
+    - HTTP, UDP, TCP, Mailprotokolle
     - ist kein Berufsverband, sondern Freiwilligenorganisation
 
-### Internet Engineering Taskforce 
+### Internet Engineering Taskforce
 
 - Publikationsformat der IETF sind RfC's (Request for Comments)
-- RFC haben eindeutige, fortlaufend vergebene Nummern 
+- RFC haben eindeutige, fortlaufend vergebene Nummern
 - so ist UDP z.B. durch RFC 768 spezifiziert
 - recht praxisnahe Beschreibung der Standards
 
@@ -67,16 +67,16 @@ Wie läuft das Routing ab?
 - IETF-Arbeitsgruppen sind einem von 7 Bereichen (Areas) zugeordnet
     - Applications and Real-Time
     - Internet
-    - Security 
+    - Security
     - Operations and Management
-    - Routing 
-    - General 
-    - Transport 
-    
+    - Routing
+    - General
+    - Transport
 
-### 1.2.3 Begrifflichkeiten 
 
-**Übertragungsmodi** 
+### 1.2.3 Begrifflichkeiten
+
+**Übertragungsmodi**
 
 |verbindungsorientiert| verbindunglos|
 |----|-----|
@@ -92,21 +92,21 @@ Wie läuft das Routing ab?
 |zu beachten: es müssen dann soviele Leitungen vorhanden sein, wie genutzt werden sollen|zu beachten: Überlastsituationen können auftreten|
 
 
-Im Großen und Ganzen ist "das Internet" paketvermittelt, Leitungsvermittlung kann in Spezialfällen vorhanden sein 
+Im Großen und Ganzen ist "das Internet" paketvermittelt, Leitungsvermittlung kann in Spezialfällen vorhanden sein
 
 
 ### 1.2.4 ISO / OSI Referenzmodell  - Prüfungsrelevant
 
-<img src="./resources/ISO_OSI_Layer.png" alt="ISO/OSI Layer" width=500>
+![ISO/OSI Layer](resources/ISO_OSI_Layer.png)
 
 #### 7 Anwendungsschicht
-- Durch anwendungsspezifische Protokolle verwendet 
+- Durch anwendungsspezifische Protokolle verwendet
 
 #### 6 Darstellungsschicht
-- Umwandlung von Daten in unabhängiges Format 
+- Umwandlung von Daten in unabhängiges Format
 
 #### 5 Sitzungsschicht
-- 
+-
 #### 4 Transportschicht
 - fügt Zusatzinformationen in die Pakete ein, um die Verwendung auf Empfängerseite zu definieren
 
@@ -116,51 +116,51 @@ Im Großen und Ganzen ist "das Internet" paketvermittelt, Leitungsvermittlung ka
 - unabhängig vom Typ der verwendeten Netze
 
 #### 2 Sicherungsschicht
-- einzelne Bitfolgen werden als Frames erfasst 
+- einzelne Bitfolgen werden als Frames erfasst
 - Redundanzinformationen werden hinzugefügt um Fehlererkennung und -korrekturen (auch auf Empfängerseite) zu ermöglichen (z.B. Paritätsbits)
 -  Beispielverfahren: CRC (Cyclic Redundancy Check)
 
 
 #### 1 Bitübertragungsschicht
-- einzelne Bits in physikalische Signale umwandeln und umgekehrt 
+- einzelne Bits in physikalische Signale umwandeln und umgekehrt
 - Modulation und Demodulation
 
-### 1.2.5 TCP / IP-Modell 
- 
+### 1.2.5 TCP / IP-Modell
+
  Integriert das Referenzmodell, verwendet dazu 4 Schichten.
- Siehe dazu Folie 14. 
+ Siehe dazu Folie 14.
 
 ### 1.2.6 Protokoll-Header
 
-Siehe Folie 15 
+Siehe Folie 15
 
 ### 1.2.7. Kopplungselemente
-<img src="./resources/Switches_Router.png" alt="Switches und Router" width=500>
+
+![Switches und Router](resources/Switches_Router.png)
 
 #### **Switches**
 - verbinden Netzsegmente (Broadcast-Domains) und leiten Pakete zwischen diesen weiter
-- sind Layer 2 - Kopplungselemente 
+- sind Layer 2 - Kopplungselemente
 - Netzwerkkarten im gleichen Netzsegment können sich gegenseitig direkt addressieren (per MAC-Adresse)
-- speichern intern eine Zuordnung zwischen Ausgangsports und MAC-Adressen 
+- speichern intern eine Zuordnung zwischen Ausgangsports und MAC-Adressen
 - Alternative Namen: Bridge, L2-Switch
 
 #### **Router**
 
 - leiten Pakete zwischen unterschiedlichen Netzen weiter
 - bei Weiterleitungsentscheidung wird IP-Adresse ausgewertet (Lookup in Routing-Tabelle)
-- Alternativ auch: Layer-3-Switch 
+- Alternativ auch: Layer-3-Switch
 
 #### **Weitere Kopplungselemente**
-- Hub, Repeater, Application-Layer-Gateway
 
-<br>
+- Hub, Repeater, Application-Layer-Gateway
 
 **Kleiner Einschub, nicht komplett:**
 ```sh
 ip addr show
 
-ip neigh 
-# zeigt Nachbarn in ARP-Tabelle an 
+ip neigh
+# zeigt Nachbarn in ARP-Tabelle an
 # IPv4, IPv6 und MAC-Adresse
 
 ip r
@@ -171,33 +171,30 @@ ip route
 ### 1.2.8 Topologien
 
 Unterscheidung zwischen physikalischer und logischer Topologie.
-Physikalisch dabei die tatsächlich vorhandenen (physischen) Netzwerkkomponenten und ihrer Verbindungen. 
-Logisch dabei die Kommunkationsbeziehungen und der Struktur des Datenflusses. 
+Physikalisch dabei die tatsächlich vorhandenen (physischen) Netzwerkkomponenten und ihrer Verbindungen.
+Logisch dabei die Kommunkationsbeziehungen und der Struktur des Datenflusses.
 
-Grafische Aufarbeitung versch. Topologien auf Folie 17 
+Grafische Aufarbeitung versch. Topologien auf Folie 17
 
-Zu beachten: Gibt es SPF (single point of failure) im Netz? Wenn ja: Ausfallsicherheit gering 
+Zu beachten: Gibt es SPF (single point of failure) im Netz? Wenn ja: Ausfallsicherheit gering
 
 **hier fehlen noch Dinge**
 
+### Tooling - Wireshark
 
-
-### Tooling - Wireshark 
-
-- nützliches Tool zur Darstellung von Kommunikationsvorgängen in Netzwerken 
-- es ist eine Filterfunktionalität vorhanden um gezielt nach IP-Adressen, Protokollen, Ports, ... zu suchen 
+- nützliches Tool zur Darstellung von Kommunikationsvorgängen in Netzwerken
+- es ist eine Filterfunktionalität vorhanden um gezielt nach IP-Adressen, Protokollen, Ports, ... zu suchen
 - dabei verwendete Bibliothek: **LIBPCAP**
 
-Auch verwendetes Tool: Scapy 
- 
+Auch verwendetes Tool: Scapy
 
 
+-------
 
 # 2. Netzzugangsschicht: Ethernet / Switching
-# 3. Vermittlungsschicht: Internet Protocol 
-# 4. Transportschicht: User Datagram Protocol und Transmission Control Protocol 
+# 3. Vermittlungsschicht: Internet Protocol
+# 4. Transportschicht: User Datagram Protocol und Transmission Control Protocol
 # 5. Routing
 # 6. Anwendungsschicht
 # 7. Software-defined Networking
 # 8. Netztechnologien
-

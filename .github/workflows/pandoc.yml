@@ -10,6 +10,8 @@ jobs:
       - uses: actions/checkout@v2
       - run: |
           mkdir output
+      - run: |
+          fc-list
       - uses: docker://rstropek/pandoc-latex:latest # generate DBS pdf
         with:
           args: --output=output/DBS.pdf --resource-path=DBS/ -s --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex DBS/README.md

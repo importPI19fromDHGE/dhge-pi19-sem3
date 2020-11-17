@@ -179,7 +179,7 @@ z.B.:
 
 Diese können wiederum aus Microservices zusammengesetzt sein, die untereinander vernetzt sind, siehe Schaubild.
 
-![Microservice](resources/microservice.png)
+![Microservice](resources/microservice.png){ width=250px }
 
 ## Dienste
 
@@ -375,7 +375,7 @@ https://backstage.dhge.de/course/view.php?id=2718
 
 ## IT-Aufbau
 
-![IT-Aufbau](resources/it-aufbau.png)
+![IT-Aufbau](resources/it-aufbau.png){ width=250px }
 
 ## AWS-Einführung
 

@@ -1,9 +1,7 @@
 name: Create PDF release from markdown
 
 on:
-  push:
-    branches:
-      - main
+  push
 
 jobs:
   convert_via_pandoc_and_release:
@@ -14,19 +12,19 @@ jobs:
           mkdir output
       - uses: docker://rstropek/pandoc-latex:latest # generate DBS pdf
         with:
-          args: --output=output/DBS.pdf --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex -V geometry:margin=3cm DBS/README.md
+          args: --output=output/DBS.pdf --resource-path=DBS/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex DBS/README.md
       - uses: docker://rstropek/pandoc-latex:latest # generate SWE pdf
         with:
-          args: --output=output/SWE.pdf --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex -V geometry:margin=3cm SWE/README.md
+          args: --output=output/SWE.pdf --resource-path=SWE/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex SWE/README.md
       - uses: docker://rstropek/pandoc-latex:latest # generate PRO pdf
         with:
-          args: --output=output/PRO.pdf --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex -V geometry:margin=3cm PRO/README.md
+          args: --output=output/PRO.pdf --resource-path=PRO/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex PRO/README.md
       - uses: docker://rstropek/pandoc-latex:latest # generate RES pdf
         with:
-          args: --output=output/RES.pdf --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex -V geometry:margin=3cm RES/README.md
+          args: --output=output/RES.pdf --resource-path=RES/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex RES/README.md
       - uses: docker://rstropek/pandoc-latex:latest # generate NET pdf
         with:
-          args: --output=output/NET.pdf --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex -V geometry:margin=3cm NET/README.md
+          args: --output=output/NET.pdf --resource-path=NET/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex NET/README.md
       - uses: actions/upload-artifact@master # upload pdfs as an artifact
         with:
           name: output

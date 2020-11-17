@@ -1,7 +1,7 @@
 name: Create PDF release from markdown
 
 on:
- push:
+  push:
     branches:
       - main
 

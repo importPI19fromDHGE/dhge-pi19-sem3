@@ -50,7 +50,7 @@ festen Integrationsvorschriften (Zuordnung zu Objekt- und Beziehungstypen) und O
 - **Schema:** formalisierte Darstellung des Modells (grafisch oder normalsprachlich) nach bestimmten Vorschriften
 	- Schema-Mapping: Abbilden von Objekten eines höheren Schemas auf ein tieferes Schema
 	- grafisch werden Schemata üblicherweise mittels Entity Relationship Model (ERM) dargestellt:
-	- ![Beispiel-ERM: Menschen sind Halter von Fahrzeugen](./resources/erm-bsp.svg)
+	- ![Beispiel-ERM: Menschen sind Halter von Fahrzeugen](./resources/erm-bsp.png)
 	- Leseregel für ERM: von links nach rechts und oben nach unten, sodass ein sinnvoller Satz gebildet werden kann
 
 ### Vorteile von Datenbanken
@@ -290,5 +290,3 @@ WHERE imbetriebseit<=1992 AND brutto<1000
 - `=` und `<>` statt `==` und `!=`
 - `'string'` statt `"string"`
 - `NOT, AND, OR` statt `!, &&, ||`
-
-

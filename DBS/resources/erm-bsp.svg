@@ -7,36 +7,36 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   sodipodi:docname="erm-bsp.svg"
-   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
-   id="svg8"
-   version="1.1"
-   viewBox="0 0 212 64"
+   width="212mm"
    height="64mm"
-   width="212mm">
+   viewBox="0 0 212 64"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="erm-bsp.svg">
   <title
      id="title888">Menschen sind Halter von Fahrzeugen</title>
   <defs
      id="defs2" />
   <sodipodi:namedview
-     inkscape:window-maximized="1"
-     inkscape:window-y="-9"
-     inkscape:window-x="-9"
-     inkscape:window-height="1001"
-     inkscape:window-width="1920"
-     showgrid="false"
-     inkscape:document-rotation="0"
-     inkscape:current-layer="layer1"
-     inkscape:document-units="mm"
-     inkscape:cy="248.92553"
-     inkscape:cx="579.65411"
-     inkscape:zoom="1.4"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     borderopacity="1.0"
-     bordercolor="#666666"
+     id="base"
      pagecolor="#ffffff"
-     id="base" />
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="411.79697"
+     inkscape:cy="248.92553"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1051"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -50,81 +50,81 @@
     </rdf:RDF>
   </metadata>
   <g
-     id="layer1"
+     inkscape:label="Ebene 1"
      inkscape:groupmode="layer"
-     inkscape:label="Ebene 1">
+     id="layer1">
     <rect
-       y="25.558849"
-       x="0.65024239"
-       height="12.042073"
-       width="48.327785"
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.243202;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect833"
-       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    <text
-       id="text837"
-       y="34.736282"
-       x="3.2981286"
-       style="font-style:normal;font-weight:normal;font-size:8.46667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-       xml:space="preserve"><tspan
-         style="font-size:8.46667px;stroke-width:0.264583"
-         y="34.736282"
-         x="3.2981286"
-         id="tspan835"
-         sodipodi:role="line">Menschen</tspan></text>
-    <rect
-       transform="rotate(45)"
-       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.733976;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect833-6"
-       width="44.266026"
-       height="44.266026"
-       x="73.334923"
-       y="-72.368729" />
-    <path
-       id="path854"
-       d="M 71.727212,31.983904 H 49.099104"
-       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-    <text
-       id="text858"
-       y="22.700253"
-       x="102.51385"
-       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-       xml:space="preserve"><tspan
-         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
-         y="22.700253"
-         x="102.51385"
-         id="tspan856"
-         sodipodi:role="line">sind</tspan><tspan
-         id="tspan860"
-         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
-         y="35.929379"
-         x="102.51385"
-         sodipodi:role="line">Halter</tspan><tspan
-         id="tspan862"
-         style="text-align:center;text-anchor:middle;stroke-width:0.264583"
-         y="49.158501"
-         x="102.51385"
-         sodipodi:role="line">von</tspan></text>
-    <rect
-       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.425218;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect833-69"
-       width="54.728161"
-       height="12.016855"
-       x="156.92627"
-       y="25.854942" />
+       width="29.38352"
+       height="7.3216372"
+       x="42.009037"
+       y="28.077482" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:8.46667px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
-       x="159.66548"
-       y="34.199146"
-       id="text837-3"><tspan
+       style="font-style:normal;font-weight:normal;font-size:5.14778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.160868"
+       x="43.618965"
+       y="33.657406"
+       id="text837"><tspan
          sodipodi:role="line"
-         id="tspan835-5"
-         x="159.66548"
-         y="34.199146"
-         style="font-size:8.46667px;stroke-width:0.264583">Fahrzeugen</tspan></text>
+         id="tspan835"
+         x="43.618965"
+         y="33.657406"
+         style="font-size:5.14778px;stroke-width:0.160868">Menschen</tspan></text>
+    <rect
+       y="-64.56044"
+       x="82.878708"
+       height="26.913952"
+       width="26.913952"
+       id="rect833-6"
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.446261;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       transform="rotate(45)" />
     <path
-       style="fill:none;stroke:#000000;stroke-width:0.4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M 156.95691,31.983907 H 134.3288"
-       id="path854-4" />
+       style="fill:none;stroke:#000000;stroke-width:0.243202;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 85.22417,31.983945 H 71.466174"
+       id="path854" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:6.4347px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.160868"
+       x="103.94259"
+       y="26.339441"
+       id="text858"><tspan
+         sodipodi:role="line"
+         id="tspan856"
+         x="103.94259"
+         y="26.339441"
+         style="text-align:center;text-anchor:middle;stroke-width:0.160868">sind</tspan><tspan
+         sodipodi:role="line"
+         x="103.94259"
+         y="34.382816"
+         style="text-align:center;text-anchor:middle;stroke-width:0.160868"
+         id="tspan860">Halter</tspan><tspan
+         sodipodi:role="line"
+         x="103.94259"
+         y="42.426193"
+         style="text-align:center;text-anchor:middle;stroke-width:0.160868"
+         id="tspan862">von</tspan></text>
+    <rect
+       y="28.257507"
+       x="137.0256"
+       height="7.3063045"
+       width="33.274979"
+       id="rect833-69"
+       style="fill:#000000;fill-opacity:0;stroke:#000000;stroke-width:0.258535;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       id="text837-3"
+       y="33.330822"
+       x="138.69106"
+       style="font-style:normal;font-weight:normal;font-size:5.14778px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.160868"
+       xml:space="preserve"><tspan
+         style="font-size:5.14778px;stroke-width:0.160868"
+         y="33.330822"
+         x="138.69106"
+         id="tspan835-5"
+         sodipodi:role="line">Fahrzeugen</tspan></text>
+    <path
+       id="path854-4"
+       d="m 137.04423,31.983947 h -13.758"
+       style="fill:none;stroke:#000000;stroke-width:0.243202;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
   </g>
 </svg>

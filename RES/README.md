@@ -57,15 +57,15 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Wie ermittelt man die Windows-Version / RAM-Menge / CPU-Kerne?
 - Zweck der Virtual Box Gasterweiterung
 - Nutzen von Hashing
-- Befehle und Parameter, ein Befehl kann zum Parameter werden (man pages)
+- Befehle und Parameter, ein Befehl kann zum Parameter werden (man pages, sudo)
 - Wie man Windows optionalfeatures (de)aktiviert?
 - Welche Filesysteme sind Ihnen bekannt?
-- was ist ein Backup?
+- Was ist ein Backup?
   - Kopie von Daten, um sie später wiederherstellen zu können
   - mögliche Tools: cp, scp, rsync,...
-- welchen Zweck hat ein DHCP-Server?
+- Welchen Zweck hat ein DHCP-Server?
   - automatische Netzwerkkonfiguration
-- welchen Zweck hat ein FTP-Server?
+- Welchen Zweck hat ein FTP-Server?
   - Dateiübertragung über ein Netzwerk
 - Zweck von FTP
 - Was ist DD?
@@ -76,6 +76,8 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Was ist ein Backup? Wie kann man ein Backup erstellen?
 - Welche Informationen benötigt man um sich bei einem SSH-Server einzuloggen?
 - Wie verwendet man Schleifen in Bash-Skripten?
+- Warum sind Konfigurationsdateien schreibgeschützt? Nennen Sie ein Beispiel!
+
 
 # Vorteile Virtualisierung
 

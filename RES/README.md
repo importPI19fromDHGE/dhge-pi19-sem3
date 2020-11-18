@@ -5,14 +5,15 @@ Betriebssystemverwaltung
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [mögliche Prüfungsfragen](#m%C3%B6gliche-pr%C3%BCfungsfragen)
+- [Betriebssystemverwaltung](#betriebssystemverwaltung)
+- [mögliche Prüfungsfragen](#mögliche-prüfungsfragen)
 - [Vorteile Virtualisierung](#vorteile-virtualisierung)
 - [Grundlagen Linux](#grundlagen-linux)
   - [Terminal](#terminal)
   - [VBox Guest Additions installieren](#vbox-guest-additions-installieren)
-  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-sch%C3%A4den-sch%C3%BCtzen)
+  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-schäden-schützen)
 - [Grundlagen Windows](#grundlagen-windows)
-  - [Features hinzufügen / entfernen](#features-hinzuf%C3%BCgen--entfernen)
+  - [Features hinzufügen / entfernen](#features-hinzufügen--entfernen)
   - [Verwaltungsaufgaben](#verwaltungsaufgaben)
   - [Netzlaufwerk verbinden](#netzlaufwerk-verbinden)
     - [via Explorer](#via-explorer)
@@ -27,18 +28,19 @@ Betriebssystemverwaltung
   - [Ping of Death](#ping-of-death)
     - [Windows](#windows)
     - [Linux](#linux)
-  - [Windows-Netzwerkeinstellungen via Skript ändern](#windows-netzwerkeinstellungen-via-skript-%C3%A4ndern)
-  - [Vorträge](#vortr%C3%A4ge)
+  - [Windows-Netzwerkeinstellungen via Skript ändern](#windows-netzwerkeinstellungen-via-skript-ändern)
+  - [Vorträge](#vorträge)
     - [Themen](#themen)
     - [Was soll rein?](#was-soll-rein)
   - [Linux: Nutzerverwaltung](#linux-nutzerverwaltung)
-    - [Nutzer im Terminal ändern](#nutzer-im-terminal-%C3%A4ndern)
+    - [Nutzer im Terminal ändern](#nutzer-im-terminal-ändern)
     - [alle Nutzer anzeigen](#alle-nutzer-anzeigen)
   - [Linux: Skripte](#linux-skripte)
     - [SMB-Share einbinden](#smb-share-einbinden)
   - [FTP-Vortrag](#ftp-vortrag)
   - [Samba](#samba)
   - [DHCP](#dhcp)
+  - [MQTT](#mqtt)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -77,6 +79,7 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Welche Informationen benötigt man um sich bei einem SSH-Server einzuloggen?
 - Wie verwendet man Schleifen in Bash-Skripten?
 - Warum sind Konfigurationsdateien schreibgeschützt? Nennen Sie ein Beispiel!
+- 
 
 
 # Vorteile Virtualisierung
@@ -483,3 +486,59 @@ Freigabeordner erstellen:
 - dynamische Zuweisung von IP-Adresse, Gateway, Subnetzmaske, DNS
 - "automatische Zuordnung" - Client wird für Netzwerk konfiguriert, Einstellungen werden gespeichert
 - "dynamische Zuordnung" - automatische Konfiguration, aber läuft nach Lease-Zeit ab
+
+## MQTT
+
+- Übertragung von Daten mit geringer Bandbreite und instabiler Verbindung
+- integriertes QoS
+- serverseitig session-orientiert
+- so wenig Metadaten auf Clients wie möglich
+- datenagnostisch
+- ereignisgesteuer: Publish/Subscribe-Modell
+  - Publish von Clients auf Broker mit best. "Topic" zum Senden
+  - Subscribe von Clients zum Broker mit best. "Topic" zum Empfangen
+- Broker --> "Postfiliale"
+  - nimmt Nachrichten an, verteilt sie an Empfänger, entweder sofort oder wenn Empfänger verfügbar
+  - Broker-Redundanz: Einsatz mehrerer Broker möglich
+- Clients (Publisher) nehmen ereignisgesteuert Kontakt zu Broker auf
+- Clients können gleichzeitig Subscriber und Publisher sein
+- ordnerartige Topic-Struktur zum ordnen von Messages: ``labor/exp1/temp/sensor1``
+  - müssen mind. 1 Zeichen lang sein
+  - dürfen Leerzeichen enthalten
+  - case-sensitiv
+  - hierarchische Ordnung
+  - oberste Struktur --> ohne führendes `/`
+  - single-level-wildcard (z.B. für Subscribers): `+`
+  - multi-level-wildcard: `*` --> darf nur am Ende stehen
+- verschiedene QoS-Level:
+  - 0: Nachrichten "at most once", keine garantierte Auslieferung, keine Empfangsbestätigung, keine Speicherung
+  - 1: Nachrichten "at least once", wird mind. 1x an Subscriber geliefert, Empfangsbestätigung via PUBACK-Paket, Mehrfachauslieferung möglich
+  - 2: Nachrichten "exactly once", genau einmal gesendet und empfangen, großer Overhead durch komplexeres Bestätigungssystem
+- verzögerte Nachrichten durch "Retained Messages"
+  - kein Verwerfen der Nachrichten bei setzen der "retained-Flag"
+  - Broker speichert **letzte Nachricht** eines Topics
+  - sendet Messages, wenn Client verfügbar
+- Session-Speicherung durch Persistente Sessions
+  - speichert Informationen zum Status der Sessions
+- Aktionen bei Verbindungsabbruch durch Last Will und Testament definierbar
+  - bei Abbruch des Publishers wird ggf. eine Nachricht übermittelt, es sei denn, der Client kehrt vor Timeout zurück bzw. meldet sich regulär abmeldet
+- Authentifizierung und Sicherheit:
+  - Support für VPN und TLS
+  - Auth via Nutzer und Passwort (brokerseitig)
+  - Erhöhung der Sicherheit durch ``clientId`` (einzigartiger Identifier)
+  - Einschränkung von Topics, Handlungen und QoS für Nutzer möglich
+- Einsatzgebiete da wo...
+  - keine Client2Client-Kommunikation möglich
+  - kompakte Datenübertragung gefordert
+  - instabile oder langsame Verbindungen vorhanden
+- Installation:
+
+```bash
+sudo apt update
+sudo apt install mosquitto
+sudo apt install mosquitto-clients
+```
+
+- Nutzung:
+  - Subscriber: ``mosquitto_sub -h host -t topic # oder auch: topic/#``
+  - Publisher: ``mosquitto_pub -h host -t topic -m message``

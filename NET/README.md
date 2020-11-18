@@ -2,6 +2,41 @@
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Inhaltsverzeichnis**
+
+- [Rechnernetzkonzepte und -architekturen](#rechnernetzkonzepte-und--architekturen)
+- [1. Einleitung / Übersicht](#1-einleitung--%C3%BCbersicht)
+  - [1.1 Veranstaltungsziele](#11-veranstaltungsziele)
+  - [1.2 Inhaltlicher Teil](#12-inhaltlicher-teil)
+    - [1.2.1 Kommunikationsszenario](#121-kommunikationsszenario)
+    - [1.2.2 Standardisierung](#122-standardisierung)
+    - [Internet Engineering Taskforce](#internet-engineering-taskforce)
+      - [Arbeitsgruppen  / IETF-Areas](#arbeitsgruppen---ietf-areas)
+    - [1.2.3 Begrifflichkeiten](#123-begrifflichkeiten)
+    - [1.2.4 ISO / OSI Referenzmodell  - Prüfungsrelevant](#124-iso--osi-referenzmodell----pr%C3%BCfungsrelevant)
+      - [7 Anwendungsschicht](#7-anwendungsschicht)
+      - [6 Darstellungsschicht](#6-darstellungsschicht)
+      - [5 Sitzungsschicht](#5-sitzungsschicht)
+      - [4 Transportschicht](#4-transportschicht)
+      - [3 Vermittlungsschicht](#3-vermittlungsschicht)
+      - [2 Sicherungsschicht](#2-sicherungsschicht)
+      - [1 Bitübertragungsschicht](#1-bit%C3%BCbertragungsschicht)
+    - [1.2.5 TCP / IP-Modell](#125-tcp--ip-modell)
+    - [1.2.6 Protokoll-Header](#126-protokoll-header)
+    - [1.2.7. Kopplungselemente](#127-kopplungselemente)
+      - [**Switches**](#switches)
+      - [**Router**](#router)
+      - [**Weitere Kopplungselemente**](#weitere-kopplungselemente)
+    - [1.2.8 Topologien](#128-topologien)
+    - [Tooling - Wireshark](#tooling---wireshark)
+- [2. Netzzugangsschicht: Ethernet / Switching](#2-netzzugangsschicht-ethernet--switching)
+- [3. Vermittlungsschicht: Internet Protocol](#3-vermittlungsschicht-internet-protocol)
+- [4. Transportschicht: User Datagram Protocol und Transmission Control Protocol](#4-transportschicht-user-datagram-protocol-und-transmission-control-protocol)
+- [5. Routing](#5-routing)
+- [6. Anwendungsschicht](#6-anwendungsschicht)
+- [7. Software-defined Networking](#7-software-defined-networking)
+- [8. Netztechnologien](#8-netztechnologien)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Rechnernetzkonzepte und -architekturen 

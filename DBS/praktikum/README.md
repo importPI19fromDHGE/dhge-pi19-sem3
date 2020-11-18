@@ -491,3 +491,25 @@ TRUNCATE TABLE Buch;
 DROP TABLE Buch;
 ```
 
+## Views
+
+- vgl. "Alias für eine Abfrage"
+- nach der Erstellung wie normale Tabellen verwendbar
+- zusätzliche Attribute: 
+	- `ENCRYPTION` Unterliegende Datenbankstruktur der Basistabellen nicht preisgeben
+	- `SCHEMABINDING` View fest an das Schema der Basistabelle binden 
+	- `VIEW_METADATA` Bei Abfrage des Views über die API werden die View-Metadaten statt den Basistabellen-Daten gesendet
+	
+```sql
+-- Erleichterter Zugriff auf Buch und Exemplar Informationen
+CREATE VIEW vBuchExemplar (ExemplarNr, Buchtitel, ISBN, RegalNr)
+WITH ENCRYPTION, SCHEMABINDING, VIEW_METADATA
+AS SELECT Exemplar.ExemplarNr, Buch.Titel, Buch.ISBN, Exemplar.RegalNr
+FROM Exemplar
+JOIN Buch ON Exemplar.Buch_id = Buch.id;
+-- View wie normale Tabelle verwenden
+SELECT * FROM vBuchExemplar;
+-- View löschen
+DROP VIEW vBuchExemplar;
+```
+

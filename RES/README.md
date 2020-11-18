@@ -42,6 +42,7 @@ Betriebssystemverwaltung
   - [DHCP](#dhcp)
   - [MQTT](#mqtt)
   - [Apache2](#apache2)
+  - [Fail2Ban](#fail2ban)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -585,3 +586,19 @@ sudo ufw app list # gib Liste an Anwendungen aus
 sudo ufw app info 'Apache Full'
 sudo ufw allow 'Apache Full'
 ```
+
+## Fail2Ban
+
+- Schutz vor Brute-Force-Attacken
+- Nutzung von "Jails" (Gefängnis) --> IP-Adressen werden bei (nicht-)Erfülung in Sperrliste geschrieben
+- besteht aus Client und Server
+- geschrieben in Python
+
+Funktionsweise (grob):
+
+1. Anmeldeversuch
+2. Test auf Erfolg
+3. Nach best. erfolglosen Versuchen: IP-Adresse für best. Ports für best. Zeit sperren
+4. optionale Email
+5. Freigabe der IP-Adresse nach Ablauf der Sperrzeit
+6. erneute Versuche möglich

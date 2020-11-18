@@ -82,6 +82,7 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Wie verwendet man Schleifen in Bash-Skripten?
 - Warum sind Konfigurationsdateien schreibgeschützt? Nennen Sie ein Beispiel!
 - Welche Installationsschritte müssen Sie für die Installation eines Webservers mit Datenbankanbindung anwenden? <!--Updates, Sicherung, Skripte bearbeiten,...-->
+- was ist ein DDoS-Angriff?
 
 
 # Vorteile Virtualisierung

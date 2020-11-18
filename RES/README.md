@@ -496,7 +496,7 @@ Freigabeordner erstellen:
 - serverseitig session-orientiert
 - so wenig Metadaten auf Clients wie möglich
 - datenagnostisch
-- ereignisgesteuer: Publish/Subscribe-Modell
+- ereignisgesteuert: Publish/Subscribe-Modell
   - Publish von Clients auf Broker mit best. "Topic" zum Senden
   - Subscribe von Clients zum Broker mit best. "Topic" zum Empfangen
 - Broker --> "Postfiliale"
@@ -504,7 +504,7 @@ Freigabeordner erstellen:
   - Broker-Redundanz: Einsatz mehrerer Broker möglich
 - Clients (Publisher) nehmen ereignisgesteuert Kontakt zu Broker auf
 - Clients können gleichzeitig Subscriber und Publisher sein
-- ordnerartige Topic-Struktur zum ordnen von Messages: ``labor/exp1/temp/sensor1``
+- ordnerartige Topic-Struktur zum Ordnen von Messages: ``labor/exp1/temp/sensor1``
   - müssen mind. 1 Zeichen lang sein
   - dürfen Leerzeichen enthalten
   - case-sensitiv
@@ -523,7 +523,7 @@ Freigabeordner erstellen:
 - Session-Speicherung durch Persistente Sessions
   - speichert Informationen zum Status der Sessions
 - Aktionen bei Verbindungsabbruch durch Last Will und Testament definierbar
-  - bei Abbruch des Publishers wird ggf. eine Nachricht übermittelt, es sei denn, der Client kehrt vor Timeout zurück bzw. meldet sich regulär abmeldet
+  - bei Abbruch des Publishers wird ggf. eine Nachricht übermittelt, es sei denn, der Client kehrt vor Timeout zurück bzw. meldet sich regulär ab
 - Authentifizierung und Sicherheit:
   - Support für VPN und TLS
   - Auth via Nutzer und Passwort (brokerseitig)
@@ -590,15 +590,15 @@ sudo ufw allow 'Apache Full'
 ## Fail2Ban
 
 - Schutz vor Brute-Force-Attacken
-- Nutzung von "Jails" (Gefängnis) --> IP-Adressen werden bei (nicht-)Erfülung in Sperrliste geschrieben
+- Nutzung von "Jails" (Gefängnis) --> IP-Adressen werden bei (nicht-)Erfüllung in Sperrliste geschrieben
 - besteht aus Client und Server
 - geschrieben in Python
 
 Funktionsweise (grob):
-
+Fail2Ban überwacht zuvor angebene Logdateien nach einem definierten Filter (=Name des Service) auf Anmeldeversuche
 1. Anmeldeversuch
-2. Test auf Erfolg
-3. Nach best. erfolglosen Versuchen: IP-Adresse für best. Ports für best. Zeit sperren
-4. optionale Email
+2. Ergebnis des Versuch wird in Log geschrieben
+3. Nach best. erfolglosen Versuchen: IP-Adresse für best. Ports für best. Zeit sperren (intern: Firewall Regel wie z.B. iptables)
+4. optional Emailversand möglich
 5. Freigabe der IP-Adresse nach Ablauf der Sperrzeit
 6. erneute Versuche möglich

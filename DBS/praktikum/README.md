@@ -440,7 +440,7 @@ INNER JOIN verlag ON buch.Verlag_id = verlag.id;
 SELECT name, vorname, titel FROM nutzer
 LEFT JOIN ausleihe ON nutzer.id = ausleihe.nutzer_id
 LEFT JOIN exemplar ON ausleihe.exemplar_id = exemplar.id
-LEFT JOIN buch on exemplar.buch_id = buch.id;
+LEFT JOIN buch ON exemplar.buch_id = buch.id;
 
 -- Verlage in der gleichen Stadt
 SELECT DISTINCT v1.name, v1.ort, v1.plz FROM verlag v1
@@ -451,18 +451,43 @@ ORDER BY v1.ort;
 
 ## Daten verändern
 
-- mit Schlüsselwort ``UPDATE``
+- mit Schlüsselwort `UPDATE`
 - angeben, welche Spalte welchen Wert erhält
-- ``UPDATE tabelle SET spalte = xyz WHERE bedingung``
-  - WHERE optional, aber dann wird ``UPDATE`` für jede Zeile ausgeführt
-- Rechnen ist mit folgenden Operatoren unterstützt: ``| & ^ + - * / %``
-  - alle Operatoren unterstützen auch die Form ``+=`` etc.
+- `UPDATE tabelle SET spalte = xyz WHERE bedingung`
+  - WHERE optional, aber dann wird `UPDATE` für jede Zeile ausgeführt
+- Rechnen ist mit folgenden Operatoren unterstützt: `| & ^ + - * / %`
+  - alle Operatoren unterstützen auch die Form `+=` etc.
+- Werte können aus anderen Spalten übernommen werden
 
 ```sql
 -- André Grimm --> André Kaudelwerk
 UPDATE nutzer SET name = 'Kaudelwerk' WHERE id =
-(SELECT id FROM NUTZER WHERE name = 'Grimm' AND vorname = 'André');
+(SELECT id FROM nutzer WHERE name = 'Grimm' AND vorname = 'André');
 
 -- Rechnen ist erlaubt: alle Bücher +10 Seiten
 UPDATE buch SET seiten = seiten + 10;
+
+-- Werte aus anderen Tabellen übernehmen: Klappentext mit Name des Verlag ersetzen
+UPDATE Buch SET Buch.Klappentext = Verlag.Name 
+FROM Buch JOIN Verlag ON Verlag.id = Buch.Verlag_id
 ```
+
+## Daten löschen
+
+- mit Schlüsselwort `DELETE`
+- `DELETE FROM tabelle WHERE bedingung`
+- Indices werden bei `DELETE` nicht zurückgesetzt (Fragmentierung)
+- Alle Daten aus einer Tabelle löschen und Indices zurücksetzen: `TRUNCATE TABLE tabelle`
+- Löschen der gesamten Struktur einer Tabelle `DROP TABLE tabelle`
+- Löschen eines Constraints `ALTER TABLE tabelle DROP CONSTRAINT contraint`
+- Löschen der gesamten Datenbank `DROP DATABASE datenbank`
+
+```sql
+-- Buch mit ID 27 löschen
+DELETE FROM Buch WHERE id = 27;
+-- Alle Bücher löschen, Indices zurücksetzen
+TRUNCATE TABLE Buch;
+-- Tabelle Buch mit allen Strukturen löschen
+DROP TABLE Buch;
+```
+

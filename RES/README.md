@@ -41,6 +41,7 @@ Betriebssystemverwaltung
   - [Samba](#samba)
   - [DHCP](#dhcp)
   - [MQTT](#mqtt)
+  - [Apache2](#apache2)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -79,7 +80,7 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Welche Informationen benötigt man um sich bei einem SSH-Server einzuloggen?
 - Wie verwendet man Schleifen in Bash-Skripten?
 - Warum sind Konfigurationsdateien schreibgeschützt? Nennen Sie ein Beispiel!
-- 
+- Welche Installationsschritte müssen Sie für die Installation eines Webservers mit Datenbankanbindung anwenden? <!--Updates, Sicherung, Skripte bearbeiten,...-->
 
 
 # Vorteile Virtualisierung
@@ -542,3 +543,45 @@ sudo apt install mosquitto-clients
 - Nutzung:
   - Subscriber: ``mosquitto_sub -h host -t topic # oder auch: topic/#``
   - Publisher: ``mosquitto_pub -h host -t topic -m message``
+
+## Apache2
+
+<!--Kampfwebserver-->
+
+Apache2 vs. Ngin:
+
+- Apache
+  - älter, hat besseren Support und Verbreitung
+  - ist mit Modulen erweiterbar
+  - kann Interpretersprachen direkt verarbeiten
+  - kann pro Thread nur eine Anfrage bearbeiten
+  - unterstützt dezentrales Deployment via ``.htaccess`` Dateien
+- Nginx
+  - kann mehrere Anfragen pro Thread verarbeiten
+  - nur statische Inhalte können bereitgestellt werden
+  - erfordert z.B. für PHP einen externen Processor wie ``php-fpm``
+  - nur zentrale Konfiguration
+  - schneller
+
+Konfiguration:
+
+- ``a2dissite`` deaktiviert eine Seitenkonfiguration
+- ``a2ensite`` aktiviert eine Seitenkonfiguration
+- ``systemctl reload apache2`` lädt Konfiguration neu
+- ``a2enmod`` aktiviert ein Apache-Modul, z.B. ``ssl`` oder ``rewrite``
+- SSL erfordert einen neuen VirtualHost, der auf Port 443 hört
+
+in den Config-Dateien:
+
+- mehrere VirtualHosts möglich: ``<Virtualhost *:80> ... </VirtualHost>``
+- darin mehrere Felder, die die Seiteneigenschaften enthalten (s. Beispielkonfiguration und \[Vortragsnotizen\])
+
+Konfiguration einer Firewall:
+
+```bash
+sudo apt install ufw
+sudo ufw enable
+sudo ufw app list # gib Liste an Anwendungen aus
+sudo ufw app info 'Apache Full'
+sudo ufw allow 'Apache Full'
+```

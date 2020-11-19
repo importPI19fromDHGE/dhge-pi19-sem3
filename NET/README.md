@@ -222,12 +222,18 @@ Zu beachten: Gibt es SPF (single point of failure) im Netz? Wenn ja: Ausfallsich
 
 Auch verwendetes Tool: Scapy
 
-# 2. Netzzugangsschicht: Ethernet / Switching
+# Netzzugangsschicht
 
 ## Übersicht zu Ethernet
 
 - Ursprünglich für LAN-Kommunikation vorgesehen
-<!--Eventuell noch mehr von der Folie übernehmen, aber ich habe so schnell nichts weiter für wichtig erachtet-->
+- Seit den 1980iger Jahren verschiedene Varianten etabliert, die sich bzgl.
+Übertragungsraten, Kabeltypen und Leitungskodierung unterscheiden
+	- Datenraten von 10 Mbit/s bis 400 Gbit/s, ...
+	- Leitungskodierung u.a.: Manchester-Code, 4B5B-Code, 8b10b-Code, ...
+	- Kabeltypen u.a.: Koaxialkabel, Twisted-Pair-Kabel, Multimode
+Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
+- Alternative: z.B. Infiniband
 
 ## Aufbau eines Ethernet Frames
 
@@ -250,8 +256,8 @@ Auch verwendetes Tool: Scapy
 
 - Multiport Kopplungselemente, das Frames nur an den Port weiterleitet über den der Empfänger erreichbar ist
 - Speicherung von Adressen in Source-Address-Table (SAT)
-- **Cut-Through Switches** Nach Analyse der MAC-Adresse sofortiges Durschalten zum entsprechenden Port
-- **Store-and-Forward Switches**
+- **Cut-Through Switches:** Nach Analyse der MAC-Adresse sofortiges Durschalten zum entsprechenden Port (Weiterleitung ohne Zwischenspeicherung = geringe Latenz, kein Einfluss auf Datenrate)
+- **Store-and-Forward Switches:** Frame wird am Eingangsport und Ausgangsport gepuffert (größere Latenz, Möglichkeit zur Zwischenverarbeitung der Daten)
 <!--ToDo: unvollständig-->
 
 ### Architekturtypen
@@ -289,7 +295,71 @@ Auch verwendetes Tool: Scapy
 - Designated Port: Alle Ports, die kein Root-Port und nicht blockiert sind  
 - Non-Designated Port: Ports in blockiertem Zustand um Zyklen zu verhindern  
 
-### Realisierungsformen
+#### STP - Port Fast/Fast Link
+
+- STP weist Konvergenzprobleme auf: Netzwerk erst nach etwa 30 Sekunden funktionstüchtig (Probleme beispielsweise mit PXE Boot)
+- Switches bieten Speziellen Modus für Ports an denen Endsysteme angeschlossen sind (Port geht sofort bei Aktivierung in Forwarding State)
+- Herstellerspezifische Terminologie: PortFast (Cisco), Fast Link (NetGear)
+
+#### Rapid Spanning Tree Protocol
+
+- Proaktiver Ansatz bei dem effizient auf Alternativpfade gewechselt werden kann
+
+### Virtuelles LAN
+
+- Physisches Netzwerkdesign steht häufig mit logischem Netzwerkdesign in Konflikt
+- logische Einteilung des Netzes auf Ebene der Switche (Aufteilung in Broadcast-Domänen; erhöhte Sicherheit)
+
+**Varianten**
+
+- Portbasierte VLANs: jeder Port kann Mitglied exakt eines VLANs sein
+- Tag-basierte VLANs: Frames werden mit ID eines VLANs getaggt, wodurch über einen Port mehrere VLANs realisiert werden können
+- dynamische/inhaltsbasierende VLANs: Zuordnung zu VLANs anhand verwendeter Protokolle (weniger verbreitet)
+
+#### Tag-basierte VLANs
+
+- Erweiterung der Ethernet-Frames um einen Tag zur Identifikation des VLANs zu dem das Frame gehört
+
+**Aufbau** (4 Bytes)
+
+- **Tag Protocol Identifier:** fixer Hex-Wert
+- **Priority Code Point:**
+- **Drop Eligible Indicator:**
+- **VLAN Identifier:** ID des zugehörigen VLANs ($2^{12}-2$ = max. 40xx VLANs)
+
+<!--ToDo: hier muss noch was ergänzt werden-->
+
+#### Inter-VLAN-Routing
+
+**Ansatz 1**
+
+- Routing zwischen VLANs ohne zusätzliche Softwareunterstützung durch in unterschiedlichen VLANs befindliche Physikalische Schnittstellen eines Routers möglich
+- Problem: hoher Aufwand für Hardware (für jedes VLAN physische Schnittstelle plus Verkabelung)
+
+
+- **Ansatz 2:** Einsatz von virtuellen Interfaces zur Vermeidung des hohen Aufwandes für separate Schnittstellen
+<!-- Gerne Prüfungsfrage: Konfigurationsschritte -->
+
+#### STP und VLAN
+
+> STP weiß nix von VLANs
+
+- klassischer Ansatz nutzt die verfügbaren physischen Verbindungen nicht optimal aus
+- Lösung: Multiple Spanning Tree Protocol (jedes VLAN hat eigenen ST + ein Internal Spanning Tree für alle VLANs)
+
+### Transparent Interconnection of lots of links (TRILL)
+
+- Ethernet-Frames werden in einen TRILL-Header gekapselt
+- Routing dieser Frames auf deren Basis auf L2 (nächster Hop wird durch umgebenen L2-Header angegeben)
+- Nutzung von Intermediate System to System zur Ermittlung von Pfaden <!--Hier noch was dranhängen-->
+- TRILL-Header besitzt HOP-Count-Feld um Routing-Schleifen zu vermeiden
+- Entfernung des THRILL-Headers vor Auslieferung an das Zielsystem
+
+### Stacking
+
+- Stackfähige Switsches können miteinander zu einer Gruppe verbunden werden (einzelnes logisches Gerät, ansprechen über einzelne IP)
+- Vorteile: Skalierbarkeit (Anzahl der Ports einfach ), vereinfachte Netzwerkschnittstelle (Konfiguration von nur einem logischem Gerät), Vergrößerter Durchsatz (Stacking über Port mit hoher Datenrate)
+- Nachteil: <!--noch ergänzen-->
 
 # 3. Vermittlungsschicht: Internet Protocol
 # 4. Transportschicht: User Datagram Protocol und Transmission Control Protocol

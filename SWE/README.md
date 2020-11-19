@@ -5,14 +5,15 @@ Systemanalyse
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Einführung / Überblick](#einf%C3%BChrung--%C3%BCberblick)
+- [Systemanalyse](#systemanalyse)
+- [Einführung / Überblick](#einführung--überblick)
   - [User Story Format](#user-story-format)
-  - [Was gehört alles zur Systemanalyse?](#was-geh%C3%B6rt-alles-zur-systemanalyse)
-- [Regeln für Software-Entwicklung](#regeln-f%C3%BCr-software-entwicklung)
+  - [Was gehört alles zur Systemanalyse?](#was-gehört-alles-zur-systemanalyse)
+- [Regeln für Software-Entwicklung](#regeln-für-software-entwicklung)
   - [(1) Klartext](#1-klartext)
     - [Wasserfallmodell](#wasserfallmodell)
     - [Agil](#agil)
-  - [(2) Gründliche Vertragsgestaltung](#2-gr%C3%BCndliche-vertragsgestaltung)
+  - [(2) Gründliche Vertragsgestaltung](#2-gründliche-vertragsgestaltung)
     - [Wasserfallmodell](#wasserfallmodell-1)
     - [Agil](#agil-1)
   - [(3) Wandelnde Anforderungen: Wie gehe ich damit um?](#3-wandelnde-anforderungen-wie-gehe-ich-damit-um)
@@ -21,10 +22,10 @@ Systemanalyse
   - [Vorgehensmodelle](#vorgehensmodelle)
     - [Phasenmodell](#phasenmodell)
     - [Iteriertes Phasenmodell](#iteriertes-phasenmodell)
-    - [Evolutionäre SW-Entwicklung](#evolution%C3%A4re-sw-entwicklung)
+    - [Evolutionäre SW-Entwicklung](#evolutionäre-sw-entwicklung)
     - [Spiralen Modell](#spiralen-modell)
     - [V-Modell](#v-modell)
-    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-auspr%C3%A4gung-des-v-modells-v-modell-xt)
+    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-ausprägung-des-v-modells-v-modell-xt)
     - [Extreme Programming (XP)](#extreme-programming-xp)
 - [SCRUM](#scrum)
   - [Empirische Prozess Kontrolle](#empirische-prozess-kontrolle)
@@ -34,7 +35,12 @@ Systemanalyse
     - [Product Owner](#product-owner)
     - [Entwickler Team](#entwickler-team)
     - [SCRUM-Master](#scrum-master)
-    - [Vorgehen in SCRUM](#vorgehen-in-scrum)
+  - [Vorgehen in SCRUM](#vorgehen-in-scrum)
+    - [Daily SCRUM Event](#daily-scrum-event)
+    - [Sprint *Planning* Event](#sprint-planning-event)
+    - [Sprint *Review* Event](#sprint-review-event)
+    - [Sprint *Retro*spektive Event](#sprint-retrospektive-event)
+  - [Policies](#policies)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -538,7 +544,7 @@ Angenommen ... <Vork.> wenn ... <Aktion> dann ... <Ergebnis>
 - hilft dem Team, Probleme zu lösen
 - idealerweise ist der SCRUM-Master ein fachfremder Mitarbeiter
 
-### Vorgehen in SCRUM
+## Vorgehen in SCRUM
 1. Vision -> Produktbacklog  
    im Produktbacklog ist die oberste Aufgabe die wichtigste
 
@@ -554,7 +560,7 @@ Angenommen ... <Vork.> wenn ... <Aktion> dann ... <Ergebnis>
 
 > Die 4 festen Events sind nicht abwählbar (vs. Aussage: beim SCRUM kann vieles an Bedürfnisse vom Team angepasst werden)
 
-**Daily SCRUM Event**
+### Daily SCRUM Event
 - Koordination des Teams bezüglich des Sprint-Ziels
 - Entwickler Team
 - am Kanboard
@@ -567,3 +573,76 @@ Angenommen ... <Vork.> wenn ... <Aktion> dann ... <Ergebnis>
 - Product Owner darf als Gast dabei sein
 
 > Im Burn-Down-Chart ist die Reduzierung der Tasks anfangs oft sehr langsam, da noch kein/wenig Task-Grooming/Task-Refinement betrieben wurde.
+
+### Sprint *Planning* Event
+1. Verantwortlich: Product Owner
+2. realistisches Sprint Ziel, vom Product Owner forumuliert  
+   + Plan, wie das Ziel zu erreichen ist (von Product Owner + Team gemeinsam erarbeitet)
+3. Product Owner sagt: **Was** gemacht werden soll  
+   Team (mit Hilfe vom Scrum Master) sagt: **Wie**   
+   --> Bekenntnis vom Team  
+   --> Vorausblick
+4. Ergebnis: Sprint-Backlog
+5. Pairing-Tabelle kann verwendet werden
+
+**Pairing-Tabelle** als Werkzeug:  
+Ziel: eine realistische Aufteilung der Themen auf die Mitarbeiter  
+--> Realisierung durch eine einfache (Excel) Tabelle  
+--> es wird schnell klar, ob Mitarbeiter zu wenige oder zu viele Themen bearbeiten sollen  
+--> die Machbarkeit des Sprints wird frühzeitig sichtbar
+
+- pro Zeile ein Thema
+- Anzahl der Themen soll ca Anzahl Mitarbeiter / 2 
+- Spalten den Mitarbeitern zuordnen
+- Verantwortliche (zu den Themen) zuordnen 
+- pro Mitarbeiter habe ich Informationen: Zu viele Verantwortlichkeiten? Zu viele Themen?
+- pro Zeile: Informationen, wie viele Mitarbeiter im Thema involviert sind
+- **ZIEL:** Probleme frühzeitig sichtbar machen! (und im Idealfall lösen)
+
+> Die Anzahl der Zeilen (Themen) ist künstlich beschränkt! (da T-shaped Mitarbeiter --> die Mitarbeiter sollen voneinander lernen können)
+
+### Sprint *Review* Event
+
+> hier werden **inhaltliche** Aspekte des Sprints betrachtet
+
+
+1. Verantwortlich: Product Owner
+2. Was *wollte* das Team erreichen?  
+   Was *hat* das Team erreicht?  
+   --> Gibt es eine Differenz? (PD**C**A)--> für die nächste Planung verwenden (PDC**A**)
+3. Tools: Burn-Down-Chart
+
+### Sprint *Retro*spektive Event
+
+> hier wird nur der **Prozess** betrachtet
+
+1. Teilnehmer: Team + Scrum Master + ggf. Product Owner (kann explizit ausgeschlossen werden)
+2. Verantwortlich: Scrum Master
+3. Zeit: ca 2 Stunden
+4. Ablauf:  
+   (A) Bühne frei (keine Tabuthemen!)  
+   (B) Daten sammeln  
+   (C) genaues Beleuchten der Themen + Clustern  (PD**C**A)
+   (D) Entscheiden, was das Wichtigste ist? (PDC**A**) --> 1 Task für die nächste Iteration festlegen (**P**DCA)  
+   (E) Schluss
+
+## Policies
+Hilfe um zu klären, wann eine Aufgabe erledigt ist (wann sie vom Review ins Done "geschoben" werden kann)
+
+**Aspekte aus dem Unternehmen:** bspw. die Aufgabe ist eigentlich fertig, aber die Abrechnung fehlt  
+**Aspekte aus dem Team:** bspw. die Aufgabe ist eigentlich gelöst aber die Kommentare sind schwer verständlich
+
+--> Qualitätsanspruch 
+
+Das ganze nennt sich **Definition Of Done**. Ein Dokment vom Team.
+
+**Aufbau eines Definition Of Done**  
+| Kategorien           | Aufgaben / Beschreibung | leicht messbare Kriterien |
+| -------------------- | ----------------------- | ------------------------- |
+| Tests                | Software wurde getestet | Abdeckungsgrad            |
+|                      | Integrations-Tests      |                           |
+|                      | System-Tests            |                           |
+|                      | Akzeptanz-Tests         |                           |
+| Server Konfiguration | Server eingerichtet     | Ping-Zeit                 |
+|                      | DNS Eintrag erstellt    | Nameserver-Lookup Antwort |
+|                      | Port definiert          | Port-Range                |

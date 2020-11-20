@@ -65,7 +65,7 @@ jobs:
           name: PDFs
           body: Automated release
           gzip: false
-          files: output/RES.pdf
+          files: output/NET.pdf
           allow_override: true
       - uses: meeDamian/github-release@2.0 # override release to attach another pdf
         with:

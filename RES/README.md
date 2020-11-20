@@ -39,6 +39,9 @@ Betriebssystemverwaltung
   - [FTP-Vortrag](#ftp-vortrag)
   - [Samba](#samba)
   - [DHCP](#dhcp)
+  - [MQTT](#mqtt)
+  - [Apache2](#apache2)
+  - [Fail2Ban](#fail2ban)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -57,15 +60,15 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Wie ermittelt man die Windows-Version / RAM-Menge / CPU-Kerne?
 - Zweck der Virtual Box Gasterweiterung
 - Nutzen von Hashing
-- Befehle und Parameter, ein Befehl kann zum Parameter werden (man pages)
+- Befehle und Parameter, ein Befehl kann zum Parameter werden (man pages, sudo)
 - Wie man Windows optionalfeatures (de)aktiviert?
 - Welche Filesysteme sind Ihnen bekannt?
-- was ist ein Backup?
+- Was ist ein Backup?
   - Kopie von Daten, um sie später wiederherstellen zu können
   - mögliche Tools: cp, scp, rsync,...
-- welchen Zweck hat ein DHCP-Server?
+- Welchen Zweck hat ein DHCP-Server?
   - automatische Netzwerkkonfiguration
-- welchen Zweck hat ein FTP-Server?
+- Welchen Zweck hat ein FTP-Server?
   - Dateiübertragung über ein Netzwerk
 - Zweck von FTP
 - Was ist DD?
@@ -76,6 +79,10 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Was ist ein Backup? Wie kann man ein Backup erstellen?
 - Welche Informationen benötigt man um sich bei einem SSH-Server einzuloggen?
 - Wie verwendet man Schleifen in Bash-Skripten?
+- Warum sind Konfigurationsdateien schreibgeschützt? Nennen Sie ein Beispiel!
+- Welche Installationsschritte müssen Sie für die Installation eines Webservers mit Datenbankanbindung anwenden? <!--Updates, Sicherung, Skripte bearbeiten,...-->
+- was ist ein DDoS-Angriff?
+
 
 # Vorteile Virtualisierung
 
@@ -481,3 +488,117 @@ Freigabeordner erstellen:
 - dynamische Zuweisung von IP-Adresse, Gateway, Subnetzmaske, DNS
 - "automatische Zuordnung" - Client wird für Netzwerk konfiguriert, Einstellungen werden gespeichert
 - "dynamische Zuordnung" - automatische Konfiguration, aber läuft nach Lease-Zeit ab
+
+## MQTT
+
+- Übertragung von Daten mit geringer Bandbreite und instabiler Verbindung
+- integriertes QoS
+- serverseitig session-orientiert
+- so wenig Metadaten auf Clients wie möglich
+- datenagnostisch
+- ereignisgesteuert: Publish/Subscribe-Modell
+  - Publish von Clients auf Broker mit best. "Topic" zum Senden
+  - Subscribe von Clients zum Broker mit best. "Topic" zum Empfangen
+- Broker --> "Postfiliale"
+  - nimmt Nachrichten an, verteilt sie an Empfänger, entweder sofort oder wenn Empfänger verfügbar
+  - Broker-Redundanz: Einsatz mehrerer Broker möglich
+- Clients (Publisher) nehmen ereignisgesteuert Kontakt zu Broker auf
+- Clients können gleichzeitig Subscriber und Publisher sein
+- ordnerartige Topic-Struktur zum Ordnen von Messages: ``labor/exp1/temp/sensor1``
+  - müssen mind. 1 Zeichen lang sein
+  - dürfen Leerzeichen enthalten
+  - case-sensitiv
+  - hierarchische Ordnung
+  - oberste Struktur --> ohne führendes `/`
+  - single-level-wildcard (z.B. für Subscribers): `+`
+  - multi-level-wildcard: `*` --> darf nur am Ende stehen
+- verschiedene QoS-Level:
+  - 0: Nachrichten "at most once", keine garantierte Auslieferung, keine Empfangsbestätigung, keine Speicherung
+  - 1: Nachrichten "at least once", wird mind. 1x an Subscriber geliefert, Empfangsbestätigung via PUBACK-Paket, Mehrfachauslieferung möglich
+  - 2: Nachrichten "exactly once", genau einmal gesendet und empfangen, großer Overhead durch komplexeres Bestätigungssystem
+- verzögerte Nachrichten durch "Retained Messages"
+  - kein Verwerfen der Nachrichten bei setzen der "retained-Flag"
+  - Broker speichert **letzte Nachricht** eines Topics
+  - sendet Messages, wenn Client verfügbar
+- Session-Speicherung durch Persistente Sessions
+  - speichert Informationen zum Status der Sessions
+- Aktionen bei Verbindungsabbruch durch Last Will und Testament definierbar
+  - bei Abbruch des Publishers wird ggf. eine Nachricht übermittelt, es sei denn, der Client kehrt vor Timeout zurück bzw. meldet sich regulär ab
+- Authentifizierung und Sicherheit:
+  - Support für VPN und TLS
+  - Auth via Nutzer und Passwort (brokerseitig)
+  - Erhöhung der Sicherheit durch ``clientId`` (einzigartiger Identifier)
+  - Einschränkung von Topics, Handlungen und QoS für Nutzer möglich
+- Einsatzgebiete da wo...
+  - keine Client2Client-Kommunikation möglich
+  - kompakte Datenübertragung gefordert
+  - instabile oder langsame Verbindungen vorhanden
+- Installation:
+
+```bash
+sudo apt update
+sudo apt install mosquitto
+sudo apt install mosquitto-clients
+```
+
+- Nutzung:
+  - Subscriber: ``mosquitto_sub -h host -t topic # oder auch: topic/#``
+  - Publisher: ``mosquitto_pub -h host -t topic -m message``
+
+## Apache2
+
+<!--Kampfwebserver-->
+
+Apache2 vs. Ngin:
+
+- Apache
+  - älter, hat besseren Support und Verbreitung
+  - ist mit Modulen erweiterbar
+  - kann Interpretersprachen direkt verarbeiten
+  - kann pro Thread nur eine Anfrage bearbeiten
+  - unterstützt dezentrales Deployment via ``.htaccess`` Dateien
+- Nginx
+  - kann mehrere Anfragen pro Thread verarbeiten
+  - nur statische Inhalte können bereitgestellt werden
+  - erfordert z.B. für PHP einen externen Processor wie ``php-fpm``
+  - nur zentrale Konfiguration
+  - schneller
+
+Konfiguration:
+
+- ``a2dissite`` deaktiviert eine Seitenkonfiguration
+- ``a2ensite`` aktiviert eine Seitenkonfiguration
+- ``systemctl reload apache2`` lädt Konfiguration neu
+- ``a2enmod`` aktiviert ein Apache-Modul, z.B. ``ssl`` oder ``rewrite``
+- SSL erfordert einen neuen VirtualHost, der auf Port 443 hört
+
+in den Config-Dateien:
+
+- mehrere VirtualHosts möglich: ``<Virtualhost *:80> ... </VirtualHost>``
+- darin mehrere Felder, die die Seiteneigenschaften enthalten (s. Beispielkonfiguration und \[Vortragsnotizen\])
+
+Konfiguration einer Firewall:
+
+```bash
+sudo apt install ufw
+sudo ufw enable
+sudo ufw app list # gib Liste an Anwendungen aus
+sudo ufw app info 'Apache Full'
+sudo ufw allow 'Apache Full'
+```
+
+## Fail2Ban
+
+- Schutz vor Brute-Force-Attacken
+- Nutzung von "Jails" (Gefängnis) --> IP-Adressen werden bei (nicht-)Erfüllung in Sperrliste geschrieben
+- besteht aus Client und Server
+- geschrieben in Python
+
+Funktionsweise (grob):
+Fail2Ban überwacht zuvor angebene Logdateien nach einem definierten Filter (=Name des Service) auf Anmeldeversuche
+1. Anmeldeversuch
+2. Ergebnis des Versuch wird in Log geschrieben
+3. Nach best. erfolglosen Versuchen: IP-Adresse für best. Ports für best. Zeit sperren (intern: Firewall Regel wie z.B. iptables)
+4. optional Emailversand möglich
+5. Freigabe der IP-Adresse nach Ablauf der Sperrzeit
+6. erneute Versuche möglich

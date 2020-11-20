@@ -32,6 +32,11 @@ IT-Trends
     - [Cluster-Computing](#cluster-computing)
   - [GRID-Computing](#grid-computing)
   - [Warum (keine) Cloud](#warum-keine-cloud)
+  - [Anwendungsmodelle](#anwendungsmodelle)
+  - [IT-Aufbau](#it-aufbau)
+  - [AWS-Einführung](#aws-einf%C3%BChrung)
+    - [S3 - Simple Storage Service](#s3---simple-storage-service)
+    - [AWSCLI einrichten](#awscli-einrichten)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

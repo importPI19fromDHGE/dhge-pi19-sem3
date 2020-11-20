@@ -412,3 +412,70 @@ aws_session_token=
 region = us-east-1
 output = json
 ```
+### Kostenberechnung AWS 
+
+Unter https://calculator.s3.amazonaws.com/index.html können die monatlichen Kosten für die AWS Services berechnet werden
+
+### Virtuelle Rechner im AWS anlegen 
+
+1. Services > EC2 > Instanzen > Instanz starten
+2. Dann gewünschtes OS auswählen 
+3. Dann Konfiguration auswählen (für Educate ist es t2 micro)
+4. Click: Configure Instance Details 
+5. Details konfigurieren 
+6. Click: Add Storage
+7. Speicher konfigurieren 
+8. Click: Add Tags 
+9. Tags zum Wiederauffinden der Maschine hinzufügen 
+10. Click: Configure Security Group 
+11. Port- und Diensteinstellungen konfigurieren  
+12. Click: Review
+13. Click: Launch 
+14. Generate SSH Keypair
+15. SSH Key abspeichern 
+16. fertig. 
+
+**Per SSH verbinden** 
+
+Hier von Windows cmd aus: 
+
+```
+cd PfadFürSSHKeypair
+
+ssh -i Keypair.pem ubuntu@IPAdresseAusAWS
+```
+
+**Per RDP verbinden**
+
+Bei **Windows VMs** findet sich der Admin Zugang unter: 
+
+Services > EC2 > Instanzen
+
+Dann gewünschte Instanz anwählen und Click auf "Verbinden"
+
+Dort dann die RDP-Datei herunterladen
+
+Dann noch **Passwort abrufen** klicken um mit dem SSH-Keypair das Passwort zu entschlüsseln
+
+
+# Machine Learning - KI, neuronale Netzwerke, ... 
+
+<img src="./resources/Machine_Learning.png" alt="Übersicht Machine Learning" width=350>
+
+## Einsatzgebiete
+
+### Objekterkennung
+
+- bestimmte Objekte auf Bildern oder in Videos erkennen
+- Beispiele: 
+	- unsichere Inhalte erkennen 
+		- z.B. Pornographie, Gewalt, ... 
+	- Gesichtserkennung 
+		- Gesichtsmerkmale erkennen und zu Personen zuordnen 
+		- Lächeln und andere Emotionen erkennen 
+		- Alter und Geschlecht erkennen
+	- Texterkennung 
+		- Bild -> Text 
+		- Audio -> Text 
+		- Formularanalyse
+		

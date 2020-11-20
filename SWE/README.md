@@ -5,14 +5,15 @@ Systemanalyse
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Einführung / Überblick](#einf%C3%BChrung--%C3%BCberblick)
+- [Systemanalyse](#systemanalyse)
+- [Einführung / Überblick](#einführung--überblick)
   - [User Story Format](#user-story-format)
-  - [Was gehört alles zur Systemanalyse?](#was-geh%C3%B6rt-alles-zur-systemanalyse)
-- [Regeln für Software-Entwicklung](#regeln-f%C3%BCr-software-entwicklung)
+  - [Was gehört alles zur Systemanalyse?](#was-gehört-alles-zur-systemanalyse)
+- [Regeln für Software-Entwicklung](#regeln-für-software-entwicklung)
   - [(1) Klartext](#1-klartext)
     - [Wasserfallmodell](#wasserfallmodell)
     - [Agil](#agil)
-  - [(2) Gründliche Vertragsgestaltung](#2-gr%C3%BCndliche-vertragsgestaltung)
+  - [(2) Gründliche Vertragsgestaltung](#2-gründliche-vertragsgestaltung)
     - [Wasserfallmodell](#wasserfallmodell-1)
     - [Agil](#agil-1)
   - [(3) Wandelnde Anforderungen: Wie gehe ich damit um?](#3-wandelnde-anforderungen-wie-gehe-ich-damit-um)
@@ -21,10 +22,10 @@ Systemanalyse
   - [Vorgehensmodelle](#vorgehensmodelle)
     - [Phasenmodell](#phasenmodell)
     - [Iteriertes Phasenmodell](#iteriertes-phasenmodell)
-    - [Evolutionäre SW-Entwicklung](#evolution%C3%A4re-sw-entwicklung)
+    - [Evolutionäre SW-Entwicklung](#evolutionäre-sw-entwicklung)
     - [Spiralen Modell](#spiralen-modell)
     - [V-Modell](#v-modell)
-    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-auspr%C3%A4gung-des-v-modells-v-modell-xt)
+    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-ausprägung-des-v-modells-v-modell-xt)
     - [Extreme Programming (XP)](#extreme-programming-xp)
 - [SCRUM](#scrum)
   - [Empirische Prozess Kontrolle](#empirische-prozess-kontrolle)
@@ -40,6 +41,12 @@ Systemanalyse
     - [Sprint *Review* Event](#sprint-review-event)
     - [Sprint *Retro*spektive Event](#sprint-retrospektive-event)
   - [Policies](#policies)
+    - [Definition of Done](#definition-of-done)
+    - [DoR: Definition of Ready](#dor-definition-of-ready)
+  - [SCRUM-Manifest](#scrum-manifest)
+    - [Häufige / gern gemachte Fehler bezüglich des Manifests](#häufige--gern-gemachte-fehler-bezüglich-des-manifests)
+  - [Vor- und Nachteile von SCRUM](#vor--und-nachteile-von-scrum)
+- [SCRUM Derivate](#scrum-derivate)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -626,6 +633,7 @@ Ziel: eine realistische Aufteilung der Themen auf die Mitarbeiter
    (E) Schluss
 
 ## Policies
+### Definition of Done
 Hilfe um zu klären, wann eine Aufgabe erledigt ist (wann sie vom Review ins Done "geschoben" werden kann)
 
 **Aspekte aus dem Unternehmen:** bspw. die Aufgabe ist eigentlich fertig, aber die Abrechnung fehlt  
@@ -645,3 +653,50 @@ Das ganze nennt sich **Definition Of Done**. Ein Dokment vom Team.
 | Server Konfiguration | Server eingerichtet     | Ping-Zeit                 |
 |                      | DNS Eintrag erstellt    | Nameserver-Lookup Antwort |
 |                      | Port definiert          | Port-Range                |
+
+- DoD gehört dem Team!
+- Qualitätsanspruch
+
+### DoR: Definition of Ready
+ist eine Menge an Kriterien, mit denen ich entscheiden kann, wann ich eine Aufgabe bearbeiten kann (starten kann)
+
+| Kategorie                   | Beschreibung       | Messbare Kriterien                       |
+| --------------------------- | ------------------ | ---------------------------------------- |
+| Abhängigkeiten (thematisch) | Zeitpunkt richtig? | Vorgänger Aufgabe ist im Done seit 20.11 |
+|                             |                    | Abhängigkeitsliste ist leer              |
+| Resourcen                   |                    |                                          |
+| Formalien                   |                    |                                          |
+| Klarheit                    | keine Unklarheiten | Name 1, Name 2                           |
+|                             |                    | Rückfrageliste ist leer                  |
+
+
+## SCRUM-Manifest
+ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **Entscheidungshilfe** für ganzheitliche Transformationen (agile Prozesse, Geschäftsarchitekturen, liquide Netzwerkstrukturen, ...) gegenüber dem Klammern an alten Strukturen.
+
+- **Individuen** stehen ***über*** den **Tools und Prozessen**
+- Das **Produkt** steht ***über*** der **Dokumentation**
+- **Zusammenarbeit** steht ***über*** **Vertragsverhandlungen**
+- **Änderungen** stehen ***über*** dem **Plan**
+
+### Häufige / gern gemachte Fehler bezüglich des Manifests
+- als Anleitung betrachtet, statt es als Manifest "zu leben"
+- es steht nicht "statt" sondern "über" in den Rubriken
+- zu viele Prozessoptimierungen anstelle alte Silostrukturen aufzubrechen (und um den Menschen sich zu kümmern)
+- "Die Landkarte ist nicht das Gebiet": Strategien wesentlicher als die Umsetzung => Probleme
+- man brauch **angeblich** keinen Plan
+
+## Vor- und Nachteile von SCRUM
+
+| Vorteile                                                   | Nachteile                             |
+| ---------------------------------------------------------- | ------------------------------------- |
+| Manifest übersichtlich -> gut ins Team integrierbar        |                                       |
+| Anpassungsfähigkeit                                        | Schulungsaufwand                      |
+| integrierte Verbesserung                                   |                                       |
+| Team-Gedanke                                               |                                       |
+| Eigenverantwortung des Teams -> Entlastung des Managements |                                       |
+| Schnelle Anforderungsänderungen sind möglich               |                                       |
+| Transparenz                                                |                                       |
+| Planbarkeit bei eingespieltem Team                         | Planbarkeit erst nach `i` Iterationen |
+| weniger Schulden für die Zukunft                           | hoher Zeitaufwand für Meetings        |
+
+# SCRUM Derivate

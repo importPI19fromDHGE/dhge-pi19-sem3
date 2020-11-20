@@ -227,6 +227,7 @@ Auch verwendetes Tool: Scapy
 ## Übersicht zu Ethernet
 
 - Ursprünglich für LAN-Kommunikation vorgesehen
+- Klassisch: Steuerung des Zugriffs auf den Kanal über CSMA/CD-Algorithmus (bei Punkt-zu-Punkt obsolet)
 - Seit den 1980iger Jahren verschiedene Varianten etabliert, die sich bzgl.
 Übertragungsraten, Kabeltypen und Leitungskodierung unterscheiden
 	- Datenraten von 10 Mbit/s bis 400 Gbit/s, ...
@@ -242,7 +243,8 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Präambel: Synchronisation zwischen Kommunikationspartnern
 - SFD: Start of Frame Delimiter (fest Bitfolge zur Identifikation des Frame-Anfangs)
 - Quell-/Zieladresse: global eindeutige 6-Byte-Adresse
-- Typ-Feld: maximal 1500 Bytes Nutzdaten (Header höherer Schichten + Daten)
+- Nutzdaten: maximal 1500 Bytes Nutzdaten (Header höherer Schichten + Daten)
+- Typ-Feld: Typ-Feld der nächsthöheren Netzwerkschicht (z.B. `0x0800` für IPv4) - alternativ Längenfeld
 - Padding: Gewährleistet Minimalgröße von 64 Byte
 - CRC-Checksum: 32-Bit-Prüfsumme über das Frame (von Zieladresse bis Padding-Feld)
 
@@ -258,7 +260,6 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Speicherung von Adressen in Source-Address-Table (SAT)
 - **Cut-Through Switches:** Nach Analyse der MAC-Adresse sofortiges Durschalten zum entsprechenden Port (Weiterleitung ohne Zwischenspeicherung = geringe Latenz, kein Einfluss auf Datenrate)
 - **Store-and-Forward Switches:** Frame wird am Eingangsport und Ausgangsport gepuffert (größere Latenz, Möglichkeit zur Zwischenverarbeitung der Daten)
-<!--ToDo: unvollständig-->
 
 ### Architekturtypen
 
@@ -322,12 +323,12 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 
 **Aufbau** (4 Bytes)
 
-- **Tag Protocol Identifier:** fixer Hex-Wert
-- **Priority Code Point:**
-- **Drop Eligible Indicator:**
-- **VLAN Identifier:** ID des zugehörigen VLANs ($2^{12}-2$ = max. 40xx VLANs)
+![](resources/vlan-tag.png)
 
-<!--ToDo: hier muss noch was ergänzt werden-->
+- **Tag Protocol Identifier:** fixer Hex-Wert
+- **Priority Code Point:** Prioritätsinformationen
+- **Drop Eligible Indicator:** Identifiziert Frames, die bei Überlast verworfen werden können
+- **VLAN Identifier:** ID des zugehörigen VLANs ($2^{12}-2$ = max. 4096 VLANs)
 
 #### Inter-VLAN-Routing
 
@@ -338,7 +339,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 
 
 - **Ansatz 2:** Einsatz von virtuellen Interfaces zur Vermeidung des hohen Aufwandes für separate Schnittstellen
-<!-- Gerne Prüfungsfrage: Konfigurationsschritte -->
+<!-- Gerne Prüfungsfrage: Voraussetzungen/Konfigurationsschritte -->
 
 #### STP und VLAN
 
@@ -351,7 +352,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 
 - Ethernet-Frames werden in einen TRILL-Header gekapselt
 - Routing dieser Frames auf deren Basis auf L2 (nächster Hop wird durch umgebenen L2-Header angegeben)
-- Nutzung von Intermediate System to System zur Ermittlung von Pfaden <!--Hier noch was dranhängen-->
+- Nutzung von Intermediate System to System zur Ermittlung von Pfaden zwischen Rbridges
 - TRILL-Header besitzt HOP-Count-Feld um Routing-Schleifen zu vermeiden
 - Entfernung des THRILL-Headers vor Auslieferung an das Zielsystem
 
@@ -359,11 +360,13 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 
 - Stackfähige Switsches können miteinander zu einer Gruppe verbunden werden (einzelnes logisches Gerät, ansprechen über einzelne IP)
 - Vorteile: Skalierbarkeit (Anzahl der Ports einfach ), vereinfachte Netzwerkschnittstelle (Konfiguration von nur einem logischem Gerät), Vergrößerter Durchsatz (Stacking über Port mit hoher Datenrate)
-- Nachteil: <!--noch ergänzen-->
+- Nachteil: Platzbedarf, höherer Stromverbrauch mehrerer Geräte, Kopplung als neue Fehlerquelle
 
+<!--
 # 3. Vermittlungsschicht: Internet Protocol
 # 4. Transportschicht: User Datagram Protocol und Transmission Control Protocol
 # 5. Routing
 # 6. Anwendungsschicht
 # 7. Software-defined Networking
 # 8. Netztechnologien
+-->

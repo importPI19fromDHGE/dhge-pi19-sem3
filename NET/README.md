@@ -188,7 +188,8 @@ Im Großen und Ganzen ist "das Internet" paketvermittelt, Leitungsvermittlung ka
 Siehe Folie 15
 
 ### 1.2.7. Kopplungselemente
-<img src="./resources/Switches_Router.png" alt="Switches und Router" width=500>
+
+![Switches und Router](resources/L2-net.png)
 
 #### **Switches**
 - verbinden Netzsegmente (Broadcast-Domains) und leiten Pakete zwischen diesen weiter

@@ -1,4 +1,5 @@
-
+Rechnernetzkonzepte und -architekturen
+======================================
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -68,61 +69,48 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Rechnernetzkonzepte und -architekturen
+# Einleitung / Übersicht
 
-*16.11.2020*
+## Veranstaltungsziele
 
-# 1. Einleitung / Übersicht
-## 1.1 Veranstaltungsziele
-Wissensvermittlung zu:
+**Wissensvermittlung zu:**
+
 - Übersichtswissen über Rechnernetze
 - Komponenten und Protokolle im Internet
 - Planung von Netzwerken
 - Konfiguration von Netzwerken
 
-Prüfungsleistung:
+**Prüfungsleistung:**
+
 - wenn möglich schriftliche Prüfung
 - letzte Einheit ist für Prüfungsvorbereitung vorgesehen
 
-Hilfsmittel bei Prüfung:
+**Hilfsmittel bei Prüfung:**
+
 - wahrscheinlich 1 DIN A4 - Zettel handschriftlicher eigener Notizen
 
+## Inhaltlicher Teil
 
-## 1.2 Inhaltlicher Teil
-### 1.2.1 Kommunikationsszenario
+### Kommunikationsszenario
 
-<img src="./resources/NIC.png" alt="NIC_Abbildung" width=500>
+![Network Interface Card](resources/NIC.png)
 
-Bei Abruf einer Website durch Host A von Server A sind vielfältige Technologien zur Realisierung des Szenarios erforderlich.
+Bei Abruf einer Website durch `Host A` von `Server A` sind vielfältige Technologien zur Realisierung des Szenarios erforderlich.
 
-**Physische Verbindung**
-Auf welchem Weg gelangen die Daten von Host zu Server und zurück?
+- **Physische Verbindung:** Auf welchem Weg gelangen die Daten von Host zu Server und zurück?
+- **Weiterleitung von Daten über das Internet:** Protokolle, Header,... (Wie müssen diese Daten gestaltet sein, damit sie verwendet werden können?)
+- **Weiterleitung der Daten ans richtige Zielsystem:** Wie läuft das Routing ab?
 
-**Weiterleitung von Daten über das Internet**
-- Protokolle, Header, ...
-
-Wie müssen diese Daten gestaltet sein, damit sie verwendet werden können?
-
-**Weiterleitung der Daten ans richtige Zielsystem**
-Wie läuft das Routing ab?
-
-
-### 1.2.2 Standardisierung
+### Standardisierung
 
 - ISO
 - ITU
-- IEEE
-  - Fokus auf den "unteren" Schichten, nah an Physik
-  - Ethernet, Netzwerkkarten, ...
-- IETF
-  - Standardisierung der Protokolle
-  - HTTP, UDP, TCP, Mailprotokolle
-  - ist kein Berufsverband, sondern Freiwilligenorganisation
+- IEEE: Fokus auf den "unteren" Schichten, nah an Physik (Ethernet, Netzwerkkarten,...)
+- IETF: Standardisierung der Protokolle (HTTP, UDP, TCP, Mailprotokolle); Freiwilligenorganisation
 
 ### Internet Engineering Taskforce
 
-- Publikationsformat der IETF sind RfC's (Request for Comments)
-- RFC haben eindeutige, fortlaufend vergebene Nummern
+- Publikationsformat der IETF sind RfC's (Request for Comments) mit eindeutigen, fortlaufenden Nummern
 - so ist UDP z.B. durch RFC 768 spezifiziert
 - recht praxisnahe Beschreibung der Standards
 
@@ -138,119 +126,106 @@ IETF-Arbeitsgruppen sind einem von 7 Bereichen (Areas) zugeordnet:
 - General
 - Transport
 
+### Begrifflichkeiten
 
-### 1.2.3 Begrifflichkeiten
+#### Übertragungsmodi
 
-**Übertragungsmodi**
-
-|verbindungsorientiert| verbindunglos|
-|----|-----|
-|Information über Existenz einer Beziehung liegt vor|Information über Existenz einer Beziehung liegt **nicht** vor|
-|Beziehung zwischen Sender und Empfänger| Kommunikation kann ohne Verbindungsaufbau begonnen werden|
-|z.B. TCP| z.B. UDP|
+| verbindungsorientiert (z.B. TCP)                    | verbindunglos (z.B. UDP)                                      |
+| --------------------------------------------------- | ------------------------------------------------------------- |
+| Information über Existenz einer Beziehung liegt vor | Information über Existenz einer Beziehung liegt **nicht** vor |
+| Beziehung zwischen Sender und Empfänger             | Kommunikation kann ohne Verbindungsaufbau begonnen werden     |
 
 
-|leitungsvermittelt| paketvermittelt|
-|----|----|
-|Feste Durchschaltung zwischen Sender und Empfänger| Gemeinsame Nutzung von Leitungen|
-|Ermöglicht Zusicherung von Eigenschaften (Quality of Service- Parameter)|Daten werden in Pakete aufgeteilt, die (direkt oder indirekt) Informationen für die Zuordnung zu einem Empfänger beinhalten|
-|zu beachten: es müssen dann soviele Leitungen vorhanden sein, wie genutzt werden sollen|zu beachten: Überlastsituationen können auftreten|
+| leitungsvermittelt                                                                       | paketvermittelt                                                                                                             |
+| ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Feste Durchschaltung zwischen Sender und Empfänger                                       | Gemeinsame Nutzung von Leitungen                                                                                            |
+| Ermöglicht Zusicherung von Eigenschaften (Quality of Service-Parameter)                  | Daten werden in Pakete aufgeteilt, die (direkt oder indirekt) Informationen für die Zuordnung zu einem Empfänger beinhalten |
+| zu beachten: es müssen dann so viele Leitungen vorhanden sein, wie genutzt werden sollen | Überlastsituationen können auftreten                                                                                        |
 
+> Im Großen und Ganzen ist "das Internet" paketvermittelt, Leitungsvermittlung kann in Spezialfällen vorhanden sein
 
-Im Großen und Ganzen ist "das Internet" paketvermittelt, Leitungsvermittlung kann in Spezialfällen vorhanden sein
-
-
-### 1.2.4 ISO / OSI Referenzmodell  <!-- hochgradig Prüfungsrelevant-->
+#### ISO/OSI Referenzmodell  <!-- hochgradig Prüfungsrelevant-->
 
 <img src="./resources/ISO_OSI_Layer.png" alt="ISO/OSI Layer" width=500>
 
-#### 7 Anwendungsschicht
-- Durch anwendungsspezifische Protokolle verwendet
+- **Anwendungsschicht:** Durch anwendungsspezifische Protokolle verwendet
+- **Darstellungsschicht:** Umwandlung von Daten in unabhängiges Format
+- **Sitzungsschicht**
+- **Transportschicht:** fügt Zusatzinformationen in die Pakete ein, um die Verwendung auf Empfängerseite zu definieren
+- **Vermittlungsschicht:** Weiterleitung über lokale Netze hinaus / zwischen verschiedenen Netzen (unabhängig vom Typ der verwendeten Netze)
+- **Sicherungsschicht:** Erfassung einzelner Bitfolgen als Frames, Hinzufügen von Redundanzinformationen (z.B. CRC - Cyclic Redundancy Check)
+- **Bitübertragungsschicht:** einzelne Bits in physikalische Signale umwandeln und umgekehrt (Modulation und Demodulation)
 
-#### 6 Darstellungsschicht
-- Umwandlung von Daten in unabhängiges Format
+### TCP/IP-Modell
 
-#### 5 Sitzungsschicht
--
-#### 4 Transportschicht
-- fügt Zusatzinformationen in die Pakete ein, um die Verwendung auf Empfängerseite zu definieren
+Integriert das Referenzmodell unter Verwendung von vier Schichten:
 
+![TCP/IP als Ableitung des ISO/OSI Referenzmodells](resources/tcpip.png)
 
-#### 3 Vermittlungsschicht
-- Weiterleitung über lokale Netze hinaus / zwischen verschiedenen Netzen
-- unabhängig vom Typ der verwendeten Netze
+- **Anwendungsschicht:** Umfasst obere drei Schichten des OSI-Modells, weitere Unterteilung obliegt Anwendungsprotokoll
+- **Transportschicht:** Ende-zu-Ende-Kommunikation zwischen Anwendungen
+- **Internetschicht:** Ermöglicht Kommunikation zwischen Hosts in unterschiedlichen Netzwerken
+- **Link Layer:** Kommunikation mit direkten Nachbarn
 
-#### 2 Sicherungsschicht
-- einzelne Bitfolgen werden als Frames erfasst
-- Redundanzinformationen werden hinzugefügt um Fehlererkennung und -korrekturen (auch auf Empfängerseite) zu ermöglichen (z.B. Paritätsbits)
--  Beispielverfahren: CRC (Cyclic Redundancy Check)
+![Aufbau des TCP/IP-Headers](resources/tcpip-header.png)
 
-
-#### 1 Bitübertragungsschicht
-- einzelne Bits in physikalische Signale umwandeln und umgekehrt
-- Modulation und Demodulation
-
-### 1.2.5 TCP / IP-Modell
-
- Integriert das Referenzmodell, verwendet dazu 4 Schichten.
- Siehe dazu Folie 14.
-
-### 1.2.6 Protokoll-Header
-
-Siehe Folie 15
-
-### 1.2.7. Kopplungselemente
+### Kopplungselemente
 
 ![Switches und Router](resources/L2-net.png)
 
-#### **Switches**
-- verbinden Netzsegmente (Broadcast-Domains) und leiten Pakete zwischen diesen weiter
-- sind Layer 2 - Kopplungselemente
-- Netzwerkkarten im gleichen Netzsegment können sich gegenseitig direkt addressieren (per MAC-Adresse)
-- speichern intern eine Zuordnung zwischen Ausgangsports und MAC-Adressen
-- Alternative Namen: Bridge, L2-Switch
+**Switches (auch: Bridge, L2-Switch)**
 
-#### **Router**
+- Layer-2-Kopplungselement: verbinden Netzsegmente (Broadcast-Domains) und leiten Pakete zwischen diesen weiter
+- Netzwerkkarten im gleichen Netzsegment können sich gegenseitig direkt adressieren (per MAC-Adresse)
+- speichern intern eine Zuordnung zwischen Ausgangsports und MAC-Adressen
+
+**Router (auch: Layer-3-Switch)**
 
 - leiten Pakete zwischen unterschiedlichen Netzen weiter
 - bei Weiterleitungsentscheidung wird IP-Adresse ausgewertet (Lookup in Routing-Tabelle)
-- Alternativ auch: Layer-3-Switch
 
-#### **Weitere Kopplungselemente**
+**Weitere Kopplungselemente**
 
-- Hub, Repeater, Application-Layer-Gateway
+- Hub, Repeater, Application-Layer-Gateway, ...
 
-**Kleiner Einschub, nicht komplett:**
-```sh
-ip addr show
 
-ip neigh
-# zeigt Nachbarn in ARP-Tabelle an
-# IPv4, IPv6 und MAC-Adresse
+### Topologien
 
-ip r
+Unterscheidung zwischen physikalischer und logischer Topologie:
 
-ip route
-```
+- Physikalisch Topologie: tatsächlich vorhandenen Netzwerkkomponenten und ihrer Verbindungen
+- Logisch Topologie: Kommunikationsbeziehungen und Struktur des Datenflusses
 
-### 1.2.8 Topologien
+![Schematische Darstellung verschiedener Topologien](resources/topologie.png)
 
-Unterscheidung zwischen physikalischer und logischer Topologie.
-Physikalisch dabei die tatsächlich vorhandenen (physischen) Netzwerkkomponenten und ihrer Verbindungen.
-Logisch dabei die Kommunikationsbeziehungen und der Struktur des Datenflusses.
+> SPF (single point of failure) im Netz? Wenn ja: Ausfallsicherheit gering
 
-Grafische Aufarbeitung versch. Topologien auf Folie 17
+### Medien/Verkabelung
 
-Zu beachten: Gibt es SPF (single point of failure) im Netz? Wenn ja: Ausfallsicherheit gering
+heute typischerweise zwischen Kopplungselementen und Hosts eingesetzt:
 
-**hier fehlen noch Dinge**
+**Twisted-Pair-Kabel**
+
+- Kabel mit verdrillten Adernpaaren (= Schutz gegen Störeinflüsse durch gegenseitiges Aufheben)
+- Unterscheidung in:
+	- Unshielded Twisted Pair (UTP): Ungeschirmt
+	- Shielded Twisted Pair (STP): Geflechtschirm
+	- Foiled Twisted Pair (FTP): Gesamtschirmung
+- Klassifizierung durch ISO-Kategorien (CAT 3, 5e, 6, 6A, 7,...)
+
+**Lichtwellenleiter**
+
+- Aus Glasfasern und Mantelung bestehende Lichtleiter
+- Kern/Modenfeld besitzt einen höheren Brechungsindex als Mantel -> Führung des Lichts durch Totalreflexion
+- Spezifikation durch Durchmesser([Kern$\oslash$]/[Mantel$\oslash$]); Weitere Kenngrößen: Wellenlänge, Dämpfung
+- Unterscheidung in Multimode LWL und Single-/Monomode LWL
 
 ### Tooling - Wireshark
 
 - nützliches Tool zur Darstellung von Kommunikationsvorgängen in Netzwerken
-- es ist eine Filterfunktionalität vorhanden um gezielt nach IP-Adressen, Protokollen, Ports,... zu suchen
-- dabei verwendete Bibliothek: `LIBPCAP`
-- auch verwendetes Tool: Scapy
+- Filterfunktionalität um gezielt nach IP-Adressen, Protokollen, Ports,... zu suchen
+- verwendete Bibliothek: `LIBPCAP`
+- weiteres Tool: `Scapy`
 
 # Netzzugangsschicht
 

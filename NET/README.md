@@ -52,6 +52,7 @@
     - [Address Resolution Protocol (ARP)](#address-resolution-protocol-arp)
       - [Einordnung](#einordnung)
       - [Protokolldetails](#protokolldetails)
+  - [ICMP](#icmp)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -459,3 +460,28 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 //TODO: Bild Folie 7
 
 //TODO: ausfüllen
+
+## ICMP
+
+- Internet Control Message Protocol dient der Kommunikation von Fehlern und Abfrage von Statusinformation in (fast immer) IP-basierten Netzwerken
+- ausgewählte Typen:
+  - 0: Echo Reply: Antwort auf Echo Request
+  - 3: Destination Unreachable: Ziel nicht erreichbar mit folgenden Codes:
+    - 0 - Net unreachable
+    - 3 - Port unreachable
+    - 4 - Fragmentation needed and Don't Fragmen (DF) was set
+  - 5: Redirect: siehe unten
+  - 9: Router Advertisement: dient automatischen Discovery von Routern
+  - 11: Time Exceeded: TTL-Feld aus IP-Datagramms abgelaufen
+  - 13: Timestamp: TODO
+- Aufbau:
+  - 8 Bit Typ (s.o.)
+  - 8 Bit Code (s.o.)
+  - 16 Bit Prüfsumme
+  - weitere Inhalte abhängig von Typ / Code
+
+Beispiel: ICMP-Redirect
+
+- wird von einem Gateway versendet, wenn es feststellt, dass ein Router im gleichen Netz liegt, sodass direkt mit diesem kommuniziert werden kann
+- bietet Angriffsfläche: kann verwendet werden, um kompromittierten Router in den Pfad zu zwingen
+- per Default in vielen Systemen deaktiviert

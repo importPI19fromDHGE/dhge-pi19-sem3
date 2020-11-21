@@ -48,6 +48,10 @@
   - [Internetprotokoll und Hilfsprotokolle](#internetprotokoll-und-hilfsprotokolle)
     - [IPv4-Header](#ipv4-header)
     - [Fragmentierung](#fragmentierung)
+    - [IPv4-Adressierung](#ipv4-adressierung)
+    - [Address Resolution Protocol (ARP)](#address-resolution-protocol-arp)
+      - [Einordnung](#einordnung)
+      - [Protokolldetails](#protokolldetails)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -431,4 +435,27 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
   - alle Pakete gleiche Identification Nummer  (zum Rekonstuieren des urspr. Paket)
   - Flags:
     - MF-Flag = 1 bei allen außer dem letzten Paket
-    - Fragment Offset: zählt Byteposition hoch
+    - Fragment Offset: zählt Byteposition hoch`
+
+### IPv4-Adressierung
+
+- Struktur: 0 bis n Bits Netzadresse, 32-n Bit Hostadresse (NIC-Adresse)
+- Notation: ``adresse/n`` --> Classless Inter Domain Routing Notation (CIDR)
+- Netzanteil ermöglicht Ausbildung einer hierarch. Struktur, skalierbar
+- Einteilung von IPv4-Adressen in öff. Adressen (innerhalb des Intenets eindeutig, durch zentrale Instanz vergeben) und private Adressen (innerh. eines lokalen Netzes eindeutig)
+- insbesondere durch IPv4-Adress-Knappheit werden öff. Adressen durch Network Address Translation (NAT) auf mehrere Hosts abgebildet
+
+### Address Resolution Protocol (ARP)
+
+#### Einordnung
+
+- ARP ermittelt zu IP-Adressen und weiteren Adressfamilien die zugehörigen Hardwareadressen
+- Request-Reply-Protokoll
+- ermittelte Zuordnung für best. Zeitraum in ARP-Tabelle gespeichert
+- wenn Ziel-NIC außerhalb des eigenen Netzwerks: Ermittlung der MAC-Adresse des **Gateways**, nichts dahinter
+
+#### Protokolldetails
+
+//TODO: Bild Folie 7
+
+//TODO: ausfüllen

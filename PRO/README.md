@@ -37,6 +37,11 @@ IT-Trends
   - [AWS-Einführung](#aws-einf%C3%BChrung)
     - [S3 - Simple Storage Service](#s3---simple-storage-service)
     - [AWSCLI einrichten](#awscli-einrichten)
+    - [Kostenberechnung AWS](#kostenberechnung-aws)
+    - [Virtuelle Rechner im AWS anlegen](#virtuelle-rechner-im-aws-anlegen)
+- [Machine Learning - KI, neuronale Netzwerke, ...](#machine-learning---ki-neuronale-netzwerke-)
+  - [Einsatzgebiete](#einsatzgebiete)
+    - [Objekterkennung](#objekterkennung)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

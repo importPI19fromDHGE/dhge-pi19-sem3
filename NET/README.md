@@ -5,7 +5,7 @@
 **Inhaltsverzeichnis**
 
 - [Rechnernetzkonzepte und -architekturen](#rechnernetzkonzepte-und--architekturen)
-- [1. Einleitung / Übersicht](#1-einleitung--%C3%BCbersicht)
+- [1. Einleitung / Übersicht](#1-einleitung--übersicht)
   - [1.1 Veranstaltungsziele](#11-veranstaltungsziele)
   - [1.2 Inhaltlicher Teil](#12-inhaltlicher-teil)
     - [1.2.1 Kommunikationsszenario](#121-kommunikationsszenario)
@@ -13,14 +13,14 @@
     - [Internet Engineering Taskforce](#internet-engineering-taskforce)
       - [Arbeitsgruppen  / IETF-Areas](#arbeitsgruppen---ietf-areas)
     - [1.2.3 Begrifflichkeiten](#123-begrifflichkeiten)
-    - [1.2.4 ISO / OSI Referenzmodell  <!-- hochgradig Prüfungsrelevant-->](#124-iso--osi-referenzmodell-----hochgradig-pr%C3%BCfungsrelevant--)
+    - [1.2.4 ISO / OSI Referenzmodell](#124-iso--osi-referenzmodell)
       - [7 Anwendungsschicht](#7-anwendungsschicht)
       - [6 Darstellungsschicht](#6-darstellungsschicht)
       - [5 Sitzungsschicht](#5-sitzungsschicht)
       - [4 Transportschicht](#4-transportschicht)
       - [3 Vermittlungsschicht](#3-vermittlungsschicht)
       - [2 Sicherungsschicht](#2-sicherungsschicht)
-      - [1 Bitübertragungsschicht](#1-bit%C3%BCbertragungsschicht)
+      - [1 Bitübertragungsschicht](#1-bitübertragungsschicht)
     - [1.2.5 TCP / IP-Modell](#125-tcp--ip-modell)
     - [1.2.6 Protokoll-Header](#126-protokoll-header)
     - [1.2.7. Kopplungselemente](#127-kopplungselemente)
@@ -30,13 +30,13 @@
     - [1.2.8 Topologien](#128-topologien)
     - [Tooling - Wireshark](#tooling---wireshark)
 - [Netzzugangsschicht](#netzzugangsschicht)
-  - [Übersicht zu Ethernet](#%C3%BCbersicht-zu-ethernet)
+  - [Übersicht zu Ethernet](#übersicht-zu-ethernet)
   - [Aufbau eines Ethernet Frames](#aufbau-eines-ethernet-frames)
   - [Namen von Netzwerkschnittstellen unter Linux](#namen-von-netzwerkschnittstellen-unter-linux)
-  - [Switches](#switches)
+  - [Switches](#switches-1)
     - [Architekturtypen](#architekturtypen)
-    - [Kenngrößen](#kenngr%C3%B6%C3%9Fen)
-    - [Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->](#spanning-tree-protocol---wahrscheinliche-pr%C3%BCfungsaufgabe--)
+    - [Kenngrößen](#kenngrößen)
+    - [Spanning-Tree-Protocol](#spanning-tree-protocol)
       - [STP - Port Fast/Fast Link](#stp---port-fastfast-link)
       - [Rapid Spanning Tree Protocol](#rapid-spanning-tree-protocol)
     - [Virtuelles LAN](#virtuelles-lan)
@@ -53,7 +53,7 @@
       - [Einordnung](#einordnung)
       - [Protokolldetails](#protokolldetails)
   - [ICMP](#icmp)
-    - [Praxisübung](#praxis%C3%BCbung)
+    - [Praxisübung](#praxisübung)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -499,7 +499,9 @@ Beispiel: ICMP-Redirect
 
 ### Praxisübung
 
-Verknüpfung von 3 Network Namespaces
+Verknüpfung von 3 Network Namespaces:
+
+![Bild der Aufgabenstellung](resources/uebungsaufgabe.png)
 
 - 3 Namespaces erstellen:
 

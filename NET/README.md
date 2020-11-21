@@ -396,6 +396,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Ermöglicht Adressierung von "Knoten"
 - zwei Versionen verbreitet: IPv4 und IPv6
 - IP-Paket wird trotz Hops nicht verändert (Ausnahme: NAT)
+- Bezeichnung Hostadresse eigentlich falsch -> Schnittstellenadresse 
 - eine IP-Adresse ist nicht einem Host zugewiesen, sondern einem NIC
   - Workaround: Loopback-Interface, zur Adressierung von Localhost
 - *casts:
@@ -411,7 +412,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Version: 4 Bits, Protokollversion
 - Internet Header Length (IHL): 4 Bits, Länge des Headers in 32 Bit Wörtern, Standardwert 5 --> 5 * 32 Bit = 20 Byte
 - Differenciated Service Code Point (DSCP): 6 Bit, Prioritätsklassen
-- Explicit Congestion Notification (ECN): 2 Bit, Meldung von Überlast, von Layer 4 gesteuert, wird damit rückläufig zu sender kommuniziert
+- Explicit Congestion Notification (ECN): 2 Bit, Meldung von Überlast, von Layer 4 gesteuert, wird damit rückläufig zu Sender kommuniziert "Bitte sende langsamer"
 - Total Length: 16 Bit, Gesamtlänge des Datagramms / Fragments in Bytes
 - Identification: 16 Bit, ID des Datagramms
 - Flags: 3 Bit:
@@ -439,7 +440,17 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
   - alle Pakete gleiche Identification Nummer  (zum Rekonstuieren des urspr. Paket)
   - Flags:
     - MF-Flag = 1 bei allen außer dem letzten Paket
-    - Fragment Offset: zählt Byteposition hoch`
+    - Fragment Offset: zählt Byteposition hoch
+- Wo wird fragmentiert?
+  - bei IPv4 kann bei jedem Hop auf der Route fragmentiert werden, Performanceverlust 
+  - bei IPv6 wird beim Sender fragmentiert
+- Pass-MTU: bezeichnet geringste MTU aller Hops auf der Route 
+
+```
+# MTU anzeigen lassen 
+
+ip addr show
+```
 
 ### IPv4-Adressierung
 
@@ -466,6 +477,12 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 
 ![Bild ARP Beispiel](resources/ip-arp-bsp.png)
 
+```
+# Für Anzeige von ARP-Anfragen (Beispiel)
+
+tcp dump -i any -p arp
+```
+
 #### Protokolldetails
 
 //TODO: Bild Folie 7
@@ -491,6 +508,11 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
   - 16 Bit Prüfsumme
   - weitere Inhalte abhängig von Typ / Code
 
+Möglichkeiten: 
+- mehr Funktionen als "nur" Ping
+- Fehlermeldungen können im Netzwerk propagiert werden 
+- Zeitstempel können zur Lastermittlung genutzt werden
+
 Beispiel: ICMP-Redirect
 
 - wird von einem Gateway versendet, wenn es feststellt, dass ein Router im gleichen Netz liegt, sodass direkt mit diesem kommuniziert werden kann
@@ -498,6 +520,15 @@ Beispiel: ICMP-Redirect
 - per Default in vielen Systemen deaktiviert
 
 ### Praxisübung
+
+Exkurs Namespaces: 
+
+- Namespaces bieten Möglichkeit, separate Netzwerk-Stacks lokal zu schaffen 
+- Zu Beginn leere und frei konfigurierbare Stacks 
+- es können komplette lokale Netzwerke innerhalb eines Kernels geschaffen werden 
+- wird zum Beispiel für Docker genutzt
+  - dort aber auch noch separate Namespaces für PIDs 
+  
 
 Verknüpfung von 3 Network Namespaces:
 

@@ -302,8 +302,7 @@ Hier wird immer wieder in eine Phase "zurück gesprungen", falls etwas nicht pas
 >
 > -> Zeit + Kosten + Leistung können nicht gleichzeitig verbessert werden
 
-Analyse -> High-Level-Design -> Low-Level-Design -> Implementierung -> Unit Tests -> Integrations-Tests -> Systemtests -> Akzeptanz-Tests
-<!-- Hier wäre eine visuelle Darstellung ganz gut -->
+![Schematische Darstellung des V-Modells](resources/v-modell.png)
 
 | Vorteile                                              | Nachteile                                                                                                         |
 | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
@@ -516,6 +515,7 @@ Angenommen ... <Vork.> wenn ... <Aktion> dann ... <Ergebnis>
 - muss Backlog Prioritäten setzen
 
 **Aus praktischer Erfahrung ist der PO:**
+
 - ein Full-Time Job  
 - eine Authoritätsperson  
 - genau eine Person
@@ -540,18 +540,12 @@ Angenommen ... <Vork.> wenn ... <Aktion> dann ... <Ergebnis>
 
 ## Vorgehen in SCRUM
 
-1. Vision -> Produktbacklog  
-   im Produktbacklog ist die oberste Aufgabe die wichtigste
-
-2. Sprint-Planning  
-   Das **Team** erstellt ein Sprint-Backlog aus dem Produkt-Backlog
-   - ein Sprint-Ziel muss definiert werden
-
+1. Vision -> Produktbacklog: im Produktbacklog ist die oberste Aufgabe die Wichtigste
+2. Sprint-Planning: **Team** erstellt ein Sprint-Backlog aus dem Produkt-Backlog (Definition eines Sprint-Ziels)
 3. Bearbeitung des Sprints (meist 14 Tage)
-   - Daily Meeting (jeder im Team erzählt ganz kurz, woran er gerade arbeitet)
-   - am Ende des Sprints: Sprint Review (bezieht sich konkret auf den Inhalt des Sprints)
-   - Retrospektive (bezieht sich auf den Prozess des Sprints, realisierbar durch KSSP)
-   - zurück zu 2.
+	- Daily Meeting (jeder im Team erzählt ganz kurz, woran er gerade arbeitet)
+	- am Ende des Sprints: Sprint Review (bezieht sich konkret auf den Inhalt des Sprints)
+	- Retrospektive (bezieht sich auf den Prozess des Sprints, realisierbar durch KSSP) -> zurück zu 2.
 
 > Die 4 festen Events sind nicht abwählbar (vs. Aussage: beim SCRUM kann vieles an Bedürfnisse vom Team angepasst werden)
 
@@ -636,7 +630,8 @@ Hilfe um zu klären, wann eine Aufgabe erledigt ist (wann sie vom Review ins Don
 
 Das ganze nennt sich **Definition Of Done**. Ein Dokment vom Team.
 
-**Aufbau eines Definition Of Done**  
+**Aufbau eines Definition of Done**
+
 | Kategorien           | Aufgaben / Beschreibung | leicht messbare Kriterien |
 | -------------------- | ----------------------- | ------------------------- |
 | Tests                | Software wurde getestet | Abdeckungsgrad            |
@@ -694,6 +689,7 @@ ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **E
 | Transparenz                                                |                                       |
 | Planbarkeit bei eingespieltem Team                         | Planbarkeit erst nach `i` Iterationen |
 | weniger Schulden für die Zukunft                           | hoher Zeitaufwand für Meetings        |
+
 ## SCRUM-Ban als SCRUM Derivat
 
 **Kanban**

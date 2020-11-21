@@ -40,6 +40,12 @@ Systemanalyse
     - [Sprint *Review* Event](#sprint-review-event)
     - [Sprint *Retro*spektive Event](#sprint-retrospektive-event)
   - [Policies](#policies)
+    - [Definition of Done](#definition-of-done)
+    - [DoR: Definition of Ready](#dor-definition-of-ready)
+  - [SCRUM-Manifest](#scrum-manifest)
+    - [Häufige / gern gemachte Fehler bezüglich des Manifests](#h%C3%A4ufige--gern-gemachte-fehler-bez%C3%BCglich-des-manifests)
+  - [Vor- und Nachteile von SCRUM](#vor--und-nachteile-von-scrum)
+- [SCRUM Derivate](#scrum-derivate)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -626,6 +632,7 @@ Ziel: eine realistische Aufteilung der Themen auf die Mitarbeiter
    (E) Schluss
 
 ## Policies
+### Definition of Done
 Hilfe um zu klären, wann eine Aufgabe erledigt ist (wann sie vom Review ins Done "geschoben" werden kann)
 
 **Aspekte aus dem Unternehmen:** bspw. die Aufgabe ist eigentlich fertig, aber die Abrechnung fehlt  
@@ -645,3 +652,50 @@ Das ganze nennt sich **Definition Of Done**. Ein Dokment vom Team.
 | Server Konfiguration | Server eingerichtet     | Ping-Zeit                 |
 |                      | DNS Eintrag erstellt    | Nameserver-Lookup Antwort |
 |                      | Port definiert          | Port-Range                |
+
+- DoD gehört dem Team!
+- Qualitätsanspruch
+
+### DoR: Definition of Ready
+ist eine Menge an Kriterien, mit denen ich entscheiden kann, wann ich eine Aufgabe bearbeiten kann (starten kann)
+
+| Kategorie                   | Beschreibung       | Messbare Kriterien                       |
+| --------------------------- | ------------------ | ---------------------------------------- |
+| Abhängigkeiten (thematisch) | Zeitpunkt richtig? | Vorgänger Aufgabe ist im Done seit 20.11 |
+|                             |                    | Abhängigkeitsliste ist leer              |
+| Resourcen                   |                    |                                          |
+| Formalien                   |                    |                                          |
+| Klarheit                    | keine Unklarheiten | Name 1, Name 2                           |
+|                             |                    | Rückfrageliste ist leer                  |
+
+
+## SCRUM-Manifest
+ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **Entscheidungshilfe** für ganzheitliche Transformationen (agile Prozesse, Geschäftsarchitekturen, liquide Netzwerkstrukturen, ...) gegenüber dem Klammern an alten Strukturen.
+
+- **Individuen** stehen ***über*** den **Tools und Prozessen**
+- Das **Produkt** steht ***über*** der **Dokumentation**
+- **Zusammenarbeit** steht ***über*** **Vertragsverhandlungen**
+- **Änderungen** stehen ***über*** dem **Plan**
+
+### Häufige / gern gemachte Fehler bezüglich des Manifests
+- als Anleitung betrachtet, statt es als Manifest "zu leben"
+- es steht nicht "statt" sondern "über" in den Rubriken
+- zu viele Prozessoptimierungen anstelle alte Silostrukturen aufzubrechen (und um den Menschen sich zu kümmern)
+- "Die Landkarte ist nicht das Gebiet": Strategien wesentlicher als die Umsetzung => Probleme
+- man brauch **angeblich** keinen Plan
+
+## Vor- und Nachteile von SCRUM
+
+| Vorteile                                                   | Nachteile                             |
+| ---------------------------------------------------------- | ------------------------------------- |
+| Manifest übersichtlich -> gut ins Team integrierbar        |                                       |
+| Anpassungsfähigkeit                                        | Schulungsaufwand                      |
+| integrierte Verbesserung                                   |                                       |
+| Team-Gedanke                                               |                                       |
+| Eigenverantwortung des Teams -> Entlastung des Managements |                                       |
+| Schnelle Anforderungsänderungen sind möglich               |                                       |
+| Transparenz                                                |                                       |
+| Planbarkeit bei eingespieltem Team                         | Planbarkeit erst nach `i` Iterationen |
+| weniger Schulden für die Zukunft                           | hoher Zeitaufwand für Meetings        |
+
+# SCRUM Derivate

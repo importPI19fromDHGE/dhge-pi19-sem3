@@ -46,6 +46,7 @@
     - [Transparent Interconnection of lots of links (TRILL)](#transparent-interconnection-of-lots-of-links-trill)
     - [Stacking](#stacking)
   - [Internetprotokoll und Hilfsprotokolle](#internetprotokoll-und-hilfsprotokolle)
+    - [IPv4-Header](#ipv4-header)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -395,4 +396,25 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
   - Broadcast: Senden an alle NICs
   - Multicast: Senden an Teilmenge
   - Anycast: Senden an alle NICs, aber nur einer antwortet
-- 
+
+### IPv4-Header
+
+//TODO Bild kopieren
+
+- Version: 4 Bits, Protokollversion
+- Internet Header Length (IHL): 4 Bits, Länge des Headers in 32 Bit Wörtern, Standardwert 5 --> 5 * 32 Bit = 20 Byte
+- Differenciated Service Code Point (DSCP): 6 Bit, Prioritätsklassen
+- Explicit Congestion Notification (ECN): 2 Bit, Meldung von Überlast, von Layer 4 gesteuert, wird damit rückläufig zu sender kommuniziert
+- Total Length: 16 Bit, Gesamtlänge des Datagramms / Fragments in Bytes
+- Identification: 16 Bit, ID des Datagramms
+- Flags: 3 Bit:
+  - Bit 0: reserviert (RFC3514)
+  - Bit 1: Don't Fragmen (DF)
+  - Bit 2: More Fragments (MF)
+- Fragment Offset: 13 Bit, Offset in 8 Byte Blöcken, die Daten innerhalb des urspr. Paket hatten
+- Time to Live (TTL): 8 Bit, Lebenszeit des Pakets, in Praxis maximale Anzahl der Hops
+- Protocol: 8 Bit, im Datenbereich verwendetes Protokoll, Bsp. in Linux: ``/etc/protocols``
+- Header Checksum: Prüfsumme für (nur) IP-Header
+- Options: Zusatzdaten für bspw. Routing oder Zeitstempel
+  - Bsp Source Routing: Sender gibt exakte Route an; ermöglicht Angriffsfläche für DoS-Attacken
+

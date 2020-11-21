@@ -53,6 +53,7 @@
       - [Einordnung](#einordnung)
       - [Protokolldetails](#protokolldetails)
   - [ICMP](#icmp)
+    - [Praxisübung](#praxisübung)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -485,3 +486,56 @@ Beispiel: ICMP-Redirect
 - wird von einem Gateway versendet, wenn es feststellt, dass ein Router im gleichen Netz liegt, sodass direkt mit diesem kommuniziert werden kann
 - bietet Angriffsfläche: kann verwendet werden, um kompromittierten Router in den Pfad zu zwingen
 - per Default in vielen Systemen deaktiviert
+
+### Praxisübung
+
+Verknüpfung von 3 Network Namespaces
+
+- 3 Namespaces erstellen:
+
+```bash
+sudo ip netns add ns1
+sudo ip netns add ns2
+sudo ip netns add ns3
+
+sudo ip netns list # zur Prüfung
+```
+
+- virtuelle Ethernet-Interfaces erstellen:
+
+```bash
+sudo ip link add veth1 netns ns1 type veth peer name veth2 netns ns2 # erstellt veth1 in ns1 und veth2 in ns2
+sudo ip link add veth3 netns ns2 type veth peer name veth4 netns ns3
+```
+
+- Namespace betreten und Interface aktivieren:
+
+```bash
+sudo ip netns exec ns1 /bin/bash
+ip link set veth1 up
+```
+
+- diesen Schritt für alle Interfaces wiederholen
+- allen VEth-Interfaces die gewünschten Adressen vergeben: (für alle Interfaces wiederholen)
+
+```bash
+sudo ip netns exec ns1 /bin/bash
+sudo ip addr add 192.168.42.5/24 dev veth1
+```
+
+- Routen zwischen den Namespaces anlegen:
+
+```bash
+sudo ip netns exec ns1 /bin/bash
+ip route add 192.168.23.0/24 via 192.168.42.254
+```
+
+- diesen Schritt für alle Namespaces / gewünschten Routen wiederholen
+- Kernel anweisen, für das Router-Namespace das Routing zu aktivieren:
+
+```bash
+sudo ip netns exec ns2 /bin/bash
+echo 1 > /proc/sys/net/ipv4/ip_forward
+```
+
+- mit bspw. Ping überprüfen, ob Verbindung funktioniert

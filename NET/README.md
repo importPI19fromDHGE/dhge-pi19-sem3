@@ -5,7 +5,7 @@
 **Inhaltsverzeichnis**
 
 - [Rechnernetzkonzepte und -architekturen](#rechnernetzkonzepte-und--architekturen)
-- [1. Einleitung / Übersicht](#1-einleitung--%C3%BCbersicht)
+- [1. Einleitung / Übersicht](#1-einleitung--übersicht)
   - [1.1 Veranstaltungsziele](#11-veranstaltungsziele)
   - [1.2 Inhaltlicher Teil](#12-inhaltlicher-teil)
     - [1.2.1 Kommunikationsszenario](#121-kommunikationsszenario)
@@ -13,14 +13,14 @@
     - [Internet Engineering Taskforce](#internet-engineering-taskforce)
       - [Arbeitsgruppen  / IETF-Areas](#arbeitsgruppen---ietf-areas)
     - [1.2.3 Begrifflichkeiten](#123-begrifflichkeiten)
-    - [1.2.4 ISO / OSI Referenzmodell  - Prüfungsrelevant](#124-iso--osi-referenzmodell----pr%C3%BCfungsrelevant)
+    - [1.2.4 ISO / OSI Referenzmodell](#124-iso--osi-referenzmodell)
       - [7 Anwendungsschicht](#7-anwendungsschicht)
       - [6 Darstellungsschicht](#6-darstellungsschicht)
       - [5 Sitzungsschicht](#5-sitzungsschicht)
       - [4 Transportschicht](#4-transportschicht)
       - [3 Vermittlungsschicht](#3-vermittlungsschicht)
       - [2 Sicherungsschicht](#2-sicherungsschicht)
-      - [1 Bitübertragungsschicht](#1-bit%C3%BCbertragungsschicht)
+      - [1 Bitübertragungsschicht](#1-bitübertragungsschicht)
     - [1.2.5 TCP / IP-Modell](#125-tcp--ip-modell)
     - [1.2.6 Protokoll-Header](#126-protokoll-header)
     - [1.2.7. Kopplungselemente](#127-kopplungselemente)
@@ -29,13 +29,23 @@
       - [**Weitere Kopplungselemente**](#weitere-kopplungselemente)
     - [1.2.8 Topologien](#128-topologien)
     - [Tooling - Wireshark](#tooling---wireshark)
-- [2. Netzzugangsschicht: Ethernet / Switching](#2-netzzugangsschicht-ethernet--switching)
-- [3. Vermittlungsschicht: Internet Protocol](#3-vermittlungsschicht-internet-protocol)
-- [4. Transportschicht: User Datagram Protocol und Transmission Control Protocol](#4-transportschicht-user-datagram-protocol-und-transmission-control-protocol)
-- [5. Routing](#5-routing)
-- [6. Anwendungsschicht](#6-anwendungsschicht)
-- [7. Software-defined Networking](#7-software-defined-networking)
-- [8. Netztechnologien](#8-netztechnologien)
+- [Netzzugangsschicht](#netzzugangsschicht)
+  - [Übersicht zu Ethernet](#übersicht-zu-ethernet)
+  - [Aufbau eines Ethernet Frames](#aufbau-eines-ethernet-frames)
+  - [Namen von Netzwerkschnittstellen unter Linux](#namen-von-netzwerkschnittstellen-unter-linux)
+  - [Switches](#switches-1)
+    - [Architekturtypen](#architekturtypen)
+    - [Kenngrößen](#kenngrößen)
+    - [Spanning-Tree-Protocol](#spanning-tree-protocol)
+      - [STP - Port Fast/Fast Link](#stp---port-fastfast-link)
+      - [Rapid Spanning Tree Protocol](#rapid-spanning-tree-protocol)
+    - [Virtuelles LAN](#virtuelles-lan)
+      - [Tag-basierte VLANs](#tag-basierte-vlans)
+      - [Inter-VLAN-Routing](#inter-vlan-routing)
+      - [STP und VLAN](#stp-und-vlan)
+    - [Transparent Interconnection of lots of links (TRILL)](#transparent-interconnection-of-lots-of-links-trill)
+    - [Stacking](#stacking)
+  - [Internetprotokoll und Hilfsprotokolle](#internetprotokoll-und-hilfsprotokolle)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -370,3 +380,19 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 # 7. Software-defined Networking
 # 8. Netztechnologien
 -->
+
+## Internetprotokoll und Hilfsprotokolle
+
+- Schicht 3; von Übertragungsmedium unabhängig
+- Overlay über L2, bildet davon unabhängiges Netz
+- Ermöglicht Adressierung von "Knoten"
+- zwei Versionen verbreitet: IPv4 und IPv6
+- IP-Paket wird trotz Hops nicht verändert (Ausnahme: NAT)
+- eine IP-Adresse ist nicht einem Host zugewiesen, sondern einem NIC
+  - Workaround: Loopback-Interface, zur Adressierung von Localhost
+- *casts:
+  - Unicast: Senden an exakt einen NIC
+  - Broadcast: Senden an alle NICs
+  - Multicast: Senden an Teilmenge
+  - Anycast: Senden an alle NICs, aber nur einer antwortet
+- 

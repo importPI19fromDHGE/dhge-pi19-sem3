@@ -47,6 +47,7 @@
     - [Stacking](#stacking)
   - [Internetprotokoll und Hilfsprotokolle](#internetprotokoll-und-hilfsprotokolle)
     - [IPv4-Header](#ipv4-header)
+    - [Fragmentierung](#fragmentierung)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -418,3 +419,16 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Options: Zusatzdaten für bspw. Routing oder Zeitstempel
   - Bsp Source Routing: Sender gibt exakte Route an; ermöglicht Angriffsfläche für DoS-Attacken
 
+### Fragmentierung
+
+- 1:1 Übersetzung von IP-Paket und ETH-Frame
+- Maximum Transmission Unit (MTU): Maximalgröße des ETH-Payloads
+  - ETH-Payload enthält auch IP-Header,... --> nicht tatsächliche Nutzdatengröße
+  - größer: weniger Overhead, anfälliger für Fehler, höherer Speicherbedarf in Netzwerkkomponenten
+  - kleiner: weniger Latenz, mehr Overhead
+- wenn IP-Paket größer als MTU: muss fragmentiert werden
+  - Ergebnis sind n vollwertige IP-Pakete inkl. Header
+  - alle Pakete gleiche Identification Nummer  (zum Rekonstuieren des urspr. Paket)
+  - Flags:
+    - MF-Flag = 1 bei allen außer dem letzten Paket
+    - Fragment Offset: zählt Byteposition hoch

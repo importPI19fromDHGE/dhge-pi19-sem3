@@ -406,7 +406,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 
 ### IPv4-Header
 
-//TODO Bild kopieren
+![Aufbau des IPv4-Headers](resources/ip-paket-aufbau.png)
 
 - Version: 4 Bits, Protokollversion
 - Internet Header Length (IHL): 4 Bits, Länge des Headers in 32 Bit Wörtern, Standardwert 5 --> 5 * 32 Bit = 20 Byte
@@ -427,6 +427,8 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 
 ### Fragmentierung
 
+![Bild von Fragmentierung](resources/ip-fragmentierung.png)
+
 - 1:1 Übersetzung von IP-Paket und ETH-Frame
 - Maximum Transmission Unit (MTU): Maximalgröße des ETH-Payloads
   - ETH-Payload enthält auch IP-Header,... --> nicht tatsächliche Nutzdatengröße
@@ -446,15 +448,23 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Netzanteil ermöglicht Ausbildung einer hierarch. Struktur, skalierbar
 - Einteilung von IPv4-Adressen in öff. Adressen (innerhalb des Intenets eindeutig, durch zentrale Instanz vergeben) und private Adressen (innerh. eines lokalen Netzes eindeutig)
 - insbesondere durch IPv4-Adress-Knappheit werden öff. Adressen durch Network Address Translation (NAT) auf mehrere Hosts abgebildet
+- Routing:
+
+![Bild eines Routers](resources/routing-bsp.png)
 
 ### Address Resolution Protocol (ARP)
 
 #### Einordnung
 
+![Ablauf von ARP](resources/ip-arp-ablauf.png)
+
 - ARP ermittelt zu IP-Adressen und weiteren Adressfamilien die zugehörigen Hardwareadressen
 - Request-Reply-Protokoll
 - ermittelte Zuordnung für best. Zeitraum in ARP-Tabelle gespeichert
 - wenn Ziel-NIC außerhalb des eigenen Netzwerks: Ermittlung der MAC-Adresse des **Gateways**, nichts dahinter
+  - siehe folgendes Bild:
+
+![Bild ARP Beispiel](resources/ip-arp-bsp.png)
 
 #### Protokolldetails
 

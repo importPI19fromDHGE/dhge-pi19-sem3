@@ -682,7 +682,7 @@ ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **E
 - es steht nicht "statt" sondern "über" in den Rubriken
 - zu viele Prozessoptimierungen anstelle alte Silostrukturen aufzubrechen (und um den Menschen sich zu kümmern)
 - "Die Landkarte ist nicht das Gebiet": Strategien wesentlicher als die Umsetzung => Probleme
-- man brauch **angeblich** keinen Plan
+- man braucht **angeblich** keinen Plan
 
 ## Vor- und Nachteile von SCRUM
 
@@ -698,4 +698,89 @@ ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **E
 | Planbarkeit bei eingespieltem Team                         | Planbarkeit erst nach `i` Iterationen |
 | weniger Schulden für die Zukunft                           | hoher Zeitaufwand für Meetings        |
 
-# SCRUM Derivate
+## SCRUM Derivat
+
+### SCRUM-BAN 
+
+#### KANBAN
+- Tabelle 
+- zur Visualisierung des Arbeitsflusses
+- Pull-Prinzip für Aufgaben -> Mitarbeiter ohne derzeitige Aufgabe ziehen sich die Aufgabe zur Erfüllung heran 
+- begrenze die Arbeit -> Work-In-Progress-Limit für die Spalten
+  - z.B. nur 3 Aufgaben im Doing, 2 im Review
+  - Empfehlung: Anzahl Zeilen = Anzahl Themen (Begrenzung der Zeilen)
+  - in der Regel: Anzahl Zeilen <= Anzahl Mitarbeiter / 2
+- zeitlich nicht begrenzt (reines KANBAN)
+
+#### SCRUM 
+- exakte (2 Wochen) Bearbeitungszeit
+- feste Aussage darüber, wann das neue Release kommt und was es beeinhaltet 
+
+**SCRUM-BAN ist eine Kombination aus KANBAN und SCRUM**
+
+#### Umsetzung 
+- manche Karten folgen dem SCRUM -> Zeitbegrenzung etc...
+- manche Karten folgen KANBAN -> dürfen demzufolge länger dauern 
+- **Achtung:** 
+  - Zuordnung muss schon zu Beginn feststehen 
+- Anwendungsbeispiel: 
+  - Entwicklung mehrdimensionaler Objektive
+    - hier: viele verschiedenene optimierbare Parameter
+    - z.B. Linsenstärke, Abstand, Radius ...
+    - Optimieralgorithmus muss entwickelt werden 
+      - nicht innerhalb einer Iteration zu schaffen 
+      - längerfristige Aufgabe -> KANBAN-Themen 
+    - zum Testen des Algorithmus und zur Implementierung
+      - SCRUM-Ansatz verwendet
+
+
+# Story-Board
+
+- Zeichnerische Version des Drehbuchs
+- in der Softwareentwicklung: 
+  - Visualisierung des Plans 
+  - einzelne Inhalte werden skizziert
+    - d.h.: **Nutzersicht!**
+
+dazu: 
+
+1. **Handlungsweise** des Nutzers [werden in Blöcken abgebildet?]
+
+[//]: # (vorherigen Satz nicht mitbekommen, TODO: Korrektur) 
+
+- Frage: **Was soll der Nutzer tun können?**
+- Erste Priorisierung: ganz oben -> wichtigste Punkte 
+
+![Storyboard Entwicklersicht](resources/Storyboard.png)
+
+2. Absprechen der Vorannahmen mit dem zukünftigen Nutzer
+  - Priorisieren der Features
+  - zusammen mit dem Nutzer die Blöcke füllen 
+  - Features zur Umsetzung in der jeweiligen Iteration besprechen 
+  - MVPs definieren 
+
+![Storyboard Entwicklersicht](resources/Storyboard_2.png)  
+
+3. Entwicklung der Iterationen
+  - dabei regelmäßiger Kontakt mit dem Nutzer
+  - Besprechen und Neupriorisieren von Iteration zu Iteration 
+
+
+# Prototype vs. Pretotype
+
+Prototype: 
+  - funktionsfähiges, vereinfachtes Versuchsmodell eines geplanten Produktes
+  - Ziel: 
+    - kann ich das Produkt überhaupt entwickeln? 
+    - funktioniert es wie gedacht?
+    - ist es schnell, preisgünstig, ... , produzierbar? 
+
+Pretotype: 
+  - **Pre**tend + Pro**totype**
+  - es wird so getan, als wäre eine Funktion vorhanden 
+  - "Fake it, before you make it"
+  - Ziel: 
+    - Bedarf einer Lösung 
+    - Art und Weise der Nutzung 
+    - Erfolgskriterien benennen 
+    - frühzeitig scheitern 

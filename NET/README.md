@@ -29,31 +29,48 @@
       - [**Weitere Kopplungselemente**](#weitere-kopplungselemente)
     - [1.2.8 Topologien](#128-topologien)
     - [Tooling - Wireshark](#tooling---wireshark)
-- [Netzzugangsschicht](#netzzugangsschicht)
-  - [Übersicht zu Ethernet](#%C3%BCbersicht-zu-ethernet)
-  - [Aufbau eines Ethernet Frames](#aufbau-eines-ethernet-frames)
-  - [Namen von Netzwerkschnittstellen unter Linux](#namen-von-netzwerkschnittstellen-unter-linux)
-  - [Switches](#switches)
-    - [Architekturtypen](#architekturtypen)
-    - [Kenngrößen](#kenngr%C3%B6%C3%9Fen)
-    - [Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->](#spanning-tree-protocol---wahrscheinliche-pr%C3%BCfungsaufgabe--)
-      - [STP - Port Fast/Fast Link](#stp---port-fastfast-link)
-      - [Rapid Spanning Tree Protocol](#rapid-spanning-tree-protocol)
-    - [Virtuelles LAN](#virtuelles-lan)
-      - [Tag-basierte VLANs](#tag-basierte-vlans)
-      - [Inter-VLAN-Routing](#inter-vlan-routing)
-      - [STP und VLAN](#stp-und-vlan)
-    - [Transparent Interconnection of lots of links (TRILL)](#transparent-interconnection-of-lots-of-links-trill)
-    - [Stacking](#stacking)
-  - [Internetprotokoll und Hilfsprotokolle](#internetprotokoll-und-hilfsprotokolle)
-    - [IPv4-Header](#ipv4-header)
-    - [Fragmentierung](#fragmentierung)
-    - [IPv4-Adressierung](#ipv4-adressierung)
-    - [Address Resolution Protocol (ARP)](#address-resolution-protocol-arp)
-      - [Einordnung](#einordnung)
-      - [Protokolldetails](#protokolldetails)
-  - [ICMP](#icmp)
-    - [Praxisübung](#praxis%C3%BCbung)
+- [2. Netzzugangsschicht](#2-netzzugangsschicht)
+  - [2.1 Übersicht zu Ethernet](#21-%C3%BCbersicht-zu-ethernet)
+  - [2.2 Aufbau eines Ethernet Frames](#22-aufbau-eines-ethernet-frames)
+  - [2.3 Namen von Netzwerkschnittstellen unter Linux](#23-namen-von-netzwerkschnittstellen-unter-linux)
+  - [2.4 Switches](#24-switches)
+    - [2.4.1 Architekturtypen](#241-architekturtypen)
+    - [2.4.2 Kenngrößen](#242-kenngr%C3%B6%C3%9Fen)
+    - [2.4.3 Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->](#243-spanning-tree-protocol---wahrscheinliche-pr%C3%BCfungsaufgabe--)
+      - [2.4.3.1 STP - Port Fast/Fast Link](#2431-stp---port-fastfast-link)
+      - [2.4.3.2 Rapid Spanning Tree Protocol](#2432-rapid-spanning-tree-protocol)
+    - [2.4.4 Virtuelles LAN](#244-virtuelles-lan)
+      - [2.4.4.1 Tag-basierte VLANs](#2441-tag-basierte-vlans)
+      - [2.4.4.2 Inter-VLAN-Routing](#2442-inter-vlan-routing)
+      - [2.4.4.3 STP und VLAN](#2443-stp-und-vlan)
+    - [2.4.5 Transparent Interconnection of lots of links (TRILL)](#245-transparent-interconnection-of-lots-of-links-trill)
+    - [2.4.6 Stacking](#246-stacking)
+- [3. Vermittlungsschicht: Internet Protocol](#3-vermittlungsschicht-internet-protocol)
+  - [3.1 IPv4](#31-ipv4)
+    - [3.1.1 IPv4-Header](#311-ipv4-header)
+    - [3.1.2 Fragmentierung](#312-fragmentierung)
+    - [3.1.3 IPv4-Adressierung](#313-ipv4-adressierung)
+  - [3.2 Address Resolution Protocol (ARP)](#32-address-resolution-protocol-arp)
+    - [3.2.1 Einordnung](#321-einordnung)
+    - [3.2.2 Protokolldetails](#322-protokolldetails)
+  - [3.3 ICMP](#33-icmp)
+  - [3.4 Praxisübung](#34-praxis%C3%BCbung)
+  - [3.5 Nachteile IPv4](#35-nachteile-ipv4)
+  - [3.6 IPv6](#36-ipv6)
+    - [3.6.1 Header](#361-header)
+    - [3.6.2 Extension-Header](#362-extension-header)
+    - [3.6.3 IPv6-Fragmentierung](#363-ipv6-fragmentierung)
+    - [3.6.4 Ipv6-Adressen - Notation](#364-ipv6-adressen---notation)
+    - [3.6.5 Adresstypen (Folie 3/15)](#365-adresstypen-folie-315)
+    - [3.5.6 Generelle Adresstruktur (Folie 3/16)](#356-generelle-adresstruktur-folie-316)
+    - [3.5.7 Erzeugung einer link-local Adresse (Folie 3/17)](#357-erzeugung-einer-link-local-adresse-folie-317)
+    - [3.5.8 IPv6-Multicasts (Folie 3/18)](#358-ipv6-multicasts-folie-318)
+    - [3.5.9 Stateless Adress Autoconfiguration SLAAC (Folien 3/22,23)](#359-stateless-adress-autoconfiguration-slaac-folien-32223)
+  - [3.6 Migration IPv4 -> IPv6 (Folie 3/24)](#36-migration-ipv4---ipv6-folie-324)
+    - [3.6.1 Dual-Stack Lite (DS-Lite) (Folie 3/25)](#361-dual-stack-lite-ds-lite-folie-325)
+  - [3.7 Exkurs: Raw Sockets](#37-exkurs-raw-sockets)
+  - [3.8 Exkurs: IPv6 im Linux-Kernel 5.9 (Folien 3/27,28)](#38-exkurs-ipv6-im-linux-kernel-59-folien-32728)
+  - [Praxisbeispiel radvd - SLAAC in Namespaces:](#praxisbeispiel-radvd---slaac-in-namespaces)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -241,9 +258,9 @@ Zu beachten: Gibt es SPF (single point of failure) im Netz? Wenn ja: Ausfallsich
 
 Auch verwendetes Tool: Scapy
 
-# Netzzugangsschicht
+# 2. Netzzugangsschicht
 
-## Übersicht zu Ethernet
+## 2.1 Übersicht zu Ethernet
 
 - Ursprünglich für LAN-Kommunikation vorgesehen
 - Klassisch: Steuerung des Zugriffs auf den Kanal über CSMA/CD-Algorithmus (bei Punkt-zu-Punkt obsolet)
@@ -255,7 +272,7 @@ Auch verwendetes Tool: Scapy
 Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Alternative: z.B. Infiniband
 
-## Aufbau eines Ethernet Frames
+## 2.2 Aufbau eines Ethernet Frames
 
 ![Ethernet Frame](resources/eth-frame.png)
 
@@ -267,26 +284,26 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Padding: Gewährleistet Minimalgröße von 64 Byte
 - CRC-Checksum: 32-Bit-Prüfsumme über das Frame (von Zieladresse bis Padding-Feld)
 
-## Namen von Netzwerkschnittstellen unter Linux
+## 2.3 Namen von Netzwerkschnittstellen unter Linux
 
 - Alt: `ethX` bzw. `wlanX` (an MAC gebunden -> Probleme bei Tausch)
 - Neu: Consistent Network Device Naming (z.B. `enp0s25`)
 	- Ethernetinterface (en), das an PCI-Bus (p) an Slot 25 hängt
 
-## Switches
+## 2.4 Switches
 
 - Multiport Kopplungselemente, das Frames nur an den Port weiterleitet über den der Empfänger erreichbar ist
 - Speicherung von Adressen in Source-Address-Table (SAT)
 - **Cut-Through Switches:** Nach Analyse der MAC-Adresse sofortiges Durschalten zum entsprechenden Port (Weiterleitung ohne Zwischenspeicherung = geringe Latenz, kein Einfluss auf Datenrate)
 - **Store-and-Forward Switches:** Frame wird am Eingangsport und Ausgangsport gepuffert (größere Latenz, Möglichkeit zur Zwischenverarbeitung der Daten)
 
-### Architekturtypen
+### 2.4.1 Architekturtypen
 
 - **Shared Memory:** CPU kopiert Daten nach Extraktion der Zieladresse in den korrekten Ausgangspuffer
 - **Bus-System:** Empfangener Port leitet Frame über gemeinsamen Bus an richtigen Ausgangsport
 - **Switching-Matrix:** Physische Durchschaltung von Ein- und Ausgabeleitungen
 
-### Kenngrößen
+### 2.4.2 Kenngrößen
 
 - Datenrate der verschiedenen Ports
 - Datenrate des Backplanes (der internen Busse)
@@ -297,7 +314,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Bandbreitenmanagement
 - Preis
 
-### Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->
+### 2.4.3 Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->
 
 - STP etabliert sich innerhalb des Netzes einen Spannbaum durch das Blockieren von Ports, die Zyklen erzeugen würden
 - Blockierter Port: Eingehender und ausgehender Traffic wird verworfen, Kanal ansonsten voll funktionsfähig
@@ -315,17 +332,17 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Designated Port: Alle Ports, die kein Root-Port und nicht blockiert sind  
 - Non-Designated Port: Ports in blockiertem Zustand um Zyklen zu verhindern  
 
-#### STP - Port Fast/Fast Link
+#### 2.4.3.1 STP - Port Fast/Fast Link
 
 - STP weist Konvergenzprobleme auf: Netzwerk erst nach etwa 30 Sekunden funktionstüchtig (Probleme beispielsweise mit PXE Boot)
 - Switches bieten Speziellen Modus für Ports an denen Endsysteme angeschlossen sind (Port geht sofort bei Aktivierung in Forwarding State)
 - Herstellerspezifische Terminologie: PortFast (Cisco), Fast Link (NetGear)
 
-#### Rapid Spanning Tree Protocol
+#### 2.4.3.2 Rapid Spanning Tree Protocol
 
 - Proaktiver Ansatz bei dem effizient auf Alternativpfade gewechselt werden kann
 
-### Virtuelles LAN
+### 2.4.4 Virtuelles LAN
 
 - Physisches Netzwerkdesign steht häufig mit logischem Netzwerkdesign in Konflikt
 - logische Einteilung des Netzes auf Ebene der Switche (Aufteilung in Broadcast-Domänen; erhöhte Sicherheit)
@@ -336,7 +353,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Tag-basierte VLANs: Frames werden mit ID eines VLANs getaggt, wodurch über einen Port mehrere VLANs realisiert werden können
 - dynamische/inhaltsbasierende VLANs: Zuordnung zu VLANs anhand verwendeter Protokolle (weniger verbreitet)
 
-#### Tag-basierte VLANs
+#### 2.4.4.1 Tag-basierte VLANs
 
 - Erweiterung der Ethernet-Frames um einen Tag zur Identifikation des VLANs zu dem das Frame gehört
 
@@ -349,7 +366,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - **Drop Eligible Indicator:** Identifiziert Frames, die bei Überlast verworfen werden können
 - **VLAN Identifier:** ID des zugehörigen VLANs ($2^{12}-2$ = max. 4096 VLANs)
 
-#### Inter-VLAN-Routing
+#### 2.4.4.2 Inter-VLAN-Routing
 
 **Ansatz 1**
 
@@ -360,14 +377,14 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - **Ansatz 2:** Einsatz von virtuellen Interfaces zur Vermeidung des hohen Aufwandes für separate Schnittstellen
 <!-- Gerne Prüfungsfrage: Voraussetzungen/Konfigurationsschritte -->
 
-#### STP und VLAN
+#### 2.4.4.3 STP und VLAN
 
 > STP weiß nix von VLANs
 
 - klassischer Ansatz nutzt die verfügbaren physischen Verbindungen nicht optimal aus
 - Lösung: Multiple Spanning Tree Protocol (jedes VLAN hat eigenen ST + ein Internal Spanning Tree für alle VLANs)
 
-### Transparent Interconnection of lots of links (TRILL)
+### 2.4.5 Transparent Interconnection of lots of links (TRILL)
 
 - Ethernet-Frames werden in einen TRILL-Header gekapselt
 - Routing dieser Frames auf deren Basis auf L2 (nächster Hop wird durch umgebenen L2-Header angegeben)
@@ -375,22 +392,15 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - TRILL-Header besitzt HOP-Count-Feld um Routing-Schleifen zu vermeiden
 - Entfernung des THRILL-Headers vor Auslieferung an das Zielsystem
 
-### Stacking
+### 2.4.6 Stacking
 
 - Stackfähige Switsches können miteinander zu einer Gruppe verbunden werden (einzelnes logisches Gerät, ansprechen über einzelne IP)
 - Vorteile: Skalierbarkeit (Anzahl der Ports einfach ), vereinfachte Netzwerkschnittstelle (Konfiguration von nur einem logischem Gerät), Vergrößerter Durchsatz (Stacking über Port mit hoher Datenrate)
 - Nachteil: Platzbedarf, höherer Stromverbrauch mehrerer Geräte, Kopplung als neue Fehlerquelle
 
-<!--
-# 3. Vermittlungsschicht: Internet Protocol
-# 4. Transportschicht: User Datagram Protocol und Transmission Control Protocol
-# 5. Routing
-# 6. Anwendungsschicht
-# 7. Software-defined Networking
-# 8. Netztechnologien
--->
 
-## Internetprotokoll und Hilfsprotokolle
+
+# 3. Vermittlungsschicht: Internet Protocol
 
 - Schicht 3; von Übertragungsmedium unabhängig
 - Overlay über L2, bildet davon unabhängiges Netz
@@ -406,7 +416,9 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
   - Multicast: Senden an Teilmenge
   - Anycast: Senden an alle NICs, aber nur einer antwortet
 
-### IPv4-Header
+## 3.1 IPv4
+
+### 3.1.1 IPv4-Header
 
 ![Aufbau des IPv4-Headers](resources/ip-paket-aufbau.png)
 
@@ -427,7 +439,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Options: Zusatzdaten für bspw. Routing oder Zeitstempel
   - Bsp Source Routing: Sender gibt exakte Route an; ermöglicht Angriffsfläche für DoS-Attacken
 
-### Fragmentierung
+### 3.1.2 Fragmentierung
 
 ![Bild von Fragmentierung](resources/ip-fragmentierung.png)
 
@@ -453,7 +465,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 ip addr show
 ```
 
-### IPv4-Adressierung
+### 3.1.3 IPv4-Adressierung
 
 - Struktur: 0 bis n Bits Netzadresse, 32-n Bit Hostadresse (NIC-Adresse)
 - Notation: ``adresse/n`` --> Classless Inter Domain Routing Notation (CIDR)
@@ -464,9 +476,9 @@ ip addr show
 
 ![Bild eines Routers](resources/routing-bsp.png)
 
-### Address Resolution Protocol (ARP)
+## 3.2 Address Resolution Protocol (ARP)
 
-#### Einordnung
+### 3.2.1 Einordnung
 
 ![Ablauf von ARP](resources/ip-arp-ablauf.png)
 
@@ -484,13 +496,13 @@ ip addr show
 tcp dump -i any -p arp
 ```
 
-#### Protokolldetails
+### 3.2.2 Protokolldetails
 
 //TODO: Bild Folie 7
 
 //TODO: ausfüllen
 
-## ICMP
+## 3.3 ICMP
 
 - Internet Control Message Protocol dient der Kommunikation von Fehlern und Abfrage von Statusinformation in (fast immer) IP-basierten Netzwerken
 - ausgewählte Typen:
@@ -520,7 +532,7 @@ Beispiel: ICMP-Redirect
 - bietet Angriffsfläche: kann verwendet werden, um kompromittierten Router in den Pfad zu zwingen
 - per Default in vielen Systemen deaktiviert
 
-### Praxisübung
+## 3.4 Praxisübung
 
 Exkurs Namespaces: 
 
@@ -528,7 +540,7 @@ Exkurs Namespaces:
 - Zu Beginn leere und frei konfigurierbare Stacks 
 - es können komplette lokale Netzwerke innerhalb eines Kernels geschaffen werden 
 - wird zum Beispiel für Docker genutzt
-  - dort aber auch noch separate Namespaces für PIDs 
+  - dort aber auch noch separate Namespaces für PIDs, IP-Tables, Filesystem
   
 
 Verknüpfung von 3 Network Namespaces:
@@ -583,3 +595,234 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 ```
 
 - mit bspw. Ping überprüfen, ob Verbindung funktioniert
+
+## 3.5 Nachteile IPv4
+
+- Ausgeschöpfter Adressraum 
+  - theoretisch nur 4 Mrd. Adressen 
+  - diese auch noch ungünstig vergeben (/8 Netz für IBM)
+  - Einsatz von NAT (Network Adress Translation) kann Verwendung einiger Dienste erschweren (Ende-zu-Ende Prinzip wird gebrochen)
+
+- Ineffizientes Routing
+  - variable Länge der Header von IPv4-Paketen 
+  - Header können mit Optionen auf bis zu 60 Bytes ausgeweitet werden 
+  - Router prüfen, ob Paket die MTU überschreitet und fragmentieren ggf. 
+
+- Keine automatische Konfiguration 
+  - IP-Adresse muss manuell oder über DHCP (Dynamic Host Configuration Protocol) vergeben werden 
+  - Zusätzliche Infrastruktur für automatische Konfiguration erforderlich
+
+## 3.6 IPv6
+
+### 3.6.1 Header
+
+![IPv6-Header](resources/IPv6_Header.png)
+
+
+Hop Limit: 
+- ehemals TTL
+- zur Vermeidung von Zyklen
+- bei jedem Hop dekrementieren um 1
+
+### 3.6.2 Extension-Header
+
+- in Zusammenhang mit Next-Header-Feld verwendet 
+- (Folie 3/12)
+
+### 3.6.3 IPv6-Fragmentierung 
+
+- Grundprinzip ähnlich zu IPv4
+- wenn auf Pfad MTU nicht ausreicht wird fragmentiert 
+- Unterschied zu IPv4: 
+- durch Sender fragmentiert, dadurch Effizienzsteigerung
+- Absender wird über Fragmentierungsbedarf informiert (per ICMPv6-Nachricht "Packet too big")
+- Praxis: 
+- limitierende MTU meist an den Rändern, also beim Sender
+
+### 3.6.4 Ipv6-Adressen - Notation
+
+
+- `x:x:x:x:x:x:x:x`
+- x = 4 hexadezimale Zahlen, je 16 Bit 
+
+- längere 0-Folgen können einmalig abgekürzt werden: 
+- `ff01:0:0:0:0:2342:78fa` -> `ff01::2342:78fa`
+
+- Empfehlungen aus RFC: 
+- führende Nullen des Blocks weglassen
+- Zwei Doppelpunkte
+- sollen maximale Anzahl von 0-Blöcken repräsentieren 
+- nicht zur Abkürzung eines einzelnen Blocks verwenden 
+- bei mehreren möglichen Kürzungen: möglichst weit links kürzen 
+- bei Angabe von Portnummern: IPv6-Adresse in eckige Klammern
+- `[ff01:0:0:0:0:2342:78fa]:80` oder `[ff01::2342:78fa]:80`
+
+### 3.6.5 Adresstypen (Folie 3/15)
+
+![IPv6-Header](resources/Adresstypen.png)
+
+- Anycast:
+- wird zum Beispiel bei DNS-Rootservern verwendet 
+
+- Multicast: 
+- um z.B. alle Router im Netz anzusprechen
+
+### 3.5.6 Generelle Adresstruktur (Folie 3/16)
+
+- Trennung zwischen Präfix und Interface Identifier
+- Notation analog zu CIDR 
+- `/64` am Ende gibt die Länge des Präfix an
+
+
+![IPv6-Adresstruktur](resources/IPv6_Adresstruktur.png)
+
+### 3.5.7 Erzeugung einer link-local Adresse (Folie 3/17)
+
+- aus MAC-Adresse oder per Privacy Extension abgeleitet 
+
+### 3.5.8 IPv6-Multicasts (Folie 3/18)
+
+- es gibt mehrere Multicast-Gruppen an denen teilgenommen werden kann 
+- es existieren zudem festgelegte "well-known" Multicast-Adressen 
+- `ff02::1` -> alle Knoten am Link 
+- zum Beispiel für ARP-äquivalente Anfragen 
+- `ff02:2` -> alle Router am Link 
+- `ff02::16` -> alle MLDv2-fähigen Router
+
+### 3.5.9 Stateless Adress Autoconfiguration SLAAC (Folien 3/22,23)
+
+**Prüfungsrelevant!**
+
+![SLAAC Phase 1](resources/SLAAC_1.png)
+![SLAAC Phase 2](resources/SLAAC_2.png)
+
+## 3.6 Migration IPv4 -> IPv6 (Folie 3/24)
+
+- momentane Koexistenz von v4 und v6 erfordert Mechanismen zur Realisierung des Übergangs und für Interoperabilität
+
+- Mechanismen: 
+- Dual-Stack: 
+- beide Adressversionen für Interfaces
+- Knoten können über beide Protokolle unabhängig voneinander kommunizieren 
+- Tunnelmechanismen:
+- Kapselung von Paketen von v4 in v6 oder umgekehrt
+- Varianten: 4in6, 6in4, 6over4, ... 
+- Translationsmechanismen: 
+- Transformation der jeweiligen Header zur anderen Version 
+- Beispiel: NAT64 zur Übersetzung von v4 zu v6 
+
+### 3.6.1 Dual-Stack Lite (DS-Lite) (Folie 3/25)
+
+- Kombination aus Tunnelmechanismen und Translation 
+- Vorteile: 
+- Providerinfrastruktur lann auf IPv6 umgestellt werden 
+- IPv4-Adressen beim Provider werden eingespart 
+
+![Dual-Stack Lite](resources/DS_Lite.png)   
+
+## 3.7 Exkurs: Raw Sockets 
+
+- Ermöglichen die Instanziierung von IP-Headern und Implementierung von Protokollen im User-Space 
+- IP-Headerelemente wie auch gekapselte Datagramme können im Programm befüllt werden
+- Durch Raw Sockets können z.B. implementiert werden:
+- Netzwerksicherheitswerkzeuge wie Portscanner
+- ICMP-basierte Anwendungen
+- Routing-Protokolle
+
+![Raw-Sockets](resources/Raw_Sockets.png)   
+
+- Tooling: **Scapy** und **nmap**
+
+- Frage: Wie kann unter Verwendung von Raw-Sockets ein einfaches TRACEROUTE gebaut werden? 
+
+- Antwort: Mit Hilfe des TTL kann dies ermöglicht werden 
+- erst TTL 1 (ICMP des ersten Routers)
+- dann TTL 2 (ICMP des zweiten Routers)
+- ...
+
+- Problem: nicht alle Router haben diese ICMP-Antworten aktiviert, weitere Anpassung nötig 
+
+## 3.8 Exkurs: IPv6 im Linux-Kernel 5.9 (Folien 3/27,28)
+
+[//]: # (Hat hier jemand was?) 
+
+
+## Praxisbeispiel radvd - SLAAC in Namespaces: 
+
+
+
+- Namespaces erstellen:
+
+```bash
+sudo ip netns add ns1
+sudo ip netns add ns2
+
+sudo ip netns list # zur Prüfung
+```
+
+- virtuelle Ethernet-Interfaces erstellen:
+
+```bash
+sudo ip link add veth1 netns ns1 type veth peer name veth2 netns ns2 # erstellt veth1 in ns1 und veth2 in ns2
+```
+
+- radvd installieren und .conf anlegen
+
+```bash
+
+apt-get install radvd
+
+touch /etc/radvd.conf
+
+```
+
+- .config bearbeiten
+
+```bash
+interface veth1
+{
+prefix 2001:db8:1:0::/64
+{
+AdvOnLink on;
+AdvAutonomous on;
+AdvRouterAddr off;
+};
+};
+```
+
+Quelle Beispielkonfig: https://github.com/reubenhwk/radvd/blob/master/radvd.conf.example
+
+- radvd erneut starten und Status erfassen
+```bash
+sudo systemctl start radvd
+sudo systemctl status radvd
+```
+
+- Namespace betreten und Interface aktivieren:
+
+```bash
+sudo ip netns exec ns1 /bin/bash
+ip link set veth1 up
+```
+
+- diesen Schritt für zweites Interface wiederholen
+
+- radvd in Namespace1 aktivieren 
+
+**tbc: Anfang nächster Einheit**
+
+```bash
+
+
+```
+
+
+
+<!--
+
+# 4. Transportschicht: User Datagram Protocol und Transmission Control Protocol
+# 5. Routing
+# 6. Anwendungsschicht
+# 7. Software-defined Networking
+# 8. Netztechnologien
+-->

@@ -246,7 +246,7 @@ Analyse
 
 Hier wird immer wieder in eine Phase "zurück gesprungen", falls etwas nicht passt.
 
-> Protop zur Akzeptanz-Analyse ist möglich! (zu Prototyp später mehr)
+> Prototyp zur Akzeptanz-Analyse ist möglich! (zu Prototyp später mehr)
 
 **PDCA-Prinzip:** Planning -> Doing -> Checking -> Acting (und wieder von vorn)
 

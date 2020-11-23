@@ -408,7 +408,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Ermöglicht Adressierung von "Knoten"
 - zwei Versionen verbreitet: IPv4 und IPv6
 - IP-Paket wird trotz Hops nicht verändert (Ausnahme: NAT)
-- Bezeichnung Hostadresse eigentlich falsch -> Schnittstellenadresse 
+- Bezeichnung Hostadresse eigentlich falsch -> Schnittstellenadresse
 - eine IP-Adresse ist nicht einem Host zugewiesen, sondern einem NIC
   - Workaround: Loopback-Interface, zur Adressierung von Localhost
 - *casts:
@@ -454,12 +454,12 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
     - MF-Flag = 1 bei allen außer dem letzten Paket
     - Fragment Offset: zählt Byteposition hoch
 - Wo wird fragmentiert?
-  - bei IPv4 kann bei jedem Hop auf der Route fragmentiert werden, Performanceverlust 
+  - bei IPv4 kann bei jedem Hop auf der Route fragmentiert werden, Performanceverlust
   - bei IPv6 wird beim Sender fragmentiert
-- Pass-MTU: bezeichnet geringste MTU aller Hops auf der Route 
+- Pass-MTU: bezeichnet geringste MTU aller Hops auf der Route
 
 ```
-# MTU anzeigen lassen 
+# MTU anzeigen lassen
 
 ip addr show
 ```
@@ -520,9 +520,9 @@ tcp dump -i any -p arp
   - 16 Bit Prüfsumme
   - weitere Inhalte abhängig von Typ / Code
 
-Möglichkeiten: 
+Möglichkeiten:
 - mehr Funktionen als "nur" Ping
-- Fehlermeldungen können im Netzwerk propagiert werden 
+- Fehlermeldungen können im Netzwerk propagiert werden
 - Zeitstempel können zur Lastermittlung genutzt werden
 
 Beispiel: ICMP-Redirect
@@ -533,14 +533,14 @@ Beispiel: ICMP-Redirect
 
 ### Praxisübung
 
-Exkurs Namespaces: 
+Exkurs Namespaces:
 
-- Namespaces bieten Möglichkeit, separate Netzwerk-Stacks lokal zu schaffen 
-- Zu Beginn leere und frei konfigurierbare Stacks 
-- es können komplette lokale Netzwerke innerhalb eines Kernels geschaffen werden 
+- Namespaces bieten Möglichkeit, separate Netzwerk-Stacks lokal zu schaffen
+- Zu Beginn leere und frei konfigurierbare Stacks
+- es können komplette lokale Netzwerke innerhalb eines Kernels geschaffen werden
 - wird zum Beispiel für Docker genutzt
   - dort aber auch noch separate Namespaces für PIDs, IP-Tables, Filesystem
-  
+
 
 Verknüpfung von 3 Network Namespaces:
 
@@ -597,101 +597,99 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 ### Nachteile IPv4
 
-- Ausgeschöpfter Adressraum 
-  - theoretisch nur 4 Mrd. Adressen 
-  - diese auch noch ungünstig vergeben (/8 Netz für IBM)
-  - Einsatz von NAT (Network Adress Translation) kann Verwendung einiger Dienste erschweren (Ende-zu-Ende Prinzip wird gebrochen)
+- Ausgeschöpfter Adressraum: nur 4 Milliarden Adressen, ungünstige Vergabe, NAT als Lösung (aber: erschwert Nutzung einiger Dienste)
+- Ineffizientes Routing: Header hat variable Länge
+- Keine automatische Konfiguration: IP muss manuell oder über DHCP vergeben werden (zusätzliche Infrastruktur erforderlich)
 
-- Ineffizientes Routing
-  - variable Länge der Header von IPv4-Paketen 
-  - Header können mit Optionen auf bis zu 60 Bytes ausgeweitet werden 
-  - Router prüfen, ob Paket die MTU überschreitet und fragmentieren ggf. 
 
-- Keine automatische Konfiguration 
-  - IP-Adresse muss manuell oder über DHCP (Dynamic Host Configuration Protocol) vergeben werden 
-  - Zusätzliche Infrastruktur für automatische Konfiguration erforderlich
-
- 
  ## IPv6
 
- ### Header
+- soll in nächsten Jahren schrittweise IPv4 ablösen
+- Vereinfachung des Headers:
 
  ![IPv6-Header](resources/IPv6_Header.png)
 
- 
- Hop Limit: 
-  - ehemals TTL
-  - zur Vermeidung von Zyklen
-  - bei jedem Hop dekrementieren um 1
+- Traffic-Class: Prioritätsangabe
+- Flow Label: Klassifizierung von Datagrammen in verschiedenen Flows mit gleichem Label
+- Next Header: Identifikation für Erweiterungsheader/Schicht-4-Header
+- Payload-Length: Größe des gesamten Datagramms
+- Hop-Limit: Ersetzt TTL Feld (Angabe maximaler Hops)
 
  ### Extension-Header
 
- - in Zusammenhang mit Next-Header-Feld verwendet 
+ - in Zusammenhang mit Next-Header-Feld verwendet
  - (Folie 3/12)
 
- ### IPv6-Fragmentierung 
+ ### IPv6-Fragmentierung
 
 - Grundprinzip ähnlich zu IPv4
-  - wenn auf Pfad MTU nicht ausreicht wird fragmentiert 
-- Unterschied zu IPv4: 
+  - wenn auf Pfad MTU nicht ausreicht wird fragmentiert
+- Unterschied zu IPv4:
   - durch Sender fragmentiert, dadurch Effizienzsteigerung
   - Absender wird über Fragmentierungsbedarf informiert (per ICMPv6-Nachricht "Packet too big")
-- Praxis: 
+- Praxis:
   - limitierende MTU meist an den Rändern, also beim Sender
 
-### Ipv6-Adressen - Notation
+### IPv6-Adressen
 
+#### Adress-Notation
 
-- `x:x:x:x:x:x:x:x`
-- x = 4 hexadezimale Zahlen, je 16 Bit 
+- `x:x:x:x:x:x:x:x` -> x = vier Hexadezimalzahlen -> je 16 Bit
+- Längere Folgen von Nullen können einmalig durch `::` abgekürzt werden: `ff01:0:0:0:0:0:2342:78fa` -> `ff01::2342:78fa``
+- letzten 32 Bit einer Adresse kann die dezimale Notation (wie in IPv4)
+verwenden: `::141.76.40.1`
+- Portangabe: `[ff01:0:0:0:0:0:0:0:2342:78fa]:80` bzw. `[ff01::2342:78fa]:80`
 
-- längere 0-Folgen können einmalig abgekürzt werden: 
-  - `ff01:0:0:0:0:2342:78fa` -> `ff01::2342:78fa`
+**Empfehlungen aus RFC**
 
-- Empfehlungen aus RFC: 
-  - führende Nullen des Blocks weglassen
-  - Zwei Doppelpunkte
-    - sollen maximale Anzahl von 0-Blöcken repräsentieren 
-    - nicht zur Abkürzung eines einzelnen Blocks verwenden 
-  - bei mehreren möglichen Kürzungen: möglichst weit links kürzen 
-  - bei Angabe von Portnummern: IPv6-Adresse in eckige Klammern
-    - `[ff01:0:0:0:0:2342:78fa]:80` oder `[ff01::2342:78fa]:80`
+- führende Nullen des Blocks weglassen
+- zwei Doppelpunkte sollen maximale Anzahl von 0-Blöcken repräsentieren (nicht zur Abkürzung eines einzelnen Blocks verwenden)
+- bei mehreren möglichen Kürzungen: möglichst weit links kürzen
 
-### Adresstypen (Folie 3/15)
+#### Adress-Arten
 
-![IPv6-Header](resources/Adresstypen.png)
+- **Unicast-Adressen:** Identifikator eines *einzelnen* Netzwerkinterfaces (link-local innerhalb geschlossener Netzsegmente oder global)
+- **Anycast-Adressen:** Identifikator für *Menge von Interfaces* -> wird an **eines** der Interfaces gesendet, dass durch die Adresse identifiziert wird (z.B. bei DNS angewendet)
+- **Multicast-Adressen:** Identifikator für *Menge von Interfaces* -> wird an **alle** Interfaces gesendet, die durch die Adresse identifiziert werden (kein Broadcast mehr erforderlich)
 
-- Anycast:
-  - wird zum Beispiel bei DNS-Rootservern verwendet 
-
-- Multicast: 
-  - um z.B. alle Router im Netz anzusprechen
-
-### Generelle Adresstruktur (Folie 3/16)
+#### Generelle Adresstruktur
 
 - Trennung zwischen Präfix und Interface Identifier
-  - Notation analog zu CIDR 
-  - `/64` am Ende gibt die Länge des Präfix an
+	- Notation analog zu CIDR: `/64` am Ende gibt die Länge des Präfix an
 
+Typ einer Adresse kann an den höchstwertigsten Bits erkannt werden:
 
-![IPv6-Adresstruktur](resources/IPv6_Adresstruktur.png)
+- Unspecified-Adresse: `00...0` -> `::/128`
+- Loopback-Adressen: `00..1` -> `::1/128`
+- Multicast-Adressen: `11111111` -> `ff00::/8`
+- Link-local Unicast: `111111101010` -> `fe80::/10`
+- Solicited-Node-Adresse: `ff02:0:0:0:0:1:ff00::/104`
+- Globale Unicast-Adressen: alle anderen (derzeit: `2000::/3`)
+- Anycast-Adressen: Adressraum identisch zu Unicast-Adressen (syntaktisch nicht unterscheidbar)
 
-### Erzeugung einer link-local Adresse (Folie 3/17)
+### Erzeugung einer link-local Adresse
 
-- aus MAC-Adresse oder per Privacy Extension abgeleitet 
+- wird aus der Link-Layer Adresse (MAC) berechnet
+- Problem: einfache Identifikation von Nutzern
+- Lösung: Privacy Extension (regelmäßige zufällige Generierung des Interface-Identifiers)
 
-### IPv6-Multicasts (Folie 3/18)
+### IPv6-Multicasts
 
-- es gibt mehrere Multicast-Gruppen an denen teilgenommen werden kann 
-- es existieren zudem festgelegte "well-known" Multicast-Adressen 
-  - `ff02::1` -> alle Knoten am Link 
-    - zum Beispiel für ARP-äquivalente Anfragen 
-  - `ff02:2` -> alle Router am Link 
+![Aufbau einer IPv6 Multicast-Adresse](resources/ipv6-multicast.png)
+
+- es gibt mehrere Multicast-Gruppen an denen teilgenommen werden kann
+- es existieren zudem festgelegte "well-known" Multicast-Adressen
+  - `ff02::1` -> alle Knoten am Link (z.B. für ARP-äquivalente Anfragen)
+  - `ff02:2` -> alle Router am Link
   - `ff02::16` -> alle MLDv2-fähigen Router
+
+### NDP
+
+<!-- NDP nicht so genau Prüfungsrelevant-->
 
 ### Stateless Adress Autoconfiguration SLAAC (Folien 3/22,23)
 
-**Prüfungsrelevant!**
+<!-- hochgradig Prüfungsrelevant-->
 
 ![SLAAC Phase 1](resources/SLAAC_1.png)
 ![SLAAC Phase 2](resources/SLAAC_2.png)
@@ -700,29 +698,29 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 - momentane Koexistenz von v4 und v6 erfordert Mechanismen zur Realisierung des Übergangs und für Interoperabilität
 
-- Mechanismen: 
-  - Dual-Stack: 
+- Mechanismen:
+  - Dual-Stack:
     - beide Adressversionen für Interfaces
-    - Knoten können über beide Protokolle unabhängig voneinander kommunizieren 
+    - Knoten können über beide Protokolle unabhängig voneinander kommunizieren
   - Tunnelmechanismen:
     - Kapselung von Paketen von v4 in v6 oder umgekehrt
-    - Varianten: 4in6, 6in4, 6over4, ... 
-  - Translationsmechanismen: 
-    - Transformation der jeweiligen Header zur anderen Version 
-    - Beispiel: NAT64 zur Übersetzung von v4 zu v6 
-  
+    - Varianten: 4in6, 6in4, 6over4, ...
+  - Translationsmechanismen:
+    - Transformation der jeweiligen Header zur anderen Version
+    - Beispiel: NAT64 zur Übersetzung von v4 zu v6
+
   #### Dual-Stack Lite (DS-Lite) (Folie 3/25)
 
-  - Kombination aus Tunnelmechanismen und Translation 
-  - Vorteile: 
-    - Providerinfrastruktur lann auf IPv6 umgestellt werden 
-    - IPv4-Adressen beim Provider werden eingespart 
+  - Kombination aus Tunnelmechanismen und Translation
+  - Vorteile:
+    - Providerinfrastruktur lann auf IPv6 umgestellt werden
+    - IPv4-Adressen beim Provider werden eingespart
 
  ![Dual-Stack Lite](resources/DS_Lite.png)   
 
-### Exkurs: Raw Sockets 
+### Exkurs: Raw Sockets
 
-- Ermöglichen die Instanziierung von IP-Headern und Implementierung von Protokollen im User-Space 
+- Ermöglichen die Instanziierung von IP-Headern und Implementierung von Protokollen im User-Space
 - IP-Headerelemente wie auch gekapselte Datagramme können im Programm befüllt werden
 - Durch Raw Sockets können z.B. implementiert werden:
   - Netzwerksicherheitswerkzeuge wie Portscanner
@@ -733,21 +731,16 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 - Tooling: **Scapy** und **nmap**
 
-- Frage: Wie kann unter Verwendung von Raw-Sockets ein einfaches TRACEROUTE gebaut werden? 
+- Frage: Wie kann unter Verwendung von Raw-Sockets ein einfaches TRACEROUTE gebaut werden?
 
-- Antwort: Mit Hilfe des TTL kann dies ermöglicht werden 
+- Antwort: Mit Hilfe des TTL kann dies ermöglicht werden
   - erst TTL 1 (ICMP des ersten Routers)
   - dann TTL 2 (ICMP des zweiten Routers)
   - ...
 
-- Problem: nicht alle Router haben diese ICMP-Antworten aktiviert, weitere Anpassung nötig 
+- Problem: nicht alle Router haben diese ICMP-Antworten aktiviert, weitere Anpassung nötig
 
-### IPv6 im Linux-Kernel 5.9 (Folien 3/27,28)
-
-[//]: # (Hat hier jemand was?) 
-
-
-### Praxisbeispiel: 
+### Praxisbeispiel:
 
 
 
@@ -807,7 +800,7 @@ ip link set veth1 up
 
 - diesen Schritt für zweites Interface wiederholen
 
-- radvd in Namespace1 aktivieren 
+- radvd in Namespace1 aktivieren
 
 **tbc: Anfang nächster Einheit**
 
@@ -815,4 +808,3 @@ ip link set veth1 up
 
 
 ```
-

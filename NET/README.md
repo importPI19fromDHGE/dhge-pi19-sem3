@@ -628,3 +628,54 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 - Praxis: 
   - limitierende MTU meist an den Rändern, also beim Sender
 
+### Ipv6-Adressen - Notation
+
+
+- `x:x:x:x:x:x:x:x`
+- x = 4 hexadezimale Zahlen, je 16 Bit 
+
+- längere 0-Folgen können einmalig abgekürzt werden: 
+  - `ff01:0:0:0:0:2342:78fa` -> `ff01::2342:78fa`
+
+- Empfehlungen aus RFC: 
+  - führende Nullen des Blocks weglassen
+  - Zwei Doppelpunkte
+    - sollen maximale Anzahl von 0-Blöcken repräsentieren 
+    - nicht zur Abkürzung eines einzelnen Blocks verwenden 
+  - bei mehreren möglichen Kürzungen: möglichst weit links kürzen 
+  - bei Angabe von Portnummern: IPv6-Adresse in eckige Klammern
+    - `[ff01:0:0:0:0:2342:78fa]:80` oder `[ff01::2342:78fa]:80`
+
+### Adresstypen (Folie 3/15)
+
+![IPv6-Header](resources/Adresstypen.png)
+
+- Anycast:
+  - wird zum Beispiel bei DNS-Rootservern verwendet 
+
+- Multicast: 
+  - um z.B. alle Router im Netz anzusprechen
+
+### Generelle Adresstruktur (Folie 3/16)
+
+- Trennung zwischen Präfix und Interface Identifier
+  - Notation analog zu CIDR 
+  - `/64` am Ende gibt die Länge des Präfix an
+
+
+![IPv6-Adresstruktur](resources/IPv6_Adresstruktur.png)
+
+### Erzeugung einer link-local Adresse (Folie 3/17)
+
+- aus MAC-Adresse oder per Privacy Extension abgeleitet 
+
+### IPv6-Multicasts (Folie 3/18)
+
+- es gibt mehrere Multicast-Gruppen an denen teilgenommen werden kann 
+- es existieren zudem festgelegte "well-known" Multicast-Adressen 
+  - `ff02::1` -> alle Knoten am Link 
+    - zum Beispiel für ARP-äquivalente Anfragen 
+  - `ff02:2` -> alle Router am Link 
+  - `ff02::16` -> alle MLDv2-fähigen Router
+
+

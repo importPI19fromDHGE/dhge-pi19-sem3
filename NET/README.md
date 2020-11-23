@@ -735,3 +735,73 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 [//]: # (Hat hier jemand was?) 
 
+
+### Praxisbeispiel: 
+
+
+
+- Namespaces erstellen:
+
+```bash
+sudo ip netns add ns1
+sudo ip netns add ns2
+
+sudo ip netns list # zur Prüfung
+```
+
+- virtuelle Ethernet-Interfaces erstellen:
+
+```bash
+sudo ip link add veth1 netns ns1 type veth peer name veth2 netns ns2 # erstellt veth1 in ns1 und veth2 in ns2
+```
+
+- radvd installieren und .conf anlegen
+
+```bash
+
+apt-get install radvd
+
+touch /etc/radvd.conf
+
+```
+
+- .config bearbeiten
+
+```bash
+interface veth1
+{
+prefix 2001:db8:1:0::/64
+	{
+		AdvOnLink on;
+		AdvAutonomous on;
+		AdvRouterAddr off;
+	};
+};
+```
+
+Quelle Beispielkonfig: https://github.com/reubenhwk/radvd/blob/master/radvd.conf.example
+
+- radvd erneut starten und Status erfassen
+```bash
+sudo systemctl start radvd
+sudo systemctl status radvd
+```
+
+- Namespace betreten und Interface aktivieren:
+
+```bash
+sudo ip netns exec ns1 /bin/bash
+ip link set veth1 up
+```
+
+- diesen Schritt für zweites Interface wiederholen
+
+- radvd in Namespace1 aktivieren 
+
+**tbc: Anfang nächster Einheit**
+
+```bash
+
+
+```
+

@@ -5,14 +5,15 @@ Systemanalyse
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Einführung / Überblick](#einf%C3%BChrung--%C3%BCberblick)
+- [Systemanalyse](#systemanalyse)
+- [Einführung / Überblick](#einführung--überblick)
   - [User Story Format](#user-story-format)
-  - [Was gehört alles zur Systemanalyse?](#was-geh%C3%B6rt-alles-zur-systemanalyse)
-- [Regeln für Software-Entwicklung](#regeln-f%C3%BCr-software-entwicklung)
+  - [Was gehört alles zur Systemanalyse?](#was-gehört-alles-zur-systemanalyse)
+- [Regeln für Software-Entwicklung](#regeln-für-software-entwicklung)
   - [(1) Klartext](#1-klartext)
     - [Wasserfallmodell](#wasserfallmodell)
     - [Agil](#agil)
-  - [(2) Gründliche Vertragsgestaltung](#2-gr%C3%BCndliche-vertragsgestaltung)
+  - [(2) Gründliche Vertragsgestaltung](#2-gründliche-vertragsgestaltung)
     - [Wasserfallmodell](#wasserfallmodell-1)
     - [Agil](#agil-1)
   - [(3) Wandelnde Anforderungen: Wie gehe ich damit um?](#3-wandelnde-anforderungen-wie-gehe-ich-damit-um)
@@ -21,10 +22,10 @@ Systemanalyse
   - [Vorgehensmodelle](#vorgehensmodelle)
     - [Phasenmodell](#phasenmodell)
     - [Iteriertes Phasenmodell](#iteriertes-phasenmodell)
-    - [Evolutionäre SW-Entwicklung](#evolution%C3%A4re-sw-entwicklung)
+    - [Evolutionäre SW-Entwicklung](#evolutionäre-sw-entwicklung)
     - [Spiralen Modell](#spiralen-modell)
     - [V-Modell](#v-modell)
-    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-auspr%C3%A4gung-des-v-modells-v-modell-xt)
+    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-ausprägung-des-v-modells-v-modell-xt)
     - [Extreme Programming (XP)](#extreme-programming-xp)
 - [SCRUM](#scrum)
   - [Empirische Prozess Kontrolle](#empirische-prozess-kontrolle)
@@ -43,9 +44,14 @@ Systemanalyse
     - [Definition of Done](#definition-of-done)
     - [DoR: Definition of Ready](#dor-definition-of-ready)
   - [SCRUM-Manifest](#scrum-manifest)
-    - [Häufige / gern gemachte Fehler bezüglich des Manifests](#h%C3%A4ufige--gern-gemachte-fehler-bez%C3%BCglich-des-manifests)
+    - [Häufige / gern gemachte Fehler bezüglich des Manifests](#häufige--gern-gemachte-fehler-bezüglich-des-manifests)
   - [Vor- und Nachteile von SCRUM](#vor--und-nachteile-von-scrum)
 - [SCRUM Derivate](#scrum-derivate)
+  - [SCRUM-Ban](#scrum-ban)
+  - [Story Board](#story-board)
+  - [Prototype vs. Pretotype](#prototype-vs-pretotype)
+    - [Prototyp:](#prototyp)
+    - [Pretotype:](#pretotype)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -699,3 +705,83 @@ ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **E
 | weniger Schulden für die Zukunft                           | hoher Zeitaufwand für Meetings        |
 
 # SCRUM Derivate
+
+## SCRUM-Ban
+ist eine Kombination aus SCRUM und Kanban. 
+
+**Kanban**:
+- Tabelle zur Visualisierung des Arbeitsflusses
+- Pull-Prinzip
+- die Arbeit wird/ist begrenzt (pro Spalte: WIP-Limit)
+- Anzahl der Zeilen sind auch zu begrenzen (entsprechend der Anzahl an Themen)  
+  i.d. Regel <= Anzahl Mitarbeiter / 2
+- zeitlich nicht begrenzt (reines Kanban)
+> WIP: Work In Progress
+
+**SCRUM**:
+- exakt 2(3) Wochen Bearbeitungszeit
+- klare Aussagen zu:  
+  Wann kommt das neue Release?  
+  Was beinhaltet es?
+
+**SCRUM-Ban** ist eine Kombination aus beiden Methoden. 
+1. manche Karten folgen dem SCRUM
+2. manche Karten folgen dem Kanban  
+   (d.h. diese dürfen länger dauern)  
+   **Achtung**: zu Beginn muss dies feststehen!
+  
+## Story Board
+- zeichnerische Version des Drehbuchs (in der Film-Industrie)
+- in der Software-Entwicklung: Visualisierung des Plans
+- einzelne Inhalten werde skizziert
+  d.h. **Nutzer**sicht!
+
+dazu: Handlungsweisen des Nutzers werden in Blöcken abgebildet
+
+**Beispiel** für eine Powerpoint Anwendung
+
+| Öffnen            | Texte verfassen | Präsentation   | Konfigurieren  | Grafiken verwenden |
+| ----------------- | --------------- | -------------- | -------------- | ------------------ |
+| Vorlagenauswahl   | Textblock       | Slide anzeigen | Workflow Modus | PNG                |
+| altes Dokument    | Font Änderung   | Timer          | Wizard         | JPG                |
+| 2 alte -> 1 neues | Größe Font      | Animationen    | klassisch      | Blockgrafik        |
+| Import PPT        | Größe Block     | Ereignisse     | Dark-Mod e     | Smart Art          |
+| Import OPT        | RS-Prüfung      |                | Sprachen       | einfärben          |
+| Import LaTeX      | Tabellen        |                |                | beschneiden        |
+| Read Only Mode    | Layout Änderung |
+| Speichern         |                 |
+| Speichern als     |                 |
+| Export PPT        |                 |
+| Export OPT        |                 |
+| Export LaTeX      |                 |
+
+- dann wird mit dem Nutzer diese Liste durchgegangen und **priorisiert**  
+  bpsw. *speichern* ist wichtiger als *merge*
+- dann kann abgegrenzt werden, was alles in MVP 1, 2, 3 etc. enthalten sein soll
+- beim nächsten Gespräch können die nächsten Meilensteine festgelegt werden 
+- Der Nutzer ist involviert und kann Änderungen des Plans anfordern
+> möglicherweise wird diese List auch vom Nutzer direkt erstellt -> jedoch eher selten
+
+## Prototype vs. Pretotype
+
+### Prototyp:
+
+-> funktionsfähiges, vereinfachtes Versuchsmodelle eines geplanten Produktes
+
+**Ziel**: 
+
+Kann ich das Produkt überhaupt entwickeln?  
+Funktioniert es, wie gedacht?  
+Ist es schnell, preisgünstig, ... produzierbar?
+
+### Pretotype:
+
+Es wird so getan, als wäre ein Funktion vorhanden.
+
+"Fake it before you make it"
+
+**Ziel**:
+
+Bedarf einer Lösung  
+Art und Weise der Nutzung  
+-> Erfolgskriterien benennen

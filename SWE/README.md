@@ -45,7 +45,9 @@ Systemanalyse
   - [SCRUM-Manifest](#scrum-manifest)
     - [Häufige / gern gemachte Fehler bezüglich des Manifests](#h%C3%A4ufige--gern-gemachte-fehler-bez%C3%BCglich-des-manifests)
   - [Vor- und Nachteile von SCRUM](#vor--und-nachteile-von-scrum)
-- [SCRUM Derivate](#scrum-derivate)
+  - [SCRUM-Ban als SCRUM Derivat](#scrum-ban-als-scrum-derivat)
+  - [Story Board](#story-board)
+  - [Prototype vs. Pretotype](#prototype-vs-pretotype)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -125,6 +127,7 @@ Request → Impact, Analysis → Approve / Deny → Implementation → Business
 Zuerst schauen: "Habe ich die richtigen Mitarbeiter?"  
 Danach schauen: "Habe ich die richtige Hardware/Software?"  
 Zuletzt die Methode hinterfragen
+
 # Systementwicklung im Software-Engineering
 
 > orientiert sich an der Auto-Produktion
@@ -243,28 +246,11 @@ Analyse
 
 Hier wird immer wieder in eine Phase "zurück gesprungen", falls etwas nicht passt.
 
-> -> Protop zur Akzeptanz-Analyse ist möglich!
+> Prototyp zur Akzeptanz-Analyse ist möglich! (zu Prototyp später mehr)
 
 **PDCA-Prinzip:** Planning -> Doing -> Checking -> Acting (und wieder von vorn)
 
 > Das PDCA-Prinzip wird später genauer behandelt
-
-**Unterschied zwischen Prototyp und Pretotype**
-
-**Prototyp:**
-- erstes Vorbild
-- praktische Erfahrungen
-- klären von Anforderungen
-- zeigt ausgewählte Eigenschaften
-- darf bzw. **muss** quick & dirty sein
-
-**Gefahr:**
-- wird nicht wieder weggeworfen
-- wird als Doku-Ersatz missbraucht
-- Aufwand ist relativ hoch
-
--> **Pretotyp:** "Fake it till you make it"
-> Durch einen Pretotyp wird die Fail-Early Idee unterstützt
 
 ### Evolutionäre SW-Entwicklung
 
@@ -320,8 +306,7 @@ Hier wird immer wieder in eine Phase "zurück gesprungen", falls etwas nicht pas
 >
 > -> Zeit + Kosten + Leistung können nicht gleichzeitig verbessert werden
 
-Analyse -> High-Level-Design -> Low-Level-Design -> Implementierung -> Unit Tests -> Integrations-Tests -> Systemtests -> Akzeptanz-Tests
-<!-- Hier wäre eine visuelle Darstellung ganz gut -->
+![Schematische Darstellung des V-Modells](resources/v-modell.png)
 
 | Vorteile                                              | Nachteile                                                                                                         |
 | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
@@ -401,6 +386,7 @@ Wer, Was, Wann
 |                                                       | vage Anforderungen führen nicht zu einem V-Modell XT Projekt |
 
 ### Extreme Programming (XP)
+
 - leichtgewichtiges Vorgehensmodell
 - für kleine / mittlere Teams geeignet
 - bei vagen Anforderungen gut geeignet
@@ -496,6 +482,7 @@ Plan -> Do -> Check -> Act -> (zurück zu Plan)
 - häufige Wiederholung
 
 ## SCRUM-Prozess
+
 - (1) Produkt-Vision, gemeinsame Idee muss zunächst existieren
 - -> ein Workshop führt zu (2) einem Produkt-Backlog, gefüllt mit Epics
 > ein Epic ist ein höheres Anforderungsniveau -> keine Details -> nicht sofort umsetzbar  
@@ -505,6 +492,7 @@ Plan -> Do -> Check -> Act -> (zurück zu Plan)
 - Jeder soll/darf Epics in das Backlog "füttern" dürfen
 
 ## User-Story
+
 > Als ... möchte ich ... um ...
 
 - Erklärung eines Features aus Sicht einer Person, die dieses Feature verwenden will
@@ -520,7 +508,9 @@ Angenommen ... <Vork.> wenn ... <Aktion> dann ... <Ergebnis>
 > Realisierbar mit: JIRA, ..., Empfehlung für den Anfang: taktile Variante (Papier)
 
 ## Rollen im SCRUM-Prozess
+
 ### Product Owner
+
 - muss eine "Brücke" zwischen Business und Development herstellen
 - muss ROI (Return of Investment) gewährleisten
 - ist die Schnittstelle zum Kunden -> muss die Kundenbedürfnisse verstehen und einordnen
@@ -529,11 +519,13 @@ Angenommen ... <Vork.> wenn ... <Aktion> dann ... <Ergebnis>
 - muss Backlog Prioritäten setzen
 
 **Aus praktischer Erfahrung ist der PO:**
+
 - ein Full-Time Job  
 - eine Authoritätsperson  
 - genau eine Person
 
 ### Entwickler Team
+
 - besteht idealerweise aus 7+-2 Mitarbeiter
 - selbstorganisierend
 - Mitarbeiter ist typischerweise "I-shaped" -> hat auf einem Gebiet extrem tiefes Wissen  
@@ -542,6 +534,7 @@ Angenommen ... <Vork.> wenn ... <Aktion> dann ... <Ergebnis>
 - sind nach außen geschützt
 
 ### SCRUM-Master
+
 - Kümmerer (kümmert sich um Probleme seiner Mitarbeiter)
 - Diener + Führer in einer Person
 - Prozessbeobachter
@@ -550,22 +543,18 @@ Angenommen ... <Vork.> wenn ... <Aktion> dann ... <Ergebnis>
 - idealerweise ist der SCRUM-Master ein fachfremder Mitarbeiter
 
 ## Vorgehen in SCRUM
-1. Vision -> Produktbacklog  
-   im Produktbacklog ist die oberste Aufgabe die wichtigste
 
-2. Sprint-Planning  
-   Das **Team** erstellt ein Sprint-Backlog aus dem Produkt-Backlog
-   - ein Sprint-Ziel muss definiert werden
-
+1. Vision -> Produktbacklog: im Produktbacklog ist die oberste Aufgabe die Wichtigste
+2. Sprint-Planning: **Team** erstellt ein Sprint-Backlog aus dem Produkt-Backlog (Definition eines Sprint-Ziels)
 3. Bearbeitung des Sprints (meist 14 Tage)
-   - Daily Meeting (jeder im Team erzählt ganz kurz, woran er gerade arbeitet)
-   - am Ende des Sprints: Sprint Review (bezieht sich konkret auf den Inhalt des Sprints)
-   - Retrospektive (bezieht sich auf den Prozess des Sprints, realisierbar durch KSSP)
-   - zurück zu 2.
+	- Daily Meeting (jeder im Team erzählt ganz kurz, woran er gerade arbeitet)
+	- am Ende des Sprints: Sprint Review (bezieht sich konkret auf den Inhalt des Sprints)
+	- Retrospektive (bezieht sich auf den Prozess des Sprints, realisierbar durch KSSP) -> zurück zu 2.
 
 > Die 4 festen Events sind nicht abwählbar (vs. Aussage: beim SCRUM kann vieles an Bedürfnisse vom Team angepasst werden)
 
 ### Daily SCRUM Event
+
 - Koordination des Teams bezüglich des Sprint-Ziels
 - Entwickler Team
 - am Kanboard
@@ -580,6 +569,7 @@ Angenommen ... <Vork.> wenn ... <Aktion> dann ... <Ergebnis>
 > Im Burn-Down-Chart ist die Reduzierung der Tasks anfangs oft sehr langsam, da noch kein/wenig Task-Grooming/Task-Refinement betrieben wurde.
 
 ### Sprint *Planning* Event
+
 1. Verantwortlich: Product Owner
 2. realistisches Sprint Ziel, vom Product Owner forumuliert  
    + Plan, wie das Ziel zu erreichen ist (von Product Owner + Team gemeinsam erarbeitet)
@@ -597,9 +587,9 @@ Ziel: eine realistische Aufteilung der Themen auf die Mitarbeiter
 --> die Machbarkeit des Sprints wird frühzeitig sichtbar
 
 - pro Zeile ein Thema
-- Anzahl der Themen soll ca Anzahl Mitarbeiter / 2 
+- Anzahl der Themen soll ca Anzahl Mitarbeiter / 2
 - Spalten den Mitarbeitern zuordnen
-- Verantwortliche (zu den Themen) zuordnen 
+- Verantwortliche (zu den Themen) zuordnen
 - pro Mitarbeiter habe ich Informationen: Zu viele Verantwortlichkeiten? Zu viele Themen?
 - pro Zeile: Informationen, wie viele Mitarbeiter im Thema involviert sind
 - **ZIEL:** Probleme frühzeitig sichtbar machen! (und im Idealfall lösen)
@@ -632,17 +622,20 @@ Ziel: eine realistische Aufteilung der Themen auf die Mitarbeiter
    (E) Schluss
 
 ## Policies
+
 ### Definition of Done
+
 Hilfe um zu klären, wann eine Aufgabe erledigt ist (wann sie vom Review ins Done "geschoben" werden kann)
 
 **Aspekte aus dem Unternehmen:** bspw. die Aufgabe ist eigentlich fertig, aber die Abrechnung fehlt  
 **Aspekte aus dem Team:** bspw. die Aufgabe ist eigentlich gelöst aber die Kommentare sind schwer verständlich
 
---> Qualitätsanspruch 
+--> Qualitätsanspruch
 
 Das ganze nennt sich **Definition Of Done**. Ein Dokment vom Team.
 
-**Aufbau eines Definition Of Done**  
+**Aufbau eines Definition of Done**
+
 | Kategorien           | Aufgaben / Beschreibung | leicht messbare Kriterien |
 | -------------------- | ----------------------- | ------------------------- |
 | Tests                | Software wurde getestet | Abdeckungsgrad            |
@@ -657,6 +650,7 @@ Das ganze nennt sich **Definition Of Done**. Ein Dokment vom Team.
 - Qualitätsanspruch
 
 ### DoR: Definition of Ready
+
 ist eine Menge an Kriterien, mit denen ich entscheiden kann, wann ich eine Aufgabe bearbeiten kann (starten kann)
 
 | Kategorie                   | Beschreibung       | Messbare Kriterien                       |
@@ -670,19 +664,21 @@ ist eine Menge an Kriterien, mit denen ich entscheiden kann, wann ich eine Aufga
 
 
 ## SCRUM-Manifest
+
 ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **Entscheidungshilfe** für ganzheitliche Transformationen (agile Prozesse, Geschäftsarchitekturen, liquide Netzwerkstrukturen, ...) gegenüber dem Klammern an alten Strukturen.
 
 - **Individuen** stehen ***über*** den **Tools und Prozessen**
-- Das **Produkt** steht ***über*** der **Dokumentation**
+- **Produkt** steht ***über*** der **Dokumentation**
 - **Zusammenarbeit** steht ***über*** **Vertragsverhandlungen**
 - **Änderungen** stehen ***über*** dem **Plan**
 
 ### Häufige / gern gemachte Fehler bezüglich des Manifests
+
 - als Anleitung betrachtet, statt es als Manifest "zu leben"
 - es steht nicht "statt" sondern "über" in den Rubriken
 - zu viele Prozessoptimierungen anstelle alte Silostrukturen aufzubrechen (und um den Menschen sich zu kümmern)
 - "Die Landkarte ist nicht das Gebiet": Strategien wesentlicher als die Umsetzung => Probleme
-- man brauch **angeblich** keinen Plan
+- man braucht **angeblich** keinen Plan
 
 ## Vor- und Nachteile von SCRUM
 
@@ -698,4 +694,67 @@ ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **E
 | Planbarkeit bei eingespieltem Team                         | Planbarkeit erst nach `i` Iterationen |
 | weniger Schulden für die Zukunft                           | hoher Zeitaufwand für Meetings        |
 
-# SCRUM Derivate
+## SCRUM-Ban als SCRUM Derivat
+
+**Kanban**
+
+- Tabelle zur Visualisierung des Arbeitsflusses
+- Pull-Prinzip
+- die Arbeit wird/ist begrenzt (pro Spalte: WIP-Limit)
+- Anzahl der Zeilen sind auch zu begrenzen (= der Anzahl an Themen, i.d.R <= Anzahl Mitarbeiter / 2)
+- zeitlich nicht begrenzt (reines Kanban)
+
+**SCRUM**
+
+- begrenzte Bearbeitungszeit (z.B. 2 Wochen)
+- klare Aussagen zu: Wann kommt das neue Release und was beinhaltet es?
+
+**SCRUM-Ban**
+
+- Kombination aus beiden Methoden
+- manche Karten folgen dem SCRUM, manche dem KANBAN (d.h. dürfen länger dauern)
+- Art der Karte **zu Beginn** festgelegt
+
+## Story Board
+
+- aus Filmindustrie: zeichnerische Version des Drehbuchs
+- in SWE: Visualisierung des Plans, der einzelnen Inhalte skizziert (d.h. **Nutzersicht**)
+- Handlungsweisen des Nutzers werden in Blöcke abgebildet
+
+
+**Beispiel** für eine Powerpoint Anwendung
+
+| Öffnen            | Texte verfassen | Präsentation   | Konfigurieren  | Grafiken verwenden |
+| ----------------- | --------------- | -------------- | -------------- | ------------------ |
+| Vorlagenauswahl   | Textblock       | Slide anzeigen | Workflow Modus | PNG                |
+| altes Dokument    | Font Änderung   | Timer          | Wizard         | JPG                |
+| 2 alte -> 1 neues | Größe Font      | Animationen    | klassisch      | Blockgrafik        |
+| Import            | Größe Block     | Ereignisse     | Dark-Mode      | Smart Art          |
+| Read Only Mode    | RS-Prüfung      |                | Sprachen       | Einfärben          |
+| Speichern         | Tabellen        |                |                | Zuschneiden        |
+| Export            |                 |
+
+- Liste wird mit dem Nutzer durchgegangen -> Sortierung der Features innerhalb der Spalten nach Priorität
+- dann kann abgegrenzt werden, was alles in MVP 1, 2, 3 etc. enthalten sein soll
+- beim nächsten Gespräch können die nächsten Meilensteine festgelegt werden
+- Der Nutzer ist involviert und kann Änderungen des Plans anfordern
+
+> möglicherweise wird diese Liste auch vom Nutzer direkt erstellt -> jedoch eher selten
+
+## Prototype vs. Pretotype
+
+**Prototyp**
+
+- funktionsfähiges, vereinfachtes Versuchsmodelle eines geplanten Produktes
+- praktische Erfahrungen
+- klären von Anforderungen
+- Ziel: Funktioniert es wie gedacht? Kann ich es überhaupt entwickeln?
+- **Gefahr:** wird nicht wieder weggeworfen, als Doku-Ersatz missbraucht, Aufwand zu hoch
+
+**Pretotype**
+
+> Fake it till you make it
+
+- es wird so getan, als wäre eine Funktion vorhanden
+- Ziel: Bedarf einer Lösung, Art und Weise der Nutzung, Erfolgskriterien benennen
+- Teil der Fail-Early-Idee

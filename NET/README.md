@@ -528,7 +528,7 @@ Exkurs Namespaces:
 - Zu Beginn leere und frei konfigurierbare Stacks 
 - es können komplette lokale Netzwerke innerhalb eines Kernels geschaffen werden 
 - wird zum Beispiel für Docker genutzt
-  - dort aber auch noch separate Namespaces für PIDs, IP-Tables, Filesystem, 
+  - dort aber auch noch separate Namespaces für PIDs, IP-Tables, Filesystem
   
 
 Verknüpfung von 3 Network Namespaces:
@@ -584,7 +584,7 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 - mit bspw. Ping überprüfen, ob Verbindung funktioniert
 
-## Nachteile IPv4
+### Nachteile IPv4
 
 - Ausgeschöpfter Adressraum 
   - theoretisch nur 4 Mrd. Adressen 
@@ -601,3 +601,30 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
   - Zusätzliche Infrastruktur für automatische Konfiguration erforderlich
 
  
+ ## IPv6
+
+ ### Header
+
+ ![IPv6-Header](resources/IPv6_Header.png)
+
+ 
+ Hop Limit: 
+  - ehemals TTL
+  - zur Vermeidung von Zyklen
+  - bei jedem Hop dekrementieren um 1
+
+ ### Extension-Header
+
+ - in Zusammenhang mit Next-Header-Feld verwendet 
+ - (Folie 3/12)
+
+ ### IPv6-Fragmentierung 
+
+- Grundprinzip ähnlich zu IPv4
+  - wenn auf Pfad MTU nicht ausreicht wird fragmentiert 
+- Unterschied zu IPv4: 
+  - durch Sender fragmentiert, dadurch Effizienzsteigerung
+  - Absender wird über Fragmentierungsbedarf informiert (per ICMPv6-Nachricht "Packet too big")
+- Praxis: 
+  - limitierende MTU meist an den Rändern, also beim Sender
+

@@ -678,4 +678,60 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
   - `ff02:2` -> alle Router am Link 
   - `ff02::16` -> alle MLDv2-fähigen Router
 
+### Stateless Adress Autoconfiguration SLAAC (Folien 3/22,23)
+
+**Prüfungsrelevant!**
+
+![SLAAC Phase 1](resources/SLAAC_1.png)
+![SLAAC Phase 2](resources/SLAAC_2.png)
+
+### Migration IPv4 -> IPv6 (Folie 3/24)
+
+- momentane Koexistenz von v4 und v6 erfordert Mechanismen zur Realisierung des Übergangs und für Interoperabilität
+
+- Mechanismen: 
+  - Dual-Stack: 
+    - beide Adressversionen für Interfaces
+    - Knoten können über beide Protokolle unabhängig voneinander kommunizieren 
+  - Tunnelmechanismen:
+    - Kapselung von Paketen von v4 in v6 oder umgekehrt
+    - Varianten: 4in6, 6in4, 6over4, ... 
+  - Translationsmechanismen: 
+    - Transformation der jeweiligen Header zur anderen Version 
+    - Beispiel: NAT64 zur Übersetzung von v4 zu v6 
+  
+  #### Dual-Stack Lite (DS-Lite) (Folie 3/25)
+
+  - Kombination aus Tunnelmechanismen und Translation 
+  - Vorteile: 
+    - Providerinfrastruktur lann auf IPv6 umgestellt werden 
+    - IPv4-Adressen beim Provider werden eingespart 
+
+ ![Dual-Stack Lite](resources/DS_Lite.png)   
+
+### Exkurs: Raw Sockets 
+
+- Ermöglichen die Instanziierung von IP-Headern und Implementierung von Protokollen im User-Space 
+- IP-Headerelemente wie auch gekapselte Datagramme können im Programm befüllt werden
+- Durch Raw Sockets können z.B. implementiert werden:
+  - Netzwerksicherheitswerkzeuge wie Portscanner
+  - ICMP-basierte Anwendungen
+  - Routing-Protokolle
+
+   ![Raw-Sockets](resources/Raw_Sockets.png)   
+
+- Tooling: **Scapy** und **nmap**
+
+- Frage: Wie kann unter Verwendung von Raw-Sockets ein einfaches TRACEROUTE gebaut werden? 
+
+- Antwort: Mit Hilfe des TTL kann dies ermöglicht werden 
+  - erst TTL 1 (ICMP des ersten Routers)
+  - dann TTL 2 (ICMP des zweiten Routers)
+  - ...
+
+- Problem: nicht alle Router haben diese ICMP-Antworten aktiviert, weitere Anpassung nötig 
+
+### IPv6 im Linux-Kernel 5.9 (Folien 3/27,28)
+
+[//]: # (Hat hier jemand was?) 
 

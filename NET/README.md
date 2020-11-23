@@ -528,7 +528,7 @@ Exkurs Namespaces:
 - Zu Beginn leere und frei konfigurierbare Stacks 
 - es können komplette lokale Netzwerke innerhalb eines Kernels geschaffen werden 
 - wird zum Beispiel für Docker genutzt
-  - dort aber auch noch separate Namespaces für PIDs 
+  - dort aber auch noch separate Namespaces für PIDs, IP-Tables, Filesystem, 
   
 
 Verknüpfung von 3 Network Namespaces:
@@ -583,3 +583,21 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 ```
 
 - mit bspw. Ping überprüfen, ob Verbindung funktioniert
+
+## Nachteile IPv4
+
+- Ausgeschöpfter Adressraum 
+  - theoretisch nur 4 Mrd. Adressen 
+  - diese auch noch ungünstig vergeben (/8 Netz für IBM)
+  - Einsatz von NAT (Network Adress Translation) kann Verwendung einiger Dienste erschweren (Ende-zu-Ende Prinzip wird gebrochen)
+
+- Ineffizientes Routing
+  - variable Länge der Header von IPv4-Paketen 
+  - Header können mit Optionen auf bis zu 60 Bytes ausgeweitet werden 
+  - Router prüfen, ob Paket die MTU überschreitet und fragmentieren ggf. 
+
+- Keine automatische Konfiguration 
+  - IP-Adresse muss manuell oder über DHCP (Dynamic Host Configuration Protocol) vergeben werden 
+  - Zusätzliche Infrastruktur für automatische Konfiguration erforderlich
+
+ 

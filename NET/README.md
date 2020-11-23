@@ -45,6 +45,15 @@
       - [STP und VLAN](#stp-und-vlan)
     - [Transparent Interconnection of lots of links (TRILL)](#transparent-interconnection-of-lots-of-links-trill)
     - [Stacking](#stacking)
+  - [Internetprotokoll und Hilfsprotokolle](#internetprotokoll-und-hilfsprotokolle)
+    - [IPv4-Header](#ipv4-header)
+    - [Fragmentierung](#fragmentierung)
+    - [IPv4-Adressierung](#ipv4-adressierung)
+    - [Address Resolution Protocol (ARP)](#address-resolution-protocol-arp)
+      - [Einordnung](#einordnung)
+      - [Protokolldetails](#protokolldetails)
+  - [ICMP](#icmp)
+    - [Praxisübung](#praxis%C3%BCbung)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -179,7 +188,8 @@ Im Großen und Ganzen ist "das Internet" paketvermittelt, Leitungsvermittlung ka
 Siehe Folie 15
 
 ### 1.2.7. Kopplungselemente
-<img src="./resources/Switches_Router.png" alt="Switches und Router" width=500>
+
+![Switches und Router](resources/L2-net.png)
 
 #### **Switches**
 - verbinden Netzsegmente (Broadcast-Domains) und leiten Pakete zwischen diesen weiter
@@ -379,3 +389,197 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 # 7. Software-defined Networking
 # 8. Netztechnologien
 -->
+
+## Internetprotokoll und Hilfsprotokolle
+
+- Schicht 3; von Übertragungsmedium unabhängig
+- Overlay über L2, bildet davon unabhängiges Netz
+- Ermöglicht Adressierung von "Knoten"
+- zwei Versionen verbreitet: IPv4 und IPv6
+- IP-Paket wird trotz Hops nicht verändert (Ausnahme: NAT)
+- Bezeichnung Hostadresse eigentlich falsch -> Schnittstellenadresse 
+- eine IP-Adresse ist nicht einem Host zugewiesen, sondern einem NIC
+  - Workaround: Loopback-Interface, zur Adressierung von Localhost
+- *casts:
+  - Unicast: Senden an exakt einen NIC
+  - Broadcast: Senden an alle NICs
+  - Multicast: Senden an Teilmenge
+  - Anycast: Senden an alle NICs, aber nur einer antwortet
+
+### IPv4-Header
+
+![Aufbau des IPv4-Headers](resources/ip-paket-aufbau.png)
+
+- Version: 4 Bits, Protokollversion
+- Internet Header Length (IHL): 4 Bits, Länge des Headers in 32 Bit Wörtern, Standardwert 5 --> 5 * 32 Bit = 20 Byte
+- Differenciated Service Code Point (DSCP): 6 Bit, Prioritätsklassen
+- Explicit Congestion Notification (ECN): 2 Bit, Meldung von Überlast, von Layer 4 gesteuert, wird damit rückläufig zu Sender kommuniziert "Bitte sende langsamer"
+- Total Length: 16 Bit, Gesamtlänge des Datagramms / Fragments in Bytes
+- Identification: 16 Bit, ID des Datagramms
+- Flags: 3 Bit:
+  - Bit 0: reserviert (RFC3514)
+  - Bit 1: Don't Fragmen (DF)
+  - Bit 2: More Fragments (MF)
+- Fragment Offset: 13 Bit, Offset in 8 Byte Blöcken, die Daten innerhalb des urspr. Paket hatten
+- Time to Live (TTL): 8 Bit, Lebenszeit des Pakets, in Praxis maximale Anzahl der Hops
+- Protocol: 8 Bit, im Datenbereich verwendetes Protokoll, Bsp. in Linux: ``/etc/protocols``
+- Header Checksum: Prüfsumme für (nur) IP-Header
+- Options: Zusatzdaten für bspw. Routing oder Zeitstempel
+  - Bsp Source Routing: Sender gibt exakte Route an; ermöglicht Angriffsfläche für DoS-Attacken
+
+### Fragmentierung
+
+![Bild von Fragmentierung](resources/ip-fragmentierung.png)
+
+- 1:1 Übersetzung von IP-Paket und ETH-Frame
+- Maximum Transmission Unit (MTU): Maximalgröße des ETH-Payloads
+  - ETH-Payload enthält auch IP-Header,... --> nicht tatsächliche Nutzdatengröße
+  - größer: weniger Overhead, anfälliger für Fehler, höherer Speicherbedarf in Netzwerkkomponenten
+  - kleiner: weniger Latenz, mehr Overhead
+- wenn IP-Paket größer als MTU: muss fragmentiert werden
+  - Ergebnis sind n vollwertige IP-Pakete inkl. Header
+  - alle Pakete gleiche Identification Nummer  (zum Rekonstuieren des urspr. Paket)
+  - Flags:
+    - MF-Flag = 1 bei allen außer dem letzten Paket
+    - Fragment Offset: zählt Byteposition hoch
+- Wo wird fragmentiert?
+  - bei IPv4 kann bei jedem Hop auf der Route fragmentiert werden, Performanceverlust 
+  - bei IPv6 wird beim Sender fragmentiert
+- Pass-MTU: bezeichnet geringste MTU aller Hops auf der Route 
+
+```
+# MTU anzeigen lassen 
+
+ip addr show
+```
+
+### IPv4-Adressierung
+
+- Struktur: 0 bis n Bits Netzadresse, 32-n Bit Hostadresse (NIC-Adresse)
+- Notation: ``adresse/n`` --> Classless Inter Domain Routing Notation (CIDR)
+- Netzanteil ermöglicht Ausbildung einer hierarch. Struktur, skalierbar
+- Einteilung von IPv4-Adressen in öff. Adressen (innerhalb des Intenets eindeutig, durch zentrale Instanz vergeben) und private Adressen (innerh. eines lokalen Netzes eindeutig)
+- insbesondere durch IPv4-Adress-Knappheit werden öff. Adressen durch Network Address Translation (NAT) auf mehrere Hosts abgebildet
+- Routing:
+
+![Bild eines Routers](resources/routing-bsp.png)
+
+### Address Resolution Protocol (ARP)
+
+#### Einordnung
+
+![Ablauf von ARP](resources/ip-arp-ablauf.png)
+
+- ARP ermittelt zu IP-Adressen und weiteren Adressfamilien die zugehörigen Hardwareadressen
+- Request-Reply-Protokoll
+- ermittelte Zuordnung für best. Zeitraum in ARP-Tabelle gespeichert
+- wenn Ziel-NIC außerhalb des eigenen Netzwerks: Ermittlung der MAC-Adresse des **Gateways**, nichts dahinter
+  - siehe folgendes Bild:
+
+![Bild ARP Beispiel](resources/ip-arp-bsp.png)
+
+```
+# Für Anzeige von ARP-Anfragen (Beispiel)
+
+tcp dump -i any -p arp
+```
+
+#### Protokolldetails
+
+//TODO: Bild Folie 7
+
+//TODO: ausfüllen
+
+## ICMP
+
+- Internet Control Message Protocol dient der Kommunikation von Fehlern und Abfrage von Statusinformation in (fast immer) IP-basierten Netzwerken
+- ausgewählte Typen:
+  - 0: Echo Reply: Antwort auf Echo Request
+  - 3: Destination Unreachable: Ziel nicht erreichbar mit folgenden Codes:
+    - 0 - Net unreachable
+    - 3 - Port unreachable
+    - 4 - Fragmentation needed and Don't Fragmen (DF) was set
+  - 5: Redirect: siehe unten
+  - 9: Router Advertisement: dient automatischen Discovery von Routern
+  - 11: Time Exceeded: TTL-Feld aus IP-Datagramms abgelaufen
+  - 13: Timestamp: TODO
+- Aufbau:
+  - 8 Bit Typ (s.o.)
+  - 8 Bit Code (s.o.)
+  - 16 Bit Prüfsumme
+  - weitere Inhalte abhängig von Typ / Code
+
+Möglichkeiten: 
+- mehr Funktionen als "nur" Ping
+- Fehlermeldungen können im Netzwerk propagiert werden 
+- Zeitstempel können zur Lastermittlung genutzt werden
+
+Beispiel: ICMP-Redirect
+
+- wird von einem Gateway versendet, wenn es feststellt, dass ein Router im gleichen Netz liegt, sodass direkt mit diesem kommuniziert werden kann
+- bietet Angriffsfläche: kann verwendet werden, um kompromittierten Router in den Pfad zu zwingen
+- per Default in vielen Systemen deaktiviert
+
+### Praxisübung
+
+Exkurs Namespaces: 
+
+- Namespaces bieten Möglichkeit, separate Netzwerk-Stacks lokal zu schaffen 
+- Zu Beginn leere und frei konfigurierbare Stacks 
+- es können komplette lokale Netzwerke innerhalb eines Kernels geschaffen werden 
+- wird zum Beispiel für Docker genutzt
+  - dort aber auch noch separate Namespaces für PIDs 
+  
+
+Verknüpfung von 3 Network Namespaces:
+
+![Bild der Aufgabenstellung](resources/uebungsaufgabe.png)
+
+- 3 Namespaces erstellen:
+
+```bash
+sudo ip netns add ns1
+sudo ip netns add ns2
+sudo ip netns add ns3
+
+sudo ip netns list # zur Prüfung
+```
+
+- virtuelle Ethernet-Interfaces erstellen:
+
+```bash
+sudo ip link add veth1 netns ns1 type veth peer name veth2 netns ns2 # erstellt veth1 in ns1 und veth2 in ns2
+sudo ip link add veth3 netns ns2 type veth peer name veth4 netns ns3
+```
+
+- Namespace betreten und Interface aktivieren:
+
+```bash
+sudo ip netns exec ns1 /bin/bash
+ip link set veth1 up
+```
+
+- diesen Schritt für alle Interfaces wiederholen
+- allen VEth-Interfaces die gewünschten Adressen vergeben: (für alle Interfaces wiederholen)
+
+```bash
+sudo ip netns exec ns1 /bin/bash
+sudo ip addr add 192.168.42.5/24 dev veth1
+```
+
+- Routen zwischen den Namespaces anlegen:
+
+```bash
+sudo ip netns exec ns1 /bin/bash
+ip route add 192.168.23.0/24 via 192.168.42.254
+```
+
+- diesen Schritt für alle Namespaces / gewünschten Routen wiederholen
+- Kernel anweisen, für das Router-Namespace das Routing zu aktivieren:
+
+```bash
+sudo ip netns exec ns2 /bin/bash
+echo 1 > /proc/sys/net/ipv4/ip_forward
+```
+
+- mit bspw. Ping überprüfen, ob Verbindung funktioniert

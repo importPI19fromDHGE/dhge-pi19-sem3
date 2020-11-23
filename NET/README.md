@@ -252,9 +252,9 @@ Zu beachten: Gibt es SPF (single point of failure) im Netz? Wenn ja: Ausfallsich
 
 Auch verwendetes Tool: Scapy
 
-# Netzzugangsschicht
+# 2. Netzzugangsschicht
 
-## Übersicht zu Ethernet
+## 2.1 Übersicht zu Ethernet
 
 - Ursprünglich für LAN-Kommunikation vorgesehen
 - Klassisch: Steuerung des Zugriffs auf den Kanal über CSMA/CD-Algorithmus (bei Punkt-zu-Punkt obsolet)
@@ -266,7 +266,7 @@ Auch verwendetes Tool: Scapy
 Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Alternative: z.B. Infiniband
 
-## Aufbau eines Ethernet Frames
+## 2.2 Aufbau eines Ethernet Frames
 
 ![Ethernet Frame](resources/eth-frame.png)
 
@@ -278,26 +278,26 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Padding: Gewährleistet Minimalgröße von 64 Byte
 - CRC-Checksum: 32-Bit-Prüfsumme über das Frame (von Zieladresse bis Padding-Feld)
 
-## Namen von Netzwerkschnittstellen unter Linux
+## 2.3 Namen von Netzwerkschnittstellen unter Linux
 
 - Alt: `ethX` bzw. `wlanX` (an MAC gebunden -> Probleme bei Tausch)
 - Neu: Consistent Network Device Naming (z.B. `enp0s25`)
 	- Ethernetinterface (en), das an PCI-Bus (p) an Slot 25 hängt
 
-## Switches
+## 2.4 Switches
 
 - Multiport Kopplungselemente, das Frames nur an den Port weiterleitet über den der Empfänger erreichbar ist
 - Speicherung von Adressen in Source-Address-Table (SAT)
 - **Cut-Through Switches:** Nach Analyse der MAC-Adresse sofortiges Durschalten zum entsprechenden Port (Weiterleitung ohne Zwischenspeicherung = geringe Latenz, kein Einfluss auf Datenrate)
 - **Store-and-Forward Switches:** Frame wird am Eingangsport und Ausgangsport gepuffert (größere Latenz, Möglichkeit zur Zwischenverarbeitung der Daten)
 
-### Architekturtypen
+### 2.4.1 Architekturtypen
 
 - **Shared Memory:** CPU kopiert Daten nach Extraktion der Zieladresse in den korrekten Ausgangspuffer
 - **Bus-System:** Empfangener Port leitet Frame über gemeinsamen Bus an richtigen Ausgangsport
 - **Switching-Matrix:** Physische Durchschaltung von Ein- und Ausgabeleitungen
 
-### Kenngrößen
+### 2.4.2 Kenngrößen
 
 - Datenrate der verschiedenen Ports
 - Datenrate des Backplanes (der internen Busse)
@@ -308,7 +308,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Bandbreitenmanagement
 - Preis
 
-### Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->
+### 2.4.3 Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->
 
 - STP etabliert sich innerhalb des Netzes einen Spannbaum durch das Blockieren von Ports, die Zyklen erzeugen würden
 - Blockierter Port: Eingehender und ausgehender Traffic wird verworfen, Kanal ansonsten voll funktionsfähig
@@ -326,17 +326,17 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Designated Port: Alle Ports, die kein Root-Port und nicht blockiert sind  
 - Non-Designated Port: Ports in blockiertem Zustand um Zyklen zu verhindern  
 
-#### STP - Port Fast/Fast Link
+#### 2.4.3.1 STP - Port Fast/Fast Link
 
 - STP weist Konvergenzprobleme auf: Netzwerk erst nach etwa 30 Sekunden funktionstüchtig (Probleme beispielsweise mit PXE Boot)
 - Switches bieten Speziellen Modus für Ports an denen Endsysteme angeschlossen sind (Port geht sofort bei Aktivierung in Forwarding State)
 - Herstellerspezifische Terminologie: PortFast (Cisco), Fast Link (NetGear)
 
-#### Rapid Spanning Tree Protocol
+#### 2.4.3.2 Rapid Spanning Tree Protocol
 
 - Proaktiver Ansatz bei dem effizient auf Alternativpfade gewechselt werden kann
 
-### Virtuelles LAN
+### 2.4.4 Virtuelles LAN
 
 - Physisches Netzwerkdesign steht häufig mit logischem Netzwerkdesign in Konflikt
 - logische Einteilung des Netzes auf Ebene der Switche (Aufteilung in Broadcast-Domänen; erhöhte Sicherheit)
@@ -347,7 +347,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Tag-basierte VLANs: Frames werden mit ID eines VLANs getaggt, wodurch über einen Port mehrere VLANs realisiert werden können
 - dynamische/inhaltsbasierende VLANs: Zuordnung zu VLANs anhand verwendeter Protokolle (weniger verbreitet)
 
-#### Tag-basierte VLANs
+#### 2.4.4.1 Tag-basierte VLANs
 
 - Erweiterung der Ethernet-Frames um einen Tag zur Identifikation des VLANs zu dem das Frame gehört
 
@@ -360,7 +360,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - **Drop Eligible Indicator:** Identifiziert Frames, die bei Überlast verworfen werden können
 - **VLAN Identifier:** ID des zugehörigen VLANs ($2^{12}-2$ = max. 4096 VLANs)
 
-#### Inter-VLAN-Routing
+#### 2.4.4.2 Inter-VLAN-Routing
 
 **Ansatz 1**
 
@@ -371,14 +371,14 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - **Ansatz 2:** Einsatz von virtuellen Interfaces zur Vermeidung des hohen Aufwandes für separate Schnittstellen
 <!-- Gerne Prüfungsfrage: Voraussetzungen/Konfigurationsschritte -->
 
-#### STP und VLAN
+#### 2.4.4.3 STP und VLAN
 
 > STP weiß nix von VLANs
 
 - klassischer Ansatz nutzt die verfügbaren physischen Verbindungen nicht optimal aus
 - Lösung: Multiple Spanning Tree Protocol (jedes VLAN hat eigenen ST + ein Internal Spanning Tree für alle VLANs)
 
-### Transparent Interconnection of lots of links (TRILL)
+### 2.4.5 Transparent Interconnection of lots of links (TRILL)
 
 - Ethernet-Frames werden in einen TRILL-Header gekapselt
 - Routing dieser Frames auf deren Basis auf L2 (nächster Hop wird durch umgebenen L2-Header angegeben)
@@ -386,22 +386,15 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - TRILL-Header besitzt HOP-Count-Feld um Routing-Schleifen zu vermeiden
 - Entfernung des THRILL-Headers vor Auslieferung an das Zielsystem
 
-### Stacking
+### 2.4.6 Stacking
 
 - Stackfähige Switsches können miteinander zu einer Gruppe verbunden werden (einzelnes logisches Gerät, ansprechen über einzelne IP)
 - Vorteile: Skalierbarkeit (Anzahl der Ports einfach ), vereinfachte Netzwerkschnittstelle (Konfiguration von nur einem logischem Gerät), Vergrößerter Durchsatz (Stacking über Port mit hoher Datenrate)
 - Nachteil: Platzbedarf, höherer Stromverbrauch mehrerer Geräte, Kopplung als neue Fehlerquelle
 
-<!--
-# 3. Vermittlungsschicht: Internet Protocol
-# 4. Transportschicht: User Datagram Protocol und Transmission Control Protocol
-# 5. Routing
-# 6. Anwendungsschicht
-# 7. Software-defined Networking
-# 8. Netztechnologien
--->
 
-## Internetprotokoll und Hilfsprotokolle
+
+# 3. Vermittlungsschicht: Internet Protocol
 
 - Schicht 3; von Übertragungsmedium unabhängig
 - Overlay über L2, bildet davon unabhängiges Netz
@@ -417,7 +410,9 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
   - Multicast: Senden an Teilmenge
   - Anycast: Senden an alle NICs, aber nur einer antwortet
 
-### IPv4-Header
+## 3.1 IPv4
+
+### 3.1.1 IPv4-Header
 
 ![Aufbau des IPv4-Headers](resources/ip-paket-aufbau.png)
 
@@ -438,7 +433,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Options: Zusatzdaten für bspw. Routing oder Zeitstempel
   - Bsp Source Routing: Sender gibt exakte Route an; ermöglicht Angriffsfläche für DoS-Attacken
 
-### Fragmentierung
+### 3.1.2 Fragmentierung
 
 ![Bild von Fragmentierung](resources/ip-fragmentierung.png)
 
@@ -464,7 +459,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 ip addr show
 ```
 
-### IPv4-Adressierung
+### 3.1.3 IPv4-Adressierung
 
 - Struktur: 0 bis n Bits Netzadresse, 32-n Bit Hostadresse (NIC-Adresse)
 - Notation: ``adresse/n`` --> Classless Inter Domain Routing Notation (CIDR)
@@ -475,9 +470,9 @@ ip addr show
 
 ![Bild eines Routers](resources/routing-bsp.png)
 
-### Address Resolution Protocol (ARP)
+## 3.2 Address Resolution Protocol (ARP)
 
-#### Einordnung
+### 3.2.1 Einordnung
 
 ![Ablauf von ARP](resources/ip-arp-ablauf.png)
 
@@ -495,13 +490,13 @@ ip addr show
 tcp dump -i any -p arp
 ```
 
-#### Protokolldetails
+### 3.2.2 Protokolldetails
 
 //TODO: Bild Folie 7
 
 //TODO: ausfüllen
 
-## ICMP
+## 3.3 ICMP
 
 - Internet Control Message Protocol dient der Kommunikation von Fehlern und Abfrage von Statusinformation in (fast immer) IP-basierten Netzwerken
 - ausgewählte Typen:
@@ -531,7 +526,7 @@ Beispiel: ICMP-Redirect
 - bietet Angriffsfläche: kann verwendet werden, um kompromittierten Router in den Pfad zu zwingen
 - per Default in vielen Systemen deaktiviert
 
-### Praxisübung
+## 3.4 Praxisübung
 
 Exkurs Namespaces: 
 
@@ -595,7 +590,7 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 - mit bspw. Ping überprüfen, ob Verbindung funktioniert
 
-### Nachteile IPv4
+## 3.5 Nachteile IPv4
 
 - Ausgeschöpfter Adressraum 
   - theoretisch nur 4 Mrd. Adressen 
@@ -611,143 +606,142 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
   - IP-Adresse muss manuell oder über DHCP (Dynamic Host Configuration Protocol) vergeben werden 
   - Zusätzliche Infrastruktur für automatische Konfiguration erforderlich
 
- 
- ## IPv6
+## 3.6 IPv6
 
- ### Header
+### 3.6.1 Header
 
- ![IPv6-Header](resources/IPv6_Header.png)
+![IPv6-Header](resources/IPv6_Header.png)
 
- 
- Hop Limit: 
-  - ehemals TTL
-  - zur Vermeidung von Zyklen
-  - bei jedem Hop dekrementieren um 1
 
- ### Extension-Header
+Hop Limit: 
+- ehemals TTL
+- zur Vermeidung von Zyklen
+- bei jedem Hop dekrementieren um 1
 
- - in Zusammenhang mit Next-Header-Feld verwendet 
- - (Folie 3/12)
+### 3.6.2 Extension-Header
 
- ### IPv6-Fragmentierung 
+- in Zusammenhang mit Next-Header-Feld verwendet 
+- (Folie 3/12)
+
+### 3.6.3 IPv6-Fragmentierung 
 
 - Grundprinzip ähnlich zu IPv4
-  - wenn auf Pfad MTU nicht ausreicht wird fragmentiert 
+- wenn auf Pfad MTU nicht ausreicht wird fragmentiert 
 - Unterschied zu IPv4: 
-  - durch Sender fragmentiert, dadurch Effizienzsteigerung
-  - Absender wird über Fragmentierungsbedarf informiert (per ICMPv6-Nachricht "Packet too big")
+- durch Sender fragmentiert, dadurch Effizienzsteigerung
+- Absender wird über Fragmentierungsbedarf informiert (per ICMPv6-Nachricht "Packet too big")
 - Praxis: 
-  - limitierende MTU meist an den Rändern, also beim Sender
+- limitierende MTU meist an den Rändern, also beim Sender
 
-### Ipv6-Adressen - Notation
+### 3.6.4 Ipv6-Adressen - Notation
 
 
 - `x:x:x:x:x:x:x:x`
 - x = 4 hexadezimale Zahlen, je 16 Bit 
 
 - längere 0-Folgen können einmalig abgekürzt werden: 
-  - `ff01:0:0:0:0:2342:78fa` -> `ff01::2342:78fa`
+- `ff01:0:0:0:0:2342:78fa` -> `ff01::2342:78fa`
 
 - Empfehlungen aus RFC: 
-  - führende Nullen des Blocks weglassen
-  - Zwei Doppelpunkte
-    - sollen maximale Anzahl von 0-Blöcken repräsentieren 
-    - nicht zur Abkürzung eines einzelnen Blocks verwenden 
-  - bei mehreren möglichen Kürzungen: möglichst weit links kürzen 
-  - bei Angabe von Portnummern: IPv6-Adresse in eckige Klammern
-    - `[ff01:0:0:0:0:2342:78fa]:80` oder `[ff01::2342:78fa]:80`
+- führende Nullen des Blocks weglassen
+- Zwei Doppelpunkte
+- sollen maximale Anzahl von 0-Blöcken repräsentieren 
+- nicht zur Abkürzung eines einzelnen Blocks verwenden 
+- bei mehreren möglichen Kürzungen: möglichst weit links kürzen 
+- bei Angabe von Portnummern: IPv6-Adresse in eckige Klammern
+- `[ff01:0:0:0:0:2342:78fa]:80` oder `[ff01::2342:78fa]:80`
 
-### Adresstypen (Folie 3/15)
+### 3.6.5 Adresstypen (Folie 3/15)
 
 ![IPv6-Header](resources/Adresstypen.png)
 
 - Anycast:
-  - wird zum Beispiel bei DNS-Rootservern verwendet 
+- wird zum Beispiel bei DNS-Rootservern verwendet 
 
 - Multicast: 
-  - um z.B. alle Router im Netz anzusprechen
+- um z.B. alle Router im Netz anzusprechen
 
-### Generelle Adresstruktur (Folie 3/16)
+### 3.5.6 Generelle Adresstruktur (Folie 3/16)
 
 - Trennung zwischen Präfix und Interface Identifier
-  - Notation analog zu CIDR 
-  - `/64` am Ende gibt die Länge des Präfix an
+- Notation analog zu CIDR 
+- `/64` am Ende gibt die Länge des Präfix an
 
 
 ![IPv6-Adresstruktur](resources/IPv6_Adresstruktur.png)
 
-### Erzeugung einer link-local Adresse (Folie 3/17)
+### 3.5.7 Erzeugung einer link-local Adresse (Folie 3/17)
 
 - aus MAC-Adresse oder per Privacy Extension abgeleitet 
 
-### IPv6-Multicasts (Folie 3/18)
+### 3.5.8 IPv6-Multicasts (Folie 3/18)
 
 - es gibt mehrere Multicast-Gruppen an denen teilgenommen werden kann 
 - es existieren zudem festgelegte "well-known" Multicast-Adressen 
-  - `ff02::1` -> alle Knoten am Link 
-    - zum Beispiel für ARP-äquivalente Anfragen 
-  - `ff02:2` -> alle Router am Link 
-  - `ff02::16` -> alle MLDv2-fähigen Router
+- `ff02::1` -> alle Knoten am Link 
+- zum Beispiel für ARP-äquivalente Anfragen 
+- `ff02:2` -> alle Router am Link 
+- `ff02::16` -> alle MLDv2-fähigen Router
 
-### Stateless Adress Autoconfiguration SLAAC (Folien 3/22,23)
+### 3.5.9 Stateless Adress Autoconfiguration SLAAC (Folien 3/22,23)
 
 **Prüfungsrelevant!**
 
 ![SLAAC Phase 1](resources/SLAAC_1.png)
 ![SLAAC Phase 2](resources/SLAAC_2.png)
 
-### Migration IPv4 -> IPv6 (Folie 3/24)
+## 3.6 Migration IPv4 -> IPv6 (Folie 3/24)
 
 - momentane Koexistenz von v4 und v6 erfordert Mechanismen zur Realisierung des Übergangs und für Interoperabilität
 
 - Mechanismen: 
-  - Dual-Stack: 
-    - beide Adressversionen für Interfaces
-    - Knoten können über beide Protokolle unabhängig voneinander kommunizieren 
-  - Tunnelmechanismen:
-    - Kapselung von Paketen von v4 in v6 oder umgekehrt
-    - Varianten: 4in6, 6in4, 6over4, ... 
-  - Translationsmechanismen: 
-    - Transformation der jeweiligen Header zur anderen Version 
-    - Beispiel: NAT64 zur Übersetzung von v4 zu v6 
-  
-  #### Dual-Stack Lite (DS-Lite) (Folie 3/25)
+- Dual-Stack: 
+- beide Adressversionen für Interfaces
+- Knoten können über beide Protokolle unabhängig voneinander kommunizieren 
+- Tunnelmechanismen:
+- Kapselung von Paketen von v4 in v6 oder umgekehrt
+- Varianten: 4in6, 6in4, 6over4, ... 
+- Translationsmechanismen: 
+- Transformation der jeweiligen Header zur anderen Version 
+- Beispiel: NAT64 zur Übersetzung von v4 zu v6 
 
-  - Kombination aus Tunnelmechanismen und Translation 
-  - Vorteile: 
-    - Providerinfrastruktur lann auf IPv6 umgestellt werden 
-    - IPv4-Adressen beim Provider werden eingespart 
+### 3.6.1 Dual-Stack Lite (DS-Lite) (Folie 3/25)
 
- ![Dual-Stack Lite](resources/DS_Lite.png)   
+- Kombination aus Tunnelmechanismen und Translation 
+- Vorteile: 
+- Providerinfrastruktur lann auf IPv6 umgestellt werden 
+- IPv4-Adressen beim Provider werden eingespart 
 
-### Exkurs: Raw Sockets 
+![Dual-Stack Lite](resources/DS_Lite.png)   
+
+## 3.7 Exkurs: Raw Sockets 
 
 - Ermöglichen die Instanziierung von IP-Headern und Implementierung von Protokollen im User-Space 
 - IP-Headerelemente wie auch gekapselte Datagramme können im Programm befüllt werden
 - Durch Raw Sockets können z.B. implementiert werden:
-  - Netzwerksicherheitswerkzeuge wie Portscanner
-  - ICMP-basierte Anwendungen
-  - Routing-Protokolle
+- Netzwerksicherheitswerkzeuge wie Portscanner
+- ICMP-basierte Anwendungen
+- Routing-Protokolle
 
-   ![Raw-Sockets](resources/Raw_Sockets.png)   
+![Raw-Sockets](resources/Raw_Sockets.png)   
 
 - Tooling: **Scapy** und **nmap**
 
 - Frage: Wie kann unter Verwendung von Raw-Sockets ein einfaches TRACEROUTE gebaut werden? 
 
 - Antwort: Mit Hilfe des TTL kann dies ermöglicht werden 
-  - erst TTL 1 (ICMP des ersten Routers)
-  - dann TTL 2 (ICMP des zweiten Routers)
-  - ...
+- erst TTL 1 (ICMP des ersten Routers)
+- dann TTL 2 (ICMP des zweiten Routers)
+- ...
 
 - Problem: nicht alle Router haben diese ICMP-Antworten aktiviert, weitere Anpassung nötig 
 
-### IPv6 im Linux-Kernel 5.9 (Folien 3/27,28)
+## 3.8 Exkurs: IPv6 im Linux-Kernel 5.9 (Folien 3/27,28)
 
 [//]: # (Hat hier jemand was?) 
 
 
-### Praxisbeispiel: 
+## Praxisbeispiel radvd - SLAAC in Namespaces: 
 
 
 
@@ -782,11 +776,11 @@ touch /etc/radvd.conf
 interface veth1
 {
 prefix 2001:db8:1:0::/64
-	{
-		AdvOnLink on;
-		AdvAutonomous on;
-		AdvRouterAddr off;
-	};
+{
+AdvOnLink on;
+AdvAutonomous on;
+AdvRouterAddr off;
+};
 };
 ```
 
@@ -816,3 +810,13 @@ ip link set veth1 up
 
 ```
 
+
+
+<!--
+
+# 4. Transportschicht: User Datagram Protocol und Transmission Control Protocol
+# 5. Routing
+# 6. Anwendungsschicht
+# 7. Software-defined Networking
+# 8. Netztechnologien
+-->

@@ -54,6 +54,17 @@
       - [Protokolldetails](#protokolldetails)
   - [ICMP](#icmp)
     - [Praxisübung](#praxis%C3%BCbung)
+    - [Nachteile IPv4](#nachteile-ipv4)
+    - [Ipv6-Adressen - Notation](#ipv6-adressen---notation)
+    - [Adresstypen (Folie 3/15)](#adresstypen-folie-315)
+    - [Generelle Adresstruktur (Folie 3/16)](#generelle-adresstruktur-folie-316)
+    - [Erzeugung einer link-local Adresse (Folie 3/17)](#erzeugung-einer-link-local-adresse-folie-317)
+    - [IPv6-Multicasts (Folie 3/18)](#ipv6-multicasts-folie-318)
+    - [Stateless Adress Autoconfiguration SLAAC (Folien 3/22,23)](#stateless-adress-autoconfiguration-slaac-folien-32223)
+    - [Migration IPv4 -> IPv6 (Folie 3/24)](#migration-ipv4---ipv6-folie-324)
+    - [Exkurs: Raw Sockets](#exkurs-raw-sockets)
+    - [IPv6 im Linux-Kernel 5.9 (Folien 3/27,28)](#ipv6-im-linux-kernel-59-folien-32728)
+    - [Praxisbeispiel:](#praxisbeispiel)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

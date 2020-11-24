@@ -18,7 +18,7 @@ jobs:
           awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{print}' .old/SWE/README.md > SWE/README.md &&
           awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{print}' .old/PRO/README.md > PRO/README.md &&
           awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{print}' .old/RES/README.md > RES/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{print}' .old/NET/README.md > NET/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{print}' .old/NET/README.md > NET/README.md
       - run: |
           mkdir output
       - uses: docker://rstropek/pandoc-latex:latest # generate DBS pdf

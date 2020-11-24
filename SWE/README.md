@@ -719,7 +719,7 @@ ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **E
 - manche Karten folgen dem SCRUM, manche dem KANBAN (d.h. dürfen länger dauern)
 - Art der Karte **zu Beginn** festgelegt
 
-## Story Board
+# Story Board
 
 - aus Filmindustrie: zeichnerische Version des Drehbuchs
 - in SWE: Visualisierung des Plans, der einzelnen Inhalte skizziert (d.h. **Nutzersicht**)
@@ -745,7 +745,7 @@ ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **E
 
 > möglicherweise wird diese Liste auch vom Nutzer direkt erstellt -> jedoch eher selten
 
-## Prototype vs. Pretotype
+# Prototype vs. Pretotype
 
 **Prototyp**
 
@@ -776,7 +776,7 @@ ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **E
 6. Pretend-To-Own ... benötigte Produkte leihen und so tun, als würden sie dem Anbieter gehören
 7. PBSK ... Papier, Bleistift, Schere, Kleber
 
-## Design-Thinking 
+# Design-Thinking 
 ist eine Methode für den Innovationsprozess
 
 **Idee**: 
@@ -785,7 +785,7 @@ Iterationen, Prozesse & Objekte bewusst gestalten, die sich streng an den Bedür
 
 Fail Early!
 
-### 4 Prozess-Schritte
+## 4 Prozess-Schritte
 
 1. **Inspiration**  
    verstehen (Interviews), beobachten (direktes beobachten von Kunden)  
@@ -803,7 +803,7 @@ Fail Early!
    Tests
 4. **Machen**
 
-### Hinweise
+## Hinweise
 
 1. Bildlich arbeiten!
 2. früh und oft scheitern!

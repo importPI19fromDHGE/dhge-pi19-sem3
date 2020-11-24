@@ -538,13 +538,13 @@ Exkurs Namespaces:
 - Namespaces bieten Möglichkeit, separate Netzwerk-Stacks lokal zu schaffen
 - Zu Beginn leere und frei konfigurierbare Stacks
 - es können komplette lokale Netzwerke innerhalb eines Kernels geschaffen werden
-- wird zum Beispiel für Docker genutzt
-  - dort aber auch noch separate Namespaces für PIDs, IP-Tables, Filesystem
+- wird zum Beispiel für [Docker](https://www.docker.com/) genutzt
+	- dort aber auch noch separate Namespaces für PIDs, IP-Tables, Filesystem
 
 
 Verknüpfung von 3 Network Namespaces:
 
-![Bild der Aufgabenstellung](resources/uebungsaufgabe.png)
+![Aufgabenstellung](resources/exercise-1.png)
 
 - 3 Namespaces erstellen:
 
@@ -553,7 +553,7 @@ sudo ip netns add ns1
 sudo ip netns add ns2
 sudo ip netns add ns3
 
-sudo ip netns list # zur Prüfung
+sudo ip netns list # zur Überprüfung
 ```
 
 - virtuelle Ethernet-Interfaces erstellen:
@@ -601,13 +601,12 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 - Ineffizientes Routing: Header hat variable Länge
 - Keine automatische Konfiguration: IP muss manuell oder über DHCP vergeben werden (zusätzliche Infrastruktur erforderlich)
 
-
- ## IPv6
+## IPv6
 
 - soll in nächsten Jahren schrittweise IPv4 ablösen
 - Vereinfachung des Headers:
 
- ![IPv6-Header](resources/IPv6_Header.png)
+ ![IPv6-Header](resources/ipv6-header.png)
 
 - Traffic-Class: Prioritätsangabe
 - Flow Label: Klassifizierung von Datagrammen in verschiedenen Flows mit gleichem Label
@@ -615,26 +614,28 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 - Payload-Length: Größe des gesamten Datagramms
 - Hop-Limit: Ersetzt TTL Feld (Angabe maximaler Hops)
 
- ### Extension-Header
+### Extension-Header
 
- - in Zusammenhang mit Next-Header-Feld verwendet
- - (Folie 3/12)
+- in Zusammenhang mit Next-Header-Feld verwendet
+- verweist auf Header eines Protokolls der nächsthöheren Schicht oder Extension-Header wird in das Datagramm eingebettet
 
- ### IPv6-Fragmentierung
+![IPv6 Extension Header](resources/ipv6-header-ext.png)
 
-- Grundprinzip ähnlich zu IPv4
-  - wenn auf Pfad MTU nicht ausreicht wird fragmentiert
+- Diverse Optionen: Hop-by-Hop Options, Fragment, Destination Options, Routing, Auth, ...
+
+### IPv6-Fragmentierung
+
+- Grundprinzip ähnlich zu IPv4:  wenn auf Pfad MTU nicht ausreicht wird fragmentiert
 - Unterschied zu IPv4:
-  - durch Sender fragmentiert, dadurch Effizienzsteigerung
-  - Absender wird über Fragmentierungsbedarf informiert (per ICMPv6-Nachricht "Packet too big")
-- Praxis:
-  - limitierende MTU meist an den Rändern, also beim Sender
+	- durch Sender fragmentiert, dadurch Effizienzsteigerung
+	- Absender wird über Fragmentierungsbedarf informiert (per ICMPv6-Nachricht "Packet too big")
+- Praxis: limitierende MTU meist an den Rändern, also beim Sender
 
 ### IPv6-Adressen
 
 #### Adress-Notation
 
-- `x:x:x:x:x:x:x:x` -> x = vier Hexadezimalzahlen -> je 16 Bit
+- `ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff` ($8*16=128 \text{Bit}$)
 - Längere Folgen von Nullen können einmalig durch `::` abgekürzt werden: `ff01:0:0:0:0:0:2342:78fa` -> `ff01::2342:78fa``
 - letzten 32 Bit einer Adresse kann die dezimale Notation (wie in IPv4)
 verwenden: `::141.76.40.1`
@@ -655,7 +656,7 @@ verwenden: `::141.76.40.1`
 #### Generelle Adresstruktur
 
 - Trennung zwischen Präfix und Interface Identifier
-	- Notation analog zu CIDR: `/64` am Ende gibt die Länge des Präfix an
+- Notation analog zu CIDR: `/64` am Ende gibt die Länge des Präfix an
 
 Typ einer Adresse kann an den höchstwertigsten Bits erkannt werden:
 
@@ -670,8 +671,9 @@ Typ einer Adresse kann an den höchstwertigsten Bits erkannt werden:
 ### Erzeugung einer link-local Adresse
 
 - wird aus der Link-Layer Adresse (MAC) berechnet
+- Überprüfung auf Eindeutigkeit über `SLAAC`
 - Problem: einfache Identifikation von Nutzern
-- Lösung: Privacy Extension (regelmäßige zufällige Generierung des Interface-Identifiers)
+- Lösung: Privacy Extension for Stateless Adress Autoconfiguration (regelmäßige zufällige Generierung des Interface-Identifiers)
 
 ### IPv6-Multicasts
 
@@ -679,70 +681,79 @@ Typ einer Adresse kann an den höchstwertigsten Bits erkannt werden:
 
 - es gibt mehrere Multicast-Gruppen an denen teilgenommen werden kann
 - es existieren zudem festgelegte "well-known" Multicast-Adressen
-  - `ff02::1` -> alle Knoten am Link (z.B. für ARP-äquivalente Anfragen)
-  - `ff02:2` -> alle Router am Link
-  - `ff02::16` -> alle MLDv2-fähigen Router
+	- `ff02::1` -> alle Knoten am Link (z.B. für ARP-äquivalente Anfragen)
+	- `ff02:2` -> alle Router am Link
+	- `ff02::16` -> alle MLDv2-fähigen Router
 
 ### NDP
+<!-- NDP nicht so genau Prüfungsrelevant, mehr Infos in den Folien-->
 
-<!-- NDP nicht so genau Prüfungsrelevant-->
+**Aufgaben:**
 
-### Stateless Adress Autoconfiguration SLAAC (Folien 3/22,23)
+- Ermitteln verfügbarer Router
+- Bestimmung der Link-Layer-Adresse eines Knoten
+- Verwaltung von Erreichbarkeitsinformationen
+- Grundlage für Stateless Address Autoconfiguration
 
+### Stateless Adress Autoconfiguration (SLAAC)
 <!-- hochgradig Prüfungsrelevant-->
 
-![SLAAC Phase 1](resources/SLAAC_1.png)
-![SLAAC Phase 2](resources/SLAAC_2.png)
+**Phase 1: Erzeugung und Überprüfung einer Link-lokalen Adresse:**
+
+1. Host generiert Link-lokale Adresse aus MAC (oder Privacy Extension)
+2. Host tritt der All-Nodes-Multicast-Adresse und der Solicited-Node-Multicast-Adresse der erzeugten Link-lokalen Adresse bei und sendet eine Neighbor-Solicitation-
+Nachricht an diese Adresse
+3. Host wartet bestimmte Zeitspanne; Ausbleiben einer Antwort = Indikator für die Eindeutigkeit der selbst zugewiesenen Adresse -> Adresse wird dem Interface zugewiesen
+4. Host sendet Neighbor-Advertisement-Nachrichten an alle Hosts des Links (= Multicast-Adresse `ff02::1`)
+
+**Phase 2: Erzeugen einer weltweit eindeutigen Global-Unicast-Adresse:**
+
+1. Host fragt mittels einer Router-Solicitation-Nachricht nach einem Router Advertisement
+2. Router versendet ein Router Advertisement mit allen
+für die Konfiguration wichtigen Informationen (insbesondere Angabe des Präfixes) -> Erzeugung einer Global-Unicast-Adresse aus Präfix und Link-local-Adresse
+3. Nach Betritt zur Solicited-Node-Multicast-Adresse für die Global Unicast-Adresse, werden mehrere Neighbor-Solicitation-Nachrichten an die Multicast-Adresse
+versendet -> ist Adresse bereits verwendet sendet entsprechender Host Neighbor-Advertisement-Nachricht
+4. Ist die Adresse frei, wird sie lokal zugewiesen
 
 ### Migration IPv4 -> IPv6 (Folie 3/24)
 
-- momentane Koexistenz von v4 und v6 erfordert Mechanismen zur Realisierung des Übergangs und für Interoperabilität
+- Übergang zu IPv6 wird seit zwanzig Jahren propagiert
+- Aktuell: Koexistenz von IPv4 und IPv6 -> Mechanismen zur Interoperabilität
+	- Dual-Stack: Interface erhalt sowohl IPv4 und IPv6-Adressen
+	- Tunnel-Mechanismen: Kapselung Header der beider Versionen (z.B. `4in6`, `6in4`, `6over4`, ...)
+	- Translations-Mechanismen: Transformation der Header in unterschiedliche Versionen (z.B. NAT64 = Übersetzung von IPv4-Adressen in IPv6)
 
-- Mechanismen:
-  - Dual-Stack:
-    - beide Adressversionen für Interfaces
-    - Knoten können über beide Protokolle unabhängig voneinander kommunizieren
-  - Tunnelmechanismen:
-    - Kapselung von Paketen von v4 in v6 oder umgekehrt
-    - Varianten: 4in6, 6in4, 6over4, ...
-  - Translationsmechanismen:
-    - Transformation der jeweiligen Header zur anderen Version
-    - Beispiel: NAT64 zur Übersetzung von v4 zu v6
+#### Dual-Stack Lite (DS-Lite) (Folie 3/25)
 
-  #### Dual-Stack Lite (DS-Lite) (Folie 3/25)
+- Kombination aus Tunnelmechanismen und Translation
+- Vorteile:
+	- Providerinfrastruktur kann auf IPv6 umgestellt werden
+	- IPv4-Adressen beim Provider werden eingespart
 
-  - Kombination aus Tunnelmechanismen und Translation
-  - Vorteile:
-    - Providerinfrastruktur lann auf IPv6 umgestellt werden
-    - IPv4-Adressen beim Provider werden eingespart
-
- ![Dual-Stack Lite](resources/DS_Lite.png)   
+ ![Dual-Stack Lite](resources/ds-lite.png)   
 
 ### Exkurs: Raw Sockets
 
 - Ermöglichen die Instanziierung von IP-Headern und Implementierung von Protokollen im User-Space
 - IP-Headerelemente wie auch gekapselte Datagramme können im Programm befüllt werden
-- Durch Raw Sockets können z.B. implementiert werden:
-  - Netzwerksicherheitswerkzeuge wie Portscanner
-  - ICMP-basierte Anwendungen
-  - Routing-Protokolle
+- durch Raw Sockets können z.B. implementiert werden:
+	- Netzwerksicherheitswerkzeuge wie Portscanner
+	- ICMP-basierte Anwendungen
+	- Routing-Protokolle
 
-   ![Raw-Sockets](resources/Raw_Sockets.png)   
+![Raw-Sockets](resources/Raw_Sockets.png)
 
 - Tooling: **Scapy** und **nmap**
 
 - Frage: Wie kann unter Verwendung von Raw-Sockets ein einfaches TRACEROUTE gebaut werden?
 
 - Antwort: Mit Hilfe des TTL kann dies ermöglicht werden
-  - erst TTL 1 (ICMP des ersten Routers)
-  - dann TTL 2 (ICMP des zweiten Routers)
-  - ...
-
+	- erst TTL 1 (ICMP des ersten Routers)
+	- dann TTL 2 (ICMP des zweiten Routers)
+	- wiedrholen bis zum Erreichen des gewünschten Ziels
 - Problem: nicht alle Router haben diese ICMP-Antworten aktiviert, weitere Anpassung nötig
 
-### Praxisbeispiel:
-
-
+### Praxisbeispiel
 
 - Namespaces erstellen:
 
@@ -762,30 +773,25 @@ sudo ip link add veth1 netns ns1 type veth peer name veth2 netns ns2 # erstellt 
 - radvd installieren und .conf anlegen
 
 ```bash
-
 apt-get install radvd
-
 touch /etc/radvd.conf
-
 ```
 
 - .config bearbeiten
 
-```bash
-interface veth1
-{
-prefix 2001:db8:1:0::/64
-	{
+```conf
+interface veth1{
+	prefix 2001:db8:1:0::/64{
 		AdvOnLink on;
 		AdvAutonomous on;
 		AdvRouterAddr off;
 	};
 };
 ```
-
-Quelle Beispielkonfig: https://github.com/reubenhwk/radvd/blob/master/radvd.conf.example
+[größere Beispiel-Config](https://github.com/reubenhwk/radvd/blob/master/radvd.conf.example)
 
 - radvd erneut starten und Status erfassen
+
 ```bash
 sudo systemctl start radvd
 sudo systemctl status radvd
@@ -799,12 +805,6 @@ ip link set veth1 up
 ```
 
 - diesen Schritt für zweites Interface wiederholen
-
 - radvd in Namespace1 aktivieren
 
 **tbc: Anfang nächster Einheit**
-
-```bash
-
-
-```

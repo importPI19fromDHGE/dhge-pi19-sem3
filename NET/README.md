@@ -112,12 +112,12 @@ Wie läuft das Routing ab?
 - ISO
 - ITU
 - IEEE
-    - Fokus auf den "unteren" Schichten, nah an Physik
-    - Ethernet, Netzwerkkarten, ...
+  - Fokus auf den "unteren" Schichten, nah an Physik
+  - Ethernet, Netzwerkkarten, ...
 - IETF
-    - Standardisierung der Protokolle
-    - HTTP, UDP, TCP, Mailprotokolle
-    - ist kein Berufsverband, sondern Freiwilligenorganisation
+  - Standardisierung der Protokolle
+  - HTTP, UDP, TCP, Mailprotokolle
+  - ist kein Berufsverband, sondern Freiwilligenorganisation
 
 ### Internet Engineering Taskforce
 
@@ -128,14 +128,15 @@ Wie läuft das Routing ab?
 
 #### Arbeitsgruppen  / IETF-Areas
 
-- IETF-Arbeitsgruppen sind einem von 7 Bereichen (Areas) zugeordnet
-    - Applications and Real-Time
-    - Internet
-    - Security
-    - Operations and Management
-    - Routing
-    - General
-    - Transport
+IETF-Arbeitsgruppen sind einem von 7 Bereichen (Areas) zugeordnet:
+
+- Applications and Real-Time
+- Internet
+- Security
+- Operations and Management
+- Routing
+- General
+- Transport
 
 
 ### 1.2.3 Begrifflichkeiten
@@ -248,9 +249,8 @@ Zu beachten: Gibt es SPF (single point of failure) im Netz? Wenn ja: Ausfallsich
 
 - nützliches Tool zur Darstellung von Kommunikationsvorgängen in Netzwerken
 - es ist eine Filterfunktionalität vorhanden um gezielt nach IP-Adressen, Protokollen, Ports,... zu suchen
-- dabei verwendete Bibliothek: **LIBPCAP**
-
-Auch verwendetes Tool: Scapy
+- dabei verwendete Bibliothek: `LIBPCAP`
+- auch verwendetes Tool: Scapy
 
 # Netzzugangsschicht
 
@@ -392,15 +392,6 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Vorteile: Skalierbarkeit (Anzahl der Ports einfach ), vereinfachte Netzwerkschnittstelle (Konfiguration von nur einem logischem Gerät), Vergrößerter Durchsatz (Stacking über Port mit hoher Datenrate)
 - Nachteil: Platzbedarf, höherer Stromverbrauch mehrerer Geräte, Kopplung als neue Fehlerquelle
 
-<!--
-# 3. Vermittlungsschicht: Internet Protocol
-# 4. Transportschicht: User Datagram Protocol und Transmission Control Protocol
-# 5. Routing
-# 6. Anwendungsschicht
-# 7. Software-defined Networking
-# 8. Netztechnologien
--->
-
 ## Internetprotokoll und Hilfsprotokolle
 
 - Schicht 3; von Übertragungsmedium unabhängig
@@ -422,7 +413,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 ![Aufbau des IPv4-Headers](resources/ip-paket-aufbau.png)
 
 - Version: 4 Bits, Protokollversion
-- Internet Header Length (IHL): 4 Bits, Länge des Headers in 32 Bit Wörtern, Standardwert 5 --> 5 * 32 Bit = 20 Byte
+- Internet Header Length (IHL): 4 Bits, Länge des Headers in 32 Bit Wörtern, Standardwert 5 -> 5 * 32 Bit = 20 Byte
 - Differenciated Service Code Point (DSCP): 6 Bit, Prioritätsklassen
 - Explicit Congestion Notification (ECN): 2 Bit, Meldung von Überlast, von Layer 4 gesteuert, wird damit rückläufig zu Sender kommuniziert "Bitte sende langsamer"
 - Total Length: 16 Bit, Gesamtlänge des Datagramms / Fragments in Bytes
@@ -433,7 +424,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
   - Bit 2: More Fragments (MF)
 - Fragment Offset: 13 Bit, Offset in 8 Byte Blöcken, die Daten innerhalb des urspr. Paket hatten
 - Time to Live (TTL): 8 Bit, Lebenszeit des Pakets, in Praxis maximale Anzahl der Hops
-- Protocol: 8 Bit, im Datenbereich verwendetes Protokoll, Bsp. in Linux: ``/etc/protocols``
+- Protocol: 8 Bit, im Datenbereich verwendetes Protokoll, Bsp. in Linux: `/etc/protocols`
 - Header Checksum: Prüfsumme für (nur) IP-Header
 - Options: Zusatzdaten für bspw. Routing oder Zeitstempel
   - Bsp Source Routing: Sender gibt exakte Route an; ermöglicht Angriffsfläche für DoS-Attacken
@@ -458,9 +449,8 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
   - bei IPv6 wird beim Sender fragmentiert
 - Pass-MTU: bezeichnet geringste MTU aller Hops auf der Route
 
-```
+```bash
 # MTU anzeigen lassen
-
 ip addr show
 ```
 
@@ -507,9 +497,9 @@ tcp dump -i any -p arp
 - ausgewählte Typen:
   - 0: Echo Reply: Antwort auf Echo Request
   - 3: Destination Unreachable: Ziel nicht erreichbar mit folgenden Codes:
-    - 0 - Net unreachable
-    - 3 - Port unreachable
-    - 4 - Fragmentation needed and Don't Fragmen (DF) was set
+    - 0: Net unreachable
+    - 3: Port unreachable
+    - 4: Fragmentation needed and Don't Fragmen (DF) was set
   - 5: Redirect: siehe unten
   - 9: Router Advertisement: dient automatischen Discovery von Routern
   - 11: Time Exceeded: TTL-Feld aus IP-Datagramms abgelaufen
@@ -715,7 +705,7 @@ für die Konfiguration wichtigen Informationen (insbesondere Angabe des Präfixe
 versendet -> ist Adresse bereits verwendet sendet entsprechender Host Neighbor-Advertisement-Nachricht
 4. Ist die Adresse frei, wird sie lokal zugewiesen
 
-### Migration IPv4 -> IPv6 (Folie 3/24)
+### Migration IPv4 -> IPv6
 
 - Übergang zu IPv6 wird seit zwanzig Jahren propagiert
 - Aktuell: Koexistenz von IPv4 und IPv6 -> Mechanismen zur Interoperabilität
@@ -723,14 +713,14 @@ versendet -> ist Adresse bereits verwendet sendet entsprechender Host Neighbor-A
 	- Tunnel-Mechanismen: Kapselung Header der beider Versionen (z.B. `4in6`, `6in4`, `6over4`, ...)
 	- Translations-Mechanismen: Transformation der Header in unterschiedliche Versionen (z.B. NAT64 = Übersetzung von IPv4-Adressen in IPv6)
 
-#### Dual-Stack Lite (DS-Lite) (Folie 3/25)
+#### Dual-Stack Lite (DS-Lite)
 
 - Kombination aus Tunnelmechanismen und Translation
 - Vorteile:
 	- Providerinfrastruktur kann auf IPv6 umgestellt werden
 	- IPv4-Adressen beim Provider werden eingespart
 
- ![Dual-Stack Lite](resources/ds-lite.png)   
+![Dual-Stack Lite](resources/ds-lite.png)   
 
 ### Exkurs: Raw Sockets
 
@@ -740,7 +730,7 @@ versendet -> ist Adresse bereits verwendet sendet entsprechender Host Neighbor-A
 	- Netzwerksicherheitswerkzeuge wie Portscanner
 	- ICMP-basierte Anwendungen
 	- Routing-Protokolle
-- Tooling: **Scapy** und **nmap**
+- Tooling: `Scapy` und `nmap`
 - Frage: Wie kann unter Verwendung von Raw-Sockets ein einfaches TRACEROUTE gebaut werden?
 
 - Antwort: Mit Hilfe des TTL kann dies ermöglicht werden

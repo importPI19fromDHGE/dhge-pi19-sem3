@@ -1,33 +1,24 @@
-
+Rechnernetzkonzepte und -architekturen
+======================================
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Rechnernetzkonzepte und -architekturen](#rechnernetzkonzepte-und--architekturen)
-- [1. Einleitung / Übersicht](#1-einleitung--%C3%BCbersicht)
-  - [1.1 Veranstaltungsziele](#11-veranstaltungsziele)
-  - [1.2 Inhaltlicher Teil](#12-inhaltlicher-teil)
-    - [1.2.1 Kommunikationsszenario](#121-kommunikationsszenario)
-    - [1.2.2 Standardisierung](#122-standardisierung)
+- [Einleitung / Übersicht](#einleitung--%C3%BCbersicht)
+  - [Veranstaltungsziele](#veranstaltungsziele)
+  - [Inhaltlicher Teil](#inhaltlicher-teil)
+    - [Kommunikationsszenario](#kommunikationsszenario)
+    - [Standardisierung](#standardisierung)
     - [Internet Engineering Taskforce](#internet-engineering-taskforce)
       - [Arbeitsgruppen  / IETF-Areas](#arbeitsgruppen---ietf-areas)
-    - [1.2.3 Begrifflichkeiten](#123-begrifflichkeiten)
-    - [1.2.4 ISO / OSI Referenzmodell  <!-- hochgradig Prüfungsrelevant-->](#124-iso--osi-referenzmodell-----hochgradig-pr%C3%BCfungsrelevant--)
-      - [7 Anwendungsschicht](#7-anwendungsschicht)
-      - [6 Darstellungsschicht](#6-darstellungsschicht)
-      - [5 Sitzungsschicht](#5-sitzungsschicht)
-      - [4 Transportschicht](#4-transportschicht)
-      - [3 Vermittlungsschicht](#3-vermittlungsschicht)
-      - [2 Sicherungsschicht](#2-sicherungsschicht)
-      - [1 Bitübertragungsschicht](#1-bit%C3%BCbertragungsschicht)
-    - [1.2.5 TCP / IP-Modell](#125-tcp--ip-modell)
-    - [1.2.6 Protokoll-Header](#126-protokoll-header)
-    - [1.2.7. Kopplungselemente](#127-kopplungselemente)
-      - [**Switches**](#switches)
-      - [**Router**](#router)
-      - [**Weitere Kopplungselemente**](#weitere-kopplungselemente)
-    - [1.2.8 Topologien](#128-topologien)
+    - [Begrifflichkeiten](#begrifflichkeiten)
+      - [Übertragungsmodi](#%C3%BCbertragungsmodi)
+      - [ISO/OSI Referenzmodell  <!-- hochgradig Prüfungsrelevant-->](#isoosi-referenzmodell-----hochgradig-pr%C3%BCfungsrelevant--)
+    - [TCP/IP-Modell](#tcpip-modell)
+    - [Kopplungselemente](#kopplungselemente)
+    - [Topologien](#topologien)
+    - [Medien/Verkabelung](#medienverkabelung)
     - [Tooling - Wireshark](#tooling---wireshark)
 - [2. Netzzugangsschicht](#2-netzzugangsschicht)
   - [2.1 Übersicht zu Ethernet](#21-%C3%BCbersicht-zu-ethernet)
@@ -45,218 +36,192 @@
       - [2.4.4.3 STP und VLAN](#2443-stp-und-vlan)
     - [2.4.5 Transparent Interconnection of lots of links (TRILL)](#245-transparent-interconnection-of-lots-of-links-trill)
     - [2.4.6 Stacking](#246-stacking)
-- [3. Vermittlungsschicht: Internet Protocol](#3-vermittlungsschicht-internet-protocol)
-  - [3.1 IPv4](#31-ipv4)
-    - [3.1.1 IPv4-Header](#311-ipv4-header)
-    - [3.1.2 Fragmentierung](#312-fragmentierung)
-    - [3.1.3 IPv4-Adressierung](#313-ipv4-adressierung)
-  - [3.2 Address Resolution Protocol (ARP)](#32-address-resolution-protocol-arp)
-    - [3.2.1 Einordnung](#321-einordnung)
-    - [3.2.2 Protokolldetails](#322-protokolldetails)
-  - [3.3 ICMP](#33-icmp)
-  - [3.4 Praxisübung](#34-praxis%C3%BCbung)
-  - [3.5 Nachteile IPv4](#35-nachteile-ipv4)
-  - [3.6 IPv6](#36-ipv6)
-    - [3.6.1 Header](#361-header)
-    - [3.6.2 Extension-Header](#362-extension-header)
-    - [3.6.3 IPv6-Fragmentierung](#363-ipv6-fragmentierung)
-    - [3.6.4 Ipv6-Adressen - Notation](#364-ipv6-adressen---notation)
-    - [3.6.5 Adresstypen (Folie 3/15)](#365-adresstypen-folie-315)
-    - [3.5.6 Generelle Adresstruktur (Folie 3/16)](#356-generelle-adresstruktur-folie-316)
-    - [3.5.7 Erzeugung einer link-local Adresse (Folie 3/17)](#357-erzeugung-einer-link-local-adresse-folie-317)
-    - [3.5.8 IPv6-Multicasts (Folie 3/18)](#358-ipv6-multicasts-folie-318)
-    - [3.5.9 Stateless Adress Autoconfiguration SLAAC (Folien 3/22,23)](#359-stateless-adress-autoconfiguration-slaac-folien-32223)
-  - [3.6 Migration IPv4 -> IPv6 (Folie 3/24)](#36-migration-ipv4---ipv6-folie-324)
-    - [3.6.1 Dual-Stack Lite (DS-Lite) (Folie 3/25)](#361-dual-stack-lite-ds-lite-folie-325)
-  - [3.7 Exkurs: Raw Sockets](#37-exkurs-raw-sockets)
-  - [3.8 Exkurs: IPv6 im Linux-Kernel 5.9 (Folien 3/27,28)](#38-exkurs-ipv6-im-linux-kernel-59-folien-32728)
-  - [Praxisbeispiel radvd - SLAAC in Namespaces:](#praxisbeispiel-radvd---slaac-in-namespaces)
+- [Internetprotokoll und Hilfsprotokolle](#internetprotokoll-und-hilfsprotokolle)
+  - [IPv4](#ipv4)
+    - [IPv4-Header](#ipv4-header)
+    - [Fragmentierung](#fragmentierung)
+    - [IPv4-Adressierung](#ipv4-adressierung)
+  - [Address Resolution Protocol (ARP)](#address-resolution-protocol-arp)
+    - [Einordnung](#einordnung)
+    - [Protokolldetails](#protokolldetails)
+  - [ICMP](#icmp)
+  - [Praxisübung](#praxis%C3%BCbung)
+    - [Nachteile IPv4](#nachteile-ipv4)
+  - [IPv6](#ipv6)
+    - [Extension-Header](#extension-header)
+    - [IPv6-Fragmentierung](#ipv6-fragmentierung)
+    - [IPv6-Adressen](#ipv6-adressen)
+      - [Adress-Notation](#adress-notation)
+      - [Adress-Arten](#adress-arten)
+      - [Generelle Adresstruktur](#generelle-adresstruktur)
+    - [Erzeugung einer link-local Adresse](#erzeugung-einer-link-local-adresse)
+    - [IPv6-Multicasts](#ipv6-multicasts)
+    - [NDP](#ndp)
+    - [Stateless Adress Autoconfiguration (SLAAC)](#stateless-adress-autoconfiguration-slaac)
+    - [Migration IPv4 -> IPv6](#migration-ipv4---ipv6)
+      - [Dual-Stack Lite (DS-Lite)](#dual-stack-lite-ds-lite)
+    - [Exkurs: Raw Sockets](#exkurs-raw-sockets)
+    - [Praxisbeispiel](#praxisbeispiel)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Rechnernetzkonzepte und -architekturen
+# Einleitung / Übersicht
 
-*16.11.2020*
+## Veranstaltungsziele
 
-# 1. Einleitung / Übersicht
-## 1.1 Veranstaltungsziele
-Wissensvermittlung zu:
+**Wissensvermittlung zu:**
+
 - Übersichtswissen über Rechnernetze
 - Komponenten und Protokolle im Internet
 - Planung von Netzwerken
 - Konfiguration von Netzwerken
 
-Prüfungsleistung:
+**Prüfungsleistung:**
+
 - wenn möglich schriftliche Prüfung
 - letzte Einheit ist für Prüfungsvorbereitung vorgesehen
 
-Hilfsmittel bei Prüfung:
+**Hilfsmittel bei Prüfung:**
+
 - wahrscheinlich 1 DIN A4 - Zettel handschriftlicher eigener Notizen
 
+## Inhaltlicher Teil
 
-## 1.2 Inhaltlicher Teil
-### 1.2.1 Kommunikationsszenario
+### Kommunikationsszenario
 
-<img src="./resources/NIC.png" alt="NIC_Abbildung" width=500>
+![Network Interface Card](resources/NIC.png)
 
-Bei Abruf einer Website durch Host A von Server A sind vielfältige Technologien zur Realisierung des Szenarios erforderlich.
+Bei Abruf einer Website durch `Host A` von `Server A` sind vielfältige Technologien zur Realisierung des Szenarios erforderlich.
 
-**Physische Verbindung**
-Auf welchem Weg gelangen die Daten von Host zu Server und zurück?
+- **Physische Verbindung:** Auf welchem Weg gelangen die Daten von Host zu Server und zurück?
+- **Weiterleitung von Daten über das Internet:** Protokolle, Header,... (Wie müssen diese Daten gestaltet sein, damit sie verwendet werden können?)
+- **Weiterleitung der Daten ans richtige Zielsystem:** Wie läuft das Routing ab?
 
-**Weiterleitung von Daten über das Internet**
-- Protokolle, Header, ...
-
-Wie müssen diese Daten gestaltet sein, damit sie verwendet werden können?
-
-**Weiterleitung der Daten ans richtige Zielsystem**
-Wie läuft das Routing ab?
-
-
-### 1.2.2 Standardisierung
+### Standardisierung
 
 - ISO
 - ITU
-- IEEE
-    - Fokus auf den "unteren" Schichten, nah an Physik
-    - Ethernet, Netzwerkkarten, ...
-- IETF
-    - Standardisierung der Protokolle
-    - HTTP, UDP, TCP, Mailprotokolle
-    - ist kein Berufsverband, sondern Freiwilligenorganisation
+- IEEE: Fokus auf den "unteren" Schichten, nah an Physik (Ethernet, Netzwerkkarten,...)
+- IETF: Standardisierung der Protokolle (HTTP, UDP, TCP, Mailprotokolle); Freiwilligenorganisation
 
 ### Internet Engineering Taskforce
 
-- Publikationsformat der IETF sind RfC's (Request for Comments)
-- RFC haben eindeutige, fortlaufend vergebene Nummern
+- Publikationsformat der IETF sind RfC's (Request for Comments) mit eindeutigen, fortlaufenden Nummern
 - so ist UDP z.B. durch RFC 768 spezifiziert
 - recht praxisnahe Beschreibung der Standards
 
 #### Arbeitsgruppen  / IETF-Areas
 
-- IETF-Arbeitsgruppen sind einem von 7 Bereichen (Areas) zugeordnet
-    - Applications and Real-Time
-    - Internet
-    - Security
-    - Operations and Management
-    - Routing
-    - General
-    - Transport
+IETF-Arbeitsgruppen sind einem von 7 Bereichen (Areas) zugeordnet:
+
+- Applications and Real-Time
+- Internet
+- Security
+- Operations and Management
+- Routing
+- General
+- Transport
+
+### Begrifflichkeiten
+
+#### Übertragungsmodi
+
+| verbindungsorientiert (z.B. TCP)                    | verbindunglos (z.B. UDP)                                      |
+| --------------------------------------------------- | ------------------------------------------------------------- |
+| Information über Existenz einer Beziehung liegt vor | Information über Existenz einer Beziehung liegt **nicht** vor |
+| Beziehung zwischen Sender und Empfänger             | Kommunikation kann ohne Verbindungsaufbau begonnen werden     |
 
 
-### 1.2.3 Begrifflichkeiten
+| leitungsvermittelt                                                                       | paketvermittelt                                                                                                             |
+| ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Feste Durchschaltung zwischen Sender und Empfänger                                       | Gemeinsame Nutzung von Leitungen                                                                                            |
+| Ermöglicht Zusicherung von Eigenschaften (Quality of Service-Parameter)                  | Daten werden in Pakete aufgeteilt, die (direkt oder indirekt) Informationen für die Zuordnung zu einem Empfänger beinhalten |
+| zu beachten: es müssen dann so viele Leitungen vorhanden sein, wie genutzt werden sollen | Überlastsituationen können auftreten                                                                                        |
 
-**Übertragungsmodi**
+> Im Großen und Ganzen ist "das Internet" paketvermittelt, Leitungsvermittlung kann in Spezialfällen vorhanden sein
 
-|verbindungsorientiert| verbindunglos|
-|----|-----|
-|Information über Existenz einer Beziehung liegt vor|Information über Existenz einer Beziehung liegt **nicht** vor|
-|Beziehung zwischen Sender und Empfänger| Kommunikation kann ohne Verbindungsaufbau begonnen werden|
-|z.B. TCP| z.B. UDP|
-
-
-|leitungsvermittelt| paketvermittelt|
-|----|----|
-|Feste Durchschaltung zwischen Sender und Empfänger| Gemeinsame Nutzung von Leitungen|
-|Ermöglicht Zusicherung von Eigenschaften (Quality of Service- Parameter)|Daten werden in Pakete aufgeteilt, die (direkt oder indirekt) Informationen für die Zuordnung zu einem Empfänger beinhalten|
-|zu beachten: es müssen dann soviele Leitungen vorhanden sein, wie genutzt werden sollen|zu beachten: Überlastsituationen können auftreten|
-
-
-Im Großen und Ganzen ist "das Internet" paketvermittelt, Leitungsvermittlung kann in Spezialfällen vorhanden sein
-
-
-### 1.2.4 ISO / OSI Referenzmodell  <!-- hochgradig Prüfungsrelevant-->
+#### ISO/OSI Referenzmodell  <!-- hochgradig Prüfungsrelevant-->
 
 <img src="./resources/ISO_OSI_Layer.png" alt="ISO/OSI Layer" width=500>
 
-#### 7 Anwendungsschicht
-- Durch anwendungsspezifische Protokolle verwendet
+- **Anwendungsschicht:** Durch anwendungsspezifische Protokolle verwendet
+- **Darstellungsschicht:** Umwandlung von Daten in unabhängiges Format
+- **Sitzungsschicht**
+- **Transportschicht:** fügt Zusatzinformationen in die Pakete ein, um die Verwendung auf Empfängerseite zu definieren
+- **Vermittlungsschicht:** Weiterleitung über lokale Netze hinaus / zwischen verschiedenen Netzen (unabhängig vom Typ der verwendeten Netze)
+- **Sicherungsschicht:** Erfassung einzelner Bitfolgen als Frames, Hinzufügen von Redundanzinformationen (z.B. CRC - Cyclic Redundancy Check)
+- **Bitübertragungsschicht:** einzelne Bits in physikalische Signale umwandeln und umgekehrt (Modulation und Demodulation)
 
-#### 6 Darstellungsschicht
-- Umwandlung von Daten in unabhängiges Format
+### TCP/IP-Modell
 
-#### 5 Sitzungsschicht
--
-#### 4 Transportschicht
-- fügt Zusatzinformationen in die Pakete ein, um die Verwendung auf Empfängerseite zu definieren
+Integriert das Referenzmodell unter Verwendung von vier Schichten:
 
+![TCP/IP als Ableitung des ISO/OSI Referenzmodells](resources/tcpip.png)
 
-#### 3 Vermittlungsschicht
-- Weiterleitung über lokale Netze hinaus / zwischen verschiedenen Netzen
-- unabhängig vom Typ der verwendeten Netze
+- **Anwendungsschicht:** Umfasst obere drei Schichten des OSI-Modells, weitere Unterteilung obliegt Anwendungsprotokoll
+- **Transportschicht:** Ende-zu-Ende-Kommunikation zwischen Anwendungen
+- **Internetschicht:** Ermöglicht Kommunikation zwischen Hosts in unterschiedlichen Netzwerken
+- **Link Layer:** Kommunikation mit direkten Nachbarn
 
-#### 2 Sicherungsschicht
-- einzelne Bitfolgen werden als Frames erfasst
-- Redundanzinformationen werden hinzugefügt um Fehlererkennung und -korrekturen (auch auf Empfängerseite) zu ermöglichen (z.B. Paritätsbits)
--  Beispielverfahren: CRC (Cyclic Redundancy Check)
+![Aufbau des TCP/IP-Headers](resources/tcpip-header.png)
 
-
-#### 1 Bitübertragungsschicht
-- einzelne Bits in physikalische Signale umwandeln und umgekehrt
-- Modulation und Demodulation
-
-### 1.2.5 TCP / IP-Modell
-
- Integriert das Referenzmodell, verwendet dazu 4 Schichten.
- Siehe dazu Folie 14.
-
-### 1.2.6 Protokoll-Header
-
-Siehe Folie 15
-
-### 1.2.7. Kopplungselemente
+### Kopplungselemente
 
 ![Switches und Router](resources/L2-net.png)
 
-#### **Switches**
-- verbinden Netzsegmente (Broadcast-Domains) und leiten Pakete zwischen diesen weiter
-- sind Layer 2 - Kopplungselemente
-- Netzwerkkarten im gleichen Netzsegment können sich gegenseitig direkt addressieren (per MAC-Adresse)
-- speichern intern eine Zuordnung zwischen Ausgangsports und MAC-Adressen
-- Alternative Namen: Bridge, L2-Switch
+**Switches (auch: Bridge, L2-Switch)**
 
-#### **Router**
+- Layer-2-Kopplungselement: verbinden Netzsegmente (Broadcast-Domains) und leiten Pakete zwischen diesen weiter
+- Netzwerkkarten im gleichen Netzsegment können sich gegenseitig direkt adressieren (per MAC-Adresse)
+- speichern intern eine Zuordnung zwischen Ausgangsports und MAC-Adressen
+
+**Router (auch: Layer-3-Switch)**
 
 - leiten Pakete zwischen unterschiedlichen Netzen weiter
 - bei Weiterleitungsentscheidung wird IP-Adresse ausgewertet (Lookup in Routing-Tabelle)
-- Alternativ auch: Layer-3-Switch
 
-#### **Weitere Kopplungselemente**
+**Weitere Kopplungselemente**
 
-- Hub, Repeater, Application-Layer-Gateway
+- Hub, Repeater, Application-Layer-Gateway, ...
 
-**Kleiner Einschub, nicht komplett:**
-```sh
-ip addr show
 
-ip neigh
-# zeigt Nachbarn in ARP-Tabelle an
-# IPv4, IPv6 und MAC-Adresse
+### Topologien
 
-ip r
+Unterscheidung zwischen physikalischer und logischer Topologie:
 
-ip route
-```
+- Physikalisch Topologie: tatsächlich vorhandenen Netzwerkkomponenten und ihrer Verbindungen
+- Logisch Topologie: Kommunikationsbeziehungen und Struktur des Datenflusses
 
-### 1.2.8 Topologien
+![Schematische Darstellung verschiedener Topologien](resources/topologie.png)
 
-Unterscheidung zwischen physikalischer und logischer Topologie.
-Physikalisch dabei die tatsächlich vorhandenen (physischen) Netzwerkkomponenten und ihrer Verbindungen.
-Logisch dabei die Kommunikationsbeziehungen und der Struktur des Datenflusses.
+> SPF (single point of failure) im Netz? Wenn ja: Ausfallsicherheit gering
 
-Grafische Aufarbeitung versch. Topologien auf Folie 17
+### Medien/Verkabelung
 
-Zu beachten: Gibt es SPF (single point of failure) im Netz? Wenn ja: Ausfallsicherheit gering
+heute typischerweise zwischen Kopplungselementen und Hosts eingesetzt:
 
-**hier fehlen noch Dinge**
+**Twisted-Pair-Kabel**
+
+- Kabel mit verdrillten Adernpaaren (= Schutz gegen Störeinflüsse durch gegenseitiges Aufheben)
+- Unterscheidung in:
+	- Unshielded Twisted Pair (UTP): Ungeschirmt
+	- Shielded Twisted Pair (STP): Geflechtschirm
+	- Foiled Twisted Pair (FTP): Gesamtschirmung
+- Klassifizierung durch ISO-Kategorien (CAT 3, 5e, 6, 6A, 7,...)
+
+**Lichtwellenleiter**
+
+- Aus Glasfasern und Mantelung bestehende Lichtleiter
+- Kern/Modenfeld besitzt einen höheren Brechungsindex als Mantel -> Führung des Lichts durch Totalreflexion
+- Spezifikation durch Durchmesser([Kern$\oslash$]/[Mantel$\oslash$]); Weitere Kenngrößen: Wellenlänge, Dämpfung
+- Unterscheidung in Multimode LWL und Single-/Monomode LWL
 
 ### Tooling - Wireshark
 
 - nützliches Tool zur Darstellung von Kommunikationsvorgängen in Netzwerken
-- es ist eine Filterfunktionalität vorhanden um gezielt nach IP-Adressen, Protokollen, Ports,... zu suchen
-- dabei verwendete Bibliothek: **LIBPCAP**
-
-Auch verwendetes Tool: Scapy
+- Filterfunktionalität um gezielt nach IP-Adressen, Protokollen, Ports,... zu suchen
+- verwendete Bibliothek: `LIBPCAP`
+- weiteres Tool: `Scapy`
 
 # 2. Netzzugangsschicht
 
@@ -398,16 +363,14 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Vorteile: Skalierbarkeit (Anzahl der Ports einfach ), vereinfachte Netzwerkschnittstelle (Konfiguration von nur einem logischem Gerät), Vergrößerter Durchsatz (Stacking über Port mit hoher Datenrate)
 - Nachteil: Platzbedarf, höherer Stromverbrauch mehrerer Geräte, Kopplung als neue Fehlerquelle
 
-
-
-# 3. Vermittlungsschicht: Internet Protocol
+# Internetprotokoll und Hilfsprotokolle
 
 - Schicht 3; von Übertragungsmedium unabhängig
 - Overlay über L2, bildet davon unabhängiges Netz
 - Ermöglicht Adressierung von "Knoten"
 - zwei Versionen verbreitet: IPv4 und IPv6
 - IP-Paket wird trotz Hops nicht verändert (Ausnahme: NAT)
-- Bezeichnung Hostadresse eigentlich falsch -> Schnittstellenadresse 
+- Bezeichnung Hostadresse eigentlich falsch -> Schnittstellenadresse
 - eine IP-Adresse ist nicht einem Host zugewiesen, sondern einem NIC
   - Workaround: Loopback-Interface, zur Adressierung von Localhost
 - *casts:
@@ -416,14 +379,14 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
   - Multicast: Senden an Teilmenge
   - Anycast: Senden an alle NICs, aber nur einer antwortet
 
-## 3.1 IPv4
+## IPv4
 
-### 3.1.1 IPv4-Header
+### IPv4-Header
 
 ![Aufbau des IPv4-Headers](resources/ip-paket-aufbau.png)
 
 - Version: 4 Bits, Protokollversion
-- Internet Header Length (IHL): 4 Bits, Länge des Headers in 32 Bit Wörtern, Standardwert 5 --> 5 * 32 Bit = 20 Byte
+- Internet Header Length (IHL): 4 Bits, Länge des Headers in 32 Bit Wörtern, Standardwert 5 -> 5 * 32 Bit = 20 Byte
 - Differenciated Service Code Point (DSCP): 6 Bit, Prioritätsklassen
 - Explicit Congestion Notification (ECN): 2 Bit, Meldung von Überlast, von Layer 4 gesteuert, wird damit rückläufig zu Sender kommuniziert "Bitte sende langsamer"
 - Total Length: 16 Bit, Gesamtlänge des Datagramms / Fragments in Bytes
@@ -434,12 +397,12 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
   - Bit 2: More Fragments (MF)
 - Fragment Offset: 13 Bit, Offset in 8 Byte Blöcken, die Daten innerhalb des urspr. Paket hatten
 - Time to Live (TTL): 8 Bit, Lebenszeit des Pakets, in Praxis maximale Anzahl der Hops
-- Protocol: 8 Bit, im Datenbereich verwendetes Protokoll, Bsp. in Linux: ``/etc/protocols``
+- Protocol: 8 Bit, im Datenbereich verwendetes Protokoll, Bsp. in Linux: `/etc/protocols`
 - Header Checksum: Prüfsumme für (nur) IP-Header
 - Options: Zusatzdaten für bspw. Routing oder Zeitstempel
   - Bsp Source Routing: Sender gibt exakte Route an; ermöglicht Angriffsfläche für DoS-Attacken
 
-### 3.1.2 Fragmentierung
+### Fragmentierung
 
 ![Bild von Fragmentierung](resources/ip-fragmentierung.png)
 
@@ -455,17 +418,16 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
     - MF-Flag = 1 bei allen außer dem letzten Paket
     - Fragment Offset: zählt Byteposition hoch
 - Wo wird fragmentiert?
-  - bei IPv4 kann bei jedem Hop auf der Route fragmentiert werden, Performanceverlust 
+  - bei IPv4 kann bei jedem Hop auf der Route fragmentiert werden, Performanceverlust
   - bei IPv6 wird beim Sender fragmentiert
-- Pass-MTU: bezeichnet geringste MTU aller Hops auf der Route 
+- Pass-MTU: bezeichnet geringste MTU aller Hops auf der Route
 
-```
-# MTU anzeigen lassen 
-
+```bash
+# MTU anzeigen lassen
 ip addr show
 ```
 
-### 3.1.3 IPv4-Adressierung
+### IPv4-Adressierung
 
 - Struktur: 0 bis n Bits Netzadresse, 32-n Bit Hostadresse (NIC-Adresse)
 - Notation: ``adresse/n`` --> Classless Inter Domain Routing Notation (CIDR)
@@ -476,9 +438,9 @@ ip addr show
 
 ![Bild eines Routers](resources/routing-bsp.png)
 
-## 3.2 Address Resolution Protocol (ARP)
+## Address Resolution Protocol (ARP)
 
-### 3.2.1 Einordnung
+### Einordnung
 
 ![Ablauf von ARP](resources/ip-arp-ablauf.png)
 
@@ -496,21 +458,21 @@ ip addr show
 tcp dump -i any -p arp
 ```
 
-### 3.2.2 Protokolldetails
+### Protokolldetails
 
 //TODO: Bild Folie 7
 
 //TODO: ausfüllen
 
-## 3.3 ICMP
+## ICMP
 
 - Internet Control Message Protocol dient der Kommunikation von Fehlern und Abfrage von Statusinformation in (fast immer) IP-basierten Netzwerken
 - ausgewählte Typen:
   - 0: Echo Reply: Antwort auf Echo Request
   - 3: Destination Unreachable: Ziel nicht erreichbar mit folgenden Codes:
-    - 0 - Net unreachable
-    - 3 - Port unreachable
-    - 4 - Fragmentation needed and Don't Fragmen (DF) was set
+    - 0: Net unreachable
+    - 3: Port unreachable
+    - 4: Fragmentation needed and Don't Fragmen (DF) was set
   - 5: Redirect: siehe unten
   - 9: Router Advertisement: dient automatischen Discovery von Routern
   - 11: Time Exceeded: TTL-Feld aus IP-Datagramms abgelaufen
@@ -521,9 +483,9 @@ tcp dump -i any -p arp
   - 16 Bit Prüfsumme
   - weitere Inhalte abhängig von Typ / Code
 
-Möglichkeiten: 
+Möglichkeiten:
 - mehr Funktionen als "nur" Ping
-- Fehlermeldungen können im Netzwerk propagiert werden 
+- Fehlermeldungen können im Netzwerk propagiert werden
 - Zeitstempel können zur Lastermittlung genutzt werden
 
 Beispiel: ICMP-Redirect
@@ -532,20 +494,19 @@ Beispiel: ICMP-Redirect
 - bietet Angriffsfläche: kann verwendet werden, um kompromittierten Router in den Pfad zu zwingen
 - per Default in vielen Systemen deaktiviert
 
-## 3.4 Praxisübung
+## Praxisübung
 
-Exkurs Namespaces: 
+Exkurs Namespaces:
 
-- Namespaces bieten Möglichkeit, separate Netzwerk-Stacks lokal zu schaffen 
-- Zu Beginn leere und frei konfigurierbare Stacks 
-- es können komplette lokale Netzwerke innerhalb eines Kernels geschaffen werden 
-- wird zum Beispiel für Docker genutzt
-  - dort aber auch noch separate Namespaces für PIDs, IP-Tables, Filesystem
-  
+- Namespaces bieten Möglichkeit, separate Netzwerk-Stacks lokal zu schaffen
+- Zu Beginn leere und frei konfigurierbare Stacks
+- es können komplette lokale Netzwerke innerhalb eines Kernels geschaffen werden
+- wird zum Beispiel für [Docker](https://www.docker.com/) genutzt
+	- dort aber auch noch separate Namespaces für PIDs, IP-Tables, Filesystem
 
 Verknüpfung von 3 Network Namespaces:
 
-![Bild der Aufgabenstellung](resources/uebungsaufgabe.png)
+![Aufgabenstellung](resources/exercise-1.png)
 
 - 3 Namespaces erstellen:
 
@@ -554,7 +515,7 @@ sudo ip netns add ns1
 sudo ip netns add ns2
 sudo ip netns add ns3
 
-sudo ip netns list # zur Prüfung
+sudo ip netns list # zur Überprüfung
 ```
 
 - virtuelle Ethernet-Interfaces erstellen:
@@ -596,160 +557,161 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 - mit bspw. Ping überprüfen, ob Verbindung funktioniert
 
-## 3.5 Nachteile IPv4
+### Nachteile IPv4
 
-- Ausgeschöpfter Adressraum 
-  - theoretisch nur 4 Mrd. Adressen 
-  - diese auch noch ungünstig vergeben (/8 Netz für IBM)
-  - Einsatz von NAT (Network Adress Translation) kann Verwendung einiger Dienste erschweren (Ende-zu-Ende Prinzip wird gebrochen)
+- Ausgeschöpfter Adressraum: nur 4 Milliarden Adressen, ungünstige Vergabe, NAT als Lösung (aber: erschwert Nutzung einiger Dienste)
+- Ineffizientes Routing: Header hat variable Länge
+- Keine automatische Konfiguration: IP muss manuell oder über DHCP vergeben werden (zusätzliche Infrastruktur erforderlich)
 
-- Ineffizientes Routing
-  - variable Länge der Header von IPv4-Paketen 
-  - Header können mit Optionen auf bis zu 60 Bytes ausgeweitet werden 
-  - Router prüfen, ob Paket die MTU überschreitet und fragmentieren ggf. 
+## IPv6
 
-- Keine automatische Konfiguration 
-  - IP-Adresse muss manuell oder über DHCP (Dynamic Host Configuration Protocol) vergeben werden 
-  - Zusätzliche Infrastruktur für automatische Konfiguration erforderlich
+- soll in nächsten Jahren schrittweise IPv4 ablösen
+- Vereinfachung des Headers:
 
-## 3.6 IPv6
+ ![IPv6-Header](resources/ipv6-header.png)
 
-### 3.6.1 Header
+- Traffic-Class: Prioritätsangabe
+- Flow Label: Klassifizierung von Datagrammen in verschiedenen Flows mit gleichem Label
+- Next Header: Identifikation für Erweiterungsheader/Schicht-4-Header
+- Payload-Length: Größe des gesamten Datagramms
+- Hop-Limit: Ersetzt TTL Feld (Angabe maximaler Hops)
 
-![IPv6-Header](resources/IPv6_Header.png)
+### Extension-Header
 
+- in Zusammenhang mit Next-Header-Feld verwendet
+- verweist auf Header eines Protokolls der nächsthöheren Schicht oder Extension-Header wird in das Datagramm eingebettet
 
-Hop Limit: 
-- ehemals TTL
-- zur Vermeidung von Zyklen
-- bei jedem Hop dekrementieren um 1
+![IPv6 Extension Header](resources/ipv6-header-ext.png)
 
-### 3.6.2 Extension-Header
+- Diverse Optionen: Hop-by-Hop Options, Fragment, Destination Options, Routing, Auth, ...
 
-- in Zusammenhang mit Next-Header-Feld verwendet 
-- (Folie 3/12)
+### IPv6-Fragmentierung
 
-### 3.6.3 IPv6-Fragmentierung 
+- Grundprinzip ähnlich zu IPv4:  wenn auf Pfad MTU nicht ausreicht wird fragmentiert
+- Unterschied zu IPv4:
+	- durch Sender fragmentiert, dadurch Effizienzsteigerung
+	- Absender wird über Fragmentierungsbedarf informiert (per ICMPv6-Nachricht "Packet too big")
+- Praxis: limitierende MTU meist an den Rändern, also beim Sender
 
-- Grundprinzip ähnlich zu IPv4
-- wenn auf Pfad MTU nicht ausreicht wird fragmentiert 
-- Unterschied zu IPv4: 
-- durch Sender fragmentiert, dadurch Effizienzsteigerung
-- Absender wird über Fragmentierungsbedarf informiert (per ICMPv6-Nachricht "Packet too big")
-- Praxis: 
-- limitierende MTU meist an den Rändern, also beim Sender
+### IPv6-Adressen
 
-### 3.6.4 Ipv6-Adressen - Notation
+#### Adress-Notation
 
+- `ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff` ($8*16=128 \text{Bit}$)
+- Längere Folgen von Nullen können einmalig durch `::` abgekürzt werden: `ff01:0:0:0:0:0:2342:78fa` -> `ff01::2342:78fa``
+- letzten 32 Bit einer Adresse kann die dezimale Notation (wie in IPv4)
+verwenden: `::141.76.40.1`
+- Portangabe: `[ff01:0:0:0:0:0:0:0:2342:78fa]:80` bzw. `[ff01::2342:78fa]:80`
 
-- `x:x:x:x:x:x:x:x`
-- x = 4 hexadezimale Zahlen, je 16 Bit 
+**Empfehlungen aus RFC**
 
-- längere 0-Folgen können einmalig abgekürzt werden: 
-- `ff01:0:0:0:0:2342:78fa` -> `ff01::2342:78fa`
-
-- Empfehlungen aus RFC: 
 - führende Nullen des Blocks weglassen
-- Zwei Doppelpunkte
-- sollen maximale Anzahl von 0-Blöcken repräsentieren 
-- nicht zur Abkürzung eines einzelnen Blocks verwenden 
-- bei mehreren möglichen Kürzungen: möglichst weit links kürzen 
-- bei Angabe von Portnummern: IPv6-Adresse in eckige Klammern
-- `[ff01:0:0:0:0:2342:78fa]:80` oder `[ff01::2342:78fa]:80`
+- zwei Doppelpunkte sollen maximale Anzahl von 0-Blöcken repräsentieren (nicht zur Abkürzung eines einzelnen Blocks verwenden)
+- bei mehreren möglichen Kürzungen: möglichst weit links kürzen
 
-### 3.6.5 Adresstypen (Folie 3/15)
+#### Adress-Arten
 
-![IPv6-Header](resources/Adresstypen.png)
+- **Unicast-Adressen:** Identifikator eines *einzelnen* Netzwerkinterfaces (link-local innerhalb geschlossener Netzsegmente oder global)
+- **Anycast-Adressen:** Identifikator für *Menge von Interfaces* -> wird an **eines** der Interfaces gesendet, dass durch die Adresse identifiziert wird (z.B. bei DNS angewendet)
+- **Multicast-Adressen:** Identifikator für *Menge von Interfaces* -> wird an **alle** Interfaces gesendet, die durch die Adresse identifiziert werden (kein Broadcast mehr erforderlich)
 
-- Anycast:
-- wird zum Beispiel bei DNS-Rootservern verwendet 
-
-- Multicast: 
-- um z.B. alle Router im Netz anzusprechen
-
-### 3.5.6 Generelle Adresstruktur (Folie 3/16)
+#### Generelle Adresstruktur
 
 - Trennung zwischen Präfix und Interface Identifier
-- Notation analog zu CIDR 
-- `/64` am Ende gibt die Länge des Präfix an
+- Notation analog zu CIDR: `/64` am Ende gibt die Länge des Präfix an
 
+Typ einer Adresse kann an den höchstwertigsten Bits erkannt werden:
 
-![IPv6-Adresstruktur](resources/IPv6_Adresstruktur.png)
+- Unspecified-Adresse: `00...0` -> `::/128`
+- Loopback-Adressen: `00..1` -> `::1/128`
+- Multicast-Adressen: `11111111` -> `ff00::/8`
+- Link-local Unicast: `111111101010` -> `fe80::/10`
+- Solicited-Node-Adresse: `ff02:0:0:0:0:1:ff00::/104`
+- Globale Unicast-Adressen: alle anderen (derzeit: `2000::/3`)
+- Anycast-Adressen: Adressraum identisch zu Unicast-Adressen (syntaktisch nicht unterscheidbar)
 
-### 3.5.7 Erzeugung einer link-local Adresse (Folie 3/17)
+### Erzeugung einer link-local Adresse
 
-- aus MAC-Adresse oder per Privacy Extension abgeleitet 
+- wird aus der Link-Layer Adresse (MAC) berechnet
+- Überprüfung auf Eindeutigkeit über `SLAAC`
+- Problem: einfache Identifikation von Nutzern
+- Lösung: Privacy Extension for Stateless Adress Autoconfiguration (regelmäßige zufällige Generierung des Interface-Identifiers)
 
-### 3.5.8 IPv6-Multicasts (Folie 3/18)
+### IPv6-Multicasts
 
-- es gibt mehrere Multicast-Gruppen an denen teilgenommen werden kann 
-- es existieren zudem festgelegte "well-known" Multicast-Adressen 
-- `ff02::1` -> alle Knoten am Link 
-- zum Beispiel für ARP-äquivalente Anfragen 
-- `ff02:2` -> alle Router am Link 
-- `ff02::16` -> alle MLDv2-fähigen Router
+![Aufbau einer IPv6 Multicast-Adresse](resources/ipv6-multicast.png)
 
-### 3.5.9 Stateless Adress Autoconfiguration SLAAC (Folien 3/22,23)
+- es gibt mehrere Multicast-Gruppen an denen teilgenommen werden kann
+- es existieren zudem festgelegte "well-known" Multicast-Adressen
+	- `ff02::1` -> alle Knoten am Link (z.B. für ARP-äquivalente Anfragen)
+	- `ff02:2` -> alle Router am Link
+	- `ff02::16` -> alle MLDv2-fähigen Router
 
-**Prüfungsrelevant!**
+### NDP
+<!-- NDP nicht so genau Prüfungsrelevant, mehr Infos in den Folien-->
 
-![SLAAC Phase 1](resources/SLAAC_1.png)
-![SLAAC Phase 2](resources/SLAAC_2.png)
+**Aufgaben:**
 
-## 3.6 Migration IPv4 -> IPv6 (Folie 3/24)
+- Ermitteln verfügbarer Router
+- Bestimmung der Link-Layer-Adresse eines Knoten
+- Verwaltung von Erreichbarkeitsinformationen
+- Grundlage für Stateless Address Autoconfiguration
 
-- momentane Koexistenz von v4 und v6 erfordert Mechanismen zur Realisierung des Übergangs und für Interoperabilität
+### Stateless Adress Autoconfiguration (SLAAC)
+<!-- hochgradig Prüfungsrelevant-->
 
-- Mechanismen: 
-- Dual-Stack: 
-- beide Adressversionen für Interfaces
-- Knoten können über beide Protokolle unabhängig voneinander kommunizieren 
-- Tunnelmechanismen:
-- Kapselung von Paketen von v4 in v6 oder umgekehrt
-- Varianten: 4in6, 6in4, 6over4, ... 
-- Translationsmechanismen: 
-- Transformation der jeweiligen Header zur anderen Version 
-- Beispiel: NAT64 zur Übersetzung von v4 zu v6 
+**Phase 1: Erzeugung und Überprüfung einer Link-lokalen Adresse:**
 
-### 3.6.1 Dual-Stack Lite (DS-Lite) (Folie 3/25)
+1. Host generiert Link-lokale Adresse aus MAC (oder Privacy Extension)
+2. Host tritt der All-Nodes-Multicast-Adresse und der Solicited-Node-Multicast-Adresse der erzeugten Link-lokalen Adresse bei und sendet eine Neighbor-Solicitation-
+Nachricht an diese Adresse
+3. Host wartet bestimmte Zeitspanne; Ausbleiben einer Antwort = Indikator für die Eindeutigkeit der selbst zugewiesenen Adresse -> Adresse wird dem Interface zugewiesen
+4. Host sendet Neighbor-Advertisement-Nachrichten an alle Hosts des Links (= Multicast-Adresse `ff02::1`)
 
-- Kombination aus Tunnelmechanismen und Translation 
-- Vorteile: 
-- Providerinfrastruktur lann auf IPv6 umgestellt werden 
-- IPv4-Adressen beim Provider werden eingespart 
+**Phase 2: Erzeugen einer weltweit eindeutigen Global-Unicast-Adresse:**
 
-![Dual-Stack Lite](resources/DS_Lite.png)   
+1. Host fragt mittels einer Router-Solicitation-Nachricht nach einem Router Advertisement
+2. Router versendet ein Router Advertisement mit allen
+für die Konfiguration wichtigen Informationen (insbesondere Angabe des Präfixes) -> Erzeugung einer Global-Unicast-Adresse aus Präfix und Link-local-Adresse
+3. Nach Betritt zur Solicited-Node-Multicast-Adresse für die Global Unicast-Adresse, werden mehrere Neighbor-Solicitation-Nachrichten an die Multicast-Adresse
+versendet -> ist Adresse bereits verwendet sendet entsprechender Host Neighbor-Advertisement-Nachricht
+4. Ist die Adresse frei, wird sie lokal zugewiesen
 
-## 3.7 Exkurs: Raw Sockets 
+### Migration IPv4 -> IPv6
 
-- Ermöglichen die Instanziierung von IP-Headern und Implementierung von Protokollen im User-Space 
+- Übergang zu IPv6 wird seit zwanzig Jahren propagiert
+- Aktuell: Koexistenz von IPv4 und IPv6 -> Mechanismen zur Interoperabilität
+	- Dual-Stack: Interface erhalt sowohl IPv4 und IPv6-Adressen
+	- Tunnel-Mechanismen: Kapselung Header der beider Versionen (z.B. `4in6`, `6in4`, `6over4`, ...)
+	- Translations-Mechanismen: Transformation der Header in unterschiedliche Versionen (z.B. NAT64 = Übersetzung von IPv4-Adressen in IPv6)
+
+#### Dual-Stack Lite (DS-Lite)
+
+- Kombination aus Tunnelmechanismen und Translation
+- Vorteile:
+	- Providerinfrastruktur kann auf IPv6 umgestellt werden
+	- IPv4-Adressen beim Provider werden eingespart
+
+![Dual-Stack Lite](resources/ds-lite.png)   
+
+### Exkurs: Raw Sockets
+
+- Ermöglichen die Instanziierung von IP-Headern und Implementierung von Protokollen im User-Space
 - IP-Headerelemente wie auch gekapselte Datagramme können im Programm befüllt werden
-- Durch Raw Sockets können z.B. implementiert werden:
-- Netzwerksicherheitswerkzeuge wie Portscanner
-- ICMP-basierte Anwendungen
-- Routing-Protokolle
+- durch Raw Sockets können z.B. implementiert werden:
+	- Netzwerksicherheitswerkzeuge wie Portscanner
+	- ICMP-basierte Anwendungen
+	- Routing-Protokolle
+- Tooling: `Scapy` und `nmap`
+- Frage: Wie kann unter Verwendung von Raw-Sockets ein einfaches TRACEROUTE gebaut werden?
 
-![Raw-Sockets](resources/Raw_Sockets.png)   
+- Antwort: Mit Hilfe des TTL kann dies ermöglicht werden
+	- erst TTL 1 (ICMP des ersten Routers)
+	- dann TTL 2 (ICMP des zweiten Routers)
+	- wiedrholen bis zum Erreichen des gewünschten Ziels
+- Problem: nicht alle Router haben diese ICMP-Antworten aktiviert, weitere Anpassung nötig
 
-- Tooling: **Scapy** und **nmap**
-
-- Frage: Wie kann unter Verwendung von Raw-Sockets ein einfaches TRACEROUTE gebaut werden? 
-
-- Antwort: Mit Hilfe des TTL kann dies ermöglicht werden 
-- erst TTL 1 (ICMP des ersten Routers)
-- dann TTL 2 (ICMP des zweiten Routers)
-- ...
-
-- Problem: nicht alle Router haben diese ICMP-Antworten aktiviert, weitere Anpassung nötig 
-
-## 3.8 Exkurs: IPv6 im Linux-Kernel 5.9 (Folien 3/27,28)
-
-[//]: # (Hat hier jemand was?) 
-
-
-## Praxisbeispiel radvd - SLAAC in Namespaces: 
-
-
+### Praxisbeispiel
 
 - Namespaces erstellen:
 
@@ -769,30 +731,25 @@ sudo ip link add veth1 netns ns1 type veth peer name veth2 netns ns2 # erstellt 
 - radvd installieren und .conf anlegen
 
 ```bash
-
 apt-get install radvd
-
 touch /etc/radvd.conf
-
 ```
 
 - .config bearbeiten
 
-```bash
-interface veth1
-{
-prefix 2001:db8:1:0::/64
-{
-AdvOnLink on;
-AdvAutonomous on;
-AdvRouterAddr off;
-};
+```conf
+interface veth1{
+	prefix 2001:db8:1:0::/64{
+		AdvOnLink on;
+		AdvAutonomous on;
+		AdvRouterAddr off;
+	};
 };
 ```
-
-Quelle Beispielkonfig: https://github.com/reubenhwk/radvd/blob/master/radvd.conf.example
+[größere Beispiel-Config](https://github.com/reubenhwk/radvd/blob/master/radvd.conf.example)
 
 - radvd erneut starten und Status erfassen
+
 ```bash
 sudo systemctl start radvd
 sudo systemctl status radvd
@@ -806,23 +763,7 @@ ip link set veth1 up
 ```
 
 - diesen Schritt für zweites Interface wiederholen
-
-- radvd in Namespace1 aktivieren 
+- radvd in Namespace1 aktivieren
 
 **tbc: Anfang nächster Einheit**
 
-```bash
-
-
-```
-
-
-
-<!--
-
-# 4. Transportschicht: User Datagram Protocol und Transmission Control Protocol
-# 5. Routing
-# 6. Anwendungsschicht
-# 7. Software-defined Networking
-# 8. Netztechnologien
--->

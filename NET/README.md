@@ -740,11 +740,7 @@ versendet -> ist Adresse bereits verwendet sendet entsprechender Host Neighbor-A
 	- Netzwerksicherheitswerkzeuge wie Portscanner
 	- ICMP-basierte Anwendungen
 	- Routing-Protokolle
-
-![Raw-Sockets](resources/Raw_Sockets.png)
-
 - Tooling: **Scapy** und **nmap**
-
 - Frage: Wie kann unter Verwendung von Raw-Sockets ein einfaches TRACEROUTE gebaut werden?
 
 - Antwort: Mit Hilfe des TTL kann dies ermöglicht werden

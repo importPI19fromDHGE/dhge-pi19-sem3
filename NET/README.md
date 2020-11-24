@@ -66,7 +66,6 @@ Rechnernetzkonzepte und -architekturen
     - [Exkurs: Raw Sockets](#exkurs-raw-sockets)
     - [IPv6 im Linux-Kernel 5.9 (Folien 3/27,28)](#ipv6-im-linux-kernel-59-folien-32728)
     - [Praxisbeispiel:](#praxisbeispiel)
-
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Einleitung / Übersicht
@@ -227,9 +226,9 @@ heute typischerweise zwischen Kopplungselementen und Hosts eingesetzt:
 - verwendete Bibliothek: `LIBPCAP`
 - weiteres Tool: `Scapy`
 
-# Netzzugangsschicht
+# 2. Netzzugangsschicht
 
-## Übersicht zu Ethernet
+## 2.1 Übersicht zu Ethernet
 
 - Ursprünglich für LAN-Kommunikation vorgesehen
 - Klassisch: Steuerung des Zugriffs auf den Kanal über CSMA/CD-Algorithmus (bei Punkt-zu-Punkt obsolet)
@@ -241,7 +240,7 @@ heute typischerweise zwischen Kopplungselementen und Hosts eingesetzt:
 Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Alternative: z.B. Infiniband
 
-## Aufbau eines Ethernet Frames
+## 2.2 Aufbau eines Ethernet Frames
 
 ![Ethernet Frame](resources/eth-frame.png)
 
@@ -253,26 +252,26 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Padding: Gewährleistet Minimalgröße von 64 Byte
 - CRC-Checksum: 32-Bit-Prüfsumme über das Frame (von Zieladresse bis Padding-Feld)
 
-## Namen von Netzwerkschnittstellen unter Linux
+## 2.3 Namen von Netzwerkschnittstellen unter Linux
 
 - Alt: `ethX` bzw. `wlanX` (an MAC gebunden -> Probleme bei Tausch)
 - Neu: Consistent Network Device Naming (z.B. `enp0s25`)
 	- Ethernetinterface (en), das an PCI-Bus (p) an Slot 25 hängt
 
-## Switches
+## 2.4 Switches
 
 - Multiport Kopplungselemente, das Frames nur an den Port weiterleitet über den der Empfänger erreichbar ist
 - Speicherung von Adressen in Source-Address-Table (SAT)
 - **Cut-Through Switches:** Nach Analyse der MAC-Adresse sofortiges Durschalten zum entsprechenden Port (Weiterleitung ohne Zwischenspeicherung = geringe Latenz, kein Einfluss auf Datenrate)
 - **Store-and-Forward Switches:** Frame wird am Eingangsport und Ausgangsport gepuffert (größere Latenz, Möglichkeit zur Zwischenverarbeitung der Daten)
 
-### Architekturtypen
+### 2.4.1 Architekturtypen
 
 - **Shared Memory:** CPU kopiert Daten nach Extraktion der Zieladresse in den korrekten Ausgangspuffer
 - **Bus-System:** Empfangener Port leitet Frame über gemeinsamen Bus an richtigen Ausgangsport
 - **Switching-Matrix:** Physische Durchschaltung von Ein- und Ausgabeleitungen
 
-### Kenngrößen
+### 2.4.2 Kenngrößen
 
 - Datenrate der verschiedenen Ports
 - Datenrate des Backplanes (der internen Busse)
@@ -283,7 +282,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Bandbreitenmanagement
 - Preis
 
-### Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->
+### 2.4.3 Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->
 
 - STP etabliert sich innerhalb des Netzes einen Spannbaum durch das Blockieren von Ports, die Zyklen erzeugen würden
 - Blockierter Port: Eingehender und ausgehender Traffic wird verworfen, Kanal ansonsten voll funktionsfähig
@@ -301,17 +300,17 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Designated Port: Alle Ports, die kein Root-Port und nicht blockiert sind  
 - Non-Designated Port: Ports in blockiertem Zustand um Zyklen zu verhindern  
 
-#### STP - Port Fast/Fast Link
+#### 2.4.3.1 STP - Port Fast/Fast Link
 
 - STP weist Konvergenzprobleme auf: Netzwerk erst nach etwa 30 Sekunden funktionstüchtig (Probleme beispielsweise mit PXE Boot)
 - Switches bieten Speziellen Modus für Ports an denen Endsysteme angeschlossen sind (Port geht sofort bei Aktivierung in Forwarding State)
 - Herstellerspezifische Terminologie: PortFast (Cisco), Fast Link (NetGear)
 
-#### Rapid Spanning Tree Protocol
+#### 2.4.3.2 Rapid Spanning Tree Protocol
 
 - Proaktiver Ansatz bei dem effizient auf Alternativpfade gewechselt werden kann
 
-### Virtuelles LAN
+### 2.4.4 Virtuelles LAN
 
 - Physisches Netzwerkdesign steht häufig mit logischem Netzwerkdesign in Konflikt
 - logische Einteilung des Netzes auf Ebene der Switche (Aufteilung in Broadcast-Domänen; erhöhte Sicherheit)
@@ -322,7 +321,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Tag-basierte VLANs: Frames werden mit ID eines VLANs getaggt, wodurch über einen Port mehrere VLANs realisiert werden können
 - dynamische/inhaltsbasierende VLANs: Zuordnung zu VLANs anhand verwendeter Protokolle (weniger verbreitet)
 
-#### Tag-basierte VLANs
+#### 2.4.4.1 Tag-basierte VLANs
 
 - Erweiterung der Ethernet-Frames um einen Tag zur Identifikation des VLANs zu dem das Frame gehört
 
@@ -335,7 +334,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - **Drop Eligible Indicator:** Identifiziert Frames, die bei Überlast verworfen werden können
 - **VLAN Identifier:** ID des zugehörigen VLANs ($2^{12}-2$ = max. 4096 VLANs)
 
-#### Inter-VLAN-Routing
+#### 2.4.4.2 Inter-VLAN-Routing
 
 **Ansatz 1**
 
@@ -346,14 +345,14 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - **Ansatz 2:** Einsatz von virtuellen Interfaces zur Vermeidung des hohen Aufwandes für separate Schnittstellen
 <!-- Gerne Prüfungsfrage: Voraussetzungen/Konfigurationsschritte -->
 
-#### STP und VLAN
+#### 2.4.4.3 STP und VLAN
 
 > STP weiß nix von VLANs
 
 - klassischer Ansatz nutzt die verfügbaren physischen Verbindungen nicht optimal aus
 - Lösung: Multiple Spanning Tree Protocol (jedes VLAN hat eigenen ST + ein Internal Spanning Tree für alle VLANs)
 
-### Transparent Interconnection of lots of links (TRILL)
+### 2.4.5 Transparent Interconnection of lots of links (TRILL)
 
 - Ethernet-Frames werden in einen TRILL-Header gekapselt
 - Routing dieser Frames auf deren Basis auf L2 (nächster Hop wird durch umgebenen L2-Header angegeben)
@@ -361,13 +360,13 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - TRILL-Header besitzt HOP-Count-Feld um Routing-Schleifen zu vermeiden
 - Entfernung des THRILL-Headers vor Auslieferung an das Zielsystem
 
-### Stacking
+### 2.4.6 Stacking
 
 - Stackfähige Switsches können miteinander zu einer Gruppe verbunden werden (einzelnes logisches Gerät, ansprechen über einzelne IP)
 - Vorteile: Skalierbarkeit (Anzahl der Ports einfach ), vereinfachte Netzwerkschnittstelle (Konfiguration von nur einem logischem Gerät), Vergrößerter Durchsatz (Stacking über Port mit hoher Datenrate)
 - Nachteil: Platzbedarf, höherer Stromverbrauch mehrerer Geräte, Kopplung als neue Fehlerquelle
 
-## Internetprotokoll und Hilfsprotokolle
+# Internetprotokoll und Hilfsprotokolle
 
 - Schicht 3; von Übertragungsmedium unabhängig
 - Overlay über L2, bildet davon unabhängiges Netz
@@ -382,6 +381,8 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
   - Broadcast: Senden an alle NICs
   - Multicast: Senden an Teilmenge
   - Anycast: Senden an alle NICs, aber nur einer antwortet
+
+## IPv4
 
 ### IPv4-Header
 
@@ -440,9 +441,9 @@ ip addr show
 
 ![Bild eines Routers](resources/routing-bsp.png)
 
-### Address Resolution Protocol (ARP)
+## Address Resolution Protocol (ARP)
 
-#### Einordnung
+### Einordnung
 
 ![Ablauf von ARP](resources/ip-arp-ablauf.png)
 
@@ -460,7 +461,7 @@ ip addr show
 tcp dump -i any -p arp
 ```
 
-#### Protokolldetails
+### Protokolldetails
 
 //TODO: Bild Folie 7
 
@@ -496,7 +497,7 @@ Beispiel: ICMP-Redirect
 - bietet Angriffsfläche: kann verwendet werden, um kompromittierten Router in den Pfad zu zwingen
 - per Default in vielen Systemen deaktiviert
 
-### Praxisübung
+## Praxisübung
 
 Exkurs Namespaces:
 
@@ -505,7 +506,6 @@ Exkurs Namespaces:
 - es können komplette lokale Netzwerke innerhalb eines Kernels geschaffen werden
 - wird zum Beispiel für [Docker](https://www.docker.com/) genutzt
 	- dort aber auch noch separate Namespaces für PIDs, IP-Tables, Filesystem
-
 
 Verknüpfung von 3 Network Namespaces:
 
@@ -769,3 +769,4 @@ ip link set veth1 up
 - radvd in Namespace1 aktivieren
 
 **tbc: Anfang nächster Einheit**
+

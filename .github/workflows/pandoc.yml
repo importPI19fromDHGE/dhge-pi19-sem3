@@ -11,6 +11,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
+          mkdir .old &&
+          cp -r */*.md .old/ &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{print}' .old/DBS/README.md > DBS/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{print}' .old/SWE/README.md > SWE/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{print}' .old/PRO/README.md > PRO/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{print}' .old/RES/README.md > RES/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{print}' .old/NET/README.md > NET/README.md &&
+      - run: |
           mkdir output
       - uses: docker://rstropek/pandoc-latex:latest # generate DBS pdf
         with:

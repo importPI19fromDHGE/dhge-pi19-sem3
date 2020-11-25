@@ -36,6 +36,8 @@ Datenbanken-Praktikum
   - [Views](#views)
   - [Transaktionen](#transaktionen)
   - [Indices](#indices)
+  - [Trigger](#trigger)
+    - [``AFTER``-Trigger](#after-trigger)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -559,13 +561,18 @@ DROP VIEW vBuchExemplar;
   - Generierung von Views zur Bereitstellung von Abwärtskompatibilität
 
 - anzeigen, wie View erstellt wurde: ``SELECT * FROM sys.syscomments``
-  - Debug-Informationen wie Kommentar und genaue ``CREATe VIEW``-Query
+  - Debug-Informationen wie Kommentar und genaue ``CREATE VIEW``-Query
   - kann mit ``ENCRYPTION``-Attribut umgangen werden
 
 Beispiel: View mit Name, Vorname von Autor, dessen Nationalität und Anzahl der Bücher in der DB:
 
 ```sql
-TODO
+CREATE VIEW vAutorNat AS
+SELECT autor.name, autor.vorname, nationalitaet.bezeichnung, count(*) [Anzahl Bücher]
+FROM nationalitaet
+JOIN autor ON nationalitaet.id = autor.nationalität_id
+JOIN buch2autor ON autor.id = buch2autor.autor_id
+GROUP BY autor.name, autor.vorname, nationalitaet.bezeichnung;
 
 SELECT * FROM vAutorNat ORDER BY [Anzahl Bücher] DESC;
 ```
@@ -619,3 +626,43 @@ CREATE INDEX ix_Buchtitel ON Buch(titel DESC);
 --   clustered:
 CREATE CLUSTERED INDEX ix_Buchtitel ON Buch(Titel);
 ```
+
+## Trigger
+
+- "Auslöser" --> reagieren auf definiertes Ereignis
+- Vgl. Prozedur ohne Parameter
+- Arten:
+  - DML: Data Manipulation Language (reagieren auf ``INSERT``, ``UPDATE``, ``DELETE``)
+    - sichern Datenkonsistenz, prüfen Daten <!--eignet sich auch zum pfuschen ;)-->
+  - DDL: Data Definition Language (reagieren auf bspw. ``ALTER``)
+- man kann mehrere Trigger für ein Ereignis definieren
+- man kann einen Trigger für mehrere Ereignisse definieren
+- Trigger können auf zwei Arten auslösen:
+
+###  ``AFTER``-Trigger <!--höhö-->
+
+- lösen aus, nachdem Ereignis aufgetreten ist
+
+```sql
+CREATE TRIGGER tr_BuchInsert ON buch
+AFTER INSERT -- UPDATE, DELETE
+AS
+DECLARE @title nvarchar(100);
+SELECT @title = titel FROM buch;
+PRINT 'Buch hinzugefügt: ' + @title;
+```
+
+Wenn man ein Buch einfügt, erhält man:
+
+```txt
+Buch hinzugefügt
+
+(1 row affected)
+
+Completion time: 2020-11-25T14:37:17.3255273+01:00
+```
+
+- Ereignisse werden in temporären Tabellen - bspw. ``inserted`` oder ``deleted`` gespeichert
+- Hinweis: ein UPDATE löst einen ``DELETE`` und einen ``INSERT`` aus
+- Deaktivieren mit ``DISABLE TRIGGER triggername``
+- Reaktivieren mit ``ENABLE TRIGGER triggername``

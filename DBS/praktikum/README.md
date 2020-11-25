@@ -5,11 +5,12 @@ Datenbanken-Praktikum
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
+- [Datenbanken-Praktikum](#datenbanken-praktikum)
 - [Formen von Kundenanforderungen](#formen-von-kundenanforderungen)
 - [Schematische Darstellung](#schematische-darstellung)
   - [Entity Relationship Diagramm (ERD)](#entity-relationship-diagramm-erd)
   - [Tabellenschema](#tabellenschema)
-- [Constraints und Kardinalitäten](#constraints-und-kardinalit%C3%A4ten)
+- [Constraints und Kardinalitäten](#constraints-und-kardinalitäten)
 - [Vorgehensweise zur Modellierung einer Datenbank](#vorgehensweise-zur-modellierung-einer-datenbank)
 - [Relationship-Matrix](#relationship-matrix)
 - [SQL](#sql)
@@ -17,17 +18,23 @@ Datenbanken-Praktikum
   - [Datentypen](#datentypen)
   - [Tabellen](#tabellen)
     - [Tabellen erstellen](#tabellen-erstellen)
-    - [Eigenschaften für Tabellenspalten](#eigenschaften-f%C3%BCr-tabellenspalten)
-    - [verändern von Tabellen](#ver%C3%A4ndern-von-tabellen)
+    - [Eigenschaften für Tabellenspalten](#eigenschaften-für-tabellenspalten)
+    - [verändern von Tabellen](#verändern-von-tabellen)
     - [Constraints](#constraints)
-  - [Daten einfügen](#daten-einf%C3%BCgen)
+  - [Daten einfügen](#daten-einfügen)
   - [Daten lesen](#daten-lesen)
   - [Aggregatsfunktionen](#aggregatsfunktionen)
   - [Unterabfragen](#unterabfragen)
   - [Unions](#unions)
   - [Gruppieren](#gruppieren)
   - [Joins](#joins)
-  - [Daten verändern](#daten-ver%C3%A4ndern)
+  - [Daten verändern](#daten-verändern)
+  - [Daten löschen](#daten-löschen)
+    - [Truncate](#truncate)
+    - [Tabelle löschen](#tabelle-löschen)
+    - [Spalte löschen](#spalte-löschen)
+  - [Views](#views)
+  - [Transaktionen](#transaktionen)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -451,6 +458,8 @@ WHERE v1.id != v2.id
 ORDER BY v1.ort;
 ```
 
+- Joins mit ``WHERE a.id = b.id`` werden explizite Joins genannt
+
 ## Daten verändern
 
 - mit Schlüsselwort `UPDATE`
@@ -478,6 +487,7 @@ FROM Buch JOIN Verlag ON Verlag.id = Buch.Verlag_id
 
 - mit Schlüsselwort `DELETE`
 - `DELETE FROM tabelle WHERE bedingung`
+- Good Practice: Primärschlüssel als Bedingung wählen
 - Indices werden bei `DELETE` nicht zurückgesetzt (Fragmentierung)
 - Alle Daten aus einer Tabelle löschen und Indices zurücksetzen: `TRUNCATE TABLE tabelle`
 - Löschen der gesamten Struktur einer Tabelle `DROP TABLE tabelle`
@@ -493,13 +503,39 @@ TRUNCATE TABLE Buch;
 DROP TABLE Buch;
 ```
 
+### Truncate
+
+Wenn auch Indices gelöscht werden sollen: Nutzung von ``TRUNCATE`` geeignet:
+
+```sql
+TRUNCATE TABLE thema;
+```
+
+- effizienter
+- **keine Protokollierung --> kein Rückgängig-machen**
+
+### Tabelle löschen
+
+```sql
+DROP TABLE tabelle;
+```
+
+- löscht auch Indices usw.
+
+### Spalte löschen
+
+```sql
+ALTER TABLE tabelle DROP COLOUMN spalte;
+```
+
 ## Views
 
 - vgl. "Alias für eine Abfrage"
 - nach der Erstellung wie normale Tabellen verwendbar
 - zusätzliche Attribute:
-	- `ENCRYPTION` Unterliegende Datenbankstruktur der Basistabellen nicht preisgeben
+	- `ENCRYPTION` Unterliegende Datenbankstruktur der Basistabellen nicht preisgeben (siehe unten)
 	- `SCHEMABINDING` View fest an das Schema der Basistabelle binden
+  	- Tabellenstrukturänderungen sind dann nur möglich, wenn sie nicht die View betreffen
 	- `VIEW_METADATA` Bei Abfrage des Views über die API werden die View-Metadaten statt den Basistabellen-Daten gesendet
 
 ```sql
@@ -514,3 +550,34 @@ SELECT * FROM vBuchExemplar;
 -- View löschen
 DROP VIEW vBuchExemplar;
 ```
+
+- speichert Abfrageergebnisse und generiert bei Bedarf an der geforderten Stelle eine temporäre Tabelle
+- Nutzen:
+  - Änderung von Berechtigungen
+  - Speichern rechenintensiver Abfragen zur Verbesserung der Effizienz
+  - Generierung von Views zur Bereitstellung von Abwärtskompatibilität
+
+- anzeigen, wie View erstellt wurde: ``SELECT * FROM sys.syscomments``
+  - Debug-Informationen wie Kommentar und genaue ``CREATe VIEW``-Query
+  - kann mit ``ENCRYPTION``-Attribut umgangen werden
+
+## Transaktionen
+
+- Änderungen werden in ein Overlay geschrieben, d.h. in temporäre Tabellen
+
+Aufbau:
+
+```sql
+BEGIN TRANSACTION
+[...]
+UPDATE nutzer SET ort =  'Gera'
+SELECT vorname, name, ort FROM nutzer;
+
+-- Rolle rückwärts:
+ROLLBACK
+
+SELECT vorname, name, ort FROM nutzer;
+```
+
+- anstelle des ``ROLLBACK`` kann auch ``COMMIT`` ausgeführt werden, damit die Änderungen übernommen werden
+- wird auch manuell gesteuert, d.h. außerhalb eines Skriptes

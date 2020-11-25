@@ -35,6 +35,7 @@ Datenbanken-Praktikum
     - [Spalte löschen](#spalte-löschen)
   - [Views](#views)
   - [Transaktionen](#transaktionen)
+  - [Indices](#indices)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -561,6 +562,14 @@ DROP VIEW vBuchExemplar;
   - Debug-Informationen wie Kommentar und genaue ``CREATe VIEW``-Query
   - kann mit ``ENCRYPTION``-Attribut umgangen werden
 
+Beispiel: View mit Name, Vorname von Autor, dessen Nationalität und Anzahl der Bücher in der DB:
+
+```sql
+TODO
+
+SELECT * FROM vAutorNat ORDER BY [Anzahl Bücher] DESC;
+```
+
 ## Transaktionen
 
 - Änderungen werden in ein Overlay geschrieben, d.h. in temporäre Tabellen
@@ -581,3 +590,32 @@ SELECT vorname, name, ort FROM nutzer;
 
 - anstelle des ``ROLLBACK`` kann auch ``COMMIT`` ausgeführt werden, damit die Änderungen übernommen werden
 - wird auch manuell gesteuert, d.h. außerhalb eines Skriptes
+
+## Indices
+
+- 2 Arten in MSSQL
+- ungruppierte (nonclustered) Indices:
+  - Index für eine Spalte
+  - neue Tabelle mit zwei Spalten wird erstellt
+  - 1. Spalte speichert Inhalt aus eigentlicher Tabelle, aber sortiert
+  - 2. Spalte speicher Position davon
+  - Vorteil: schnelles Suchen
+  - Nachteil: mehr Speicherbedarf
+- gruppierte (clustered) Indices:
+  - nur 1 pro Tabelle erlaubt
+  - bildet ganze Tabelle ab
+  - sortiert abhängig von best. Spalte
+  - Vorteil: kein zusätzl. Speicherbedarf
+  - Nachteil: beim Ändern von Daten muss Index ggf. neu erstellt werden
+  - braucht temporär mehr RAM (bis zu 20%)
+- der Primärschlüssel ist automatisch der clustered Index
+- für jeden Unique Key wird automatisch ein nonclustered Index erstellt
+
+```sql
+-- Indices erstellen:
+--   nonclustered:
+CREATE INDEX ix_Buchtitel ON Buch(titel DESC);
+
+--   clustered:
+CREATE CLUSTERED INDEX ix_Buchtitel ON Buch(Titel);
+```

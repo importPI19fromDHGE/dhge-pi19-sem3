@@ -5,7 +5,7 @@ Betriebssystemverwaltung
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [mögliche Prüfungsfragen](#m%C3%B6gliche-pr%C3%BCfungsfragen)
+- [Mögliche Prüfungsfragen](#m%C3%B6gliche-pr%C3%BCfungsfragen)
 - [Vorteile Virtualisierung](#vorteile-virtualisierung)
 - [Grundlagen Linux](#grundlagen-linux)
   - [Terminal](#terminal)

@@ -45,15 +45,13 @@ Betriebssystemverwaltung
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<!---
+<!--
 created by Maximilian Kerst, 05.10.2020
 
 Disclaimer von Max: was ich hier reinschreibe, ist zT sehr oberflächlich, da wir hier erstmal Basics behandeln.
 Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 -->
 
-<!--newpage-->
-Einzelne Seite?
 <!--newpage-->
 
 # Mögliche Prüfungsfragen
@@ -85,7 +83,7 @@ Einzelne Seite?
 - Welche Installationsschritte müssen Sie für die Installation eines Webservers mit Datenbankanbindung anwenden? <!--Updates, Sicherung, Skripte bearbeiten,...-->
 - Was ist ein DDoS-Angriff?
 
-<!--newpage-->
+<!--pagebreak-->
 
 # Vorteile Virtualisierung
 

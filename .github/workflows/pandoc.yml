@@ -15,11 +15,11 @@ jobs:
       - run: |
           mkdir .old &&
           rsync -vr ./* .old/ --exclude .old &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\pagebreak")};{print}' .old/DBS/README.md > DBS/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\pagebreak")};{print}' .old/SWE/README.md > SWE/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\pagebreak")};{print}' .old/PRO/README.md > PRO/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\pagebreak")};{print}' .old/RES/README.md > RES/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\pagebreak")};{print}' .old/NET/README.md > NET/README.md
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{print}' .old/DBS/README.md > DBS/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{print}' .old/SWE/README.md > SWE/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{print}' .old/PRO/README.md > PRO/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{print}' .old/RES/README.md > RES/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{print}' .old/NET/README.md > NET/README.md
       - run: |
           mkdir output
       - run: |

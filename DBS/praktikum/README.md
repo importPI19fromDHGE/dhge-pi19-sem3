@@ -31,6 +31,8 @@ Datenbanken-Praktikum
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+<!--pagebreak-->
+
 # Formen von Kundenanforderungen
 
 - Kundenanforderung kann in folgenden Formen kommen:
@@ -68,11 +70,11 @@ Info-Seite -> https://docs.microsoft.com/de-de/sql/ssms/download-sql-server-mana
 
 Die Bestandteile:
 
-![Bestandteile eines ERD](resources/ERD_Bestandteile.svg)
+![Bestandteile eines ERD](resources/ERD_Bestandteile.png)<!-- width=400px -->
 
 Beispiel-ERD:
 
-![Beispiel-ERD](resources/unternehmenERD.png)
+![Beispiel-ERD](resources/unternehmenERD.png)<!-- width=400px -->
 
 ## Tabellenschema
 
@@ -94,7 +96,7 @@ Beispiel-ERD:
 | höchstens eins             | optionale Beziehung, ?:1      |
 | keins oder eins oder viele | optionale Beziehung, ?:n      |
 
-![Arten von Constraints](resources/constraints.png)
+![Arten von Constraints](resources/constraints.png)<!-- width=400px -->
 
 - im Zweifelsfall das flexiblere verwenden, für den Fall, dass sich in der Zukunft die Anforderungen ändern
 
@@ -424,7 +426,7 @@ GROUP BY autor.name, autor.Vorname HAVING COUNT(*) > 1;
 
 - Vereinigung von Abfragen
 
-![Übersicht von Joins](./resources/joins.png)
+![Übersicht von Joins](./resources/joins.png)<!-- width=500px -->
 
 ```sql
 SELECT titel, name FROM buch, verlag WHERE buch.verlag_id = verlag.id;
@@ -468,7 +470,7 @@ UPDATE nutzer SET name = 'Kaudelwerk' WHERE id =
 UPDATE buch SET seiten = seiten + 10;
 
 -- Werte aus anderen Tabellen übernehmen: Klappentext mit Name des Verlag ersetzen
-UPDATE Buch SET Buch.Klappentext = Verlag.Name 
+UPDATE Buch SET Buch.Klappentext = Verlag.Name
 FROM Buch JOIN Verlag ON Verlag.id = Buch.Verlag_id
 ```
 
@@ -495,11 +497,11 @@ DROP TABLE Buch;
 
 - vgl. "Alias für eine Abfrage"
 - nach der Erstellung wie normale Tabellen verwendbar
-- zusätzliche Attribute: 
+- zusätzliche Attribute:
 	- `ENCRYPTION` Unterliegende Datenbankstruktur der Basistabellen nicht preisgeben
-	- `SCHEMABINDING` View fest an das Schema der Basistabelle binden 
+	- `SCHEMABINDING` View fest an das Schema der Basistabelle binden
 	- `VIEW_METADATA` Bei Abfrage des Views über die API werden die View-Metadaten statt den Basistabellen-Daten gesendet
-	
+
 ```sql
 -- Erleichterter Zugriff auf Buch und Exemplar Informationen
 CREATE VIEW vBuchExemplar (ExemplarNr, Buchtitel, ISBN, RegalNr)
@@ -512,4 +514,3 @@ SELECT * FROM vBuchExemplar;
 -- View löschen
 DROP VIEW vBuchExemplar;
 ```
-

@@ -51,6 +51,8 @@ Systemanalyse
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+<!--pagebreak-->
+
 # Einführung / Überblick
 
 - Wir bekommen ein Problem vom Nutzer → Lösung durch Programmierung
@@ -306,7 +308,7 @@ Hier wird immer wieder in eine Phase "zurück gesprungen", falls etwas nicht pas
 >
 > -> Zeit + Kosten + Leistung können nicht gleichzeitig verbessert werden
 
-![Schematische Darstellung des V-Modells](resources/v-modell.png)
+![Schematische Darstellung des V-Modells](resources/v-modell.png)<!-- width=400px -->
 
 | Vorteile                                              | Nachteile                                                                                                         |
 | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |

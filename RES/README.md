@@ -52,9 +52,9 @@ Disclaimer von Max: was ich hier reinschreibe, ist zT sehr oberflächlich, da wi
 Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 -->
 
-# mögliche Prüfungsfragen
+<!--pagebreak-->
 
-<!---unvollständig!!! (LG Max)-->
+# Mögliche Prüfungsfragen
 
 - Wie bezieht man Windows ISOs?
 - Wie ermittelt man die Windows-Version / RAM-Menge / CPU-Kerne?
@@ -81,8 +81,9 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Wie verwendet man Schleifen in Bash-Skripten?
 - Warum sind Konfigurationsdateien schreibgeschützt? Nennen Sie ein Beispiel!
 - Welche Installationsschritte müssen Sie für die Installation eines Webservers mit Datenbankanbindung anwenden? <!--Updates, Sicherung, Skripte bearbeiten,...-->
-- was ist ein DDoS-Angriff?
+- Was ist ein DDoS-Angriff?
 
+<!--pagebreak-->
 
 # Vorteile Virtualisierung
 

@@ -65,6 +65,8 @@ Rechnernetzkonzepte und -architekturen
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+<!--pagebreak-->
+
 # Einleitung / Übersicht
 
 ## Veranstaltungsziele
@@ -89,7 +91,7 @@ Rechnernetzkonzepte und -architekturen
 
 ### Kommunikationsszenario
 
-![Network Interface Card](resources/NIC.png)
+![Network Interface Card](resources/NIC.png)<!-- width=500px -->
 
 Bei Abruf einer Website durch `Host A` von `Server A` sind vielfältige Technologien zur Realisierung des Szenarios erforderlich.
 
@@ -142,7 +144,7 @@ IETF-Arbeitsgruppen sind einem von 7 Bereichen (Areas) zugeordnet:
 
 #### ISO/OSI Referenzmodell  <!-- hochgradig Prüfungsrelevant-->
 
-<img src="./resources/ISO_OSI_Layer.png" alt="ISO/OSI Layer" width=500>
+![ISO/OSI Referenzmodell](resources/ISO_OSI_Layer.png)<!-- width=500px -->
 
 - **Anwendungsschicht:** Durch anwendungsspezifische Protokolle verwendet
 - **Darstellungsschicht:** Umwandlung von Daten in unabhängiges Format
@@ -156,18 +158,18 @@ IETF-Arbeitsgruppen sind einem von 7 Bereichen (Areas) zugeordnet:
 
 Integriert das Referenzmodell unter Verwendung von vier Schichten:
 
-![TCP/IP als Ableitung des ISO/OSI Referenzmodells](resources/tcpip.png)
+![TCP/IP als Ableitung des ISO/OSI Referenzmodells](resources/tcpip.png)<!-- width=500px -->
 
 - **Anwendungsschicht:** Umfasst obere drei Schichten des OSI-Modells, weitere Unterteilung obliegt Anwendungsprotokoll
 - **Transportschicht:** Ende-zu-Ende-Kommunikation zwischen Anwendungen
 - **Internetschicht:** Ermöglicht Kommunikation zwischen Hosts in unterschiedlichen Netzwerken
 - **Link Layer:** Kommunikation mit direkten Nachbarn
 
-![Aufbau des TCP/IP-Headers](resources/tcpip-header.png)
+![Aufbau des TCP/IP-Headers](resources/tcpip-header.png)<!-- width=500px -->
 
 ### Kopplungselemente
 
-![Switches und Router](resources/L2-net.png)
+![Switches und Router](resources/L2-net.png)<!-- width=500px -->
 
 **Switches (auch: Bridge, L2-Switch)**
 
@@ -192,7 +194,7 @@ Unterscheidung zwischen physikalischer und logischer Topologie:
 - Physikalisch Topologie: tatsächlich vorhandenen Netzwerkkomponenten und ihrer Verbindungen
 - Logisch Topologie: Kommunikationsbeziehungen und Struktur des Datenflusses
 
-![Schematische Darstellung verschiedener Topologien](resources/topologie.png)
+![Schematische Darstellung verschiedener Topologien](resources/topologie.png)<!-- width=500px -->
 
 > SPF (single point of failure) im Netz? Wenn ja: Ausfallsicherheit gering
 
@@ -239,7 +241,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 
 ## 2.2 Aufbau eines Ethernet Frames
 
-![Ethernet Frame](resources/eth-frame.png)
+![Ethernet Frame](resources/eth-frame.png)<!-- width=500px -->
 
 - Präambel: Synchronisation zwischen Kommunikationspartnern
 - SFD: Start of Frame Delimiter (fest Bitfolge zur Identifikation des Frame-Anfangs)
@@ -324,7 +326,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 
 **Aufbau** (4 Bytes)
 
-![](resources/vlan-tag.png)
+![](resources/vlan-tag.png)<!-- width=500px -->
 
 - **Tag Protocol Identifier:** fixer Hex-Wert
 - **Priority Code Point:** Prioritätsinformationen
@@ -383,7 +385,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 
 ### IPv4-Header
 
-![Aufbau des IPv4-Headers](resources/ip-paket-aufbau.png)
+![Aufbau des IPv4-Headers](resources/ip-paket-aufbau.png)<!-- width=500px -->
 
 - Version: 4 Bits, Protokollversion
 - Internet Header Length (IHL): 4 Bits, Länge des Headers in 32 Bit Wörtern, Standardwert 5 -> 5 * 32 Bit = 20 Byte
@@ -404,7 +406,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 
 ### Fragmentierung
 
-![Bild von Fragmentierung](resources/ip-fragmentierung.png)
+![Fragmentierung](resources/ip-fragmentierung.png)<!-- width=500px -->
 
 - 1:1 Übersetzung von IP-Paket und ETH-Frame
 - Maximum Transmission Unit (MTU): Maximalgröße des ETH-Payloads
@@ -436,13 +438,13 @@ ip addr show
 - insbesondere durch IPv4-Adress-Knappheit werden öff. Adressen durch Network Address Translation (NAT) auf mehrere Hosts abgebildet
 - Routing:
 
-![Bild eines Routers](resources/routing-bsp.png)
+![Schema Router](resources/routing-bsp.png)<!-- width=500px -->
 
 ## Address Resolution Protocol (ARP)
 
 ### Einordnung
 
-![Ablauf von ARP](resources/ip-arp-ablauf.png)
+![Ablauf ARP](resources/ip-arp-ablauf.png)<!-- width=500px -->
 
 - ARP ermittelt zu IP-Adressen und weiteren Adressfamilien die zugehörigen Hardwareadressen
 - Request-Reply-Protokoll
@@ -450,11 +452,10 @@ ip addr show
 - wenn Ziel-NIC außerhalb des eigenen Netzwerks: Ermittlung der MAC-Adresse des **Gateways**, nichts dahinter
   - siehe folgendes Bild:
 
-![Bild ARP Beispiel](resources/ip-arp-bsp.png)
+![Beispiel ARP](resources/ip-arp-bsp.png)<!-- width=500px -->
 
 ```
 # Für Anzeige von ARP-Anfragen (Beispiel)
-
 tcp dump -i any -p arp
 ```
 
@@ -506,7 +507,7 @@ Exkurs Namespaces:
 
 Verknüpfung von 3 Network Namespaces:
 
-![Aufgabenstellung](resources/exercise-1.png)
+![Aufgabenstellung](resources/exercise-1.png)<!-- width=500px -->
 
 - 3 Namespaces erstellen:
 
@@ -568,7 +569,7 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 - soll in nächsten Jahren schrittweise IPv4 ablösen
 - Vereinfachung des Headers:
 
- ![IPv6-Header](resources/ipv6-header.png)
+ ![IPv6-Header](resources/ipv6-header.png)<!-- width=500px -->
 
 - Traffic-Class: Prioritätsangabe
 - Flow Label: Klassifizierung von Datagrammen in verschiedenen Flows mit gleichem Label
@@ -581,7 +582,7 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 - in Zusammenhang mit Next-Header-Feld verwendet
 - verweist auf Header eines Protokolls der nächsthöheren Schicht oder Extension-Header wird in das Datagramm eingebettet
 
-![IPv6 Extension Header](resources/ipv6-header-ext.png)
+![IPv6 Extension Header](resources/ipv6-header-ext.png)<!-- width=500px -->
 
 - Diverse Optionen: Hop-by-Hop Options, Fragment, Destination Options, Routing, Auth, ...
 
@@ -639,7 +640,7 @@ Typ einer Adresse kann an den höchstwertigsten Bits erkannt werden:
 
 ### IPv6-Multicasts
 
-![Aufbau einer IPv6 Multicast-Adresse](resources/ipv6-multicast.png)
+![Aufbau einer IPv6 Multicast-Adresse](resources/ipv6-multicast.png)<!-- width=500px -->
 
 - es gibt mehrere Multicast-Gruppen an denen teilgenommen werden kann
 - es existieren zudem festgelegte "well-known" Multicast-Adressen
@@ -692,7 +693,7 @@ versendet -> ist Adresse bereits verwendet sendet entsprechender Host Neighbor-A
 	- Providerinfrastruktur kann auf IPv6 umgestellt werden
 	- IPv4-Adressen beim Provider werden eingespart
 
-![Dual-Stack Lite](resources/ds-lite.png)   
+![Dual-Stack Lite](resources/ds-lite.png)<!-- width=500px -->
 
 ### Exkurs: Raw Sockets
 
@@ -766,4 +767,3 @@ ip link set veth1 up
 - radvd in Namespace1 aktivieren
 
 **tbc: Anfang nächster Einheit**
-

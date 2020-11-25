@@ -45,9 +45,7 @@ IT-Trends
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<!---
-created by Maximilian Kerst, 07.10.2020
--->
+<!--pagebreak-->
 
 # Einleitung
 
@@ -75,8 +73,7 @@ created by Maximilian Kerst, 07.10.2020
 
 ## Cloud Computing
 
-<!---![Skizze einer Cloud](./resources/cloud-skizze.svg)-->
-<img src="./resources/cloud-skizze.svg" alt="Skizze einer Cloud" width=350>
+![Skizze einer Cloud](resources/cloud-skizze.svg)<!-- width=350px -->
 
 **Vorteile:**
 
@@ -88,8 +85,8 @@ created by Maximilian Kerst, 07.10.2020
 
 ### Edge Computing
 
-<!---![verbesserungswürdige Skizze von Edge Computing](resources/edge-computing-skizze.svg)-->
-<img src="./resources/edge-computing-skizze.svg" alt="Verbesserungswürdige Skizze von Edge Computing" width=350>
+![Edge Computing](resources/edge-computing-skizze.svg)<!-- width=350px -->
+
 
 - Anwendung: "am Rand des großen Netzwerks" --> für Geräte, die nicht in einem Netzwerk liegen (z.B. IoT-Sensoren)
 - Auslöser für Entwicklung:
@@ -191,7 +188,7 @@ z.B.:
 
 Diese können wiederum aus Microservices zusammengesetzt sein, die untereinander vernetzt sind, siehe Schaubild.
 
-<img src="./resources/microservice.svg" alt="Microservice-Skizze" width=350>
+![Microservices Schema](resources/microservice.png)<!-- width=350px -->
 
 ## Dienste
 
@@ -242,7 +239,7 @@ Dazu muss ein **Load Balancer** die Anfragen beispielsweise an diejenigen MS mit
 
 # Service-Orientierte-Architekturen (SOA)
 
-<img src="./resources/SOA-Example.png" alt="SOA-Skizze" width=350>
+![Service-Orientierte-Architektur](resources/SOA-Example.png)<!-- width=350px -->
 
 ## REST - Schnittstellen - Representational State Transfer
 
@@ -302,25 +299,24 @@ https://backstage.dhge.de/course/view.php?id=2718
 # Cloud Computing
 
 ## Überblick
+
 - Cloud als Buzzword
 - Daten in der Cloud
 - Rechnen in der Cloud
 - Mythos: Ersetzt ein komplettes Rechenzentrum
-- nahe Verwandte:
-  - Grid-Computing
-  - Cluster-Computing
+- nahe Verwandte: Grid-Computing, Cluster-Computing
 
 ## Ursprung: Parallelisierung
 
-1. Parallelisierung auf CPU - Ebene
-2. Parallelisierung auf Rechner - Ebene
+1. Parallelisierung auf CPU-Ebene
+2. Parallelisierung auf Rechner-Ebene
     - mehrere CPU pro Rechner
 3. Parallelisierung auf Cluster-Ebene
     - n-Systeme, die sich wie Eines verhalten
 4. Parallelisierung auf GRID-Ebene
     - mehrere zusammengefasste Cluster
 
-<img src="./resources/Rechner_Cluster_Grid.png" alt="Abbildung Rechner Cluster Grid" width=350>
+![Cluster und Grid Computing](resources/Rechner_Cluster_Grid.png)<!-- width=350px -->
 
 ### Cluster-Computing
 
@@ -346,7 +342,7 @@ https://backstage.dhge.de/course/view.php?id=2718
 - Vorteil ist die gute Skalierbarkeit
 - Ressourcen und Zugriff sind dezentral
 
-<img src="./resources/GRID_Computing.png" alt="Abbildung GRID-Computing" width=350>
+![Grid Computing](resources/GRID_Computing.png)<!-- width=350px -->
 
 ## Warum (keine) Cloud
 
@@ -387,13 +383,13 @@ https://backstage.dhge.de/course/view.php?id=2718
 
 ## IT-Aufbau
 
-<img src="./resources/it-aufbau.svg" alt="IT-Aufbau" width=350>
+![Aufbau einer IT](resources/it-aufbau.png)<!-- width=350px -->
 
 ## AWS-Einführung
 
 ### S3 - Simple Storage Service
 
-- Bucket (Ordner) in die Dateien können hochgeladen werden 
+- Bucket (Ordner) in die Dateien können hochgeladen werden
 - Diverse Konfigurationsmöglichkeiten: Öffentlicher Zugriff, Versionierung, ...
 
 ### AWSCLI einrichten
@@ -408,7 +404,7 @@ https://backstage.dhge.de/course/view.php?id=2718
 [default]
 aws_access_key_id=
 aws_secret_access_key=
-aws_session_token= 
+aws_session_token=
 ```
 - `.aws/config` sollte so aussehen:
 
@@ -417,32 +413,32 @@ aws_session_token=
 region = us-east-1
 output = json
 ```
-### Kostenberechnung AWS 
+### Kostenberechnung AWS
 
 Unter https://calculator.s3.amazonaws.com/index.html können die monatlichen Kosten für die AWS Services berechnet werden
 
-### Virtuelle Rechner im AWS anlegen 
+### Virtuelle Rechner im AWS anlegen
 
 1. Services > EC2 > Instanzen > Instanz starten
-2. Dann gewünschtes OS auswählen 
+2. Dann gewünschtes OS auswählen
 3. Dann Konfiguration auswählen (für Educate ist es t2 micro)
-4. Click: Configure Instance Details 
-5. Details konfigurieren 
+4. Click: Configure Instance Details
+5. Details konfigurieren
 6. Click: Add Storage
-7. Speicher konfigurieren 
-8. Click: Add Tags 
-9. Tags zum Wiederauffinden der Maschine hinzufügen 
-10. Click: Configure Security Group 
+7. Speicher konfigurieren
+8. Click: Add Tags
+9. Tags zum Wiederauffinden der Maschine hinzufügen
+10. Click: Configure Security Group
 11. Port- und Diensteinstellungen konfigurieren  
 12. Click: Review
-13. Click: Launch 
+13. Click: Launch
 14. Generate SSH Keypair
-15. SSH Key abspeichern 
-16. fertig. 
+15. SSH Key abspeichern
+16. fertig.
 
-**Per SSH verbinden** 
+**Per SSH verbinden**
 
-Hier von Windows cmd aus: 
+Hier von Windows cmd aus:
 
 ```
 cd PfadFürSSHKeypair
@@ -452,7 +448,7 @@ ssh -i Keypair.pem ubuntu@IPAdresseAusAWS
 
 **Per RDP verbinden**
 
-Bei **Windows VMs** findet sich der Admin Zugang unter: 
+Bei **Windows VMs** findet sich der Admin Zugang unter:
 
 Services > EC2 > Instanzen
 
@@ -463,24 +459,23 @@ Dort dann die RDP-Datei herunterladen
 Dann noch **Passwort abrufen** klicken um mit dem SSH-Keypair das Passwort zu entschlüsseln
 
 
-# Machine Learning - KI, neuronale Netzwerke, ... 
+# Machine Learning - KI, neuronale Netzwerke, ...
 
-<img src="./resources/Machine_Learning.png" alt="Übersicht Machine Learning" width=350>
+![Übersicht: Machine Learning](resources/Machine_Learning.png)<!-- width=350 -->
 
 ## Einsatzgebiete
 
 ### Objekterkennung
 
 - bestimmte Objekte auf Bildern oder in Videos erkennen
-- Beispiele: 
-	- unsichere Inhalte erkennen 
-		- z.B. Pornographie, Gewalt, ... 
-	- Gesichtserkennung 
-		- Gesichtsmerkmale erkennen und zu Personen zuordnen 
-		- Lächeln und andere Emotionen erkennen 
+- Beispiele:
+	- unsichere Inhalte erkennen
+		- z.B. Pornographie, Gewalt, ...
+	- Gesichtserkennung
+		- Gesichtsmerkmale erkennen und zu Personen zuordnen
+		- Lächeln und andere Emotionen erkennen
 		- Alter und Geschlecht erkennen
-	- Texterkennung 
-		- Bild -> Text 
-		- Audio -> Text 
+	- Texterkennung
+		- Bild -> Text
+		- Audio -> Text
 		- Formularanalyse
-		

@@ -21,6 +21,8 @@ jobs:
           awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\pagebreak")};{print}' .old/NET/README.md > NET/README.md
       - run: |
           mkdir output
+      - run: |
+          cat NET/README.md
       - uses: docker://rstropek/pandoc-latex:latest # generate DBS pdf
         with:
           args: --output=output/DBS.pdf --resource-path=DBS/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex DBS/README.md

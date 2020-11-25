@@ -45,7 +45,9 @@ IT-Trends
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<!--newpage-->
+<!--pagebreak-->
+Einzelne Seite?
+<!--pagebreak-->
 
 # Einleitung
 

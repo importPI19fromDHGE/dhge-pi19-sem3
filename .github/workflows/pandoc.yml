@@ -15,15 +15,15 @@ jobs:
       - run: |
           mkdir .old &&
           rsync -vr ./* .old/ --exclude .old &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{print}' .old/DBS/README.md > DBS/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{print}' .old/SWE/README.md > SWE/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{print}' .old/PRO/README.md > PRO/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{print}' .old/RES/README.md > RES/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{print}' .old/NET/README.md > NET/README.md
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{print}' .old/DBS/README.md > DBS/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{print}' .old/SWE/README.md > SWE/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{print}' .old/PRO/README.md > PRO/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{print}' .old/RES/README.md > RES/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{print}' .old/NET/README.md > NET/README.md
       - run: |
           mkdir output
       - run: |
-          cat NET/README.md
+          cat RES/README.md
       - uses: docker://rstropek/pandoc-latex:latest # generate DBS pdf
         with:
           args: --output=output/DBS.pdf --resource-path=DBS/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex DBS/README.md

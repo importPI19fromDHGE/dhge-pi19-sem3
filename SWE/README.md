@@ -46,8 +46,12 @@ Systemanalyse
     - [Häufige / gern gemachte Fehler bezüglich des Manifests](#h%C3%A4ufige--gern-gemachte-fehler-bez%C3%BCglich-des-manifests)
   - [Vor- und Nachteile von SCRUM](#vor--und-nachteile-von-scrum)
   - [SCRUM-Ban als SCRUM Derivat](#scrum-ban-als-scrum-derivat)
-  - [Story Board](#story-board)
-  - [Prototype vs. Pretotype](#prototype-vs-pretotype)
+- [Story Board](#story-board)
+- [Prototype vs. Pretotype](#prototype-vs-pretotype)
+  - [Pretotype-Methoden: Fail Early](#pretotype-methoden-fail-early)
+- [Design-Thinking](#design-thinking)
+  - [4 Prozess-Schritte](#4-prozess-schritte)
+  - [Hinweise](#hinweise)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -717,7 +721,7 @@ ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **E
 - manche Karten folgen dem SCRUM, manche dem KANBAN (d.h. dürfen länger dauern)
 - Art der Karte **zu Beginn** festgelegt
 
-## Story Board
+# Story Board
 
 - aus Filmindustrie: zeichnerische Version des Drehbuchs
 - in SWE: Visualisierung des Plans, der einzelnen Inhalte skizziert (d.h. **Nutzersicht**)
@@ -743,7 +747,7 @@ ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **E
 
 > möglicherweise wird diese Liste auch vom Nutzer direkt erstellt -> jedoch eher selten
 
-## Prototype vs. Pretotype
+# Prototype vs. Pretotype
 
 **Prototyp**
 
@@ -758,5 +762,54 @@ ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **E
 > Fake it till you make it
 
 - es wird so getan, als wäre eine Funktion vorhanden
-- Ziel: Bedarf einer Lösung, Art und Weise der Nutzung, Erfolgskriterien benennen
+- Ziel: Bedarf einer Lösung, Art und Weise der Nutzung, Erfolgskriterien für ein Produkt benennen
 - Teil der Fail-Early-Idee
+- **nicht**, wie ein Produkt erfolgreich (kostengünstig, schnell, hohe Genauigkeit, ...) entwickelt werden kann (das wäre nur beim Prototyp der Fall)
+
+## Pretotype-Methoden: Fail Early
+
+1. Mechanical Turk... Computer wird durch Mensch ersetzt  
+   (Manulating, Wizard of Oz, Flintstoning)
+2. Pinocchio ... form and fit validation  
+   leblose Produkt-Vision zum **begreifen**
+3. MVP ... überlebensfähiges Produkt, um viel über die Erwartungen der Nutzer zu erfahren
+4. Potemkinsche Dorf ... "Fake Door"
+5. Infiltrator ... benutzt bestehendes Setting, um das Produkt zu platzieren und der Kunde wird beobachtet
+6. Pretend-To-Own ... benötigte Produkte leihen und so tun, als würden sie dem Anbieter gehören
+7. PBSK ... Papier, Bleistift, Schere, Kleber
+
+# Design-Thinking 
+ist eine Methode für den Innovationsprozess
+
+**Idee**: 
+
+Iterationen, Prozesse & Objekte bewusst gestalten, die sich streng an den Bedürfnissen des zukünftigen Nutzers orientieren
+
+Fail Early!
+
+## 4 Prozess-Schritte
+
+1. **Inspiration**  
+   verstehen (Interviews), beobachten (direktes beobachten von Kunden)  
+   Was soll entwickelt werden?  
+   Für wen ...  
+   Welche Rahmenbedingungen?  
+   Was ist der Endzustand?
+2. **Ideen**  
+   verknüpfen  
+   sprudeln zu lassen  
+   Kreativitäts-Techniken (SEAN-Baum...)
+3. **Testen**  
+   Pretotype  
+   Prototype  
+   Tests
+4. **Machen**
+
+## Hinweise
+
+1. Bildlich arbeiten!
+2. früh und oft scheitern!
+3. Quantität ist wichtig!  
+   viele Herangehensweisen sammeln, aber nicht bis in die letzte Tiefe verfolgen
+4. wilde Ideen zulassen & ermutigen!
+5. insgesamt kundenorientiert

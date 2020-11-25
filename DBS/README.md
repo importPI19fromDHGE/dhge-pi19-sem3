@@ -37,10 +37,6 @@ Datenbanken
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<!--pagebreak-->
-Test 1
-<!--pagebreak-->
-Test 2
 <!--newpage-->
 
 # Grundlagen

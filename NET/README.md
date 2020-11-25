@@ -65,7 +65,7 @@ Rechnernetzkonzepte und -architekturen
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<!--pagebreak-->
+<!--newpage-->
 
 # Einleitung / Übersicht
 

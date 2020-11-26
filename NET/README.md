@@ -5,7 +5,8 @@ Rechnernetzkonzepte und -architekturen
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Einleitung / Übersicht](#einleitung--%C3%BCbersicht)
+- [Rechnernetzkonzepte und -architekturen](#rechnernetzkonzepte-und--architekturen)
+- [Einleitung / Übersicht](#einleitung--übersicht)
   - [Veranstaltungsziele](#veranstaltungsziele)
   - [Inhaltlicher Teil](#inhaltlicher-teil)
     - [Kommunikationsszenario](#kommunikationsszenario)
@@ -13,21 +14,21 @@ Rechnernetzkonzepte und -architekturen
     - [Internet Engineering Taskforce](#internet-engineering-taskforce)
       - [Arbeitsgruppen  / IETF-Areas](#arbeitsgruppen---ietf-areas)
     - [Begrifflichkeiten](#begrifflichkeiten)
-      - [Übertragungsmodi](#%C3%BCbertragungsmodi)
-      - [ISO/OSI Referenzmodell  <!-- hochgradig Prüfungsrelevant-->](#isoosi-referenzmodell-----hochgradig-pr%C3%BCfungsrelevant--)
+      - [Übertragungsmodi](#übertragungsmodi)
+      - [ISO/OSI Referenzmodell](#isoosi-referenzmodell)
     - [TCP/IP-Modell](#tcpip-modell)
     - [Kopplungselemente](#kopplungselemente)
     - [Topologien](#topologien)
     - [Medien/Verkabelung](#medienverkabelung)
     - [Tooling - Wireshark](#tooling---wireshark)
 - [2. Netzzugangsschicht](#2-netzzugangsschicht)
-  - [2.1 Übersicht zu Ethernet](#21-%C3%BCbersicht-zu-ethernet)
+  - [2.1 Übersicht zu Ethernet](#21-übersicht-zu-ethernet)
   - [2.2 Aufbau eines Ethernet Frames](#22-aufbau-eines-ethernet-frames)
   - [2.3 Namen von Netzwerkschnittstellen unter Linux](#23-namen-von-netzwerkschnittstellen-unter-linux)
   - [2.4 Switches](#24-switches)
     - [2.4.1 Architekturtypen](#241-architekturtypen)
-    - [2.4.2 Kenngrößen](#242-kenngr%C3%B6%C3%9Fen)
-    - [2.4.3 Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->](#243-spanning-tree-protocol---wahrscheinliche-pr%C3%BCfungsaufgabe--)
+    - [2.4.2 Kenngrößen](#242-kenngrößen)
+    - [2.4.3 Spanning-Tree-Protocol](#243-spanning-tree-protocol)
       - [2.4.3.1 STP - Port Fast/Fast Link](#2431-stp---port-fastfast-link)
       - [2.4.3.2 Rapid Spanning Tree Protocol](#2432-rapid-spanning-tree-protocol)
     - [2.4.4 Virtuelles LAN](#244-virtuelles-lan)
@@ -45,7 +46,7 @@ Rechnernetzkonzepte und -architekturen
     - [Einordnung](#einordnung)
     - [Protokolldetails](#protokolldetails)
   - [ICMP](#icmp)
-  - [Praxisübung](#praxis%C3%BCbung)
+  - [Praxisübung](#praxisübung)
     - [Nachteile IPv4](#nachteile-ipv4)
   - [IPv6](#ipv6)
     - [Extension-Header](#extension-header)
@@ -729,17 +730,18 @@ sudo ip netns list # zur Prüfung
 sudo ip link add veth1 netns ns1 type veth peer name veth2 netns ns2 # erstellt veth1 in ns1 und veth2 in ns2
 ```
 
-- radvd installieren und .conf anlegen
+- radvd installieren und ggf. Konfigurationsdatei anlegen, falls nicht schon vorhanden:
 
 ```bash
-apt-get install radvd
+apt-get install radvd # bei anderen Distributionen analog
 touch /etc/radvd.conf
 ```
 
-- .config bearbeiten
+- Konfigurationsdatei bearbeiten:
 
 ```conf
 interface veth1{
+  AdvSendAdvert on;
 	prefix 2001:db8:1:0::/64{
 		AdvOnLink on;
 		AdvAutonomous on;
@@ -749,21 +751,25 @@ interface veth1{
 ```
 [größere Beispiel-Config](https://github.com/reubenhwk/radvd/blob/master/radvd.conf.example)
 
-- radvd erneut starten und Status erfassen
-
-```bash
-sudo systemctl start radvd
-sudo systemctl status radvd
-```
-
 - Namespace betreten und Interface aktivieren:
 
 ```bash
 sudo ip netns exec ns1 /bin/bash
 ip link set veth1 up
+ip a # wird nur Link-Local Adresse besitzen
 ```
 
 - diesen Schritt für zweites Interface wiederholen
-- radvd in Namespace1 aktivieren
+- Unit-Datei für den ``radvd``-Dienst sichern: ``cp /lib/systemd/system/radvd.service /home/username/radvd.service.bak``
+- Unit-Datei für den ``radvd``-Dienst zum Schreiben öffnen
+- dort die ``ExecStart``-Zeile auf Folgendes ändern:
 
-**tbc: Anfang nächster Einheit**
+```txt
+ExecStart=/bin/sh -c 'exec /sbin/ip netns exec ns1 /usr/bin/radvd --nodaemon'
+```
+
+- **Achtung:** der Pfad von ``radvd`` kann sich je nach Distribution ändern. Auf Ubuntu ist sie in ``/usr/sbin``. Im Zweifelsfall kann der Ort mit ``which radvd`` herausgefunden werden.
+- Unit-Datei neu einlesen: ``sudo systemctl daemon-reload``
+- radvd starten: ``sudo systemctl start radvd``
+- Status des Dienstes prüfen: ``sudo systemctl status radvd``
+- Den Network Namespace betreten prüfen, ob ``ip a`` nun zusätzlich eine ``scope global`` IPv6-Adresse mit dem ``2001:[...]``-Präfix anzeigt

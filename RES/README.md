@@ -52,7 +52,6 @@ Disclaimer von Max: was ich hier reinschreibe, ist zT sehr oberflächlich, da wi
 Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 -->
 
-<!--clearpage-->
 <!--newpage-->
 
 # Mögliche Prüfungsfragen
@@ -84,7 +83,6 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Welche Installationsschritte müssen Sie für die Installation eines Webservers mit Datenbankanbindung anwenden? <!--Updates, Sicherung, Skripte bearbeiten,...-->
 - Was ist ein DDoS-Angriff?
 
-<!--clearpage-->
 <!--newpage-->
 
 # Vorteile Virtualisierung

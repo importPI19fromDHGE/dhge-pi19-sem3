@@ -771,7 +771,7 @@ ip link set veth1 up
 
 # 4 Transportschicht
 
-# 4.1 Einleitung (Folie 4/1)
+## 4.1 Einleitung (Folie 4/1)
 
 - Transportschicht dient der Ende-zu-Ende Kommunikation
   - Daten von Prozess zu Prozess bringen
@@ -782,7 +782,7 @@ ip link set veth1 up
     
 ![Übersicht Transportschicht](resources/Transportschicht.png)<!-- width=500px -->
 
-# 4.2 User Datagram Protocol (UDP) (Folie 4/3)
+## 4.2 User Datagram Protocol (UDP) (Folie 4/3)
 
 - **Verbindungsloses** und **unzuverlässiges** Transportprotokoll:
   - Szenario: 
@@ -807,7 +807,7 @@ ip link set veth1 up
 
 ![Übersicht UDP](resources/UDP.png)<!-- width=500px -->
 
-# 4.3 Transmission Control Protocol (TCP)
+## 4.3 Transmission Control Protocol (TCP) (Folie 4/5)
 
 - Im Internet dominierendes Schicht-4-Protokoll
 - Protokoll an sich eher ein Rahmenwerk, welches im Laufe der Jahre weiterentwickelt wurde
@@ -828,7 +828,7 @@ ip link set veth1 up
     - im Idealfall: alle Sender reagieren darauf und daher die Gesamtlast verringert 
   - Segmentierung von Anwendungsdaten in übertragbare Einheiten (auf Grundlage der Maximum Segment Size - MSS)
 
-![Übersicht UDP](resources/TCP.png)<!-- width=500px -->
+![Übersicht TCP](resources/TCP.png)<!-- width=500px -->
 
 Sequenznummer: 
   - bezieht sich auf das jeweilig verschickte Byte, bzw. erstes Byte eines Paketes
@@ -837,4 +837,32 @@ Acknowledgement Number:
   - wenn Ack ausbleibt, wird vom Sender neu gesendet
   - bis diese neu angekommen, werden zusätzlich erhaltene Daten auf Empfängerseite im Puffer gehalten und noch nicht geschrieben 
 
-  
+
+### 4.3.1 Receiving Window und Congestion Window (Folie 4/5)
+
+![Übersicht Congestion](resources/TCP_Receiving_Congestion.png)<!-- width=500px -->
+
+- Receiving Window: 
+  - Verhindert, dass mehr Daten versendet werden, als der Empfänger verarbeiten / an die Anwednung weiterleiten kann
+  - stellt quasi den "Empfangspuffer" dar 
+- Congestion Window
+  - eingeführt, um Überlast auf Pfad zu verhindern (z.B. durch überlastetet Router)
+  - je nach Möglichkeiten wird versucht, den Durchsatz so hoch wie möglich zu gestalten
+    - es können verschiedenen Funktionen zur Anwendung kommen 
+    - z.B. Beginn bei einer MTU, dann Verdoppelung bis zum Limit (`Slow-Start-Verfahren`)
+  - obere Grenze für Congestion Window ist das Receiving Window 
+- Durchsatz einer TCP-Verbindung wird durch beide Fenster limitiert 
+
+- beide Windows können auf Konfigurationsebene angepasst werden 
+  - zum Beispiel bei `CEPH`-Clustern, die durch Routing-Flaschenhälse nicht begrenzt sind (lokale Cluster)
+  - hier könnte das Congestion-Window per config vergrößert werden
+
+- `ECN`-Feld im Header: 
+  - Wenn Router Puffer langsam voll wird, flagt der Router die Pakete an den Empfänger im ECN-Feld
+  - Rückmeldung an den Sender durch den Empfänger
+  - der Sender verringert dann die Paketgröße 
+
+-   
+
+### 4.3.2 
+

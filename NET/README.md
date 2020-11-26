@@ -890,3 +890,51 @@ Wichtig:
 [Zum Nachlesen: TCP-Flags bei IANA ](https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml)
 
 ![TCP-Options](resources/TCP_Options.png)<!-- width=500px -->
+
+### 4.3.3 Verbindungsaufbau / Zustandsdiagramm (Folie 4/7)
+
+**prüfungsrelevant**
+
+![TCP-Verbindungsaufbau](resources/TCP_Verbindungsaufbau.png)<!-- width=500px -->
+
+![TCP-Verbindungsaufbau 2](resources/TCP_Verbindungsaufbau_2.png)<!-- width=500px -->
+
+- zu Beginn beide Seiten CLOSED 
+- Client sendet Paket mit SYN-Flag 
+- wenn angekommen: Server sendet SYN-ACK 
+- wenn bei Client angekommen: neues ACK-Paket Client-> Server
+
+- neuer Zustand: Established (Server und Client)
+
+- zum Schließen: FIN-Paket 
+
+
+Aufgabe der verschiedenen Flags: 
+  - SYN:
+    - steht für das Synchronisieren von Sequenznummern
+    - Beginnen nicht von 0, werden zufällig gewählt 
+    - damit werden Angriffsvektoren verringert, Ausspähen wird erschwert
+    - bei Senden des SYN-Flags wird die mitgesendete Sequenznummer als Startsequenznummer festgelegt
+
+- mit 3-Wege Handshake wird die Möglichkeit eines Verbindungsaufbaus sichergestellt
+
+- mögliche Probleme: 
+  - DOS-Angriffe hier möglich: 
+    - Angreifer sendet viele TCP-Pakete mit SYN-Flag an Webserver
+    - Server muss Datenstruktur bereitstellen und sendet ACK
+    - Dritte Phase wird aber nie erreicht
+    - es enstehen halboffene Verbindungen 
+    - Maximalanzahl der halboffenen Verbindungen pro Socket ist begrenzt
+    - bei fortlaufenden Anfragen können keine neuen Verbindungen aufgebaut werden 
+    - `SYN-Flooding`
+    - Verhinderung: 
+      - Blacklisten von IP´s die mehrere SYN-Pakete hintereinander schicken 
+  
+  - Port-Scanner setzen hier an 
+    - systematisches Senden von SYN-Paketen an alle Ports
+    - bei ACK-Antwort deutet dies auf aktiven Dienst hinter dem Port 
+    - dabei kann die Struktur eines Webservers erforscht werden 
+
+
+
+

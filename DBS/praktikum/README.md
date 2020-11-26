@@ -666,3 +666,46 @@ Completion time: 2020-11-25T14:37:17.3255273+01:00
 - Hinweis: ein UPDATE löst einen ``DELETE`` und einen ``INSERT`` aus
 - Deaktivieren mit ``DISABLE TRIGGER triggername``
 - Reaktivieren mit ``ENABLE TRIGGER triggername``
+
+Trigger zur Prüfung des Nutzeralters:
+
+```sql
+-- Trigger für Nutzer: Fehlermeldung, wenn Alter > 130
+
+CREATE TRIGGER tr_NutzerAlter ON nutzer
+AFTER INSERT AS
+DECLARE @age int;
+DECLARE @id bigint;
+SELECT @id = id from inserted; -- von temp. Tabelle
+SELECT @age = (CONVERT(int, getdate()) - CONVERT(int, gebdat)) / 365 FROM inserted;
+
+IF @age > 130
+BEGIN
+  DELETE FROM nutzer WHERE ID = @id;
+  RAISERROR('Das Alter ist zu hoch!', 15, 1);
+  /*
+    nach Nachricht folgt Schweregrad und Status --> frei wählbar:
+    Schweregrad von 0 bis 18; 19 bis 25 sind für Administratoren reserviert.
+    Status von 0 bis 255
+  */
+END;
+```
+
+- Übung: Erstellen Sie einen Trigger, der beim Einfügen einess Buches überprüft, ob es einen Verlag mit der angegebenen Verlags-ID gibt. Wenn nicht, wird der Eintrag wieder gelöscht und eine Fehlermeldung ausgegeben.
+
+```sql
+CREATE TRIGGER tr_verlagPrüfen ON buch
+AFTER INSERT AS
+
+DECLARE @vid bigint;
+DECLARE @id bigint;
+
+SELECT @id = id FROM inserted;
+SELECT @vid = verlag_id FROM inserted;
+
+IF (SELECT name FROM verlag WHERE id = @vid) IS NULL
+BEGIN
+  DELETE FROM buch WHERE id = @id;
+  RAISERROR('Der angegebene Verlag existiert nicht!', 15, 1);
+END;
+```

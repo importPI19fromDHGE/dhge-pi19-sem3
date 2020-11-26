@@ -315,8 +315,8 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 **Begriffe**
 
 - Root-Port: Switch Port, der am nächsten zur Root-Bridge liegt
-- Designated Port: Alle Ports, die kein Root-Port und nicht blockiert sind  
-- Non-Designated Port: Ports in blockiertem Zustand um Zyklen zu verhindern  
+- Designated Port: Alle Ports, die kein Root-Port und nicht blockiert sind
+- Non-Designated Port: Ports in blockiertem Zustand um Zyklen zu verhindern
 
 #### 2.4.3.1 STP - Port Fast/Fast Link
 
@@ -748,17 +748,18 @@ sudo ip netns list # zur Prüfung
 sudo ip link add veth1 netns ns1 type veth peer name veth2 netns ns2 # erstellt veth1 in ns1 und veth2 in ns2
 ```
 
-- radvd installieren und .conf anlegen
+- radvd installieren und ggf. Konfigurationsdatei anlegen, falls nicht schon vorhanden:
 
 ```bash
-apt-get install radvd
+apt-get install radvd # bei anderen Distributionen analog
 touch /etc/radvd.conf
 ```
 
-- .config bearbeiten
+- Konfigurationsdatei bearbeiten:
 
 ```conf
 interface veth1{
+  AdvSendAdvert on;
 	prefix 2001:db8:1:0::/64{
 		AdvOnLink on;
 		AdvAutonomous on;
@@ -768,25 +769,29 @@ interface veth1{
 ```
 [größere Beispiel-Config](https://github.com/reubenhwk/radvd/blob/master/radvd.conf.example)
 
-- radvd erneut starten und Status erfassen
-
-```bash
-sudo systemctl start radvd
-sudo systemctl status radvd
-```
-
 - Namespace betreten und Interface aktivieren:
 
 ```bash
 sudo ip netns exec ns1 /bin/bash
 ip link set veth1 up
+ip a # wird nur Link-Local Adresse besitzen
 ```
 
 - diesen Schritt für zweites Interface wiederholen
-- radvd in Namespace1 aktivieren
+- Unit-Datei für den ``radvd``-Dienst sichern: ``cp /lib/systemd/system/radvd.service /home/username/radvd.service.bak``
+- Unit-Datei für den ``radvd``-Dienst zum Schreiben öffnen
+- dort die ``ExecStart``-Zeile auf Folgendes ändern:
 
+```txt
+ExecStart=/bin/sh -c 'exec /sbin/ip netns exec ns1 /usr/bin/radvd --nodaemon'
+```
+
+- **Achtung:** der Pfad von ``radvd`` kann sich je nach Distribution ändern. Auf Ubuntu ist sie in ``/usr/sbin``. Im Zweifelsfall kann der Ort mit ``which radvd`` herausgefunden werden.
+- Unit-Datei neu einlesen: ``sudo systemctl daemon-reload``
+- radvd starten: ``sudo systemctl start radvd``
+- Status des Dienstes prüfen: ``sudo systemctl status radvd``
+- Den Network Namespace betreten prüfen, ob ``ip a`` nun zusätzlich eine ``scope global`` IPv6-Adresse mit dem ``2001:[...]``-Präfix anzeigt
 **tbc: Anfang nächster Einheit**
-
 
 # 4 Transportschicht
 
@@ -798,31 +803,29 @@ ip link set veth1 up
   - Beispiel: zielgerichtete Adressierung von Webserver über "Well-known-Ports"
     - alle Ports <1024 sind als Well-Known-Ports vordefiniert
     - per `bind()` Funktion wird die Kommunikation an den Port gebunden (root benötigt)
-    
+
 ![Übersicht Transportschicht](resources/Transportschicht.png)<!-- width=500px -->
 
 ## 4.2 User Datagram Protocol (UDP) (Folie 4/3)
 
 - **Verbindungsloses** und **unzuverlässiges** Transportprotokoll:
-  - Szenario: 
+  - Szenario:
     - Pakete gehen verloren, weil z.B. Router überlastet
     - vom Protokoll selbst wird auf die verloren gegangenen Pakete nicht reagiert -> **unzuverlässig**
 
   - **Verbindungslos**
-    - Verbindung: lokaler Zustand, der Dinge über die Kommunikationsbeziehung beschreibt 
+    - Verbindung: lokaler Zustand, der Dinge über die Kommunikationsbeziehung beschreibt
     - Diese Dinge "merkt" sich UDP nicht
     - heisst: jedesmal wenn ich über UDP Daten übermittle, muss ich IP und Portnummer angeben
     - diese werden nämlich nicht in einer lokalen Datenstruktur gespeichert
 
 - Dient ausschließlich der Portadressierung (16-Bit Adresskomponente)
-- Keine Reihenfolgegarantie: 
-  - Reihenfolge von losgeschickten Bytes ist nicht zwingend die auch ankommende Reihenfolge 
-  - Reihenfolge ankommender Pakete kann von **keinem** Protokoll garantiert werden 
-- Geringer Protokolloverhead, effizient 
-  - für Video- und Audiodateien gut geeignet 
+- Keine Reihenfolgegarantie:
+  - Reihenfolge von losgeschickten Bytes ist nicht zwingend die auch ankommende Reihenfolge
+  - Reihenfolge ankommender Pakete kann von **keinem** Protokoll garantiert werden
+- Geringer Protokolloverhead, effizient
+  - für Video- und Audiodateien gut geeignet
 - Eingesetzt z.B. von DNS, DHCP, NTP, SNMP
-
-
 
 ![Übersicht UDP](resources/UDP.png)<!-- width=500px -->
 
@@ -831,82 +834,84 @@ ip link set veth1 up
 - Im Internet dominierendes Schicht-4-Protokoll
 - Protokoll an sich eher ein Rahmenwerk, welches im Laufe der Jahre weiterentwickelt wurde
 - Entwicklung in den 1970er Jahren maßgeblich von Vinton Cray Cerf und Robert Elliot Kahn vorangetrieben
-  - Ziel von Cerf war die Entwicklung eines Protokolls um zuverlässige Textkommunikation per Internet zu ermöglichen 
+  - Ziel von Cerf war die Entwicklung eines Protokolls um zuverlässige Textkommunikation per Internet zu ermöglichen
 
-- Protokoll bietet: 
-  - Verbindungsorientierte Kommunikation mit wohldefiniertem Verbindungsaufbau 
-  - zuverlässige Kommunikation durch Bestätigungen 
-    - für jedes gesendete Paket auch Bestätigung des Erhalts 
-  - Reihenfolgegarantie 
-    - Reihenfolge eines Datenstreams bei Sender und Empfänger gleich 
+- Protokoll bietet:
+  - Verbindungsorientierte Kommunikation mit wohldefiniertem Verbindungsaufbau
+  - zuverlässige Kommunikation durch Bestätigungen
+    - für jedes gesendete Paket auch Bestätigung des Erhalts
+  - Reihenfolgegarantie
+    - Reihenfolge eines Datenstreams bei Sender und Empfänger gleich
     - Bei Reihenfolgeänderung der Bytes bei der Übertragung erfolgt Umsortierung auf Empfängerseite
   - Flow Control / Flusskontrolle (variiert in den Implementierungen)
   - Congestion Control / Überlaststeuerung (variiert in den Implementierungen)
     - wenn im Netzwerk Überlastungen auftreten, wird darauf reagiert
-    - bei Überlast: nächste Pakete werden verkleinert 
-    - im Idealfall: alle Sender reagieren darauf und daher die Gesamtlast verringert 
+    - bei Überlast: nächste Pakete werden verkleinert
+    - im Idealfall: alle Sender reagieren darauf und daher die Gesamtlast verringert
   - Segmentierung von Anwendungsdaten in übertragbare Einheiten (auf Grundlage der Maximum Segment Size - MSS)
 
 ![Übersicht TCP](resources/TCP.png)<!-- width=500px -->
 
-Sequenznummer: 
+Sequenznummer:
+
   - bezieht sich auf das jeweilig verschickte Byte, bzw. erstes Byte eines Paketes
-Acknowledgement Number: 
+Acknowledgement Number:
   - Dient zur Bestätigung der Sequenznummer der erhaltenen Bytes
   - wenn Ack ausbleibt, wird vom Sender neu gesendet
-  - bis diese neu angekommen, werden zusätzlich erhaltene Daten auf Empfängerseite im Puffer gehalten und noch nicht geschrieben 
-Options: 
-  - hier eigentlich alle später hinzugekommenen Erweiterungen verwirklicht 
-Window Size: 
+  - bis diese neu angekommen, werden zusätzlich erhaltene Daten auf Empfängerseite im Puffer gehalten und noch nicht geschrieben
+Options:
+  - hier eigentlich alle später hinzugekommenen Erweiterungen verwirklicht
+Window Size:
   - Empfänger teilt hier maximale Größe des Receiving-Window mit
-  - kann sich im Verlauf ändern 
-Urgent Pointer: 
-  - verweist auf Daten im Bytebereich 
-  - kann mit Priorität Daten an Anwendung pushen 
-Flags: 
-  - Bitflags zur Steuerung der Kommunikation 
-  - zum Beispiel zum Aufbau, zur Trennung, oder für ACK 
+  - kann sich im Verlauf ändern
+Urgent Pointer:
+  - verweist auf Daten im Bytebereich
+  - kann mit Priorität Daten an Anwendung pushen
+Flags:
+  - Bitflags zur Steuerung der Kommunikation
+  - zum Beispiel zum Aufbau, zur Trennung, oder für ACK
 
 ### 4.3.1 Receiving Window und Congestion Window (Folie 4/5)
 
 ![Übersicht Congestion](resources/TCP_Receiving_Congestion.png)<!-- width=500px -->
 
-- Receiving Window: 
+- Receiving Window:
   - Verhindert, dass mehr Daten versendet werden, als der Empfänger verarbeiten / an die Anwendung weiterleiten kann
-  - stellt quasi den "Empfangspuffer" dar 
+  - stellt quasi den "Empfangspuffer" dar
 - Congestion Window
   - eingeführt, um Überlast auf Pfad zu verhindern (z.B. durch überlastetet Router)
   - je nach Möglichkeiten wird versucht, den Durchsatz so hoch wie möglich zu gestalten
-    - es können verschiedenen Funktionen zur Anwendung kommen 
+    - es können verschiedenen Funktionen zur Anwendung kommen
     - z.B. Beginn bei einer MTU, dann Verdoppelung bis zum Limit (`Slow-Start-Verfahren`)
-  - obere Grenze für Congestion Window ist das Receiving Window 
-- Durchsatz einer TCP-Verbindung wird durch beide Fenster limitiert 
+  - obere Grenze für Congestion Window ist das Receiving Window
+- Durchsatz einer TCP-Verbindung wird durch beide Fenster limitiert
 
-- beide Windows können auf Konfigurationsebene angepasst werden 
+- beide Windows können auf Konfigurationsebene angepasst werden
   - zum Beispiel bei `CEPH`-Clustern, die durch Routing-Flaschenhälse nicht begrenzt sind (lokale Cluster)
   - hier könnte das Congestion-Window per config vergrößert werden
 
 Wichtig:
+
   - TCP-Verbindungen sind **bidirektional**
-  - Sender und Empfänger nehmen ebenso die umgekehrte Rolle ein 
-  - obwohl sie bidirektional sind, kann sie unidirektional abgebaut werden 
+  - Sender und Empfänger nehmen ebenso die umgekehrte Rolle ein
+  - obwohl sie bidirektional sind, kann sie unidirektional abgebaut werden
     - beide Richtungen müssen also separat abgebaut werden (FIN-Flag)
 
-- `ECN`-Feld im IP-Header: 
+- `ECN`-Feld im IP-Header:
   - Wenn Router Puffer langsam voll wird, flagt der Router die Pakete an den Empfänger im ECN-Feld
-  - Rückmeldung an den Sender durch den Empfänger wenn Flag gesetzt 
+  - Rückmeldung an den Sender durch den Empfänger wenn Flag gesetzt
   - der Empfänger informiert dann über TCP-Header den Sender
-  - daraufhin Verringerung der Paketgröße 
+  - daraufhin Verringerung der Paketgröße
   - Zusammenspiel zwischen den Layern an dieser Stelle (IP und TCP)
 
-[Zum Nachlesen: Wikpedia zu RINA ](https://en.wikipedia.org/wiki/Recursive_Internetwork_Architecture)
+[Zum Nachlesen: Wikpedia zu RINA](https://en.wikipedia.org/wiki/Recursive_Internetwork_Architecture)
 
 ### 4.3.2 TCP-Optionen (Folie 4/6)
 
-- Optionen-Feld kann Zusatzinformationen beeinhaltenm die nicht in den anderen Header-Felder repräsentiert werden 
+- Optionen-Feld kann Zusatzinformationen beeinhaltenm die nicht in den anderen Header-Felder repräsentiert werden
 - Mögliche Optionstypen `kind` werden von der Internet Assigned Numbers Authority (IANA) zugewiesen
 
-[Zum Nachlesen: TCP-Flags bei IANA ](https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml)
+[Zum Nachlesen: TCP-Flags bei IANA](https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml)
 
 ![TCP-Options](resources/TCP_Options.png)<!-- width=500px -->
 
@@ -918,71 +923,71 @@ Wichtig:
 
 ![TCP-Verbindungsaufbau 2](resources/TCP_Verbindungsaufbau_2.png)<!-- width=500px -->
 
-- zu Beginn beide Seiten CLOSED 
-- Client sendet Paket mit SYN-Flag 
-- wenn angekommen: Server sendet SYN-ACK 
+- zu Beginn beide Seiten CLOSED
+- Client sendet Paket mit SYN-Flag
+- wenn angekommen: Server sendet SYN-ACK
 - wenn bei Client angekommen: neues ACK-Paket Client-> Server
 
 - neuer Zustand: Established (Server und Client)
 
-- zum Schließen: FIN-Paket 
+- zum Schließen: FIN-Paket
 
-Aufgabe der verschiedenen Flags: 
+Aufgabe der verschiedenen Flags:
   - SYN:
     - steht für das Synchronisieren von Sequenznummern
-    - Beginnen nicht von 0, werden zufällig gewählt 
+    - Beginnen nicht von 0, werden zufällig gewählt
     - damit werden Angriffsvektoren verringert, Ausspähen wird erschwert
     - bei Senden des SYN-Flags wird die mitgesendete Sequenznummer als Startsequenznummer festgelegt
 
 - mit 3-Wege Handshake wird die Möglichkeit eines Verbindungsaufbaus sichergestellt
 
-- mögliche Probleme: 
-  - DOS-Angriffe hier möglich: 
+- mögliche Probleme:
+  - DOS-Angriffe hier möglich:
     - Angreifer sendet viele TCP-Pakete mit SYN-Flag an Webserver
     - Server muss Datenstruktur bereitstellen und sendet ACK
     - Dritte Phase wird aber nie erreicht
-    - es enstehen halboffene Verbindungen 
+    - es enstehen halboffene Verbindungen
     - Maximalanzahl der halboffenen Verbindungen pro Socket ist begrenzt
-    - bei fortlaufenden Anfragen können keine neuen Verbindungen aufgebaut werden 
+    - bei fortlaufenden Anfragen können keine neuen Verbindungen aufgebaut werden
     - `SYN-Flooding`
-    - Verhinderung: 
-      - Blacklisten von IP´s die mehrere SYN-Pakete hintereinander schicken 
-  
-  - Port-Scanner (wie z.B. `nmap`)setzen hier an 
+    - Verhinderung:
+      - Blacklisten von IP´s die mehrere SYN-Pakete hintereinander schicken
+
+  - Port-Scanner (wie z.B. `nmap`)setzen hier an
     - systematisches Senden von SYN-Paketen an alle Ports
-    - bei ACK-Antwort deutet dies auf aktiven Dienst hinter dem Port 
-    - dabei kann die Struktur eines Webservers erforscht werden 
+    - bei ACK-Antwort deutet dies auf aktiven Dienst hinter dem Port
+    - dabei kann die Struktur eines Webservers erforscht werden
 
-- desweiteren zur Vermeidung von SYN-Flooding Angriffen: 
+- desweiteren zur Vermeidung von SYN-Flooding Angriffen:
 
-#### 4.3.3.1 SYN-Cookies (Folie 4/9) 
+#### 4.3.3.1 SYN-Cookies (Folie 4/9)
 
-- durch SYN-Cookies werden halboffene Verbindungen vermieden 
+- durch SYN-Cookies werden halboffene Verbindungen vermieden
   - lokal wird noch keine Verbindung etabliert
-  - Verbindungsinformationen werden zunächst komplett an den Sender zurückgegeben 
-  - erst wenn die Information wieder zurückgegeben wird, wird die Verbindung etabliert 
-- Zusatzschritt für Angreifer, Aufwand wird erhöht 
+  - Verbindungsinformationen werden zunächst komplett an den Sender zurückgegeben
+  - erst wenn die Information wieder zurückgegeben wird, wird die Verbindung etabliert
+- Zusatzschritt für Angreifer, Aufwand wird erhöht
 
 - SYN-Cookies sind in vielen Systemen umgesetzt, allerdings kein RFC dazu vorhanden
-- sind also kein IETF-Standard 
+- sind also kein IETF-Standard
 
 #### 4.3.3.2 TCP Fast-Open / TFO (Folie 4/10+11+12)
 
 - Problem des 3-Wege-Handshakes
-  - es vergeht eine gewisse Zeit, bis Anwendungsdaten ausgetauscht werden können 
-  - auch wenn mit dem Handshake schon Anwendungsdaten übermittelt werden dürfen, werden diese erst nach Abschluss des Handshakes an die Anwendung weitergegeben 
-  - Beispiel: 
+  - es vergeht eine gewisse Zeit, bis Anwendungsdaten ausgetauscht werden können
+  - auch wenn mit dem Handshake schon Anwendungsdaten übermittelt werden dürfen, werden diese erst nach Abschluss des Handshakes an die Anwendung weitergegeben
+  - Beispiel:
     - Webcrawler müssten für jeden neuen Abruf neuen Handshake durchlaufen
 
-Daher TFO: 
+Daher TFO:
 
-Ziel: 
-  - Netzwerk-Latenz von Anwendungen um eine volle RTT reduzieren 
-    - ~15% geringere Latenz bei durchschnittlicher HTTP-Kommunikation 
-    - 10% bis 40% geringere `Page Load Time (PLT)` 
+Ziel:
+  - Netzwerk-Latenz von Anwendungen um eine volle RTT reduzieren
+    - ~15% geringere Latenz bei durchschnittlicher HTTP-Kommunikation
+    - 10% bis 40% geringere `Page Load Time (PLT)`
 
-Grundprinzip: 
-  - Client fragt beim ersten Verbindungsaufbau ein Client-spezifisches TFO-Cookie an 
+Grundprinzip:
+  - Client fragt beim ersten Verbindungsaufbau ein Client-spezifisches TFO-Cookie an
   - Bei erneutem Verbindungsaufbau werden direkt mit dem ersten Segment Anwendungsdaten übermittelt (-> kein regulärer 3W-Handshake erforderlich)
 
 - Spezifikation ist als Experimental RFC der IETF verfügbar
@@ -990,15 +995,15 @@ Grundprinzip:
 
 ![TCP-Fast-Open](resources/TCP_TCPFO.png)<!-- width=500px -->
 
-### 4.3.4 Multipath-TCP 
+### 4.3.4 Multipath-TCP
 
 #### 4.3.4.1 Motivation (Folie 4/13)
 
-- Endgeräte/Server verfügen meist über mehrere Netzwerkschnittstellen 
+- Endgeräte/Server verfügen meist über mehrere Netzwerkschnittstellen
 - eine TCP-Verbindung ist an eine Netzwerkschnittstelle gebunden
-  - -> ineffiziente Nutzung der verfügbaren Ressourcen 
-- Zielsetzung von Multipath-TCP: 
-  - Parallele Nutzung mehrerer Netzwerkschnittstellen 
+  - -> ineffiziente Nutzung der verfügbaren Ressourcen
+- Zielsetzung von Multipath-TCP:
+  - Parallele Nutzung mehrerer Netzwerkschnittstellen
 
 #### 4.3.4.2 (Folie 4/14)
 
@@ -1009,44 +1014,44 @@ Grundprinzip:
 
 [Zum Nachlesen: RFC zu TLS](https://tools.ietf.org/html/rfc5246)
 
-- TLS bietet: 
+- TLS bietet:
   - Authentisierung und Schlüsselaustausch (z.B. Elliptic Curve Diffie-Hellman)
   - Verschlüsselungsalgorithmen (z.B. AES)
-  - Kryptografische Hashfunktionen 
+  - Kryptografische Hashfunktionen
 
-- wird von OpenVPN zur Realisierung des Schlüsselaustausches für VPNs verwendet 
+- wird von OpenVPN zur Realisierung des Schlüsselaustausches für VPNs verwendet
 
 ## 4.4 Quick UDP Internet Connections / QUIC (Folie 4/17)
 
-siehe Folien... 
+siehe Folien...
 
-## 4.5 Sockets 
+## 4.5 Sockets
 
 **Prüfungsrelevant!**
 
 ### 4.5.1 Einordnung und Anlegen eines Sockets (Folie 4/18)
 
-- im POSIX-Standard definierte Software-Schnittstelle, über die Netzwerk- und Interprozess-Kommunikation durchgeführt werden kann 
+- im POSIX-Standard definierte Software-Schnittstelle, über die Netzwerk- und Interprozess-Kommunikation durchgeführt werden kann
 - Referenz auf Kommunikationskanal zu anderem Prozess
-  - kann lokal oder über Netzwerk erfolgen 
+  - kann lokal oder über Netzwerk erfolgen
 - Anlegen eines Sockets durch Systemaufruf `socket` (in C)
   - neben streambasierten Sockets auch Datagram-Sockets und Raw-Sockets
-  - Raw-Sockets: 
+  - Raw-Sockets:
     - am Kernel vorbei direkt zum Zielsystem
-    - selbstbestimmte Header-Elemente 
+    - selbstbestimmte Header-Elemente
     - z.B. zum Quell-IP-Adress-Spoofing (`Scapy` nutzt dies)
-  
+
 
 ![Sockets-Übersicht](resources/Sockets.png)<!-- width=500px -->
 
 ### 4.5.2 SOCK_STREAM (Folien 4/19+20)
 
-- Serverseite muss einen Socket in einen Zustand überführen, in dem Verbindungen nach einer Verbindungsanfrage (mittels Aufruf `connect()`) durch einen Client etabliert werden können 
-- Überführung und Etablierung einer Verbidnung erfolgt in drei Schritten 
+- Serverseite muss einen Socket in einen Zustand überführen, in dem Verbindungen nach einer Verbindungsanfrage (mittels Aufruf `connect()`) durch einen Client etabliert werden können
+- Überführung und Etablierung einer Verbidnung erfolgt in drei Schritten
   1. `bind()` Binden des Sockets an einen Port
-  2. `listen()` Markierung des Sockets als passiv 
+  2. `listen()` Markierung des Sockets als passiv
   3. `accept()` Akzeptieren von eingehenden Verbindungen (Reguläres Verhalten: blockierender Aufruf)
-    - erst ab accept kann der 3W-Handshake erfolgen 
+    - erst ab accept kann der 3W-Handshake erfolgen
 
 ![Sockets-Übersicht](resources/Sockets_Stream.png)<!-- width=500px -->
 
@@ -1056,5 +1061,3 @@ siehe Folien...
 - im Falle von Sockets des Typ DGRAM ist keine Überführung des Sockets in einen verbindungbereiten Zustand erforderlich
 
 - **TBC**
-
-

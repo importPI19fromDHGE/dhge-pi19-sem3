@@ -767,3 +767,13 @@ ip link set veth1 up
 - radvd in Namespace1 aktivieren
 
 **tbc: Anfang nächster Einheit**
+
+# Trans`port`schicht
+
+- Aufgabe: Realisierung der Ende-zu-Ende-Kommunikation (Prozesse auf unterschiedlichen Hosts) durch Bereitstellung von Adressierungsmöglichkeiten
+- Verbreitetste Protokolle: User Datagram Protocol (UDP), Transmission Control Protocol (TCP)
+- Derzeit im Entwurf: Quick UDP Internet Connectins (QUIC)
+
+## UDP
+
+## TCP

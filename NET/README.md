@@ -225,9 +225,9 @@ heute typischerweise zwischen Kopplungselementen und Hosts eingesetzt:
 - verwendete Bibliothek: `LIBPCAP`
 - weiteres Tool: `Scapy`
 
-# 2. Netzzugangsschicht
+# Netzzugangsschicht
 
-## 2.1 Übersicht zu Ethernet
+## Übersicht zu Ethernet
 
 - Ursprünglich für LAN-Kommunikation vorgesehen
 - Klassisch: Steuerung des Zugriffs auf den Kanal über CSMA/CD-Algorithmus (bei Punkt-zu-Punkt obsolet)
@@ -239,7 +239,7 @@ heute typischerweise zwischen Kopplungselementen und Hosts eingesetzt:
 Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Alternative: z.B. Infiniband
 
-## 2.2 Aufbau eines Ethernet Frames
+## Aufbau eines Ethernet Frames
 
 ![Ethernet Frame](resources/eth-frame.png)<!-- width=500px -->
 
@@ -251,26 +251,26 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Padding: Gewährleistet Minimalgröße von 64 Byte
 - CRC-Checksum: 32-Bit-Prüfsumme über das Frame (von Zieladresse bis Padding-Feld)
 
-## 2.3 Namen von Netzwerkschnittstellen unter Linux
+## Namen von Netzwerkschnittstellen unter Linux
 
 - Alt: `ethX` bzw. `wlanX` (an MAC gebunden -> Probleme bei Tausch)
 - Neu: Consistent Network Device Naming (z.B. `enp0s25`)
 	- Ethernetinterface (en), das an PCI-Bus (p) an Slot 25 hängt
 
-## 2.4 Switches
+## Switches
 
 - Multiport Kopplungselemente, das Frames nur an den Port weiterleitet über den der Empfänger erreichbar ist
 - Speicherung von Adressen in Source-Address-Table (SAT)
 - **Cut-Through Switches:** Nach Analyse der MAC-Adresse sofortiges Durschalten zum entsprechenden Port (Weiterleitung ohne Zwischenspeicherung = geringe Latenz, kein Einfluss auf Datenrate)
 - **Store-and-Forward Switches:** Frame wird am Eingangsport und Ausgangsport gepuffert (größere Latenz, Möglichkeit zur Zwischenverarbeitung der Daten)
 
-### 2.4.1 Architekturtypen
+### Architekturtypen
 
 - **Shared Memory:** CPU kopiert Daten nach Extraktion der Zieladresse in den korrekten Ausgangspuffer
 - **Bus-System:** Empfangener Port leitet Frame über gemeinsamen Bus an richtigen Ausgangsport
 - **Switching-Matrix:** Physische Durchschaltung von Ein- und Ausgabeleitungen
 
-### 2.4.2 Kenngrößen
+### Kenngrößen
 
 - Datenrate der verschiedenen Ports
 - Datenrate des Backplanes (der internen Busse)
@@ -281,7 +281,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Bandbreitenmanagement
 - Preis
 
-### 2.4.3 Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->
+### Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->
 
 - STP etabliert sich innerhalb des Netzes einen Spannbaum durch das Blockieren von Ports, die Zyklen erzeugen würden
 - Blockierter Port: Eingehender und ausgehender Traffic wird verworfen, Kanal ansonsten voll funktionsfähig
@@ -299,17 +299,17 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Designated Port: Alle Ports, die kein Root-Port und nicht blockiert sind  
 - Non-Designated Port: Ports in blockiertem Zustand um Zyklen zu verhindern  
 
-#### 2.4.3.1 STP - Port Fast/Fast Link
+#### STP - Port Fast/Fast Link
 
 - STP weist Konvergenzprobleme auf: Netzwerk erst nach etwa 30 Sekunden funktionstüchtig (Probleme beispielsweise mit PXE Boot)
 - Switches bieten Speziellen Modus für Ports an denen Endsysteme angeschlossen sind (Port geht sofort bei Aktivierung in Forwarding State)
 - Herstellerspezifische Terminologie: PortFast (Cisco), Fast Link (NetGear)
 
-#### 2.4.3.2 Rapid Spanning Tree Protocol
+#### Rapid Spanning Tree Protocol
 
 - Proaktiver Ansatz bei dem effizient auf Alternativpfade gewechselt werden kann
 
-### 2.4.4 Virtuelles LAN
+### Virtuelles LAN
 
 - Physisches Netzwerkdesign steht häufig mit logischem Netzwerkdesign in Konflikt
 - logische Einteilung des Netzes auf Ebene der Switche (Aufteilung in Broadcast-Domänen; erhöhte Sicherheit)
@@ -320,7 +320,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Tag-basierte VLANs: Frames werden mit ID eines VLANs getaggt, wodurch über einen Port mehrere VLANs realisiert werden können
 - dynamische/inhaltsbasierende VLANs: Zuordnung zu VLANs anhand verwendeter Protokolle (weniger verbreitet)
 
-#### 2.4.4.1 Tag-basierte VLANs
+#### Tag-basierte VLANs
 
 - Erweiterung der Ethernet-Frames um einen Tag zur Identifikation des VLANs zu dem das Frame gehört
 
@@ -333,7 +333,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - **Drop Eligible Indicator:** Identifiziert Frames, die bei Überlast verworfen werden können
 - **VLAN Identifier:** ID des zugehörigen VLANs ($2^{12}-2$ = max. 4096 VLANs)
 
-#### 2.4.4.2 Inter-VLAN-Routing
+#### Inter-VLAN-Routing
 
 **Ansatz 1**
 
@@ -344,14 +344,14 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - **Ansatz 2:** Einsatz von virtuellen Interfaces zur Vermeidung des hohen Aufwandes für separate Schnittstellen
 <!-- Gerne Prüfungsfrage: Voraussetzungen/Konfigurationsschritte -->
 
-#### 2.4.4.3 STP und VLAN
+#### STP und VLAN
 
 > STP weiß nix von VLANs
 
 - klassischer Ansatz nutzt die verfügbaren physischen Verbindungen nicht optimal aus
 - Lösung: Multiple Spanning Tree Protocol (jedes VLAN hat eigenen ST + ein Internal Spanning Tree für alle VLANs)
 
-### 2.4.5 Transparent Interconnection of lots of links (TRILL)
+### Transparent Interconnection of lots of links (TRILL)
 
 - Ethernet-Frames werden in einen TRILL-Header gekapselt
 - Routing dieser Frames auf deren Basis auf L2 (nächster Hop wird durch umgebenen L2-Header angegeben)
@@ -359,7 +359,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - TRILL-Header besitzt HOP-Count-Feld um Routing-Schleifen zu vermeiden
 - Entfernung des THRILL-Headers vor Auslieferung an das Zielsystem
 
-### 2.4.6 Stacking
+### Stacking
 
 - Stackfähige Switsches können miteinander zu einer Gruppe verbunden werden (einzelnes logisches Gerät, ansprechen über einzelne IP)
 - Vorteile: Skalierbarkeit (Anzahl der Ports einfach ), vereinfachte Netzwerkschnittstelle (Konfiguration von nur einem logischem Gerät), Vergrößerter Durchsatz (Stacking über Port mit hoher Datenrate)
@@ -558,7 +558,7 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 - mit bspw. Ping überprüfen, ob Verbindung funktioniert
 
-### Nachteile IPv4
+## Nachteile IPv4
 
 - Ausgeschöpfter Adressraum: nur 4 Milliarden Adressen, ungünstige Vergabe, NAT als Lösung (aber: erschwert Nutzung einiger Dienste)
 - Ineffizientes Routing: Header hat variable Länge
@@ -801,8 +801,20 @@ ip link set veth1 up
 - **Receiving Window:** Puffert Daten vor der Weiterleitung an die Anwendung
 - **Congestion Window:** soll Überlast auf einem Pfad verhindern (insbesondere durch überlastete Router)
 - Durchsatz der Verbindung wird durch beide Fenster limitiert
+- Verbindung von TCP ist bidirektional -> cwnd und rwnd entsprechend auf beiden Seiten vorhanden
 
-![](resources/tcp-windows.png)<!-- width=500px -->
+![Schematische Darstellung einer TCP-Verbindung](resources/tcp-windows.png)<!-- width=500px -->
+
+### TCP-Optionen
+
+- Feld, das Zusatzinformationen beinhaltet, die nicht durch Header repräsentiert werden können
+- Mögliche Optionstypen (kind) durch IANA zugewiesen
+- Beispiele:
+
+- 2 = Maximum Segment Size Option: maximale Segmentgröße des Empfängers
+- 3 = Window Scale Option: ermöglicht Window-Größen über 65535 Bytes
+- 4 = TCP Selective Acknowledgment Options
+- 30 = Multipath TCP (MPTCP)
 
 ### Verbindungsaufbau
 

@@ -37,32 +37,51 @@ Rechnernetzkonzepte und -architekturen
       - [2.4.4.3 STP und VLAN](#2443-stp-und-vlan)
     - [2.4.5 Transparent Interconnection of lots of links (TRILL)](#245-transparent-interconnection-of-lots-of-links-trill)
     - [2.4.6 Stacking](#246-stacking)
-- [Internetprotokoll und Hilfsprotokolle](#internetprotokoll-und-hilfsprotokolle)
-  - [IPv4](#ipv4)
-    - [IPv4-Header](#ipv4-header)
-    - [Fragmentierung](#fragmentierung)
-    - [IPv4-Adressierung](#ipv4-adressierung)
-  - [Address Resolution Protocol (ARP)](#address-resolution-protocol-arp)
-    - [Einordnung](#einordnung)
-    - [Protokolldetails](#protokolldetails)
-  - [ICMP](#icmp)
-  - [Praxisübung](#praxisübung)
-    - [Nachteile IPv4](#nachteile-ipv4)
-  - [IPv6](#ipv6)
-    - [Extension-Header](#extension-header)
-    - [IPv6-Fragmentierung](#ipv6-fragmentierung)
-    - [IPv6-Adressen](#ipv6-adressen)
-      - [Adress-Notation](#adress-notation)
-      - [Adress-Arten](#adress-arten)
-      - [Generelle Adresstruktur](#generelle-adresstruktur)
-    - [Erzeugung einer link-local Adresse](#erzeugung-einer-link-local-adresse)
-    - [IPv6-Multicasts](#ipv6-multicasts)
-    - [NDP](#ndp)
-    - [Stateless Adress Autoconfiguration (SLAAC)](#stateless-adress-autoconfiguration-slaac)
-    - [Migration IPv4 -> IPv6](#migration-ipv4---ipv6)
-      - [Dual-Stack Lite (DS-Lite)](#dual-stack-lite-ds-lite)
-    - [Exkurs: Raw Sockets](#exkurs-raw-sockets)
-    - [Praxisbeispiel](#praxisbeispiel)
+- [3 Internetprotokoll und Hilfsprotokolle](#3-internetprotokoll-und-hilfsprotokolle)
+  - [3.1 IPv4](#31-ipv4)
+    - [3.1.1 IPv4-Header](#311-ipv4-header)
+    - [3.1.2 Fragmentierung](#312-fragmentierung)
+    - [3.1.3 IPv4-Adressierung](#313-ipv4-adressierung)
+  - [3.2 Address Resolution Protocol (ARP)](#32-address-resolution-protocol-arp)
+    - [3.2.1 Einordnung](#321-einordnung)
+    - [3.2.2 Protokolldetails](#322-protokolldetails)
+  - [3.3 ICMP](#33-icmp)
+  - [3.4 Praxisübung](#34-praxisübung)
+  - [3.5 Nachteile IPv4](#35-nachteile-ipv4)
+  - [3.6 IPv6](#36-ipv6)
+    - [3.6.1 Extension-Header](#361-extension-header)
+    - [3.6.2 IPv6-Fragmentierung](#362-ipv6-fragmentierung)
+    - [3.6.3 IPv6-Adressen](#363-ipv6-adressen)
+      - [3.6.3.1 Adress-Notation](#3631-adress-notation)
+      - [3.6.3.2 Adress-Arten](#3632-adress-arten)
+      - [3.6.3.3 Generelle Adresstruktur](#3633-generelle-adresstruktur)
+    - [3.6.4 Erzeugung einer link-local Adresse](#364-erzeugung-einer-link-local-adresse)
+    - [3.6.5 IPv6-Multicasts](#365-ipv6-multicasts)
+    - [3.6.6 NDP](#366-ndp)
+    - [3.6.7 Stateless Adress Autoconfiguration (SLAAC)](#367-stateless-adress-autoconfiguration-slaac)
+    - [3.6.8 Migration IPv4 -> IPv6](#368-migration-ipv4---ipv6)
+      - [3.6.8.1 Dual-Stack Lite (DS-Lite)](#3681-dual-stack-lite-ds-lite)
+    - [3.6.9 Exkurs: Raw Sockets](#369-exkurs-raw-sockets)
+    - [3.6.10 Praxisbeispiel](#3610-praxisbeispiel)
+- [4 Transportschicht](#4-transportschicht)
+  - [4.1 Einleitung (Folie 4/1)](#41-einleitung-folie-41)
+  - [4.2 User Datagram Protocol (UDP) (Folie 4/3)](#42-user-datagram-protocol-udp-folie-43)
+  - [4.3 Transmission Control Protocol (TCP) (Folie 4/5)](#43-transmission-control-protocol-tcp-folie-45)
+    - [4.3.1 Receiving Window und Congestion Window (Folie 4/5)](#431-receiving-window-und-congestion-window-folie-45)
+    - [4.3.2 TCP-Optionen (Folie 4/6)](#432-tcp-optionen-folie-46)
+    - [4.3.3 Verbindungsaufbau / Zustandsdiagramm (Folie 4/7)](#433-verbindungsaufbau--zustandsdiagramm-folie-47)
+      - [4.3.3.1 SYN-Cookies (Folie 4/9)](#4331-syn-cookies-folie-49)
+      - [4.3.3.2 TCP Fast-Open / TFO (Folie 4/10+11+12)](#4332-tcp-fast-open--tfo-folie-4101112)
+    - [4.3.4 Multipath-TCP](#434-multipath-tcp)
+      - [4.3.4.1 Motivation (Folie 4/13)](#4341-motivation-folie-413)
+      - [4.3.4.2 (Folie 4/14)](#4342-folie-414)
+      - [4.3.4.3 Etablierung von Subflows (Folie 4/15)](#4343-etablierung-von-subflows-folie-415)
+    - [4.3.5 Transport Layer Security / TLS (Folie 4/16)](#435-transport-layer-security--tls-folie-416)
+  - [4.4 Quick UDP Internet Connections / QUIC (Folie 4/17)](#44-quick-udp-internet-connections--quic-folie-417)
+  - [4.5 Sockets](#45-sockets)
+    - [4.5.1 Einordnung und Anlegen eines Sockets (Folie 4/18)](#451-einordnung-und-anlegen-eines-sockets-folie-418)
+    - [4.5.2 SOCK_STREAM (Folien 4/19+20)](#452-sock_stream-folien-41920)
+    - [4.5.3 SOCK-DGRAM](#453-sock-dgram)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -297,8 +316,8 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 **Begriffe**
 
 - Root-Port: Switch Port, der am nächsten zur Root-Bridge liegt
-- Designated Port: Alle Ports, die kein Root-Port und nicht blockiert sind  
-- Non-Designated Port: Ports in blockiertem Zustand um Zyklen zu verhindern  
+- Designated Port: Alle Ports, die kein Root-Port und nicht blockiert sind
+- Non-Designated Port: Ports in blockiertem Zustand um Zyklen zu verhindern
 
 #### 2.4.3.1 STP - Port Fast/Fast Link
 
@@ -366,7 +385,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Vorteile: Skalierbarkeit (Anzahl der Ports einfach ), vereinfachte Netzwerkschnittstelle (Konfiguration von nur einem logischem Gerät), Vergrößerter Durchsatz (Stacking über Port mit hoher Datenrate)
 - Nachteil: Platzbedarf, höherer Stromverbrauch mehrerer Geräte, Kopplung als neue Fehlerquelle
 
-# Internetprotokoll und Hilfsprotokolle
+# 3 Internetprotokoll und Hilfsprotokolle
 
 - Schicht 3; von Übertragungsmedium unabhängig
 - Overlay über L2, bildet davon unabhängiges Netz
@@ -382,9 +401,9 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
   - Multicast: Senden an Teilmenge
   - Anycast: Senden an alle NICs, aber nur einer antwortet
 
-## IPv4
+## 3.1 IPv4
 
-### IPv4-Header
+### 3.1.1 IPv4-Header
 
 ![Aufbau des IPv4-Headers](resources/ip-paket-aufbau.png)<!-- width=500px -->
 
@@ -405,7 +424,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Options: Zusatzdaten für bspw. Routing oder Zeitstempel
   - Bsp Source Routing: Sender gibt exakte Route an; ermöglicht Angriffsfläche für DoS-Attacken
 
-### Fragmentierung
+### 3.1.2 Fragmentierung
 
 ![Fragmentierung](resources/ip-fragmentierung.png)<!-- width=500px -->
 
@@ -430,7 +449,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 ip addr show
 ```
 
-### IPv4-Adressierung
+### 3.1.3 IPv4-Adressierung
 
 - Struktur: 0 bis n Bits Netzadresse, 32-n Bit Hostadresse (NIC-Adresse)
 - Notation: ``adresse/n`` --> Classless Inter Domain Routing Notation (CIDR)
@@ -441,9 +460,9 @@ ip addr show
 
 ![Schema Router](resources/routing-bsp.png)<!-- width=500px -->
 
-## Address Resolution Protocol (ARP)
+## 3.2 Address Resolution Protocol (ARP)
 
-### Einordnung
+### 3.2.1 Einordnung
 
 ![Ablauf ARP](resources/ip-arp-ablauf.png)<!-- width=500px -->
 
@@ -460,13 +479,13 @@ ip addr show
 tcp dump -i any -p arp
 ```
 
-### Protokolldetails
+### 3.2.2 Protokolldetails
 
 //TODO: Bild Folie 7
 
 //TODO: ausfüllen
 
-## ICMP
+## 3.3 ICMP
 
 - Internet Control Message Protocol dient der Kommunikation von Fehlern und Abfrage von Statusinformation in (fast immer) IP-basierten Netzwerken
 - ausgewählte Typen:
@@ -496,7 +515,7 @@ Beispiel: ICMP-Redirect
 - bietet Angriffsfläche: kann verwendet werden, um kompromittierten Router in den Pfad zu zwingen
 - per Default in vielen Systemen deaktiviert
 
-## Praxisübung
+## 3.4 Praxisübung
 
 Exkurs Namespaces:
 
@@ -559,13 +578,13 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 - mit bspw. Ping überprüfen, ob Verbindung funktioniert
 
-### Nachteile IPv4
+## 3.5 Nachteile IPv4
 
 - Ausgeschöpfter Adressraum: nur 4 Milliarden Adressen, ungünstige Vergabe, NAT als Lösung (aber: erschwert Nutzung einiger Dienste)
 - Ineffizientes Routing: Header hat variable Länge
 - Keine automatische Konfiguration: IP muss manuell oder über DHCP vergeben werden (zusätzliche Infrastruktur erforderlich)
 
-## IPv6
+## 3.6 IPv6
 
 - soll in nächsten Jahren schrittweise IPv4 ablösen
 - Vereinfachung des Headers:
@@ -578,7 +597,7 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 - Payload-Length: Größe des gesamten Datagramms
 - Hop-Limit: Ersetzt TTL Feld (Angabe maximaler Hops)
 
-### Extension-Header
+### 3.6.1 Extension-Header
 
 - in Zusammenhang mit Next-Header-Feld verwendet
 - verweist auf Header eines Protokolls der nächsthöheren Schicht oder Extension-Header wird in das Datagramm eingebettet
@@ -587,7 +606,7 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 - Diverse Optionen: Hop-by-Hop Options, Fragment, Destination Options, Routing, Auth, ...
 
-### IPv6-Fragmentierung
+### 3.6.2 IPv6-Fragmentierung
 
 - Grundprinzip ähnlich zu IPv4:  wenn auf Pfad MTU nicht ausreicht wird fragmentiert
 - Unterschied zu IPv4:
@@ -595,9 +614,9 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 	- Absender wird über Fragmentierungsbedarf informiert (per ICMPv6-Nachricht "Packet too big")
 - Praxis: limitierende MTU meist an den Rändern, also beim Sender
 
-### IPv6-Adressen
+### 3.6.3 IPv6-Adressen
 
-#### Adress-Notation
+#### 3.6.3.1 Adress-Notation
 
 - `ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff` ($8*16=128 \text{Bit}$)
 - Längere Folgen von Nullen können einmalig durch `::` abgekürzt werden: `ff01:0:0:0:0:0:2342:78fa` -> `ff01::2342:78fa``
@@ -611,13 +630,13 @@ verwenden: `::141.76.40.1`
 - zwei Doppelpunkte sollen maximale Anzahl von 0-Blöcken repräsentieren (nicht zur Abkürzung eines einzelnen Blocks verwenden)
 - bei mehreren möglichen Kürzungen: möglichst weit links kürzen
 
-#### Adress-Arten
+#### 3.6.3.2 Adress-Arten
 
 - **Unicast-Adressen:** Identifikator eines *einzelnen* Netzwerkinterfaces (link-local innerhalb geschlossener Netzsegmente oder global)
 - **Anycast-Adressen:** Identifikator für *Menge von Interfaces* -> wird an **eines** der Interfaces gesendet, dass durch die Adresse identifiziert wird (z.B. bei DNS angewendet)
 - **Multicast-Adressen:** Identifikator für *Menge von Interfaces* -> wird an **alle** Interfaces gesendet, die durch die Adresse identifiziert werden (kein Broadcast mehr erforderlich)
 
-#### Generelle Adresstruktur
+#### 3.6.3.3 Generelle Adresstruktur
 
 - Trennung zwischen Präfix und Interface Identifier
 - Notation analog zu CIDR: `/64` am Ende gibt die Länge des Präfix an
@@ -632,14 +651,14 @@ Typ einer Adresse kann an den höchstwertigsten Bits erkannt werden:
 - Globale Unicast-Adressen: alle anderen (derzeit: `2000::/3`)
 - Anycast-Adressen: Adressraum identisch zu Unicast-Adressen (syntaktisch nicht unterscheidbar)
 
-### Erzeugung einer link-local Adresse
+### 3.6.4 Erzeugung einer link-local Adresse
 
 - wird aus der Link-Layer Adresse (MAC) berechnet
 - Überprüfung auf Eindeutigkeit über `SLAAC`
 - Problem: einfache Identifikation von Nutzern
 - Lösung: Privacy Extension for Stateless Adress Autoconfiguration (regelmäßige zufällige Generierung des Interface-Identifiers)
 
-### IPv6-Multicasts
+### 3.6.5 IPv6-Multicasts
 
 ![Aufbau einer IPv6 Multicast-Adresse](resources/ipv6-multicast.png)<!-- width=500px -->
 
@@ -649,7 +668,7 @@ Typ einer Adresse kann an den höchstwertigsten Bits erkannt werden:
 	- `ff02:2` -> alle Router am Link
 	- `ff02::16` -> alle MLDv2-fähigen Router
 
-### NDP
+### 3.6.6 NDP
 <!-- NDP nicht so genau Prüfungsrelevant, mehr Infos in den Folien-->
 
 **Aufgaben:**
@@ -659,7 +678,7 @@ Typ einer Adresse kann an den höchstwertigsten Bits erkannt werden:
 - Verwaltung von Erreichbarkeitsinformationen
 - Grundlage für Stateless Address Autoconfiguration
 
-### Stateless Adress Autoconfiguration (SLAAC)
+### 3.6.7 Stateless Adress Autoconfiguration (SLAAC)
 <!-- hochgradig Prüfungsrelevant-->
 
 **Phase 1: Erzeugung und Überprüfung einer Link-lokalen Adresse:**
@@ -679,7 +698,7 @@ für die Konfiguration wichtigen Informationen (insbesondere Angabe des Präfixe
 versendet -> ist Adresse bereits verwendet sendet entsprechender Host Neighbor-Advertisement-Nachricht
 4. Ist die Adresse frei, wird sie lokal zugewiesen
 
-### Migration IPv4 -> IPv6
+### 3.6.8 Migration IPv4 -> IPv6
 
 - Übergang zu IPv6 wird seit zwanzig Jahren propagiert
 - Aktuell: Koexistenz von IPv4 und IPv6 -> Mechanismen zur Interoperabilität
@@ -687,7 +706,7 @@ versendet -> ist Adresse bereits verwendet sendet entsprechender Host Neighbor-A
 	- Tunnel-Mechanismen: Kapselung Header der beider Versionen (z.B. `4in6`, `6in4`, `6over4`, ...)
 	- Translations-Mechanismen: Transformation der Header in unterschiedliche Versionen (z.B. NAT64 = Übersetzung von IPv4-Adressen in IPv6)
 
-#### Dual-Stack Lite (DS-Lite)
+#### 3.6.8.1 Dual-Stack Lite (DS-Lite)
 
 - Kombination aus Tunnelmechanismen und Translation
 - Vorteile:
@@ -696,7 +715,7 @@ versendet -> ist Adresse bereits verwendet sendet entsprechender Host Neighbor-A
 
 ![Dual-Stack Lite](resources/ds-lite.png)<!-- width=500px -->
 
-### Exkurs: Raw Sockets
+### 3.6.9 Exkurs: Raw Sockets
 
 - Ermöglichen die Instanziierung von IP-Headern und Implementierung von Protokollen im User-Space
 - IP-Headerelemente wie auch gekapselte Datagramme können im Programm befüllt werden
@@ -713,7 +732,7 @@ versendet -> ist Adresse bereits verwendet sendet entsprechender Host Neighbor-A
 	- wiedrholen bis zum Erreichen des gewünschten Ziels
 - Problem: nicht alle Router haben diese ICMP-Antworten aktiviert, weitere Anpassung nötig
 
-### Praxisbeispiel
+### 3.6.10 Praxisbeispiel
 
 - Namespaces erstellen:
 
@@ -773,3 +792,273 @@ ExecStart=/bin/sh -c 'exec /sbin/ip netns exec ns1 /usr/bin/radvd --nodaemon'
 - radvd starten: ``sudo systemctl start radvd``
 - Status des Dienstes prüfen: ``sudo systemctl status radvd``
 - Den Network Namespace betreten prüfen, ob ``ip a`` nun zusätzlich eine ``scope global`` IPv6-Adresse mit dem ``2001:[...]``-Präfix anzeigt
+**tbc: Anfang nächster Einheit**
+
+# 4 Transportschicht
+
+## 4.1 Einleitung (Folie 4/1)
+
+- Transportschicht dient der Ende-zu-Ende Kommunikation
+  - Daten von Prozess zu Prozess bringen
+  - Dazu wird Adressierungsmöglichkeit bereitgestellt (Ports)
+  - Beispiel: zielgerichtete Adressierung von Webserver über "Well-known-Ports"
+    - alle Ports <1024 sind als Well-Known-Ports vordefiniert
+    - per `bind()` Funktion wird die Kommunikation an den Port gebunden (root benötigt)
+
+![Übersicht Transportschicht](resources/Transportschicht.png)<!-- width=500px -->
+
+## 4.2 User Datagram Protocol (UDP) (Folie 4/3)
+
+- **Verbindungsloses** und **unzuverlässiges** Transportprotokoll:
+  - Szenario:
+    - Pakete gehen verloren, weil z.B. Router überlastet
+    - vom Protokoll selbst wird auf die verloren gegangenen Pakete nicht reagiert -> **unzuverlässig**
+
+  - **Verbindungslos**
+    - Verbindung: lokaler Zustand, der Dinge über die Kommunikationsbeziehung beschreibt
+    - Diese Dinge "merkt" sich UDP nicht
+    - heisst: jedesmal wenn ich über UDP Daten übermittle, muss ich IP und Portnummer angeben
+    - diese werden nämlich nicht in einer lokalen Datenstruktur gespeichert
+
+- Dient ausschließlich der Portadressierung (16-Bit Adresskomponente)
+- Keine Reihenfolgegarantie:
+  - Reihenfolge von losgeschickten Bytes ist nicht zwingend die auch ankommende Reihenfolge
+  - Reihenfolge ankommender Pakete kann von **keinem** Protokoll garantiert werden
+- Geringer Protokolloverhead, effizient
+  - für Video- und Audiodateien gut geeignet
+- Eingesetzt z.B. von DNS, DHCP, NTP, SNMP
+
+![Übersicht UDP](resources/UDP.png)<!-- width=500px -->
+
+## 4.3 Transmission Control Protocol (TCP) (Folie 4/5)
+
+- Im Internet dominierendes Schicht-4-Protokoll
+- Protokoll an sich eher ein Rahmenwerk, welches im Laufe der Jahre weiterentwickelt wurde
+- Entwicklung in den 1970er Jahren maßgeblich von Vinton Cray Cerf und Robert Elliot Kahn vorangetrieben
+  - Ziel von Cerf war die Entwicklung eines Protokolls um zuverlässige Textkommunikation per Internet zu ermöglichen
+
+- Protokoll bietet:
+  - Verbindungsorientierte Kommunikation mit wohldefiniertem Verbindungsaufbau
+  - zuverlässige Kommunikation durch Bestätigungen
+    - für jedes gesendete Paket auch Bestätigung des Erhalts
+  - Reihenfolgegarantie
+    - Reihenfolge eines Datenstreams bei Sender und Empfänger gleich
+    - Bei Reihenfolgeänderung der Bytes bei der Übertragung erfolgt Umsortierung auf Empfängerseite
+  - Flow Control / Flusskontrolle (variiert in den Implementierungen)
+  - Congestion Control / Überlaststeuerung (variiert in den Implementierungen)
+    - wenn im Netzwerk Überlastungen auftreten, wird darauf reagiert
+    - bei Überlast: nächste Pakete werden verkleinert
+    - im Idealfall: alle Sender reagieren darauf und daher die Gesamtlast verringert
+  - Segmentierung von Anwendungsdaten in übertragbare Einheiten (auf Grundlage der Maximum Segment Size - MSS)
+
+![Übersicht TCP](resources/TCP.png)<!-- width=500px -->
+
+Sequenznummer:
+
+  - bezieht sich auf das jeweilig verschickte Byte, bzw. erstes Byte eines Paketes
+Acknowledgement Number:
+  - Dient zur Bestätigung der Sequenznummer der erhaltenen Bytes
+  - wenn Ack ausbleibt, wird vom Sender neu gesendet
+  - bis diese neu angekommen, werden zusätzlich erhaltene Daten auf Empfängerseite im Puffer gehalten und noch nicht geschrieben
+Options:
+  - hier eigentlich alle später hinzugekommenen Erweiterungen verwirklicht
+Window Size:
+  - Empfänger teilt hier maximale Größe des Receiving-Window mit
+  - kann sich im Verlauf ändern
+Urgent Pointer:
+  - verweist auf Daten im Bytebereich
+  - kann mit Priorität Daten an Anwendung pushen
+Flags:
+  - Bitflags zur Steuerung der Kommunikation
+  - zum Beispiel zum Aufbau, zur Trennung, oder für ACK
+
+### 4.3.1 Receiving Window und Congestion Window (Folie 4/5)
+
+![Übersicht Congestion](resources/TCP_Receiving_Congestion.png)<!-- width=500px -->
+
+- Receiving Window:
+  - Verhindert, dass mehr Daten versendet werden, als der Empfänger verarbeiten / an die Anwendung weiterleiten kann
+  - stellt quasi den "Empfangspuffer" dar
+- Congestion Window
+  - eingeführt, um Überlast auf Pfad zu verhindern (z.B. durch überlastetet Router)
+  - je nach Möglichkeiten wird versucht, den Durchsatz so hoch wie möglich zu gestalten
+    - es können verschiedenen Funktionen zur Anwendung kommen
+    - z.B. Beginn bei einer MTU, dann Verdoppelung bis zum Limit (`Slow-Start-Verfahren`)
+  - obere Grenze für Congestion Window ist das Receiving Window
+- Durchsatz einer TCP-Verbindung wird durch beide Fenster limitiert
+
+- beide Windows können auf Konfigurationsebene angepasst werden
+  - zum Beispiel bei `CEPH`-Clustern, die durch Routing-Flaschenhälse nicht begrenzt sind (lokale Cluster)
+  - hier könnte das Congestion-Window per config vergrößert werden
+
+Wichtig:
+
+  - TCP-Verbindungen sind **bidirektional**
+  - Sender und Empfänger nehmen ebenso die umgekehrte Rolle ein
+  - obwohl sie bidirektional sind, kann sie unidirektional abgebaut werden
+    - beide Richtungen müssen also separat abgebaut werden (FIN-Flag)
+
+- `ECN`-Feld im IP-Header:
+  - Wenn Router Puffer langsam voll wird, flagt der Router die Pakete an den Empfänger im ECN-Feld
+  - Rückmeldung an den Sender durch den Empfänger wenn Flag gesetzt
+  - der Empfänger informiert dann über TCP-Header den Sender
+  - daraufhin Verringerung der Paketgröße
+  - Zusammenspiel zwischen den Layern an dieser Stelle (IP und TCP)
+
+[Zum Nachlesen: Wikpedia zu RINA](https://en.wikipedia.org/wiki/Recursive_Internetwork_Architecture)
+
+### 4.3.2 TCP-Optionen (Folie 4/6)
+
+- Optionen-Feld kann Zusatzinformationen beeinhaltenm die nicht in den anderen Header-Felder repräsentiert werden
+- Mögliche Optionstypen `kind` werden von der Internet Assigned Numbers Authority (IANA) zugewiesen
+
+[Zum Nachlesen: TCP-Flags bei IANA](https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml)
+
+![TCP-Options](resources/TCP_Options.png)<!-- width=500px -->
+
+### 4.3.3 Verbindungsaufbau / Zustandsdiagramm (Folie 4/7)
+
+**prüfungsrelevant**
+
+![TCP-Verbindungsaufbau](resources/TCP_Verbindungsaufbau.png)<!-- width=500px -->
+
+![TCP-Verbindungsaufbau 2](resources/TCP_Verbindungsaufbau_2.png)<!-- width=500px -->
+
+- zu Beginn beide Seiten CLOSED
+- Client sendet Paket mit SYN-Flag
+- wenn angekommen: Server sendet SYN-ACK
+- wenn bei Client angekommen: neues ACK-Paket Client-> Server
+
+- neuer Zustand: Established (Server und Client)
+
+- zum Schließen: FIN-Paket
+
+Aufgabe der verschiedenen Flags:
+  - SYN:
+    - steht für das Synchronisieren von Sequenznummern
+    - Beginnen nicht von 0, werden zufällig gewählt
+    - damit werden Angriffsvektoren verringert, Ausspähen wird erschwert
+    - bei Senden des SYN-Flags wird die mitgesendete Sequenznummer als Startsequenznummer festgelegt
+
+- mit 3-Wege Handshake wird die Möglichkeit eines Verbindungsaufbaus sichergestellt
+
+- mögliche Probleme:
+  - DOS-Angriffe hier möglich:
+    - Angreifer sendet viele TCP-Pakete mit SYN-Flag an Webserver
+    - Server muss Datenstruktur bereitstellen und sendet ACK
+    - Dritte Phase wird aber nie erreicht
+    - es enstehen halboffene Verbindungen
+    - Maximalanzahl der halboffenen Verbindungen pro Socket ist begrenzt
+    - bei fortlaufenden Anfragen können keine neuen Verbindungen aufgebaut werden
+    - `SYN-Flooding`
+    - Verhinderung:
+      - Blacklisten von IP´s die mehrere SYN-Pakete hintereinander schicken
+
+  - Port-Scanner (wie z.B. `nmap`)setzen hier an
+    - systematisches Senden von SYN-Paketen an alle Ports
+    - bei ACK-Antwort deutet dies auf aktiven Dienst hinter dem Port
+    - dabei kann die Struktur eines Webservers erforscht werden
+
+- desweiteren zur Vermeidung von SYN-Flooding Angriffen:
+
+#### 4.3.3.1 SYN-Cookies (Folie 4/9)
+
+- durch SYN-Cookies werden halboffene Verbindungen vermieden
+  - lokal wird noch keine Verbindung etabliert
+  - Verbindungsinformationen werden zunächst komplett an den Sender zurückgegeben
+  - erst wenn die Information wieder zurückgegeben wird, wird die Verbindung etabliert
+- Zusatzschritt für Angreifer, Aufwand wird erhöht
+
+- SYN-Cookies sind in vielen Systemen umgesetzt, allerdings kein RFC dazu vorhanden
+- sind also kein IETF-Standard
+
+#### 4.3.3.2 TCP Fast-Open / TFO (Folie 4/10+11+12)
+
+- Problem des 3-Wege-Handshakes
+  - es vergeht eine gewisse Zeit, bis Anwendungsdaten ausgetauscht werden können
+  - auch wenn mit dem Handshake schon Anwendungsdaten übermittelt werden dürfen, werden diese erst nach Abschluss des Handshakes an die Anwendung weitergegeben
+  - Beispiel:
+    - Webcrawler müssten für jeden neuen Abruf neuen Handshake durchlaufen
+
+Daher TFO:
+
+Ziel:
+  - Netzwerk-Latenz von Anwendungen um eine volle RTT reduzieren
+    - ~15% geringere Latenz bei durchschnittlicher HTTP-Kommunikation
+    - 10% bis 40% geringere `Page Load Time (PLT)`
+
+Grundprinzip:
+  - Client fragt beim ersten Verbindungsaufbau ein Client-spezifisches TFO-Cookie an
+  - Bei erneutem Verbindungsaufbau werden direkt mit dem ersten Segment Anwendungsdaten übermittelt (-> kein regulärer 3W-Handshake erforderlich)
+
+- Spezifikation ist als Experimental RFC der IETF verfügbar
+[Zum Nachlesen: TCP-Fast Open bei der IETF](https://tools.ietf.org/html/rfc7413)
+
+![TCP-Fast-Open](resources/TCP_TCPFO.png)<!-- width=500px -->
+
+### 4.3.4 Multipath-TCP
+
+#### 4.3.4.1 Motivation (Folie 4/13)
+
+- Endgeräte/Server verfügen meist über mehrere Netzwerkschnittstellen
+- eine TCP-Verbindung ist an eine Netzwerkschnittstelle gebunden
+  - -> ineffiziente Nutzung der verfügbaren Ressourcen
+- Zielsetzung von Multipath-TCP:
+  - Parallele Nutzung mehrerer Netzwerkschnittstellen
+
+#### 4.3.4.2 (Folie 4/14)
+
+#### 4.3.4.3 Etablierung von Subflows (Folie 4/15)
+
+
+### 4.3.5 Transport Layer Security / TLS (Folie 4/16)
+
+[Zum Nachlesen: RFC zu TLS](https://tools.ietf.org/html/rfc5246)
+
+- TLS bietet:
+  - Authentisierung und Schlüsselaustausch (z.B. Elliptic Curve Diffie-Hellman)
+  - Verschlüsselungsalgorithmen (z.B. AES)
+  - Kryptografische Hashfunktionen
+
+- wird von OpenVPN zur Realisierung des Schlüsselaustausches für VPNs verwendet
+
+## 4.4 Quick UDP Internet Connections / QUIC (Folie 4/17)
+
+siehe Folien...
+
+## 4.5 Sockets
+
+**Prüfungsrelevant!**
+
+### 4.5.1 Einordnung und Anlegen eines Sockets (Folie 4/18)
+
+- im POSIX-Standard definierte Software-Schnittstelle, über die Netzwerk- und Interprozess-Kommunikation durchgeführt werden kann
+- Referenz auf Kommunikationskanal zu anderem Prozess
+  - kann lokal oder über Netzwerk erfolgen
+- Anlegen eines Sockets durch Systemaufruf `socket` (in C)
+  - neben streambasierten Sockets auch Datagram-Sockets und Raw-Sockets
+  - Raw-Sockets:
+    - am Kernel vorbei direkt zum Zielsystem
+    - selbstbestimmte Header-Elemente
+    - z.B. zum Quell-IP-Adress-Spoofing (`Scapy` nutzt dies)
+
+
+![Sockets-Übersicht](resources/Sockets.png)<!-- width=500px -->
+
+### 4.5.2 SOCK_STREAM (Folien 4/19+20)
+
+- Serverseite muss einen Socket in einen Zustand überführen, in dem Verbindungen nach einer Verbindungsanfrage (mittels Aufruf `connect()`) durch einen Client etabliert werden können
+- Überführung und Etablierung einer Verbidnung erfolgt in drei Schritten
+  1. `bind()` Binden des Sockets an einen Port
+  2. `listen()` Markierung des Sockets als passiv
+  3. `accept()` Akzeptieren von eingehenden Verbindungen (Reguläres Verhalten: blockierender Aufruf)
+    - erst ab accept kann der 3W-Handshake erfolgen
+
+![Sockets-Übersicht](resources/Sockets_Stream.png)<!-- width=500px -->
+
+
+### 4.5.3 SOCK-DGRAM
+
+- im Falle von Sockets des Typ DGRAM ist keine Überführung des Sockets in einen verbindungbereiten Zustand erforderlich
+
+- **TBC**

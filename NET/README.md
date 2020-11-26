@@ -818,6 +818,30 @@ ip link set veth1 up
 
 ### Verbindungsaufbau
 
-### SYN-Cookies
+![TCP-Zustandsdiagramm (Auszug)](resources/tcp-states.png)<!-- width=500px -->
 
-### TCP Fast Open
+<!--Handshake (+ besonders sync-flag) = prüfungsrelevant-->
+
+![TCP-Verbindungsaufbau](resources/tcp-handshake.png)<!-- width=500px -->
+
+#### SYN-Cookies
+
+- Idee: Server hält nach initilem TCP-Fragment (mit gesetztem SYN-flag) noch keinen Zustand -> kodiert Zustandsbehaftete Informationen als Cookie
+- Cookie wird als Squenznummer an den Client zurückgesendet
+- Server erhält Infomrationen im dritten Schritt des Verbindungsaufbaus vom Client zurück
+- kodierte Informationen: Zeitstempel, Endpunkte (IPs+Ports), MSS
+
+### TCP Fast Open (TFO)
+
+- Ziel: Netzwerklatenz von Anwendungen um eine volle RTT reduzieren
+- Grundprinzip: Client fragt beim ersten Verbindungsaufbau eine spezifisches TFO-Cookie an
+- Bei erneutem Verbindungsaufbau werden direkt mit dem ersten Segment Anwendungsdaten übermittelt (kein regulärer Drei-Wege-Handshake erforderlich)
+
+![](resources/tcp-fastopen.png)<!-- width=200px -->
+
+### Multipath TCP
+
+- Parallele Nutzung mehrerer Netzwerkschnittstellen und paralleler Pfade für eine Ende-zu-Ende Verbindung zwischen Anwendungen
+
+<!--ToDo: Mehr Infos von den Folien übernehmen-->
+<!--Motivation und Grundprinzip wichtig-->

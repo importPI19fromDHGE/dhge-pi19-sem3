@@ -845,3 +845,27 @@ ip link set veth1 up
 
 <!--ToDo: Mehr Infos von den Folien übernehmen-->
 <!--Motivation und Grundprinzip wichtig-->
+
+## Transport Layer Security (TLS)
+
+- setzt auf TCP-verbindungen auf
+- Protokoll bietet: Authentisierung und Schlüsseltausch, Verschlüsselungsalgorithmen und Kryptografische Hash-Funktionen
+- sichert z.B. HTTP-Kommunikation ab
+
+![TLS-Handshake](resources/tls-handshake.png)<!-- width=400px -->
+
+## Quick UDP Internet Connections (QUIC)
+
+![QUIC](resources/quic.png)<!-- width=500px -->
+
+- Implementation wichtiger Protokollmechanismen (u.a. Übertragungswiederholung bei Verlusten, Congestion Control, Flow Control) oberhalb von UDP
+<!--ToDo: Mehr Infos von den Folien übernehmen-->
+
+## Sockets
+
+- Software-Schnittstelle über die Netzwerk- und Interprozess-Kommunikation durchgeführt werden kann
+- Anlegen durch Systemaufruf `socket()`: `int socket(int domain, int type, int protocol)`
+
+![Unterteilung von Sockets](resources/sockets.png)
+
+<!--Abbildungen auf Folien 19 und 20 sind höchstgradig prüfungsrelevant-->

@@ -365,7 +365,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Vorteile: Skalierbarkeit (Anzahl der Ports einfach ), vereinfachte Netzwerkschnittstelle (Konfiguration von nur einem logischem Gerät), Vergrößerter Durchsatz (Stacking über Port mit hoher Datenrate)
 - Nachteil: Platzbedarf, höherer Stromverbrauch mehrerer Geräte, Kopplung als neue Fehlerquelle
 
-# Internetprotokoll und Hilfsprotokolle
+# 3 Internetprotokoll und Hilfsprotokolle
 
 - Schicht 3; von Übertragungsmedium unabhängig
 - Overlay über L2, bildet davon unabhängiges Netz
@@ -381,9 +381,9 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
   - Multicast: Senden an Teilmenge
   - Anycast: Senden an alle NICs, aber nur einer antwortet
 
-## IPv4
+## 3.1 IPv4
 
-### IPv4-Header
+### 3.1.1 IPv4-Header
 
 ![Aufbau des IPv4-Headers](resources/ip-paket-aufbau.png)<!-- width=500px -->
 
@@ -404,7 +404,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Options: Zusatzdaten für bspw. Routing oder Zeitstempel
   - Bsp Source Routing: Sender gibt exakte Route an; ermöglicht Angriffsfläche für DoS-Attacken
 
-### Fragmentierung
+### 3.1.2 Fragmentierung
 
 ![Fragmentierung](resources/ip-fragmentierung.png)<!-- width=500px -->
 
@@ -429,7 +429,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 ip addr show
 ```
 
-### IPv4-Adressierung
+### 3.1.3 IPv4-Adressierung
 
 - Struktur: 0 bis n Bits Netzadresse, 32-n Bit Hostadresse (NIC-Adresse)
 - Notation: ``adresse/n`` --> Classless Inter Domain Routing Notation (CIDR)
@@ -440,9 +440,9 @@ ip addr show
 
 ![Schema Router](resources/routing-bsp.png)<!-- width=500px -->
 
-## Address Resolution Protocol (ARP)
+## 3.2 Address Resolution Protocol (ARP)
 
-### Einordnung
+### 3.2.1 Einordnung
 
 ![Ablauf ARP](resources/ip-arp-ablauf.png)<!-- width=500px -->
 
@@ -459,13 +459,13 @@ ip addr show
 tcp dump -i any -p arp
 ```
 
-### Protokolldetails
+### 3.2.2 Protokolldetails
 
 //TODO: Bild Folie 7
 
 //TODO: ausfüllen
 
-## ICMP
+## 3.3 ICMP
 
 - Internet Control Message Protocol dient der Kommunikation von Fehlern und Abfrage von Statusinformation in (fast immer) IP-basierten Netzwerken
 - ausgewählte Typen:
@@ -495,7 +495,7 @@ Beispiel: ICMP-Redirect
 - bietet Angriffsfläche: kann verwendet werden, um kompromittierten Router in den Pfad zu zwingen
 - per Default in vielen Systemen deaktiviert
 
-## Praxisübung
+## 3.4 Praxisübung
 
 Exkurs Namespaces:
 
@@ -558,13 +558,13 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 - mit bspw. Ping überprüfen, ob Verbindung funktioniert
 
-### Nachteile IPv4
+## 3.5 Nachteile IPv4
 
 - Ausgeschöpfter Adressraum: nur 4 Milliarden Adressen, ungünstige Vergabe, NAT als Lösung (aber: erschwert Nutzung einiger Dienste)
 - Ineffizientes Routing: Header hat variable Länge
 - Keine automatische Konfiguration: IP muss manuell oder über DHCP vergeben werden (zusätzliche Infrastruktur erforderlich)
 
-## IPv6
+## 3.6 IPv6
 
 - soll in nächsten Jahren schrittweise IPv4 ablösen
 - Vereinfachung des Headers:
@@ -577,7 +577,7 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 - Payload-Length: Größe des gesamten Datagramms
 - Hop-Limit: Ersetzt TTL Feld (Angabe maximaler Hops)
 
-### Extension-Header
+### 3.6.1 Extension-Header
 
 - in Zusammenhang mit Next-Header-Feld verwendet
 - verweist auf Header eines Protokolls der nächsthöheren Schicht oder Extension-Header wird in das Datagramm eingebettet
@@ -586,7 +586,7 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 - Diverse Optionen: Hop-by-Hop Options, Fragment, Destination Options, Routing, Auth, ...
 
-### IPv6-Fragmentierung
+### 3.6.2 IPv6-Fragmentierung
 
 - Grundprinzip ähnlich zu IPv4:  wenn auf Pfad MTU nicht ausreicht wird fragmentiert
 - Unterschied zu IPv4:
@@ -594,9 +594,9 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 	- Absender wird über Fragmentierungsbedarf informiert (per ICMPv6-Nachricht "Packet too big")
 - Praxis: limitierende MTU meist an den Rändern, also beim Sender
 
-### IPv6-Adressen
+### 3.6.3 IPv6-Adressen
 
-#### Adress-Notation
+#### 3.6.3.1 Adress-Notation
 
 - `ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff` ($8*16=128 \text{Bit}$)
 - Längere Folgen von Nullen können einmalig durch `::` abgekürzt werden: `ff01:0:0:0:0:0:2342:78fa` -> `ff01::2342:78fa``
@@ -610,13 +610,13 @@ verwenden: `::141.76.40.1`
 - zwei Doppelpunkte sollen maximale Anzahl von 0-Blöcken repräsentieren (nicht zur Abkürzung eines einzelnen Blocks verwenden)
 - bei mehreren möglichen Kürzungen: möglichst weit links kürzen
 
-#### Adress-Arten
+#### 3.6.3.2 Adress-Arten
 
 - **Unicast-Adressen:** Identifikator eines *einzelnen* Netzwerkinterfaces (link-local innerhalb geschlossener Netzsegmente oder global)
 - **Anycast-Adressen:** Identifikator für *Menge von Interfaces* -> wird an **eines** der Interfaces gesendet, dass durch die Adresse identifiziert wird (z.B. bei DNS angewendet)
 - **Multicast-Adressen:** Identifikator für *Menge von Interfaces* -> wird an **alle** Interfaces gesendet, die durch die Adresse identifiziert werden (kein Broadcast mehr erforderlich)
 
-#### Generelle Adresstruktur
+#### 3.6.3.3 Generelle Adresstruktur
 
 - Trennung zwischen Präfix und Interface Identifier
 - Notation analog zu CIDR: `/64` am Ende gibt die Länge des Präfix an
@@ -631,14 +631,14 @@ Typ einer Adresse kann an den höchstwertigsten Bits erkannt werden:
 - Globale Unicast-Adressen: alle anderen (derzeit: `2000::/3`)
 - Anycast-Adressen: Adressraum identisch zu Unicast-Adressen (syntaktisch nicht unterscheidbar)
 
-### Erzeugung einer link-local Adresse
+### 3.6.4 Erzeugung einer link-local Adresse
 
 - wird aus der Link-Layer Adresse (MAC) berechnet
 - Überprüfung auf Eindeutigkeit über `SLAAC`
 - Problem: einfache Identifikation von Nutzern
 - Lösung: Privacy Extension for Stateless Adress Autoconfiguration (regelmäßige zufällige Generierung des Interface-Identifiers)
 
-### IPv6-Multicasts
+### 3.6.5 IPv6-Multicasts
 
 ![Aufbau einer IPv6 Multicast-Adresse](resources/ipv6-multicast.png)<!-- width=500px -->
 
@@ -648,7 +648,7 @@ Typ einer Adresse kann an den höchstwertigsten Bits erkannt werden:
 	- `ff02:2` -> alle Router am Link
 	- `ff02::16` -> alle MLDv2-fähigen Router
 
-### NDP
+### 3.6.6 NDP
 <!-- NDP nicht so genau Prüfungsrelevant, mehr Infos in den Folien-->
 
 **Aufgaben:**
@@ -658,7 +658,7 @@ Typ einer Adresse kann an den höchstwertigsten Bits erkannt werden:
 - Verwaltung von Erreichbarkeitsinformationen
 - Grundlage für Stateless Address Autoconfiguration
 
-### Stateless Adress Autoconfiguration (SLAAC)
+### 3.6.7 Stateless Adress Autoconfiguration (SLAAC)
 <!-- hochgradig Prüfungsrelevant-->
 
 **Phase 1: Erzeugung und Überprüfung einer Link-lokalen Adresse:**
@@ -678,7 +678,7 @@ für die Konfiguration wichtigen Informationen (insbesondere Angabe des Präfixe
 versendet -> ist Adresse bereits verwendet sendet entsprechender Host Neighbor-Advertisement-Nachricht
 4. Ist die Adresse frei, wird sie lokal zugewiesen
 
-### Migration IPv4 -> IPv6
+### 3.6.8 Migration IPv4 -> IPv6
 
 - Übergang zu IPv6 wird seit zwanzig Jahren propagiert
 - Aktuell: Koexistenz von IPv4 und IPv6 -> Mechanismen zur Interoperabilität
@@ -686,7 +686,7 @@ versendet -> ist Adresse bereits verwendet sendet entsprechender Host Neighbor-A
 	- Tunnel-Mechanismen: Kapselung Header der beider Versionen (z.B. `4in6`, `6in4`, `6over4`, ...)
 	- Translations-Mechanismen: Transformation der Header in unterschiedliche Versionen (z.B. NAT64 = Übersetzung von IPv4-Adressen in IPv6)
 
-#### Dual-Stack Lite (DS-Lite)
+#### 3.6.8.1 Dual-Stack Lite (DS-Lite)
 
 - Kombination aus Tunnelmechanismen und Translation
 - Vorteile:
@@ -695,7 +695,7 @@ versendet -> ist Adresse bereits verwendet sendet entsprechender Host Neighbor-A
 
 ![Dual-Stack Lite](resources/ds-lite.png)<!-- width=500px -->
 
-### Exkurs: Raw Sockets
+### 3.6.9 Exkurs: Raw Sockets
 
 - Ermöglichen die Instanziierung von IP-Headern und Implementierung von Protokollen im User-Space
 - IP-Headerelemente wie auch gekapselte Datagramme können im Programm befüllt werden
@@ -712,7 +712,7 @@ versendet -> ist Adresse bereits verwendet sendet entsprechender Host Neighbor-A
 	- wiedrholen bis zum Erreichen des gewünschten Ziels
 - Problem: nicht alle Router haben diese ICMP-Antworten aktiviert, weitere Anpassung nötig
 
-### Praxisbeispiel
+### 3.6.10 Praxisbeispiel
 
 - Namespaces erstellen:
 
@@ -767,3 +767,74 @@ ip link set veth1 up
 - radvd in Namespace1 aktivieren
 
 **tbc: Anfang nächster Einheit**
+
+
+# 4 Transportschicht
+
+# 4.1 Einleitung (Folie 4/1)
+
+- Transportschicht dient der Ende-zu-Ende Kommunikation
+  - Daten von Prozess zu Prozess bringen
+  - Dazu wird Adressierungsmöglichkeit bereitgestellt (Ports)
+  - Beispiel: zielgerichtete Adressierung von Webserver über "Well-known-Ports"
+    - alle Ports <1024 sind als Well-Known-Ports vordefiniert
+    - per `bind()` Funktion wird die Kommunikation an den Port gebunden (root benötigt)
+    
+![Übersicht Transportschicht](resources/Transportschicht.png)<!-- width=500px -->
+
+# 4.2 User Datagram Protocol (UDP) (Folie 4/3)
+
+- **Verbindungsloses** und **unzuverlässiges** Transportprotokoll:
+  - Szenario: 
+    - Pakete gehen verloren, weil z.B. Router überlastet
+    - vom Protokoll selbst wird auf die verloren gegangenen Pakete nicht reagiert -> **unzuverlässig**
+
+  - **Verbindungslos**
+    - Verbindung: lokaler Zustand, der Dinge über die Kommunikationsbeziehung beschreibt 
+    - Diese Dinge "merkt" sich UDP nicht
+    - heisst: jedesmal wenn ich über UDP Daten übermittle, muss ich IP und Portnummer angeben
+    - diese werden nämlich nicht in einer lokalen Datenstruktur gespeichert
+
+- Dient ausschließlich der Portadressierung (16-Bit Adresskomponente)
+- Keine Reihenfolgegarantie: 
+  - Reihenfolge von losgeschickten Bytes ist nicht zwingend die auch ankommende Reihenfolge 
+  - Reihenfolge ankommender Pakete kann von **keinem** Protokoll garantiert werden 
+- Geringer Protokolloverhead, effizient 
+  - für Video- und Audiodateien gut geeignet 
+- Eingesetzt z.B. von DNS, DHCP, NTP, SNMP
+
+
+
+![Übersicht UDP](resources/UDP.png)<!-- width=500px -->
+
+# 4.3 Transmission Control Protocol (TCP)
+
+- Im Internet dominierendes Schicht-4-Protokoll
+- Protokoll an sich eher ein Rahmenwerk, welches im Laufe der Jahre weiterentwickelt wurde
+- Entwicklung in den 1970er Jahren maßgeblich von Vinton Cray Cerf und Robert Elliot Kahn vorangetrieben
+  - Ziel von Cerf war die Entwicklung eines Protokolls um zuverlässige Textkommunikation per Internet zu ermöglichen 
+
+- Protokoll bietet: 
+  - Verbindungsorientierte Kommunikation mit wohldefiniertem Verbindungsaufbau 
+  - zuverlässige Kommunikation durch Bestätigungen 
+    - für jedes gesendete Paket auch Bestätigung des Erhalts 
+  - Reihenfolgegarantie 
+    - Reihenfolge eines Datenstreams bei Sender und Empfänger gleich 
+    - Bei Reihenfolgeänderung der Bytes bei der Übertragung erfolgt Umsortierung auf Empfängerseite
+  - Flow Control / Flusskontrolle (variiert in den Implementierungen)
+  - Congestion Control / Überlaststeuerung (variiert in den Implementierungen)
+    - wenn im Netzwerk Überlastungen auftreten, wird darauf reagiert
+    - bei Überlast: nächste Pakete werden verkleinert 
+    - im Idealfall: alle Sender reagieren darauf und daher die Gesamtlast verringert 
+  - Segmentierung von Anwendungsdaten in übertragbare Einheiten (auf Grundlage der Maximum Segment Size - MSS)
+
+![Übersicht UDP](resources/TCP.png)<!-- width=500px -->
+
+Sequenznummer: 
+  - bezieht sich auf das jeweilig verschickte Byte, bzw. erstes Byte eines Paketes
+Acknowledgement Number: 
+  - Dient zur Bestätigung der Sequenznummer der erhaltenen Bytes
+  - wenn Ack ausbleibt, wird vom Sender neu gesendet
+  - bis diese neu angekommen, werden zusätzlich erhaltene Daten auf Empfängerseite im Puffer gehalten und noch nicht geschrieben 
+
+  

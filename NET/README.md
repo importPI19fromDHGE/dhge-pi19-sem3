@@ -908,7 +908,6 @@ Wichtig:
 
 - zum Schließen: FIN-Paket 
 
-
 Aufgabe der verschiedenen Flags: 
   - SYN:
     - steht für das Synchronisieren von Sequenznummern
@@ -930,11 +929,62 @@ Aufgabe der verschiedenen Flags:
     - Verhinderung: 
       - Blacklisten von IP´s die mehrere SYN-Pakete hintereinander schicken 
   
-  - Port-Scanner setzen hier an 
+  - Port-Scanner (wie z.B. `nmap`)setzen hier an 
     - systematisches Senden von SYN-Paketen an alle Ports
     - bei ACK-Antwort deutet dies auf aktiven Dienst hinter dem Port 
     - dabei kann die Struktur eines Webservers erforscht werden 
 
+- desweiteren zur Vermeidung von SYN-Flooding Angriffen: 
+
+#### 4.3.3.1 SYN-Cookies (Folie 4/9) 
+
+- durch SYN-Cookies werden halboffene Verbindungen vermieden 
+  - lokal wird noch keine Verbindung etabliert
+  - Verbindungsinformationen werden zunächst komplett an den Sender zurückgegeben 
+  - erst wenn die Information wieder zurückgegeben wird, wird die Verbindung etabliert 
+- Zusatzschritt für Angreifer, Aufwand wird erhöht 
+
+- SYN-Cookies sind in vielen Systemen umgesetzt, allerdings kein RFC dazu vorhanden
+- sind also kein IETF-Standard 
+
+#### 4.3.3.2 TCP Fast-Open / TFO (Folie 4/10+11+12)
+
+- Problem des 3-Wege-Handshakes
+  - es vergeht eine gewisse Zeit, bis Anwendungsdaten ausgetauscht werden können 
+  - auch wenn mit dem Handshake schon Anwendungsdaten übermittelt werden dürfen, werden diese erst nach Abschluss des Handshakes an die Anwendung weitergegeben 
+  - Beispiel: 
+    - Webcrawler müssten für jeden neuen Abruf neuen Handshake durchlaufen
+
+Daher TFO: 
+
+Ziel: 
+  - Netzwerk-Latenz von Anwendungen um eine volle RTT reduzieren 
+    - ~15% geringere Latenz bei durchschnittlicher HTTP-Kommunikation 
+    - 10% bis 40% geringere `Page Load Time (PLT)` 
+
+Grundprinzip: 
+  - Client fragt beim ersten Verbindungsaufbau ein Client-spezifisches TFO-Cookie an 
+  - Bei erneutem Verbindungsaufbau werden direkt mit dem ersten Segment Anwendungsdaten übermittelt (-> kein regulärer 3W-Handshake erforderlich)
+
+- Spezifikation ist als Experimental RFC der IETF verfügbar
+[Zum Nachlesen: TCP-Fast Open bei der IETF](https://tools.ietf.org/html/rfc7413)
+
+![TCP-Fast-Open](resources/TCP_TCPFO.png)<!-- width=500px -->
+
+### 4.3.4 Multipath-TCP 
+
+#### 4.3.4.1 Motivation (Folie 4/13)
+
+- Endgeräte/Server verfügen meist über mehrere Netzwerkschnittstellen 
+- eine TCP-Verbindung ist an eine Netzwerkschnittstelle gebunden
+  - -> ineffiziente Nutzung der verfügbaren Ressourcen 
+- Zielsetzung von Multipath-TCP: 
+  - Parallele Nutzung mehrerer Netzwerkschnittstellen 
+
+#### 4.3.4.2 (Folie 4/14)
+
+#### 4.3.4.3 Etablierung von Subflows (Folie 4/15)
 
 
+### 4.3.5 Transport Layer Security / TLS (Folie 4/16)
 

@@ -988,3 +988,54 @@ Grundprinzip:
 
 ### 4.3.5 Transport Layer Security / TLS (Folie 4/16)
 
+[Zum Nachlesen: RFC zu TLS](https://tools.ietf.org/html/rfc5246)
+
+- TLS bietet: 
+  - Authentisierung und Schlüsselaustausch (z.B. Elliptic Curve Diffie-Hellman)
+  - Verschlüsselungsalgorithmen (z.B. AES)
+  - Kryptografische Hashfunktionen 
+
+- wird von OpenVPN zur Realisierung des Schlüsselaustausches für VPNs verwendet 
+
+## 4.4 Quick UDP Internet Connections / QUIC (Folie 4/17)
+
+siehe Folien... 
+
+## 4.5 Sockets 
+
+**Prüfungsrelevant!**
+
+### 4.5.1 Einordnung und Anlegen eines Sockets (Folie 4/18)
+
+- im POSIX-Standard definierte Software-Schnittstelle, über die Netzwerk- und Interprozess-Kommunikation durchgeführt werden kann 
+- Referenz auf Kommunikationskanal zu anderem Prozess
+  - kann lokal oder über Netzwerk erfolgen 
+- Anlegen eines Sockets durch Systemaufruf `socket` (in C)
+  - neben streambasierten Sockets auch Datagram-Sockets und Raw-Sockets
+  - Raw-Sockets: 
+    - am Kernel vorbei direkt zum Zielsystem
+    - selbstbestimmte Header-Elemente 
+    - z.B. zum Quell-IP-Adress-Spoofing (`Scapy` nutzt dies)
+  
+
+![Sockets-Übersicht](resources/Sockets.png)<!-- width=500px -->
+
+### 4.5.2 SOCK_STREAM (Folien 4/19+20)
+
+- Serverseite muss einen Socket in einen Zustand überführen, in dem Verbindungen nach einer Verbindungsanfrage (mittels Aufruf `connect()`) durch einen Client etabliert werden können 
+- Überführung und Etablierung einer Verbidnung erfolgt in drei Schritten 
+  1. `bind()` Binden des Sockets an einen Port
+  2. `listen()` Markierung des Sockets als passiv 
+  3. `accept()` Akzeptieren von eingehenden Verbindungen (Reguläres Verhalten: blockierender Aufruf)
+    - erst ab accept kann der 3W-Handshake erfolgen 
+
+![Sockets-Übersicht](resources/Sockets_Stream.png)<!-- width=500px -->
+
+
+### 4.5.3 SOCK-DGRAM
+
+- im Falle von Sockets des Typ DGRAM ist keine Überführung des Sockets in einen verbindungbereiten Zustand erforderlich
+
+- **TBC**
+
+

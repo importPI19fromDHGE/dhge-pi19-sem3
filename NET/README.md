@@ -782,11 +782,27 @@ ip link set veth1 up
 - Geringer Overhead, serh effizient (für Video-/Audiodaten)
 - Eingesetzt von DNS, DHCP, NTP, SNMP
 
-![](resources/udp-header.png)
+![UDP-Header](resources/udp-header.png)<!-- width=500px -->
 
 ## TCP
 
+- dominierendes Schicht-4-Protokoll
+- Verbindungsorinetierte Kommunikation mit wohldefiniertem Verbindungsaufbau
+- zuverlässige Kommunikation durch Bestätigungen
+- Reihenfolgegarantie
+- Flusskontrolle (Flow Control)
+- Überlaststeuerung (Congestion Control)
+- Segmentierung von Anwendungsdaten in übertragbare Einheiten (Grundlage: Maximum Segment Size - MSS)
+
+![TCP-Header](resources/tcp-header.png)<!-- width=500px -->
+
 ### Congestion / Receiver Window
+
+- **Receiving Window:** Puffert Daten vor der Weiterleitung an die Anwendung
+- **Congestion Window:** soll Überlast auf einem Pfad verhindern (insbesondere durch überlastete Router)
+- Durchsatz der Verbindung wird durch beide Fenster limitiert
+
+![](resources/tcp-windows.png)<!-- width=500px -->
 
 ### Verbindungsaufbau
 

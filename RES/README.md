@@ -45,14 +45,14 @@ Betriebssystemverwaltung
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<!---
+<!--
 created by Maximilian Kerst, 05.10.2020
 
 Disclaimer von Max: was ich hier reinschreibe, ist zT sehr oberflächlich, da wir hier erstmal Basics behandeln.
 Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 -->
 
-<!--pagebreak-->
+<!--newpage-->
 
 # Mögliche Prüfungsfragen
 
@@ -85,7 +85,7 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Welche Vorteile bietet die Virtualisierung?
 - Welche Schritte sind bei einem Verwaltungsakt zu beachten? <!--Sehr vage Frage, aber hier seine gewünschte Antwort: Zweck des Verwaltungsaktes, Backup, Installation und Konfiguration (grafisch oder per Skript -> gut für Automatisierung), Testen, Integrieren-->
 
-<!--pagebreak-->
+<!--newpage-->
 
 # Vorteile Virtualisierung
 

@@ -41,7 +41,7 @@ Datenbanken-Praktikum
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<!--pagebreak-->
+<!--newpage-->
 
 # Formen von Kundenanforderungen
 

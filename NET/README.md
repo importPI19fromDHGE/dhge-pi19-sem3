@@ -836,14 +836,24 @@ Acknowledgement Number:
   - Dient zur Bestätigung der Sequenznummer der erhaltenen Bytes
   - wenn Ack ausbleibt, wird vom Sender neu gesendet
   - bis diese neu angekommen, werden zusätzlich erhaltene Daten auf Empfängerseite im Puffer gehalten und noch nicht geschrieben 
-
+Options: 
+  - hier eigentlich alle später hinzugekommenen Erweiterungen verwirklicht 
+Window Size: 
+  - Empfänger teilt hier maximale Größe des Receiving-Window mit
+  - kann sich im Verlauf ändern 
+Urgent Pointer: 
+  - verweist auf Daten im Bytebereich 
+  - kann mit Priorität Daten an Anwendung pushen 
+Flags: 
+  - Bitflags zur Steuerung der Kommunikation 
+  - zum Beispiel zum Aufbau, zur Trennung, oder für ACK 
 
 ### 4.3.1 Receiving Window und Congestion Window (Folie 4/5)
 
 ![Übersicht Congestion](resources/TCP_Receiving_Congestion.png)<!-- width=500px -->
 
 - Receiving Window: 
-  - Verhindert, dass mehr Daten versendet werden, als der Empfänger verarbeiten / an die Anwednung weiterleiten kann
+  - Verhindert, dass mehr Daten versendet werden, als der Empfänger verarbeiten / an die Anwendung weiterleiten kann
   - stellt quasi den "Empfangspuffer" dar 
 - Congestion Window
   - eingeführt, um Überlast auf Pfad zu verhindern (z.B. durch überlastetet Router)
@@ -857,12 +867,26 @@ Acknowledgement Number:
   - zum Beispiel bei `CEPH`-Clustern, die durch Routing-Flaschenhälse nicht begrenzt sind (lokale Cluster)
   - hier könnte das Congestion-Window per config vergrößert werden
 
-- `ECN`-Feld im Header: 
+Wichtig:
+  - TCP-Verbindungen sind **bidirektional**
+  - Sender und Empfänger nehmen ebenso die umgekehrte Rolle ein 
+  - obwohl sie bidirektional sind, kann sie unidirektional abgebaut werden 
+    - beide Richtungen müssen also separat abgebaut werden (FIN-Flag)
+
+- `ECN`-Feld im IP-Header: 
   - Wenn Router Puffer langsam voll wird, flagt der Router die Pakete an den Empfänger im ECN-Feld
-  - Rückmeldung an den Sender durch den Empfänger
-  - der Sender verringert dann die Paketgröße 
+  - Rückmeldung an den Sender durch den Empfänger wenn Flag gesetzt 
+  - der Empfänger informiert dann über TCP-Header den Sender
+  - daraufhin Verringerung der Paketgröße 
+  - Zusammenspiel zwischen den Layern an dieser Stelle (IP und TCP)
 
--   
+[Zum Nachlesen: Wikpedia zu RINA ](https://en.wikipedia.org/wiki/Recursive_Internetwork_Architecture)
 
-### 4.3.2 
+### 4.3.2 TCP-Optionen (Folie 4/6)
 
+- Optionen-Feld kann Zusatzinformationen beeinhaltenm die nicht in den anderen Header-Felder repräsentiert werden 
+- Mögliche Optionstypen `kind` werden von der Internet Assigned Numbers Authority (IANA) zugewiesen
+
+[Zum Nachlesen: TCP-Flags bei IANA ](https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml)
+
+![TCP-Options](resources/TCP_Options.png)<!-- width=500px -->

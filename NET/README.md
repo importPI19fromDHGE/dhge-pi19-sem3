@@ -776,4 +776,20 @@ ip link set veth1 up
 
 ## UDP
 
+- verbindungsloses, unzuverlässiges Transportprotokoll
+- ausschließlich für Portadressierung
+- keine Reihenfolgegarantie
+- Geringer Overhead, serh effizient (für Video-/Audiodaten)
+- Eingesetzt von DNS, DHCP, NTP, SNMP
+
+![](resources/udp-header.png)
+
 ## TCP
+
+### Congestion / Receiver Window
+
+### Verbindungsaufbau
+
+### SYN-Cookies
+
+### TCP Fast Open

@@ -900,8 +900,6 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 
 ### Multipath TCP
 
-#### 4.3.4.1 Motivation (Folie 4/13)
-
 - klassische TCP-Verbindung an eine Netzwerkschnittstelle gebunden -> parallele Nutzung mehrerer Netzwerkschnittstellen durch `MTCP`
 
 <!--ToDo: Mehr Infos von den Folien übernehmen-->

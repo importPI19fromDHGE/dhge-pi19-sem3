@@ -70,7 +70,7 @@ for ((i = 1; i <= $#; i++ )); do printf '%s\n' "Arg $i: ${!i}" done
 
 - Warum sind Konfigurationsdateien schreibgeschützt? Nennen Sie ein Beispiel!
   - Damit ein unprivilegierter Nutzer nichts kaputt macht
-  - /etc/environment
+  - ``/etc/environment``
 - Welche Installationsschritte müssen Sie für die Installation eines Webservers mit Datenbankanbindung anwenden? <!--Updates, Sicherung, Skripte bearbeiten,...-->
 - Was ist ein DDoS-Angriff?
   - Systemüberlastung durch viele Hosts

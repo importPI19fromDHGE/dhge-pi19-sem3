@@ -71,7 +71,6 @@ Rechnernetzkonzepte und -architekturen
       - [SYN-Cookies](#syn-cookies)
       - [TCP Fast-Open (TFO)](#tcp-fast-open-tfo)
     - [Multipath TCP](#multipath-tcp)
-      - [4.3.4.1 Motivation (Folie 4/13)](#4341-motivation-folie-413)
     - [Transport Layer Security (TLS)](#transport-layer-security-tls)
   - [Quick UDP Internet Connections (QUIC)](#quick-udp-internet-connections-quic)
   - [Sockets](#sockets)

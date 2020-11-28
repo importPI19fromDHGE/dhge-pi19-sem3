@@ -38,6 +38,7 @@ Datenbanken-Praktikum
   - [Indices](#indices)
   - [Trigger](#trigger)
     - [``AFTER``-Trigger](#after-trigger)
+    - [Instead-of-Trigger](#instead-of-trigger)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -637,7 +638,7 @@ CREATE CLUSTERED INDEX ix_Buchtitel ON Buch(Titel);
   - DDL: Data Definition Language (reagieren auf bspw. ``ALTER``)
 - man kann mehrere Trigger für ein Ereignis definieren
 - man kann einen Trigger für mehrere Ereignisse definieren
-- Trigger können auf zwei Arten auslösen:
+- wenn möglich, sollte man für bessere Effizienz Constraints anstelle von Triggern verwenden, wenn möglich
 
 ###  ``AFTER``-Trigger <!--höhö-->
 
@@ -666,3 +667,89 @@ Completion time: 2020-11-25T14:37:17.3255273+01:00
 - Hinweis: ein UPDATE löst einen ``DELETE`` und einen ``INSERT`` aus
 - Deaktivieren mit ``DISABLE TRIGGER triggername``
 - Reaktivieren mit ``ENABLE TRIGGER triggername``
+
+Trigger zur Prüfung des Nutzeralters:
+
+```sql
+-- Trigger für Nutzer: Fehlermeldung, wenn Alter > 130
+
+CREATE TRIGGER tr_NutzerAlter ON nutzer
+AFTER INSERT AS
+DECLARE @age int;
+DECLARE @id bigint;
+SELECT @id = id from inserted; -- von temp. Tabelle
+SELECT @age = (CONVERT(int, getdate()) - CONVERT(int, gebdat)) / 365 FROM inserted;
+
+IF @age > 130
+BEGIN
+  DELETE FROM nutzer WHERE ID = @id;
+  RAISERROR('Das Alter ist zu hoch!', 15, 1);
+  /*
+    nach Nachricht folgt Schweregrad und Status --> frei wählbar:
+    Schweregrad von 0 bis 18; 19 bis 25 sind für Administratoren reserviert.
+    Status von 0 bis 255
+  */
+END;
+```
+
+- Übung: Erstellen Sie einen Trigger, der beim Einfügen einess Buches überprüft, ob es einen Verlag mit der angegebenen Verlags-ID gibt. Wenn nicht, wird der Eintrag wieder gelöscht und eine Fehlermeldung ausgegeben.
+
+```sql
+CREATE TRIGGER tr_verlagPrüfen ON buch
+AFTER INSERT AS
+
+DECLARE @vid bigint;
+DECLARE @id bigint;
+
+SELECT @id = id FROM inserted;
+SELECT @vid = verlag_id FROM inserted;
+
+IF (SELECT name FROM verlag WHERE id = @vid) IS NULL
+BEGIN
+  DELETE FROM buch WHERE id = @id; -- ID würde trotzdem eins hochgezählt werden
+  RAISERROR('Der angegebene Verlag existiert nicht!', 15, 1);
+END;
+```
+
+### Instead-of-Trigger
+
+- werden anstelle des Ereignisses ausgeführt
+- ``INSERT`` / ``UPDATE`` / ``DELETE`` werden dennoch in ``inserted`` bzw. ``deleted`` geschrieben
+- Übung von oben umgebaut:
+
+```sql
+CREATE TRIGGER tr_verlagPrüfen ON buch
+INSTEAD OF INSERT AS
+
+DECLARE @vid bigint;
+
+SELECT @vid = verlag_id FROM inserted;
+
+IF (SELECT name FROM verlag WHERE id = @vid) IS NULL
+BEGIN
+  RAISERROR('Der angegebene Verlag existiert nicht!', 15, 1);
+ELSE
+  INSERT INTO buch (titel, isbn, klappentext, seiten, verlag_id) SELECT titel, isbn, klappentext, seiten, verlag_id FROM inserted; -- * würde hier auch die ID übernehmen, was nicht geht
+END;
+```
+
+- Übung: Erstellen Sie einen Trigger für die Tabelle ``ausleihe```, der sicherstellt, dass nur Einträge mit gültiger Nutzer-ID und Exemplar-ID zulässt und dass das Exemplar leihbar ist
+
+```sql
+CREATE TRIGGER tr_ausleihePrüfen ON ausleihe
+INSTEAD OF INSERT AS
+
+DECLARE @nid bigint;
+DECLARE @eid bigint;
+
+SELECT @nid = nutzer_id FROM inserted;
+SELECT @eid = exemplar_id FROM inserted;
+
+IF ((SELECT id FROM nutzer WHERE id = @nid) IS NULL)
+   OR ((SELECT id FROM exemplar WHERE id = @eid) IS NULL)
+   OR ((SELECT leihbar FROM exemplar WHERE id = @eid) = 0)
+  RAISERROR('Ausleihe fehlgeschlagen! Prüfen Sie Nutzer-ID, Exemplar-ID und Leih-Status!', 15, 1);
+ELSE
+  INSERT INTO ausleihe (exemplar_id, Nutzer_id, LeihDat, MahnDat, RueckDat, Kosten)
+  SELECT exemplar_id, Nutzer_id, LeihDat, MahnDat, RueckDat, Kosten FROM inserted;
+```

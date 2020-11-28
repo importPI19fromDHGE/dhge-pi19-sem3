@@ -45,14 +45,14 @@ Betriebssystemverwaltung
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<!---
+<!--
 created by Maximilian Kerst, 05.10.2020
 
 Disclaimer von Max: was ich hier reinschreibe, ist zT sehr oberflächlich, da wir hier erstmal Basics behandeln.
 Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 -->
 
-<!--pagebreak-->
+<!--newpage-->
 
 # Mögliche Prüfungsfragen
 
@@ -82,8 +82,10 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Warum sind Konfigurationsdateien schreibgeschützt? Nennen Sie ein Beispiel!
 - Welche Installationsschritte müssen Sie für die Installation eines Webservers mit Datenbankanbindung anwenden? <!--Updates, Sicherung, Skripte bearbeiten,...-->
 - Was ist ein DDoS-Angriff?
+- Welche Vorteile bietet die Virtualisierung?
+- Welche Schritte sind bei einem Verwaltungsakt zu beachten? <!--Sehr vage Frage, aber hier seine gewünschte Antwort: Zweck des Verwaltungsaktes, Backup, Installation und Konfiguration (grafisch oder per Skript -> gut für Automatisierung), Testen, Integrieren-->
 
-<!--pagebreak-->
+<!--newpage-->
 
 # Vorteile Virtualisierung
 
@@ -486,9 +488,26 @@ Freigabeordner erstellen:
 
 ## DHCP
 
-- dynamische Zuweisung von IP-Adresse, Gateway, Subnetzmaske, DNS
+- **D**ynamic **H**ost **C**onfiguration **P**rotocol
+- automatisches Einbinden von Clients in TCP/IP-Netze (IP-Adresse, Gateway, Subnetzmaske, DNS)
 - "automatische Zuordnung" - Client wird für Netzwerk konfiguriert, Einstellungen werden gespeichert
 - "dynamische Zuordnung" - automatische Konfiguration, aber läuft nach Lease-Zeit ab
+
+**Ablauf einer DHCP-Anfrage**
+
+- `DHCP-Discover`: Client sendet Packet mit seiner MAC an alle anderen Clients im Netz
+- `DHCP-Offer`: DHCP-Server nimmt Anfrage entgegen, antwortet mit zuweisbarer IP
+- `DHCP-Request`: Client bestätigt Zusweisung der empfangenen IP
+- `DHCP-Ack`: DHCP-Server bestätigt Zuweisung und sendet weitere Konfiguration (Gateway, DNS, ...)
+
+**Wichtige Befehle**
+
+```bash
+# Neue DHCP Anfrage senden
+sudo dhclient eth1
+# Aktuelle IP freigeben
+sudo dhclient -r eth1
+```
 
 ## MQTT
 
@@ -505,7 +524,7 @@ Freigabeordner erstellen:
   - Broker-Redundanz: Einsatz mehrerer Broker möglich
 - Clients (Publisher) nehmen ereignisgesteuert Kontakt zu Broker auf
 - Clients können gleichzeitig Subscriber und Publisher sein
-- ordnerartige Topic-Struktur zum Ordnen von Messages: ``labor/exp1/temp/sensor1``
+- ordnerartige Topic-Struktur zum Ordnen von Messages: `labor/exp1/temp/sensor1`
   - müssen mind. 1 Zeichen lang sein
   - dürfen Leerzeichen enthalten
   - case-sensitiv

@@ -20,23 +20,23 @@ Rechnernetzkonzepte und -architekturen
     - [Topologien](#topologien)
     - [Medien/Verkabelung](#medienverkabelung)
     - [Tooling - Wireshark](#tooling---wireshark)
-- [2. Netzzugangsschicht](#2-netzzugangsschicht)
-  - [2.1 Übersicht zu Ethernet](#21-%C3%BCbersicht-zu-ethernet)
-  - [2.2 Aufbau eines Ethernet Frames](#22-aufbau-eines-ethernet-frames)
-  - [2.3 Namen von Netzwerkschnittstellen unter Linux](#23-namen-von-netzwerkschnittstellen-unter-linux)
-  - [2.4 Switches](#24-switches)
-    - [2.4.1 Architekturtypen](#241-architekturtypen)
-    - [2.4.2 Kenngrößen](#242-kenngr%C3%B6%C3%9Fen)
-    - [2.4.3 Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->](#243-spanning-tree-protocol---wahrscheinliche-pr%C3%BCfungsaufgabe--)
-      - [2.4.3.1 STP - Port Fast/Fast Link](#2431-stp---port-fastfast-link)
-      - [2.4.3.2 Rapid Spanning Tree Protocol](#2432-rapid-spanning-tree-protocol)
-    - [2.4.4 Virtuelles LAN](#244-virtuelles-lan)
-      - [2.4.4.1 Tag-basierte VLANs](#2441-tag-basierte-vlans)
-      - [2.4.4.2 Inter-VLAN-Routing](#2442-inter-vlan-routing)
-      - [2.4.4.3 STP und VLAN](#2443-stp-und-vlan)
-    - [2.4.5 Transparent Interconnection of lots of links (TRILL)](#245-transparent-interconnection-of-lots-of-links-trill)
-    - [2.4.6 Stacking](#246-stacking)
-- [Internetprotokoll und Hilfsprotokolle](#internetprotokoll-und-hilfsprotokolle)
+- [Netzzugangsschicht](#netzzugangsschicht)
+  - [Übersicht zu Ethernet](#%C3%BCbersicht-zu-ethernet)
+  - [Aufbau eines Ethernet Frames](#aufbau-eines-ethernet-frames)
+  - [Namen von Netzwerkschnittstellen unter Linux](#namen-von-netzwerkschnittstellen-unter-linux)
+  - [Switches](#switches)
+    - [Architekturtypen](#architekturtypen)
+    - [Kenngrößen](#kenngr%C3%B6%C3%9Fen)
+    - [Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->](#spanning-tree-protocol---wahrscheinliche-pr%C3%BCfungsaufgabe--)
+      - [STP - Port Fast/Fast Link](#stp---port-fastfast-link)
+      - [Rapid Spanning Tree Protocol](#rapid-spanning-tree-protocol)
+    - [Virtuelles LAN](#virtuelles-lan)
+      - [Tag-basierte VLANs](#tag-basierte-vlans)
+      - [Inter-VLAN-Routing](#inter-vlan-routing)
+      - [STP und VLAN](#stp-und-vlan)
+    - [Transparent Interconnection of lots of links (TRILL)](#transparent-interconnection-of-lots-of-links-trill)
+    - [Stacking](#stacking)
+- [3 Internetprotokoll und Hilfsprotokolle](#3-internetprotokoll-und-hilfsprotokolle)
   - [IPv4](#ipv4)
     - [IPv4-Header](#ipv4-header)
     - [Fragmentierung](#fragmentierung)
@@ -46,7 +46,7 @@ Rechnernetzkonzepte und -architekturen
     - [Protokolldetails](#protokolldetails)
   - [ICMP](#icmp)
   - [Praxisübung](#praxis%C3%BCbung)
-    - [Nachteile IPv4](#nachteile-ipv4)
+  - [Nachteile IPv4](#nachteile-ipv4)
   - [IPv6](#ipv6)
     - [Extension-Header](#extension-header)
     - [IPv6-Fragmentierung](#ipv6-fragmentierung)
@@ -62,10 +62,23 @@ Rechnernetzkonzepte und -architekturen
       - [Dual-Stack Lite (DS-Lite)](#dual-stack-lite-ds-lite)
     - [Exkurs: Raw Sockets](#exkurs-raw-sockets)
     - [Praxisbeispiel](#praxisbeispiel)
+- [Trans`port`schicht](#transportschicht)
+- [User Datagram Protocol (UDP)](#user-datagram-protocol-udp)
+  - [Transmission Control Protocol (TCP)](#transmission-control-protocol-tcp)
+    - [Congestion / Receiving Window](#congestion--receiving-window)
+    - [TCP-Optionen](#tcp-optionen)
+    - [Verbindungsaufbau](#verbindungsaufbau)
+      - [SYN-Cookies](#syn-cookies)
+      - [TCP Fast-Open (TFO)](#tcp-fast-open-tfo)
+    - [Multipath TCP](#multipath-tcp)
+    - [Transport Layer Security (TLS)](#transport-layer-security-tls)
+  - [Quick UDP Internet Connections (QUIC)](#quick-udp-internet-connections-quic)
+  - [Sockets](#sockets)
+    - [SOCK_STREAM](#sock_stream)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<!--pagebreak-->
+<!--newpage-->
 
 # Einleitung / Übersicht
 
@@ -91,7 +104,7 @@ Rechnernetzkonzepte und -architekturen
 
 ### Kommunikationsszenario
 
-![Network Interface Card](resources/NIC.png)<!-- width=500px -->
+![Network Interface Card](resources/nic.png)<!-- width=500px -->
 
 Bei Abruf einer Website durch `Host A` von `Server A` sind vielfältige Technologien zur Realisierung des Szenarios erforderlich.
 
@@ -144,7 +157,7 @@ IETF-Arbeitsgruppen sind einem von 7 Bereichen (Areas) zugeordnet:
 
 #### ISO/OSI Referenzmodell  <!-- hochgradig Prüfungsrelevant-->
 
-![ISO/OSI Referenzmodell](resources/ISO_OSI_Layer.png)<!-- width=500px -->
+![ISO/OSI Referenzmodell](resources/iso-osi.png)<!-- width=500px -->
 
 - **Anwendungsschicht:** Durch anwendungsspezifische Protokolle verwendet
 - **Darstellungsschicht:** Umwandlung von Daten in unabhängiges Format
@@ -169,7 +182,7 @@ Integriert das Referenzmodell unter Verwendung von vier Schichten:
 
 ### Kopplungselemente
 
-![Switches und Router](resources/L2-net.png)<!-- width=500px -->
+![Switches und Router](resources/l2-net.png)<!-- width=500px -->
 
 **Switches (auch: Bridge, L2-Switch)**
 
@@ -225,9 +238,9 @@ heute typischerweise zwischen Kopplungselementen und Hosts eingesetzt:
 - verwendete Bibliothek: `LIBPCAP`
 - weiteres Tool: `Scapy`
 
-# 2. Netzzugangsschicht
+# Netzzugangsschicht
 
-## 2.1 Übersicht zu Ethernet
+## Übersicht zu Ethernet
 
 - Ursprünglich für LAN-Kommunikation vorgesehen
 - Klassisch: Steuerung des Zugriffs auf den Kanal über CSMA/CD-Algorithmus (bei Punkt-zu-Punkt obsolet)
@@ -239,7 +252,7 @@ heute typischerweise zwischen Kopplungselementen und Hosts eingesetzt:
 Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Alternative: z.B. Infiniband
 
-## 2.2 Aufbau eines Ethernet Frames
+## Aufbau eines Ethernet Frames
 
 ![Ethernet Frame](resources/eth-frame.png)<!-- width=500px -->
 
@@ -251,26 +264,26 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Padding: Gewährleistet Minimalgröße von 64 Byte
 - CRC-Checksum: 32-Bit-Prüfsumme über das Frame (von Zieladresse bis Padding-Feld)
 
-## 2.3 Namen von Netzwerkschnittstellen unter Linux
+## Namen von Netzwerkschnittstellen unter Linux
 
 - Alt: `ethX` bzw. `wlanX` (an MAC gebunden -> Probleme bei Tausch)
 - Neu: Consistent Network Device Naming (z.B. `enp0s25`)
 	- Ethernetinterface (en), das an PCI-Bus (p) an Slot 25 hängt
 
-## 2.4 Switches
+## Switches
 
 - Multiport Kopplungselemente, das Frames nur an den Port weiterleitet über den der Empfänger erreichbar ist
 - Speicherung von Adressen in Source-Address-Table (SAT)
 - **Cut-Through Switches:** Nach Analyse der MAC-Adresse sofortiges Durschalten zum entsprechenden Port (Weiterleitung ohne Zwischenspeicherung = geringe Latenz, kein Einfluss auf Datenrate)
 - **Store-and-Forward Switches:** Frame wird am Eingangsport und Ausgangsport gepuffert (größere Latenz, Möglichkeit zur Zwischenverarbeitung der Daten)
 
-### 2.4.1 Architekturtypen
+### Architekturtypen
 
 - **Shared Memory:** CPU kopiert Daten nach Extraktion der Zieladresse in den korrekten Ausgangspuffer
 - **Bus-System:** Empfangener Port leitet Frame über gemeinsamen Bus an richtigen Ausgangsport
 - **Switching-Matrix:** Physische Durchschaltung von Ein- und Ausgabeleitungen
 
-### 2.4.2 Kenngrößen
+### Kenngrößen
 
 - Datenrate der verschiedenen Ports
 - Datenrate des Backplanes (der internen Busse)
@@ -281,7 +294,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Bandbreitenmanagement
 - Preis
 
-### 2.4.3 Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->
+### Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->
 
 - STP etabliert sich innerhalb des Netzes einen Spannbaum durch das Blockieren von Ports, die Zyklen erzeugen würden
 - Blockierter Port: Eingehender und ausgehender Traffic wird verworfen, Kanal ansonsten voll funktionsfähig
@@ -296,20 +309,20 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 **Begriffe**
 
 - Root-Port: Switch Port, der am nächsten zur Root-Bridge liegt
-- Designated Port: Alle Ports, die kein Root-Port und nicht blockiert sind  
-- Non-Designated Port: Ports in blockiertem Zustand um Zyklen zu verhindern  
+- Designated Port: Alle Ports, die kein Root-Port und nicht blockiert sind
+- Non-Designated Port: Ports in blockiertem Zustand um Zyklen zu verhindern
 
-#### 2.4.3.1 STP - Port Fast/Fast Link
+#### STP - Port Fast/Fast Link
 
 - STP weist Konvergenzprobleme auf: Netzwerk erst nach etwa 30 Sekunden funktionstüchtig (Probleme beispielsweise mit PXE Boot)
 - Switches bieten Speziellen Modus für Ports an denen Endsysteme angeschlossen sind (Port geht sofort bei Aktivierung in Forwarding State)
 - Herstellerspezifische Terminologie: PortFast (Cisco), Fast Link (NetGear)
 
-#### 2.4.3.2 Rapid Spanning Tree Protocol
+#### Rapid Spanning Tree Protocol
 
 - Proaktiver Ansatz bei dem effizient auf Alternativpfade gewechselt werden kann
 
-### 2.4.4 Virtuelles LAN
+### Virtuelles LAN
 
 - Physisches Netzwerkdesign steht häufig mit logischem Netzwerkdesign in Konflikt
 - logische Einteilung des Netzes auf Ebene der Switche (Aufteilung in Broadcast-Domänen; erhöhte Sicherheit)
@@ -320,7 +333,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - Tag-basierte VLANs: Frames werden mit ID eines VLANs getaggt, wodurch über einen Port mehrere VLANs realisiert werden können
 - dynamische/inhaltsbasierende VLANs: Zuordnung zu VLANs anhand verwendeter Protokolle (weniger verbreitet)
 
-#### 2.4.4.1 Tag-basierte VLANs
+#### Tag-basierte VLANs
 
 - Erweiterung der Ethernet-Frames um einen Tag zur Identifikation des VLANs zu dem das Frame gehört
 
@@ -333,7 +346,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - **Drop Eligible Indicator:** Identifiziert Frames, die bei Überlast verworfen werden können
 - **VLAN Identifier:** ID des zugehörigen VLANs ($2^{12}-2$ = max. 4096 VLANs)
 
-#### 2.4.4.2 Inter-VLAN-Routing
+#### Inter-VLAN-Routing
 
 **Ansatz 1**
 
@@ -344,14 +357,14 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - **Ansatz 2:** Einsatz von virtuellen Interfaces zur Vermeidung des hohen Aufwandes für separate Schnittstellen
 <!-- Gerne Prüfungsfrage: Voraussetzungen/Konfigurationsschritte -->
 
-#### 2.4.4.3 STP und VLAN
+#### STP und VLAN
 
 > STP weiß nix von VLANs
 
 - klassischer Ansatz nutzt die verfügbaren physischen Verbindungen nicht optimal aus
 - Lösung: Multiple Spanning Tree Protocol (jedes VLAN hat eigenen ST + ein Internal Spanning Tree für alle VLANs)
 
-### 2.4.5 Transparent Interconnection of lots of links (TRILL)
+### Transparent Interconnection of lots of links (TRILL)
 
 - Ethernet-Frames werden in einen TRILL-Header gekapselt
 - Routing dieser Frames auf deren Basis auf L2 (nächster Hop wird durch umgebenen L2-Header angegeben)
@@ -359,13 +372,13 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 - TRILL-Header besitzt HOP-Count-Feld um Routing-Schleifen zu vermeiden
 - Entfernung des THRILL-Headers vor Auslieferung an das Zielsystem
 
-### 2.4.6 Stacking
+### Stacking
 
 - Stackfähige Switsches können miteinander zu einer Gruppe verbunden werden (einzelnes logisches Gerät, ansprechen über einzelne IP)
 - Vorteile: Skalierbarkeit (Anzahl der Ports einfach ), vereinfachte Netzwerkschnittstelle (Konfiguration von nur einem logischem Gerät), Vergrößerter Durchsatz (Stacking über Port mit hoher Datenrate)
 - Nachteil: Platzbedarf, höherer Stromverbrauch mehrerer Geräte, Kopplung als neue Fehlerquelle
 
-# Internetprotokoll und Hilfsprotokolle
+# 3 Internetprotokoll und Hilfsprotokolle
 
 - Schicht 3; von Übertragungsmedium unabhängig
 - Overlay über L2, bildet davon unabhängiges Netz
@@ -558,7 +571,7 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 
 - mit bspw. Ping überprüfen, ob Verbindung funktioniert
 
-### Nachteile IPv4
+## Nachteile IPv4
 
 - Ausgeschöpfter Adressraum: nur 4 Milliarden Adressen, ungünstige Vergabe, NAT als Lösung (aber: erschwert Nutzung einiger Dienste)
 - Ineffizientes Routing: Header hat variable Länge
@@ -729,17 +742,18 @@ sudo ip netns list # zur Prüfung
 sudo ip link add veth1 netns ns1 type veth peer name veth2 netns ns2 # erstellt veth1 in ns1 und veth2 in ns2
 ```
 
-- radvd installieren und .conf anlegen
+- radvd installieren und ggf. Konfigurationsdatei anlegen, falls nicht schon vorhanden:
 
 ```bash
-apt-get install radvd
+apt-get install radvd # bei anderen Distributionen analog
 touch /etc/radvd.conf
 ```
 
-- .config bearbeiten
+- Konfigurationsdatei bearbeiten:
 
 ```conf
 interface veth1{
+  AdvSendAdvert on;
 	prefix 2001:db8:1:0::/64{
 		AdvOnLink on;
 		AdvAutonomous on;
@@ -749,21 +763,179 @@ interface veth1{
 ```
 [größere Beispiel-Config](https://github.com/reubenhwk/radvd/blob/master/radvd.conf.example)
 
-- radvd erneut starten und Status erfassen
-
-```bash
-sudo systemctl start radvd
-sudo systemctl status radvd
-```
-
 - Namespace betreten und Interface aktivieren:
 
 ```bash
 sudo ip netns exec ns1 /bin/bash
 ip link set veth1 up
+ip a # wird nur Link-Local Adresse besitzen
 ```
 
 - diesen Schritt für zweites Interface wiederholen
-- radvd in Namespace1 aktivieren
+- Unit-Datei für den ``radvd``-Dienst sichern: ``cp /lib/systemd/system/radvd.service /home/username/radvd.service.bak``
+- Unit-Datei für den ``radvd``-Dienst zum Schreiben öffnen
+- dort die ``ExecStart``-Zeile auf Folgendes ändern:
 
+```conf
+ExecStart=/bin/sh -c 'exec /sbin/ip netns exec ns1 /usr/bin/radvd --nodaemon'
+```
+
+- **Achtung:** der Pfad von ``radvd`` kann sich je nach Distribution ändern. Auf Ubuntu ist sie in ``/usr/sbin``. Im Zweifelsfall kann der Ort mit ``which radvd`` herausgefunden werden.
+- Unit-Datei neu einlesen: ``sudo systemctl daemon-reload``
+- radvd starten: ``sudo systemctl start radvd``
+- Status des Dienstes prüfen: ``sudo systemctl status radvd``
+- Den Network Namespace betreten prüfen, ob ``ip a`` nun zusätzlich eine ``scope global`` IPv6-Adresse mit dem ``2001:[...]``-Präfix anzeigt
 **tbc: Anfang nächster Einheit**
+
+# Trans`port`schicht
+
+- Transportschicht dient der Ende-zu-Ende Kommunikation (Prozess zu Prozess)
+- Adressierungsmöglichkeit = **Ports** (`bind()` bindet Kommunikation an Port)
+- Beispiel: zielgerichtete Adressierung von `http`-Server über Port 80 (alle Ports<1024 = *well-known* Ports -> benötigen `root`)
+
+![Übersicht Transportschicht](resources/transportschicht.png)<!-- width=500px -->
+
+# User Datagram Protocol (UDP)
+
+- verbindungsloses unzuverlässiges Transportprotokoll zur ausschließlichen Addresierung von Ports (16-Bit Adresskomponente)
+- *unzuverlässiges* = keine Reaktion auf Paketverluste (z.B. durch überlastete Router)
+- *verbindungslos* = Kommunikationszustand wird in keinem lokalen Zustand verwaltet -> erneut übermittelt von IP+Port bei jeder Verbindung
+- keine Reihenfolgegarantie: Pakete werden nicht zwingend in der richtige Reihenfolge an den Zielprozess weitergegeben
+	- Reihenfolge ankommender Pakete kann von keinem Protokoll garantiert werden -> aber: Pufferung vor Weitergabe möglich
+- geringer Protokolloverhead -> sehr effizient (besonders für Video-/Audiodaten)
+- eingesetzt von DNS, DHCP, NTP, SNMP, ...
+
+![UDP-Header](resources/udp-header.png)<!-- width=500px -->
+
+## Transmission Control Protocol (TCP)
+
+- dominierendes Schicht-4-Protokoll im Internet
+- verbindungsorientierte Kommunikation mit wohldefiniertem Verbindungsaufbau
+- zuverlässige Kommunikation durch Bestätigungen
+- Reihenfolgegarantie
+    - Reihenfolge eines Datenstreams bei Sender und Empfänger gleich
+    - Bei Reihenfolgeänderung der Bytes bei der Übertragung erfolgt Umsortierung auf Empfängerseite
+- Flow Control (Flusskontrolle)
+- Congestion Control (Überlaststeuerung) -> bei verlorenen Pakten dynamische Reduktion der Paketgröße
+- Segmentierung von Anwendungsdaten in übertragbare Einheiten (auf Grundlage der Maximum Segment Size - MSS)
+
+![TCP-Header](resources/tcp-header.png)<!-- width=500px -->
+
+Sequenznummer: bezieht sich auf das erstes Byte eines Paketes
+Acknowledgement Number: Bestätigung der Sequenznummer der erhaltenen Bytes (ohne Ack -> wiederholtes Senden des Pakets)
+Options: hier eigentlich alle später hinzugekommenen Erweiterungen verwirklicht
+Window Size:
+  - Empfänger teilt hier maximale Größe des Receiving-Window mit
+  - kann sich im Verlauf ändern
+Urgent Pointer: verweist auf Daten im Bytebereich (Priorisierung von Daten)
+Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verbindung oder ACK)
+
+### Congestion / Receiving Window
+
+
+- **Receiving Window:** Puffert Daten vor Weiterleitung an den Prozess (verhindert, das Daten für die Verarbeitung verworfen werden müssen)
+- **Congestion Window:** soll, bei maximalem Durchsatz, Überlast auf einem Pfad verhindern (insbesondere durch überlastete Router) -> Größe wird dynamisch angepasst (<= Receiving Window)
+- beide Windows können auf Konfigurationsebene angepasst werden (z.B. bei lokalen `CEPH`-Clustern, die durch Routing-Flaschenhälse nicht begrenzt sind)
+- TCP-Verbindungen sind **bidirektional** -> Sender und Empfänger nehmen ebenso die umgekehrte Rolle ein
+- Abbau der bidirektional Verbidnungen separat (`FIN`-Flag) -> können auch unidirektional abgebaut werden
+
+![Schematische Darstellung der Ein-/Ausgangspuffer einer TCP-Verbindung](resources/tcp-windows.png)<!-- width=500px -->
+
+- `ECN`-Feld im IP-Header: wird von Router bei Überlast gesetzt
+- Rückmeldung an den Sender durch das Setzen des Feldes bei ausgehenden IP-Paketen
+- Sender reduziert nach Rückmeldung die Paketgröße und informiert Empfänger über TCP-Header
+- = Zusammenspiel zwischen Layern (IP und TCP)
+
+### TCP-Optionen
+
+- Feld, das Zusatzinformationen beinhalten kann, die nicht in den anderen Header-Felder repräsentiert werden
+- Mögliche Optionstypen `kind` [durch IANA zugewiesen](https://www.iana.org/assignments/tcp-parameters/tcp-parameters.xhtml)
+- Beispiele:
+	- 2 = Maximum Segment Size Option: maximale Segmentgröße des Empfängers
+	- 3 = Window Scale Option: ermöglicht Window-Größen über 65535 Bytes
+	- 4 = TCP Selective Acknowledgment Options
+	- 30 = Multipath TCP (MPTCP)
+
+### Verbindungsaufbau
+
+![TCP-Zustandsdiagramm (Auszug)](resources/tcp-states.png)<!-- width=500px -->
+
+<!--Handshake (+ besonders sync-flag) = prüfungsrelevant-->
+
+- zu Beginn beide Seiten CLOSED -> Client sendet Paket mit `SYN`-Flag
+- Server antwortet mit `SYN-ACK` -> Client bestätigt mit `ACK`
+- neuer Zustand: Established (zum Schließen: `FIN`-Paket)
+
+![TCP-Handshake](resources/tcp-handshake.png)<!-- width=500px -->
+
+- `SYN`: Synchronisation von Sequenznummern (zufällig gewählt im Angriffsvektoren zuverringern)
+	- ist `SYN`-Flag gesetzt wird mitgesendete Sequenznummer als Startsequenznummer festgelegt
+- Port-Scanner (wie `nmap`) senden `SYN`-Pakete an alle Ports warten auf `ACK` Antwort (Ports mit aktivem Dienst)
+- `SYN`-Paket bieten DOS-Angriffspunkt (`SYN-Flooding`) -> Fluten des Servers mit `SYN`-Paketen -> sendet `ACK` und wartet vergeblich auf `ACK` des Empfängers -> viele halboffene Verbindungen
+	- halboffene Verbindungen pro Socket limitiert -> keine neuen Verbindungen möglich
+	- Firewall als Schutz: Blacklisten von IPs die mehrere SYN-Pakete kurz hintereinander senden
+
+#### SYN-Cookies
+
+- Idee: Server hält nach initialem TCP-Fragment (mit gesetztem `SYN`-flag) noch keinen Zustand -> kodiert Zustandsbehaftete Informationen als Cookie (Zeitstempel, Endpunkte (IPs+Ports), MSS)
+- Cookie wird als Sequenznummer an den Client zurückgesendet -> Server erhält Informationen im dritten Schritt des Verbindungsaufbaus vom Client zurück
+- Zusatzschritt für Angreifer -> höherer Aufwand
+- bei vielen Systemen umgesetzt, allerdings _kein_ RFC dazu vorhanden
+
+#### TCP Fast-Open (TFO)
+
+- Ziel: Netzwerklatenz von Anwendungen um eine volle RTT reduzieren (3-Wege-Handshake vor Übermittlung von Anwendungsdaten)
+- Grundprinzip: Client fragt beim ersten Verbindungsaufbau eine spezifisches `TFO`-Cookie an
+- Bei erneutem Verbindungsaufbau werden direkt mit dem ersten Segment Anwendungsdaten und der gespeicherte `TFO`-Cookie übermittelt (kein regulärer Drei-Wege-Handshake erforderlich)
+- Senkung der Latenz und Page Load Time (`PLT`) besonders für Webcrawler bedeutend
+- Spezifikation ist als [Experimental RFC der IETF](https://tools.ietf.org/html/rfc7413) verfügbar
+
+![TCP Fast-Open](resources/tcp-fastopen.png)<!-- width=200px -->
+
+### Multipath TCP
+
+- klassische TCP-Verbindung an eine Netzwerkschnittstelle gebunden -> parallele Nutzung mehrerer Netzwerkschnittstellen durch `MTCP`
+
+<!--ToDo: Mehr Infos von den Folien übernehmen-->
+<!--Motivation und Grundprinzip wichtig-->
+
+### Transport Layer Security (TLS)
+
+- setzt auf TCP-verbindungen auf, [durch RFC standardisiert](https://tools.ietf.org/html/rfc5246)
+- Protokoll bietet: Authentisierung und Schlüsseltausch, Verschlüsselungsalgorithmen und Kryptografische Hash-Funktionen
+- sichert z.B. HTTP-Kommunikation oder Schlüsselaustausche bei OpenVPN ab
+
+## Quick UDP Internet Connections (QUIC)
+
+![QUIC](resources/quic.png)<!-- width=500px -->
+
+- Implementation wichtiger Protokollmechanismen (u.a. Übertragungswiederholung bei Verlusten, Congestion Control, Flow Control) oberhalb von UDP
+<!--ToDo: Mehr Infos von den Folien übernehmen-->
+
+## Sockets
+
+- Software-Schnittstelle über die Netzwerk- und Interprozess-Kommunikation durchgeführt werden kann
+- Anlegen durch Systemaufruf `socket()`: `int socket(int domain, int type, int protocol)`
+
+![Unterteilung von Sockets](resources/sockets.png)
+
+<!--Abbildungen auf Folien 19 und 20 sind höchstgradig prüfungsrelevant-->
+
+### SOCK_STREAM
+
+- Serverseite muss einen Socket in einen Zustand überführen, in dem Verbindungen nach einer Verbindungsanfrage (mittels Aufruf `connect()`) durch einen Client etabliert werden können
+- Überführung und Etablierung einer Verbidnung erfolgt in drei Schritten
+  - 1. `bind()` Binden des Sockets an einen Port
+  - 2. `listen()` Markierung des Sockets als passiv
+  - 3. `accept()` Akzeptieren von eingehenden Verbindungen (Reguläres Verhalten: blockierender Aufruf)
+- -> erst ab `accept()` kann der 3W-Handshake erfolgen
+
+![Sockets-Übersicht](resources/Sockets_Stream.png)<!-- width=500px -->
+
+<!-- Fortsetzung folgt nach der nächsten Vorlesung
+### SOCK_DGRAM
+
+- im Falle von Sockets des Typ DGRAM ist keine Überführung des Sockets in einen verbindungbereiten Zustand erforderlich
+
+- **TBC**
+-->

@@ -55,7 +55,7 @@ Systemanalyse
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-<!--pagebreak-->
+<!--newpage-->
 
 # Einführung / Überblick
 
@@ -778,10 +778,10 @@ ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **E
 6. Pretend-To-Own ... benötigte Produkte leihen und so tun, als würden sie dem Anbieter gehören
 7. PBSK ... Papier, Bleistift, Schere, Kleber
 
-# Design-Thinking 
+# Design-Thinking
 ist eine Methode für den Innovationsprozess
 
-**Idee**: 
+**Idee**:
 
 Iterationen, Prozesse & Objekte bewusst gestalten, die sich streng an den Bedürfnissen des zukünftigen Nutzers orientieren
 

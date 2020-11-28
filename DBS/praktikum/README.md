@@ -601,72 +601,70 @@ SELECT vorname, name, ort FROM nutzer;
 
 ## Indices
 
-- 2 Arten in MSSQL
-- ungruppierte (nonclustered) Indices:
-  - Index für eine Spalte
-  - neue Tabelle mit zwei Spalten wird erstellt
-  - 1. Spalte speichert Inhalt aus eigentlicher Tabelle, aber sortiert
-  - 2. Spalte speicher Position davon
-  - Vorteil: schnelles Suchen
-  - Nachteil: mehr Speicherbedarf
-- gruppierte (clustered) Indices:
-  - nur 1 pro Tabelle erlaubt
-  - bildet ganze Tabelle ab
-  - sortiert abhängig von best. Spalte
-  - Vorteil: kein zusätzl. Speicherbedarf
-  - Nachteil: beim Ändern von Daten muss Index ggf. neu erstellt werden
-  - braucht temporär mehr RAM (bis zu 20%)
 - der Primärschlüssel ist automatisch der clustered Index
-- für jeden Unique Key wird automatisch ein nonclustered Index erstellt
+- für jeden unique Key wird automatisch ein nonclustered Index erstellt
+
+**ungruppierte (nonclustered) Indices**
+
+- Index für eine Spalte
+- neue Tabelle mit zwei Spalten wird erstellt
+- 1. Spalte speichert Inhalt aus eigentlicher Tabelle, aber sortiert
+- 2. Spalte speicher Position davon
+- Vorteil: schnelles Suchen
+- Nachteil: mehr Speicherbedarf
+
+**gruppierte (clustered) Indices**
+
+- bildet ganze Tabelle ab -> nur 1 pro Tabelle erlaubt
+- sortiert abhängig von best. Spalte
+- Vorteil: kein zusätzl. Speicherbedarf
+- Nachteil: beim Ändern von Daten muss Index ggf. neu erstellt werden
+- braucht temporär mehr RAM (bis zu 20%)
 
 ```sql
--- Indices erstellen:
---   nonclustered:
+-- nonclustered Index erstellen:
 CREATE INDEX ix_Buchtitel ON Buch(titel DESC);
-
---   clustered:
+-- clustered Index erstellen:
 CREATE CLUSTERED INDEX ix_Buchtitel ON Buch(Titel);
 ```
 
 ## Trigger
 
-- "Auslöser" --> reagieren auf definiertes Ereignis
-- Vgl. Prozedur ohne Parameter
+- "Auslöser" -> reagieren auf definiertes Ereignis
+- vgl. Prozedur ohne Parameter
 - Arten:
-  - DML: Data Manipulation Language (reagieren auf ``INSERT``, ``UPDATE``, ``DELETE``)
-    - sichern Datenkonsistenz, prüfen Daten <!--eignet sich auch zum pfuschen ;)-->
-  - DDL: Data Definition Language (reagieren auf bspw. ``ALTER``)
-- man kann mehrere Trigger für ein Ereignis definieren
-- man kann einen Trigger für mehrere Ereignisse definieren
-- wenn möglich, sollte man für bessere Effizienz Constraints anstelle von Triggern verwenden, wenn möglich
+	- `DML`: Data Manipulation Language (reagieren auf `INSERT`, `UPDATE`, `DELETE`)
+		- sichern Datenkonsistenz, prüfen Daten <!--eignet sich auch zum pfuschen ;)-->
+	- `DDL`: Data Definition Language (reagieren auf bspw. `ALTER`)
+- mehrere Trigger für ein Ereignis und ein Trigger für mehrere Ereignisse möglich
+- wenn möglich, sollte man für bessere Effizienz Constraints anstelle von Triggern verwenden
 
-###  ``AFTER``-Trigger <!--höhö-->
+###  `AFTER`-Trigger <!--höhö-->
 
 - lösen aus, nachdem Ereignis aufgetreten ist
 
 ```sql
 CREATE TRIGGER tr_BuchInsert ON buch
-AFTER INSERT -- UPDATE, DELETE
-AS
+AFTER INSERT AS-- UPDATE, DELETE
 DECLARE @title nvarchar(100);
-SELECT @title = titel FROM buch;
+SELECT @title = titel FROM inserted;  -- deleted
 PRINT 'Buch hinzugefügt: ' + @title;
 ```
 
 Wenn man ein Buch einfügt, erhält man:
 
 ```txt
-Buch hinzugefügt
+Buch hinzugefügt: Buchtitel
 
 (1 row affected)
 
 Completion time: 2020-11-25T14:37:17.3255273+01:00
 ```
 
-- Ereignisse werden in temporären Tabellen - bspw. ``inserted`` oder ``deleted`` gespeichert
-- Hinweis: ein UPDATE löst einen ``DELETE`` und einen ``INSERT`` aus
-- Deaktivieren mit ``DISABLE TRIGGER triggername``
-- Reaktivieren mit ``ENABLE TRIGGER triggername``
+- Ereignisse werden in temporären Tabellen - bspw. `inserted` oder `deleted` gespeichert
+- Hinweis: ein UPDATE löst einen `DELETE` und einen `INSERT` aus
+- Deaktivieren mit `DISABLE TRIGGER triggername`
+- Reaktivieren mit `ENABLE TRIGGER triggername`
 
 Trigger zur Prüfung des Nutzeralters:
 
@@ -685,7 +683,7 @@ BEGIN
   DELETE FROM nutzer WHERE ID = @id;
   RAISERROR('Das Alter ist zu hoch!', 15, 1);
   /*
-    nach Nachricht folgt Schweregrad und Status --> frei wählbar:
+    nach Nachricht folgt Schweregrad und Status -> frei wählbar:
     Schweregrad von 0 bis 18; 19 bis 25 sind für Administratoren reserviert.
     Status von 0 bis 255
   */
@@ -727,13 +725,13 @@ SELECT @vid = verlag_id FROM inserted;
 
 IF (SELECT name FROM verlag WHERE id = @vid) IS NULL
 BEGIN
-  RAISERROR('Der angegebene Verlag existiert nicht!', 15, 1);
+	RAISERROR('Der angegebene Verlag existiert nicht!', 15, 1);
 ELSE
-  INSERT INTO buch (titel, isbn, klappentext, seiten, verlag_id) SELECT titel, isbn, klappentext, seiten, verlag_id FROM inserted; -- * würde hier auch die ID übernehmen, was nicht geht
+	INSERT INTO buch (titel, isbn, klappentext, seiten, verlag_id) SELECT titel, isbn, klappentext, seiten, verlag_id FROM inserted; -- * würde hier auch die ID übernehmen, was nicht geht
 END;
 ```
 
-- Übung: Erstellen Sie einen Trigger für die Tabelle ``ausleihe```, der sicherstellt, dass nur Einträge mit gültiger Nutzer-ID und Exemplar-ID zulässt und dass das Exemplar leihbar ist
+- Übung: Erstellen Sie einen Trigger für die Tabelle `Ausleihe`, der sicherstellt, dass nur Einträge mit gültiger Nutzer-ID und Exemplar-ID zulässt und dass das Exemplar leihbar ist
 
 ```sql
 CREATE TRIGGER tr_ausleihePrüfen ON ausleihe
@@ -746,10 +744,10 @@ SELECT @nid = nutzer_id FROM inserted;
 SELECT @eid = exemplar_id FROM inserted;
 
 IF ((SELECT id FROM nutzer WHERE id = @nid) IS NULL)
-   OR ((SELECT id FROM exemplar WHERE id = @eid) IS NULL)
-   OR ((SELECT leihbar FROM exemplar WHERE id = @eid) = 0)
-  RAISERROR('Ausleihe fehlgeschlagen! Prüfen Sie Nutzer-ID, Exemplar-ID und Leih-Status!', 15, 1);
+	OR ((SELECT id FROM exemplar WHERE id = @eid) IS NULL)
+	OR ((SELECT leihbar FROM exemplar WHERE id = @eid) = 0)
+	RAISERROR('Ausleihe fehlgeschlagen! Prüfen Sie Nutzer-ID, Exemplar-ID und Leih-Status!', 15, 1);
 ELSE
-  INSERT INTO ausleihe (exemplar_id, Nutzer_id, LeihDat, MahnDat, RueckDat, Kosten)
-  SELECT exemplar_id, Nutzer_id, LeihDat, MahnDat, RueckDat, Kosten FROM inserted;
+	INSERT INTO ausleihe (exemplar_id, Nutzer_id, LeihDat, MahnDat, RueckDat, Kosten)
+	SELECT exemplar_id, Nutzer_id, LeihDat, MahnDat, RueckDat, Kosten FROM inserted;
 ```

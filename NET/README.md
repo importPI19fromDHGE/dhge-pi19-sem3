@@ -884,6 +884,8 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 
 #### TCP Fast-Open (TFO)
 
+<!--gern gewählte Prüfungsfrage-->
+
 - Ziel: Netzwerklatenz von Anwendungen um eine volle RTT reduzieren (3-Wege-Handshake vor Übermittlung von Anwendungsdaten)
 - Grundprinzip: Client fragt beim ersten Verbindungsaufbau eine spezifisches `TFO`-Cookie an
 - Bei erneutem Verbindungsaufbau werden direkt mit dem ersten Segment Anwendungsdaten und der gespeicherte `TFO`-Cookie übermittelt (kein regulärer Drei-Wege-Handshake erforderlich)
@@ -892,9 +894,11 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 
 ![TCP Fast-Open](resources/tcp-fastopen.png)<!-- width=200px -->
 
-### Multipath TCP
+### Multipath TCP (MTCP)
 
-- klassische TCP-Verbindung an eine Netzwerkschnittstelle gebunden -> parallele Nutzung mehrerer Netzwerkschnittstellen durch `MTCP`
+- klassische TCP-Verbindung an eine Netzwerkschnittstelle gebunden -> bei mehreren Netzwerkschnittstellen ineffiziente Nutzung der Resourcen
+- Ziel von `MTCP`: parallele Nutzung mehrerer Netzwerkschnittstellen
+- keine Änderung auf Anwendungsschicht
 
 <!--ToDo: Mehr Infos von den Folien übernehmen-->
 <!--Motivation und Grundprinzip wichtig-->
@@ -928,14 +932,19 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
   - 1. `bind()` Binden des Sockets an einen Port
   - 2. `listen()` Markierung des Sockets als passiv
   - 3. `accept()` Akzeptieren von eingehenden Verbindungen (Reguläres Verhalten: blockierender Aufruf)
-- -> erst ab `accept()` kann der 3W-Handshake erfolgen
+- -> erst ab `accept()` kann der 3W-Handshake erfolgen (bis dahin ist der Prozess blockiert)
 
-![Sockets-Übersicht](resources/sockets-stream.png)<!-- width=500px -->
+![Schematischer Ablauf der Server/Client-Kommunikation über SOCK_STREAM](resources/sockets-stream.png)<!-- width=500px -->
 
-<!-- Fortsetzung folgt nach der nächsten Vorlesung
 ### SOCK_DGRAM
 
-- im Falle von Sockets des Typ DGRAM ist keine Überführung des Sockets in einen verbindungbereiten Zustand erforderlich
+- versandt von Datagrammen über UDP unter Angabe von IP und Port
+- keine Überführung des Sockets in einen verbindungbereiten Zustand erforderlich
+- `bind()` bindet den Socket an einen Port
+- `recvfrom()` blockiert den Prozess
+
+![Schematischer Ablauf der Server/Client-Kommunikation über SOCK_DGRAM](resources/sockets-dgram.png)<!-- width=500px -->
 
 - **TBC**
--->
+
+<!--Vergelich von TCP und UDP gerne Prüfungsfrage-->

@@ -40,10 +40,10 @@
   - Dateitransfer zwischen Clients und Server
 - Was ist DD?
   - Disk Dump \--> Sichern und Flashen von USB-Sticks (nicht Prüfungsrelevant)
-- Die Zeichen ">>" bzw. ">" im Skript bzw. tee -a
+- Die Zeichen ``>>`` bzw. ``>`` im Skript bzw. tee -a
   - Umleitung der Ausgabe
-  - \> File ersetzen
-  - \>\> An File anfügen
+  - ``>`` File ersetzen
+  - ``>>`` An File anfügen
   - tee -a An File anfügen und Ausgabe des Übergebenen
 - Unterschied Datensicherung und Datenspiegelung
   - Datensicherung = Datensicherung auf zweitem System

@@ -50,12 +50,12 @@
   - Datenspiegelung = Datenkopie auf dem selben System
 - Unterschied Datenrate und Bandbreite
   - Bandbreit = Maximum der Datenrate
-  - Datenrate = aktuelle Menge der übertragenen Daten
+  - Datenrate = Menge der übertragenen Daten in einem bestimmten Zeitraum
 - Welchen Zweck erfüllt `rsync`?
   - Remotecopy über Netzwerk
 - Welche Informationen benötigt man um sich bei einem SSH-Server einzuloggen?
   - IP/FQDN, Port, Passwort, Nutzer
-  - Key
+  - Schlüsselpaar, dessen Public Key in der ``authorized_keys``-Datei des Servers eingetragen ist
 - Wie verwendet man Schleifen in Bash-Skripten?
 
 ```bash
@@ -79,6 +79,8 @@ for ((i = 1; i <= $#; i++ )); do printf '%s\n' "Arg $i: ${!i}" done
   - Ausnutzung Hardware
   - Sicherungspunkte
   - Testumgebung
+  - Isolation zwischen Host und Gästen
+  - parallele Ausführung mehrerer Betriebssysteme
 - Welche Schritte sind bei einem Verwaltungsakt zu beachten? <!--Sehr vage Frage, aber hier seine gewünschte Antwort: Zweck des Verwaltungsaktes, Backup, Installation und Konfiguration (grafisch oder per Skript -> gut für Automatisierung), Testen, Integrieren-->
 - Wie überwacht man Netzwerktraffic?
   - Wireshark

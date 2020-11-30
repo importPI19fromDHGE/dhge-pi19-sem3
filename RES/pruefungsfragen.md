@@ -46,10 +46,10 @@
   - ``>>`` An File anfügen
   - tee -a An File anfügen und Ausgabe des Übergebenen
 - Unterschied Datensicherung und Datenspiegelung
-  - Datensicherung = Datensicherung auf zweitem System
-  - Datenspiegelung = Datenkopie auf dem selben System
+  - Datensicherung = Datensicherung auf zweitem System. Ist unabhängig von Änderungen an der Quelle.
+  - Datenspiegelung = Datenkopie auf demselben System, aber auf verschiedenen Datenträgern. Ist abhängig von Änderungen an der Quelle.
 - Unterschied Datenrate und Bandbreite
-  - Bandbreite = Maximum der Datenrate
+  - Bandbreite = Frequenzbereich, über den Kommunikation erfolgt. Rein physikalische Kenngröße.
   - Datenrate = Menge der übertragenen Daten in einem bestimmten Zeitraum
 - Welchen Zweck erfüllt `rsync`?
   - Remotecopy über Netzwerk

@@ -930,7 +930,7 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
   - 3. `accept()` Akzeptieren von eingehenden Verbindungen (Reguläres Verhalten: blockierender Aufruf)
 - -> erst ab `accept()` kann der 3W-Handshake erfolgen
 
-![Sockets-Übersicht](resources/Sockets_Stream.png)<!-- width=500px -->
+![Sockets-Übersicht](resources/sockets-stream.png)<!-- width=500px -->
 
 <!-- Fortsetzung folgt nach der nächsten Vorlesung
 ### SOCK_DGRAM

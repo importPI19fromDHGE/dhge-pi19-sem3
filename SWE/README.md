@@ -52,6 +52,7 @@ Systemanalyse
 - [Design-Thinking](#design-thinking)
   - [4 Prozess-Schritte](#4-prozess-schritte)
   - [Hinweise](#hinweise)
+- [Aufwands-Analyse](#aufwands-analyse)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -813,3 +814,11 @@ Fail Early!
    viele Herangehensweisen sammeln, aber nicht bis in die letzte Tiefe verfolgen
 4. wilde Ideen zulassen & ermutigen!
 5. insgesamt kundenorientiert
+
+# Aufwands-Analyse
+
+- Hauptbestandteil der Entwicklungskosten: Personal (Gehalt + Verwaltung)
+- **Faustregeln**: 50k Euro pro Mitarbeiter pro Jahr
+	- **konkreter Fall**: 1500h à 100 Euro -> 150k Euro
+
+> Faustregeln sollten auf den konkreten Fall runtergerechnet werden!

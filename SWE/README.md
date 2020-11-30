@@ -816,11 +816,9 @@ Fail Early!
 5. insgesamt kundenorientiert
 
 # Aufwands-Analyse
-- Hauptbestandteil der Entwicklungskosten: Personal
-  - Gehalt + Verwaltung
 
-**Faustregeln**: 50k Euro pro Mitarbeiter pro Jahr
-
-**konkreter Fall**: 1500h a 100 Euro --> 150k Euro
+- Hauptbestandteil der Entwicklungskosten: Personal (Gehalt + Verwaltung)
+- **Faustregeln**: 50k Euro pro Mitarbeiter pro Jahr
+	- **konkreter Fall**: 1500h à 100 Euro -> 150k Euro
 
 > Faustregeln sollten auf den konkreten Fall runtergerechnet werden!

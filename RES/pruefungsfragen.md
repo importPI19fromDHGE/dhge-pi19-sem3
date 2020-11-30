@@ -42,14 +42,14 @@
   - Disk Dump \--> Sichern und Flashen von USB-Sticks (nicht Prüfungsrelevant)
 - Die Zeichen ">>" bzw. ">" im Skript bzw. tee -a
   - Umleitung der Ausgabe
-  - > File ersetzen
-  - >> An File anfügen
+  - \> File ersetzen
+  - \>\> An File anfügen
   - tee -a An File anfügen und Ausgabe des Übergebenen
 - Unterschied Datensicherung und Datenspiegelung
   - Datensicherung = Datensicherung auf zweitem System
   - Datenspiegelung = Datenkopie auf dem selben System
 - Unterschied Datenrate und Bandbreite
-  - Bandbreit = Maximum der Datenrate
+  - Bandbreite = Maximum der Datenrate
   - Datenrate = Menge der übertragenen Daten in einem bestimmten Zeitraum
 - Welchen Zweck erfüllt `rsync`?
   - Remotecopy über Netzwerk

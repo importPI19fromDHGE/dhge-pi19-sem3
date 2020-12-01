@@ -656,7 +656,7 @@ maxretry=3
 - Abgleich von Dateien von lokalen System und Remotesystem
 - Differenzial-basiert mit Quick-Check-Algorithmus
 - Zweck
-  - Sicherung:(){ :|:& };:
+  - Sicherung
   - Spiegelung und Synchronisierung
   - reguläre Datenübertragung
   - kann verlustfrei unterbrochen werden

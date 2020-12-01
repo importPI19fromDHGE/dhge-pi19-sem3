@@ -43,6 +43,7 @@ Betriebssystemverwaltung
   - [MQTT](#mqtt)
   - [Apache2](#apache2)
   - [Fail2Ban](#fail2ban)
+    - [Konfiguration](#konfiguration)
   - [Rsync](#rsync)
     - [vollständige Systemsicherung](#vollständige-systemsicherung)
   - [Quota](#quota)
@@ -630,6 +631,26 @@ Fail2Ban überwacht zuvor angebene Logdateien nach einem definierten Filter (=Na
 4. optional Emailversand möglich
 5. Freigabe der IP-Adresse nach Ablauf der Sperrzeit
 6. erneute Versuche möglich
+
+### Konfiguration
+
+- in ``/etc/fail2ban``
+- relevant: ``jail.conf``, ``jail.local``, ``action.d/``
+  - nur jail.local bearbeiten, da ``jail.conf`` beim Update überschrieben wird
+
+Beispiel:
+
+```conf
+[servicename]
+enabled=true
+port=22
+filter = sshd
+logpath=/var/log/auth.log # Überwachte Datei, die zum Erkennen der Fehlversuche genutzt wird
+maxretry=3
+```
+
+- Überprüfen des Fail2Ban-Status: ``sudo fail2ban-client status`` und ``sudo fail2ban-client status sshd``
+- IP-Adresse entbannen: ``sudo fail2ban-client set sshd unbanip ipadress``
 
 ## Rsync
 

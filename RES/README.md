@@ -5,14 +5,15 @@ Betriebssystemverwaltung
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Mögliche Prüfungsfragen](#m%C3%B6gliche-pr%C3%BCfungsfragen)
+- [Betriebssystemverwaltung](#betriebssystemverwaltung)
+- [Mögliche Prüfungsfragen](#mögliche-prüfungsfragen)
 - [Vorteile Virtualisierung](#vorteile-virtualisierung)
 - [Grundlagen Linux](#grundlagen-linux)
   - [Terminal](#terminal)
   - [VBox Guest Additions installieren](#vbox-guest-additions-installieren)
-  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-sch%C3%A4den-sch%C3%BCtzen)
+  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-schäden-schützen)
 - [Grundlagen Windows](#grundlagen-windows)
-  - [Features hinzufügen / entfernen](#features-hinzuf%C3%BCgen--entfernen)
+  - [Features hinzufügen / entfernen](#features-hinzufügen--entfernen)
   - [Verwaltungsaufgaben](#verwaltungsaufgaben)
   - [Netzlaufwerk verbinden](#netzlaufwerk-verbinden)
     - [via Explorer](#via-explorer)
@@ -27,12 +28,12 @@ Betriebssystemverwaltung
   - [Ping of Death](#ping-of-death)
     - [Windows](#windows)
     - [Linux](#linux)
-  - [Windows-Netzwerkeinstellungen via Skript ändern](#windows-netzwerkeinstellungen-via-skript-%C3%A4ndern)
-  - [Vorträge](#vortr%C3%A4ge)
+  - [Windows-Netzwerkeinstellungen via Skript ändern](#windows-netzwerkeinstellungen-via-skript-ändern)
+  - [Vorträge](#vorträge)
     - [Themen](#themen)
     - [Was soll rein?](#was-soll-rein)
   - [Linux: Nutzerverwaltung](#linux-nutzerverwaltung)
-    - [Nutzer im Terminal ändern](#nutzer-im-terminal-%C3%A4ndern)
+    - [Nutzer im Terminal ändern](#nutzer-im-terminal-ändern)
     - [alle Nutzer anzeigen](#alle-nutzer-anzeigen)
   - [Linux: Skripte](#linux-skripte)
     - [SMB-Share einbinden](#smb-share-einbinden)
@@ -42,6 +43,8 @@ Betriebssystemverwaltung
   - [MQTT](#mqtt)
   - [Apache2](#apache2)
   - [Fail2Ban](#fail2ban)
+  - [Rsync](#rsync)
+    - [vollständige Systemsicherung](#vollständige-systemsicherung)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -622,3 +625,27 @@ Fail2Ban überwacht zuvor angebene Logdateien nach einem definierten Filter (=Na
 4. optional Emailversand möglich
 5. Freigabe der IP-Adresse nach Ablauf der Sperrzeit
 6. erneute Versuche möglich
+
+## Rsync
+
+- Abgleich von Dateien von lokalen System und Remotesystem
+- Differenzial-basiert mit Quick-Check-Algorithmus
+- Zweck
+  - Sicherung:(){ :|:& };:
+  - Spiegelung und Synchronisierung
+  - reguläre Datenübertragung
+  - kann verlustfrei unterbrochen werden
+- Bandbreiteneinsparung, da nur Differenz kopiert
+- Funktionsweise
+  - Datei existiert noch nicht auf Ziel: vollst. Datei kopieren
+  - Datei existiert auf Ziel: Prüfsummen bilden --> sind identisch?
+  - wenn nicht identisch: Bildung von Differenzial, Kopie davon schicken
+- Aufruf: ``rsync [OPTIONEN] QUELLEN ZIEL``
+- Beispieloption: ``-a`` \--> Übernahme aller Rechte und Eigentümer
+
+### vollständige Systemsicherung
+
+- benötigt root-Rechte, aber root über SSH sollte gesperrt sein \--> eigener Nutzer für ausschließlich rsync
+- ``rsync --rsync-path="sudo rsync" --delete -avzbe ssh rsyncnutzer@example.com:/ /backup --backup-dir=~/old``
+  - ``--delete``, ``-b`` und ``--backup-dir`` kann auch weggelassen werden, aber dann werden gelöschte Dateien auf der Quelle nicht auf dem Ziel gelöscht
+- 

@@ -38,3 +38,7 @@ Alle Skripte in diesem Repository sind im `markdown`-Format verfasst. Für diese
 <!--newpage-->
 <!--clearpage-->
 ```
+
+### Mathematische Formel
+
+Github unterstützt keine mathematischen Formeln. Als Workaround gibt es eine [Erweiterung für Chrome](https://github.com/orsharir/github-mathjax). Ansonsten können Formeln in ihrer vollen Pracht nur in den PDFs betrachtet werden.

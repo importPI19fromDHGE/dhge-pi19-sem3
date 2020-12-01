@@ -685,12 +685,6 @@ maxretry=3
 - es gibt Kontingent-Vorlagen
 - Warnschwellen, Berichte an Nutzer und Admins (Eventlog + Mail), Befehle möglich (einstellbar)
 
-Skript zur Konfiguration von Benedict:
-
-```ps
-
-```
-
 ### Linux
 
 - Installation:

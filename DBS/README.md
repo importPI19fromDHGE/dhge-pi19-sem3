@@ -1,7 +1,6 @@
 <!----------
 title: "Datenbanken"
 date: "Semester 3"
-listings-no-page-break: true
 keywords: [Datenbanken, DHGE, Semester 3]
 ---------->
 

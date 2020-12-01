@@ -1,7 +1,6 @@
 <!----------
 title: "Rechnernetze - Grundlagen"
 date: "Semester 3"
-listings-no-page-break: true
 keywords: [Rechnernetze, DHGE, Semester 3]
 ---------->
 

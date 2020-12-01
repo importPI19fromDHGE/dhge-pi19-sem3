@@ -1,7 +1,6 @@
 <!----------
 title: "IT-Trends"
 date: "Semester 3"
-listings-no-page-break: true
 keywords: [IT-Trends, DHGE, Semester 3]
 ---------->
 

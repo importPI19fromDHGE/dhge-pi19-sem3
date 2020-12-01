@@ -1,7 +1,6 @@
 <!----------
 title: "Betriebssystemverwaltung"
 date: "Semester 3"
-listings-no-page-break: true
 keywords: [Betriebssystemverwaltung, DHGE, Semester 3]
 ---------->
 

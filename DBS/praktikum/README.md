@@ -751,3 +751,35 @@ ELSE
 	INSERT INTO ausleihe (exemplar_id, Nutzer_id, LeihDat, MahnDat, RueckDat, Kosten)
 	SELECT exemplar_id, Nutzer_id, LeihDat, MahnDat, RueckDat, Kosten FROM inserted;
 ```
+
+### `DLL`-Trigger
+
+- Trigger auf Datenbank- oder Server-Level
+
+```sql
+-- Server-Trigger für das Erstellen einer Datenbank
+CREATE TRIGGER tr_create_database
+ON ALL SERVER FOR CREATE_DATABASE AS
+PRINT 'CREATE_DATABASE has been triggered';
+-- Datenbank-Trigger für das löschen einer Tabelle
+CREATE TRIGGER tr_drop_table
+ON DATABASE FOR DROP_TABLE AS
+PRINT 'DROP_TABLE has been triggered';
+```
+
+## Stored Procedures
+
+```sql
+-- Prozedur, die auf Basis eines (unvollständigen) Buchtitels alle passenden Bücher inkl. Autor und Verlag zurückgibt
+CREATE OR ALTER PROCEDURE pBuch @titel nvarchar(50) AS
+SET NOCOUNT ON; -- deaktiviert Ausgaben des DBMS
+SELECT Buch.Titel Buchtitel, Buch.ISBN, Autor.Name Autor, Verlag.Name Verlag FROM Buch
+JOIN Verlag ON Verlag.id = Buch.Verlag_id
+JOIN Buch2Autor ON Buch.id = Buch2Autor.Buch_id
+JOIN Autor ON Autor.id = Buch2Autor.Autor_id
+WHERE Buch.Titel LIKE '%' + @titel + '%';
+
+go
+
+EXEC pBuch 'Der';
+```

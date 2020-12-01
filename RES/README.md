@@ -1,9 +1,8 @@
 <!----------
-title: "The Document Title"
-author: [Example Author, Another Author]
-date: "2017-02-20"
+title: "Betriebssystemverwaltung"
+date: "Semester 3"
 listings-no-page-break: true
-keywords: [Markdown, Example]
+keywords: [Betriebssystemverwaltung, DHGE, Semester 3]
 ---------->
 
 Betriebssystemverwaltung

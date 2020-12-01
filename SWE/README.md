@@ -1,9 +1,8 @@
 <!----------
-title: "The Document Title"
-author: [Example Author, Another Author]
-date: "2017-02-20"
+title: "Systemanalyse"
+date: "Semester 3"
 listings-no-page-break: true
-keywords: [Markdown, Example]
+keywords: [Systemanalyse, DHGE, Semester 3]
 ---------->
 
 Systemanalyse

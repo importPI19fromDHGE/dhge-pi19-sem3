@@ -1,13 +1,12 @@
 <!----------
-title: "The Document Title"
-author: [Example Author, Another Author]
-date: "2017-02-20"
+title: "Rechnernetze - Grundlagen"
+date: "Semester 3"
 listings-no-page-break: true
-keywords: [Markdown, Example]
+keywords: [Rechnernetze, DHGE, Semester 3]
 ---------->
 
-Rechnernetzkonzepte und -architekturen
-======================================
+Rechnernetze - Grundlagen
+=========================
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->

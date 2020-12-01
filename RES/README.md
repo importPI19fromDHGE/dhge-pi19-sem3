@@ -45,6 +45,9 @@ Betriebssystemverwaltung
   - [Fail2Ban](#fail2ban)
   - [Rsync](#rsync)
     - [vollständige Systemsicherung](#vollständige-systemsicherung)
+  - [Quota](#quota)
+    - [Windows](#windows-1)
+    - [Linux](#linux-1)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -87,6 +90,8 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Was ist ein DDoS-Angriff?
 - Welche Vorteile bietet die Virtualisierung?
 - Welche Schritte sind bei einem Verwaltungsakt zu beachten? <!--Sehr vage Frage, aber hier seine gewünschte Antwort: Zweck des Verwaltungsaktes, Backup, Installation und Konfiguration (grafisch oder per Skript -> gut für Automatisierung), Testen, Integrieren-->
+- Was sind die Vorteile eines Skripts gegenüber interaktiver Konfiguration
+- was sind Kontingente und warum sind sie notwendig?
 
 <!--newpage-->
 
@@ -648,4 +653,40 @@ Fail2Ban überwacht zuvor angebene Logdateien nach einem definierten Filter (=Na
 - benötigt root-Rechte, aber root über SSH sollte gesperrt sein \--> eigener Nutzer für ausschließlich rsync
 - ``rsync --rsync-path="sudo rsync" --delete -avzbe ssh rsyncnutzer@example.com:/ /backup --backup-dir=~/old``
   - ``--delete``, ``-b`` und ``--backup-dir`` kann auch weggelassen werden, aber dann werden gelöschte Dateien auf der Quelle nicht auf dem Ziel gelöscht
-- 
+
+## Quota
+
+- Zweck: Verminderung spontaner Out of Storage Situationen, Begrenzung von Speicherplatz für Nutzer
+
+### Windows
+
+- GUI (empfohlen): durch RSAT Tool / FSRM (Ressourcen-Manager für Dateiserver)
+- Konfiguration globaler Emails notwendig
+- es gibt Kontingent-Vorlagen
+- Warnschwellen, Berichte an Nutzer und Admins (Eventlog + Mail), Befehle möglich (einstellbar)
+
+Skript zur Konfiguration von Benedict:
+
+```ps
+
+```
+
+### Linux
+
+- Installation:
+
+```bash
+sudo apt update
+# sudo apt full-upgrade
+sudo apt install quota
+quota --version # Kontrolle
+```
+
+- Konfiguration:
+  - Option in der ``/etc/fstab`` notwendig: ``usrquota,grpquota``
+  - ohne reboot neu mounten: ``mount -o remount /mountpoint``
+  - Kontrolle: ``cat /proc/mounts | grep '/mountpoint'``
+- ``sudo quotacheck –ugm /mountpoint`` erstellt Konfigurationen
+- ``sudo quotaon –v /mountpoint`` aktiviert Quota
+- ``sudo edquota –u user`` Soft- und Hard-Limits konfigurieren
+- ``sudo repquota –s /mountpoint`` erstellt Report

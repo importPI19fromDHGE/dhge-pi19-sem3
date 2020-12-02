@@ -37,8 +37,11 @@ Datenbanken-Praktikum
   - [Transaktionen](#transaktionen)
   - [Indices](#indices)
   - [Trigger](#trigger)
-    - [``AFTER``-Trigger](#after-trigger)
-    - [Instead-of-Trigger](#instead-of-trigger)
+    - [DML-Trigger](#dml-trigger)
+      - [`AFTER`-Trigger](#after-trigger)
+      - [Instead-of-Trigger](#instead-of-trigger)
+    - [DDL-Trigger](#ddl-trigger)
+  - [Stored Procedures](#stored-procedures)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -635,11 +638,14 @@ CREATE CLUSTERED INDEX ix_Buchtitel ON Buch(Titel);
 - Arten:
 	- `DML`: Data Manipulation Language (reagieren auf `INSERT`, `UPDATE`, `DELETE`)
 		- sichern Datenkonsistenz, prüfen Daten <!--eignet sich auch zum pfuschen ;)-->
-	- `DDL`: Data Definition Language (reagieren auf bspw. `ALTER`)
+	- `DDL`: Data Definition Language (reagieren auf `ALTER`, ``CREATE``, ``DROP``)
 - mehrere Trigger für ein Ereignis und ein Trigger für mehrere Ereignisse möglich
 - wenn möglich, sollte man für bessere Effizienz Constraints anstelle von Triggern verwenden
+- Löschen von Triggern mit ``DROP TRIGGER triggername;``
 
-###  `AFTER`-Trigger <!--höhö-->
+### DML-Trigger
+
+####  `AFTER`-Trigger <!--höhö-->
 
 - lösen aus, nachdem Ereignis aufgetreten ist
 
@@ -709,11 +715,12 @@ BEGIN
 END;
 ```
 
-### Instead-of-Trigger
+#### Instead-of-Trigger
 
 - werden anstelle des Ereignisses ausgeführt
 - ``INSERT`` / ``UPDATE`` / ``DELETE`` werden dennoch in ``inserted`` bzw. ``deleted`` geschrieben
 - Übung von oben umgebaut:
+- wenn ``INSERT INTO`` mehrere Basistabellen einer View betrifft, schlägt dieser fehl und kann mit ``INSTEAD OF`` Trigger gelöst werden
 
 ```sql
 CREATE TRIGGER tr_verlagPrüfen ON buch
@@ -751,3 +758,55 @@ ELSE
 	INSERT INTO ausleihe (exemplar_id, Nutzer_id, LeihDat, MahnDat, RueckDat, Kosten)
 	SELECT exemplar_id, Nutzer_id, LeihDat, MahnDat, RueckDat, Kosten FROM inserted;
 ```
+
+### DDL-Trigger
+
+- beziehen sich einerseits auf Datenbankbereich (Tabellen, Sichten, Prozeduren,...) und auf Server-Bereich (**Datenbanken**, Logins,...)
+- viele Ereignisse, siehe [Docs](https://docs.microsoft.com/de-de/sql/relational-databases/triggers/ddl-events?view=sql-server-ver15)
+- da sehr viele: Zusammenfassung in [DDL-Ereignisgruppen](https://docs.microsoft.com/de-de/sql/relational-databases/triggers/ddl-event-groups?view=sql-server-ver15)
+
+Beispiel: auf Server-Ebene
+
+```sql
+CREATE TRIGGER tr_createDB -- Achtung: Serverebene
+ON ALL SERVER FOR CREATE_DATABASE
+AS PRINT 'Eine neue Datenbank erblickt das Licht der Welt. Sag "Hallo Welt!" :-)';
+```
+
+Beispiel: auf Datenbank-Ebene
+
+```sql
+CREATE TRIGGER tr_createTable
+ON DATABASE FOR CREATE_TABLE
+AS
+SET NOCOUNT ON; -- unterdrückt automatisch generierte Debug Meldungen
+DECLARE @Table SYSNAME = eventdata().value('(/EVENT_INSTANCE/ObjetName)[1]', 'sysname');
+PRINT 'Die Tabelle' + @Table + 'wurde erstellt';
+```
+
+## Stored Procedures
+
+- "gespeicherte Funktionen"
+- ähnlich wie Trigger, aber werden durch Nutzer ausgelöst
+- Parameter sind möglich
+- sparen Zeit und verringern Fehlerquellen für komplexe Anfragen
+- schneller als normale Anfragen <!--"sin angeblich auch schneller... Weeß ick nich"-->
+- werden immer im Rechte-Kontext des Nutzers ausgeführt
+- Erstellen:
+
+```sql
+CREATE PROC pAutorNatio -- bzw PROCEDURE ausschreiben
+@name nvarchar(100), @vorname nvarchar(100) -- Parameter
+AS
+SET NOCOUNT ON;
+SELECT nationalitaet.bezeichnung FROM nationalitaet JOIN autor ON nationalitaet.id = autor.nationalität_id
+WHERE autor.name LIKE '%' + @name + '%';
+```
+
+Aufruf:
+
+```sql
+EXECUTE pAutorNatio 'schiller', '';
+```
+
+- Best Practice: Filtern von SQL-Schlüsselwörtern, sodass keine bösartigen Parameter ausgeführt werden können

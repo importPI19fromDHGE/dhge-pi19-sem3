@@ -672,11 +672,11 @@ maxretry=3
   - Datei existiert auf Ziel: Prüfsummen bilden --> sind identisch?
   - wenn nicht identisch: Bildung von Differenzial, Kopie davon schicken
 - Aufruf: ``rsync [OPTIONEN] QUELLEN ZIEL``
-- Beispieloption: ``-a`` \--> Übernahme aller Rechte und Eigentümer
+- Beispieloption: ``-a`` --> Übernahme aller Rechte und Eigentümer
 
 ### vollständige Systemsicherung
 
-- benötigt root-Rechte, aber root über SSH sollte gesperrt sein \--> eigener Nutzer für ausschließlich rsync
+- benötigt root-Rechte, aber root über SSH sollte gesperrt sein --> eigener Nutzer für ausschließlich rsync
 - ``rsync --rsync-path="sudo rsync" --delete -avzbe ssh rsyncnutzer@example.com:/ /backup --backup-dir=~/old``
   - ``--delete``, ``-b`` und ``--backup-dir`` kann auch weggelassen werden, aber dann werden gelöschte Dateien auf der Quelle nicht auf dem Ziel gelöscht
 

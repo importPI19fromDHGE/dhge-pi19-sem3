@@ -901,7 +901,7 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 - Ziel von `MTCP`: parallele Nutzung mehrerer Netzwerkschnittstellen
 - keine Änderung auf Anwendungsschicht -> Implementation von TCP-Subflows innerhalb der Transportschicht
 - TCP-Subflows verhalten sich wie normale TCP-Verbindungen auf separaten Pfaden
-- Realiserung der Protokolloperationen durch TCP-Optionen
+- Realisierung der Protokolloperationen durch TCP-Optionen
 - jede TCP-Verbindung besitzt eigene Sequenznummer + zusätzlich globale Sequenznummer -> Paketverluste werden auf Subflow-Ebene erkannt und behandelt
 - bei Ausfall eines Subflows -> erneute Übertragung über verfügbare Subflows
 
@@ -918,7 +918,7 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 ![QUIC](resources/quic.png)<!-- width=500px -->
 
 - Implementation wichtiger Protokollmechanismen (u.a. Übertragungswiederholung bei Verlusten, Congestion Control, Flow Control) oberhalb von UDP
-- Bietet Möglichkeit ab dem ersten Paket Anwendungsdaten zu übermitteln
+- bietet Möglichkeit, ab dem ersten Paket Anwendungsdaten zu übermitteln
 - Verbindungsaufbau und Tausch kryptografischer Parameter in einem Schritt -> geringerer Overhead als TCP+TLS
 - Verbindungen besitzen eindeutigen Identifier -> unabhängig von IP+Port
 

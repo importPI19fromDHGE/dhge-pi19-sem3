@@ -973,9 +973,43 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 ![Beispiel Routingtabellen](resources/Routing_Tabellen.png)<!-- width=500px -->
 
 Benachbarte Subnetze können beim Routing zusammengefasst werden, wie im folgenden Beispiel zu sehen: 
-
+<!--Mögliche Prüfungsaufgabe-->
 
 ![Nachbarnetze zusammenfassen](resources/Routing_Nachbarnetze_Zusammenfassen.png)<!-- width=500px -->
+
+Begriffsunterscheidung: 
+- Forwarding Information Base (FIB) und Routingtabellen unterscheiden sich eigentlich, sind jedoch in Theorie und Praxis nicht einheitlich bezeichnet 
+
+### Schema für IP-Forwarding Algorithmus
+
+```
+Ziel: D 
+N = Präfix nzw. Netz von D 
+
+if (N ist direkt am lokalen Link angeschlossen) 
+{
+  ermittle MAC-Adresse von D
+  sende Paket an MAC-Adresse von D
+}
+
+else if (es existiert ein Routingtabelleneintrag für N) 
+{
+  ermittle ausgehende Schnittstelle
+  ermittle MAC-Adresse des nächsten Hops H
+  sende Paket an H 
+}
+
+else if (es existiert ein Default-Gateway von G)
+{
+  ermittle MAC-Adresse von G
+  sende Paket an G 
+}
+else 
+{
+  sende ICMP-Fehlermeldung an Quelle des Pakets
+}
+```
+
 
 
 ## Hierarchische Struktur des Internets (Autonome Systeme)

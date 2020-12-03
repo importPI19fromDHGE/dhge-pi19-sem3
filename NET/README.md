@@ -918,7 +918,7 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 ![QUIC](resources/quic.png)<!-- width=500px -->
 
 - Implementation wichtiger Protokollmechanismen (u.a. Übertragungswiederholung bei Verlusten, Congestion Control, Flow Control) oberhalb von UDP
-- Bietet Möglichkei ab dem ersten Paket Anwendungsdaten zu übermitteln
+- Bietet Möglichkeit ab dem ersten Paket Anwendungsdaten zu übermitteln
 - Verbindungsaufbau und Tausch kryptografischer Parameter in einem Schritt -> geringerer Overhead als TCP+TLS
 - Verbindungen besitzen eindeutigen Identifier -> unabhängig von IP+Port
 

@@ -1054,7 +1054,7 @@ Wie kann ich ein AS beantragen?
 **"Das Internet" ist also eine Menge aus autonomen Systemen, die jeweils von den Grenzroutern wissen. Über deren jeweilige Funktionsweise müssen keine Informationen vorhanden sein.**
 
 
-![Übersicht AS](resources/Routing_AS.png)<!-- width=500px -->
+![Übersicht AS](resources/routing-as.png)<!-- width=500px -->
 
 ### Klassifizierung von AS
 
@@ -1066,7 +1066,7 @@ Wie kann ich ein AS beantragen?
   - Kunde:
     - Kostenpflichtige Nutzung eines AS als Zugang zum Internet
 
-![Übersicht AS-Tiers](resources/Routing_AS_Tiers.png)<!-- width=500px -->
+![Übersicht AS-Tiers](resources/routing-as-tiers.png)<!-- width=500px -->
 
 ### AS und Routing
 
@@ -1085,7 +1085,7 @@ Wie kann ich ein AS beantragen?
       - Babel 
       - Intermediate System to Intermediate System Protocol (IS-IS)
 
-![Übersicht AS-Routing](resources/Routing_AS_Protokolle.png)<!-- width=500px -->
+![Übersicht AS-Routing](resources/routing-as-protokolle.png)<!-- width=500px -->
 
 ## Distanzvektor- und Link-State-Protokolle
 
@@ -1174,7 +1174,7 @@ Schwächen:
 - Routen zwischen Areas führen immer über Area 0 
 - Areas führen zu einer Klassifikation von Routern 
 
-![Übersicht Areas](resources/Routing_AS_OSPF.png)<!-- width=500px -->
+![Übersicht Areas](resources/routing-as-ospf.png)<!-- width=500px -->
 
 #### OSPF - Hello-Pakete
 
@@ -1182,7 +1182,7 @@ Schwächen:
 - Nach Prüfung von in Paketen enthaltenen Informationen wird für jeden benachbarten Knoten ein Eintrag in einer dem empfangenden Interface zugeordneten Datenstruktur vermerkt 
 - zu ausgewählten Nachbarn wird eine "Adjazenz" ausgebildet 
 
-![Übersicht Hello](resources/Routing_AS_OSPF_Hello.png)<!-- width=500px -->
+![Übersicht Hello](resources/routing-as-ospf-hello.png)<!-- width=500px -->
 
 #### OSPF- Designated Router
 
@@ -1190,5 +1190,8 @@ Schwächen:
 
 <!-- TODO: Rest von Folien übernehmen  -->
 
+#### Praxisbeispiel - BIRD 
+
+<!-- TODO: Einpflegen der Doku, wenn es denn mal funktioniert  -->
 ### Border Gateway Protocol (BGP)
 ## Router-Daemonen-Implementierung (BIRD)

@@ -975,6 +975,23 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 Benachbarte Subnetze können beim Routing zusammengefasst werden, wie im folgenden Beispiel zu sehen: 
 <!--Mögliche Prüfungsaufgabe-->
 
+Aufteilen eines Netzes in Subnetze: 
+- Beispiel: 
+  - 192.168.42.0/24 ist uns zugewiesen 
+  - soll in mind. 5 aufgeteilt werden
+- Anwendung: 
+  - Aufteilung in 5 nicht möglich, daher in 8 Subnetze aufteilen (nächsthöhere 2er Potenz)
+  - Fixieren der n-Bit -> Subnetzmaske aktualisieren (hier von /24 auf /27)
+  - `192.168.42` ist gesetzt, nur letztes Oktett kann verteilt werden 
+    - 000 -> 0    -> 192.168.42.0/27
+    - 001 -> 32   -> 192.168.42.32/27
+    - 010 -> 64   -> 192.168.42.64/27
+    - 011 -> 96   -> 192.168.42.96/27
+    - 100 -> 128  -> 192.168.42.128/27
+    - 101
+    - 110
+    - 111
+
 ![Nachbarnetze zusammenfassen](resources/Routing_Nachbarnetze_Zusammenfassen.png)<!-- width=500px -->
 
 Begriffsunterscheidung: 
@@ -1013,11 +1030,93 @@ else
 
 
 ## Hierarchische Struktur des Internets (Autonome Systeme)
-### Übersicht
+
+- zur Ausbildung eines hierarchischen Netzwerkes und damit eines skalierbareren Routings wird das Internet unterteilt in Autonome Systeme 
+- "An AS is a connected group of on or more IP prefixes run by one or more network operators which has a SINGLE and CLEARLY DEFINED routing policy"
+- Unterscheidung in: 
+  - Registrierte AS:
+    - Erhalten eine weltweit eindeutige 16-Bit bzw. 32-Bit AS-Nummer
+    - werden von den Regional Internet Registries verwaltet
+    - Aktuelle Liste registrierter AS kann eingesehen werden via http://www.iana.org/assignments/as-numbers/as-numbers.xhtml
+  - Private AS:
+    - 16-Bit-ASN: 64512 - 65534
+    - 32-Bit-ASN: 4200000000 - 4294967294
+
+Wie kann ich ein AS beantragen?
+  - Beantragung bei der RIPE
+    - dazu muss RIPE-Mitgliedschaft vorhanden sein 
+
+  - Voraussetzungen:
+    - einheitliche Routing-Policy vorweisen
+    - Bedarf begründen 
+    - AS muss (physische) Verbindungen in mindestens 2 andere AS haben
+
+**"Das Internet" ist also eine Menge aus autonomen Systemen, die jeweils von den Grenzroutern wissen. Über deren jeweilige Funktionsweise müssen keine Informationen vorhanden sein.**
+
+
+![Übersicht AS](resources/Routing_AS.png)<!-- width=500px -->
+
 ### Klassifizierung von AS
+
+- Relation zu AS: 
+  - Transit:
+    - Betreiber eines AS zahlt für die Weiterleitung von Daten durch das zweite AS 
+  - Peering: 
+    - Aufgrund von Abkommen werden Daten zwischen den AS kostenfrei ausgetauscht
+  - Kunde:
+    - Kostenpflichtige Nutzung eines AS als Zugang zum Internet
+
+![Übersicht AS-Tiers](resources/Routing_AS_Tiers.png)<!-- width=500px -->
+
 ### AS und Routing
+
+- Routing-Protokolle für die Wegewahl **zwischen** AS: 
+  - Inter-AS-Protokolle / Exterior Gateway Protocols (EGP)
+    - Müssen bei Routing betriebswirtschaftliche Aspekte berücksichtigen (Policy- / Regelbasiert)
+    - Geben einen Pfad von AS vor, durch den ein Paket zu leiten ist
+    - Beispiel (und gleichzeitig einziges praktisch bedeutsames EGP):
+      - Border Gateway Protocol (BGP)
+- Routing-Protokolle für die Wegewahl **innerhalb** eines AS 
+  - Intra-AS-Protokolle / Interior Gateway Protocols (IGP)
+    - Beispiele:
+      - Routing Information Protocol (RIP Version 1 und 2)
+      - Open Shortest Path First (OSPF)
+      - Enhanced Interior Gateway Routing Protocol (EIGRP)
+      - Babel 
+      - Intermediate System to Intermediate System Protocol (IS-IS)
+
+![Übersicht AS-Routing](resources/Routing_AS_Protokolle.png)<!-- width=500px -->
+
 ## Distanzvektor- und Link-State-Protokolle
-### Übersicht
+
+- Distanzvektorroutingprotokolle
+  - Router haben keine Informationen über die gesamte Topologie des Netzes, sondern speichern nur, welcher Knoten mit welcher Distanz über welchen Nachbarn zu erreichen ist
+  - Distanzinformationen für Ziele werden an Nachbarrouter in regelmäßigen Abständen propagiert
+  - Vorteile: 
+    - geringe Komplexität 
+    - geringes Nachrichtenaufkommen 
+  - Nachteile: 
+    - Mangelnde Topologieinformation kann zu schlechten Routingentscheidungen führen (z.B. `Count-to-Infinity-Problem`)
+  - Beispiele: 
+    - RIP
+    - Babel
+    - EIGRP
+
+- Link-State-Routing-Protokolle
+  - regelmäßiger Versand von Informationen (`Link-State-Advertisements (LSA)`) über alle bekannten Nachbarn eines Knotens samt Distanzangabe 
+  - Distanzinformation wird an Nachbarrouter propagiert und von dort weiter in das Netz geflutet 
+  - Aus den Informationen wird ein Graph konstruiert für den z.B. mittels `Dijkstra-Algorithmus` kürzeste Wege zu allen Zielen berechnet werden können 
+  - Vorteile: 
+    - jeder Router kennt die Topologie des Netzes
+  - Nachteile: 
+    - hohe Komplexität 
+    - hohes Nachrichtenaufkommen 
+  - Beispiele: 
+    - OSPF
+    - IS-IS
+
+<!-- Abbildungen fehlen noch -->   
+
 ### Bellman-Ford-Algorithmus
 ### Dijkstra-Algorithmus
 ## Ausgewählte Routing-Protokolle

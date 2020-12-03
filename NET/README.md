@@ -1118,9 +1118,77 @@ Wie kann ich ein AS beantragen?
 <!-- Abbildungen fehlen noch -->   
 
 ### Bellman-Ford-Algorithmus
-### Dijkstra-Algorithmus
+
+- Verfahren, welches in Distanzvektorverfahren eingesetzt wird
+- Zeitkomplexität `O(n * m)` (n= Anzahl Knoten, m= Anzahl Kanten)
+- Grundlegender Ablauf: 
+  - Grundgedanke: 
+    - Es wird für alle Kanten aller Knoten geprüft, ob Kosten zur Erreichung des Anfangsknotens der Kante plus Kosten für die Verwendung der Kante niedriger sind, als aktuell gespeicherte Kosten des Zielknotens der Kante sind
+
+  <!-- TODO: von Folien übernehmen  -->   
+### Dijkstra-Algorithmus  
+
+  <!-- TODO: von Folien übernehmen  -->
+
 ## Ausgewählte Routing-Protokolle
+
 ### Routing Information Protocol (RIP)
+
+- sehr schlichtes und einfach zu implementierendes Protokoll
+- Drei Versionen verfügbar: 
+  - RIPv1 (praktisch irrelevant)
+    - im Gegensatz zu v2 noch keine CIDR-Unterstützung
+  - RIPv2
+    - einziges mit praktischer Relevanz
+  - RIPng (mit IPv6 Unterstützung)
+
+<!-- TODO: Rest von Folien übernehmen  -->
+
+Schwächen: 
+- Hop-Limit von 15
+  - Falls ein Knoten über mehr als 15 Hops erreichbar ist, gilt er für RIP als unerreichbar
+- keine Separation in Broadcast-Domänen 
+  - Netz wird durch Broadcasts geflutet
+  - keine Möglichkeit, große Netze in RIP:Bereiche einzuteilen, die nur innerhlab des Bereichs Informationen austauschen
+- Hops als einzige Metrik
+  - keine Möglichkeit, unterschiedliche Kosten in Routingentscheidungen einzubeziehen
+
+<!-- TODO: Rest von Folien übernehmen  -->
+
 ### Open Shortest Path First (OSPF)
+
+- eines der am häufigsten innerhalb von AS eingesetzten Protokolle im Internet 
+- für IPv4 und IPv6 verfügbar, nur kleine Unterschiede
+- Ablauf: 
+  - Nachbarn propagieren in regelmäßigen Abständen `Hello-Pakete`
+  - Nach der Ausbildung der Nachbarschaftsbeziehungen werden LSA an Nachbarn gesendet, die diese wiederum an ihre Nachbarn verteilen 
+    - Erzeugung von transitiven Beziehungen
+
+<!-- TODO: Rest von Folien übernehmen  -->
+
+#### OSPF-Areas
+- `hello-pakete` wie auch LS-Informationen werden geflutet 
+- Zur Reduktion der Paketzahl wurden `Areas` eingeführt 
+- Nur die Router, die in einer Area lokalisierte Schnittstellen aufweisen, nehmen an der gleichen Instanz des Routing-Algorithmus teil 
+- Minimal liegt Area 0 (0.0.0.0) vor, zu der alle anderen Areas direkt oder via virtuellem Links verbunden sein müssen 
+- Routen zwischen Areas führen immer über Area 0 
+- Areas führen zu einer Klassifikation von Routern 
+
+![Übersicht Areas](resources/Routing_AS_OSPF.png)<!-- width=500px -->
+
+#### OSPF - Hello-Pakete
+
+- Dienen dem Detektieren von benachbarten Routern 
+- Nach Prüfung von in Paketen enthaltenen Informationen wird für jeden benachbarten Knoten ein Eintrag in einer dem empfangenden Interface zugeordneten Datenstruktur vermerkt 
+- zu ausgewählten Nachbarn wird eine "Adjazenz" ausgebildet 
+
+![Übersicht Hello](resources/Routing_AS_OSPF_Hello.png)<!-- width=500px -->
+
+#### OSPF- Designated Router
+
+- Bei n Routern in einem Netz bestehen `(n*(n-1))/2` mögliche Nachbarschaftbeziehungen 
+
+<!-- TODO: Rest von Folien übernehmen  -->
+
 ### Border Gateway Protocol (BGP)
 ## Router-Daemonen-Implementierung (BIRD)

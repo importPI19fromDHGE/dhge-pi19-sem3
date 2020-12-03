@@ -706,7 +706,7 @@ quota --version # Kontrolle
   - Option in der ``/etc/fstab`` notwendig: ``usrquota,grpquota``
   - ohne reboot neu mounten: ``mount -o remount /mountpoint``
   - Kontrolle: ``cat /proc/mounts | grep '/mountpoint'``
-- ``sudo quotacheck –ugm /mountpoint`` erstellt Konfigurationen
-- ``sudo quotaon –v /mountpoint`` aktiviert Quota
-- ``sudo edquota –u user`` Soft- und Hard-Limits konfigurieren
-- ``sudo repquota –s /mountpoint`` erstellt Report
+- ``sudo quotacheck -ugm /mountpoint`` erstellt Konfigurationen
+- ``sudo quotaon -v /mountpoint`` aktiviert Quota
+- ``sudo edquota -u user`` Soft- und Hard-Limits konfigurieren
+- ``sudo repquota -s /mountpoint`` erstellt Report

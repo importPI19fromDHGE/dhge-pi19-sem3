@@ -752,7 +752,7 @@ ELSE
 	SELECT exemplar_id, Nutzer_id, LeihDat, MahnDat, RueckDat, Kosten FROM inserted;
 ```
 
-### `DLL`-Trigger
+### `DDL`-Trigger
 
 - Trigger auf Datenbank- oder Server-Level
 

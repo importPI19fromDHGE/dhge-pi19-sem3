@@ -969,6 +969,15 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 - Wie kann Routing in einem mehrere hunderttausend Router umfassenden Netz realisiert werden?
 
 ## Allgemeines zu Routing
+### Beispiel Routingtabellen 
+![Beispiel Routingtabellen](resources/Routing_Tabellen.png)<!-- width=500px -->
+
+Benachbarte Subnetze können beim Routing zusammengefasst werden, wie im folgenden Beispiel zu sehen: 
+
+
+![Nachbarnetze zusammenfassen](resources/Routing_Nachbarnetze_Zusammenfassen.png)<!-- width=500px -->
+
+
 ## Hierarchische Struktur des Internets (Autonome Systeme)
 ### Übersicht
 ### Klassifizierung von AS

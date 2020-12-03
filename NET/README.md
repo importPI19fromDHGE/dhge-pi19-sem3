@@ -955,3 +955,30 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 ![Schematischer Ablauf der Server/Client-Kommunikation über SOCK_DGRAM](resources/sockets-dgram.png)<!-- width=500px -->
 
 <!--Vergleich von TCP und UDP gerne Prüfungsfrage-->
+
+
+# Exkurs: Routing
+
+## Einleitung 
+
+![Überblick Routing](resources/Routing_Ueberblick.png)<!-- width=500px -->
+
+- Wie werden Informationen bezüglich der Topologie ausgetauscht?
+- Wie werden Pfade auf Grundlage der topologischen Informationen berechnet?
+- Welche Ansätze zur Verkleinerung der Routingtabellen existieren?
+- Wie kann Routing in einem mehrere hunderttausend Router umfassenden Netz realisiert werden?
+
+## Allgemeines zu Routing
+## Hierarchische Struktur des Internets (Autonome Systeme)
+### Übersicht
+### Klassifizierung von AS
+### AS und Routing
+## Distanzvektor- und Link-State-Protokolle
+### Übersicht
+### Bellman-Ford-Algorithmus
+### Dijkstra-Algorithmus
+## Ausgewählte Routing-Protokolle
+### Routing Information Protocol (RIP)
+### Open Shortest Path First (OSPF)
+### Border Gateway Protocol (BGP)
+## Router-Daemonen-Implementierung (BIRD)

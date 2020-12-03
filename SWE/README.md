@@ -5,14 +5,15 @@ Systemanalyse
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Einführung / Überblick](#einf%C3%BChrung--%C3%BCberblick)
+- [Systemanalyse](#systemanalyse)
+- [Einführung / Überblick](#einführung--überblick)
   - [User Story Format](#user-story-format)
-  - [Was gehört alles zur Systemanalyse?](#was-geh%C3%B6rt-alles-zur-systemanalyse)
-- [Regeln für Software-Entwicklung](#regeln-f%C3%BCr-software-entwicklung)
+  - [Was gehört alles zur Systemanalyse?](#was-gehört-alles-zur-systemanalyse)
+- [Regeln für Software-Entwicklung](#regeln-für-software-entwicklung)
   - [(1) Klartext](#1-klartext)
     - [Wasserfallmodell](#wasserfallmodell)
     - [Agil](#agil)
-  - [(2) Gründliche Vertragsgestaltung](#2-gr%C3%BCndliche-vertragsgestaltung)
+  - [(2) Gründliche Vertragsgestaltung](#2-gründliche-vertragsgestaltung)
     - [Wasserfallmodell](#wasserfallmodell-1)
     - [Agil](#agil-1)
   - [(3) Wandelnde Anforderungen: Wie gehe ich damit um?](#3-wandelnde-anforderungen-wie-gehe-ich-damit-um)
@@ -21,10 +22,10 @@ Systemanalyse
   - [Vorgehensmodelle](#vorgehensmodelle)
     - [Phasenmodell](#phasenmodell)
     - [Iteriertes Phasenmodell](#iteriertes-phasenmodell)
-    - [Evolutionäre SW-Entwicklung](#evolution%C3%A4re-sw-entwicklung)
+    - [Evolutionäre SW-Entwicklung](#evolutionäre-sw-entwicklung)
     - [Spiralen Modell](#spiralen-modell)
     - [V-Modell](#v-modell)
-    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-auspr%C3%A4gung-des-v-modells-v-modell-xt)
+    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-ausprägung-des-v-modells-v-modell-xt)
     - [Extreme Programming (XP)](#extreme-programming-xp)
 - [SCRUM](#scrum)
   - [Empirische Prozess Kontrolle](#empirische-prozess-kontrolle)
@@ -43,7 +44,7 @@ Systemanalyse
     - [Definition of Done](#definition-of-done)
     - [DoR: Definition of Ready](#dor-definition-of-ready)
   - [SCRUM-Manifest](#scrum-manifest)
-    - [Häufige / gern gemachte Fehler bezüglich des Manifests](#h%C3%A4ufige--gern-gemachte-fehler-bez%C3%BCglich-des-manifests)
+    - [Häufige / gern gemachte Fehler bezüglich des Manifests](#häufige--gern-gemachte-fehler-bezüglich-des-manifests)
   - [Vor- und Nachteile von SCRUM](#vor--und-nachteile-von-scrum)
   - [SCRUM-Ban als SCRUM Derivat](#scrum-ban-als-scrum-derivat)
 - [Story Board](#story-board)
@@ -53,6 +54,8 @@ Systemanalyse
   - [4 Prozess-Schritte](#4-prozess-schritte)
   - [Hinweise](#hinweise)
 - [Aufwands-Analyse](#aufwands-analyse)
+  - [Aufwandsschätzungen](#aufwandsschätzungen)
+  - [Empirische Schätzverfahren](#empirische-schätzverfahren)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -639,7 +642,7 @@ Hilfe um zu klären, wann eine Aufgabe erledigt ist (wann sie vom Review ins Don
 
 --> Qualitätsanspruch
 
-Das ganze nennt sich **Definition Of Done**. Ein Dokment vom Team.
+Das ganze nennt sich **Definition Of Done**. Ein Dokument vom Team.
 
 **Aufbau eines Definition of Done**
 
@@ -817,8 +820,100 @@ Fail Early!
 
 # Aufwands-Analyse
 
+## Aufwandsschätzungen
+
 - Hauptbestandteil der Entwicklungskosten: Personal (Gehalt + Verwaltung)
 - **Faustregeln**: 50k Euro pro Mitarbeiter pro Jahr
-	- **konkreter Fall**: 1500h à 100 Euro -> 150k Euro
+	- **konkreter Fall**: 1500h à 100 Euro $\rightarrow$ 150k Euro
 
 > Faustregeln sollten auf den konkreten Fall runtergerechnet werden!
+
+- **LOC** ... Lines of Code: als Basis im klassischen Fall
+
+$Mitarbeiter \quad\hat{=}\quad x \,\mathrm{LOC}\quad \text{pro Monat}$ 
+
+$\rightarrow$ Mann Monate (MM) berechenbar
+
+**Bspw**: 
+- SW-Produkt 21000 LOC
+- durchschnittliche Produktivität pro MA: 3500 LOC pro Jahr
+
+$$
+\frac{21000 \,\mathrm{LOC}}{7500 \,\mathrm{LOC}} \cdot \mathrm{Jahr}=6\,\mathrm{MJ}
+$$ 
+
+> So eine Rechnung ist eigentlich sehr unrealistisch!
+
+Ein **Programmierer** hat viele Aufgaben:
+- Code schreiben
+- Doku
+- Kommunikation
+- Persönliches
+- Ausbildung
+- Post
+- Diverses
+
+für unterschiedliche MA sehr unterschiedliche Prozent-Zahlen.
+
+**1 Möglichkeit**: iterative, empirische "Begutachtung" für Team-Zahlen
+
+**Verwendung des Kosten-Leistung-Zeit Dreiecks:**
+1. Zieldefinition beim Projekt-Start
+2. Steuerung bei Änderungen
+
+**Dreieck wird zum Quadrat (mit den Ecken)**: Inhalt, Qualität, $\frac{1}{Kosten}$, $\frac{1}{Zeit}$
+
+- LOC entspricht einer Quantität
+- Komplexität schätzen! (Schulnotenprinzip)
+  - 1 ... 6
+  - oder mit "Größen": **S M L** (small, medium, large)
+- Programmiersprache 
+- Lesbarkeit / Wartbarkeit / Erweiterbarkeit
+- 
+$f(Qualitätsmaße) \hat{=}Kennzahlen$
+$\Rightarrow Aufwand=g(LOC) \cdot f_1(Q,Ma...Ma) \cdot ... \cdot f_m(Q, Ma ... Ma)$
+
+ergo $\Rightarrow$ hochkomplexes Funktionsgebirge, eher nicht praktisch anwendbar!
+
+Das Optimum zwischen produktiver Anteil pro MA und Kommunikativer Anteil der Zeit wird gesucht.
+
+**Faktoren, die die Schätzung beeinflussen**:
+- LOC
+- Komplexität
+- Skills der MA
+- MA1 ... MA2
+- rechtlicher Rahmen
+- Technologien
+- Kommunikation
+- Orga-Form
+- Vorgehensmodell
+- Erfahrung im Team
+- Kunden
+
+## Empirische Schätzverfahren
+
+basieren auf:
+1. Erfahrungen
+2. Vergleich mit bisherigen Projekten
+
+**Experten-Schätzung** $\rightarrow$
+
+$\oplus$ bei Erfahrungen mit gleichartiken Projekten 
+
+$\oplus$ einfach & wenig zeitaufwändig
+
+$\ominus$ krasse Fehler sind möglich (Wann wird dieser Fehler sichtbar?)
+
+$\rightarrow$ Vergleich mit ähnlich abgewickelten Projekt
+
+$\rightarrow$ Mehr/Minder-Aufwendungen mit einfließen lassen
+
+**Delphi-Methode** $\rightarrow$
+- mehrere Unabhängige Experten
+- mehrere Runden
+
+$\oplus$ konvergiert in der Regel
+
+$\oplus$ eliminiert Ausreiser
+
+$\ominus$ Aufwand

@@ -63,18 +63,19 @@ Rechnernetzkonzepte und -architekturen
     - [Exkurs: Raw Sockets](#exkurs-raw-sockets)
     - [Praxisbeispiel](#praxisbeispiel)
 - [Trans`port`schicht](#transportschicht)
-- [User Datagram Protocol (UDP)](#user-datagram-protocol-udp)
+  - [User Datagram Protocol (UDP)](#user-datagram-protocol-udp)
   - [Transmission Control Protocol (TCP)](#transmission-control-protocol-tcp)
     - [Congestion / Receiving Window](#congestion--receiving-window)
     - [TCP-Optionen](#tcp-optionen)
     - [Verbindungsaufbau](#verbindungsaufbau)
       - [SYN-Cookies](#syn-cookies)
       - [TCP Fast-Open (TFO)](#tcp-fast-open-tfo)
-    - [Multipath TCP](#multipath-tcp)
+    - [Multipath TCP (MTCP)](#multipath-tcp-mtcp)
     - [Transport Layer Security (TLS)](#transport-layer-security-tls)
   - [Quick UDP Internet Connections (QUIC)](#quick-udp-internet-connections-quic)
   - [Sockets](#sockets)
     - [SOCK_STREAM](#sock_stream)
+    - [SOCK_DGRAM](#sock_dgram)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

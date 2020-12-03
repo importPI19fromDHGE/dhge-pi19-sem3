@@ -14,28 +14,28 @@ jobs:
       - run: |
           mkdir .old &&
           rsync -vr ./* .old/ --exclude .old &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{print}' .old/DBS/README.md > DBS/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{print}' .old/SWE/README.md > SWE/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{print}' .old/PRO/README.md > PRO/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{print}' .old/RES/README.md > RES/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{print}' .old/NET/README.md > NET/README.md
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{gsub("<!----------","---")};{gsub("---------->","...")};{print}' .old/DBS/README.md > DBS/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{gsub("<!----------","---")};{gsub("---------->","...")};{print}' .old/SWE/README.md > SWE/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{gsub("<!----------","---")};{gsub("---------->","...")};{print}' .old/PRO/README.md > PRO/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{gsub("<!----------","---")};{gsub("---------->","...")};{print}' .old/RES/README.md > RES/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{gsub("<!----------","---")};{gsub("---------->","...")};{print}' .old/NET/README.md > NET/README.md
       - run: |
           mkdir output
       - uses: docker://rstropek/pandoc-latex:latest # generate DBS pdf
         with:
-          args: --output=output/DBS.pdf --resource-path=DBS/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex -f markdown+raw_tex --verbose DBS/README.md
+          args: --output=output/DBS.pdf --resource-path=DBS/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose DBS/README.md
       - uses: docker://rstropek/pandoc-latex:latest # generate SWE pdf
         with:
-          args: --output=output/SWE.pdf --resource-path=SWE/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex -f markdown+raw_tex --verbose SWE/README.md
+          args: --output=output/SWE.pdf --resource-path=SWE/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose SWE/README.md
       - uses: docker://rstropek/pandoc-latex:latest # generate PRO pdf
         with:
-          args: --output=output/PRO.pdf --resource-path=PRO/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex -f markdown+raw_tex --verbose PRO/README.md
+          args: --output=output/PRO.pdf --resource-path=PRO/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose PRO/README.md
       - uses: docker://rstropek/pandoc-latex:latest # generate RES pdf
         with:
-          args: --output=output/RES.pdf --resource-path=RES/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex -f markdown+raw_tex --verbose RES/README.md
+          args: --output=output/RES.pdf --resource-path=RES/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose RES/README.md
       - uses: docker://rstropek/pandoc-latex:latest # generate NET pdf
         with:
-          args: --output=output/NET.pdf --resource-path=NET/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex -f markdown+raw_tex --verbose NET/README.md
+          args: --output=output/NET.pdf --resource-path=NET/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose NET/README.md
       - uses: actions/upload-artifact@master # upload pdfs as an artifact
         with:
           name: output

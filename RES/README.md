@@ -1,3 +1,9 @@
+<!----------
+title: "Betriebssystemverwaltung"
+date: "Semester 3"
+keywords: [Betriebssystemverwaltung, DHGE, Semester 3]
+---------->
+
 Betriebssystemverwaltung
 ========================
 

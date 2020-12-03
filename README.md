@@ -10,7 +10,7 @@ Alle Kommilitonen sind dazu eingeladen, ihre eigenen Beiträge zu diesem Projekt
 2. Forke dieses Repository
 3. `git clone <fork>` deine Fork und erstelle mit `git checkout -b <branchname>` eine neue Branch
 4. Implementiere deine Idee. Bei Fragen kannst du dich gerne über das Issue an uns wenden.
-5. Erstelle eine Pull Request, markiere dabei die Personen aus dem Issue und warte auf Feedback.
+5. Erstelle eine Pull Request, markiere dabei via @mention die Personen aus dem Issue und warte auf Feedback.
 
 ## Module
 

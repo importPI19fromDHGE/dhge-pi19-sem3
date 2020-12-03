@@ -70,11 +70,12 @@ Rechnernetzkonzepte und -architekturen
     - [Verbindungsaufbau](#verbindungsaufbau)
       - [SYN-Cookies](#syn-cookies)
       - [TCP Fast-Open (TFO)](#tcp-fast-open-tfo)
-    - [Multipath TCP](#multipath-tcp)
+    - [Multipath TCP (MTCP)](#multipath-tcp-mtcp)
     - [Transport Layer Security (TLS)](#transport-layer-security-tls)
   - [Quick UDP Internet Connections (QUIC)](#quick-udp-internet-connections-quic)
   - [Sockets](#sockets)
     - [SOCK_STREAM](#sock_stream)
+    - [SOCK_DGRAM](#sock_dgram)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -884,6 +885,8 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 
 #### TCP Fast-Open (TFO)
 
+<!--gern gewählte Prüfungsfrage-->
+
 - Ziel: Netzwerklatenz von Anwendungen um eine volle RTT reduzieren (3-Wege-Handshake vor Übermittlung von Anwendungsdaten)
 - Grundprinzip: Client fragt beim ersten Verbindungsaufbau eine spezifisches `TFO`-Cookie an
 - Bei erneutem Verbindungsaufbau werden direkt mit dem ersten Segment Anwendungsdaten und der gespeicherte `TFO`-Cookie übermittelt (kein regulärer Drei-Wege-Handshake erforderlich)
@@ -892,12 +895,17 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 
 ![TCP Fast-Open](resources/tcp-fastopen.png)<!-- width=200px -->
 
-### Multipath TCP
+### Multipath TCP (MTCP)
 
-- klassische TCP-Verbindung an eine Netzwerkschnittstelle gebunden -> parallele Nutzung mehrerer Netzwerkschnittstellen durch `MTCP`
+- klassische TCP-Verbindung an eine Netzwerkschnittstelle gebunden -> bei mehreren Netzwerkschnittstellen ineffiziente Nutzung der Resourcen
+- Ziel von `MTCP`: parallele Nutzung mehrerer Netzwerkschnittstellen
+- keine Änderung auf Anwendungsschicht -> Implementation von TCP-Subflows innerhalb der Transportschicht
+- TCP-Subflows verhalten sich wie normale TCP-Verbindungen auf separaten Pfaden
+- Realisierung der Protokolloperationen durch TCP-Optionen
+- jede TCP-Verbindung besitzt eigene Sequenznummer + zusätzlich globale Sequenznummer -> Paketverluste werden auf Subflow-Ebene erkannt und behandelt
+- bei Ausfall eines Subflows -> erneute Übertragung über verfügbare Subflows
 
-<!--ToDo: Mehr Infos von den Folien übernehmen-->
-<!--Motivation und Grundprinzip wichtig-->
+<!--Motivation und Grundprinzip sind hier wichtig-->
 
 ### Transport Layer Security (TLS)
 
@@ -910,7 +918,9 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 ![QUIC](resources/quic.png)<!-- width=500px -->
 
 - Implementation wichtiger Protokollmechanismen (u.a. Übertragungswiederholung bei Verlusten, Congestion Control, Flow Control) oberhalb von UDP
-<!--ToDo: Mehr Infos von den Folien übernehmen-->
+- bietet Möglichkeit, ab dem ersten Paket Anwendungsdaten zu übermitteln
+- Verbindungsaufbau und Tausch kryptografischer Parameter in einem Schritt -> geringerer Overhead als TCP+TLS
+- Verbindungen besitzen eindeutigen Identifier -> unabhängig von IP+Port
 
 ## Sockets
 
@@ -919,23 +929,29 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 
 ![Unterteilung von Sockets](resources/sockets.png)
 
-<!--Abbildungen auf Folien 19 und 20 sind höchstgradig prüfungsrelevant-->
-
 ### SOCK_STREAM
 
 - Serverseite muss einen Socket in einen Zustand überführen, in dem Verbindungen nach einer Verbindungsanfrage (mittels Aufruf `connect()`) durch einen Client etabliert werden können
-- Überführung und Etablierung einer Verbidnung erfolgt in drei Schritten
+- Überführung und Etablierung einer Verbindung erfolgt in drei Schritten
   - 1. `bind()` Binden des Sockets an einen Port
   - 2. `listen()` Markierung des Sockets als passiv
   - 3. `accept()` Akzeptieren von eingehenden Verbindungen (Reguläres Verhalten: blockierender Aufruf)
-- -> erst ab `accept()` kann der 3W-Handshake erfolgen
+- -> erst ab `accept()` kann der 3W-Handshake erfolgen (bis dahin ist der Prozess blockiert)
 
-![Sockets-Übersicht](resources/sockets-stream.png)<!-- width=500px -->
+<!--Abbildung höchstgradig prüfungsrelevant-->
 
-<!-- Fortsetzung folgt nach der nächsten Vorlesung
+![Schematischer Ablauf der Server/Client-Kommunikation über SOCK_STREAM](resources/sockets-stream.png)<!-- width=500px -->
+
 ### SOCK_DGRAM
 
-- im Falle von Sockets des Typ DGRAM ist keine Überführung des Sockets in einen verbindungbereiten Zustand erforderlich
+- versandt von Datagrammen über UDP unter Angabe von IP und Port
+- keine Überführung des Sockets in einen verbindungbereiten Zustand erforderlich
+- `bind()` bindet den Socket an einen Port
+- kein Verbidungsaufbau (UDP) -> `sendto()` erfordert stets alle Informationen des Kommunikationsendpunktes
+- `recvfrom()` blockiert den Prozess
 
-- **TBC**
--->
+<!--Abbildung höchstgradig prüfungsrelevant-->
+
+![Schematischer Ablauf der Server/Client-Kommunikation über SOCK_DGRAM](resources/sockets-dgram.png)<!-- width=500px -->
+
+<!--Vergleich von TCP und UDP gerne Prüfungsfrage-->

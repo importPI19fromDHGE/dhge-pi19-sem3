@@ -52,9 +52,14 @@ Systemanalyse
 - [Design-Thinking](#design-thinking)
   - [4 Prozess-Schritte](#4-prozess-schritte)
   - [Hinweise](#hinweise)
-- [Aufwands-Analyse](#aufwands-analyse)
-  - [Aufwandsschätzungen](#aufwandssch%C3%A4tzungen)
-  - [Empirische Schätzverfahren](#empirische-sch%C3%A4tzverfahren)
+- [Aufwandsanalyse](#aufwandsanalyse)
+  - [Aufwandsschätzung](#aufwandssch%C3%A4tzung)
+    - [LOC (Lines of Code) als Basis im klassischen Fall](#loc-lines-of-code-als-basis-im-klassischen-fall)
+    - [weitere Faktoren](#weitere-faktoren)
+    - [Magisches Dreieck / Teufelsquadrat](#magisches-dreieck--teufelsquadrat)
+  - [Empirische Schätzung](#empirische-sch%C3%A4tzung)
+    - [Expertenschätzung](#expertensch%C3%A4tzung)
+    - [Delphi-Methode](#delphi-methode)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

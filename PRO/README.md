@@ -47,7 +47,9 @@ IT-Trends
     - [Virtuelle Rechner im AWS anlegen](#virtuelle-rechner-im-aws-anlegen)
 - [Machine Learning - KI, neuronale Netzwerke, ...](#machine-learning---ki-neuronale-netzwerke-)
   - [Einsatzgebiete](#einsatzgebiete)
-    - [Objekterkennung](#objekterkennung)
+  - [Mathe-Perspektive](#mathe-perspektive)
+    - [Erkennen ohne Lernen](#erkennen-ohne-lernen)
+    - [Erkennen durch Feature-Design](#erkennen-durch-feature-design)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

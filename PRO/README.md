@@ -516,7 +516,7 @@ Tom Mitchell:
 
 Ablauf: 
 
-<!-- Können wir LaTex und wenn ja, wie? -->
+<!-- TODO: Können wir LaTex und wenn ja, wie? -->
 
 `f(x,param_{1})=z_{1}`
 

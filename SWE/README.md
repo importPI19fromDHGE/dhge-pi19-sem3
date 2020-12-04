@@ -11,14 +11,15 @@ Systemanalyse
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Einführung / Überblick](#einf%C3%BChrung--%C3%BCberblick)
+- [Systemanalyse](#systemanalyse)
+- [Einführung / Überblick](#einführung--überblick)
   - [User Story Format](#user-story-format)
-  - [Was gehört alles zur Systemanalyse?](#was-geh%C3%B6rt-alles-zur-systemanalyse)
-- [Regeln für Software-Entwicklung](#regeln-f%C3%BCr-software-entwicklung)
+  - [Was gehört alles zur Systemanalyse?](#was-gehört-alles-zur-systemanalyse)
+- [Regeln für Software-Entwicklung](#regeln-für-software-entwicklung)
   - [(1) Klartext](#1-klartext)
     - [Wasserfallmodell](#wasserfallmodell)
     - [Agil](#agil)
-  - [(2) Gründliche Vertragsgestaltung](#2-gr%C3%BCndliche-vertragsgestaltung)
+  - [(2) Gründliche Vertragsgestaltung](#2-gründliche-vertragsgestaltung)
     - [Wasserfallmodell](#wasserfallmodell-1)
     - [Agil](#agil-1)
   - [(3) Wandelnde Anforderungen: Wie gehe ich damit um?](#3-wandelnde-anforderungen-wie-gehe-ich-damit-um)
@@ -27,10 +28,10 @@ Systemanalyse
   - [Vorgehensmodelle](#vorgehensmodelle)
     - [Phasenmodell](#phasenmodell)
     - [Iteriertes Phasenmodell](#iteriertes-phasenmodell)
-    - [Evolutionäre SW-Entwicklung](#evolution%C3%A4re-sw-entwicklung)
+    - [Evolutionäre SW-Entwicklung](#evolutionäre-sw-entwicklung)
     - [Spiralen Modell](#spiralen-modell)
     - [V-Modell](#v-modell)
-    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-auspr%C3%A4gung-des-v-modells-v-modell-xt)
+    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-ausprägung-des-v-modells-v-modell-xt)
     - [Extreme Programming (XP)](#extreme-programming-xp)
 - [SCRUM](#scrum)
   - [Empirische Prozess Kontrolle](#empirische-prozess-kontrolle)
@@ -49,7 +50,7 @@ Systemanalyse
     - [Definition of Done](#definition-of-done)
     - [DoR: Definition of Ready](#dor-definition-of-ready)
   - [SCRUM-Manifest](#scrum-manifest)
-    - [Häufige / gern gemachte Fehler bezüglich des Manifests](#h%C3%A4ufige--gern-gemachte-fehler-bez%C3%BCglich-des-manifests)
+    - [Häufige / gern gemachte Fehler bezüglich des Manifests](#häufige--gern-gemachte-fehler-bezüglich-des-manifests)
   - [Vor- und Nachteile von SCRUM](#vor--und-nachteile-von-scrum)
   - [SCRUM-Ban als SCRUM Derivat](#scrum-ban-als-scrum-derivat)
 - [Story Board](#story-board)
@@ -59,13 +60,19 @@ Systemanalyse
   - [4 Prozess-Schritte](#4-prozess-schritte)
   - [Hinweise](#hinweise)
 - [Aufwandsanalyse](#aufwandsanalyse)
-  - [Aufwandsschätzung](#aufwandssch%C3%A4tzung)
+  - [Aufwandsschätzung](#aufwandsschätzung)
     - [LOC (Lines of Code) als Basis im klassischen Fall](#loc-lines-of-code-als-basis-im-klassischen-fall)
     - [weitere Faktoren](#weitere-faktoren)
     - [Magisches Dreieck / Teufelsquadrat](#magisches-dreieck--teufelsquadrat)
-  - [Empirische Schätzung](#empirische-sch%C3%A4tzung)
-    - [Expertenschätzung](#expertensch%C3%A4tzung)
+  - [Empirische Schätzung](#empirische-schätzung)
+    - [Expertenschätzung](#expertenschätzung)
     - [Delphi-Methode](#delphi-methode)
+    - [Divide et Impera (Teile und Hersche)](#divide-et-impera-teile-und-hersche)
+    - [SCRUM-Poker](#scrum-poker)
+    - [High-Low-Showdown](#high-low-showdown)
+  - [Algorithmische Schätzverfahren](#algorithmische-schätzverfahren)
+    - [COCOMO](#cocomo)
+    - [Function-Point-Methode](#function-point-methode)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -296,7 +303,7 @@ Hier wird immer wieder in eine Phase "zurück gesprungen", falls etwas nicht pas
 ### Spiralen Modell
 
 | (1) | **ZIELE**, Alternativen, Rahmenbedingungen | (2) | Evaluierung der Alternativen, **RISIKEN** abschätzen, reduzieren |
-|-----|--------------------------------------------|-----|------------------------------------------------------------------|
+| --- | ------------------------------------------ | --- | ---------------------------------------------------------------- |
 | (4) | **PLAN** für nächsten Zyklus               | (3) | **REALISIERUNG** + Überprüfung                                   |
 
 **USP:** Risikobetrachtung
@@ -930,3 +937,155 @@ $$f(Qualitätsmaße) \hat{=}Kennzahlen \rightarrow Aufwand=g(LOC) \cdot f_1(Q,Ma
 - $\oplus$ Schätzungen kovergieren i.d.R.
 - $\oplus$ eliminiert Ausreiser
 - $\ominus$ relativ hoher Aufwand
+
+### Divide et Impera (Teile und Hersche)
+
+- Zerlegung
+- Teilaufgaben schätzen $\Rightarrow$ i.d. Regel kann ich das besser
+
+**Vorteil**: Meilensteine
+
+$\Rightarrow$ **Achtung**: Aufwand für das Zusammenführen beachten!
+
+### SCRUM-Poker
+
+**Motivation**
+
+- (allgemein) je früher im Projekt desto unschärfer wird die Schätzung
+- komplexe Aufgaben $\Rightarrow$ schwierig zu schätzen
+- Laien verfälschen die Aussage
+- Restriktionen von Außen $\Rightarrow$ unrealistische Bewertungen
+
+**$\Rightarrow$Lösung: Planning Poker**
+
+- Schätzmethode für (agile) Teams
+- keine direkte Zeit+Geld Aussagen kommen als Ergebnis heraus
+
+$\Rightarrow$ d.h. Story-Points
+
+- Kategorien werden angestrebt
+- Basis wird festgelegt, i.d.R. mit 1 Story Point
+- Spaßfaktor $\Rightarrow$ Teamgeist
+- i.d.R. für $7 \pm 2\,\mathrm{MA}$ konzipiert
+- Kartenset (Kartenwert von unten aus meist Fibonacci, höher dann gröber)
+- Mögliche Kartenwerte (Beispiele)
+  - Kartenwert kann mit Fragezeichen versehen $\rightarrow$ man ist unsicher, was den Aufwand angeht
+  - Karten können Kategorien (klein, mittel, groß...) eingeordnet werden
+  - **P**ausen-Karte (manchmal mit Kaffeetasse dargestellt): triviale Aufgabe
+  - 0: Aufgabe ist quasi schon erledigt
+  - 0.5: Kaum Aufwand
+  - 1-5: klein
+  - 8-20: mittel
+  - 40-100: XL
+
+**Ablauf**:
+
+1. Scrum-Master liest die Aufgabe vor
+2. Fragen sind erlaubt (ggf. an den Product-Owner) $\rightarrow Timebox \leq 1 Min$, Aufgabe von Scrum-Master! Keine bewertenden Aussagen zulassen!
+3. alle Karten umdrehen
+4. Minimal + Maximal begründen ihre Wahl
+   
+   *alle* Anderen haben Redeverbot
+5. zurück zu 2. $\rightarrow$ i.d.R. maximal 2 Iterationen
+
+> bei Einigkeit nach 3. kann direkt zur nächsten Aufgabe gesprungen werden (also 1.)
+
+**Eigenschaften**
+
+1. Teams sind besser als Experten (i.d.R.)
+2. Diversität in Gruppen wird benötigt
+
+   $\rightarrow$ je unterschiedlicher das Wissen in der Gruppe, desto smarter ist die Gruppe
+
+3. Publikums-Frage wird zu 95% richtig beantwortet
+4. keine $\alpha$-Tier-Meinungen in der Schätzung
+5. keine Autoritäts-Meinungen dabei
+6. alle sind mit im Boot $\Rightarrow$ Engagement
+7. zeitaufwendig
+8. keine Planung sondern Schätzung!
+9. nur Debatten bei unterschiedlichen Meinungen
+10. alle haben eine Stimme
+
+### High-Low-Showdown
+
+- Ziel: Stories (Aufgaben, Epics) eingeteilt in XS, S, M, L, XL 
+- 100 Stories in 15 Min kategorisieren
+- Ablauf: 
+  - jeder Teilnehmer bekommt gleichzeitig 5 Stories
+  - jeder ordnet diese den Kategorien zu
+  1. Einzelperson: begründet Zuordnung & legt diese Story in die "Sammelstelle"
+  2. nächste Einzelperson: entweder 1. oder ordnet alte Zurordnung *neu* zu
+  3. maximal 2 Umsortierungen pro Karte
+  4. die nächste Einzelperson geht zu 2. 
+
+$\Rightarrow$ **Ergebnis**: Gruppe von Aufgaben, die ähnlichen Aufwand haben
+
+> bei Gruppen mit ähnlichem Hintergrund sind statt T-Shirt-Größen auch Scrum-Poker-Zahlen möglich
+
+**Aufgabe $\rightarrow$ evaluieren**
+
+Beispiel:
+| Kat 1 (bspw. Nutzeranzahl)    | Kat 2 (Prod. Ausfall) | Kat 3 (SLA) |
+| ----------------------------- | --------------------- | ----------- |
+| M (mittlere Anzahl betroffen) | S                     | S           |
+
+$\Rightarrow$ wenn ich $\geq 2\,\mathrm{M}$ habe $\Rightarrow$ Dringend
+
+$\Rightarrow$ wenn ich $\geq 1\,\mathrm{XL}$ habe $\Rightarrow$ Dringend
+
+## Algorithmische Schätzverfahren
+
+$\rightarrow$ Kosten-Funktion & Durchlauf-Funktion sollen berechnet werden
+
+**Vor:** Eingangsvariablen müssen zutreffend geschätzt werden
+
+$\Rightarrow$ Erfahrungen (bzw. Idee der agilen Entwicklung, {viele kleine Iterationen, Daten sammeln} $\Rightarrow$ Grundlage)
+
+**bei *richtiger* Kalibrierung**: sehr gute Prognosen
+
+ohne Maßzahlen von alten projekten **keine** zuverlässigen Aussagen
+
+> hier wird nicht *gesteuert*, sondern lediglich *geregelt* ("einfach machen und dann überprüfen")
+
+**2 Methoden werden hier mal betrachtet:**
+
+### COCOMO
+   
+"Constructive-Cost-Method"
+
+geschätzte Produktgröße in Form von: 
+
+Lines-of-Code $=l$
+
+Mann-Monate $=MM$
+
+Entwicklungszeit $=t$
+
+Aufwandsanalyse $=t_{AA}$
+
+$l\rightarrow COCOMO \rightarrow MM,t$ 
+
+$t_{easySW}=2.5(2.4\cdot (\frac{l}{1000})^{1.05})^{0.38}+t_{AA}$
+
+$\rightarrow$ einfache Software in stabiler Umgebung
+
+@Lit: Gleichungen für Unternehmen kalibrieren
+
+> Vorstellbar als Käse $\copyright$
+
+Präzisierung der Schätzung:
+
+- Unternehmensspezifische Kostenfaktoren
+- Projektspezifische Kostenfaktoren
+
+$MM_{korrigiert}=K_u \cdot K_p \cdot MM$
+
+**Kostentreiber**
+- Zuverlässigkeit
+- Komplexität IO
+- Komplexität Datenstrukturen
+- Team...
+- Management-Zeitdruck
+- ...
+
+### Function-Point-Methode

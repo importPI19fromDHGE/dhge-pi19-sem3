@@ -1,5 +1,11 @@
-Rechnernetzkonzepte und -architekturen
-======================================
+<!----------
+title: "Rechnernetze - Grundlagen"
+date: "Semester 3"
+keywords: [Rechnernetze, DHGE, Semester 3]
+---------->
+
+Rechnernetze - Grundlagen
+=========================
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->

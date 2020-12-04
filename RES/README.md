@@ -1,3 +1,9 @@
+<!----------
+title: "Betriebssystemverwaltung"
+date: "Semester 3"
+keywords: [Betriebssystemverwaltung, DHGE, Semester 3]
+---------->
+
 Betriebssystemverwaltung
 ========================
 
@@ -666,11 +672,11 @@ maxretry=3
   - Datei existiert auf Ziel: Prüfsummen bilden --> sind identisch?
   - wenn nicht identisch: Bildung von Differenzial, Kopie davon schicken
 - Aufruf: ``rsync [OPTIONEN] QUELLEN ZIEL``
-- Beispieloption: ``-a`` \--> Übernahme aller Rechte und Eigentümer
+- Beispieloption: ``-a`` --> Übernahme aller Rechte und Eigentümer
 
 ### vollständige Systemsicherung
 
-- benötigt root-Rechte, aber root über SSH sollte gesperrt sein \--> eigener Nutzer für ausschließlich rsync
+- benötigt root-Rechte, aber root über SSH sollte gesperrt sein --> eigener Nutzer für ausschließlich rsync
 - ``rsync --rsync-path="sudo rsync" --delete -avzbe ssh rsyncnutzer@example.com:/ /backup --backup-dir=~/old``
   - ``--delete``, ``-b`` und ``--backup-dir`` kann auch weggelassen werden, aber dann werden gelöschte Dateien auf der Quelle nicht auf dem Ziel gelöscht
 
@@ -700,7 +706,7 @@ quota --version # Kontrolle
   - Option in der ``/etc/fstab`` notwendig: ``usrquota,grpquota``
   - ohne reboot neu mounten: ``mount -o remount /mountpoint``
   - Kontrolle: ``cat /proc/mounts | grep '/mountpoint'``
-- ``sudo quotacheck –ugm /mountpoint`` erstellt Konfigurationen
-- ``sudo quotaon –v /mountpoint`` aktiviert Quota
-- ``sudo edquota –u user`` Soft- und Hard-Limits konfigurieren
-- ``sudo repquota –s /mountpoint`` erstellt Report
+- ``sudo quotacheck -ugm /mountpoint`` erstellt Konfigurationen
+- ``sudo quotaon -v /mountpoint`` aktiviert Quota
+- ``sudo edquota -u user`` Soft- und Hard-Limits konfigurieren
+- ``sudo repquota -s /mountpoint`` erstellt Report

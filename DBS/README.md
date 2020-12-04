@@ -1,3 +1,9 @@
+<!----------
+title: "Datenbanken"
+date: "Semester 3"
+keywords: [Datenbanken, DHGE, Semester 3]
+---------->
+
 Datenbanken
 ===========
 

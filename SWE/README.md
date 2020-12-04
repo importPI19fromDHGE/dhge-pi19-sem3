@@ -52,6 +52,9 @@ Systemanalyse
 - [Design-Thinking](#design-thinking)
   - [4 Prozess-Schritte](#4-prozess-schritte)
   - [Hinweise](#hinweise)
+- [Aufwands-Analyse](#aufwands-analyse)
+  - [Aufwandsschätzungen](#aufwandssch%C3%A4tzungen)
+  - [Empirische Schätzverfahren](#empirische-sch%C3%A4tzverfahren)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -638,7 +641,7 @@ Hilfe um zu klären, wann eine Aufgabe erledigt ist (wann sie vom Review ins Don
 
 --> Qualitätsanspruch
 
-Das ganze nennt sich **Definition Of Done**. Ein Dokment vom Team.
+Das ganze nennt sich **Definition Of Done**. Ein Dokument vom Team.
 
 **Aufbau eines Definition of Done**
 
@@ -814,86 +817,105 @@ Fail Early!
 4. wilde Ideen zulassen & ermutigen!
 5. insgesamt kundenorientiert
 
-
-
 # Aufwandsanalyse
 
 <!-- Hier fehlt noch was -->
 ## Aufwandsschätzung
 
-<!-- Hier auch wahrscheinlich -->
+- Hauptbestandteil der Entwicklungskosten: Personal (Gehalt + Verwaltung)
+- **Faustregeln**: 50k Euro pro Mitarbeiter pro Jahr
+	- **konkreter Fall**: 1500h à 100 Euro -> 150k Euro
+	- **konkreter Fall**: 1500h à 100 Euro $\rightarrow$ 150k Euro
 
-### LOC (Lines of Code) als Basis im klassischen Fall 
+> Faustregeln sollten auf den konkreten Fall runtergerechnet werden!
 
-- Mitarbeiter * LOC / Monat = Mann-Monate berechenbar 
-- **Beispiel:** 
-  - Software Produkt mit geschätzten 21.000 LOC 
-  - Durchschnittliche Produktivität pro MA: 3500 LOC/Jahr
-  - (21.000 LOC / 3500 LOC) * Jahr = Mannjahre
-- **Problem:** 
-  - Schätzungen für LOC-Projektumfang schwierig
-  - Festlegung auf 3500 LOC pro MA und Jahr auch arbiträr
-  - Programmierer arbeiten nicht in Vollzeit an ihrem Code, andere Tätigkeiten: 
-    - Doku, Kommunikation, Ausbildung, Post, ...
-  - Daher für viele MA sehr unterschiedliche Zahlen
-- **Möglichkeit 1:**
-  - iterative, empirische Begutachtung für Teamzahlen 
-  - also zunächst den Betrieb betrachten, Kennzahlen ableiten und darauf Berechnungen aufsetzen 
-  - wenn Teamstrukturen sich ändern, ändern sich die Zahlen womöglich 
+### LOC (Lines of Code) als Basis im klassischen Fall
+
+- Mitarbeiter * LOC / Monat = Mann-Monate berechenbar
+
+**Beispiel**
+
+- Software Produkt mit geschätzten 21.000 LOC
+- Durchschnittliche Produktivität pro MA: 3500 LOC/Jahr
+
+$$
+\frac{21000 \,\mathrm{LOC}}{7500 \,\mathrm{LOC}} \cdot \mathrm{Jahr}=6\,\mathrm{MJ}
+$$
+
+**Problem**
+
+- Schätzungen für LOC-Projektumfang schwierig
+- Festlegung auf 3500 LOC pro MA und Jahr auch arbiträr
+- Programmierer arbeiten nicht in Vollzeit an ihrem Code, andere Tätigkeiten (Doku, Kommunikation, Ausbildung, Post, ...)
+- Daher für viele MA sehr unterschiedliche Zahlen
+
+**Möglichkeit 1**
+
+- iterative, empirische Begutachtung für Teamzahlen
+- also zunächst den Betrieb betrachten, Kennzahlen ableiten und darauf Berechnungen aufsetzen
+- wenn Teamstrukturen sich ändern, ändern sich die Zahlen womöglich
+
 **zu beachten**
-  - nicht der beste Bewertungsmaßstab für Aufwand und Leistung 
-  - Bewertung nach LOC schafft möglicherweise falsche Anreize (nur mehr Code, nicht besserer Code)
-  - LOC entspricht nur der Quantität
+
+- nicht der beste Bewertungsmaßstab für Aufwand und Leistung
+- Bewertung nach LOC schafft möglicherweise falsche Anreize (nur mehr Code, nicht besserer Code)
+- LOC entspricht nur der Quantität
+
+**Verwendung des Kosten-Leistung-Zeit Dreiecks:**
+
+1. Zieldefinition beim Projekt-Start
+2. Steuerung bei Änderungen
+
+**Dreieck wird zum Quadrat (mit den Ecken)**: Inhalt, Qualität, $\frac{1}{Kosten}$, $\frac{1}{Zeit}$
 
 ### weitere Faktoren
 
-- Einbezug und Schätzung von Komplexität ist nötig -> **Schulnotenprinzip**:
-  - Schätzung der Aufgabenkomplexität auf Basis von Schulnoten
-  - vereinfacht die Schätzung, da die Zwischenstufen wegfallen 
+- Einbezug und Schätzung von Komplexität ist nötig $\rightarrow$ vereinfachte Schätzung mit *Schulnotenprinzip* (1..6)
   - auch möglich: 3-Teilung (kleine, mittlere, große Komplexität)
 - Programmiersprache
 - Lesbarkeit/Wartbarkeit/Erweiterbarkeit als Qualitätsmaß einbeziehen
-  - Problem: es entstünde ein hochkomplexes Funktionsgebirge, daher nicht praktisch anwendbar 
+  - Problem: es entstünde ein hochkomplexes Funktionsgebirge, daher nicht praktisch anwendbar
 - Skills und Anzahl der Mitarbeiter
-- rechtliche Rahmenbedingungen 
-- verwendete Technologien 
-- Kommunikation 
-- Organisationsform 
-- Vorgehensmodell 
-- Erfahrungen im Team 
-  
-### Magisches Dreieck / Teufelsquadrat 
+- rechtliche Rahmenbedingungen
+- verwendete Technologien
+- Kommunikation
+- Organisationsform
+- Vorgehensmodell
+- Erfahrungen im Team
 
-![Dreiecksdarstellung](resources/Magisches_Dreieck.png)<!-- width=400px -->
+$$f(Qualitätsmaße) \hat{=}Kennzahlen \rightarrow Aufwand=g(LOC) \cdot f_1(Q,Ma...Ma) \cdot ... \cdot f_m(Q, Ma ... Ma)$$
 
-- **Idee:**
-  - nicht alle Kriterien sind gleichsam erfüllbar
-  - wichtig ist die Prioritätensetzung und -evaluierung
+> hochkomplexes Funktionsgebirge, eher nicht praktisch anwendbar!
+> Das Optimum zwischen produktiver Anteil pro MA und Kommunikativer Anteil der Zeit wird gesucht.
 
-- **Verwendung:**
-  - Zieldefinition bei Projektstart
-  - Steuerung bei Änderungen 
+### Magisches Dreieck / Teufelsquadrat
+
+![Magisches Dreieck wird zum Quadrat](resources/magisches-dreieck.png)<!-- width=500px -->
+
+**Idee**
+
+- nicht alle Kriterien sind gleichsam erfüllbar
+- wichtig ist die Prioritätensetzung und -evaluierung
+
+**Verwendung**
+
+- Zieldefinition bei Projektstart
+- Steuerung bei Änderungen
 
 ## Empirische Schätzung
 
-- basieren:
-  - auf Erfahrungen 
-  - Vergleich mit bisherigen Projekten 
+- basieren auf: Erfahrungen, Vergleich mit bisherigen Projekten
 
 ### Expertenschätzung
 
-- "Experten" mit Erfahrung in gleichartigen Projekten `(+)`
-- einfach + wenig zeitaufwändig `(+)`
-- entscheidende Fehleinschätzungen möglich `(-)`
-  - wichtig: wann wird Fehler sichtbar?
+- $\oplus$ "Experten" mit Erfahrung in gleichartigen Projekten
+- $\oplus$ einfach + wenig zeitaufwändig
+- $\ominus$ entscheidende Fehleinschätzungen möglich $\rightarrow$ wichtig: wann wird Fehler sichtbar?
 
 ### Delphi-Methode
 
-- mehrere unabhängige Experten 
-- mehrere Runden 
-- Schätzungen kovergieren i.d.R. `(+)`
-- eliminiert Ausreiser `(+)`
-- relativ hoher Aufwand `(-)`
-
-
-
+- mehrere unabhängige Experten
+- mehrere Runden
+- $\oplus$ Schätzungen kovergieren i.d.R.
+- $\oplus$ eliminiert Ausreiser
+- $\ominus$ relativ hoher Aufwand

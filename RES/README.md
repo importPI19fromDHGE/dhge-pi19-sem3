@@ -1,3 +1,9 @@
+<!----------
+title: "Betriebssystemverwaltung"
+date: "Semester 3"
+keywords: [Betriebssystemverwaltung, DHGE, Semester 3]
+---------->
+
 Betriebssystemverwaltung
 ========================
 
@@ -42,6 +48,12 @@ Betriebssystemverwaltung
   - [MQTT](#mqtt)
   - [Apache2](#apache2)
   - [Fail2Ban](#fail2ban)
+    - [Konfiguration](#konfiguration)
+  - [Rsync](#rsync)
+    - [vollständige Systemsicherung](#vollst%C3%A4ndige-systemsicherung)
+  - [Quota](#quota)
+    - [Windows](#windows-1)
+    - [Linux](#linux-1)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -84,6 +96,8 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - Was ist ein DDoS-Angriff?
 - Welche Vorteile bietet die Virtualisierung?
 - Welche Schritte sind bei einem Verwaltungsakt zu beachten? <!--Sehr vage Frage, aber hier seine gewünschte Antwort: Zweck des Verwaltungsaktes, Backup, Installation und Konfiguration (grafisch oder per Skript -> gut für Automatisierung), Testen, Integrieren-->
+- Was sind die Vorteile eines Skripts gegenüber interaktiver Konfiguration
+- was sind Kontingente und warum sind sie notwendig?
 
 <!--newpage-->
 
@@ -622,3 +636,77 @@ Fail2Ban überwacht zuvor angebene Logdateien nach einem definierten Filter (=Na
 4. optional Emailversand möglich
 5. Freigabe der IP-Adresse nach Ablauf der Sperrzeit
 6. erneute Versuche möglich
+
+### Konfiguration
+
+- in ``/etc/fail2ban``
+- relevant: ``jail.conf``, ``jail.local``, ``action.d/``
+  - nur jail.local bearbeiten, da ``jail.conf`` beim Update überschrieben wird
+
+Beispiel:
+
+```conf
+[servicename]
+enabled=true
+port=22
+filter = sshd
+logpath=/var/log/auth.log # Überwachte Datei, die zum Erkennen der Fehlversuche genutzt wird
+maxretry=3
+```
+
+- Überprüfen des Fail2Ban-Status: ``sudo fail2ban-client status`` und ``sudo fail2ban-client status sshd``
+- IP-Adresse entbannen: ``sudo fail2ban-client set sshd unbanip ipadress``
+
+## Rsync
+
+- Abgleich von Dateien von lokalen System und Remotesystem
+- Differenzial-basiert mit Quick-Check-Algorithmus
+- Zweck
+  - Sicherung
+  - Spiegelung und Synchronisierung
+  - reguläre Datenübertragung
+  - kann verlustfrei unterbrochen werden
+- Bandbreiteneinsparung, da nur Differenz kopiert
+- Funktionsweise
+  - Datei existiert noch nicht auf Ziel: vollst. Datei kopieren
+  - Datei existiert auf Ziel: Prüfsummen bilden --> sind identisch?
+  - wenn nicht identisch: Bildung von Differenzial, Kopie davon schicken
+- Aufruf: ``rsync [OPTIONEN] QUELLEN ZIEL``
+- Beispieloption: ``-a`` --> Übernahme aller Rechte und Eigentümer
+
+### vollständige Systemsicherung
+
+- benötigt root-Rechte, aber root über SSH sollte gesperrt sein --> eigener Nutzer für ausschließlich rsync
+- ``rsync --rsync-path="sudo rsync" --delete -avzbe ssh rsyncnutzer@example.com:/ /backup --backup-dir=~/old``
+  - ``--delete``, ``-b`` und ``--backup-dir`` kann auch weggelassen werden, aber dann werden gelöschte Dateien auf der Quelle nicht auf dem Ziel gelöscht
+
+## Quota
+
+- Zweck: Verminderung spontaner Out of Storage Situationen, Begrenzung von Speicherplatz für Nutzer
+
+### Windows
+
+- GUI (empfohlen): durch RSAT Tool / FSRM (Ressourcen-Manager für Dateiserver)
+- Konfiguration globaler Emails notwendig
+- es gibt Kontingent-Vorlagen
+- Warnschwellen, Berichte an Nutzer und Admins (Eventlog + Mail), Befehle möglich (einstellbar)
+
+### Linux
+
+- Installation:
+
+```bash
+sudo apt update
+# sudo apt full-upgrade
+sudo apt install quota
+quota --version # Kontrolle
+```
+
+- Konfiguration:
+  - Option in der ``/etc/fstab`` notwendig: ``usrquota,grpquota``
+  - ohne reboot neu mounten: ``mount -o remount /mountpoint``
+  - Kontrolle: ``cat /proc/mounts | grep '/mountpoint'``
+- ``sudo quotacheck -ugm /mountpoint`` erstellt Konfigurationen
+- ``sudo quotaon -v /mountpoint`` aktiviert Quota
+- ``sudo edquota -u user`` Soft- und Hard-Limits konfigurieren
+- ``sudo repquota -s /mountpoint`` erstellt Report

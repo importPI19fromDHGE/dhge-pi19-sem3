@@ -87,3 +87,9 @@ for ((i = 1; i <= $#; i++ )); do printf '%s\n' "Arg $i: ${!i}" done
 - Möglichkeiten zu Betriebssysteminstallation?
   - PXE-Boot
   - Image-Installation
+- Was sind die Vorteile eines Skripts gegenüber interaktiver Konfiguration
+  - einheitliche Konfiguration, kein versehentliches Ändern
+  - Automatisierung möglich
+- was sind Kontingente und warum sind sie notwendig?
+  - Kontingente: logische Speicher-Begrenzungen für Ordner
+  - verhindert übermäßige Nutzung durch Programme und Nutzer, damit System weiter arbeiten kann

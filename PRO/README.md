@@ -47,7 +47,9 @@ IT-Trends
     - [Virtuelle Rechner im AWS anlegen](#virtuelle-rechner-im-aws-anlegen)
 - [Machine Learning - KI, neuronale Netzwerke, ...](#machine-learning---ki-neuronale-netzwerke-)
   - [Einsatzgebiete](#einsatzgebiete)
-    - [Objekterkennung](#objekterkennung)
+  - [Mathe-Perspektive](#mathe-perspektive)
+    - [Erkennen ohne Lernen](#erkennen-ohne-lernen)
+    - [Erkennen durch Feature-Design](#erkennen-durch-feature-design)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -518,11 +520,11 @@ Ablauf:
 
 <!-- TODO: Können wir LaTex und wenn ja, wie? -->
 
-`f(x,param_{1})=z_{1}`
+$f(x,param_{1})=z_{1}$
 
-`tilde{f}(z_{1}, param_{2})=z_{2}`
+$tilde{f}(z_{1}, param_{2})=z_{2}$
 
-`dbtilde{f}(z_{2}, param{3})= y`
+$dbtilde{f}(z_{2}, param{3})= y$
 
 ![Konstruktion Neuronales Netz](resources/neuronales-netz.png)<!-- width=350px -->
 

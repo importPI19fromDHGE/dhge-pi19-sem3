@@ -40,7 +40,7 @@ Datenbanken-Praktikum
     - [DML-Trigger](#dml-trigger)
       - [`AFTER`-Trigger](#after-trigger)
       - [Instead-of-Trigger](#instead-of-trigger)
-    - [DDL-Trigger](#ddl-trigger)
+    - [`DDL`-Trigger](#ddl-trigger)
   - [Stored Procedures](#stored-procedures)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -760,18 +760,24 @@ ELSE
 	SELECT exemplar_id, Nutzer_id, LeihDat, MahnDat, RueckDat, Kosten FROM inserted;
 ```
 
-### DDL-Trigger
+### `DDL`-Trigger
 
-- beziehen sich einerseits auf Datenbankbereich (Tabellen, Sichten, Prozeduren,...) und auf Server-Bereich (**Datenbanken**, Logins,...)
+- beziehen sich einerseits auf **Datenbankbereich** (Tabellen, Sichten, Prozeduren,...) und auf **Server-Bereich** (*Datenbanken*, Logins,...)
 - viele Ereignisse, siehe [Docs](https://docs.microsoft.com/de-de/sql/relational-databases/triggers/ddl-events?view=sql-server-ver15)
 - da sehr viele: Zusammenfassung in [DDL-Ereignisgruppen](https://docs.microsoft.com/de-de/sql/relational-databases/triggers/ddl-event-groups?view=sql-server-ver15)
 
 Beispiel: auf Server-Ebene
 
 ```sql
-CREATE TRIGGER tr_createDB -- Achtung: Serverebene
+-- Server-Trigger für das Erstellen einer Datenbank
+CREATE TRIGGER tr_createDB
 ON ALL SERVER FOR CREATE_DATABASE
-AS PRINT 'Eine neue Datenbank erblickt das Licht der Welt. Sag "Hallo Welt!" :-)';
+AS PRINT 'Eine neue Datenbank erblickt das Licht der Welt. Sag "Hello World!" :-)';
+
+-- Datenbank-Trigger für das löschen einer Tabelle
+CREATE TRIGGER tr_drop_table
+ON DATABASE FOR DROP_TABLE AS
+PRINT 'Eine Datenbank tritt die letzte Reise an und wird erlöst!';
 ```
 
 Beispiel: auf Datenbank-Ebene
@@ -790,7 +796,7 @@ PRINT 'Die Tabelle' + @Table + 'wurde erstellt';
 - "gespeicherte Funktionen"
 - ähnlich wie Trigger, aber werden durch Nutzer ausgelöst
 - Parameter sind möglich
-- sparen Zeit und verringern Fehlerquellen für komplexe Anfragen
+- **Vorteil**: sparen Zeit und verringern Fehlerquellen für komplexe Anfragen
 - schneller als normale Anfragen <!--"sin angeblich auch schneller... Weeß ick nich"-->
 - werden immer im Rechte-Kontext des Nutzers ausgeführt
 - Erstellen:
@@ -804,10 +810,22 @@ SELECT nationalitaet.bezeichnung FROM nationalitaet JOIN autor ON nationalitaet.
 WHERE autor.name LIKE '%' + @name + '%';
 ```
 
+```sql
+-- Prozedur, die auf Basis eines (unvollständigen) Buchtitels alle passenden Bücher inkl. Autor und Verlag zurückgibt
+CREATE OR ALTER PROCEDURE pBuch @titel nvarchar(50) AS
+SET NOCOUNT ON; -- deaktiviert Ausgaben des DBMS
+SELECT Buch.Titel Buchtitel, Buch.ISBN, Autor.Name Autor, Verlag.Name Verlag FROM Buch
+JOIN Verlag ON Verlag.id = Buch.Verlag_id
+JOIN Buch2Autor ON Buch.id = Buch2Autor.Buch_id
+JOIN Autor ON Autor.id = Buch2Autor.Autor_id
+WHERE Buch.Titel LIKE '%' + @titel + '%';
+```
+
 Aufruf:
 
 ```sql
 EXECUTE pAutorNatio 'schiller', '';
+EXEC pBuch 'Der';
 ```
 
 - Best Practice: Filtern von SQL-Schlüsselwörtern, sodass keine bösartigen Parameter ausgeführt werden können

@@ -510,9 +510,9 @@ Tom Mitchell:
 
 ![Guetefunktion2](resources/guetefunktion2.png)<!-- width=350px -->
 
-1. Erkennen ohne Lernen 
+### Erkennen ohne Lernen 
 
-2. Erkennen durch Feature-Design 
+### Erkennen durch Feature-Design 
 
 Ablauf: 
 
@@ -523,4 +523,11 @@ Ablauf:
 `tilde{f}(z_{1}, param_{2})=z_{2}`
 
 `dbtilde{f}(z_{2}, param{3})= y`
+
+![Konstruktion Neuronales Netz](resources/neuronales-netz.png)<!-- width=350px -->
+
+<!-- TODO: Layer-Abbildung schön machen und erklären -->
+
+Begriff des Deep-Learnings kommt daher, dass bei der Konstruktion viele versteckte Schichten verwendet werden. 
+Die verschiedenen Layer ermöglichen den Einsatz verschiedener Features/Funktionen. 
 

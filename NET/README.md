@@ -955,3 +955,127 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 ![Schematischer Ablauf der Server/Client-Kommunikation über SOCK_DGRAM](resources/sockets-dgram.png)<!-- width=500px -->
 
 <!--Vergleich von TCP und UDP gerne Prüfungsfrage-->
+
+# Routing
+
+## Hierarchische Struktur des Internets
+
+<!--
+Prüfung: letztes Jahr: Subnetz zur Verfügung -> in vier/acht gleich große Subnetze aufteilen
+
+
+-->
+
+```
+Ziel: D
+Präfix/Netz von D: N
+
+if(N direkt am lokalen Link){
+	ermittle MAC von D
+	sende Paket an MAC von D
+}else if(existiert ein Routingeintrag für N){
+	ermittle ausgehende Schnittstelle
+	ermittle MAC des nächsten Hops H
+	sende Paket an H
+}else if(existiert ein Default-Gateway G){
+	ermittle MAC von G
+	sende Paket an G
+}else{
+	ICMP-Fehler an die Quelle des Pakets
+}
+```
+## Autonome Systeme
+
+- Unterteilung des Internetschicht in autonome Systeme um skalierbares Routing zu ermöglichen
+- in sich selbst funktionierende Netzstrukturen (z.B. Providernetz, Rechenzentrumsprovider)
+- Internet = Menge verknüpfter AS
+- Registrierte AS erhalten 16/32 Bit AS-Nummer (von Regional Internet Registries verwaltet) = Vorraussetzung für die Beantragung von IP-Address-Ranges
+- Vorraussetzung für AS: Einheitliche Routing Policy im Netz, muss min. zwei Verbindungen in andere autonome Systeme haben
+- Private (nicht registrierte) AS besitzen eigenen Nummernbereich
+
+### Klassifizierung
+
+- Transit: Betreiber eines AS zahlt für die Weiterlieutng von Daten durch das zweite AS
+- Peer: Aufgrund von Abkommen werden Daten zwischen AS kostenfrei ausgetauscht
+- Kunde/Customer: Kostenpflichtige Nutzung eines AS als Zugang zum Internet
+- Tier-1-Netzwerk: ausschließlich Kunden
+- Tier-2-Netzwerk: Peer-AS und Transit-AS
+- Tier-3-Netzwerk: nur Transit-AS
+
+### Routing
+
+- Inter-AS-Protokolle: Wegewahl zwischen AS (z.B. Border Gateway Protocol)
+- Intra-AS-Protokolle: Wegewahl in AS (z.B. Routing Information Protocol, Shortest Path First, Babel, ...)
+- Austausch von Topologie-Informationen
+
+## Distanzvektor und Link-State-Protokole
+
+**Distanzvektorroutingprotokolle**
+
+- welcher Knoten mit welcher Hopanzahl erreichbar ist -> keine gesamte Netztopologie (Alternativpfade nicht bekannt)
+- geringe Komplexität, geringes Nachrichtenaufkommen
+
+**Link-State-Routing**
+
+- Regelmäßiger Vesand von Informationen über alle bekannten Nachbarn eines Knotens mit Distanzangabe
+- Distanzinformationen werden an Nachbarrouter propagiert und von dort aus weiter in das Netz geflutet
+- jeder Router kennt Topologie des Netzes
+- hohe Komplexität, hohes Nachrichtenaufkommen
+
+
+### Bellman-Ford-Algorithmus
+
+<!--Berechnung aller Kürzester Pfade-->
+
+```
+für j von 1 bis (n-1):
+	für jede Kante(a,b) mit Gewicht w aus der Mege der Kanten:
+		falls distanz[a] + w < distanz[b]:
+			distanz[b] = distanz[a] + w;
+			vorgaenger[a] = b;
+```
+
+- schlecht Skalierbar
+
+### Dijkstra-Algorithmus
+<!--Berechnung  kürzesten Pfades A-B-->
+
+## Ausgewählte Routing-Protokolle
+
+### Routing Information Protocol (RIP)
+
+- einfaches Distanzvektorroutingprotokoll
+- Router versenden ...
+
+**Nachteile**
+
+- Hoplimit als einzige Metrik mit einem Limit von 15
+- nur nächster Hop bekannt
+- langsame Konvergenz im Fall von topologischen Änderungen
+- keine Separation von Broadcast-Domänen
+
+> RIP eignen sich nur für kleine Netze -> Schwächen werden durch OSPF .......
+
+### Open Shortest Path First (OSPF)
+
+- eines der häufigsten innerhalb von AS eingesetzten Protokolle im Internet
+- Unterstützt sowohl IPv4 und IPv6
+
+**Ablauf**
+
+- Nachbarn propagieren in regelmäßigen Intervallen Hello-Pakete
+- Nach der Ausbildung der Nachbarschaftsbeziehungen ...
+
+#### OSPF Area
+
+<!--Von Folie übernehmen-->
+
+<!--
+1. Nachbarn wechselseitig erkennnen (Discovery über Hello-Pakete)
+2. Linkstateadvertisements -> Tausch der aller Infos mit Nachbarn 
+
+-->
+
+### Border Gateway Protocol
+
+## Router-Daemon-Implementierung BIRD

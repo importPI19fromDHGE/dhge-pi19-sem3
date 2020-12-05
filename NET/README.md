@@ -99,6 +99,17 @@ Rechnernetzkonzepte und -architekturen
       - [BGP-Peers /-Nachbarschaften](#bgp-peers--nachbarschaften)
       - [BGP-Pfadauswahl](#bgp-pfadauswahl)
       - [Anmerkung zur Sicherheit](#anmerkung-zur-sicherheit)
+- [Anwendungsschicht / Application-Layer](#anwendungsschicht--application-layer)
+  - [Einleitung](#einleitung-1)
+  - [Anwendungsschicht: Bezug zum OSI-Referenzmodell](#anwendungsschicht-bezug-zum-osi-referenzmodell)
+  - [Ausführung von Systemdiensten](#ausf%C3%BChrung-von-systemdiensten)
+  - [Domain Name System (DNS)](#domain-name-system-dns)
+    - [Überblick](#%C3%BCberblick)
+    - [Resource Records](#resource-records)
+    - [Protokoll / Anfragedetails](#protokoll--anfragedetails)
+    - [Zonendefinition / Zonentransfer](#zonendefinition--zonentransfer)
+    - [DNS over TLS / HTTPS](#dns-over-tls--https)
+    - [...](#)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

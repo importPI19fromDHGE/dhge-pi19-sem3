@@ -1017,6 +1017,7 @@ Aufteilen eines Netzes in Subnetze:
 Begriffsunterscheidung: 
 - Forwarding Information Base (FIB) und Routingtabellen unterscheiden sich eigentlich, sind jedoch in Theorie und Praxis nicht einheitlich bezeichnet 
 
+
 ### Schema für IP-Forwarding Algorithmus
 
 ```
@@ -1207,11 +1208,66 @@ Schwächen:
 #### OSPF- Designated Router
 
 - Bei n Routern in einem Netz bestehen `(n*(n-1))/2` mögliche Nachbarschaftbeziehungen 
+- Führt zu extensivem Fluten mit LSAs bereits bei wenigen Routern in Broadcastnetzen 
+- zur Vermeidung nimmt ein Router die Rolle des **Designated Routers** ein
 
 <!-- TODO: Rest von Folien übernehmen  -->
+#### OSPF Link-State-Advertisements
 
-#### Praxisbeispiel - BIRD 
+- nach der Ausbildung der Adjazenz werden Link-State-Advertisement-Nachrichten ausgetauscht 
+- Unterscheidung von fünf LSA-Typen: 
+  - Router-LSA (Typ 1)
+    - Versendet von allen Routern innerhalb einer einzelnen Area
+    - Beschreibt die Zustände aller Interfaces des Routers innerhalb einer Area
+  - Network-LSA
+    - Von Designated-R
+
+<!-- TODO: Rest von Folien übernehmen  -->
+<!-- Nicht prüfungsrelevant - muss nicht auswendig gelernt werden  -->
+![Übersicht OSPF-LSA](resources/routing-ospf-lsa.png)<!-- width=500px -->
+
+#### Praxisbeispiel - Router-Daemonen-Implementierung (BIRD)
 
 <!-- TODO: Einpflegen der Doku, wenn es denn mal funktioniert  -->
+
 ### Border Gateway Protocol (BGP)
-## Router-Daemonen-Implementierung (BIRD)
+
+- Zielsetzung: Routing von IP durch AS 
+- Aktuelle Version 4 beschrieben in RFC 4271
+
+- BGP ermöglicht keine Einflussnahme jenseits des eigenen AS
+- Zentrales Prinzip für BGP-Routing: 
+  <!-- TODO: Zitat aus Folie 21 übernehmen  -->
+
+![BGP-Nutzungsmotivation Überblick](resources/routing-as-bgp.png)<!-- width=500px -->
+
+- zum Beispiel: 
+  - sobald eine Entscheidungsmöglichkeit mehrerer Routen (über mehrere ISP) vorliegt, lohnt sich der Einsatz von BGP 
+
+#### BGP-Peers /-Nachbarschaften
+
+- BGP- Router etabliert Verbindung mit ausgewählten Peers und tauscht mit diesen Pfadinformationen aus 
+- Konfiguration von Verbindungen zu Peers erfolgt manuell 
+- BGP definiert vier wichtige Nachrichten für Kommunikation zwischen Peers: 
+  - `OPEN`: Teilt Peer initial BGP-Version, AS-Nr., Hold-Timer, BGP Identifier mit 
+  - `NOTIFICATION`
+<!-- TODO: Rest von Folie 22 übernehmen  -->
+
+- Konfiguration von Nachbarschaftsbeziehungen erfolgt manuell 
+- zur Konfiguration wird IP-Adresse des Nachbarn samt AS-Nummer angegeben 
+- Unterscheidung zwischen Nachbarschaftsbeziehungen: 
+  - innerhalb eines AS: internal BGP (iBGP)
+  - außerhalb eines AS: external BGP (eBGP)
+- Beispiel: Konfiguration von BGP-Nachbarschaften via CLI auf Cisco-Router: 
+
+![BGP-Beispielconfig ](resources/routing-as-bgp-config.png)<!-- width=500px -->
+
+- Standardmäßig wird zum Nachbar nächstliegendes Interfaces als Quell-Interface für BGP-Kommunikation verwendet
+
+- Nach dem Etablieren einer Verbindung zu einem Nachbarn werden in regelmäßigen Abständen `UPDATE`-Nachrichten ausgetauscht
+- `UPDATE`-Nachrichten dienen dem Bewerben neuer und dem Verwerfen invalid gewordenener Ziele
+
+<!-- TODO: Rest von Folie 24 übernehmen  -->
+
+![BGP-UPDATE-Attribute ](resources/routing-as-bgp-attributes.png)<!-- width=500px -->
+

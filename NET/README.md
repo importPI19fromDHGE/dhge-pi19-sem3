@@ -1399,15 +1399,66 @@ Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzen
 
   ![DNS-Resolve](resources/al-dns-resolve.png)<!-- width=500px -->
 
+### Load-Balancing durch DNS
+- spielt auch wichtige Aufgaben im Load-Balancing
+  - Mit einem Namen können mehrere IP-Adressen verbunden sein 
+  - Reihenfolge der Auslieferung entscheidet über die anzusteuernde IP-Adresse
+  - Auf DNS-Ebene kann somit also Load-Balancing erfolgen, wenn die Reihenfolge geändert wird
 
+### DNS-Überblick 
+- DNS ist ein hierarchisch organisierter Verzeichnisdienst zur Verwaltung von Informationen über Domänen (vor allem IP-Adressinformationen)
+- der Domänen-Namensraum ist in **Zonen** untergliedert, die verschiedenen Nameservern innerhalb der Serverhierarchie zugeteilt werden 
+- Namensauflösung erfolgt durch Delegation oder Weiterleitung; als Fallback werden Root-Server in die Auflösung einbezogen 
+- Server nehmen intensives Caching vor, um Anfragen möglichst lokal beantworten zu können  
 
+<!-- Prüfungsfrage: Warum wird zwischen iterativen und rekursiven Anfragen unterschieden: Mit rekursiven Anfragen könnte kein Caching vorgenommen werden-->
 
-### Überblick 
-### Resource Records 
+### Resource Records
+
+- Resource Records sind Informationsentitäten, die in Zonendateien, in DNS-Caches und bei der Kommunikation zwischen DNS-Teilnehmern verwendet werden
+- wurden zunächst mit der ursprünglichen DNS-Spezifikation eingeführt und durch zusätzliche RFCs deutlich erweitert 
+- Informationen werden meist einem Domainnamen zugeordnet und weisen eine Protokollklasse (meist `IN`-Internet), eine Typangabe und eine Gültigkeitsdauer auf
+- Ausgewählte Typen: 
+  - 
+<!-- TODO: Typen von Folie 6 übernehmen -->
+
+Überblick PTR-Record bei Mailversand: 
+ ![PTR-Record](resources/al-dns-ptr.png)<!-- width=500px -->
+
 ### Protokoll / Anfragedetails 
+
+- basiert auf einfachem Query-/Response-Prinzip
+- DNS-Nachrichten sind in 5 Sektionen unterteilt: 
+  - 
+<!-- TODO: von Folie 7 und 8 übernehmen -->
+
+Wichtig: Protokollkommunikation erfolgt über UDP
+- Anfragen sind sehr kurz/klein (nur wenige Bytes)
+- passt daher gut in ein UDP-Paket 
+- Problembehandlung auf Anwendungsebene einfach 
+
 ### Zonendefinition / Zonentransfer
+<!-- TODO: von Folie 9 und 10 übernehmen -->
+<!-- Ist hier aber wirklich nur drübergeflogen, scheint keine große Relevanz zu haben für Prüfung -->
+
 ### DNS over TLS / HTTPS 
-### ... 
+
+- Schwächen von DNS: 
+  - Anfragen können leicht mitprotokolliert werden
+  - Einfach zu filtern (zu blockieren)
+- Zwei durch IETF standardisierte Ansätze zur verschlüsselten DNS-Kommunikation: 
+  - DNS over TLS (DoT): RFC 7858
+    - Kommunikation via Port 853
+  - DNS over HTTPS (DoH): RFC 8484
+    - Kommunikation über Port 443
+    - Anfrage via GET oder POST
+<!-- TODO: vielleicht Beispiel von Folie 11 übernehmen? -->
+- Kommunikation via TLS bzw. HTTPS zwischen DoT-/DoH-Client zu öffentlichem DNS-Resolver
+- Anwendungen können eigenen Resolver vorgeben 
+
+### Dynamic DNS / Reverse DNS 
+
+<!-- TBC -->
 
 
 

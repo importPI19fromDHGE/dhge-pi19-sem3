@@ -1366,6 +1366,41 @@ Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzen
 ![Init-Systeme](resources/al-init-systeme.png)<!-- width=500px -->
 
 ## Domain Name System (DNS)
+
+### 1. Perspektive: Domainregistrierung
+
+- Anfrage bei Providern, wie z.B. strato
+  - dort Registrierung auf den dortigen Nameservern und Verknüpfung mit der IP-Adresse des eigenen Webservers
+  - diese Verbindung wird in einem `resource-record` auf dem Nameserver hinterlegt 
+    - zusätzlich Typinformation hinterlegt (z.B. `A-Record`)
+  - Problem zu dem Zeitpunkt: 
+    - Nutzer, die mit diesem Server kommunizieren wollen, wissen noch nicht, welchen Nameserver sie abfragen müssen um an die IP zu gelangen 
+  - daher: `DNS`
+    - Nutzer verwendet einen `Resolver` (in Linux: `/etc/resolv.conf`)
+    - in der config stehen die Nameserver z.B. des ISP 
+  - bisher hat der Nameserver des ISP aber die Information über die neue Domain noch gar nicht
+    - Trennung der Domain in die TLD und den TLD-spezifischen Namen
+    - ISP-Nameserver steuert daraufhin einen der 13 Root-NS an 
+    - dort wird angefragt, wer für die TLD verantwortlich ist 
+    - Root-Server gibt `resource-record` für den TLD-Nameserver zurück 
+  - für .de -> DENIC (eingetragener Verein)
+    - diese betreiben eine ganze Reihe von NS
+  - daraufhin Anfrage an NS von DENIC
+    - Wer ist für den Namen der Domain verantwortlich? (hier: br1it -> Strato)
+    - DNS gibt `resource-record` für Strato-NS zurück 
+    - Eintrag von Strato auf dem DENIC-NS erfolgte bei Registrierung der Domain
+  - daraufhin Anfrage bei Strato-NS 
+    - dieser gibt dann `resource-record` für die Domain zurück 
+  - NS des ISP leitet diesen an Resolver des Nutzers weiter 
+    - Dieser hat dann die IP des Webservers und kann auf diesen zugreifen 
+  - Informationen werden auf allen Ebenen teilweise gecacht: 
+    - in Windows Resolvercache anzeigen: `ipconfig /displaydns`
+
+  ![DNS-Resolve](resources/al-dns-resolve.png)<!-- width=500px -->
+
+
+
+
 ### Überblick 
 ### Resource Records 
 ### Protokoll / Anfragedetails 

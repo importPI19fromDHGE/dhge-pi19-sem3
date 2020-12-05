@@ -665,7 +665,7 @@ Typ einer Adresse kann an den höchstwertigsten Bits erkannt werden:
 - es gibt mehrere Multicast-Gruppen an denen teilgenommen werden kann
 - es existieren zudem festgelegte "well-known" Multicast-Adressen
 	- `ff02::1` -> alle Knoten am Link (z.B. für ARP-äquivalente Anfragen)
-	- `ff02:2` -> alle Router am Link
+	- `ff02::2` -> alle Router am Link
 	- `ff02::16` -> alle MLDv2-fähigen Router
 
 ### NDP

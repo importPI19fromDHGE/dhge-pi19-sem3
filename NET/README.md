@@ -1320,6 +1320,48 @@ Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzen
 
     <!-- TODO: Von Folie 29 übernehmen und nochmal schön machen hier  -->
 
+# Anwendungsschicht / Application-Layer
+
+## Einleitung 
+
+- auf der Anwendungsschicht existiert eine Vielzahl verschiedener Protokolle -> zu viel um alle zu kennen und zu behandeln 
+- daher Klassifizierung von Protokollen nötig
+
+## Anwendungsschicht: Bezug zum OSI-Referenzmodell
+- Anwendungsschicht übernimmt die obersten drei Schichten des OSI-Modells: 
+  - Sitzungsschicht
+  - Darstellungsschicht
+  - Anwendungsschicht
+
+- die Anwendungsschicht setzt dabei auf der Transportschicht auf und greift auf diese beispielsweise über die Socket-Schnittstelle zu
+
+- Unterscheidung von zwei Formen von Anwendungsprotokollen gemäß RFC 1122
+  - Anwenderprotokolle: 
+    - HTTP, SMTP, SSH 
+  - Unterstü
+    - NTP, 
+
+    <!-- TODO: Von Folie 3 übernehmen -->
+
+## Ausführung von Systemdiensten 
+
+- Unterstützungsprotokolle finden meist in kontinuierlich auf einen Betriebssystem laufenden Diensten / Daemon-Programmen Einsatz 
+- Zur Kontrolle der Dienste / Daemonen wird ein Initialisierungssystem eingesetz -> init-System in unixoiden OS 
+- Init-System startet bei Systemstart die gewünschten Dienste
+  - zum Abschluss des Startvorgangs ist das System dann im gewünschten Zustand 
+
+- Tool `pstree` zeigt die Hierarchie der laufenden Prozesse an 
+
+![Init-Systeme](resources/al-init-systeme.png)<!-- width=500px -->
+
+## Domain Name System (DNS)
+### Überblick 
+### Resource Records 
+### Protokoll / Anfragedetails 
+### Zonendefinition / Zonentransfer
+### DNS over TLS / HTTPS 
+### ... 
+
 
 
   

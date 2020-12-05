@@ -104,6 +104,7 @@ Rechnernetzkonzepte und -architekturen
   - [Anwendungsschicht: Bezug zum OSI-Referenzmodell](#anwendungsschicht-bezug-zum-osi-referenzmodell)
   - [Ausführung von Systemdiensten](#ausf%C3%BChrung-von-systemdiensten)
   - [Domain Name System (DNS)](#domain-name-system-dns)
+    - [1. Perspektive: Domainregistrierung](#1-perspektive-domainregistrierung)
     - [Überblick](#%C3%BCberblick)
     - [Resource Records](#resource-records)
     - [Protokoll / Anfragedetails](#protokoll--anfragedetails)

@@ -105,12 +105,13 @@ Rechnernetzkonzepte und -architekturen
   - [Ausführung von Systemdiensten](#ausf%C3%BChrung-von-systemdiensten)
   - [Domain Name System (DNS)](#domain-name-system-dns)
     - [1. Perspektive: Domainregistrierung](#1-perspektive-domainregistrierung)
-    - [Überblick](#%C3%BCberblick)
+    - [Load-Balancing durch DNS](#load-balancing-durch-dns)
+    - [DNS-Überblick](#dns-%C3%BCberblick)
     - [Resource Records](#resource-records)
     - [Protokoll / Anfragedetails](#protokoll--anfragedetails)
     - [Zonendefinition / Zonentransfer](#zonendefinition--zonentransfer)
     - [DNS over TLS / HTTPS](#dns-over-tls--https)
-    - [...](#)
+    - [Dynamic DNS / Reverse DNS](#dynamic-dns--reverse-dns)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

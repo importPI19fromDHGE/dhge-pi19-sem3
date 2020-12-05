@@ -93,9 +93,10 @@ Rechnernetzkonzepte und -architekturen
       - [OSPF-Areas](#ospf-areas)
       - [OSPF - Hello-Pakete](#ospf---hello-pakete)
       - [OSPF- Designated Router](#ospf--designated-router)
-      - [Praxisbeispiel - BIRD](#praxisbeispiel---bird)
+      - [OSPF Link-State-Advertisements](#ospf-link-state-advertisements)
+      - [Praxisbeispiel - Router-Daemonen-Implementierung (BIRD)](#praxisbeispiel---router-daemonen-implementierung-bird)
     - [Border Gateway Protocol (BGP)](#border-gateway-protocol-bgp)
-  - [Router-Daemonen-Implementierung (BIRD)](#router-daemonen-implementierung-bird)
+      - [BGP-Peers /-Nachbarschaften](#bgp-peers--nachbarschaften)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

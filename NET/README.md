@@ -93,7 +93,7 @@ Rechnernetzkonzepte und -architekturen
       - [OSPF-Areas](#ospf-areas)
       - [OSPF - Hello-Pakete](#ospf---hello-pakete)
       - [OSPF- Designated Router](#ospf--designated-router)
-      - [OSPF Link-State-Advertisements](#ospf-link-state-advertisements)
+       - [OSPF Link-State-Advertisements](#ospf-link-state-advertisements)
       - [Praxisbeispiel - Router-Daemonen-Implementierung (BIRD)](#praxisbeispiel---router-daemonen-implementierung-bird)
     - [Border Gateway Protocol (BGP)](#border-gateway-protocol-bgp)
       - [BGP-Peers /-Nachbarschaften](#bgp-peers--nachbarschaften)
@@ -1272,3 +1272,52 @@ Schwächen:
 
 ![BGP-UPDATE-Attribute ](resources/routing-as-bgp-attributes.png)<!-- width=500px -->
 
+- Mandatory Attributes: 
+  - `ORIGIN`: Definiert die allgemeine Herkunft der Pfadinformationen (drei Werte möglich: `IGP`, `EGP`, `INCOMPLETE`)
+  - `AS_PATH`: Beschreibt den bisherigen Pfad von AS (Angabe der AS-Nummer), den das Update durchlaufen hat
+  - `NEXT_HOP`: Verweist auf die IP-Adresse des Routers, der als nächster Router auf dem im Update enthaltenen Pfad verwendet werden sollte
+
+
+#### BGP-Pfadauswahl 
+
+- RFC 4271 macht keine Vorgaben zur Selektion eines Pfades 
+- Informationen zur Selektion sind sehr allgemein: 
+  - 
+  - 
+- Möglicher Ansatz im folgenden Beispiel: Wahl der Route mit dem kürzesten AS-Pfad (via AS 500)
+
+
+
+Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzend Regeln, die bis zu einem Match schrittweise durchlaufen werden, z.B: 
+  - Der Pfad mit dem höchsten `Weight`-Wert (proprietäres Attribut) wird bevorzugt
+  - Bei gleicher `AS_PATH`-Länge 
+
+  <!-- TODO: Rest von Folie 25 übernehmen  -->
+
+
+  #### Anmerkung zur Sicherheit
+
+  - Fehlkonfigurationen der AS können schwerwiegende Folgen haben 
+  - Beispiel malaysischer Provider mit AS-Beziehungen zu Nachbarn 
+    - Fehlkonfiguration: 
+      - Ziel-IP-Adressen im gesamten Bereich wurden mit Kosten von 0 definiert
+      - Information wurde von vielen AS verteilt
+      - daher wurden massiver Traffic über diesen einen Provider geschleust 
+      - -> große Teile des Internet zusammengebrochen 
+    - Problem hier: 
+      - keine Validation der propagierten Informationen 
+  - Beispiel Hyjack eines BGP-Routers
+    - mit gezielter Verteilung von (Fehl-)Informationen kann dann Traffic gezielt umgeleitet und abgegriffen werden 
+  
+  ## Zusammenfassung Routing 
+
+    Themen: 
+      - AS-Beantragung
+      - OSPF und BGP
+      - Routingverfahren innerhalb und zwischen AS
+
+    <!-- TODO: Von Folie 29 übernehmen und nochmal schön machen hier  -->
+
+
+
+  

@@ -47,7 +47,9 @@ IT-Trends
     - [Virtuelle Rechner im AWS anlegen](#virtuelle-rechner-im-aws-anlegen)
 - [Machine Learning - KI, neuronale Netzwerke, ...](#machine-learning---ki-neuronale-netzwerke-)
   - [Einsatzgebiete](#einsatzgebiete)
-    - [Objekterkennung](#objekterkennung)
+  - [Mathe-Perspektive](#mathe-perspektive)
+    - [Erkennen ohne Lernen](#erkennen-ohne-lernen)
+    - [Erkennen durch Feature-Design](#erkennen-durch-feature-design)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -469,19 +471,63 @@ Dann noch **Passwort abrufen** klicken um mit dem SSH-Keypair das Passwort zu en
 
 ![Übersicht: Machine Learning](resources/Machine_Learning.png)<!-- width=350 -->
 
+Arthur Samuel (1959): 
+
+*"Computer bekommen die Fähigkeit zu lernen ohne dafür explizit programmiert worden zu sein"*
+
+Tom Mitchell:
+
+*"Ein Programm-System um automatisch zu lernen und sich durch Experimente zu verbessern"*
+
 ## Einsatzgebiete
 
-### Objekterkennung
+1. Objekterkennung
+	- bestimmte Objekte auf Bildern oder in Videos erkennen
+	- Beispiele:
+		- Gesichtserkennung
+			- Gesichtsmerkmale erkennen und zu Personen zuordnen
+			- Lächeln und andere Emotionen erkennen
+			- Alter und Geschlecht erkennen
+		- Texterkennung
+			- Bild -> Text
+			- Audio -> Text
+			- Formularanalyse
+		- Objekte erkennen und zählen 
+			- krankhafte Zellen in CT- und MRT-Bildern 
+		- semantische Einteilung
+			- unsichere Inhalte erkennen
+				- z.B. Pornographie, Gewalt, ...
+		- Bilder-Deutung 
 
-- bestimmte Objekte auf Bildern oder in Videos erkennen
-- Beispiele:
-	- unsichere Inhalte erkennen
-		- z.B. Pornographie, Gewalt, ...
-	- Gesichtserkennung
-		- Gesichtsmerkmale erkennen und zu Personen zuordnen
-		- Lächeln und andere Emotionen erkennen
-		- Alter und Geschlecht erkennen
-	- Texterkennung
-		- Bild -> Text
-		- Audio -> Text
-		- Formularanalyse
+2. Prinzipien in Datenfolgen erkennen 
+	- z.B. Virensignaturen... 
+3. natürliche Sprache erkennen 
+	- nicht bezogen auf Diktierfunktion, also Text-To-Speech
+	- es geht explizit um das "Verstehen" des Gesprochenen und Einordnung in den Kontext 
+
+
+## Mathe-Perspektive 
+
+![Guetefunktion](resources/guetefunktion.png)<!-- width=350px -->
+
+![Guetefunktion2](resources/guetefunktion2.png)<!-- width=350px -->
+
+### Erkennen ohne Lernen 
+
+### Erkennen durch Feature-Design 
+
+Ablauf: 
+
+
+$f(x,param_{1})=z_{1}$
+
+$tilde{f}(z_{1}, param_{2})=z_{2}$
+
+$dbtilde{f}(z_{2}, param{3})= y$
+
+![Konstruktion Neuronales Netz](resources/neuronales-netz.png)<!-- width=350px -->
+
+<!-- TODO: Layer-Abbildung schön machen und erklären -->
+
+Begriff des Deep-Learnings kommt daher, dass bei der Konstruktion viele versteckte Schichten verwendet werden. 
+Die verschiedenen Layer ermöglichen den Einsatz verschiedener Features/Funktionen. 

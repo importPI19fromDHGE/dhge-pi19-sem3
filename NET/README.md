@@ -1598,13 +1598,30 @@ $/rightarrow$ Auswahl entsprechender Server unter den insgesamt verfügbaren Ser
   - Client wählt eine Konfiguration und bestätigt die (ggf. temporäre) Verwendung der Konfiguration gegenüber dem Server durch das Kommando `DHCPREQUEST`
   - Auffrischen oder Verifizieren des "Leases" erfolgt ebenfalls durch `DHCPREQUEST`
 
-  ## DHCPv6
+### DHCPv6
 
-  - IPv6 bietet durch `SLAAC`und `NDP` Mechanismen, um Netzwerkkonfiguration ohne dedizierte Infrastruktur zu ermitteln 
-  - Davon ausgeschlossen: DNS-Konfiguration 
-  - zwei Ansätze der DNS-Konfiguration für IPv6: 
-    - "IPv6 Router Advertisement Options for DNS Configuration" (RFC 6106)
-      - realisiert Konfiguration durch NDP-Erweiterung 
-    - "Dynamic Host Configuration Protocol for IPv6 (DHCPv6)" (RFC 3315)
-  - DHCPv6 unterstützt wie auch DHCPv4 gegenseitige Authentifizierung zwischen Client und Server
+- IPv6 bietet durch `SLAAC`und `NDP` Mechanismen, um Netzwerkkonfiguration ohne dedizierte Infrastruktur zu ermitteln 
+- Davon ausgeschlossen: DNS-Konfiguration 
+- zwei Ansätze der DNS-Konfiguration für IPv6: 
+  - "IPv6 Router Advertisement Options for DNS Configuration" (RFC 6106)
+    - realisiert Konfiguration durch NDP-Erweiterung 
+  - "Dynamic Host Configuration Protocol for IPv6 (DHCPv6)" (RFC 3315)
+- DHCPv6 unterstützt wie auch DHCPv4 gegenseitige Authentifizierung zwischen Client und Server
+
+## SOCKS-Protokoll
+
+- in RFC 1928 (v5) definiertes Protokoll zur transparenten Weiterleitung von Anwendungsdaten über einen Proxyserver
+- Zwischen Transportschicht und Anwendungsprotokoll angesiedelt - `shim-layer`
+- Protokoll ermöglicht Kommunikation von Befehlen an Proxy, um hinter dem Proxy TCP-Verbindungen zu etablieren oder UDP-Datagramme weiterzuleiten 
+- Beispiel: 
+![SOCKS-Beispiel](resources/al-socks-example.png)<!-- width=500px -->
+
+## Zusammenfassung
+
+<!-- TODO: Von Folie 26 übernehmen -->
+
+
+# Prüfungsvorbereitung 
+
+## Beispielklausur
 

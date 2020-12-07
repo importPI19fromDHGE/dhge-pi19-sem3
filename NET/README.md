@@ -124,7 +124,18 @@ Rechnernetzkonzepte und -architekturen
   - [SOCKS-Protokoll](#socks-protokoll)
   - [Zusammenfassung](#zusammenfassung)
 - [Prüfungsvorbereitung](#pr%C3%BCfungsvorbereitung)
+  - [Formalien](#formalien)
   - [Beispielklausur](#beispielklausur)
+    - [Internet Engineering Taskforce (2 Punkte)](#internet-engineering-taskforce-2-punkte)
+    - [ISO/OSI-Referenzmodell (7 Punkte)](#isoosi-referenzmodell-7-punkte)
+    - [Virtuelle LANs (6 Punkte)](#virtuelle-lans-6-punkte)
+    - [Internet Protocol (4 Punkte)](#internet-protocol-4-punkte)
+    - [IP-Subnetze (6 Punkte)](#ip-subnetze-6-punkte)
+    - [Routing (6 Punkte)](#routing-6-punkte)
+    - [Transportschicht (9 Punkte)](#transportschicht-9-punkte)
+    - [Autonome Systeme / BGP (4 Punkte)](#autonome-systeme--bgp-4-punkte)
+    - [Domain Name System (4 Punkte)](#domain-name-system-4-punkte)
+    - [VXLAN (2 Punkte)](#vxlan-2-punkte)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

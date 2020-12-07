@@ -1587,3 +1587,23 @@ $/rightarrow$ Auswahl entsprechender Server unter den insgesamt verfügbaren Ser
 
 <!-- TODO: Von Folie 21+22 übernehmen -->
 
+## DHCP 
+
+- Dynamic Horst Configuration Protocol (DHCP) ermöglicht die automatische Konfiguration von TCP/IP-Netzwerkinformationen (RFC 2131)
+- für IPv4 und IPv6
+- Prinzip: 
+  - DHCP-Client sendet ein Broadcast an das Netz und ermittelt durch das Kommando `DHCPDISCOVER` verfügbare DHCP-Server
+  - DHCP-Server offerieren Netzwerkkonfigurationen an anfragenden Client (mittesl Optionen-Feld in DHCP-Nachricht)
+  - Client wählt eine Konfiguration und bestätigt die (ggf. temporäre) Verwendung der Konfiguration gegenüber dem Server durch das Kommando `DHCPREQUEST`
+  - Auffrischen oder Verifizieren des "Leases" erfolgt ebenfalls durch `DHCPREQUEST`
+
+  ## DHCPv6
+
+  - IPv6 bietet durch `SLAAC`und `NDP` Mechanismen, um Netzwerkkonfiguration ohne dedizierte Infrastruktur zu ermitteln 
+  - Davon ausgeschlossen: DNS-Konfiguration 
+  - zwei Ansätze der DNS-Konfiguration für IPv6: 
+    - "IPv6 Router Advertisement Options for DNS Configuration" (RFC 6106)
+      - realisiert Konfiguration durch NDP-Erweiterung 
+    - "Dynamic Host Configuration Protocol for IPv6 (DHCPv6)" (RFC 3315)
+  - DHCPv6 unterstützt wie auch DHCPv4 gegenseitige Authentifizierung zwischen Client und Server
+

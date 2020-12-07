@@ -1161,3 +1161,63 @@ Vererbung:
 Polymorphismus: 
 - Typ des Objektes entscheidet sich erst zur Laufzeit anhand der übergebenen Parameter
 
+## Klassendiagramm
+
+Ziel: 
+- mehrere Klassen "unabhängig" von der Implementierungssprache abbilden 
+- statische Informationen der Klasse einbeziehen
+- Beziehungen zu anderen Klassen darstellen 
+
+Vorgehen: 
+- Klasse in Rechteck fassen, oberes Feld Klassenname
+- darunter die Eigenschaften, hier: 
+  - `name` und `alter` mit ihrem Typ
+  - z.B. `name: string`
+  - zusätzlich noch mit `+` für `public` oder `-` für `private`, `#` für `protected` markieren
+  - statische Variablen werden unterstrichen
+- darunter noch die Methoden der Klasse
+- in UML noch umfassende Kennzeichnung als Klassendiagramm (optional) 
+
+![Beispiel Klassendiagramm](resources/uml-class.png)<!-- width=200px -->
+
+Tooling: 
+![Plant UML](https://planttext.com)
+
+Syntax für plantuml: 
+
+1. "body":
+
+```
+@startuml
+... body
+@enduml
+```
+
+2. Klassendefinition: 
+
+```
+@startuml
+class TIER {
+  - lebt : bool
+  - farbe : string
+  - alter : int
+  + setLebt(bool):void
+  + getLebt():bool
+  + setFarbe(string): void
+  + getFarbe():bool
+  + getAlter(): int
+  + setAlter(int): void
+}
+@enduml
+```
+
+3. Ableitungen
+
+```
+# HUND erbt von TIER
+HUND -up-|> TIER
+```
+
+## Objekt-Diagramm 
+
+![Beispiel Klassendiagramm](resources/uml-objects.png)<!-- width=200px -->

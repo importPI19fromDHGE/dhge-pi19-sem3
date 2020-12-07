@@ -1038,7 +1038,7 @@ Begriffsunterscheidung:
 
 ```
 Ziel: D 
-N = Präfix nzw. Netz von D 
+N = Präfix bzw. Netz von D 
 
 if (N ist direkt am lokalen Link angeschlossen) 
 {

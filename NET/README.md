@@ -1186,7 +1186,7 @@ Schwächen:
   - Falls ein Knoten über mehr als 15 Hops erreichbar ist, gilt er für RIP als unerreichbar
 - keine Separation in Broadcast-Domänen 
   - Netz wird durch Broadcasts geflutet
-  - keine Möglichkeit, große Netze in RIP:Bereiche einzuteilen, die nur innerhlab des Bereichs Informationen austauschen
+  - keine Möglichkeit, große Netze in RIP:Bereiche einzuteilen, die nur innerhalb des Bereichs Informationen austauschen
 - Hops als einzige Metrik
   - keine Möglichkeit, unterschiedliche Kosten in Routingentscheidungen einzubeziehen
 

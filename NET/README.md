@@ -119,6 +119,7 @@ Rechnernetzkonzepte und -architekturen
     - [NTP On-Wire Protocol](#ntp-on-wire-protocol)
     - [SNTP - Simple Network Time Protocol](#sntp---simple-network-time-protocol)
     - [NTP - Implementierungsbeispiele](#ntp---implementierungsbeispiele)
+  - [DHCP](#dhcp)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

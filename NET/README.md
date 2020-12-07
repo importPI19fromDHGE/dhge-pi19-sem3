@@ -112,6 +112,10 @@ Rechnernetzkonzepte und -architekturen
     - [Zonendefinition / Zonentransfer](#zonendefinition--zonentransfer)
     - [DNS over TLS / HTTPS](#dns-over-tls--https)
     - [Dynamic DNS / Reverse DNS](#dynamic-dns--reverse-dns)
+    - [DNS - manuelle Abfragen](#dns---manuelle-abfragen)
+  - [Zeitsynchronisation - NTP](#zeitsynchronisation---ntp)
+    - [Motivation](#motivation)
+    - [](#)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

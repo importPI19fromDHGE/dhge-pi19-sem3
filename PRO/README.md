@@ -518,7 +518,6 @@ Tom Mitchell:
 
 Ablauf: 
 
-<!-- TODO: Können wir LaTex und wenn ja, wie? -->
 
 $f(x,param_{1})=z_{1}$
 
@@ -532,4 +531,3 @@ $dbtilde{f}(z_{2}, param{3})= y$
 
 Begriff des Deep-Learnings kommt daher, dass bei der Konstruktion viele versteckte Schichten verwendet werden. 
 Die verschiedenen Layer ermöglichen den Einsatz verschiedener Features/Funktionen. 
-

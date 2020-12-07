@@ -1628,5 +1628,70 @@ $/rightarrow$ Auswahl entsprechender Server unter den insgesamt verfügbaren Ser
 
 # Prüfungsvorbereitung 
 
+## Formalien 
+- Stichpunkte sind möglich, aber nicht zu verkürzt 
+- eigene handschriftliche Mitschriften (1 A4-Blatt, beidseitig beschrieben sind erlaubt)
+
 ## Beispielklausur
 
+### Internet Engineering Taskforce (2 Punkte)
+
+Frage: Um was handelt es sich bei der Internet Engineering Taskforce? Welche Aufgaben hat diese Organisation?
+
+### ISO/OSI-Referenzmodell (7 Punkte)
+
+Frage: Welche sieben Schichten werden durch das in der Vorlesung besprochene ISO/OSI-Referenzmodell unterschieden? Was sind jeweils die zentralen Dienste bzw. Funktionen der sieben Schichten? 
+
+### Virtuelle LANs (6 Punkte)
+
+Frage: 
+In folgendem Szenario sehen Sie zwei Hosts (Host 1, Host 2), die sich in zwei unterschiedlichen Port-basierten VLANs befinden (VLAN 5 und VLAN 6). Ansonsten wurde noch nichts konfiguriert. Die Separation der VLANs soll erhalten bleiben, allerdings soll eine Kommunikation zwischen den beiden VLANs über den eingezeichenten Pfad (1-6) möglich sein. Welche Kommunikationsschritte sind zu durchlaufen, um diese Kommunikation zu ermöglichen? 
+
+![VLAN-Abbildung](resources/klausur-abb1.png)<!-- width=500px -->
+
+### Internet Protocol (4 Punkte)
+
+Frage: 
+a) Nennen und beschreiben Sie drei zentrale Vorteile, die IPv6 im Vergleich zu IPv4 bietet. 
+b) Beschreiben Sie schrittweise, wie durch das Verfahren Stateless Adress Autoconfiguration zunächst eine lokal eindeutige und anschließend eine global eindeutige IPv6-Adresse vergeben wird
+
+### IP-Subnetze (6 Punkte)
+
+Frage: 
+Ihnen wurde die IP-Adress-Range 192.168.40.0/22 zur Verfügung gestellt. Innerhalb dieses Ranges sollen sechs möglichst große wie auch gleich große Netze entstehen. Geben sie jeweils die Netzadressen der sechs Netze an und beschreiben Sie kurz den Ablauf zur Ermittlung der sechs Netzadressen. 
+
+
+### Routing (6 Punkte)
+
+Frage: 
+Von einem Host mit der IP-Adresse `87.76.23.2` sollen IP-Pakete an die IP-Adresse `1.1.1.1` gesendet werden. Dabei wird davon ausgegangen, dass neben dem Eintrag für das Netz `87.76.23.0./25` als einzige Eintrag in der Routing-Tabelle das Default-Gateway (IP: `87.76.23.1`) vorliegt.
+Beschreiben Sie den Ablauf der Weiterleitung von IP-Paketen innerhalb des Hosts ("Forwarding"). Gehen Sie dabei auf die Aufgabe der "Routing-Tabelle", des Adress Resolution Protocols wie auch des Default-Gateways ein. 
+
+
+### Transportschicht (9 Punkte)
+
+Fragen: 
+a) Welche Kernaufgabe erfüllt die Transportschicht?
+b) Erstellen Sie eine Tabelle für den Vergleich des Transmission Control Protocols `TCP` mit dem User Datagram Protocol `UCP`. Gehen Sie in der Tabelle auf drei Charakteristika ein, in denen sich die beiden Protokolle unterscheiden
+
+Reihenfolgegarantie 
+Zuverlässigkeit 
+Protokolloverhead
+Congestion Control 
+
+c) Was wird unter Congestion Control im Falle des TCP verstanden? Beschreiben Sie weiterhin wie Congestion-Control unter Verwendung des "Slow-Start"-Verfahrens umgesetzt wird. 
+d) Skizzieren Sie den TCP-Drei-Wege-Handshake. Welchen Sinn haben die drei Schritte?
+
+### Autonome Systeme / BGP (4 Punkte)
+Fragen: 
+a) Geben Sie eine Definition des Begriffs "Autonomes System (AS)" an. Weshalb wurde das Konzept der AS im Internet eingeführt? Was ist Voraussetzung für die Bentragung eines AS?
+b) Wozu wird das BGP im Kontext von AS eingesetzt? 
+
+### Domain Name System (4 Punkte)
+Frage:
+Beschreiben Sie in eigenen Worten, wie die Auflösung eines Namens mittels DNS erfolgt. Beginnen Sie dabei mit dem Resolver. Gehen Sie auch auf die Aufgabe des Root-DNS-Servers ein. 
+
+### VXLAN (2 Punkte)
+
+Frage:
+Beschreiben Sie die technische Funktionsweise von VXLAN. Wozu wird VXLAN eingesetzt? 

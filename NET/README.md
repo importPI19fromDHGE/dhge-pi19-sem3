@@ -1262,7 +1262,7 @@ Schwächen:
 
 #### BGP-Peers /-Nachbarschaften
 
-- BGP- Router etabliert Verbindung mit ausgewählten Peers und tauscht mit diesen Pfadinformationen aus 
+- BGP-Router etabliert Verbindung mit ausgewählten Peers und tauscht mit diesen Pfadinformationen aus 
 - Konfiguration von Verbindungen zu Peers erfolgt manuell 
 - BGP definiert vier wichtige Nachrichten für Kommunikation zwischen Peers: 
   - `OPEN`: Teilt Peer initial BGP-Version, AS-Nr., Hold-Timer, BGP Identifier mit 

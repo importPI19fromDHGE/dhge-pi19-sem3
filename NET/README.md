@@ -1321,7 +1321,7 @@ Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzen
       - -> große Teile des Internet zusammengebrochen 
     - Problem hier: 
       - keine Validation der propagierten Informationen 
-  - Beispiel Hyjack eines BGP-Routers
+  - Beispiel Hijack eines BGP-Routers
     - mit gezielter Verteilung von (Fehl-)Informationen kann dann Traffic gezielt umgeleitet und abgegriffen werden 
   
   ## Zusammenfassung Routing 

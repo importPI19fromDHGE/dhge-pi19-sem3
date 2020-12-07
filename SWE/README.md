@@ -1088,3 +1088,76 @@ $MM_{korrigiert}=K_u \cdot K_p \cdot MM$
 - ...
 
 ### Function-Point-Methode
+
+- statt Codezeilen zu schätzen $\rightarrow$ Eingangsgrößen von Funktionen evaluieren
+- somit entsteht ein ralatives Maß zur Bewertung von Funktionen $\rightarrow$ `function-points`
+- $\copyright$ entworfen von A. Albrecht (1979 bei IBM)
+
+- wenn die Kosten / function-point bekannt sind, dann ist eine Kostenschätzung möglich 
+
+**Idee:** 
+
+1. Zähle logische Transaktionen 
+
+![Abbildung Transaktionszählung](resources/function-points-count.png)<!-- width=500px -->
+
+2. Gewichtung der Werte
+
+- `S` für einfach, `M` für mittel und `L` für komplex
+
+3. Beispiel-Tabelle für Dateneingabe 
+![Screenshot Tabelle](resources/function-points-table.png)<!-- width=500px -->
+
+- entwickelt von der `International Function Points User Group - IFPUG`
+
+4. Gesamtergebnis
+![Screenshot Ergebnisberechnung](resources/function-points-solution.png)<!-- width=500px -->
+
+- $Function Points = FP_{Roh}* Korrekturfaktoren$
+- Bis zu 14 Einflussfaktoren als Korrekturfaktoren:
+- nur falls Aufwand pro FP bekannt ist, ist der Aufwand "berechenbar"
+- Beispiel: 
+  - Faustregel von Jones:
+    - $MM = FP^{0.4} = \sqrt[5]{FP^2} = t$
+    - $Anzahl Mitarbeiter = FP / 150$
+
+
+# Objektorientierung
+
+## Überblick 
+
+Sprache: `UML`... Unified Modelling Language
+- an sich keine wirkliche "Sprache", eher Form der Visualisierung
+- verwendet für: 
+  - Spezifikation
+  - Konstruktion
+    - eher nicht geeignet, da die Umsetzung ausser acht gelassen wird
+  - Visualisierung
+    - gut geeignet, wenn automatisch generiert
+  - Dokumentation 
+    - gut geeignet, wenn automatisch generiert
+- Eigenschaft: 
+  - nicht eindeutige Darstellung $\rightarrow$ Begleit-Text wird notwendig
+
+![Überblick UML-Diagrammtypen](resources/uml-diagrams.png)<!-- width=500px -->
+
+## Eigenschaften der Objektorientierung
+
+Klasse:
+- Bauplan für Datensammlung und Funktionen für deren Bearbeitung
+
+Objekt: 
+- Instanz einer Klasse
+- konkrete Ausprägung des Bauplans 
+
+Kapselung: 
+- Begrenzung des Zugriffs auf Klassen 
+- `public`,`private`, `protected`, ...
+
+Vererbung: 
+- Klassen können auf Basis anderen Klassen erstellt werden
+- diese neuen Klassen enthalten (`erben`) dann die Eigenschaften und Methoden der ursprünglichen Klasse
+
+Polymorphismus: 
+- Typ des Objektes entscheidet sich erst zur Laufzeit anhand der übergebenen Parameter
+

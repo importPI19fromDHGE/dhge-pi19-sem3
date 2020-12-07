@@ -11,14 +11,15 @@ Systemanalyse
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Einführung / Überblick](#einf%C3%BChrung--%C3%BCberblick)
+- [Systemanalyse](#systemanalyse)
+- [Einführung / Überblick](#einführung--überblick)
   - [User Story Format](#user-story-format)
-  - [Was gehört alles zur Systemanalyse?](#was-geh%C3%B6rt-alles-zur-systemanalyse)
-- [Regeln für Software-Entwicklung](#regeln-f%C3%BCr-software-entwicklung)
+  - [Was gehört alles zur Systemanalyse?](#was-gehört-alles-zur-systemanalyse)
+- [Regeln für Software-Entwicklung](#regeln-für-software-entwicklung)
   - [(1) Klartext](#1-klartext)
     - [Wasserfallmodell](#wasserfallmodell)
     - [Agil](#agil)
-  - [(2) Gründliche Vertragsgestaltung](#2-gr%C3%BCndliche-vertragsgestaltung)
+  - [(2) Gründliche Vertragsgestaltung](#2-gründliche-vertragsgestaltung)
     - [Wasserfallmodell](#wasserfallmodell-1)
     - [Agil](#agil-1)
   - [(3) Wandelnde Anforderungen: Wie gehe ich damit um?](#3-wandelnde-anforderungen-wie-gehe-ich-damit-um)
@@ -27,10 +28,10 @@ Systemanalyse
   - [Vorgehensmodelle](#vorgehensmodelle)
     - [Phasenmodell](#phasenmodell)
     - [Iteriertes Phasenmodell](#iteriertes-phasenmodell)
-    - [Evolutionäre SW-Entwicklung](#evolution%C3%A4re-sw-entwicklung)
+    - [Evolutionäre SW-Entwicklung](#evolutionäre-sw-entwicklung)
     - [Spiralen Modell](#spiralen-modell)
     - [V-Modell](#v-modell)
-    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-auspr%C3%A4gung-des-v-modells-v-modell-xt)
+    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-ausprägung-des-v-modells-v-modell-xt)
     - [Extreme Programming (XP)](#extreme-programming-xp)
 - [SCRUM](#scrum)
   - [Empirische Prozess Kontrolle](#empirische-prozess-kontrolle)
@@ -49,7 +50,7 @@ Systemanalyse
     - [Definition of Done](#definition-of-done)
     - [DoR: Definition of Ready](#dor-definition-of-ready)
   - [SCRUM-Manifest](#scrum-manifest)
-    - [Häufige / gern gemachte Fehler bezüglich des Manifests](#h%C3%A4ufige--gern-gemachte-fehler-bez%C3%BCglich-des-manifests)
+    - [Häufige / gern gemachte Fehler bezüglich des Manifests](#häufige--gern-gemachte-fehler-bezüglich-des-manifests)
   - [Vor- und Nachteile von SCRUM](#vor--und-nachteile-von-scrum)
   - [SCRUM-Ban als SCRUM Derivat](#scrum-ban-als-scrum-derivat)
 - [Story Board](#story-board)
@@ -58,20 +59,26 @@ Systemanalyse
 - [Design-Thinking](#design-thinking)
   - [4 Prozess-Schritte](#4-prozess-schritte)
   - [Hinweise](#hinweise)
-- [Aufwandsanalyse](#aufwandsanalyse)
-  - [Aufwandsschätzung](#aufwandssch%C3%A4tzung)
+- [Requirement Engineering / Aufwandsanalyse](#requirement-engineering--aufwandsanalyse)
+  - [Aufwandsschätzung](#aufwandsschätzung)
     - [LOC (Lines of Code) als Basis im klassischen Fall](#loc-lines-of-code-als-basis-im-klassischen-fall)
     - [weitere Faktoren](#weitere-faktoren)
     - [Magisches Dreieck / Teufelsquadrat](#magisches-dreieck--teufelsquadrat)
-  - [Empirische Schätzung](#empirische-sch%C3%A4tzung)
-    - [Expertenschätzung](#expertensch%C3%A4tzung)
+  - [Empirische Schätzung](#empirische-schätzung)
+    - [Expertenschätzung](#expertenschätzung)
     - [Delphi-Methode](#delphi-methode)
     - [Divide et Impera (Teile und Hersche)](#divide-et-impera-teile-und-hersche)
     - [SCRUM-Poker](#scrum-poker)
     - [High-Low-Showdown](#high-low-showdown)
-  - [Algorithmische Schätzverfahren](#algorithmische-sch%C3%A4tzverfahren)
+  - [Algorithmische Schätzverfahren](#algorithmische-schätzverfahren)
     - [COCOMO](#cocomo)
     - [Function-Point-Methode](#function-point-methode)
+- [Objektorientierung](#objektorientierung)
+  - [Überblick](#überblick)
+    - [UML: Unified Modelling Language](#uml-unified-modelling-language)
+    - [Diagramme](#diagramme)
+    - [Objekt-Orientierung](#objekt-orientierung)
+  - [Klassendiagramm](#klassendiagramm)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -834,7 +841,7 @@ Fail Early!
 4. wilde Ideen zulassen & ermutigen!
 5. insgesamt kundenorientiert
 
-# Aufwandsanalyse
+# Requirement Engineering / Aufwandsanalyse
 
 <!-- Hier fehlt noch was -->
 ## Aufwandsschätzung
@@ -1088,3 +1095,111 @@ $MM_{korrigiert}=K_u \cdot K_p \cdot MM$
 - ...
 
 ### Function-Point-Methode
+
+- anstatt Codezeilen zu schätzen $\Rightarrow$ Evaluierung von Eingangsgrößen von Funktionen
+- relatives Maß für die Bewertung von Funktionen
+- $\copyright$ A. Albrecht 1979 bei IBM
+- *wenn* Kosten pro Funktion Point bekannt $\rightarrow$ dann Kostenschätzung möglich
+
+**Idee**:
+
+1. Zähle logische Transaktionen (einer Funktion): 
+   - Dateneingabe
+   - Datenausgabe 
+   - Anzahl an Anfragen 
+   - Schnittstellen zu externen Datenbeständen
+   - interne Datenbankanfragen (im weitesten Sinne)
+2. Werte werden gewichtet
+   - S $\rightarrow$ einfach
+   - M $\rightarrow$ mittel 
+   - L $\rightarrow$ komplex
+
+**Beispiel-Tabelle für Dateneingabe**
+
+| Anzahl Datenelemente         | 1-4 | 5-15 | >15 |
+| ---------------------------- | --- | ---- | --- |
+| **Anzahl an Datenbeständen** | -   | -    | -   |
+| 0..1                         | S   | S    | M   |
+| 2                            | S   | M    | L   |
+| >2                           | M   | L    | L   |
+
+> International Function Pointt User Group (IFPUG)
+
+**Gesamtergebnis**
+
+|                        | S         | M          | L          |
+| ---------------------- | --------- | ---------- | ---------- |
+| Dateneingabe           | $\cdot 3$ | $\cdot 4$  | $\cdot 6$  |
+| Datenausgabe           | $\cdot 4$ | $\cdot 5$  | $\cdot 7$  |
+| Anfragen               | $\cdot 3$ | $\cdot 4$  | $\cdot 6$  |
+| Externe Schnittstellen | $\cdot 5$ | $\cdot 7$  | $\cdot 10$ |
+| Interne Schnittstellen | $\cdot 7$ | $\cdot 10$ | $\cdot 15$ |
+
+Funktion Point Roh-Wert wird mit dieser Tabelle verrechnet und führt so zum Gesamtergebnis!
+
+$FunctionPoints=FP_{Roh} \cdot Korrekturfaktoren$
+
+Korrekturfaktoren: 14 verschiedene Einflussfaktoren
+
+> **Achtung!** falls Aufwand pro Funktion-Point bekannt $\Rightarrow$ Aufwand "berechenbar"
+
+z.B. Faustregel von Jones: 
+
+$MM=FP^{0.4}=\sqrt[5]{FP^2}\hat{=}t$
+
+$Anzahl_{MA}=\frac{FP}{150}$
+
+# Objektorientierung
+
+## Überblick
+
+### UML: Unified Modelling Language
+
+- Sprache für:
+   - Spezifikation ... $+/-$
+   - Konstruktion ... $-$
+   - Visualisierung ... $+$ (wenn automatisch generiert)
+   - Dokumentation ... $+$ (wenn automatisch generiert)
+- Eigenschaft: nicht eindeutige Darstelleung $\Rightarrow$ Begleit-Text wird notwendig
+
+### Diagramme
+- Strukturdiagramme
+  - Klasse
+  - Objekt
+  - Paket
+  - Komponente
+  - Deployment
+- Verhaltensdiagramme
+  - Zustand
+  - Aktivität
+  - Interaktion
+    - Sequenz
+    - Kommunikation
+  - Use Case
+
+### Objekt-Orientierung
+
+- Klasse ... Bauplan mit "Werkzeugen"
+- Objekt ... Instanz einer Klasse
+
+Die drei Säulen der Objekt-Orientierung
+- Kapselung
+  - Zugriff von Außen
+- Vererbung
+- Polymorphismus
+
+## Klassendiagramm
+
+- mehrere Klassen "unabhängig" von der Implementierungs-Sprache abbilden
+- statische Infos der Klasse
+- Beziehungen zu anderen Klassen
+
+<!-- Hier eine Abbildung einer Klasse in UML -->
+
+$+$ ... public
+
+$-$ ... private
+
+$\#$ ... protected
+
+statische Variablen werden unterstrichen

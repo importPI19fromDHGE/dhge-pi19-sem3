@@ -115,7 +115,10 @@ Rechnernetzkonzepte und -architekturen
     - [DNS - manuelle Abfragen](#dns---manuelle-abfragen)
   - [Zeitsynchronisation - NTP](#zeitsynchronisation---ntp)
     - [Motivation](#motivation)
-    - [](#)
+    - [Network Time Protocol - Architektur](#network-time-protocol---architektur)
+    - [NTP On-Wire Protocol](#ntp-on-wire-protocol)
+    - [SNTP - Simple Network Time Protocol](#sntp---simple-network-time-protocol)
+    - [NTP - Implementierungsbeispiele](#ntp---implementierungsbeispiele)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

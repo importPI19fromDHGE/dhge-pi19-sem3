@@ -1539,5 +1539,48 @@ Wichtig: Protokollkommunikation erfolgt über UDP
 
 $\rightarrow$ Uhren müssen möglichst synchronisiert werden 
 
-### 
+### Network Time Protocol - Architektur 
+
+- in RFC 5905 (Version 4) definiertes Protokoll zur Synchronisation von Uhren 
+- setzt UDP zuer Verteilung der Protokollinformationen ein (Port 123)
+- Flexibel einsetzbar für die Synchronisation mit einzelnen Referenzzeitgebern oder in einem großen Verbund von NTP-Systemen 
+- Beispielarchitektur: 
+![NTP-Architektur](resources/al-ntp-struktur.png)<!-- width=500px -->
+
+### NTP On-Wire Protocol 
+
+<!-- TODO: Abb von Folie 18 übernehmen -->
+
+- Funktion `save()` $/rightarrow$ lokale Speicherung der übergebenen Zeitstempel in einer Variable TX 
+  - z.B. `save(t1)` $/rightarrow$ Speicherung in T1
+- Nach Empfang der Zeitstempel wird eine Validitätsprüfung durchgeführt
+  - v.a. zur Detektion von Duplikaten und zur Vermeidung von Replay-Angriffen 
+  - Methode: 
+    - Überprüfung, ob Sendezeitstempel tX != T(X-2)
+    - Überprüfung, ob Sendezeitstempel tY == TY
+- Aus Zeitstempeln werden zwei Werte berechnet, die anschließend statistischen Analysen und Filterungen unterzogen werden:
+  - Offset: 
+    - Wahrscheinlichste Abweichung der Serverzeit (= Zeit des Kommunikationspartners) relativ zur lokalen Systemzeit
+  - Delay: 
+    - Round-Trip-Time zwischen Client und Server
+- Optimum: 
+  - Uhren sind synchron und es gibt eine konstante RTT
+- Akkurate Synchronisation ist vor allem Servern gegenüber mit geringer RTT und geringer Varianz der RTT möglich 
+
+$/rightarrow$ Auswahl entsprechender Server unter den insgesamt verfügbaren Servern 
+
+<!-- TODO: Formeln von Folie 19 übernehmen -->
+
+### SNTP - Simple Network Time Protocol
+
+- in RFC 4330 definierte, vereinfachte Version von NTP 
+- Zustandsinformationen, die auf Client-System gespeichert werden müssen, sind deutlich reduziert
+- Besonders geeignet für eingebettete Systeme und falls keine hohen Anforderungen an die Zeitsynchronisation vorliegen 
+- Von Server kommunizierte Informat
+
+<!-- TODO: Rest von Folie 20 übernehmen -->
+
+### NTP - Implementierungsbeispiele
+
+<!-- TODO: Von Folie 21+22 übernehmen -->
 

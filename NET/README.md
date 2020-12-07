@@ -5,7 +5,8 @@ Rechnernetzkonzepte und -architekturen
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Einleitung / Übersicht](#einleitung--%C3%BCbersicht)
+- [Rechnernetzkonzepte und -architekturen](#rechnernetzkonzepte-und--architekturen)
+- [Einleitung / Übersicht](#einleitung--übersicht)
   - [Veranstaltungsziele](#veranstaltungsziele)
   - [Inhaltlicher Teil](#inhaltlicher-teil)
     - [Kommunikationsszenario](#kommunikationsszenario)
@@ -13,21 +14,21 @@ Rechnernetzkonzepte und -architekturen
     - [Internet Engineering Taskforce](#internet-engineering-taskforce)
       - [Arbeitsgruppen  / IETF-Areas](#arbeitsgruppen---ietf-areas)
     - [Begrifflichkeiten](#begrifflichkeiten)
-      - [Übertragungsmodi](#%C3%BCbertragungsmodi)
-      - [ISO/OSI Referenzmodell  <!-- hochgradig Prüfungsrelevant-->](#isoosi-referenzmodell-----hochgradig-pr%C3%BCfungsrelevant--)
+      - [Übertragungsmodi](#übertragungsmodi)
+      - [ISO/OSI Referenzmodell](#isoosi-referenzmodell)
     - [TCP/IP-Modell](#tcpip-modell)
     - [Kopplungselemente](#kopplungselemente)
     - [Topologien](#topologien)
     - [Medien/Verkabelung](#medienverkabelung)
     - [Tooling - Wireshark](#tooling---wireshark)
 - [Netzzugangsschicht](#netzzugangsschicht)
-  - [Übersicht zu Ethernet](#%C3%BCbersicht-zu-ethernet)
+  - [Übersicht zu Ethernet](#übersicht-zu-ethernet)
   - [Aufbau eines Ethernet Frames](#aufbau-eines-ethernet-frames)
   - [Namen von Netzwerkschnittstellen unter Linux](#namen-von-netzwerkschnittstellen-unter-linux)
   - [Switches](#switches)
     - [Architekturtypen](#architekturtypen)
-    - [Kenngrößen](#kenngr%C3%B6%C3%9Fen)
-    - [Spanning-Tree-Protocol <!--wahrscheinliche Prüfungsaufgabe-->](#spanning-tree-protocol---wahrscheinliche-pr%C3%BCfungsaufgabe--)
+    - [Kenngrößen](#kenngrößen)
+    - [Spanning-Tree-Protocol](#spanning-tree-protocol)
       - [STP - Port Fast/Fast Link](#stp---port-fastfast-link)
       - [Rapid Spanning Tree Protocol](#rapid-spanning-tree-protocol)
     - [Virtuelles LAN](#virtuelles-lan)
@@ -45,7 +46,7 @@ Rechnernetzkonzepte und -architekturen
     - [Einordnung](#einordnung)
     - [Protokolldetails](#protokolldetails)
   - [ICMP](#icmp)
-  - [Praxisübung](#praxis%C3%BCbung)
+  - [Praxisübung](#praxisübung)
   - [Nachteile IPv4](#nachteile-ipv4)
   - [IPv6](#ipv6)
     - [Extension-Header](#extension-header)
@@ -80,14 +81,14 @@ Rechnernetzkonzepte und -architekturen
   - [Einleitung](#einleitung)
   - [Allgemeines zu Routing](#allgemeines-zu-routing)
     - [Beispiel Routingtabellen](#beispiel-routingtabellen)
-    - [Schema für IP-Forwarding Algorithmus](#schema-f%C3%BCr-ip-forwarding-algorithmus)
+    - [Schema für IP-Forwarding Algorithmus](#schema-für-ip-forwarding-algorithmus)
   - [Hierarchische Struktur des Internets (Autonome Systeme)](#hierarchische-struktur-des-internets-autonome-systeme)
     - [Klassifizierung von AS](#klassifizierung-von-as)
     - [AS und Routing](#as-und-routing)
   - [Distanzvektor- und Link-State-Protokolle](#distanzvektor--und-link-state-protokolle)
     - [Bellman-Ford-Algorithmus](#bellman-ford-algorithmus)
     - [Dijkstra-Algorithmus](#dijkstra-algorithmus)
-  - [Ausgewählte Routing-Protokolle](#ausgew%C3%A4hlte-routing-protokolle)
+  - [Ausgewählte Routing-Protokolle](#ausgewählte-routing-protokolle)
     - [Routing Information Protocol (RIP)](#routing-information-protocol-rip)
     - [Open Shortest Path First (OSPF)](#open-shortest-path-first-ospf)
       - [OSPF-Areas](#ospf-areas)
@@ -99,14 +100,15 @@ Rechnernetzkonzepte und -architekturen
       - [BGP-Peers /-Nachbarschaften](#bgp-peers--nachbarschaften)
       - [BGP-Pfadauswahl](#bgp-pfadauswahl)
       - [Anmerkung zur Sicherheit](#anmerkung-zur-sicherheit)
+  - [Zusammenfassung Routing](#zusammenfassung-routing)
 - [Anwendungsschicht / Application-Layer](#anwendungsschicht--application-layer)
   - [Einleitung](#einleitung-1)
   - [Anwendungsschicht: Bezug zum OSI-Referenzmodell](#anwendungsschicht-bezug-zum-osi-referenzmodell)
-  - [Ausführung von Systemdiensten](#ausf%C3%BChrung-von-systemdiensten)
+  - [Ausführung von Systemdiensten](#ausführung-von-systemdiensten)
   - [Domain Name System (DNS)](#domain-name-system-dns)
     - [1. Perspektive: Domainregistrierung](#1-perspektive-domainregistrierung)
     - [Load-Balancing durch DNS](#load-balancing-durch-dns)
-    - [DNS-Überblick](#dns-%C3%BCberblick)
+    - [DNS-Überblick](#dns-überblick)
     - [Resource Records](#resource-records)
     - [Protokoll / Anfragedetails](#protokoll--anfragedetails)
     - [Zonendefinition / Zonentransfer](#zonendefinition--zonentransfer)
@@ -123,7 +125,7 @@ Rechnernetzkonzepte und -architekturen
     - [DHCPv6](#dhcpv6)
   - [SOCKS-Protokoll](#socks-protokoll)
   - [Zusammenfassung](#zusammenfassung)
-- [Prüfungsvorbereitung](#pr%C3%BCfungsvorbereitung)
+- [Prüfungsvorbereitung](#prüfungsvorbereitung)
   - [Formalien](#formalien)
   - [Beispielklausur](#beispielklausur)
     - [Internet Engineering Taskforce (2 Punkte)](#internet-engineering-taskforce-2-punkte)
@@ -136,6 +138,7 @@ Rechnernetzkonzepte und -architekturen
     - [Autonome Systeme / BGP (4 Punkte)](#autonome-systeme--bgp-4-punkte)
     - [Domain Name System (4 Punkte)](#domain-name-system-4-punkte)
     - [VXLAN (2 Punkte)](#vxlan-2-punkte)
+  - [Praxisübung: Aufsetzen eines DNS-Servers](#praxisübung-aufsetzen-eines-dns-servers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -1688,21 +1691,95 @@ b) Erstellen Sie eine Tabelle für den Vergleich des Transmission Control Protoc
 Reihenfolgegarantie 
 Zuverlässigkeit 
 Protokolloverhead
-Congestion Control 
+Congestion Control
 
 c) Was wird unter Congestion Control im Falle des TCP verstanden? Beschreiben Sie weiterhin wie Congestion-Control unter Verwendung des "Slow-Start"-Verfahrens umgesetzt wird. 
+
+- Handling von Überlast-Situationen zwischen Routern
+- Slow Start: anfangs nur wenig Bytes übertragen \rightarrow schrittweise erhöht
+- Paketgröße im Falle einer Überlast halbiert
+- Überlast an Paketverlust erkannt
+- Steuerung durch Congestion Window
+- nicht verwechseln mit Flow Control!
+
 d) Skizzieren Sie den TCP-Drei-Wege-Handshake. Welchen Sinn haben die drei Schritte?
 
+<!--Bild TODO-->
+
+- ``SYN``, ``SYN ACK``, ``ACK``
+- Sicherstellung der Zuverlässigkeit der Kommunikation
+- Sinn des SYN-Flags: Sequenznummer übertragen, Synchronisierung
+
 ### Autonome Systeme / BGP (4 Punkte)
-Fragen: 
+Fragen:
 a) Geben Sie eine Definition des Begriffs "Autonomes System (AS)" an. Weshalb wurde das Konzept der AS im Internet eingeführt? Was ist Voraussetzung für die Bentragung eines AS?
-b) Wozu wird das BGP im Kontext von AS eingesetzt? 
+
+- Menge von Routern / **IP-Ranges / Subnetzen**, welche von Akteuren kontrolliert wird
+- Kennzeichnug mit ASN
+- Ziel: globale Topologie muss nicht bekannt sein, erhöht Skalierbarkeit
+- jedes AS benötigt mind. 2 Verbindungen zu anderen AS
+
+b) Wozu wird das BGP im Kontext von AS eingesetzt?
+
+- Pfade von AS transitiv bekanntmachen
+  - welche ASN?
+  - welche IP-Präfixe?
+- Lernen von Präfixen in AS weltweit
 
 ### Domain Name System (4 Punkte)
 Frage:
-Beschreiben Sie in eigenen Worten, wie die Auflösung eines Namens mittels DNS erfolgt. Beginnen Sie dabei mit dem Resolver. Gehen Sie auch auf die Aufgabe des Root-DNS-Servers ein. 
+Beschreiben Sie in eigenen Worten, wie die Auflösung eines Namens mittels DNS erfolgt. Beginnen Sie dabei mit dem Resolver. Gehen Sie auch auf die Aufgabe des Root-DNS-Servers ein.
+
+Hinweis: an jeder Stelle werden zuerst die Caches konsultiert
+
+- Client frag Resolver
+- Resolver fragt ISP-NS nach Ziel-IP
+- ISP-NS fragt Root-NS für TLD-Auflösung: DENIC-NS
+- ISP-NS fragt DENIC-NS nach zust. NS
+- Resolver fragt zust. NS nach Ziel-IP
 
 ### VXLAN (2 Punkte)
 
 Frage:
-Beschreiben Sie die technische Funktionsweise von VXLAN. Wozu wird VXLAN eingesetzt? 
+Beschreiben Sie die technische Funktionsweise von VXLAN. Wozu wird VXLAN eingesetzt?
+
+## Praxisübung: Aufsetzen eines DNS-Servers
+
+- ``facebookxyz.com`` soll auf 192.168.0.10/24 verweisen (bzw. auf eine lokale Adresse)
+- mittels BIND-Server
+- in ``/etc/default/bind9`` bei ``OPTIONS`` ein ``-4`` anhängen
+- bind9 neu starten: ``sudo systemctl restart bind9``
+- in die ``/etc/bind/named.conf.local`` eintragen:
+
+```conf
+zone "meineTolleSeite.lol" {
+
+type master;
+file "/etc/bind/zones/meineTolleSeite.lol";
+
+};
+```
+
+- ``mkdir -p /etc/bind/zones``
+- in die ``/etc/bind/zones/meineTolleSeite.lol`` eintragen:
+
+```conf
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+; SOA --> Verweis auf Master-NS und dessen Mailaddresse
+@       IN      SOA     ns.meineTolleSeite.lol. admin.meineTolleSeite.lol. (
+                             3          ; Serial (vor jedem restart von bind hochsetzen)
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+        IN      NS      nameserver.
+www.meineTolleSeite.lol.        IN      A       192.168.42.21
+ns.meineTolleSeite.lol.         IN      A       127.0.0.1
+```
+
+- IP-Adresse bei ``IN A`` auf den eigenen Webserver zeigen lassen <!--wie du hast keinen? Jeder hat doch einen!-->
+- ``sudo systemctl restart bind9``

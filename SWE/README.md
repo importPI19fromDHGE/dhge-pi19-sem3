@@ -72,6 +72,11 @@ Systemanalyse
   - [Algorithmische Schätzverfahren](#algorithmische-sch%C3%A4tzverfahren)
     - [COCOMO](#cocomo)
     - [Function-Point-Methode](#function-point-methode)
+- [Objektorientierung](#objektorientierung)
+  - [Überblick](#%C3%BCberblick)
+  - [Eigenschaften der Objektorientierung](#eigenschaften-der-objektorientierung)
+  - [Klassendiagramm](#klassendiagramm)
+  - [Objekt-Diagramm](#objekt-diagramm)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

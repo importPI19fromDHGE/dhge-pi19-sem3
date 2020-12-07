@@ -1220,4 +1220,4 @@ HUND -up-|> TIER
 
 ## Objekt-Diagramm 
 
-![Beispiel Klassendiagramm](resources/uml-objects.png)<!-- width=200px -->
+![Beispiel Objektdiagramm](resources/uml-objects.png)<!-- width=200px -->

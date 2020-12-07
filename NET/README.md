@@ -120,6 +120,11 @@ Rechnernetzkonzepte und -architekturen
     - [SNTP - Simple Network Time Protocol](#sntp---simple-network-time-protocol)
     - [NTP - Implementierungsbeispiele](#ntp---implementierungsbeispiele)
   - [DHCP](#dhcp)
+    - [DHCPv6](#dhcpv6)
+  - [SOCKS-Protokoll](#socks-protokoll)
+  - [Zusammenfassung](#zusammenfassung)
+- [Prüfungsvorbereitung](#pr%C3%BCfungsvorbereitung)
+  - [Beispielklausur](#beispielklausur)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

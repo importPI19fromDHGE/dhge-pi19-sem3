@@ -1395,7 +1395,7 @@ Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzen
     - dieser gibt dann `resource-record` für die Domain zurück 
   - NS des ISP leitet diesen an Resolver des Nutzers weiter 
     - Dieser hat dann die IP des Webservers und kann auf diesen zugreifen 
-  - Informationen werden auf allen Ebenen teilweise gecacht: 
+  - Informationen werden auf allen Ebenen teilweise gecached: 
     - in Windows Resolvercache anzeigen: `ipconfig /displaydns`
 
   ![DNS-Resolve](resources/al-dns-resolve.png)<!-- width=500px -->

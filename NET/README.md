@@ -1351,7 +1351,7 @@ Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzen
 - Unterscheidung von zwei Formen von Anwendungsprotokollen gemäß RFC 1122
   - Anwenderprotokolle: 
     - HTTP, SMTP, SSH 
-  - Unterstü
+  - Unterstützende Protokolle
     - NTP, 
 
     <!-- TODO: Von Folie 3 übernehmen -->

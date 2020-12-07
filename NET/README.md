@@ -1297,7 +1297,7 @@ Schwächen:
 
 - RFC 4271 macht keine Vorgaben zur Selektion eines Pfades 
 - Informationen zur Selektion sind sehr allgemein: 
-  - 
+  - <!-- TODO: Rest übernehmen  -->
   - 
 - Möglicher Ansatz im folgenden Beispiel: Wahl der Route mit dem kürzesten AS-Pfad (via AS 500)
 
@@ -1349,10 +1349,11 @@ Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzen
 - die Anwendungsschicht setzt dabei auf der Transportschicht auf und greift auf diese beispielsweise über die Socket-Schnittstelle zu
 
 - Unterscheidung von zwei Formen von Anwendungsprotokollen gemäß RFC 1122
-  - Anwenderprotokolle: 
+  - Anwenderprotokolle:
+    - verwendet von Clients, User steht dahinter und triggert bestimmte Schritte 
     - HTTP, SMTP, SSH 
-  - Unterstützende Protokolle
-    - NTP, 
+  - Unterstützungsprotokolle
+    - NTP, DNS, DHCP, SOCKS 
 
     <!-- TODO: Von Folie 3 übernehmen -->
 
@@ -1388,7 +1389,7 @@ Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzen
   - für .de -> DENIC (eingetragener Verein)
     - diese betreiben eine ganze Reihe von NS
   - daraufhin Anfrage an NS von DENIC
-    - Wer ist für den Namen der Domain verantwortlich? (hier: br1it -> Strato)
+    - Wer ist für den Namen der Domain verantwortlich? (im Beispiel: br1it -> Strato)
     - DNS gibt `resource-record` für Strato-NS zurück 
     - Eintrag von Strato auf dem DENIC-NS erfolgte bei Registrierung der Domain
   - daraufhin Anfrage bei Strato-NS 
@@ -1420,7 +1421,11 @@ Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzen
 - wurden zunächst mit der ursprünglichen DNS-Spezifikation eingeführt und durch zusätzliche RFCs deutlich erweitert 
 - Informationen werden meist einem Domainnamen zugeordnet und weisen eine Protokollklasse (meist `IN`-Internet), eine Typangabe und eine Gültigkeitsdauer auf
 - Ausgewählte Typen: 
-  - 
+  - `A`: Ordnen Domainnamen eine IP-Adresse zu, beispielsweise 
+  ```
+  www.tu-dresden.de.  3000  IN  A 141.30.2.2
+  ```
+
 <!-- TODO: Typen von Folie 6 übernehmen -->
 
 Überblick PTR-Record bei Mailversand: 
@@ -1430,7 +1435,16 @@ Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzen
 
 - basiert auf einfachem Query-/Response-Prinzip
 - DNS-Nachrichten sind in 5 Sektionen unterteilt: 
-  - 
+  - Header
+    - beinhaltet 16-Bit Identifier, Flags und Angaben zu den weiteren Nachrichteninhalten
+  - Question
+    - Beinhaltet in einer Query-Nachricht Informationen zur DNS-Anfrage
+  - Answer
+    - Beinhaltet Ressource-Records, die die Anfrage beantworten
+  - Authority
+    - Beinhaltet eine Antwort von einem Autoritativen Nameserver
+  - Additional
+    - Zusätzliche Ressource-Records, die im Zusammenhang mit der Anfrage stehen, diese aber nicht beantworten
 <!-- TODO: von Folie 7 und 8 übernehmen -->
 
 Wichtig: Protokollkommunikation erfolgt über UDP
@@ -1439,8 +1453,19 @@ Wichtig: Protokollkommunikation erfolgt über UDP
 - Problembehandlung auf Anwendungsebene einfach 
 
 ### Zonendefinition / Zonentransfer
+
+- Zonen werden in Zonendateien definiert, deren Format in RFC 1035 (Sektion 5 "Master Files") spezifiziert wurde
+- Zonendateien beinhalten Einträge analog zu Resource-Records
+- Informationen aus Zonendateien können zu Replikationszwecken zwischen Nameservern übertragen werden 
+- Schematische Darstellung des Zonentransfers: 
+  - ... <!-- TODO: von Folie 9 und 10 übernehmen -->
+- Zur Information von Slave-Servern können diese nach Veränderungen in regelmäßigen Intervallen anfragen oder werden asynchron über Veränderungen informiert, z.B. via:
+  - Abfrage des "Start of Authority Resource Records" (SOA RR), der eine bei jeder Änderung inkrementierte Seriennummer enthält
+  - via Protokolldefinition aus RFC 1996: "A Mechanism for Prompt Notification of Zone Changes (DNS NOTIFY)"
+- Mechanismen für eigentlichen Zonentransfer
+  - `AXFR`: Asynchronous Full Transfer Zone
+
 <!-- TODO: von Folie 9 und 10 übernehmen -->
-<!-- Ist hier aber wirklich nur drübergeflogen, scheint keine große Relevanz zu haben für Prüfung -->
 
 ### DNS over TLS / HTTPS 
 
@@ -1459,8 +1484,56 @@ Wichtig: Protokollkommunikation erfolgt über UDP
 
 ### Dynamic DNS / Reverse DNS 
 
-<!-- TBC -->
+1. Dynamic DNS: 
+- Bei Wechsel einer IP-Adresse müsüsen DNS-Einträge dynamisch und effizient aktualisiert werden können 
+- Zwei Ansätze der Aktualisierung werden unter dem Begriff subsumiert: 
+  - "Dynamic Updates in the Domain Name System (`DNS UPDATE`)", RFC 2136, verwendet speziellen Opcode des DNS-Protokolls
+  - Aktualisierung über eine wohldefinierte HTTP(S)-/REST-Schnittstelle
 
+2. Reverse DNS
+- Reverse DNS Lookup (`rDNS`) ermöglicht Abbildung von IP-Adressen auf zugehörige Domains
+- um eine aufwendige Suche in den Resource-Records zu vermeiden, wird ein spezieller PTR(Pointer)-Resource-Record-Typ verwendet
+- dabei wird die IP-Adresse in umgekehrter Reihenfolge angegeben 
+  - für IPv4: "IP-ADRESSE.in-addr.arpa"
+    - z.B.: 2.2.30.141-in-addr.arpa
+  - für IPv6: "IP-ADRESSE.ip6.arpa"
+- Beispieleinsatz:
+  - Ermittlung der Herkunft (=Domain) von Mails
 
+3. Multicast DNS:
+- DNS-Anfragen ohne Einsatz von dedizierten DNS-Servern
+- Zero-Configuration-Ansatz
+- z.B. bei XMPP eingesetzt
 
-  
+4. Split-horizon DNS
+- DNS-Anfragen können - typischerweise- in Abhängigkeit der Quell-IP-Adresse der Anfrage unterschiedlich behandelt werden 
+- ermöglicht beispielsweise "GeoDNS"
+  - `CDN`- Content Distribution Network: 
+    - Medieninhalte nicht von ursprünglichem RZ bereitstellen, sondern weltweit verteilen 
+    - diese dann dem Nutzer von möglichst nahem RZ bereitstellen um weite Wege zu vermeiden  
+      - Internet wird weniger belastet
+      - geringere Latenzen und round-trip-times
+    - z.B bei Streamingdiensten
+
+### DNS - manuelle Abfragen 
+
+- Werkzeuge für die Abfrage von DNS-Informationen von der Kommandozeile oder aus Shell-Skripten heraus 
+  - z.B. `dig`, `host`, `nslookup (deprecated!)`
+- Beispielabfrage: 
+<!-- TODO: vielleicht Beispiel von Folie 15 übernehmen? -->
+
+## Zeitsynchronisation - NTP 
+
+### Motivation 
+- Uhren in Rechnernetzknoten unterliegen im Normalfall einem kontinuierlichen Drift 
+- zunehmende Abweichung zwischen lokalen Zeitinformationen führt u.a. zu Problemen bei: 
+
+1. Identifikation von Kausalitäten zwischen verteilten Ereignissen
+![Beispiel verteilte Ereignisse](resources/al-ntp-motivation.png)<!-- width=500px -->
+2. zahlreichen Protokollen in Rechnernetzen / verteilten Systemen, die Zeitstempel zur Prüfung der Aktualität und Validität einer Anfrage verwenden 
+- Beispiel: Aktualitätsprüfung bei Dynamic-DNS-Servern
+
+$\rightarrow$ Uhren müssen möglichst synchronisiert werden 
+
+### 
+

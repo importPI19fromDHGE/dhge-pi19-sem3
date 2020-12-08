@@ -1022,7 +1022,7 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 
 ## Einleitung 
 
-![Überblick Routing](resources/Routing_Ueberblick.png)<!-- width=500px -->
+![Überblick Routing](resources/routing-ueberblick.png)<!-- width=500px -->
 
 - Wie werden Informationen bezüglich der Topologie ausgetauscht?
 - Wie werden Pfade auf Grundlage der topologischen Informationen berechnet?
@@ -1031,35 +1031,65 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 
 ## Allgemeines zu Routing
 ### Beispiel Routingtabellen 
-![Beispiel Routingtabellen](resources/Routing_Tabellen.png)<!-- width=500px -->
+![Beispiel Routingtabellen](resources/routing-tabellen.png)<!-- width=500px -->
 
-Benachbarte Subnetze können beim Routing zusammengefasst werden, wie im folgenden Beispiel zu sehen: 
+- alternatives Kommando `ip route show`
+- Flags: 
+  - `U`: Verwendete Schnittstelle ist verfügbar 
+  - `G`: Die Route verwendet eien Gateway
+  - `H`: Über diese Route kann nur ein einzelner Host erreicht werden
+- `Ref`: Anzahl weiterer Referenzen zu dieser Route
+- `Use`: Anzahl der Lookups für diese Route 
+
+### Zusammenfassung von Subnetzen
 <!--Mögliche Prüfungsaufgabe-->
 
-Aufteilen eines Netzes in Subnetze: 
-- Beispiel: 
-  - 192.168.42.0/24 ist uns zugewiesen 
-  - soll in mind. 5 aufgeteilt werden
-- Anwendung: 
-  - Aufteilung in 5 nicht möglich, daher in 8 Subnetze aufteilen (nächsthöhere 2er Potenz)
-  - Fixieren der n-Bit -> Subnetzmaske aktualisieren (hier von /24 auf /27)
-  - `192.168.42` ist gesetzt, nur letztes Oktett kann verteilt werden 
-    - 000 -> 0    -> 192.168.42.0/27
-    - 001 -> 32   -> 192.168.42.32/27
-    - 010 -> 64   -> 192.168.42.64/27
-    - 011 -> 96   -> 192.168.42.96/27
-    - 100 -> 128  -> 192.168.42.128/27
-    - 101
-    - 110
-    - 111
+Benachbarte Subnetze können beim Routing zusammengefasst werden, wie im folgenden Beispiel zu sehen: 
+![Nachbarnetze zusammenfassen](resources/routing-nachbarnetze-zusammenfassen.png)<!-- width=500px -->
 
-![Nachbarnetze zusammenfassen](resources/Routing_Nachbarnetze_Zusammenfassen.png)<!-- width=500px -->
+### Aufteilen von Subnetzen 
+<!--Mögliche Prüfungsaufgabe-->
 
-Begriffsunterscheidung: 
-- Forwarding Information Base (FIB) und Routingtabellen unterscheiden sich eigentlich, sind jedoch in Theorie und Praxis nicht einheitlich bezeichnet 
+Beispiel: 
+- 192.168.42.0/24 ist uns zugewiesen 
+- soll in 5 gleichgroße Netze aufgeteilt werden
+
+Anwendung:
+
+1. Aufteilung immer nur in Zweierpotenzen möglich
+- in diesem Fall ist die nächstgrößere Zweierpotenz 8 ($2^3$)
+   - daher Aufteilung in 8 Netze vornehmen 
+2. Aktualisieren der Subnetzmaske 
+- bisher:
+  - `11111111.11111111.11111111.00000000` bzw. `255.255.255.0`
+  - `/24` in CIDR bedeutet, dass die ersten 24 Bits (von links) auf 1 gesetzt sind 
+  - da in 8 Netze aufgeteilt wird (**3.** Potenz von 2), werden entsprechend 3 Bits in der neuen Subnetzmaske auf 1 gesetzt
+- neue Maske: 
+  - `11111111.11111111.11111111.11100000` bzw `255.255.255.224`
+  - `/27` in CIDR
+3. Ensprechend der uns zugewiesenen Adresse mit SN-Maske sind die ersten drei Oktette, also `192.168.42.x` gesetzt und nur das letzte Oktett kann verteilt werden 
+  - die ersten drei Bits des letzten Oktetts werden nach folgendem Muster zur Aufteilung genutzt: 
+  ```bash
+    - 000(00000) -> 0    -> 192.168.42.0/27
+    - 001(00000) -> 32   -> 192.168.42.32/27
+    - 010(00000) -> 64   -> 192.168.42.64/27
+    - 011(00000) -> 96   -> 192.168.42.96/27
+    - 100(00000) -> 128  -> 192.168.42.128/27
+
+    # Zusätzlich verfügbar: 
+    - 101(00000) -> 160
+    - 110(00000) -> 192
+    - 111(00000) -> 224
+  ```
+
+
+
 
 
 ### Schema für IP-Forwarding Algorithmus
+
+Begriffsunterscheidung: 
+- Forwarding Information Base (FIB) und Routingtabellen unterscheiden sich eigentlich, sind jedoch in Theorie und Praxis nicht einheitlich bezeichnet 
 
 ```
 Ziel: D 
@@ -1089,12 +1119,13 @@ else
 }
 ```
 
+- Forwarding nutzt im Falle von IPv6 die durch das NDP gefüllten Datenstrukturen (z.B. Prefix-List); siehe für einen allgemeinen IPv6-Forwardingalgorithmus RFC 4861
 
 
 ## Hierarchische Struktur des Internets (Autonome Systeme)
 
 - zur Ausbildung eines hierarchischen Netzwerkes und damit eines skalierbareren Routings wird das Internet unterteilt in Autonome Systeme 
-- "An AS is a connected group of on or more IP prefixes run by one or more network operators which has a SINGLE and CLEARLY DEFINED routing policy"
+- *"An AS is a connected group of on or more IP prefixes run by one or more network operators which has a SINGLE and CLEARLY DEFINED routing policy"*
 - Unterscheidung in: 
   - Registrierte AS:
     - Erhalten eine weltweit eindeutige 16-Bit bzw. 32-Bit AS-Nummer
@@ -1164,6 +1195,8 @@ Wie kann ich ein AS beantragen?
     - Babel
     - EIGRP
 
+![Übersicht Distanzvektoren](resources/routing-distanzvektoren.png)<!-- width=200px -->
+
 - Link-State-Routing-Protokolle
   - regelmäßiger Versand von Informationen (`Link-State-Advertisements (LSA)`) über alle bekannten Nachbarn eines Knotens samt Distanzangabe 
   - Distanzinformation wird an Nachbarrouter propagiert und von dort weiter in das Netz geflutet 
@@ -1177,7 +1210,7 @@ Wie kann ich ein AS beantragen?
     - OSPF
     - IS-IS
 
-<!-- Abbildungen fehlen noch -->   
+![Übersicht LSA](resources/routing-lsa.png)<!-- width=200px -->
 
 ### Bellman-Ford-Algorithmus
 
@@ -1186,11 +1219,38 @@ Wie kann ich ein AS beantragen?
 - Grundlegender Ablauf: 
   - Grundgedanke: 
     - Es wird für alle Kanten aller Knoten geprüft, ob Kosten zur Erreichung des Anfangsknotens der Kante plus Kosten für die Verwendung der Kante niedriger sind, als aktuell gespeicherte Kosten des Zielknotens der Kante sind
+  - Initialisierung:
+    - Setze Distanz zu lokalen Knoten auf 0 und zu allen anderen auf unendlich 
 
-  <!-- TODO: von Folien übernehmen  -->   
+    ```
+    für j von 1 bis (n-1)
+      für jede Kante (a,b) mit Gewicht w aus der Menge der Kanten:
+        falls distanz[a] + w < distanz[b]:
+          distanz[b] := distanz[a] + w
+          vorgaenger[b] := a
+    ``` 
+  - Abschließend wird geprüft, ob ein Zyklus mit negativem Gewicht existiert
+  - Nachteile für Routing-Algorithmen: 
+    - keine gute Skalierbarkeit 
+    - `Count-to-infinity-Problem`
+
+$/rightarrow$ Zahlreiche Erweiterungen bzw. Alternativen (insb. Dijkstra verfügbar)
+
 ### Dijkstra-Algorithmus  
 
-  <!-- TODO: von Folien übernehmen  -->
+- Berechnung von kürzesten Pfaden in einem kantengewichteten Graphen
+- Zeitkomplexität stark von Implementierung abhängig:
+  - z.B. mit Fibonacci-Heap wird Zeitkomplexität `O(n * log n + m)` erreicht (n = Anzahl Knoten, m = Anzahl Kanten)
+- Grundlegender Ablauf: 
+  - Für jeden Zielknoten ungleich dem lokalen Knoten führe aus:
+    1. Setze Distanz zu lokalem Knoten auf 0 und zu allen anderen auf unendlich
+    2. Falls es noch unbesuchte Knoten gibt: 
+        1. Selektiere Knoten mit geringster Distanz zum lokalen Knoten
+        2. Speichere selektierten Knoten als besucht
+        3. Berechne für alle unbesuchten Nachbarn des selektierten Knoten die Distanz zum lokalen Knoten
+        4. Falls berechnete Distanz kleiner als die bisher für Nachbarn berechnete Distanz, ersetze bisher gespeicherte Distanz und vermerke selektierten Knoten als Vorgänger für unbesuchten Nachbarn
+
+![Dijkstra-Ablauf](resources/routing-dijkstra.png)<!-- width=500px -->
 
 ## Ausgewählte Routing-Protokolle
 
@@ -1203,19 +1263,31 @@ Wie kann ich ein AS beantragen?
   - RIPv2
     - einziges mit praktischer Relevanz
   - RIPng (mit IPv6 Unterstützung)
+- Router versenden Response-Nachrichten 
+  - in regelmäßigen Intervallen (Broadcast)
+  - falls es eine Änderung in den Routing-Tabellen gab (Broadcast)
+  - auf Anfrage (mittels RIP-Request-Nachricht)
+- jede Nachricht kann bis zu 25 RIP-Einträge beinhalten
 
-<!-- TODO: Rest von Folien übernehmen  -->
+![Dijkstra-Ablauf](resources/routing-rip.png)<!-- width=500px -->
 
-Schwächen: 
+#### (ausgewählte) Schwächen von RIP
+
 - Hop-Limit von 15
   - Falls ein Knoten über mehr als 15 Hops erreichbar ist, gilt er für RIP als unerreichbar
 - keine Separation in Broadcast-Domänen 
   - Netz wird durch Broadcasts geflutet
-  - keine Möglichkeit, große Netze in RIP:Bereiche einzuteilen, die nur innerhalb des Bereichs Informationen austauschen
+  - keine Möglichkeit, große Netze in RIP-Bereiche einzuteilen, die nur innerhalb des Bereichs Informationen austauschen
 - Hops als einzige Metrik
   - keine Möglichkeit, unterschiedliche Kosten in Routingentscheidungen einzubeziehen
+- nur nächster Hop ist benannt
+  - Topologische Informationen jenseits des ersten Hops können für Routingentscheidungen nicht verwendet werden 
+- Langsame Konvergenz im Fall von topologischen Änderungen
+  - Topologische Änderungen propagieren sich langsam durch das Netz, da jeder Knoten zunächst lokale Tabellen aktualisiert und dann Änderungen propagiert
 
-<!-- TODO: Rest von Folien übernehmen  -->
+$/rightarrow$ RIP eignet sich nur für kleine Netze
+
+$/rightarrow$ Schwächen werden u.a. durch Open Shortest Path First adressiert
 
 ### Open Shortest Path First (OSPF)
 
@@ -1224,15 +1296,15 @@ Schwächen:
 - Ablauf: 
   - Nachbarn propagieren in regelmäßigen Abständen `Hello-Pakete`
   - Nach der Ausbildung der Nachbarschaftsbeziehungen werden LSA an Nachbarn gesendet, die diese wiederum an ihre Nachbarn verteilen 
-    - Erzeugung von transitiven Beziehungen
+    - dadurch Erzeugung von transitiven Beziehungen
 
-<!-- TODO: Rest von Folien übernehmen  -->
+![OSPF-Einordnung](resources/routing-ospf.png)<!-- width=500px -->
 
 #### OSPF-Areas
 - `hello-pakete` wie auch LS-Informationen werden geflutet 
 - Zur Reduktion der Paketzahl wurden `Areas` eingeführt 
 - Nur die Router, die in einer Area lokalisierte Schnittstellen aufweisen, nehmen an der gleichen Instanz des Routing-Algorithmus teil 
-- Minimal liegt Area 0 (0.0.0.0) vor, zu der alle anderen Areas direkt oder via virtuellem Links verbunden sein müssen 
+- Minimal liegt Area 0 (alternativ: 0.0.0.0) vor, zu der alle anderen Areas direkt oder via virtuellem Links verbunden sein müssen 
 - Routen zwischen Areas führen immer über Area 0 
 - Areas führen zu einer Klassifikation von Routern 
 
@@ -1248,12 +1320,19 @@ Schwächen:
 
 #### OSPF- Designated Router
 
-- Bei n Routern in einem Netz bestehen `(n*(n-1))/2` mögliche Nachbarschaftbeziehungen 
+- Bei n Routern in einem Netz bestehen $(n*(n-1))/2$ mögliche Nachbarschaftbeziehungen 
 - Führt zu extensivem Fluten mit LSAs bereits bei wenigen Routern in Broadcastnetzen 
-- zur Vermeidung nimmt ein Router die Rolle des **Designated Routers** ein
+- zur Vermeidung nimmt ein Router die Rolle des `Designated Routers` ein
+- DR nimmt LSAs von adjazenten Routern entgegen und verteilt sie an alle anderen Router im Netz 
+- Bei Ausfall des DR übernimmt ein zweites Router-Interface unmittelbar dessen Rolle (`Backup-Designated-Router (BDR)`)
+- DR und BDR werden im Rahmen des Hello-Protokolls bestimmt: 
+  - Im Hello-Paket enthaltene Router-Priorität wird zur Bestimmung verwendet (Höchste Priorität = DR)
+  - Bei gleichen Prioritätswerten, wird Router mit höchster Rouer-ID (meist IP) verwendet 
 
-<!-- TODO: Rest von Folien übernehmen  -->
+![Designated Router](resources/routing-ospf-dr.png)<!-- width=500px -->
+
 #### OSPF Link-State-Advertisements
+<!-- Nicht prüfungsrelevant - muss nicht auswendig gelernt werden  -->
 
 - nach der Ausbildung der Adjazenz werden Link-State-Advertisement-Nachrichten ausgetauscht 
 - Unterscheidung von fünf LSA-Typen: 
@@ -1261,15 +1340,24 @@ Schwächen:
     - Versendet von allen Routern innerhalb einer einzelnen Area
     - Beschreibt die Zustände aller Interfaces des Routers innerhalb einer Area
   - Network-LSA
-    - Von Designated-R
+    - Von Designated-Router innerhalb einer einzelnen Area versendet 
+    - LSA beinhaltet Liste von Routern, die mit einem spezilellen Netzwerk verbunden sind
+  - Summary LSAs (Typ 3 und 4)
+    - Versendet von Area Border Routers
+    - Jedes LSA beschreibt eine Route zu einem Ziel außerhalb der OSPF-Area, aber noch innerhalb des AS
+    - Typ 3: Network Summary, beschreiben Pfade zu Netzwerken 
+    - Typ 4: ASBR Summary, beschreiben Pfade zu AS Boundary Routers 
+  - AS-external-LSA (Typ 5)
+    - Von AS-Boundary Router in das Netzwerk geflutet 
+    - jedes LSA beschreibt einen Pfad zu einem Ziel in einem anderen AS 
+. Auf Grundlage der LSAs kann jeder Router eine spezifische Topologie des Netzes erstellen und über Dijkstra kürzeste Pfade berechnen 
 
-<!-- TODO: Rest von Folien übernehmen  -->
-<!-- Nicht prüfungsrelevant - muss nicht auswendig gelernt werden  -->
 ![Übersicht OSPF-LSA](resources/routing-ospf-lsa.png)<!-- width=500px -->
 
 #### Praxisbeispiel - Router-Daemonen-Implementierung (BIRD)
 
 <!-- TODO: Einpflegen der Doku, wenn es denn mal funktioniert  -->
+
 
 ### Border Gateway Protocol (BGP)
 
@@ -1672,6 +1760,18 @@ b) Beschreiben Sie schrittweise, wie durch das Verfahren Stateless Adress Autoco
 Frage: 
 Ihnen wurde die IP-Adress-Range 192.168.40.0/22 zur Verfügung gestellt. Innerhalb dieses Ranges sollen sechs möglichst große wie auch gleich große Netze entstehen. Geben sie jeweils die Netzadressen der sechs Netze an und beschreiben Sie kurz den Ablauf zur Ermittlung der sechs Netzadressen. 
 
+- 6 Netze benötigt $/rightarrow$ nächstgrößere Zweierpotenz ist $2^3=8$
+- Alte Subnetzmaske aktualisieren: /22 $/rightarrow$ /25
+- An Stelle der 3 "Masken"-Bit die Unterteilung vornehmen:
+  - ACHTUNG: Überschreiten der Oktettgrenze beachten: 
+    - (129.168).001010**00.0**0000000 = 129.168.40.0/25
+    - (129.168).001010**00.1**0000000 = 129.168.40.128/25
+    - (129.168).001010**01.0**0000000 = 129.168.41.0/25
+    - (129.168).001010**01.1**0000000 = 129.168.41.128/25
+    - (129.168).001010**10.0**0000000 = 129.168.42.0/25
+    - (129.168).001010**10.1**0000000 = 129.168.42.128/25
+    - (129.168).001010**11.0**0000000 = 129.168.43.0/25
+    - (129.168).001010**11.1**0000000 = 129.168.43.128/25
 
 ### Routing (6 Punkte)
 

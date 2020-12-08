@@ -136,6 +136,7 @@ Rechnernetzkonzepte und -architekturen
     - [Autonome Systeme / BGP (4 Punkte)](#autonome-systeme--bgp-4-punkte)
     - [Domain Name System (4 Punkte)](#domain-name-system-4-punkte)
     - [VXLAN (2 Punkte)](#vxlan-2-punkte)
+  - [Praxisübung: Aufsetzen eines DNS-Servers](#praxis%C3%BCbung-aufsetzen-eines-dns-servers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -1688,21 +1689,95 @@ b) Erstellen Sie eine Tabelle für den Vergleich des Transmission Control Protoc
 Reihenfolgegarantie 
 Zuverlässigkeit 
 Protokolloverhead
-Congestion Control 
+Congestion Control
 
 c) Was wird unter Congestion Control im Falle des TCP verstanden? Beschreiben Sie weiterhin wie Congestion-Control unter Verwendung des "Slow-Start"-Verfahrens umgesetzt wird. 
+
+- Handling von Überlast-Situationen zwischen Routern
+- Slow Start: anfangs nur wenig Bytes übertragen \rightarrow schrittweise erhöht
+- Paketgröße im Falle einer Überlast halbiert
+- Überlast an Paketverlust erkannt
+- Steuerung durch Congestion Window
+- nicht verwechseln mit Flow Control!
+
 d) Skizzieren Sie den TCP-Drei-Wege-Handshake. Welchen Sinn haben die drei Schritte?
 
+<!--Bild TODO-->
+
+- ``SYN``, ``SYN ACK``, ``ACK``
+- Sicherstellung der Zuverlässigkeit der Kommunikation
+- Sinn des SYN-Flags: Sequenznummer übertragen, Synchronisierung
+
 ### Autonome Systeme / BGP (4 Punkte)
-Fragen: 
+Fragen:
 a) Geben Sie eine Definition des Begriffs "Autonomes System (AS)" an. Weshalb wurde das Konzept der AS im Internet eingeführt? Was ist Voraussetzung für die Bentragung eines AS?
-b) Wozu wird das BGP im Kontext von AS eingesetzt? 
+
+- Menge von Routern / **IP-Ranges / Subnetzen**, welche von Akteuren kontrolliert wird
+- Kennzeichnug mit ASN
+- Ziel: globale Topologie muss nicht bekannt sein, erhöht Skalierbarkeit
+- jedes AS benötigt mind. 2 Verbindungen zu anderen AS
+
+b) Wozu wird das BGP im Kontext von AS eingesetzt?
+
+- Pfade von AS transitiv bekanntmachen
+  - welche ASN?
+  - welche IP-Präfixe?
+- Lernen von Präfixen in AS weltweit
 
 ### Domain Name System (4 Punkte)
 Frage:
-Beschreiben Sie in eigenen Worten, wie die Auflösung eines Namens mittels DNS erfolgt. Beginnen Sie dabei mit dem Resolver. Gehen Sie auch auf die Aufgabe des Root-DNS-Servers ein. 
+Beschreiben Sie in eigenen Worten, wie die Auflösung eines Namens mittels DNS erfolgt. Beginnen Sie dabei mit dem Resolver. Gehen Sie auch auf die Aufgabe des Root-DNS-Servers ein.
+
+Hinweis: an jeder Stelle werden zuerst die Caches konsultiert
+
+- Client frag Resolver
+- Resolver fragt ISP-NS nach Ziel-IP
+- ISP-NS fragt Root-NS für TLD-Auflösung: DENIC-NS
+- ISP-NS fragt DENIC-NS nach zust. NS
+- Resolver fragt zust. NS nach Ziel-IP
 
 ### VXLAN (2 Punkte)
 
 Frage:
-Beschreiben Sie die technische Funktionsweise von VXLAN. Wozu wird VXLAN eingesetzt? 
+Beschreiben Sie die technische Funktionsweise von VXLAN. Wozu wird VXLAN eingesetzt?
+
+## Praxisübung: Aufsetzen eines DNS-Servers
+
+- ``facebookxyz.com`` soll auf 192.168.0.10/24 verweisen (bzw. auf eine lokale Adresse)
+- mittels BIND-Server
+- in ``/etc/default/bind9`` bei ``OPTIONS`` ein ``-4`` anhängen
+- bind9 neu starten: ``sudo systemctl restart bind9``
+- in die ``/etc/bind/named.conf.local`` eintragen:
+
+```conf
+zone "meineTolleSeite.lol" {
+
+type master;
+file "/etc/bind/zones/meineTolleSeite.lol";
+
+};
+```
+
+- ``mkdir -p /etc/bind/zones``
+- in die ``/etc/bind/zones/meineTolleSeite.lol`` eintragen:
+
+```conf
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+; SOA --> Verweis auf Master-NS und dessen Mailaddresse
+@       IN      SOA     ns.meineTolleSeite.lol. admin.meineTolleSeite.lol. (
+                             3          ; Serial (vor jedem restart von bind hochsetzen)
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+        IN      NS      nameserver.
+www.meineTolleSeite.lol.        IN      A       192.168.42.21
+ns.meineTolleSeite.lol.         IN      A       127.0.0.1
+```
+
+- IP-Adresse bei ``IN A`` auf den eigenen Webserver zeigen lassen <!--wie du hast keinen? Jeder hat doch einen!-->
+- ``sudo systemctl restart bind9``

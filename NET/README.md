@@ -1468,21 +1468,23 @@ Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzen
 - daher Klassifizierung von Protokollen nötig
 
 ## Anwendungsschicht: Bezug zum OSI-Referenzmodell
-- Anwendungsschicht übernimmt die obersten drei Schichten des OSI-Modells: 
+
+
+- Anwendungsschicht übernimmt Aufgaben der obersten drei Schichten des OSI-Modells: 
   - Sitzungsschicht
   - Darstellungsschicht
   - Anwendungsschicht
 
 - die Anwendungsschicht setzt dabei auf der Transportschicht auf und greift auf diese beispielsweise über die Socket-Schnittstelle zu
 
+![OSI/TCP Vergleich Anwendungsschicht](resources/al-osi-tcp.png)<!-- width=500px -->
+
 - Unterscheidung von zwei Formen von Anwendungsprotokollen gemäß RFC 1122
-  - Anwenderprotokolle:
+  - Anwenderprotokolle ("User Protocols"):
     - verwendet von Clients, User steht dahinter und triggert bestimmte Schritte 
     - HTTP, SMTP, SSH 
-  - Unterstützungsprotokolle
+  - Unterstützungsprotokolle ("Support Protocols")
     - NTP, DNS, DHCP, SOCKS 
-
-    <!-- TODO: Von Folie 3 übernehmen -->
 
 ## Ausführung von Systemdiensten 
 
@@ -1535,12 +1537,14 @@ Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzen
   - Auf DNS-Ebene kann somit also Load-Balancing erfolgen, wenn die Reihenfolge geändert wird
 
 ### DNS-Überblick 
+<!-- Prüfungsfrage: Warum wird zwischen iterativen und rekursiven Anfragen unterschieden: Mit rekursiven Anfragen könnte kein Caching vorgenommen werden-->
+
 - DNS ist ein hierarchisch organisierter Verzeichnisdienst zur Verwaltung von Informationen über Domänen (vor allem IP-Adressinformationen)
 - der Domänen-Namensraum ist in **Zonen** untergliedert, die verschiedenen Nameservern innerhalb der Serverhierarchie zugeteilt werden 
 - Namensauflösung erfolgt durch Delegation oder Weiterleitung; als Fallback werden Root-Server in die Auflösung einbezogen 
-- Server nehmen intensives Caching vor, um Anfragen möglichst lokal beantworten zu können  
+- Server nehmen intensives Caching vor, um Anfragen möglichst lokal beantworten zu können 
 
-<!-- Prüfungsfrage: Warum wird zwischen iterativen und rekursiven Anfragen unterschieden: Mit rekursiven Anfragen könnte kein Caching vorgenommen werden-->
+![DNS-Strukturübersicht](resources/al-dns-structure.png)<!-- width=500px -->
 
 ### Resource Records
 
@@ -1549,11 +1553,14 @@ Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzen
 - Informationen werden meist einem Domainnamen zugeordnet und weisen eine Protokollklasse (meist `IN`-Internet), eine Typangabe und eine Gültigkeitsdauer auf
 - Ausgewählte Typen: 
   - `A`: Ordnen Domainnamen eine IP-Adresse zu, beispielsweise 
-  ```
-  www.tu-dresden.de.  3000  IN  A 141.30.2.2
-  ```
-
-<!-- TODO: Typen von Folie 6 übernehmen -->
+    ```
+    www.tu-dresden.de.  3000  IN  A 141.30.2.2
+    ```
+  - `AAAA`: Ordnen Domainnamen eine IPv6-Adresse zu 
+  - `MX`: Spezifiziert den Mailserver einer Domain
+  - `CNAME`: Gibt einen alternativen Namen/Alias für einen Domainnamen an (CNAME = canonical name)
+  - `DNSKEY`: Gibt einen öffentlichen Schlüssel eines asymmetrischen kryptographischen Verfahrens für eine Domain an 
+  - `NS`: Gibt einen autoritativen Nameserver für eine Domain an; zusätzlich Verwendung zur Zonendelegation
 
 Überblick PTR-Record bei Mailversand: 
  ![PTR-Record](resources/al-dns-ptr.png)<!-- width=500px -->
@@ -1572,7 +1579,6 @@ Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzen
     - Beinhaltet eine Antwort von einem Autoritativen Nameserver
   - Additional
     - Zusätzliche Ressource-Records, die im Zusammenhang mit der Anfrage stehen, diese aber nicht beantworten
-<!-- TODO: von Folie 7 und 8 übernehmen -->
 
 Wichtig: Protokollkommunikation erfolgt über UDP
 - Anfragen sind sehr kurz/klein (nur wenige Bytes)
@@ -1585,14 +1591,22 @@ Wichtig: Protokollkommunikation erfolgt über UDP
 - Zonendateien beinhalten Einträge analog zu Resource-Records
 - Informationen aus Zonendateien können zu Replikationszwecken zwischen Nameservern übertragen werden 
 - Schematische Darstellung des Zonentransfers: 
-  - ... <!-- TODO: von Folie 9 und 10 übernehmen -->
+![Zonentransfer-Schema](resources/al-dns-zonetransfer.png)<!-- width=500px --> 
+
 - Zur Information von Slave-Servern können diese nach Veränderungen in regelmäßigen Intervallen anfragen oder werden asynchron über Veränderungen informiert, z.B. via:
   - Abfrage des "Start of Authority Resource Records" (SOA RR), der eine bei jeder Änderung inkrementierte Seriennummer enthält
   - via Protokolldefinition aus RFC 1996: "A Mechanism for Prompt Notification of Zone Changes (DNS NOTIFY)"
 - Mechanismen für eigentlichen Zonentransfer
-  - `AXFR`: Asynchronous Full Transfer Zone
+  - `AXFR`: Asynchronous Full Transfer Zone; DNS Zone Transfer Protocol (RFC 5936); realisiert kompletten Zonentransfer
+  - `ICFR`: Incremental Zone Transfer in DNS (RFC 1995)
 
-<!-- TODO: von Folie 9 und 10 übernehmen -->
+- nach einem SOA-RR-Eintrag beinhaltet eine Zonendatei Einträge wie z.B: 
+  - `www.example.com. 2400 IN A 141.76.40.2`
+- Auszüge aus Konfigurationsdatei des Nameservers `BIND`
+  - z.B `/etc/named.conf`
+
+![Zonentransfer-Beispiel](resources/al-dns-zonetransfer2.png)<!-- width=500px --> 
+
 
 ### DNS over TLS / HTTPS 
 
@@ -1605,7 +1619,21 @@ Wichtig: Protokollkommunikation erfolgt über UDP
   - DNS over HTTPS (DoH): RFC 8484
     - Kommunikation über Port 443
     - Anfrage via GET oder POST
-<!-- TODO: vielleicht Beispiel von Folie 11 übernehmen? -->
+    - Beispiel aus RFC 8484: 
+      ```
+      :method = POST
+      :scheme = https
+      :authority = dnsserver.example.net
+      :path = /dns-query
+      accept = application/dns-message
+      content-type = application/dns-message
+      content-length = 33
+      <33 bytes represented by the following hex encoding>
+      00 00 01 00 00 01 00 00 00 00 00 00 03 77 77 77
+      07 65 78 61 6d 70 6c 65 03 63 6f 6d 00 00 01 00
+      01
+      ```
+
 - Kommunikation via TLS bzw. HTTPS zwischen DoT-/DoH-Client zu öffentlichem DNS-Resolver
 - Anwendungen können eigenen Resolver vorgeben 
 
@@ -1646,8 +1674,8 @@ Wichtig: Protokollkommunikation erfolgt über UDP
 
 - Werkzeuge für die Abfrage von DNS-Informationen von der Kommandozeile oder aus Shell-Skripten heraus 
   - z.B. `dig`, `host`, `nslookup (deprecated!)`
-- Beispielabfrage: 
-<!-- TODO: vielleicht Beispiel von Folie 15 übernehmen? -->
+
+![Manuelle Beispielabfrage](resources/al-dns-manual.png)<!-- width=500px --> 
 
 ## Zeitsynchronisation - NTP 
 
@@ -1672,7 +1700,7 @@ $\rightarrow$ Uhren müssen möglichst synchronisiert werden
 
 ### NTP On-Wire Protocol 
 
-<!-- TODO: Abb von Folie 18 übernehmen -->
+![NTP-On Wire](resources/al-ntp-onwire.png)<!-- width=500px -->
 
 - Funktion `save()` $/rightarrow$ lokale Speicherung der übergebenen Zeitstempel in einer Variable TX 
   - z.B. `save(t1)` $/rightarrow$ Speicherung in T1
@@ -1684,15 +1712,18 @@ $\rightarrow$ Uhren müssen möglichst synchronisiert werden
 - Aus Zeitstempeln werden zwei Werte berechnet, die anschließend statistischen Analysen und Filterungen unterzogen werden:
   - Offset: 
     - Wahrscheinlichste Abweichung der Serverzeit (= Zeit des Kommunikationspartners) relativ zur lokalen Systemzeit
+    - Beispielrechnung für Zeitpunkt t4, der vorigen Abb:
+      - $theta 1 = 1/2 * [(T2-T1)+(T3-T4)$
   - Delay: 
     - Round-Trip-Time zwischen Client und Server
+    - Beispielrechnung für Zeitpunkt t4, der vorigen Abb:
+      - $delta 1 = (T4-T1)-(T3-T2)$
 - Optimum: 
   - Uhren sind synchron und es gibt eine konstante RTT
+  - $Theta$i (=0) und $delta$i sind im Zeitverlauf konstant
 - Akkurate Synchronisation ist vor allem Servern gegenüber mit geringer RTT und geringer Varianz der RTT möglich 
 
 $/rightarrow$ Auswahl entsprechender Server unter den insgesamt verfügbaren Servern 
-
-<!-- TODO: Formeln von Folie 19 übernehmen -->
 
 ### SNTP - Simple Network Time Protocol
 

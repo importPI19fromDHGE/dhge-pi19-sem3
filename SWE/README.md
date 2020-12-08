@@ -1096,7 +1096,6 @@ $MM_{korrigiert}=K_u \cdot K_p \cdot MM$
 
 ### Function-Point-Methode
 
-<<<<<<< HEAD
 - anstatt Codezeilen zu schätzen $\Rightarrow$ Evaluierung von Eingangsgrößen von Funktionen
 - somit entsteht ein ralatives Maß zur Bewertung von Funktionen $\rightarrow$ `function-points`
 - $\copyright$ A. Albrecht 1979 bei IBM
@@ -1166,7 +1165,7 @@ $Function Points = FP_{Roh}* Korrekturfaktoren$
      - eher nicht geeignet, da die Umsetzung außer Acht gelassen wird
    - Visualisierung ... $+$ (wenn automatisch generiert)
    - Dokumentation ... $+$ (wenn automatisch generiert)
-- Eigenschaft: nicht eindeutige Darstelleung $\Rightarrow$ Begleit-Text wird notwendig
+- Eigenschaft: nicht eindeutige Darstellung $\Rightarrow$ Begleit-Text wird notwendig
 
 ### Diagramme
 - Strukturdiagramme

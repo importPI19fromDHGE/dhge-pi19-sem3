@@ -1730,13 +1730,23 @@ $/rightarrow$ Auswahl entsprechender Server unter den insgesamt verfügbaren Ser
 - in RFC 4330 definierte, vereinfachte Version von NTP 
 - Zustandsinformationen, die auf Client-System gespeichert werden müssen, sind deutlich reduziert
 - Besonders geeignet für eingebettete Systeme und falls keine hohen Anforderungen an die Zeitsynchronisation vorliegen 
-- Von Server kommunizierte Informat
+- Von Server kommunizierte Informationen sind identisch zu NTP-Informationen 
+  - $/hookrightarrow$ auf Serverseite kann nicht differenziert werden, ob es sich um einen NTP- oder SNTP-Client handelt
+- Zur Synchronisation der Uhrzeit wird das NTP On-Wire Protocol verwendet
+- Synchronisation erfolgt meist nur mit einem Server
+- Einsatz wird nur für Blätter / Knoten im höchsten Stratum eines Netzwerks empfohlen
 
-<!-- TODO: Rest von Folie 20 übernehmen -->
+![NTP-On Wire](resources/al-ntp-sntp.png)<!-- width=500px -->
 
 ### NTP - Implementierungsbeispiele
 
-<!-- TODO: Von Folie 21+22 übernehmen -->
+- NTP-Referenzimplementierung `ntpd` verfügbar via http://www.ntp.org
+- setzt aktuell Protokollversion 4 um und gewährleistet Abwärtskompatibilität zu Versionen 1-3 (RFC 1059, RFC 1119 und RFC 1305)
+- NTP-Pakete für gängige Unix-artige Betriebssysteme umfassen neben einem Daemon-Programm u.a. Hilfswerkzeuge:
+  - `ntpq`: Monitoringwerkzeug für den NTP-Daemon
+  - `ntptrace`: Werkzeug zur Ermittlung von Beziehungen zwischen NTPServern und des primären NTP-Servers
+  - `ntpsweep`: Ermittlung von Eigenschaften (Stratum-Level, Betriebssystem, Prozessor, NTP-Daemon-Version, Offset-Wert) eines NTP-Servers
+
 
 ## DHCP 
 
@@ -1765,10 +1775,6 @@ $/rightarrow$ Auswahl entsprechender Server unter den insgesamt verfügbaren Ser
 - Protokoll ermöglicht Kommunikation von Befehlen an Proxy, um hinter dem Proxy TCP-Verbindungen zu etablieren oder UDP-Datagramme weiterzuleiten 
 - Beispiel: 
 ![SOCKS-Beispiel](resources/al-socks-example.png)<!-- width=500px -->
-
-## Zusammenfassung
-
-<!-- TODO: Von Folie 26 übernehmen -->
 
 
 # Prüfungsvorbereitung 

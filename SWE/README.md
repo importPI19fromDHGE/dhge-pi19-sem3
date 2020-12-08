@@ -11,14 +11,15 @@ Systemanalyse
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Einführung / Überblick](#einf%C3%BChrung--%C3%BCberblick)
+- [Systemanalyse](#systemanalyse)
+- [Einführung / Überblick](#einführung--überblick)
   - [User Story Format](#user-story-format)
-  - [Was gehört alles zur Systemanalyse?](#was-geh%C3%B6rt-alles-zur-systemanalyse)
-- [Regeln für Software-Entwicklung](#regeln-f%C3%BCr-software-entwicklung)
+  - [Was gehört alles zur Systemanalyse?](#was-gehört-alles-zur-systemanalyse)
+- [Regeln für Software-Entwicklung](#regeln-für-software-entwicklung)
   - [(1) Klartext](#1-klartext)
     - [Wasserfallmodell](#wasserfallmodell)
     - [Agil](#agil)
-  - [(2) Gründliche Vertragsgestaltung](#2-gr%C3%BCndliche-vertragsgestaltung)
+  - [(2) Gründliche Vertragsgestaltung](#2-gründliche-vertragsgestaltung)
     - [Wasserfallmodell](#wasserfallmodell-1)
     - [Agil](#agil-1)
   - [(3) Wandelnde Anforderungen: Wie gehe ich damit um?](#3-wandelnde-anforderungen-wie-gehe-ich-damit-um)
@@ -27,10 +28,10 @@ Systemanalyse
   - [Vorgehensmodelle](#vorgehensmodelle)
     - [Phasenmodell](#phasenmodell)
     - [Iteriertes Phasenmodell](#iteriertes-phasenmodell)
-    - [Evolutionäre SW-Entwicklung](#evolution%C3%A4re-sw-entwicklung)
+    - [Evolutionäre SW-Entwicklung](#evolutionäre-sw-entwicklung)
     - [Spiralen Modell](#spiralen-modell)
     - [V-Modell](#v-modell)
-    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-auspr%C3%A4gung-des-v-modells-v-modell-xt)
+    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-ausprägung-des-v-modells-v-modell-xt)
     - [Extreme Programming (XP)](#extreme-programming-xp)
 - [SCRUM](#scrum)
   - [Empirische Prozess Kontrolle](#empirische-prozess-kontrolle)
@@ -49,7 +50,7 @@ Systemanalyse
     - [Definition of Done](#definition-of-done)
     - [DoR: Definition of Ready](#dor-definition-of-ready)
   - [SCRUM-Manifest](#scrum-manifest)
-    - [Häufige / gern gemachte Fehler bezüglich des Manifests](#h%C3%A4ufige--gern-gemachte-fehler-bez%C3%BCglich-des-manifests)
+    - [Häufige / gern gemachte Fehler bezüglich des Manifests](#häufige--gern-gemachte-fehler-bezüglich-des-manifests)
   - [Vor- und Nachteile von SCRUM](#vor--und-nachteile-von-scrum)
   - [SCRUM-Ban als SCRUM Derivat](#scrum-ban-als-scrum-derivat)
 - [Story Board](#story-board)
@@ -59,25 +60,26 @@ Systemanalyse
   - [4 Prozess-Schritte](#4-prozess-schritte)
   - [Hinweise](#hinweise)
 - [Requirement Engineering / Aufwandsanalyse](#requirement-engineering--aufwandsanalyse)
-  - [Aufwandsschätzung](#aufwandssch%C3%A4tzung)
+  - [Aufwandsschätzung](#aufwandsschätzung)
     - [LOC (Lines of Code) als Basis im klassischen Fall](#loc-lines-of-code-als-basis-im-klassischen-fall)
     - [weitere Faktoren](#weitere-faktoren)
     - [Magisches Dreieck / Teufelsquadrat](#magisches-dreieck--teufelsquadrat)
-  - [Empirische Schätzung](#empirische-sch%C3%A4tzung)
-    - [Expertenschätzung](#expertensch%C3%A4tzung)
+  - [Empirische Schätzung](#empirische-schätzung)
+    - [Expertenschätzung](#expertenschätzung)
     - [Delphi-Methode](#delphi-methode)
     - [Divide et Impera (Teile und Hersche)](#divide-et-impera-teile-und-hersche)
     - [SCRUM-Poker](#scrum-poker)
     - [High-Low-Showdown](#high-low-showdown)
-  - [Algorithmische Schätzverfahren](#algorithmische-sch%C3%A4tzverfahren)
+  - [Algorithmische Schätzverfahren](#algorithmische-schätzverfahren)
     - [COCOMO](#cocomo)
     - [Function-Point-Methode](#function-point-methode)
 - [Objektorientierung](#objektorientierung)
-  - [Überblick](#%C3%BCberblick)
+  - [Überblick](#überblick)
     - [UML: Unified Modelling Language](#uml-unified-modelling-language)
     - [Diagramme](#diagramme)
-    - [Objekt-Orientierung](#objekt-orientierung)
+    - [Eigenschaften der Objektorientierung](#eigenschaften-der-objektorientierung)
   - [Klassendiagramm](#klassendiagramm)
+  - [Objekt-Diagramm](#objekt-diagramm)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -1095,25 +1097,29 @@ $MM_{korrigiert}=K_u \cdot K_p \cdot MM$
 
 ### Function-Point-Methode
 
+<<<<<<< HEAD
 - anstatt Codezeilen zu schätzen $\Rightarrow$ Evaluierung von Eingangsgrößen von Funktionen
-- relatives Maß für die Bewertung von Funktionen
+- somit entsteht ein ralatives Maß zur Bewertung von Funktionen $\rightarrow$ `function-points`
 - $\copyright$ A. Albrecht 1979 bei IBM
-- *wenn* Kosten pro Funktion Point bekannt $\rightarrow$ dann Kostenschätzung möglich
+- *wenn* Kosten pro Funktion Point bekannt, dann ist eine Kostenschätzung möglich
 
 **Idee**:
 
-1. Zähle logische Transaktionen (einer Funktion): 
+1. Zähle logische Transaktionen (einer Funktion):
    - Dateneingabe
-   - Datenausgabe 
-   - Anzahl an Anfragen 
+   - Datenausgabe
+   - Anzahl an Anfragen
    - Schnittstellen zu externen Datenbeständen
    - interne Datenbankanfragen (im weitesten Sinne)
+
+![Abbildung Transaktionszählung](resources/function-points-count.png)<!-- width=500px -->
+
 2. Werte werden gewichtet
    - S $\rightarrow$ einfach
-   - M $\rightarrow$ mittel 
+   - M $\rightarrow$ mittel
    - L $\rightarrow$ komplex
 
-**Beispiel-Tabelle für Dateneingabe**
+3. Beispiel-Tabelle für Dateneingabe
 
 | Anzahl Datenelemente         | 1-4 | 5-15 | >15 |
 | ---------------------------- | --- | ---- | --- |
@@ -1122,9 +1128,11 @@ $MM_{korrigiert}=K_u \cdot K_p \cdot MM$
 | 2                            | S   | M    | L   |
 | >2                           | M   | L    | L   |
 
-> International Function Pointt User Group (IFPUG)
+> International Function Point User Group (IFPUG)
 
-**Gesamtergebnis**
+4. Gesamtergebnis
+
+![Screenshot Ergebnisberechnung](resources/function-points-solution.png)<!-- width=500px -->
 
 |                        | S         | M          | L          |
 | ---------------------- | --------- | ---------- | ---------- |
@@ -1136,17 +1144,15 @@ $MM_{korrigiert}=K_u \cdot K_p \cdot MM$
 
 Funktion Point Roh-Wert wird mit dieser Tabelle verrechnet und führt so zum Gesamtergebnis!
 
-$FunctionPoints=FP_{Roh} \cdot Korrekturfaktoren$
+$Function Points = FP_{Roh}* Korrekturfaktoren$
 
-Korrekturfaktoren: 14 verschiedene Einflussfaktoren
+- Bis zu 14 Einflussfaktoren als Korrekturfaktoren:
 
 > **Achtung!** falls Aufwand pro Funktion-Point bekannt $\Rightarrow$ Aufwand "berechenbar"
 
-z.B. Faustregel von Jones: 
-
-$MM=FP^{0.4}=\sqrt[5]{FP^2}\hat{=}t$
-
-$Anzahl_{MA}=\frac{FP}{150}$
+- Beispiel Faustregel von Jones:
+  - $MM=FP^{0.4}=\sqrt[5]{FP^2}\hat{=}t$
+  - $Anzahl_{MA}=\frac{FP}{150}$
 
 # Objektorientierung
 
@@ -1154,9 +1160,11 @@ $Anzahl_{MA}=\frac{FP}{150}$
 
 ### UML: Unified Modelling Language
 
-- Sprache für:
+- an sich keine wirkliche "Sprache", eher Form der Visualisierung
+- verwendet für:
    - Spezifikation ... $+/-$
    - Konstruktion ... $-$
+     - eher nicht geeignet, da die Umsetzung außer Acht gelassen wird
    - Visualisierung ... $+$ (wenn automatisch generiert)
    - Dokumentation ... $+$ (wenn automatisch generiert)
 - Eigenschaft: nicht eindeutige Darstelleung $\Rightarrow$ Begleit-Text wird notwendig
@@ -1176,29 +1184,70 @@ $Anzahl_{MA}=\frac{FP}{150}$
     - Kommunikation
   - Use Case
 
-### Objekt-Orientierung
+![Überblick UML-Diagrammtypen](resources/uml-diagrams.png)<!-- width=500px -->
 
-- Klasse ... Bauplan mit "Werkzeugen"
-- Objekt ... Instanz einer Klasse
+### Eigenschaften der Objektorientierung
 
-Die drei Säulen der Objekt-Orientierung
-- Kapselung
-  - Zugriff von Außen
-- Vererbung
-- Polymorphismus
+- Klasse:
+  - Bauplan für Datensammlung und Funktionen für deren Bearbeitung
+- Objekt:
+  - Instanz einer Klasse
+  - konkrete Ausprägung des Bauplans
+- Kapselung:
+  - Begrenzung des Zugriffs auf Klassen
+  - `public`,`private`, `protected`, ...
+- Vererbung:
+  - Klassen können auf Basis anderen Klassen erstellt werden
+  - diese neuen Klassen enthalten (`erben`) dann die Eigenschaften und Methoden der ursprünglichen Klasse
+- Polymorphismus:
+  - Typ des Objektes entscheidet sich erst zur Laufzeit anhand der übergebenen Parameter
 
 ## Klassendiagramm
 
-- mehrere Klassen "unabhängig" von der Implementierungs-Sprache abbilden
-- statische Infos der Klasse
-- Beziehungen zu anderen Klassen
+- Ziele:
+  - mehrere Klassen "unabhängig" von der Implementierungs-Sprache abbilden
+  - statische Infos der Klasse einbeziehen
+  - Beziehungen zu anderen Klassen darstellen
 
-<!-- Hier eine Abbildung einer Klasse in UML -->
+![Beispiel Klassendiagramm](resources/uml-class.png)<!-- width=200px -->
 
-$+$ ... public
+- Vorgehen:
+  - Klasse in Rechteck fassen, oberes Feld Klassenname
+  - darunter die Eigenschaften, hier:
+    - alle Member-Variablen mit ihrem Typ
+      - z.B. `name: string`
+    - zusätzlich noch mit `+` für `public` oder `-` für `private`, `#` für `protected` markieren
+    - statische Variablen werden unterstrichen
+  - darunter noch die Methoden der Klasse
+  - in UML noch umfassende Kennzeichnung als Klassendiagramm (optional)
+- Tooling: [Plant UML](https://planttext.com)
+- Beispiel-Klasse in Plantuml-Syntax:
 
-$-$ ... private
+```pantuml
+@startuml
+class TIER {
+  - lebt : bool
+  - farbe : string
+  - alter : int
+  + setLebt(bool):void
+  + getLebt():bool
+  + setFarbe(string): void
+  + getFarbe():bool
+  + getAlter(): int
+  + setAlter(int): void
+}
+@enduml
+```
 
-$\#$ ... protected
+Ableitungen:
 
-statische Variablen werden unterstrichen
+```txt
+# HUND erbt von TIER
+HUND -up-|> TIER
+```
+
+## Objekt-Diagramm 
+
+- beschreibt Instanz einer Klasse
+
+![Beispiel Objektdiagramm](resources/uml-objects.png)<!-- width=200px -->

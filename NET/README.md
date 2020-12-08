@@ -125,7 +125,6 @@ Rechnernetzkonzepte und -architekturen
   - [DHCP](#dhcp)
     - [DHCPv6](#dhcpv6)
   - [SOCKS-Protokoll](#socks-protokoll)
-  - [Zusammenfassung](#zusammenfassung)
 - [Prüfungsvorbereitung](#pr%C3%BCfungsvorbereitung)
   - [Formalien](#formalien)
   - [Beispielklausur](#beispielklausur)

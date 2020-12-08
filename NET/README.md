@@ -1369,7 +1369,15 @@ $/rightarrow$ Schwächen werden u.a. durch Open Shortest Path First adressiert
 
 - BGP ermöglicht keine Einflussnahme jenseits des eigenen AS
 - Zentrales Prinzip für BGP-Routing: 
-  <!-- TODO: Zitat aus Folie 21 übernehmen  -->
+
+  *"BGP does not enable one AS to send traffic to a neighboring AS for
+  forwarding to some destination (reachable through but) beyond that
+  neighboring AS, intending that the traffic take a different route to that
+  taken by the traffic originating in the neighboring AS”*
+  (aus RFC 4271, S. 6 f.)
+
+  $/rightarrow$ BGP ermöglicht keine Einflussnahme jenseits des eigenen AS
+
 
 ![BGP-Nutzungsmotivation Überblick](resources/routing-as-bgp.png)<!-- width=500px -->
 
@@ -1382,8 +1390,12 @@ $/rightarrow$ Schwächen werden u.a. durch Open Shortest Path First adressiert
 - Konfiguration von Verbindungen zu Peers erfolgt manuell 
 - BGP definiert vier wichtige Nachrichten für Kommunikation zwischen Peers: 
   - `OPEN`: Teilt Peer initial BGP-Version, AS-Nr., Hold-Timer, BGP Identifier mit 
-  - `NOTIFICATION`
-<!-- TODO: Rest von Folie 22 übernehmen  -->
+  - `NOTIFICATION`: Dient zur Beendigung einer Verbindung mit Fehlermeldung
+  - `KEEPALIVE`: Wird für Verbidnungserhaltung regelmäßig gesendet 
+    - Hold Timer bestimmt max. Zeitraum zwischen KEEPALIVE-Nachrichten
+  - `UPDATE`: Informiert Peers über Routen 
+
+![BGP-Finite-State-Machine](resources/routing-bgp-finitestate.png)<!-- width=500px -->  
 
 - Konfiguration von Nachbarschaftsbeziehungen erfolgt manuell 
 - zur Konfiguration wird IP-Adresse des Nachbarn samt AS-Nummer angegeben 
@@ -1399,7 +1411,16 @@ $/rightarrow$ Schwächen werden u.a. durch Open Shortest Path First adressiert
 - Nach dem Etablieren einer Verbindung zu einem Nachbarn werden in regelmäßigen Abständen `UPDATE`-Nachrichten ausgetauscht
 - `UPDATE`-Nachrichten dienen dem Bewerben neuer und dem Verwerfen invalid gewordenener Ziele
 
-<!-- TODO: Rest von Folie 24 übernehmen  -->
+![BGP-Update Aufbau](resources/routing-bgp-update.png)<!-- width=500px -->
+
+- Felder: 
+  - Withdrawn Routes: 
+    - Beinhaltet eine Liste von IP-Adress-Präfixen, deren Routing-Informationen nicht mehr valide sind
+  - Path Attributes
+    - Eigenschaften / Attribute für die mit der UPDATE-Nachricht beworbenen Ziele (für alle in der Nachricht aufgeführten Routen identisch)
+  - Network Layer Reachability Information: 
+    - Liste von Zielen, die die gleichen Eigenschaften teilen 
+    - Durtch IP-Adress-Präfix spezifiziert   
 
 ![BGP-UPDATE-Attribute ](resources/routing-as-bgp-attributes.png)<!-- width=500px -->
 
@@ -1411,43 +1432,33 @@ $/rightarrow$ Schwächen werden u.a. durch Open Shortest Path First adressiert
 
 #### BGP-Pfadauswahl 
 
-- RFC 4271 macht keine Vorgaben zur Selektion eines Pfades 
+- RFC 4271 macht keine Vorgaben zur Selektion eines Pfades (vgl. Sektion 9.3)
 - Informationen zur Selektion sind sehr allgemein: 
-  - <!-- TODO: Rest übernehmen  -->
-  - 
+  - *"If the local AS appears in the AS path of the new route being considered, then that new route cannot be viewed as better than any other route..."*
+  - *"In order to achieve a successful distributed operation, only routes with a likelihood of stability can be chosen."*
+
 - Möglicher Ansatz im folgenden Beispiel: Wahl der Route mit dem kürzesten AS-Pfad (via AS 500)
 
-
+![BGP-Pfadauswahl Beispiel ](resources/routing-bgp-paths.png)<!-- width=500px -->
 
 Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzend Regeln, die bis zu einem Match schrittweise durchlaufen werden, z.B: 
   - Der Pfad mit dem höchsten `Weight`-Wert (proprietäres Attribut) wird bevorzugt
-  - Bei gleicher `AS_PATH`-Länge 
+  - Bei gleicher `AS_PATH`-Länge selektiere Pfad mit niedrigstem Origin-Typ (IGP < EGP < Incomplete)
+  - Fallback: Bevorzuge Pfad mit niedrigster Router-ID des BGP-Nachbarn 
 
-  <!-- TODO: Rest von Folie 25 übernehmen  -->
+#### Anmerkung zur Sicherheit
 
-
-  #### Anmerkung zur Sicherheit
-
-  - Fehlkonfigurationen der AS können schwerwiegende Folgen haben 
-  - Beispiel malaysischer Provider mit AS-Beziehungen zu Nachbarn 
-    - Fehlkonfiguration: 
-      - Ziel-IP-Adressen im gesamten Bereich wurden mit Kosten von 0 definiert
-      - Information wurde von vielen AS verteilt
-      - daher wurden massiver Traffic über diesen einen Provider geschleust 
-      - -> große Teile des Internet zusammengebrochen 
-    - Problem hier: 
-      - keine Validation der propagierten Informationen 
-  - Beispiel Hijack eines BGP-Routers
-    - mit gezielter Verteilung von (Fehl-)Informationen kann dann Traffic gezielt umgeleitet und abgegriffen werden 
-  
-  ## Zusammenfassung Routing 
-
-    Themen: 
-      - AS-Beantragung
-      - OSPF und BGP
-      - Routingverfahren innerhalb und zwischen AS
-
-    <!-- TODO: Von Folie 29 übernehmen und nochmal schön machen hier  -->
+- Fehlkonfigurationen der AS können schwerwiegende Folgen haben 
+- Beispiel malaysischer Provider mit AS-Beziehungen zu Nachbarn 
+  - Fehlkonfiguration: 
+    - Ziel-IP-Adressen im gesamten Bereich wurden mit Kosten von 0 definiert
+    - Information wurde von vielen AS verteilt
+    - daher wurden massiver Traffic über diesen einen Provider geschleust 
+    - -> große Teile des Internet zusammengebrochen 
+  - Problem hier: 
+    - keine Validation der propagierten Informationen 
+- Beispiel Hijack eines BGP-Routers
+  - mit gezielter Verteilung von (Fehl-)Informationen kann dann Traffic gezielt umgeleitet und abgegriffen werden 
 
 # Anwendungsschicht / Application-Layer
 

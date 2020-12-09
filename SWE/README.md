@@ -58,7 +58,7 @@ Systemanalyse
 - [Design-Thinking](#design-thinking)
   - [4 Prozess-Schritte](#4-prozess-schritte)
   - [Hinweise](#hinweise)
-- [Aufwandsanalyse](#aufwandsanalyse)
+- [Requirement Engineering / Aufwandsanalyse](#requirement-engineering--aufwandsanalyse)
   - [Aufwandsschätzung](#aufwandssch%C3%A4tzung)
     - [LOC (Lines of Code) als Basis im klassischen Fall](#loc-lines-of-code-als-basis-im-klassischen-fall)
     - [weitere Faktoren](#weitere-faktoren)
@@ -72,6 +72,13 @@ Systemanalyse
   - [Algorithmische Schätzverfahren](#algorithmische-sch%C3%A4tzverfahren)
     - [COCOMO](#cocomo)
     - [Function-Point-Methode](#function-point-methode)
+- [Objektorientierung](#objektorientierung)
+  - [Überblick](#%C3%BCberblick)
+    - [UML: Unified Modelling Language](#uml-unified-modelling-language)
+    - [Diagramme](#diagramme)
+    - [Eigenschaften der Objektorientierung](#eigenschaften-der-objektorientierung)
+  - [Klassendiagramm](#klassendiagramm)
+  - [Objekt-Diagramm](#objekt-diagramm)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -834,7 +841,7 @@ Fail Early!
 4. wilde Ideen zulassen & ermutigen!
 5. insgesamt kundenorientiert
 
-# Aufwandsanalyse
+# Requirement Engineering / Aufwandsanalyse
 
 <!-- Hier fehlt noch was -->
 ## Aufwandsschätzung
@@ -1088,3 +1095,157 @@ $MM_{korrigiert}=K_u \cdot K_p \cdot MM$
 - ...
 
 ### Function-Point-Methode
+
+- anstatt Codezeilen zu schätzen $\Rightarrow$ Evaluierung von Eingangsgrößen von Funktionen
+- somit entsteht ein ralatives Maß zur Bewertung von Funktionen $\rightarrow$ `function-points`
+- $\copyright$ A. Albrecht 1979 bei IBM
+- *wenn* Kosten pro Funktion Point bekannt, dann ist eine Kostenschätzung möglich
+
+**Idee**:
+
+1. Zähle logische Transaktionen (einer Funktion):
+   - Dateneingabe
+   - Datenausgabe
+   - Anzahl an Anfragen
+   - Schnittstellen zu externen Datenbeständen
+   - interne Datenbankanfragen (im weitesten Sinne)
+
+![Abbildung Transaktionszählung](resources/function-points-count.png)<!-- width=500px -->
+
+2. Werte werden gewichtet
+   - S $\rightarrow$ einfach
+   - M $\rightarrow$ mittel
+   - L $\rightarrow$ komplex
+
+3. Beispiel-Tabelle für Dateneingabe
+
+| Anzahl Datenelemente         | 1-4 | 5-15 | >15 |
+| ---------------------------- | --- | ---- | --- |
+| **Anzahl an Datenbeständen** | -   | -    | -   |
+| 0..1                         | S   | S    | M   |
+| 2                            | S   | M    | L   |
+| >2                           | M   | L    | L   |
+
+> International Function Point User Group (IFPUG)
+
+4. Gesamtergebnis
+
+![Screenshot Ergebnisberechnung](resources/function-points-solution.png)<!-- width=500px -->
+
+|                        | S         | M          | L          |
+| ---------------------- | --------- | ---------- | ---------- |
+| Dateneingabe           | $\cdot 3$ | $\cdot 4$  | $\cdot 6$  |
+| Datenausgabe           | $\cdot 4$ | $\cdot 5$  | $\cdot 7$  |
+| Anfragen               | $\cdot 3$ | $\cdot 4$  | $\cdot 6$  |
+| Externe Schnittstellen | $\cdot 5$ | $\cdot 7$  | $\cdot 10$ |
+| Interne Schnittstellen | $\cdot 7$ | $\cdot 10$ | $\cdot 15$ |
+
+Funktion Point Roh-Wert wird mit dieser Tabelle verrechnet und führt so zum Gesamtergebnis!
+
+$Function Points = FP_{Roh}* Korrekturfaktoren$
+
+- Bis zu 14 Einflussfaktoren als Korrekturfaktoren:
+
+> **Achtung!** falls Aufwand pro Funktion-Point bekannt $\Rightarrow$ Aufwand "berechenbar"
+
+- Beispiel Faustregel von Jones:
+  - $MM=FP^{0.4}=\sqrt[5]{FP^2}\hat{=}t$
+  - $Anzahl_{MA}=\frac{FP}{150}$
+
+# Objektorientierung
+
+## Überblick
+
+### UML: Unified Modelling Language
+
+- an sich keine wirkliche "Sprache", eher Form der Visualisierung
+- verwendet für:
+   - Spezifikation ... $+/-$
+   - Konstruktion ... $-$
+     - eher nicht geeignet, da die Umsetzung außer Acht gelassen wird
+   - Visualisierung ... $+$ (wenn automatisch generiert)
+   - Dokumentation ... $+$ (wenn automatisch generiert)
+- Eigenschaft: nicht eindeutige Darstellung $\Rightarrow$ Begleit-Text wird notwendig
+
+### Diagramme
+- Strukturdiagramme
+  - Klasse
+  - Objekt
+  - Paket
+  - Komponente
+  - Deployment
+- Verhaltensdiagramme
+  - Zustand
+  - Aktivität
+  - Interaktion
+    - Sequenz
+    - Kommunikation
+  - Use Case
+
+![Überblick UML-Diagrammtypen](resources/uml-diagrams.png)<!-- width=500px -->
+
+### Eigenschaften der Objektorientierung
+
+- Klasse:
+  - Bauplan für Datensammlung und Funktionen für deren Bearbeitung
+- Objekt:
+  - Instanz einer Klasse
+  - konkrete Ausprägung des Bauplans
+- Kapselung:
+  - Begrenzung des Zugriffs auf Klassen
+  - `public`,`private`, `protected`, ...
+- Vererbung:
+  - Klassen können auf Basis anderen Klassen erstellt werden
+  - diese neuen Klassen enthalten (`erben`) dann die Eigenschaften und Methoden der ursprünglichen Klasse
+- Polymorphismus:
+  - Typ des Objektes entscheidet sich erst zur Laufzeit anhand der übergebenen Parameter
+
+## Klassendiagramm
+
+- Ziele:
+  - mehrere Klassen "unabhängig" von der Implementierungs-Sprache abbilden
+  - statische Infos der Klasse einbeziehen
+  - Beziehungen zu anderen Klassen darstellen
+
+![Beispiel Klassendiagramm](resources/uml-class.png)<!-- width=200px -->
+
+- Vorgehen:
+  - Klasse in Rechteck fassen, oberes Feld Klassenname
+  - darunter die Eigenschaften, hier:
+    - alle Member-Variablen mit ihrem Typ
+      - z.B. `name: string`
+    - zusätzlich noch mit `+` für `public` oder `-` für `private`, `#` für `protected` markieren
+    - statische Variablen werden unterstrichen
+  - darunter noch die Methoden der Klasse
+  - in UML noch umfassende Kennzeichnung als Klassendiagramm (optional)
+- Tooling: [Plant UML](https://planttext.com)
+- Beispiel-Klasse in Plantuml-Syntax:
+
+```pantuml
+@startuml
+class TIER {
+  - lebt : bool
+  - farbe : string
+  - alter : int
+  + setLebt(bool):void
+  + getLebt():bool
+  + setFarbe(string): void
+  + getFarbe():bool
+  + getAlter(): int
+  + setAlter(int): void
+}
+@enduml
+```
+
+Ableitungen:
+
+```txt
+# HUND erbt von TIER
+HUND -up-|> TIER
+```
+
+## Objekt-Diagramm 
+
+- beschreibt Instanz einer Klasse
+
+![Beispiel Objektdiagramm](resources/uml-objects.png)<!-- width=200px -->

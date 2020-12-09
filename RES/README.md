@@ -54,6 +54,10 @@ Betriebssystemverwaltung
   - [Quota](#quota)
     - [Windows](#windows-1)
     - [Linux](#linux-1)
+  - [Nextcloud](#nextcloud)
+  - [Prüfungsvorbereitung <!--Hallelujah-->](#pr%C3%BCfungsvorbereitung---hallelujah--)
+    - [Aufgabe 1](#aufgabe-1)
+    - [Aufgabe 2](#aufgabe-2)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -710,3 +714,86 @@ quota --version # Kontrolle
 - ``sudo quotaon -v /mountpoint`` aktiviert Quota
 - ``sudo edquota -u user`` Soft- und Hard-Limits konfigurieren
 - ``sudo repquota -s /mountpoint`` erstellt Report
+
+## Nextcloud
+
+- Zweck: freie Speicherung von Daten auf priv. Server
+- Synchronisation von Daten
+- Videokonferenzen und Screenshare möglich (via Erweiterungen)
+- Anm. v. Max: FOSS-Ersatz für Cloudspeicher
+- Vorteile:
+  - kein Kontrollverlust über Daten
+- Nachteile:
+  - eigene Resourcen zum Betrieb nötig
+  - hoher Konfigurationsaufwand <!--naja nee-->
+-
+
+## Prüfungsvorbereitung <!--Hallelujah-->
+
+### Aufgabe 1
+
+- OS: Windows
+- alle Netzlaufwerke trennen
+- "Glinka" Buchst. E zuweisen
+- "Guenther" Buchst. F zuweisen
+- "Herbst" Buchs. O zuweisen
+
+```bat
+@echo off
+net use E: /delete /yes
+net use F: /delete /yes
+net use O: /delete /yes
+
+net use E: \\192.168.71.100\Transfer\Glinka
+net use F: \\192.168.71.100\Transfer\Guenther
+net use O: \\192.168.71.100\Transfer\Herbst
+
+pause
+```
+
+### Aufgabe 2
+
+- OS: Linux
+- ``service.conf`` anlegen, prüfen, ob schon vorhanden
+- nur Benutzer hat ``RWX``-Rechte
+- schreiben Sie mit zwei unterschiedlichen Methoden in die Datei
+  - 1 Mal "Zeile 1"
+  - 1 Mal "Zeile 2"
+- Austausch von "Zeile2" durch "Zeile2=ON"
+- Ausgabe von ``service.conf``
+
+```sh
+#!/bin/bash
+if [ -f "service.conf" ]; then
+  echo "Datei existiert schon. Fahre trotzdem fort."
+fi
+touch service.conf
+chmod 700 service.conf
+echo Zeile1 > service.conf
+echo Zeile2 >> service.conf
+sed -i 's/Zeile2/Zeile2=ON/g' service.conf
+cat service.conf
+```
+
+```txt
+Schreiben Sie ein Script mit dem Namen pv_XXXX_verwaltungsaufgabe_02
+1. Legen Sie eine Datei (uebung2.conf) an, sofern sie nicht existert
+2. Vergeben Sie folgende für die uebung2.conf nur Lese-Rechte für den user
+3. Legen Sie ein Verzeichnis an (verwenden sie einen Parametrierung, so dass keine Fehler zum Abbruch des Scriptes führen)
+4. Kopieren Sie die Datei in dieses Verzeichnis
+5. Schreiben Sie den Hostnamen des Computers in die Kopie der Datei
+6. Installieren Sie mc
+7. Starten Sie den dhcp service neu
+```
+
+```sh
+if [ ! -f "uebung2.conf" ]; then
+  touch uebung2.conf
+fi
+chmod 400 uebung2.conf
+mkdir -p test
+cp uebung2.conf test/
+cat /etc/hostname > test/uebung2.conf
+sudo apt install mc
+sudo systemctl restart dhcpd
+```

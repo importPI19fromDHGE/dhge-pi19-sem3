@@ -81,6 +81,7 @@ for ((i = 1; i <= $#; i++ )); do printf '%s\n' "Arg $i: ${!i}" done
   - Testumgebung
   - Isolation zwischen Host und Gästen
   - parallele Ausführung mehrerer Betriebssysteme
+  - Skalierbarkeit
 - Welche Schritte sind bei einem Verwaltungsakt zu beachten? <!--Sehr vage Frage, aber hier seine gewünschte Antwort: Zweck des Verwaltungsaktes, Backup, Installation und Konfiguration (grafisch oder per Skript -> gut für Automatisierung), Testen, Integrieren-->
 - Wie überwacht man Netzwerktraffic?
   - Wireshark
@@ -93,3 +94,16 @@ for ((i = 1; i <= $#; i++ )); do printf '%s\n' "Arg $i: ${!i}" done
 - was sind Kontingente und warum sind sie notwendig?
   - Kontingente: logische Speicher-Begrenzungen für Ordner
   - verhindert übermäßige Nutzung durch Programme und Nutzer, damit System weiter arbeiten kann
+
+Teil 2:
+
+- Browser zeigt "Unable to connect" --> was tun?
+  - physische Verbindung prüfen
+  - IP-Konfiguration prüfen
+    - Windows: ``ipconfig``
+    - Linux: ``ip a`` oder ``ifconfig``
+  - Ping zu verlässlichem Server
+  - DNS prüfen
+  - Proxy-Einstellungen prüfen
+    - Linux: ``/etc/environment``
+- Was sind Elemente einer Firewall-Regel? (alternativ zu: erstellen Sie eine Firewall-Regel)

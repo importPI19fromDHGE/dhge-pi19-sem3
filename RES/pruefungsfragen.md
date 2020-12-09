@@ -101,7 +101,7 @@ Teil 2:
   - physische Verbindung prüfen
   - IP-Konfiguration prüfen
     - Windows: ``ipconfig``
-    - Linux: ``ip a``
+    - Linux: ``ip a`` oder ``ifconfig``
   - Ping zu verlässlichem Server
   - DNS prüfen
   - Proxy-Einstellungen prüfen

@@ -11,14 +11,15 @@ Betriebssystemverwaltung
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Mögliche Prüfungsfragen](#m%C3%B6gliche-pr%C3%BCfungsfragen)
+- [Betriebssystemverwaltung](#betriebssystemverwaltung)
+- [Mögliche Prüfungsfragen](#mögliche-prüfungsfragen)
 - [Vorteile Virtualisierung](#vorteile-virtualisierung)
 - [Grundlagen Linux](#grundlagen-linux)
   - [Terminal](#terminal)
   - [VBox Guest Additions installieren](#vbox-guest-additions-installieren)
-  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-sch%C3%A4den-sch%C3%BCtzen)
+  - [VMs mit Snapshots vor Schäden schützen](#vms-mit-snapshots-vor-schäden-schützen)
 - [Grundlagen Windows](#grundlagen-windows)
-  - [Features hinzufügen / entfernen](#features-hinzuf%C3%BCgen--entfernen)
+  - [Features hinzufügen / entfernen](#features-hinzufügen--entfernen)
   - [Verwaltungsaufgaben](#verwaltungsaufgaben)
   - [Netzlaufwerk verbinden](#netzlaufwerk-verbinden)
     - [via Explorer](#via-explorer)
@@ -33,12 +34,12 @@ Betriebssystemverwaltung
   - [Ping of Death](#ping-of-death)
     - [Windows](#windows)
     - [Linux](#linux)
-  - [Windows-Netzwerkeinstellungen via Skript ändern](#windows-netzwerkeinstellungen-via-skript-%C3%A4ndern)
-  - [Vorträge](#vortr%C3%A4ge)
+  - [Windows-Netzwerkeinstellungen via Skript ändern](#windows-netzwerkeinstellungen-via-skript-ändern)
+  - [Vorträge](#vorträge)
     - [Themen](#themen)
     - [Was soll rein?](#was-soll-rein)
   - [Linux: Nutzerverwaltung](#linux-nutzerverwaltung)
-    - [Nutzer im Terminal ändern](#nutzer-im-terminal-%C3%A4ndern)
+    - [Nutzer im Terminal ändern](#nutzer-im-terminal-ändern)
     - [alle Nutzer anzeigen](#alle-nutzer-anzeigen)
   - [Linux: Skripte](#linux-skripte)
     - [SMB-Share einbinden](#smb-share-einbinden)
@@ -50,12 +51,12 @@ Betriebssystemverwaltung
   - [Fail2Ban](#fail2ban)
     - [Konfiguration](#konfiguration)
   - [Rsync](#rsync)
-    - [vollständige Systemsicherung](#vollst%C3%A4ndige-systemsicherung)
+    - [vollständige Systemsicherung](#vollständige-systemsicherung)
   - [Quota](#quota)
     - [Windows](#windows-1)
     - [Linux](#linux-1)
   - [Nextcloud](#nextcloud)
-  - [Prüfungsvorbereitung <!--Hallelujah-->](#pr%C3%BCfungsvorbereitung---hallelujah--)
+  - [Prüfungsvorbereitung](#prüfungsvorbereitung)
     - [Aufgabe 1](#aufgabe-1)
     - [Aufgabe 2](#aufgabe-2)
 
@@ -747,6 +748,8 @@ net use O: /delete /yes
 net use E: \\192.168.71.100\Transfer\Glinka
 net use F: \\192.168.71.100\Transfer\Guenther
 net use O: \\192.168.71.100\Transfer\Herbst
+
+pause
 ```
 
 ### Aufgabe 2
@@ -770,6 +773,7 @@ chmod 700 service.conf
 echo Zeile1 > service.conf
 echo Zeile2 >> service.conf
 sed -i 's/Zeile2/Zeile2=ON/g' service.conf
+cat service.conf
 ```
 
 ```txt

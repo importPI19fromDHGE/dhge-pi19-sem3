@@ -776,16 +776,14 @@ cat service.conf
 ```
 
 ```txt
-schreiben Sie ein script mit dem namen pv_XXXX_verwaltungsaufgabe_02
-1. legen Sie eine datei (uebung2.conf)an, sofern sie nicht existert
-   2. vergeben Sie folgende für die uebung2.conf folgende
-    •  -rechte nur lese-recht für user
-    • 3. legen sie ein Verzeichnis an (verwenden sie einen Parametrierung,
-    •    so dass keine Fehler zum Abbruch des Scriptes führen.
-    • 4. kopieren Sie die Datei in dieses Verzeichnis
-    • 5. schreiben Sie den Hostnamen des Computers in die Kopie der Datei
-    • 6. installieren Sie den mc
-    • 7. starten sie den dhcp service neu
+Schreiben Sie ein Script mit dem Namen pv_XXXX_verwaltungsaufgabe_02
+1. Legen Sie eine Datei (uebung2.conf) an, sofern sie nicht existert
+2. Vergeben Sie folgende für die uebung2.conf nur Lese-Rechte für den user
+3. Legen Sie ein Verzeichnis an (verwenden sie einen Parametrierung, so dass keine Fehler zum Abbruch des Scriptes führen)
+4. Kopieren Sie die Datei in dieses Verzeichnis
+5. Schreiben Sie den Hostnamen des Computers in die Kopie der Datei
+6. Installieren Sie mc
+7. Starten Sie den dhcp service neu
 ```
 
 ```sh

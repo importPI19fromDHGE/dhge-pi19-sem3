@@ -106,3 +106,4 @@ Teil 2:
   - DNS prüfen
   - Proxy-Einstellungen prüfen
     - Linux: ``/etc/environment``
+- Was sind Elemente einer Firewall-Regel? (alternativ zu: erstellen Sie eine Firewall-Regel)

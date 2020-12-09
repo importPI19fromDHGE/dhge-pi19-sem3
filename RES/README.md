@@ -725,7 +725,7 @@ quota --version # Kontrolle
   - kein Kontrollverlust über Daten
 - Nachteile:
   - eigene Resourcen zum Betrieb nötig
-  - hoher Konfigurationsauwand <!--naja nee-->
+  - hoher Konfigurationsaufwand <!--naja nee-->
 -
 
 ## Prüfungsvorbereitung <!--Hallelujah-->

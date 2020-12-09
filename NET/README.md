@@ -82,6 +82,69 @@ Rechnernetze - Grundlagen
   - [Sockets](#sockets)
     - [SOCK_STREAM](#sock_stream)
     - [SOCK_DGRAM](#sock_dgram)
+- [Exkurs: Routing](#exkurs-routing)
+  - [Einleitung](#einleitung)
+  - [Allgemeines zu Routing](#allgemeines-zu-routing)
+    - [Beispiel Routingtabellen](#beispiel-routingtabellen)
+    - [Zusammenfassung von Subnetzen](#zusammenfassung-von-subnetzen)
+    - [Aufteilen von Subnetzen](#aufteilen-von-subnetzen)
+    - [Schema für IP-Forwarding Algorithmus](#schema-f%C3%BCr-ip-forwarding-algorithmus)
+  - [Hierarchische Struktur des Internets (Autonome Systeme)](#hierarchische-struktur-des-internets-autonome-systeme)
+    - [Klassifizierung von AS](#klassifizierung-von-as)
+    - [AS und Routing](#as-und-routing)
+  - [Distanzvektor- und Link-State-Protokolle](#distanzvektor--und-link-state-protokolle)
+    - [Bellman-Ford-Algorithmus](#bellman-ford-algorithmus)
+    - [Dijkstra-Algorithmus](#dijkstra-algorithmus)
+  - [Ausgewählte Routing-Protokolle](#ausgew%C3%A4hlte-routing-protokolle)
+    - [Routing Information Protocol (RIP)](#routing-information-protocol-rip)
+      - [(ausgewählte) Schwächen von RIP](#ausgew%C3%A4hlte-schw%C3%A4chen-von-rip)
+    - [Open Shortest Path First (OSPF)](#open-shortest-path-first-ospf)
+      - [OSPF-Areas](#ospf-areas)
+      - [OSPF - Hello-Pakete](#ospf---hello-pakete)
+      - [OSPF- Designated Router](#ospf--designated-router)
+      - [OSPF Link-State-Advertisements](#ospf-link-state-advertisements)
+      - [Praxisbeispiel - Router-Daemonen-Implementierung (BIRD)](#praxisbeispiel---router-daemonen-implementierung-bird)
+    - [Border Gateway Protocol (BGP)](#border-gateway-protocol-bgp)
+      - [BGP-Peers /-Nachbarschaften](#bgp-peers--nachbarschaften)
+      - [BGP-Pfadauswahl](#bgp-pfadauswahl)
+      - [Anmerkung zur Sicherheit](#anmerkung-zur-sicherheit)
+- [Anwendungsschicht / Application-Layer](#anwendungsschicht--application-layer)
+  - [Einleitung](#einleitung-1)
+  - [Anwendungsschicht: Bezug zum OSI-Referenzmodell](#anwendungsschicht-bezug-zum-osi-referenzmodell)
+  - [Ausführung von Systemdiensten](#ausf%C3%BChrung-von-systemdiensten)
+  - [Domain Name System (DNS)](#domain-name-system-dns)
+    - [1. Perspektive: Domainregistrierung](#1-perspektive-domainregistrierung)
+    - [Load-Balancing durch DNS](#load-balancing-durch-dns)
+    - [DNS-Überblick](#dns-%C3%BCberblick)
+    - [Resource Records](#resource-records)
+    - [Protokoll / Anfragedetails](#protokoll--anfragedetails)
+    - [Zonendefinition / Zonentransfer](#zonendefinition--zonentransfer)
+    - [DNS over TLS / HTTPS](#dns-over-tls--https)
+    - [Dynamic DNS / Reverse DNS](#dynamic-dns--reverse-dns)
+    - [DNS - manuelle Abfragen](#dns---manuelle-abfragen)
+  - [Zeitsynchronisation - NTP](#zeitsynchronisation---ntp)
+    - [Motivation](#motivation)
+    - [Network Time Protocol - Architektur](#network-time-protocol---architektur)
+    - [NTP On-Wire Protocol](#ntp-on-wire-protocol)
+    - [SNTP - Simple Network Time Protocol](#sntp---simple-network-time-protocol)
+    - [NTP - Implementierungsbeispiele](#ntp---implementierungsbeispiele)
+  - [DHCP](#dhcp)
+    - [DHCPv6](#dhcpv6)
+  - [SOCKS-Protokoll](#socks-protokoll)
+- [Prüfungsvorbereitung](#pr%C3%BCfungsvorbereitung)
+  - [Formalien](#formalien)
+  - [Beispielklausur](#beispielklausur)
+    - [Internet Engineering Taskforce (2 Punkte)](#internet-engineering-taskforce-2-punkte)
+    - [ISO/OSI-Referenzmodell (7 Punkte)](#isoosi-referenzmodell-7-punkte)
+    - [Virtuelle LANs (6 Punkte)](#virtuelle-lans-6-punkte)
+    - [Internet Protocol (4 Punkte)](#internet-protocol-4-punkte)
+    - [IP-Subnetze (6 Punkte)](#ip-subnetze-6-punkte)
+    - [Routing (6 Punkte)](#routing-6-punkte)
+    - [Transportschicht (9 Punkte)](#transportschicht-9-punkte)
+    - [Autonome Systeme / BGP (4 Punkte)](#autonome-systeme--bgp-4-punkte)
+    - [Domain Name System (4 Punkte)](#domain-name-system-4-punkte)
+    - [VXLAN (2 Punkte)](#vxlan-2-punkte)
+  - [Praxisübung: Aufsetzen eines DNS-Servers](#praxis%C3%BCbung-aufsetzen-eines-dns-servers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -961,3 +1024,916 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 ![Schematischer Ablauf der Server/Client-Kommunikation über SOCK_DGRAM](resources/sockets-dgram.png)<!-- width=500px -->
 
 <!--Vergleich von TCP und UDP gerne Prüfungsfrage-->
+
+
+# Exkurs: Routing
+
+## Einleitung 
+
+![Überblick Routing](resources/routing-ueberblick.png)<!-- width=500px -->
+
+- Wie werden Informationen bezüglich der Topologie ausgetauscht?
+- Wie werden Pfade auf Grundlage der topologischen Informationen berechnet?
+- Welche Ansätze zur Verkleinerung der Routingtabellen existieren?
+- Wie kann Routing in einem mehrere hunderttausend Router umfassenden Netz realisiert werden?
+
+## Allgemeines zu Routing
+### Beispiel Routingtabellen 
+![Beispiel Routingtabellen](resources/routing-tabellen.png)<!-- width=500px -->
+
+- alternatives Kommando `ip route show`
+- Flags: 
+  - `U`: Verwendete Schnittstelle ist verfügbar 
+  - `G`: Die Route verwendet eien Gateway
+  - `H`: Über diese Route kann nur ein einzelner Host erreicht werden
+- `Ref`: Anzahl weiterer Referenzen zu dieser Route
+- `Use`: Anzahl der Lookups für diese Route 
+
+### Zusammenfassung von Subnetzen
+<!--Mögliche Prüfungsaufgabe-->
+
+Benachbarte Subnetze können beim Routing zusammengefasst werden, wie im folgenden Beispiel zu sehen: 
+![Nachbarnetze zusammenfassen](resources/routing-nachbarnetze-zusammenfassen.png)<!-- width=500px -->
+
+### Aufteilen von Subnetzen 
+<!--Mögliche Prüfungsaufgabe-->
+
+Beispiel: 
+- 192.168.42.0/24 ist uns zugewiesen 
+- soll in 5 gleichgroße Netze aufgeteilt werden
+
+Anwendung:
+
+1. Aufteilung immer nur in Zweierpotenzen möglich
+- in diesem Fall ist die nächstgrößere Zweierpotenz 8 ($2^3$)
+   - daher Aufteilung in 8 Netze vornehmen 
+2. Aktualisieren der Subnetzmaske 
+- bisher:
+  - `11111111.11111111.11111111.00000000` bzw. `255.255.255.0`
+  - `/24` in CIDR bedeutet, dass die ersten 24 Bits (von links) auf 1 gesetzt sind 
+  - da in 8 Netze aufgeteilt wird (**3.** Potenz von 2), werden entsprechend 3 Bits in der neuen Subnetzmaske auf 1 gesetzt
+- neue Maske: 
+  - `11111111.11111111.11111111.11100000` bzw `255.255.255.224`
+  - `/27` in CIDR
+3. Ensprechend der uns zugewiesenen Adresse mit SN-Maske sind die ersten drei Oktette, also `192.168.42.x` gesetzt und nur das letzte Oktett kann verteilt werden 
+  - die ersten drei Bits des letzten Oktetts werden nach folgendem Muster zur Aufteilung genutzt: 
+  ```bash
+    - 000(00000) -> 0    -> 192.168.42.0/27
+    - 001(00000) -> 32   -> 192.168.42.32/27
+    - 010(00000) -> 64   -> 192.168.42.64/27
+    - 011(00000) -> 96   -> 192.168.42.96/27
+    - 100(00000) -> 128  -> 192.168.42.128/27
+
+    # Zusätzlich verfügbar: 
+    - 101(00000) -> 160
+    - 110(00000) -> 192
+    - 111(00000) -> 224
+  ```
+
+
+
+
+
+### Schema für IP-Forwarding Algorithmus
+
+Begriffsunterscheidung: 
+- Forwarding Information Base (FIB) und Routingtabellen unterscheiden sich eigentlich, sind jedoch in Theorie und Praxis nicht einheitlich bezeichnet 
+
+```
+Ziel: D 
+N = Präfix bzw. Netz von D 
+
+if (N ist direkt am lokalen Link angeschlossen) 
+{
+  ermittle MAC-Adresse von D
+  sende Paket an MAC-Adresse von D
+}
+
+else if (es existiert ein Routingtabelleneintrag für N) 
+{
+  ermittle ausgehende Schnittstelle
+  ermittle MAC-Adresse des nächsten Hops H
+  sende Paket an H 
+}
+
+else if (es existiert ein Default-Gateway von G)
+{
+  ermittle MAC-Adresse von G
+  sende Paket an G 
+}
+else 
+{
+  sende ICMP-Fehlermeldung an Quelle des Pakets
+}
+```
+
+- Forwarding nutzt im Falle von IPv6 die durch das NDP gefüllten Datenstrukturen (z.B. Prefix-List); siehe für einen allgemeinen IPv6-Forwardingalgorithmus RFC 4861
+
+
+## Hierarchische Struktur des Internets (Autonome Systeme)
+
+- zur Ausbildung eines hierarchischen Netzwerkes und damit eines skalierbareren Routings wird das Internet unterteilt in Autonome Systeme 
+- *"An AS is a connected group of on or more IP prefixes run by one or more network operators which has a SINGLE and CLEARLY DEFINED routing policy"*
+- Unterscheidung in: 
+  - Registrierte AS:
+    - Erhalten eine weltweit eindeutige 16-Bit bzw. 32-Bit AS-Nummer
+    - werden von den Regional Internet Registries verwaltet
+    - Aktuelle Liste registrierter AS kann eingesehen werden via http://www.iana.org/assignments/as-numbers/as-numbers.xhtml
+  - Private AS:
+    - 16-Bit-ASN: 64512 - 65534
+    - 32-Bit-ASN: 4200000000 - 4294967294
+
+Wie kann ich ein AS beantragen?
+  - Beantragung bei der RIPE
+    - dazu muss RIPE-Mitgliedschaft vorhanden sein 
+
+  - Voraussetzungen:
+    - einheitliche Routing-Policy vorweisen
+    - Bedarf begründen 
+    - AS muss (physische) Verbindungen in mindestens 2 andere AS haben
+
+**"Das Internet" ist also eine Menge aus autonomen Systemen, die jeweils von den Grenzroutern wissen. Über deren jeweilige Funktionsweise müssen keine Informationen vorhanden sein.**
+
+
+![Übersicht AS](resources/routing-as.png)<!-- width=500px -->
+
+### Klassifizierung von AS
+
+- Relation zu AS: 
+  - Transit:
+    - Betreiber eines AS zahlt für die Weiterleitung von Daten durch das zweite AS 
+  - Peering: 
+    - Aufgrund von Abkommen werden Daten zwischen den AS kostenfrei ausgetauscht
+  - Kunde:
+    - Kostenpflichtige Nutzung eines AS als Zugang zum Internet
+
+![Übersicht AS-Tiers](resources/routing-as-tiers.png)<!-- width=500px -->
+
+### AS und Routing
+
+- Routing-Protokolle für die Wegewahl **zwischen** AS: 
+  - Inter-AS-Protokolle / Exterior Gateway Protocols (EGP)
+    - Müssen bei Routing betriebswirtschaftliche Aspekte berücksichtigen (Policy- / Regelbasiert)
+    - Geben einen Pfad von AS vor, durch den ein Paket zu leiten ist
+    - Beispiel (und gleichzeitig einziges praktisch bedeutsames EGP):
+      - Border Gateway Protocol (BGP)
+- Routing-Protokolle für die Wegewahl **innerhalb** eines AS 
+  - Intra-AS-Protokolle / Interior Gateway Protocols (IGP)
+    - Beispiele:
+      - Routing Information Protocol (RIP Version 1 und 2)
+      - Open Shortest Path First (OSPF)
+      - Enhanced Interior Gateway Routing Protocol (EIGRP)
+      - Babel 
+      - Intermediate System to Intermediate System Protocol (IS-IS)
+
+![Übersicht AS-Routing](resources/routing-as-protokolle.png)<!-- width=500px -->
+
+## Distanzvektor- und Link-State-Protokolle
+
+- Distanzvektorroutingprotokolle
+  - Router haben keine Informationen über die gesamte Topologie des Netzes, sondern speichern nur, welcher Knoten mit welcher Distanz über welchen Nachbarn zu erreichen ist
+  - Distanzinformationen für Ziele werden an Nachbarrouter in regelmäßigen Abständen propagiert
+  - Vorteile: 
+    - geringe Komplexität 
+    - geringes Nachrichtenaufkommen 
+  - Nachteile: 
+    - Mangelnde Topologieinformation kann zu schlechten Routingentscheidungen führen (z.B. `Count-to-Infinity-Problem`)
+  - Beispiele: 
+    - RIP
+    - Babel
+    - EIGRP
+
+![Übersicht Distanzvektoren](resources/routing-distanzvektoren.png)<!-- width=200px -->
+
+- Link-State-Routing-Protokolle
+  - regelmäßiger Versand von Informationen (`Link-State-Advertisements (LSA)`) über alle bekannten Nachbarn eines Knotens samt Distanzangabe 
+  - Distanzinformation wird an Nachbarrouter propagiert und von dort weiter in das Netz geflutet 
+  - Aus den Informationen wird ein Graph konstruiert für den z.B. mittels `Dijkstra-Algorithmus` kürzeste Wege zu allen Zielen berechnet werden können 
+  - Vorteile: 
+    - jeder Router kennt die Topologie des Netzes
+  - Nachteile: 
+    - hohe Komplexität 
+    - hohes Nachrichtenaufkommen 
+  - Beispiele: 
+    - OSPF
+    - IS-IS
+
+![Übersicht LSA](resources/routing-lsa.png)<!-- width=200px -->
+
+### Bellman-Ford-Algorithmus
+
+- Verfahren, welches in Distanzvektorverfahren eingesetzt wird
+- Zeitkomplexität `O(n * m)` (n= Anzahl Knoten, m= Anzahl Kanten)
+- Grundlegender Ablauf: 
+  - Grundgedanke: 
+    - Es wird für alle Kanten aller Knoten geprüft, ob Kosten zur Erreichung des Anfangsknotens der Kante plus Kosten für die Verwendung der Kante niedriger sind, als aktuell gespeicherte Kosten des Zielknotens der Kante sind
+  - Initialisierung:
+    - Setze Distanz zu lokalen Knoten auf 0 und zu allen anderen auf unendlich 
+
+    ```
+    für j von 1 bis (n-1)
+      für jede Kante (a,b) mit Gewicht w aus der Menge der Kanten:
+        falls distanz[a] + w < distanz[b]:
+          distanz[b] := distanz[a] + w
+          vorgaenger[b] := a
+    ``` 
+  - Abschließend wird geprüft, ob ein Zyklus mit negativem Gewicht existiert
+  - Nachteile für Routing-Algorithmen: 
+    - keine gute Skalierbarkeit 
+    - `Count-to-infinity-Problem`
+
+$\rightarrow$ Zahlreiche Erweiterungen bzw. Alternativen (insb. Dijkstra verfügbar)
+
+### Dijkstra-Algorithmus  
+
+- Berechnung von kürzesten Pfaden in einem kantengewichteten Graphen
+- Zeitkomplexität stark von Implementierung abhängig:
+  - z.B. mit Fibonacci-Heap wird Zeitkomplexität `O(n * log n + m)` erreicht (n = Anzahl Knoten, m = Anzahl Kanten)
+- Grundlegender Ablauf: 
+  - Für jeden Zielknoten ungleich dem lokalen Knoten führe aus:
+    1. Setze Distanz zu lokalem Knoten auf 0 und zu allen anderen auf unendlich
+    2. Falls es noch unbesuchte Knoten gibt: 
+        1. Selektiere Knoten mit geringster Distanz zum lokalen Knoten
+        2. Speichere selektierten Knoten als besucht
+        3. Berechne für alle unbesuchten Nachbarn des selektierten Knoten die Distanz zum lokalen Knoten
+        4. Falls berechnete Distanz kleiner als die bisher für Nachbarn berechnete Distanz, ersetze bisher gespeicherte Distanz und vermerke selektierten Knoten als Vorgänger für unbesuchten Nachbarn
+
+![Dijkstra-Ablauf](resources/routing-dijkstra.png)<!-- width=500px -->
+
+## Ausgewählte Routing-Protokolle
+
+### Routing Information Protocol (RIP)
+
+- sehr schlichtes und einfach zu implementierendes Protokoll
+- Drei Versionen verfügbar: 
+  - RIPv1 (praktisch irrelevant)
+    - im Gegensatz zu v2 noch keine CIDR-Unterstützung
+  - RIPv2
+    - einziges mit praktischer Relevanz
+  - RIPng (mit IPv6 Unterstützung)
+- Router versenden Response-Nachrichten 
+  - in regelmäßigen Intervallen (Broadcast)
+  - falls es eine Änderung in den Routing-Tabellen gab (Broadcast)
+  - auf Anfrage (mittels RIP-Request-Nachricht)
+- jede Nachricht kann bis zu 25 RIP-Einträge beinhalten
+
+![Dijkstra-Ablauf](resources/routing-rip.png)<!-- width=500px -->
+
+#### (ausgewählte) Schwächen von RIP
+
+- Hop-Limit von 15
+  - Falls ein Knoten über mehr als 15 Hops erreichbar ist, gilt er für RIP als unerreichbar
+- keine Separation in Broadcast-Domänen 
+  - Netz wird durch Broadcasts geflutet
+  - keine Möglichkeit, große Netze in RIP-Bereiche einzuteilen, die nur innerhalb des Bereichs Informationen austauschen
+- Hops als einzige Metrik
+  - keine Möglichkeit, unterschiedliche Kosten in Routingentscheidungen einzubeziehen
+- nur nächster Hop ist benannt
+  - Topologische Informationen jenseits des ersten Hops können für Routingentscheidungen nicht verwendet werden 
+- Langsame Konvergenz im Fall von topologischen Änderungen
+  - Topologische Änderungen propagieren sich langsam durch das Netz, da jeder Knoten zunächst lokale Tabellen aktualisiert und dann Änderungen propagiert
+
+$\rightarrow$ RIP eignet sich nur für kleine Netze
+
+$\rightarrow$ Schwächen werden u.a. durch Open Shortest Path First adressiert
+
+### Open Shortest Path First (OSPF)
+
+- eines der am häufigsten innerhalb von AS eingesetzten Protokolle im Internet 
+- für IPv4 und IPv6 verfügbar, nur kleine Unterschiede
+- Ablauf: 
+  - Nachbarn propagieren in regelmäßigen Abständen `Hello-Pakete`
+  - Nach der Ausbildung der Nachbarschaftsbeziehungen werden LSA an Nachbarn gesendet, die diese wiederum an ihre Nachbarn verteilen 
+    - dadurch Erzeugung von transitiven Beziehungen
+
+![OSPF-Einordnung](resources/routing-ospf.png)<!-- width=500px -->
+
+#### OSPF-Areas
+- `hello-pakete` wie auch LS-Informationen werden geflutet 
+- Zur Reduktion der Paketzahl wurden `Areas` eingeführt 
+- Nur die Router, die in einer Area lokalisierte Schnittstellen aufweisen, nehmen an der gleichen Instanz des Routing-Algorithmus teil 
+- Minimal liegt Area 0 (alternativ: 0.0.0.0) vor, zu der alle anderen Areas direkt oder via virtuellem Links verbunden sein müssen 
+- Routen zwischen Areas führen immer über Area 0 
+- Areas führen zu einer Klassifikation von Routern 
+
+![Übersicht Areas](resources/routing-as-ospf.png)<!-- width=500px -->
+
+#### OSPF - Hello-Pakete
+
+- Dienen dem Detektieren von benachbarten Routern 
+- Nach Prüfung von in Paketen enthaltenen Informationen wird für jeden benachbarten Knoten ein Eintrag in einer dem empfangenden Interface zugeordneten Datenstruktur vermerkt 
+- zu ausgewählten Nachbarn wird eine "Adjazenz" ausgebildet 
+
+![Übersicht Hello](resources/routing-as-ospf-hello.png)<!-- width=500px -->
+
+#### OSPF- Designated Router
+
+- Bei n Routern in einem Netz bestehen $(n*(n-1))/2$ mögliche Nachbarschaftbeziehungen 
+- Führt zu extensivem Fluten mit LSAs bereits bei wenigen Routern in Broadcastnetzen 
+- zur Vermeidung nimmt ein Router die Rolle des `Designated Routers` ein
+- DR nimmt LSAs von adjazenten Routern entgegen und verteilt sie an alle anderen Router im Netz 
+- Bei Ausfall des DR übernimmt ein zweites Router-Interface unmittelbar dessen Rolle (`Backup-Designated-Router (BDR)`)
+- DR und BDR werden im Rahmen des Hello-Protokolls bestimmt: 
+  - Im Hello-Paket enthaltene Router-Priorität wird zur Bestimmung verwendet (Höchste Priorität = DR)
+  - Bei gleichen Prioritätswerten, wird Router mit höchster Rouer-ID (meist IP) verwendet 
+
+![Designated Router](resources/routing-ospf-dr.png)<!-- width=500px -->
+
+#### OSPF Link-State-Advertisements
+<!-- Nicht prüfungsrelevant - muss nicht auswendig gelernt werden  -->
+
+- nach der Ausbildung der Adjazenz werden Link-State-Advertisement-Nachrichten ausgetauscht 
+- Unterscheidung von fünf LSA-Typen: 
+  - Router-LSA (Typ 1)
+    - Versendet von allen Routern innerhalb einer einzelnen Area
+    - Beschreibt die Zustände aller Interfaces des Routers innerhalb einer Area
+  - Network-LSA
+    - Von Designated-Router innerhalb einer einzelnen Area versendet 
+    - LSA beinhaltet Liste von Routern, die mit einem spezilellen Netzwerk verbunden sind
+  - Summary LSAs (Typ 3 und 4)
+    - Versendet von Area Border Routers
+    - Jedes LSA beschreibt eine Route zu einem Ziel außerhalb der OSPF-Area, aber noch innerhalb des AS
+    - Typ 3: Network Summary, beschreiben Pfade zu Netzwerken 
+    - Typ 4: ASBR Summary, beschreiben Pfade zu AS Boundary Routers 
+  - AS-external-LSA (Typ 5)
+    - Von AS-Boundary Router in das Netzwerk geflutet 
+    - jedes LSA beschreibt einen Pfad zu einem Ziel in einem anderen AS 
+. Auf Grundlage der LSAs kann jeder Router eine spezifische Topologie des Netzes erstellen und über Dijkstra kürzeste Pfade berechnen 
+
+![Übersicht OSPF-LSA](resources/routing-ospf-lsa.png)<!-- width=500px -->
+
+#### Praxisbeispiel - Router-Daemonen-Implementierung (BIRD)
+
+<!-- TODO: Einpflegen der Doku, wenn es denn mal funktioniert  -->
+
+
+### Border Gateway Protocol (BGP)
+
+- Zielsetzung: Routing von IP durch AS 
+- Aktuelle Version 4 beschrieben in RFC 4271
+
+- BGP ermöglicht keine Einflussnahme jenseits des eigenen AS
+- Zentrales Prinzip für BGP-Routing: 
+
+  *"BGP does not enable one AS to send traffic to a neighboring AS for
+  forwarding to some destination (reachable through but) beyond that
+  neighboring AS, intending that the traffic take a different route to that
+  taken by the traffic originating in the neighboring AS”*
+  (aus RFC 4271, S. 6 f.)
+
+  $\rightarrow$ BGP ermöglicht keine Einflussnahme jenseits des eigenen AS
+
+
+![BGP-Nutzungsmotivation Überblick](resources/routing-as-bgp.png)<!-- width=500px -->
+
+- zum Beispiel: 
+  - sobald eine Entscheidungsmöglichkeit mehrerer Routen (über mehrere ISP) vorliegt, lohnt sich der Einsatz von BGP 
+
+#### BGP-Peers /-Nachbarschaften
+
+- BGP-Router etabliert Verbindung mit ausgewählten Peers und tauscht mit diesen Pfadinformationen aus 
+- Konfiguration von Verbindungen zu Peers erfolgt manuell 
+- BGP definiert vier wichtige Nachrichten für Kommunikation zwischen Peers: 
+  - `OPEN`: Teilt Peer initial BGP-Version, AS-Nr., Hold-Timer, BGP Identifier mit 
+  - `NOTIFICATION`: Dient zur Beendigung einer Verbindung mit Fehlermeldung
+  - `KEEPALIVE`: Wird für Verbidnungserhaltung regelmäßig gesendet 
+    - Hold Timer bestimmt max. Zeitraum zwischen KEEPALIVE-Nachrichten
+  - `UPDATE`: Informiert Peers über Routen 
+
+![BGP-Finite-State-Machine](resources/routing-bgp-finitestate.png)<!-- width=500px -->  
+
+- Konfiguration von Nachbarschaftsbeziehungen erfolgt manuell 
+- zur Konfiguration wird IP-Adresse des Nachbarn samt AS-Nummer angegeben 
+- Unterscheidung zwischen Nachbarschaftsbeziehungen: 
+  - innerhalb eines AS: internal BGP (iBGP)
+  - außerhalb eines AS: external BGP (eBGP)
+- Beispiel: Konfiguration von BGP-Nachbarschaften via CLI auf Cisco-Router: 
+
+![BGP-Beispielconfig ](resources/routing-as-bgp-config.png)<!-- width=500px -->
+
+- Standardmäßig wird zum Nachbar nächstliegendes Interfaces als Quell-Interface für BGP-Kommunikation verwendet
+
+- Nach dem Etablieren einer Verbindung zu einem Nachbarn werden in regelmäßigen Abständen `UPDATE`-Nachrichten ausgetauscht
+- `UPDATE`-Nachrichten dienen dem Bewerben neuer und dem Verwerfen invalid gewordenener Ziele
+
+![BGP-Update Aufbau](resources/routing-bgp-update.png)<!-- width=500px -->
+
+- Felder: 
+  - Withdrawn Routes: 
+    - Beinhaltet eine Liste von IP-Adress-Präfixen, deren Routing-Informationen nicht mehr valide sind
+  - Path Attributes
+    - Eigenschaften / Attribute für die mit der UPDATE-Nachricht beworbenen Ziele (für alle in der Nachricht aufgeführten Routen identisch)
+  - Network Layer Reachability Information: 
+    - Liste von Zielen, die die gleichen Eigenschaften teilen 
+    - Durtch IP-Adress-Präfix spezifiziert   
+
+![BGP-UPDATE-Attribute ](resources/routing-as-bgp-attributes.png)<!-- width=500px -->
+
+- Mandatory Attributes: 
+  - `ORIGIN`: Definiert die allgemeine Herkunft der Pfadinformationen (drei Werte möglich: `IGP`, `EGP`, `INCOMPLETE`)
+  - `AS_PATH`: Beschreibt den bisherigen Pfad von AS (Angabe der AS-Nummer), den das Update durchlaufen hat
+  - `NEXT_HOP`: Verweist auf die IP-Adresse des Routers, der als nächster Router auf dem im Update enthaltenen Pfad verwendet werden sollte
+
+
+#### BGP-Pfadauswahl 
+
+- RFC 4271 macht keine Vorgaben zur Selektion eines Pfades (vgl. Sektion 9.3)
+- Informationen zur Selektion sind sehr allgemein: 
+  - *"If the local AS appears in the AS path of the new route being considered, then that new route cannot be viewed as better than any other route..."*
+  - *"In order to achieve a successful distributed operation, only routes with a likelihood of stability can be chosen."*
+
+- Möglicher Ansatz im folgenden Beispiel: Wahl der Route mit dem kürzesten AS-Pfad (via AS 500)
+
+![BGP-Pfadauswahl Beispiel ](resources/routing-bgp-paths.png)<!-- width=500px -->
+
+Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzend Regeln, die bis zu einem Match schrittweise durchlaufen werden, z.B: 
+  - Der Pfad mit dem höchsten `Weight`-Wert (proprietäres Attribut) wird bevorzugt
+  - Bei gleicher `AS_PATH`-Länge selektiere Pfad mit niedrigstem Origin-Typ (IGP < EGP < Incomplete)
+  - Fallback: Bevorzuge Pfad mit niedrigster Router-ID des BGP-Nachbarn 
+
+#### Anmerkung zur Sicherheit
+
+- Fehlkonfigurationen der AS können schwerwiegende Folgen haben 
+- Beispiel malaysischer Provider mit AS-Beziehungen zu Nachbarn 
+  - Fehlkonfiguration: 
+    - Ziel-IP-Adressen im gesamten Bereich wurden mit Kosten von 0 definiert
+    - Information wurde von vielen AS verteilt
+    - daher wurden massiver Traffic über diesen einen Provider geschleust 
+    - -> große Teile des Internet zusammengebrochen 
+  - Problem hier: 
+    - keine Validation der propagierten Informationen 
+- Beispiel Hijack eines BGP-Routers
+  - mit gezielter Verteilung von (Fehl-)Informationen kann dann Traffic gezielt umgeleitet und abgegriffen werden 
+
+# Anwendungsschicht / Application-Layer
+
+## Einleitung 
+
+- auf der Anwendungsschicht existiert eine Vielzahl verschiedener Protokolle -> zu viel um alle zu kennen und zu behandeln 
+- daher Klassifizierung von Protokollen nötig
+
+## Anwendungsschicht: Bezug zum OSI-Referenzmodell
+
+
+- Anwendungsschicht übernimmt Aufgaben der obersten drei Schichten des OSI-Modells: 
+  - Sitzungsschicht
+  - Darstellungsschicht
+  - Anwendungsschicht
+
+- die Anwendungsschicht setzt dabei auf der Transportschicht auf und greift auf diese beispielsweise über die Socket-Schnittstelle zu
+
+![OSI/TCP Vergleich Anwendungsschicht](resources/al-osi-tcp.png)<!-- width=500px -->
+
+- Unterscheidung von zwei Formen von Anwendungsprotokollen gemäß RFC 1122
+  - Anwenderprotokolle ("User Protocols"):
+    - verwendet von Clients, User steht dahinter und triggert bestimmte Schritte 
+    - HTTP, SMTP, SSH 
+  - Unterstützungsprotokolle ("Support Protocols")
+    - NTP, DNS, DHCP, SOCKS 
+
+## Ausführung von Systemdiensten 
+
+- Unterstützungsprotokolle finden meist in kontinuierlich auf einen Betriebssystem laufenden Diensten / Daemon-Programmen Einsatz 
+- Zur Kontrolle der Dienste / Daemonen wird ein Initialisierungssystem eingesetz -> init-System in unixoiden OS 
+- Init-System startet bei Systemstart die gewünschten Dienste
+  - zum Abschluss des Startvorgangs ist das System dann im gewünschten Zustand 
+
+- Tool `pstree` zeigt die Hierarchie der laufenden Prozesse an 
+
+![Init-Systeme](resources/al-init-systeme.png)<!-- width=500px -->
+
+## Domain Name System (DNS)
+
+### 1. Perspektive: Domainregistrierung
+
+- Anfrage bei Providern, wie z.B. strato
+  - dort Registrierung auf den dortigen Nameservern und Verknüpfung mit der IP-Adresse des eigenen Webservers
+  - diese Verbindung wird in einem `resource-record` auf dem Nameserver hinterlegt 
+    - zusätzlich Typinformation hinterlegt (z.B. `A-Record`)
+  - Problem zu dem Zeitpunkt: 
+    - Nutzer, die mit diesem Server kommunizieren wollen, wissen noch nicht, welchen Nameserver sie abfragen müssen um an die IP zu gelangen 
+  - daher: `DNS`
+    - Nutzer verwendet einen `Resolver` (in Linux: `/etc/resolv.conf`)
+    - in der config stehen die Nameserver z.B. des ISP 
+  - bisher hat der Nameserver des ISP aber die Information über die neue Domain noch gar nicht
+    - Trennung der Domain in die TLD und den TLD-spezifischen Namen
+    - ISP-Nameserver steuert daraufhin einen der 13 Root-NS an 
+    - dort wird angefragt, wer für die TLD verantwortlich ist 
+    - Root-Server gibt `resource-record` für den TLD-Nameserver zurück 
+  - für .de -> DENIC (eingetragener Verein)
+    - diese betreiben eine ganze Reihe von NS
+  - daraufhin Anfrage an NS von DENIC
+    - Wer ist für den Namen der Domain verantwortlich? (im Beispiel: br1it -> Strato)
+    - DNS gibt `resource-record` für Strato-NS zurück 
+    - Eintrag von Strato auf dem DENIC-NS erfolgte bei Registrierung der Domain
+  - daraufhin Anfrage bei Strato-NS 
+    - dieser gibt dann `resource-record` für die Domain zurück 
+  - NS des ISP leitet diesen an Resolver des Nutzers weiter 
+    - Dieser hat dann die IP des Webservers und kann auf diesen zugreifen 
+  - Informationen werden auf allen Ebenen teilweise gecached: 
+    - in Windows Resolvercache anzeigen: `ipconfig /displaydns`
+
+  ![DNS-Resolve](resources/al-dns-resolve.png)<!-- width=500px -->
+
+### Load-Balancing durch DNS
+- spielt auch wichtige Aufgaben im Load-Balancing
+  - Mit einem Namen können mehrere IP-Adressen verbunden sein 
+  - Reihenfolge der Auslieferung entscheidet über die anzusteuernde IP-Adresse
+  - Auf DNS-Ebene kann somit also Load-Balancing erfolgen, wenn die Reihenfolge geändert wird
+
+### DNS-Überblick 
+<!-- Prüfungsfrage: Warum wird zwischen iterativen und rekursiven Anfragen unterschieden: Mit rekursiven Anfragen könnte kein Caching vorgenommen werden-->
+
+- DNS ist ein hierarchisch organisierter Verzeichnisdienst zur Verwaltung von Informationen über Domänen (vor allem IP-Adressinformationen)
+- der Domänen-Namensraum ist in **Zonen** untergliedert, die verschiedenen Nameservern innerhalb der Serverhierarchie zugeteilt werden 
+- Namensauflösung erfolgt durch Delegation oder Weiterleitung; als Fallback werden Root-Server in die Auflösung einbezogen 
+- Server nehmen intensives Caching vor, um Anfragen möglichst lokal beantworten zu können 
+
+![DNS-Strukturübersicht](resources/al-dns-structure.png)<!-- width=500px -->
+
+### Resource Records
+
+- Resource Records sind Informationsentitäten, die in Zonendateien, in DNS-Caches und bei der Kommunikation zwischen DNS-Teilnehmern verwendet werden
+- wurden zunächst mit der ursprünglichen DNS-Spezifikation eingeführt und durch zusätzliche RFCs deutlich erweitert 
+- Informationen werden meist einem Domainnamen zugeordnet und weisen eine Protokollklasse (meist `IN`-Internet), eine Typangabe und eine Gültigkeitsdauer auf
+- Ausgewählte Typen: 
+  - `A`: Ordnen Domainnamen eine IP-Adresse zu, beispielsweise 
+    ```
+    www.tu-dresden.de.  3000  IN  A 141.30.2.2
+    ```
+  - `AAAA`: Ordnen Domainnamen eine IPv6-Adresse zu 
+  - `MX`: Spezifiziert den Mailserver einer Domain
+  - `CNAME`: Gibt einen alternativen Namen/Alias für einen Domainnamen an (CNAME = canonical name)
+  - `DNSKEY`: Gibt einen öffentlichen Schlüssel eines asymmetrischen kryptographischen Verfahrens für eine Domain an 
+  - `NS`: Gibt einen autoritativen Nameserver für eine Domain an; zusätzlich Verwendung zur Zonendelegation
+
+Überblick PTR-Record bei Mailversand: 
+ ![PTR-Record](resources/al-dns-ptr.png)<!-- width=500px -->
+
+### Protokoll / Anfragedetails 
+
+- basiert auf einfachem Query-/Response-Prinzip
+- DNS-Nachrichten sind in 5 Sektionen unterteilt: 
+  - Header
+    - beinhaltet 16-Bit Identifier, Flags und Angaben zu den weiteren Nachrichteninhalten
+  - Question
+    - Beinhaltet in einer Query-Nachricht Informationen zur DNS-Anfrage
+  - Answer
+    - Beinhaltet Ressource-Records, die die Anfrage beantworten
+  - Authority
+    - Beinhaltet eine Antwort von einem Autoritativen Nameserver
+  - Additional
+    - Zusätzliche Ressource-Records, die im Zusammenhang mit der Anfrage stehen, diese aber nicht beantworten
+
+Wichtig: Protokollkommunikation erfolgt über UDP
+- Anfragen sind sehr kurz/klein (nur wenige Bytes)
+- passt daher gut in ein UDP-Paket 
+- Problembehandlung auf Anwendungsebene einfach 
+
+### Zonendefinition / Zonentransfer
+
+- Zonen werden in Zonendateien definiert, deren Format in RFC 1035 (Sektion 5 "Master Files") spezifiziert wurde
+- Zonendateien beinhalten Einträge analog zu Resource-Records
+- Informationen aus Zonendateien können zu Replikationszwecken zwischen Nameservern übertragen werden 
+- Schematische Darstellung des Zonentransfers: 
+![Zonentransfer-Schema](resources/al-dns-zonetransfer.png)<!-- width=500px --> 
+
+- Zur Information von Slave-Servern können diese nach Veränderungen in regelmäßigen Intervallen anfragen oder werden asynchron über Veränderungen informiert, z.B. via:
+  - Abfrage des "Start of Authority Resource Records" (SOA RR), der eine bei jeder Änderung inkrementierte Seriennummer enthält
+  - via Protokolldefinition aus RFC 1996: "A Mechanism for Prompt Notification of Zone Changes (DNS NOTIFY)"
+- Mechanismen für eigentlichen Zonentransfer
+  - `AXFR`: Asynchronous Full Transfer Zone; DNS Zone Transfer Protocol (RFC 5936); realisiert kompletten Zonentransfer
+  - `ICFR`: Incremental Zone Transfer in DNS (RFC 1995)
+
+- nach einem SOA-RR-Eintrag beinhaltet eine Zonendatei Einträge wie z.B: 
+  - `www.example.com. 2400 IN A 141.76.40.2`
+- Auszüge aus Konfigurationsdatei des Nameservers `BIND`
+  - z.B `/etc/named.conf`
+
+![Zonentransfer-Beispiel](resources/al-dns-zonetransfer2.png)<!-- width=500px --> 
+
+
+### DNS over TLS / HTTPS 
+
+- Schwächen von DNS: 
+  - Anfragen können leicht mitprotokolliert werden
+  - Einfach zu filtern (zu blockieren)
+- Zwei durch IETF standardisierte Ansätze zur verschlüsselten DNS-Kommunikation: 
+  - DNS over TLS (DoT): RFC 7858
+    - Kommunikation via Port 853
+  - DNS over HTTPS (DoH): RFC 8484
+    - Kommunikation über Port 443
+    - Anfrage via GET oder POST
+    - Beispiel aus RFC 8484: 
+      ```
+      :method = POST
+      :scheme = https
+      :authority = dnsserver.example.net
+      :path = /dns-query
+      accept = application/dns-message
+      content-type = application/dns-message
+      content-length = 33
+      <33 bytes represented by the following hex encoding>
+      00 00 01 00 00 01 00 00 00 00 00 00 03 77 77 77
+      07 65 78 61 6d 70 6c 65 03 63 6f 6d 00 00 01 00
+      01
+      ```
+
+- Kommunikation via TLS bzw. HTTPS zwischen DoT-/DoH-Client zu öffentlichem DNS-Resolver
+- Anwendungen können eigenen Resolver vorgeben 
+
+### Dynamic DNS / Reverse DNS 
+
+1. Dynamic DNS: 
+- Bei Wechsel einer IP-Adresse müsüsen DNS-Einträge dynamisch und effizient aktualisiert werden können 
+- Zwei Ansätze der Aktualisierung werden unter dem Begriff subsumiert: 
+  - "Dynamic Updates in the Domain Name System (`DNS UPDATE`)", RFC 2136, verwendet speziellen Opcode des DNS-Protokolls
+  - Aktualisierung über eine wohldefinierte HTTP(S)-/REST-Schnittstelle
+
+2. Reverse DNS
+- Reverse DNS Lookup (`rDNS`) ermöglicht Abbildung von IP-Adressen auf zugehörige Domains
+- um eine aufwendige Suche in den Resource-Records zu vermeiden, wird ein spezieller PTR(Pointer)-Resource-Record-Typ verwendet
+- dabei wird die IP-Adresse in umgekehrter Reihenfolge angegeben 
+  - für IPv4: "IP-ADRESSE.in-addr.arpa"
+    - z.B.: 2.2.30.141-in-addr.arpa
+  - für IPv6: "IP-ADRESSE.ip6.arpa"
+- Beispieleinsatz:
+  - Ermittlung der Herkunft (=Domain) von Mails
+
+3. Multicast DNS:
+- DNS-Anfragen ohne Einsatz von dedizierten DNS-Servern
+- Zero-Configuration-Ansatz
+- z.B. bei XMPP eingesetzt
+
+4. Split-horizon DNS
+- DNS-Anfragen können - typischerweise- in Abhängigkeit der Quell-IP-Adresse der Anfrage unterschiedlich behandelt werden 
+- ermöglicht beispielsweise "GeoDNS"
+  - `CDN`- Content Distribution Network: 
+    - Medieninhalte nicht von ursprünglichem RZ bereitstellen, sondern weltweit verteilen 
+    - diese dann dem Nutzer von möglichst nahem RZ bereitstellen um weite Wege zu vermeiden  
+      - Internet wird weniger belastet
+      - geringere Latenzen und round-trip-times
+    - z.B bei Streamingdiensten
+
+### DNS - manuelle Abfragen 
+
+- Werkzeuge für die Abfrage von DNS-Informationen von der Kommandozeile oder aus Shell-Skripten heraus 
+  - z.B. `dig`, `host`, `nslookup (deprecated!)`
+
+![Manuelle Beispielabfrage](resources/al-dns-manual.png)<!-- width=500px --> 
+
+## Zeitsynchronisation - NTP 
+
+### Motivation 
+- Uhren in Rechnernetzknoten unterliegen im Normalfall einem kontinuierlichen Drift 
+- zunehmende Abweichung zwischen lokalen Zeitinformationen führt u.a. zu Problemen bei: 
+
+1. Identifikation von Kausalitäten zwischen verteilten Ereignissen
+![Beispiel verteilte Ereignisse](resources/al-ntp-motivation.png)<!-- width=500px -->
+2. zahlreichen Protokollen in Rechnernetzen / verteilten Systemen, die Zeitstempel zur Prüfung der Aktualität und Validität einer Anfrage verwenden 
+- Beispiel: Aktualitätsprüfung bei Dynamic-DNS-Servern
+
+$\rightarrow$ Uhren müssen möglichst synchronisiert werden 
+
+### Network Time Protocol - Architektur 
+
+- in RFC 5905 (Version 4) definiertes Protokoll zur Synchronisation von Uhren 
+- setzt UDP zuer Verteilung der Protokollinformationen ein (Port 123)
+- Flexibel einsetzbar für die Synchronisation mit einzelnen Referenzzeitgebern oder in einem großen Verbund von NTP-Systemen 
+- Beispielarchitektur: 
+![NTP-Architektur](resources/al-ntp-struktur.png)<!-- width=500px -->
+
+### NTP On-Wire Protocol 
+
+![NTP-On Wire](resources/al-ntp-onwire.png)<!-- width=500px -->
+
+- Funktion `save()` $\rightarrow$ lokale Speicherung der übergebenen Zeitstempel in einer Variable TX 
+  - z.B. `save(t1)` $\rightarrow$ Speicherung in T1
+- Nach Empfang der Zeitstempel wird eine Validitätsprüfung durchgeführt
+  - v.a. zur Detektion von Duplikaten und zur Vermeidung von Replay-Angriffen 
+  - Methode: 
+    - Überprüfung, ob Sendezeitstempel tX != T(X-2)
+    - Überprüfung, ob Sendezeitstempel tY == TY
+- Aus Zeitstempeln werden zwei Werte berechnet, die anschließend statistischen Analysen und Filterungen unterzogen werden:
+  - Offset: 
+    - Wahrscheinlichste Abweichung der Serverzeit (= Zeit des Kommunikationspartners) relativ zur lokalen Systemzeit
+    - Beispielrechnung für Zeitpunkt t4, der vorigen Abb:
+      - $theta 1 = 1/2 * [(T2-T1)+(T3-T4)$
+  - Delay: 
+    - Round-Trip-Time zwischen Client und Server
+    - Beispielrechnung für Zeitpunkt t4, der vorigen Abb:
+      - $delta 1 = (T4-T1)-(T3-T2)$
+- Optimum: 
+  - Uhren sind synchron und es gibt eine konstante RTT
+  - $Theta$i (=0) und $delta$i sind im Zeitverlauf konstant
+- Akkurate Synchronisation ist vor allem Servern gegenüber mit geringer RTT und geringer Varianz der RTT möglich 
+
+$\rightarrow$ Auswahl entsprechender Server unter den insgesamt verfügbaren Servern 
+
+### SNTP - Simple Network Time Protocol
+
+- in RFC 4330 definierte, vereinfachte Version von NTP 
+- Zustandsinformationen, die auf Client-System gespeichert werden müssen, sind deutlich reduziert
+- Besonders geeignet für eingebettete Systeme und falls keine hohen Anforderungen an die Zeitsynchronisation vorliegen 
+- Von Server kommunizierte Informationen sind identisch zu NTP-Informationen 
+  - $\hookrightarrow$ auf Serverseite kann nicht differenziert werden, ob es sich um einen NTP- oder SNTP-Client handelt
+- Zur Synchronisation der Uhrzeit wird das NTP On-Wire Protocol verwendet
+- Synchronisation erfolgt meist nur mit einem Server
+- Einsatz wird nur für Blätter / Knoten im höchsten Stratum eines Netzwerks empfohlen
+
+![NTP-On Wire](resources/al-ntp-sntp.png)<!-- width=500px -->
+
+### NTP - Implementierungsbeispiele
+
+- NTP-Referenzimplementierung `ntpd` verfügbar via http://www.ntp.org
+- setzt aktuell Protokollversion 4 um und gewährleistet Abwärtskompatibilität zu Versionen 1-3 (RFC 1059, RFC 1119 und RFC 1305)
+- NTP-Pakete für gängige Unix-artige Betriebssysteme umfassen neben einem Daemon-Programm u.a. Hilfswerkzeuge:
+  - `ntpq`: Monitoringwerkzeug für den NTP-Daemon
+  - `ntptrace`: Werkzeug zur Ermittlung von Beziehungen zwischen NTPServern und des primären NTP-Servers
+  - `ntpsweep`: Ermittlung von Eigenschaften (Stratum-Level, Betriebssystem, Prozessor, NTP-Daemon-Version, Offset-Wert) eines NTP-Servers
+
+
+## DHCP 
+
+- Dynamic Horst Configuration Protocol (DHCP) ermöglicht die automatische Konfiguration von TCP/IP-Netzwerkinformationen (RFC 2131)
+- für IPv4 und IPv6
+- Prinzip: 
+  - DHCP-Client sendet ein Broadcast an das Netz und ermittelt durch das Kommando `DHCPDISCOVER` verfügbare DHCP-Server
+  - DHCP-Server offerieren Netzwerkkonfigurationen an anfragenden Client (mittesl Optionen-Feld in DHCP-Nachricht)
+  - Client wählt eine Konfiguration und bestätigt die (ggf. temporäre) Verwendung der Konfiguration gegenüber dem Server durch das Kommando `DHCPREQUEST`
+  - Auffrischen oder Verifizieren des "Leases" erfolgt ebenfalls durch `DHCPREQUEST`
+
+### DHCPv6
+
+- IPv6 bietet durch `SLAAC`und `NDP` Mechanismen, um Netzwerkkonfiguration ohne dedizierte Infrastruktur zu ermitteln 
+- Davon ausgeschlossen: DNS-Konfiguration 
+- zwei Ansätze der DNS-Konfiguration für IPv6: 
+  - "IPv6 Router Advertisement Options for DNS Configuration" (RFC 6106)
+    - realisiert Konfiguration durch NDP-Erweiterung 
+  - "Dynamic Host Configuration Protocol for IPv6 (DHCPv6)" (RFC 3315)
+- DHCPv6 unterstützt wie auch DHCPv4 gegenseitige Authentifizierung zwischen Client und Server
+
+## SOCKS-Protokoll
+
+- in RFC 1928 (v5) definiertes Protokoll zur transparenten Weiterleitung von Anwendungsdaten über einen Proxyserver
+- Zwischen Transportschicht und Anwendungsprotokoll angesiedelt - `shim-layer`
+- Protokoll ermöglicht Kommunikation von Befehlen an Proxy, um hinter dem Proxy TCP-Verbindungen zu etablieren oder UDP-Datagramme weiterzuleiten 
+- Beispiel: 
+![SOCKS-Beispiel](resources/al-socks-example.png)<!-- width=500px -->
+
+
+# Prüfungsvorbereitung 
+
+## Formalien 
+- Stichpunkte sind möglich, aber nicht zu verkürzt 
+- eigene handschriftliche Mitschriften (1 A4-Blatt, beidseitig beschrieben sind erlaubt)
+
+## Beispielklausur
+
+### Internet Engineering Taskforce (2 Punkte)
+
+Frage: Um was handelt es sich bei der Internet Engineering Taskforce? Welche Aufgaben hat diese Organisation?
+
+### ISO/OSI-Referenzmodell (7 Punkte)
+
+Frage: Welche sieben Schichten werden durch das in der Vorlesung besprochene ISO/OSI-Referenzmodell unterschieden? Was sind jeweils die zentralen Dienste bzw. Funktionen der sieben Schichten? 
+
+### Virtuelle LANs (6 Punkte)
+
+Frage: 
+In folgendem Szenario sehen Sie zwei Hosts (Host 1, Host 2), die sich in zwei unterschiedlichen Port-basierten VLANs befinden (VLAN 5 und VLAN 6). Ansonsten wurde noch nichts konfiguriert. Die Separation der VLANs soll erhalten bleiben, allerdings soll eine Kommunikation zwischen den beiden VLANs über den eingezeichenten Pfad (1-6) möglich sein. Welche Kommunikationsschritte sind zu durchlaufen, um diese Kommunikation zu ermöglichen? 
+
+![VLAN-Abbildung](resources/klausur-abb1.png)<!-- width=500px -->
+
+### Internet Protocol (4 Punkte)
+
+Frage: 
+a) Nennen und beschreiben Sie drei zentrale Vorteile, die IPv6 im Vergleich zu IPv4 bietet. 
+b) Beschreiben Sie schrittweise, wie durch das Verfahren Stateless Adress Autoconfiguration zunächst eine lokal eindeutige und anschließend eine global eindeutige IPv6-Adresse vergeben wird
+
+### IP-Subnetze (6 Punkte)
+
+Frage: 
+Ihnen wurde die IP-Adress-Range 192.168.40.0/22 zur Verfügung gestellt. Innerhalb dieses Ranges sollen sechs möglichst große wie auch gleich große Netze entstehen. Geben sie jeweils die Netzadressen der sechs Netze an und beschreiben Sie kurz den Ablauf zur Ermittlung der sechs Netzadressen. 
+
+- 6 Netze benötigt $\rightarrow$ nächstgrößere Zweierpotenz ist $2^3=8$
+- Alte Subnetzmaske aktualisieren: /22 $\rightarrow$ /25
+- An Stelle der 3 "Masken"-Bit die Unterteilung vornehmen:
+  - ACHTUNG: Überschreiten der Oktettgrenze beachten: 
+    - (129.168).001010**00.0**0000000 = 129.168.40.0/25
+    - (129.168).001010**00.1**0000000 = 129.168.40.128/25
+    - (129.168).001010**01.0**0000000 = 129.168.41.0/25
+    - (129.168).001010**01.1**0000000 = 129.168.41.128/25
+    - (129.168).001010**10.0**0000000 = 129.168.42.0/25
+    - (129.168).001010**10.1**0000000 = 129.168.42.128/25
+    - (129.168).001010**11.0**0000000 = 129.168.43.0/25
+    - (129.168).001010**11.1**0000000 = 129.168.43.128/25
+
+### Routing (6 Punkte)
+
+Frage: 
+Von einem Host mit der IP-Adresse `87.76.23.2` sollen IP-Pakete an die IP-Adresse `1.1.1.1` gesendet werden. Dabei wird davon ausgegangen, dass neben dem Eintrag für das Netz `87.76.23.0./25` als einzige Eintrag in der Routing-Tabelle das Default-Gateway (IP: `87.76.23.1`) vorliegt.
+Beschreiben Sie den Ablauf der Weiterleitung von IP-Paketen innerhalb des Hosts ("Forwarding"). Gehen Sie dabei auf die Aufgabe der "Routing-Tabelle", des Adress Resolution Protocols wie auch des Default-Gateways ein. 
+
+
+### Transportschicht (9 Punkte)
+
+Fragen: 
+a) Welche Kernaufgabe erfüllt die Transportschicht?
+b) Erstellen Sie eine Tabelle für den Vergleich des Transmission Control Protocols `TCP` mit dem User Datagram Protocol `UCP`. Gehen Sie in der Tabelle auf drei Charakteristika ein, in denen sich die beiden Protokolle unterscheiden
+
+Reihenfolgegarantie 
+Zuverlässigkeit 
+Protokolloverhead
+Congestion Control
+
+c) Was wird unter Congestion Control im Falle des TCP verstanden? Beschreiben Sie weiterhin wie Congestion-Control unter Verwendung des "Slow-Start"-Verfahrens umgesetzt wird. 
+
+- Handling von Überlast-Situationen zwischen Routern
+- Slow Start: anfangs nur wenig Bytes übertragen \rightarrow schrittweise erhöht
+- Paketgröße im Falle einer Überlast halbiert
+- Überlast an Paketverlust erkannt
+- Steuerung durch Congestion Window
+- nicht verwechseln mit Flow Control!
+
+d) Skizzieren Sie den TCP-Drei-Wege-Handshake. Welchen Sinn haben die drei Schritte?
+
+<!--Bild TODO-->
+
+- ``SYN``, ``SYN ACK``, ``ACK``
+- Sicherstellung der Zuverlässigkeit der Kommunikation
+- Sinn des SYN-Flags: Sequenznummer übertragen, Synchronisierung
+
+### Autonome Systeme / BGP (4 Punkte)
+Fragen:
+a) Geben Sie eine Definition des Begriffs "Autonomes System (AS)" an. Weshalb wurde das Konzept der AS im Internet eingeführt? Was ist Voraussetzung für die Bentragung eines AS?
+
+- Menge von Routern / **IP-Ranges / Subnetzen**, welche von Akteuren kontrolliert wird
+- Kennzeichnug mit ASN
+- Ziel: globale Topologie muss nicht bekannt sein, erhöht Skalierbarkeit
+- jedes AS benötigt mind. 2 Verbindungen zu anderen AS
+
+b) Wozu wird das BGP im Kontext von AS eingesetzt?
+
+- Pfade von AS transitiv bekanntmachen
+  - welche ASN?
+  - welche IP-Präfixe?
+- Lernen von Präfixen in AS weltweit
+
+### Domain Name System (4 Punkte)
+Frage:
+Beschreiben Sie in eigenen Worten, wie die Auflösung eines Namens mittels DNS erfolgt. Beginnen Sie dabei mit dem Resolver. Gehen Sie auch auf die Aufgabe des Root-DNS-Servers ein.
+
+Hinweis: an jeder Stelle werden zuerst die Caches konsultiert
+
+- Client frag Resolver
+- Resolver fragt ISP-NS nach Ziel-IP
+- ISP-NS fragt Root-NS für TLD-Auflösung: DENIC-NS
+- ISP-NS fragt DENIC-NS nach zust. NS
+- Resolver fragt zust. NS nach Ziel-IP
+
+### VXLAN (2 Punkte)
+
+Frage:
+Beschreiben Sie die technische Funktionsweise von VXLAN. Wozu wird VXLAN eingesetzt?
+
+## Praxisübung: Aufsetzen eines DNS-Servers
+
+- ``facebookxyz.com`` soll auf 192.168.0.10/24 verweisen (bzw. auf eine lokale Adresse)
+- mittels BIND-Server
+- in ``/etc/default/bind9`` bei ``OPTIONS`` ein ``-4`` anhängen
+- bind9 neu starten: ``sudo systemctl restart bind9``
+- in die ``/etc/bind/named.conf.local`` eintragen:
+
+```conf
+zone "meineTolleSeite.lol" {
+
+type master;
+file "/etc/bind/zones/meineTolleSeite.lol";
+
+};
+```
+
+- ``mkdir -p /etc/bind/zones``
+- in die ``/etc/bind/zones/meineTolleSeite.lol`` eintragen:
+
+```conf
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+; SOA --> Verweis auf Master-NS und dessen Mailaddresse
+@       IN      SOA     ns.meineTolleSeite.lol. admin.meineTolleSeite.lol. (
+                             3          ; Serial (vor jedem restart von bind hochsetzen)
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+        IN      NS      nameserver.
+www.meineTolleSeite.lol.        IN      A       192.168.42.21
+ns.meineTolleSeite.lol.         IN      A       127.0.0.1
+```
+
+- IP-Adresse bei ``IN A`` auf den eigenen Webserver zeigen lassen <!--wie du hast keinen? Jeder hat doch einen!-->
+- ``sudo systemctl restart bind9``

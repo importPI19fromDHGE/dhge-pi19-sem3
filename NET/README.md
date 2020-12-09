@@ -1236,7 +1236,7 @@ Wie kann ich ein AS beantragen?
     - keine gute Skalierbarkeit 
     - `Count-to-infinity-Problem`
 
-$/rightarrow$ Zahlreiche Erweiterungen bzw. Alternativen (insb. Dijkstra verfügbar)
+$\rightarrow$ Zahlreiche Erweiterungen bzw. Alternativen (insb. Dijkstra verfügbar)
 
 ### Dijkstra-Algorithmus  
 
@@ -1287,9 +1287,9 @@ $/rightarrow$ Zahlreiche Erweiterungen bzw. Alternativen (insb. Dijkstra verfüg
 - Langsame Konvergenz im Fall von topologischen Änderungen
   - Topologische Änderungen propagieren sich langsam durch das Netz, da jeder Knoten zunächst lokale Tabellen aktualisiert und dann Änderungen propagiert
 
-$/rightarrow$ RIP eignet sich nur für kleine Netze
+$\rightarrow$ RIP eignet sich nur für kleine Netze
 
-$/rightarrow$ Schwächen werden u.a. durch Open Shortest Path First adressiert
+$\rightarrow$ Schwächen werden u.a. durch Open Shortest Path First adressiert
 
 ### Open Shortest Path First (OSPF)
 
@@ -1375,7 +1375,7 @@ $/rightarrow$ Schwächen werden u.a. durch Open Shortest Path First adressiert
   taken by the traffic originating in the neighboring AS”*
   (aus RFC 4271, S. 6 f.)
 
-  $/rightarrow$ BGP ermöglicht keine Einflussnahme jenseits des eigenen AS
+  $\rightarrow$ BGP ermöglicht keine Einflussnahme jenseits des eigenen AS
 
 
 ![BGP-Nutzungsmotivation Überblick](resources/routing-as-bgp.png)<!-- width=500px -->
@@ -1701,8 +1701,8 @@ $\rightarrow$ Uhren müssen möglichst synchronisiert werden
 
 ![NTP-On Wire](resources/al-ntp-onwire.png)<!-- width=500px -->
 
-- Funktion `save()` $/rightarrow$ lokale Speicherung der übergebenen Zeitstempel in einer Variable TX 
-  - z.B. `save(t1)` $/rightarrow$ Speicherung in T1
+- Funktion `save()` $\rightarrow$ lokale Speicherung der übergebenen Zeitstempel in einer Variable TX 
+  - z.B. `save(t1)` $\rightarrow$ Speicherung in T1
 - Nach Empfang der Zeitstempel wird eine Validitätsprüfung durchgeführt
   - v.a. zur Detektion von Duplikaten und zur Vermeidung von Replay-Angriffen 
   - Methode: 
@@ -1722,7 +1722,7 @@ $\rightarrow$ Uhren müssen möglichst synchronisiert werden
   - $Theta$i (=0) und $delta$i sind im Zeitverlauf konstant
 - Akkurate Synchronisation ist vor allem Servern gegenüber mit geringer RTT und geringer Varianz der RTT möglich 
 
-$/rightarrow$ Auswahl entsprechender Server unter den insgesamt verfügbaren Servern 
+$\rightarrow$ Auswahl entsprechender Server unter den insgesamt verfügbaren Servern 
 
 ### SNTP - Simple Network Time Protocol
 
@@ -1730,7 +1730,7 @@ $/rightarrow$ Auswahl entsprechender Server unter den insgesamt verfügbaren Ser
 - Zustandsinformationen, die auf Client-System gespeichert werden müssen, sind deutlich reduziert
 - Besonders geeignet für eingebettete Systeme und falls keine hohen Anforderungen an die Zeitsynchronisation vorliegen 
 - Von Server kommunizierte Informationen sind identisch zu NTP-Informationen 
-  - $/hookrightarrow$ auf Serverseite kann nicht differenziert werden, ob es sich um einen NTP- oder SNTP-Client handelt
+  - $\hookrightarrow$ auf Serverseite kann nicht differenziert werden, ob es sich um einen NTP- oder SNTP-Client handelt
 - Zur Synchronisation der Uhrzeit wird das NTP On-Wire Protocol verwendet
 - Synchronisation erfolgt meist nur mit einem Server
 - Einsatz wird nur für Blätter / Knoten im höchsten Stratum eines Netzwerks empfohlen
@@ -1810,8 +1810,8 @@ b) Beschreiben Sie schrittweise, wie durch das Verfahren Stateless Adress Autoco
 Frage: 
 Ihnen wurde die IP-Adress-Range 192.168.40.0/22 zur Verfügung gestellt. Innerhalb dieses Ranges sollen sechs möglichst große wie auch gleich große Netze entstehen. Geben sie jeweils die Netzadressen der sechs Netze an und beschreiben Sie kurz den Ablauf zur Ermittlung der sechs Netzadressen. 
 
-- 6 Netze benötigt $/rightarrow$ nächstgrößere Zweierpotenz ist $2^3=8$
-- Alte Subnetzmaske aktualisieren: /22 $/rightarrow$ /25
+- 6 Netze benötigt $\rightarrow$ nächstgrößere Zweierpotenz ist $2^3=8$
+- Alte Subnetzmaske aktualisieren: /22 $\rightarrow$ /25
 - An Stelle der 3 "Masken"-Bit die Unterteilung vornehmen:
   - ACHTUNG: Überschreiten der Oktettgrenze beachten: 
     - (129.168).001010**00.0**0000000 = 129.168.40.0/25

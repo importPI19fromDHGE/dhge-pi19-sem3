@@ -2379,7 +2379,84 @@ Hilfprotokolle wichtig:
 - Migrationsmechanismen IPv4->IPv6 
   - nennen können 
 
-## Kapitel 4
+## Kapitel 4 - Transportschicht
+
+- Aufgaben der Transportschicht
+  - Realisierung von Ende-zu-Ende-Kommunikation, durch Bereitstellung einer Adressierungsmöglichkeit `Ports`
+
+- Vergleich zwischen TCP und UDP 
+  - kleine Tabelle, 4 Charakteristika
+
+- TCP
+  - Grundlegende Mechanismen 
+  - bestätigtes Protokoll
+    - in dem Paket enthaltene Bytes werden bestätigt 
+  - Congestion-Control (Zusammenhang Congestion- und Receiving-Window)
+    - Slow-Start-Verfahren
+  - Verbindungsaufbau - 3-Wege-Handshake
+    - wechselseitiges Synchronisieren der Sequenznummer
+  - Schwächen von TCP 
+  - TCP-Fast-Open / SYN-Cookies sollten eingeordnet werden können 
+  - TLS sollte eingeordnet werden können
+    - Schwäche: zusammen mit TCP-3WH großer Overhead
+
+- Vorteile QUIC 
+  - Verschlüsselung auf Paketebene 
+  - Overhead von TCP mit TLS entfällt
+
+- **hochgradig wichtig!**
+  - Abfolgen von Calls bei Socketaufrufen und deren Funktion
+
+## Kapitel 5 - Routing
+
+### AS 
+
+- Konzept der AS erklären
+  - Was ist ein AS?
+  - Voraussetzung für Registrierung eines AS und einer eigenen IP-Adressrange
+    - Mitglied bei RIPE werden 
+    - Public IP-Adressranges beantragen
+    - Nachweis über Bedingungserfüllung für ein AS 
+      - Links zu zwei anderen AS 
+      - Single and Clearly defined Routing Policy   
+  - Transit- und Peer- sollte bekannt sein 
+
+Unterscheidung Inter- und Intra-AS-Protokolle
+
+- Intra-AS-Protokolle 
+  - was ist Distanzvektor, was ist LS-Protokoll?
+
+- kein RIP
+
+- OSPF: 
+  - Grundlegender Ablauf 
+    - Broadcast ins lokale Netz mit Hello-Paketen
+    - Router lauschen auf Hello-Pakete
+      - um Adjazenz auszubilden:
+        - Area-ID muss gleich sein 
+        - Authentisierung muss stimmen
+        - Hello und Dead-Intervalle müssen gleich sein
+    - nach Adjazenzausbildung: 
+      - LSA zwischen allen Routern in der Area werden geflutet
+
+  - Einteilung in Areas und Begründung warum diese Einteilung vorgenommen wird
+    - Nachrichtenaufkommen wird reduziert, da nicht mehr alle LSAs an alle Router gesendet werden
+    - von Area zu Area wird nur Information über prinzipiell erreichbare Subnetze weitergegeben, nicht aber die Topologie 
+
+- BGP:
+  - allgemeine Einordnung: 
+    - soll Pfade von AS bekannt machen 
+  - welche Konigurationsinformationen müssen angegeben werden? 
+    - Eigene AS-Nummer
+    - im AS vorhandene Adressrange
+    - IP-Adresse des Nachbarn 
+    - AS-Nummer des Nachbarn 
+  - grundlegende Funktionsweise: 
+    - Mandatory Attributes wichtig
+    - <!-- noch ergänzen--> 
+
+
+## Kapitel 6 - 
 
 
 

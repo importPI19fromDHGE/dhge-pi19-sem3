@@ -2331,7 +2331,61 @@ OFPT_GET_CONFIG_REPLY (xid=0x4): frags=normal miss_send_len=0
   - Vorteil zu STP
 - Stacking nicht unbedingt relevant
 
-## Kapitel 3
+## Kapitel 3 - Schicht 3, Internet Protocol
+
+Header müssen nicht auswendig gelernt werden, Mechanismen sollten verstanden sein 
+
+Hilfprotokolle wichtig: 
+- ARP (IPv4), ICMP, NDP (IPv6)
+
+### IPv4
+
+- Fragmentierung sollte erklärt werden können 
+  - wenn Paket größer ist als die MTU, wird bei IPv4 das Paket vom Router, bei IPv6 vom Sender fragmentiert (vorher pass-MTU ermittelt) 
+    - weitere Einzelheiten noch interessant 
+- Bedeutung der TTL: 
+  - Zyklenvermeidung 
+  - Dekrementierung des TTL-Wertes bei jedem Hop, wenn mit TTL=1 empfangen, wird Paket verworfen 
+
+- Aufteilung in verschiedene Subnetze ist prüfungsrelevant
+  - wichtig: auch über Oktettgrenzen hinweg 
+
+- ARP 
+  - Grundgedanke
+    - MAC-Adresse des next-hops ermitteln 
+  - Funktionsweise erklären 
+
+- ICMP einordnen, nur oberflächlich 
+
+- Schwächen von IPv4 
+  - Adressraum 
+  - ineffizientes Routing 
+  - keine automatische Konfiguration 
+
+### IPv6 
+
+- warum ist IPv6 effizienter als IPv4? 
+  - konstant große Länge des Headers und "next-header"-Feld 
+  - Fragmentierung der Pakete beim Sender
+
+- Notation und Adresskürzung (und umgekehrt) sollte gekonnt werden 
+
+- Uni-, Multi- und Anycast differenzieren 
+
+- SLAAC 
+  - Funktionsweise
+  - Privacy-Extensions 
+
+- Migrationsmechanismen IPv4->IPv6 
+  - nennen können 
+
+## Kapitel 4
+
+
+
+
+  
+
 
 
 

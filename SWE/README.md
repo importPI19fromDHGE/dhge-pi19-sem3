@@ -11,14 +11,15 @@ Systemanalyse
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Einführung / Überblick](#einf%C3%BChrung--%C3%BCberblick)
+- [Systemanalyse](#systemanalyse)
+- [Einführung / Überblick](#einführung--überblick)
   - [User Story Format](#user-story-format)
-  - [Was gehört alles zur Systemanalyse?](#was-geh%C3%B6rt-alles-zur-systemanalyse)
-- [Regeln für Software-Entwicklung](#regeln-f%C3%BCr-software-entwicklung)
+  - [Was gehört alles zur Systemanalyse?](#was-gehört-alles-zur-systemanalyse)
+- [Regeln für Software-Entwicklung](#regeln-für-software-entwicklung)
   - [(1) Klartext](#1-klartext)
     - [Wasserfallmodell](#wasserfallmodell)
     - [Agil](#agil)
-  - [(2) Gründliche Vertragsgestaltung](#2-gr%C3%BCndliche-vertragsgestaltung)
+  - [(2) Gründliche Vertragsgestaltung](#2-gründliche-vertragsgestaltung)
     - [Wasserfallmodell](#wasserfallmodell-1)
     - [Agil](#agil-1)
   - [(3) Wandelnde Anforderungen: Wie gehe ich damit um?](#3-wandelnde-anforderungen-wie-gehe-ich-damit-um)
@@ -27,10 +28,10 @@ Systemanalyse
   - [Vorgehensmodelle](#vorgehensmodelle)
     - [Phasenmodell](#phasenmodell)
     - [Iteriertes Phasenmodell](#iteriertes-phasenmodell)
-    - [Evolutionäre SW-Entwicklung](#evolution%C3%A4re-sw-entwicklung)
+    - [Evolutionäre SW-Entwicklung](#evolutionäre-sw-entwicklung)
     - [Spiralen Modell](#spiralen-modell)
     - [V-Modell](#v-modell)
-    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-auspr%C3%A4gung-des-v-modells-v-modell-xt)
+    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-ausprägung-des-v-modells-v-modell-xt)
     - [Extreme Programming (XP)](#extreme-programming-xp)
 - [SCRUM](#scrum)
   - [Empirische Prozess Kontrolle](#empirische-prozess-kontrolle)
@@ -49,7 +50,7 @@ Systemanalyse
     - [Definition of Done](#definition-of-done)
     - [DoR: Definition of Ready](#dor-definition-of-ready)
   - [SCRUM-Manifest](#scrum-manifest)
-    - [Häufige / gern gemachte Fehler bezüglich des Manifests](#h%C3%A4ufige--gern-gemachte-fehler-bez%C3%BCglich-des-manifests)
+    - [Häufige / gern gemachte Fehler bezüglich des Manifests](#häufige--gern-gemachte-fehler-bezüglich-des-manifests)
   - [Vor- und Nachteile von SCRUM](#vor--und-nachteile-von-scrum)
   - [SCRUM-Ban als SCRUM Derivat](#scrum-ban-als-scrum-derivat)
 - [Story Board](#story-board)
@@ -59,26 +60,30 @@ Systemanalyse
   - [4 Prozess-Schritte](#4-prozess-schritte)
   - [Hinweise](#hinweise)
 - [Requirement Engineering / Aufwandsanalyse](#requirement-engineering--aufwandsanalyse)
-  - [Aufwandsschätzung](#aufwandssch%C3%A4tzung)
+  - [Aufwandsschätzung](#aufwandsschätzung)
     - [LOC (Lines of Code) als Basis im klassischen Fall](#loc-lines-of-code-als-basis-im-klassischen-fall)
     - [weitere Faktoren](#weitere-faktoren)
     - [Magisches Dreieck / Teufelsquadrat](#magisches-dreieck--teufelsquadrat)
-  - [Empirische Schätzung](#empirische-sch%C3%A4tzung)
-    - [Expertenschätzung](#expertensch%C3%A4tzung)
+  - [Empirische Schätzung](#empirische-schätzung)
+    - [Expertenschätzung](#expertenschätzung)
     - [Delphi-Methode](#delphi-methode)
     - [Divide et Impera (Teile und Hersche)](#divide-et-impera-teile-und-hersche)
     - [SCRUM-Poker](#scrum-poker)
     - [High-Low-Showdown](#high-low-showdown)
-  - [Algorithmische Schätzverfahren](#algorithmische-sch%C3%A4tzverfahren)
+  - [Algorithmische Schätzverfahren](#algorithmische-schätzverfahren)
     - [COCOMO](#cocomo)
     - [Function-Point-Methode](#function-point-methode)
 - [Objektorientierung](#objektorientierung)
-  - [Überblick](#%C3%BCberblick)
+  - [Überblick](#überblick)
     - [UML: Unified Modelling Language](#uml-unified-modelling-language)
     - [Diagramme](#diagramme)
     - [Eigenschaften der Objektorientierung](#eigenschaften-der-objektorientierung)
   - [Klassendiagramm](#klassendiagramm)
   - [Objekt-Diagramm](#objekt-diagramm)
+  - [Klassen-Diagramm mit Assoziationen](#klassen-diagramm-mit-assoziationen)
+  - [Verhaltensdiagramme](#verhaltensdiagramme)
+  - [Zustandsdiagramme](#zustandsdiagramme)
+  - [Aktivitätsdiagramm](#aktivitätsdiagramm)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -1249,3 +1254,92 @@ HUND -up-|> TIER
 - beschreibt Instanz einer Klasse
 
 ![Beispiel Objektdiagramm](resources/uml-objects.png)<!-- width=200px -->
+
+## Klassen-Diagramm mit Assoziationen
+- Beziehungen zwischen Klassen werden dargestellt (Vererbung ist damit nicht gemeint)
+![Beispiel Klassen-Diagramm mit Assoziation](resources/uml-association.png)<!-- width=200px -->
+- Kardinalität angebbar
+  - `*`: beliebig
+  - `a...b`: mindestens `a` maximal `b`
+  - `a`: genau `a` viele
+
+- Komposition: gleiche Lebenszeiten
+
+![Komposition](resources/uml-komposition.png)<!-- width=200px -->
+
+- Aggregation: unabhängige Lebenszeiten
+
+![Aggregation](resources/uml-aggregation.png)<!-- width=200px -->
+
+Beispiel: Hier hat eine Destruktion von A auch eine Destruktion von B zur Folge.
+
+![Beispiel Klassen-Diagramm mit Assoziation](resources/uml-komposition-bsp.png)<!-- width=200px -->
+
+Navigierbarkeit wird mit Pfeilen dargestellt
+
+- $\rightarrow$ in eine Richtung navigierbar
+- $*\rightarrow$ keine Navigierbarkeit von B nach A
+
+Beispielaufgabe: 
+
+![Beispiel Tiere](resources/uml-tiere-bsp.png)<!-- width=200px -->
+
+## Verhaltensdiagramme
+
+- Sequenzdiagramm
+  - aktive Form des Objekt-Diagramms
+  - Zeit läuft von oben nach unten
+  - Darstellung der Beteiligten durch Rechteck 
+  - Nachrichten durch Linien dargestellt
+    - synchrone Nachricht $\rightarrow$ Pfeil mit festem Strich & ausgemalt
+    - Antwort $\rightarrow$ Pfeil, gestrichelt & nicht ausgemalt
+    - asynchrone Nachricht $\rightarrow$ wie Antwort
+    - Mit ausgemaltem Punkt auf einer Seite des Pfeils wird ausgedrückt, dass Sender bzw. Empfänger unbekannt ist
+
+![Beispiel Sequenzdiagramm](resources/uml-sequenz.png)<!-- width=200px -->
+
+## Zustandsdiagramme
+
+- State Machine
+- Abstrakte Automaten
+
+$\rightarrow$ Durch Ereignisse werden Transitionen ausgelöst.
+
+- ein ausgemalter Kreis kennzeichnet den Start
+- ein ausgemalter Kreis mit Umrandung kennzeichnet dasd Ende
+- Zustände werden mit Kästchen dargestellt
+- Pfeile stellen die Transitionen (Übergänge) dar
+- An den Pfeilen werden die Ereignisse vermerkt
+
+![Beispiel State-Diagramm](resources/uml-state-mensch.png)<!-- width=200px -->
+
+Hier ein Beispiel von Zuständen, die durch einen Standesbeamten "gesteuert" werden
+![Beispiel Standesbeamter](resources/uml-standesbeamter-bsp.png)<!-- width=200px -->
+
+## Aktivitätsdiagramm
+
+- Ausschnitt aus Programmablauf
+
+![Beispiel Aktivitätsdiagramm](resources/uml-activity-bsp.png)<!-- width=200px -->
+
+**Objektorientierte Analyse**
+
+- Informationen (Daten, Eigenschaften)
+- Funktionalität (Verhalten, Methoden)
+
+$\Rightarrow$ Voraussetzung: Makroperspektive
+
+- $\rightarrow$ Lastenheft
+- $\rightarrow$ Backlog
+
+$\Rightarrow$ Eigenschaften (statisches Modell) + Änderungen (dynamisches Modell)
+
+OO-Analyse $\rightarrow$ OO-Design $\rightarrow$ OO-Programmierung
+
+OO-Design aus der OO-Programmierung automatisch generieren lassn $\rightarrow$ zur Überprüfung
+
+In der OO-Analyse bereits Objekte erkennen (Muster)
+
+- Klassen ableiten
+- Klassen strukturieren
+- Zusammenarbeit festlegen

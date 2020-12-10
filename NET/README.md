@@ -2282,7 +2282,59 @@ OFPT_GET_CONFIG_REPLY (xid=0x4): frags=normal miss_send_len=0
 
 - PCAP -> Kennen und einordnen, nicht programmieren 
 
-## Kapitel 2 - 
+## Kapitel 2 
+
+- Ethernet einordnen und grob über den Headeraufbau Bescheid wissen 
+  - Auch VLAN-Tag sollte gewusst sein
+
+- Switchtypen und -kenngrößen sind nicht relevant
+
+### Spanning-Tree **wichtig**
+  - Vorteile und Schwächen
+  - wie funktioniert es? 
+
+  - Phase 1: 
+    -  Root-Bridge wird bestimmt
+      - Bridge-ID wird versendet 
+      - besteht aus Priorität (kann vom Admin festgelegt werden) und MAC-Adresse
+      - anhand von Prio und MAC-Adresse wird eine Root-Bridge festgelegt
+  - Phase 2: 
+    - kürzeste Wege werden bestimmt, indem Root-Bridge Pakete versendet
+    - mit diesem Paketen werden Kosten der Pfade bestimmt 
+    - Ports mit längeren Pfaden zur Root-Bridge werden blockiert 
+
+  - Schwächen: 
+    - Bandbreite im Netz geht verloren, da Ports deaktiviert werden
+    - bei Ausfall einer Verbindung erneute Ausführung und Neuberechnung -> Ausfallzeit
+    - Spanning-Tree weiss nichts von VLANS, also kein Spannbaum pro VLAN
+
+  - Erweiterungen zu STP 
+    - RSTP: 
+      - Backup-Ports werden sich gemerkt um bei Topologieänderungen schneller reagieren zu können
+      - dazu: "Alternate-Ports"
+
+### VLANs
+
+- basierend auf physischer Topologie eines Netzes können verschiedene Broadcast-Domains etabliert werden
+  - mehrere logische L2-Netze auf einem physischen L2 Netz
+- tagbasiert vs. portbasiert 
+- Inter-VLAN-Routing: 
+  - Wie funktioniert es? 
+- **mögliches Prüfungsszenario: Beschreibung der Einrichtung eines VLAN´s á la Probeklausur**
+
+- VTP nicht relevant 
+
+- VLANs und STP ist relevant: wie wird das realisiert? 
+
+- TRILL **höchstgradig prüfungsrelevant**
+  - Grundgedanke und Funktionsweise
+  - Vorteil zu STP
+- Stacking nicht unbedingt relevant
+
+## Kapitel 3
+
+
+
 
 
 

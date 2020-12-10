@@ -108,8 +108,9 @@ Falls jemand damit ein Problem hat, kann er gerne Details hinzufügen :-)
 - viele VMs pro Host
 - unterschiedliche Betriebssysteme komfortabel nutzen
 - Hostausfälle kompensieren durch verschieben der VM
+- Erhöhung der Wartbarkeit
 
-uvm
+uvm.
 
 # Grundlagen Linux
 
@@ -710,3 +711,72 @@ quota --version # Kontrolle
 - ``sudo quotaon -v /mountpoint`` aktiviert Quota
 - ``sudo edquota -u user`` Soft- und Hard-Limits konfigurieren
 - ``sudo repquota -s /mountpoint`` erstellt Report
+
+
+# Schwerpunkte der Klausur
+
+- Keine Details -> Sinn und Zweck der Software Kenngrößen
+- Funktionen der Virtual Box
+- "Einfache Skripte"
+- Wie kann man vms übertragen? -> VM mit allen VirtualBox-Konfigurationen exportieren
+
+## Übung: Skript das Laufwerke entfernt und neue hinzufügt
+
+```bat
+@echo off
+
+REM Netzlaufwerke falls vorhanden entfernen
+net use X: /delete /y
+net use Y: /delete /y
+net use Z: /delete /y
+
+REM Netzlaufwerke einbinden
+net use X: \\192.168.71.100\Transfer\Guenther
+net use Y: \\192.168.71.100\Transfer\Glinka
+net use Z: \\192.168.71.100\Transfer\Herbst
+```
+
+Welche Komponenten besitzt eine Firewall-Regel? <!--Name der Regel, Service, Port/Protokoll, erlaubt/verboten, ein-/aushgehend, IP/Netzwerkadressen-->
+Wie viele Bits/Bytes hat eine IPv4/IPv6? <!--inkl. Umwandlung von Addr in Bits-->
+Was ist ein "Shebang"? <!--#!/bin/sh-->
+
+## Übung: Linux Skript
+
+1. service.conf anlegen (optional: überprüfen)
+2. nur der Benutzer hat Lese-, Schreib- und Ausführrechte
+3. Zeile1 und Zeile2 in die Datei Schreiben (unterschiedliche Methoden)
+4. Austausch von Zeile2 durch Zeile2=ON
+5. Ausgabe der service.conf
+
+```bash
+#!/bin/bash
+
+if [-f service.conf] then
+	echo Datei existiert bereits
+fi
+
+touch service.conf
+chmod 700 service.conf
+echo Zeile1 > service.conf
+echo Zeile2 >> service.conf
+#oder: echo Zeile2 | tee -a service.conf $> /dev/null;
+#oder: echo Zeile2 | cat > service.conf
+sed -i 's/Zeile2/Zeile2=ON/g' service.conf
+cat service.conf
+```
+
+## Übung Linux 2
+
+Schreiben Sie ein script mit dem Namen `pv_XXXX_verwaltungsaufgabe_02`:
+
+1. Legen Sie eine datei (uebung2.conf) an, sofern sie nicht existert
+2. Vergeben Sie folgende für die uebung2.conf folgende rechte: nur lese-recht für user
+3. Legen sie ein Verzeichnis (beliebig) an (verwenden sie einen Parametrierung, so dass keine Fehler zum Abbruch des Scriptes führen.
+4. Kopieren Sie die Datei in dieses Verzeichnis
+5. Schreiben Sie den Hostnamen des Computers in die Kopie der Datei
+6. Installieren Sie den mc
+7. Starten sie den dhcp service neu
+
+```bash
+#!/bin/bash
+```

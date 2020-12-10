@@ -9,6 +9,7 @@
   - ``dxdiag``
   - Systeminformationen
 - Zweck der Virtual Box Gasterweiterung
+  - Anpassung der Treiber im Gast-System -> Erweiterung um betriebssystemspezifische Komponenten(Allgemein: bessere Hardwareunterstützung); Schnittstelle zum Host
   - Drag&Drop
   - Copy&Paste
   - Resize der Fenstergröße

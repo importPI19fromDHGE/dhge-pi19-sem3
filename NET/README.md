@@ -2121,3 +2121,111 @@ OFPIT_EXPERIMENTER = 0xFFFF /* Für experimentelle Instruktionen */
 
 ![VxLAN-Header](resources/sdn-vxlan-header.png)<!-- width=500px -->
 
+## Diskussion SDN-Layer Verortung 
+
+- Frage: An welcher Stelle befindet sich der SDN-Layer eigentlich? 
+  - auf den Hosts selber? 
+  - auf den physischen Switches? 
+
+- sinnvolle Variante: 
+  - Realisierung auf den Hosts selbst, also Softwarebasiert
+  - dadurch kann Overhead verhindert werden, zum Beispiel werden doppelt versendete Pakete vermieden 
+  - durch virtuelle Switches ermöglicht, z.B Open VSwitch 
+
+## Open VSwitch 
+
+- In Software realisierter, unter Apache-Lizenz stehender Multi-Layer-Switch
+- Implementierungsfokus: Linux
+- Unterstützt große Zahl an Standards und Funktionalitäten, u.a.:
+  - STP (IEEE 802.1D-1998)
+  - Bonding / IEEE 802.3ad
+  - sFlow / NetFlow / IPFIX
+  - IPv6-Unterstützung
+  - VLANs nach IEEE 802.1Q
+  - OpenFlow
+
+- Implementierung umfasst ein Kernelmodul, Daemonen-Programme und Kommandozeilenwerkzeuge für Konfigurations- und Monitoringzwecke
+
+- Hinweis für die Praxis:   
+  - auch auf Software-Switching-Ebene können Zyklen entstehen und sind unter Umständen deutlich schwerer zu debuggen 
+
+- Ausgewählte Werkzeuge:
+  - `ovs−vsctl`: Werkzeug zur Statusabfrage und Konfiguration des OpenvSwitch-Daemons
+  - `ovs−dpctl`: Werkzeug zur Konfiguration von Daten-Pfaden („data paths“;vergleichbar zu den Konzepten von OpenFlow)
+  - `ovs−controller`: Implementierung eines OpenFlow-Controllers
+  - `ovs−vlan−test`: Werkzeug zur Problemanalyse bei VLANs
+  - `ovsdb-tool`: Ermöglicht Zugriff auf die Open vSwitch Datenbank
+  - `ovs−ofctl`: Ermöglicht Interaktion mittels OpenFlow-Protokoll mit Switch
+
+### Übersicht zur Architektur
+
+![Open VSwitch Architektur](resources/sdn-ovs-architecture.png)<!-- width=500px -->
+
+- netlink: IPC-Mechanismus für die Kommunikation zwischen Kernel- und User-Space (siehe auch RFC 3549)
+
+![Für Implementierungsdetails siehe:](https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable.git/tree/net/openvswitch)
+
+### Beispiele
+
+- Beispiel: Ausgabe von ovsdb-tool show-log –m, nachdem:
+1. mit ovs-vsctl add-br br0 eine Bridge angelegt wurde
+2. mit ovs-vsctl add-port br0 eth0 die Bridge mit eth0 verbunden wurde
+
+```sh
+#ovsdb-tool show-log -m
+record 0: "Open_vSwitch" schema, version="7.3.0", cksum="2483452374 20182"
+
+record 1: 2014-01-20 09:21:55.949 "ovs-vsctl: ovs-vsctl --no-wait init"
+  table Open_vSwitch insert row 6aef7b99:
+
+record 2: 2014-01-20 09:23:14.017 "ovs-vsctl: ovs-vsctl add-br br0"
+  table Port insert row "br0" (5d421d22):
+  table Interface insert row "br0" (a40faf68):
+  table Bridge insert row "br0" (0da81efb):
+  table Open_vSwitch row 6aef7b99 (6aef7b99):
+
+record 3: 2014-01-20 09:23:14.029
+  table Interface row "br0" (a40faf68):
+  table Open_vSwitch row 6aef7b99 (6aef7b99):
+
+record 4: 2014-01-20 09:23:32.886 "ovs-vsctl: ovs-vsctl add-port br0 eth0"
+  table Port insert row "eth0" (5721baea):
+  table Interface insert row "eth0" (22564baa):
+  table Bridge row "br0" (0da81efb):
+  table Open_vSwitch row 6aef7b99 (6aef7b99):
+
+record 5: 2014-01-20 09:23:32.888
+  table Interface row "eth0" (22564baa):
+  table Open_vSwitch row 6aef7b99 (6aef7b99):
+```
+
+- Mit ovs-ofctl kann per OpenFlow mit dem Switch interagiert werden, um z.B. Informationen abzufragen
+- Vergleiche für die unten angegebenen Felder der OFPT_FEATURES_REPLY-Nachricht Kapitel 7.3.1 („Handshake“) der Open-vSwitch-Spezifikation
+
+```sh
+#sudo ovs-ofctl show br0
+OFPT_FEATURES_REPLY (xid=0x2): dpid:00000022680e43ca
+n_tables:254, n_buffers:256
+capabilities: FLOW_STATS TABLE_STATS PORT_STATS QUEUE_STATS ARP_MATCH_IP
+actions: OUTPUT SET_VLAN_VID SET_VLAN_PCP STRIP_VLAN SET_DL_SRC
+SET_DL_DST SET_NW_SRC SET_NW_DST SET_NW_TOS SET_TP_SRC SET_TP_DST
+ENQUEUE
+  1(eth0): addr:00:22:68:0e:43:ca
+    config: 0
+    state: LINK_DOWN
+    current: COPPER AUTO_NEG
+    advertised: 10MB-HD 10MB-FD 100MB-HD 100MB-FD 1GB-FD COPPER AUTO_NEG
+    supported: 10MB-HD 10MB-FD 100MB-HD 100MB-FD 1GB-FD COPPER AUTO_NEG
+    speed: 0 Mbps now, 1000 Mbps max
+LOCAL(br0): addr:00:22:68:0e:43:ca
+    config: 0
+    state: 0
+    speed: 0 Mbps now, 0 Mbps max
+OFPT_GET_CONFIG_REPLY (xid=0x4): frags=normal miss_send_len=0
+
+```
+
+# Prüfungsvorbereitung 2: Wiederholung 
+
+## Kapitel 1
+

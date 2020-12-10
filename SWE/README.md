@@ -1335,7 +1335,7 @@ $\Rightarrow$ Eigenschaften (statisches Modell) + Änderungen (dynamisches Model
 
 OO-Analyse $\rightarrow$ OO-Design $\rightarrow$ OO-Programmierung
 
-OO-Design aus der OO-Programmierung automatisch generieren lassn $\rightarrow$ zur Überprüfung
+OO-Design aus der OO-Programmierung automatisch generieren lassen $\rightarrow$ zur Überprüfung
 
 In der OO-Analyse bereits Objekte erkennen (Muster)
 

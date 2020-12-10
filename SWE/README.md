@@ -990,7 +990,7 @@ $\Rightarrow$ d.h. Story-Points
 2. Fragen sind erlaubt (ggf. an den Product-Owner) $\rightarrow Timebox \leq 1 Min$, Aufgabe von Scrum-Master! Keine bewertenden Aussagen zulassen!
 3. alle Karten umdrehen
 4. Minimal + Maximal begründen ihre Wahl
-   
+
    *alle* Anderen haben Redeverbot
 5. zurück zu 2. $\rightarrow$ i.d.R. maximal 2 Iterationen
 
@@ -1014,15 +1014,15 @@ $\Rightarrow$ d.h. Story-Points
 
 ### High-Low-Showdown
 
-- Ziel: Stories (Aufgaben, Epics) eingeteilt in XS, S, M, L, XL 
+- Ziel: Stories (Aufgaben, Epics) eingeteilt in XS, S, M, L, XL
 - 100 Stories in 15 Min kategorisieren
-- Ablauf: 
+- Ablauf:
   - jeder Teilnehmer bekommt gleichzeitig 5 Stories
   - jeder ordnet diese den Kategorien zu
   1. Einzelperson: begründet Zuordnung & legt diese Story in die "Sammelstelle"
   2. nächste Einzelperson: entweder 1. oder ordnet alte Zurordnung *neu* zu
   3. maximal 2 Umsortierungen pro Karte
-  4. die nächste Einzelperson geht zu 2. 
+  4. die nächste Einzelperson geht zu 2.
 
 $\Rightarrow$ **Ergebnis**: Gruppe von Aufgaben, die ähnlichen Aufwand haben
 
@@ -1056,10 +1056,10 @@ ohne Maßzahlen von alten projekten **keine** zuverlässigen Aussagen
 **2 Methoden werden hier mal betrachtet:**
 
 ### COCOMO
-   
+
 "Constructive-Cost-Method"
 
-geschätzte Produktgröße in Form von: 
+geschätzte Produktgröße in Form von:
 
 Lines-of-Code $=l$
 
@@ -1069,7 +1069,7 @@ Entwicklungszeit $=t$
 
 Aufwandsanalyse $=t_{AA}$
 
-$l\rightarrow COCOMO \rightarrow MM,t$ 
+$l\rightarrow COCOMO \rightarrow MM,t$
 
 $t_{easySW}=2.5(2.4\cdot (\frac{l}{1000})^{1.05})^{0.38}+t_{AA}$
 
@@ -1244,8 +1244,17 @@ Ableitungen:
 HUND -up-|> TIER
 ```
 
-## Objekt-Diagramm 
+## Objekt-Diagramm
 
 - beschreibt Instanz einer Klasse
 
 ![Beispiel Objektdiagramm](resources/uml-objects.png)<!-- width=200px -->
+
+## Klassendiagramme mit Assoziationen
+
+- stellen nicht die Vererbung dar
+- Kardinalität angebbar: * = beliebig, a..b = a bis b, a = genau a
+- Komposition: gleiche Lebenszeit (ausgefüllte Raute)
+- Aggregation: unabhängige Lebenszeit (unausgefüllte Raute)
+- z.B. Destruktion von A hat Destruktion von B zur Folge
+- Navigierbarkeit wird mit Pfeilen dargestellt (uni- oder bidirektional bzw. auch keine Navigierbarkeit definierbar)

@@ -2495,6 +2495,26 @@ Unterscheidung Inter- und Intra-AS-Protokolle
 
 - kommt nicht dran 
 
+## Kapitel 7 - Software-Defined-Networking
+
+- Definition SDN 
+  - beschreibt einen Ansatz, bei dem die Controlplane von der Dataplane separiert wird, während die Controlplane zentralisiert wird. 
+    - Durch Schnittstellen der Controlplane werden dann Anwendungsanforderungen über den SDN-Controller (Controllplane) bearbeitet und die so erstellten Regeln durch die Dataplane nur noch umgesetzt
+
+### Openflow
+
+- Einordnen und Funktion beschreiben 
+
+### VxLAN 
+
+- Einordnen und Funktion beschreiben 
+
+### Open VSwitch 
+
+- Einordnung (Folie 18)
+
+
+
   
 
 

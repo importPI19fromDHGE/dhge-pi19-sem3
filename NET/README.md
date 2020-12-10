@@ -2456,7 +2456,46 @@ Unterscheidung Inter- und Intra-AS-Protokolle
     - <!-- noch ergänzen--> 
 
 
-## Kapitel 6 - 
+## Kapitel 6 - Anwendungsschicht
+
+### DNS 
+
+- Wie wird eine Domäne aufgelöst? 
+- Ablauf der Domänenregistrierung?
+  - Hoster überprüft beim Betreiber der TLD ob die Domain noch frei ist 
+  - wenn frei: Hoster registriert die Domain bei der TLD 
+  - Ressource-Records (insbesondere A-Level-Records) werden dann auf dem NS des Hosters hinterlegt
+  - es erfolgt kein Update auf den Root-Name-Servern!
+ 
+- Anfrage von Resolver an NS erfolgt rekursiv: Einmal Fragen und Antwort bekommen 
+- NS fragt iterativ immer wieder an, bis er die Antwort erhält
+  - dadurch kann intensives Caching erfolgen und somit späterer Traffic reduziert werden 
+
+- Ressource-Records
+  - was ist das? 
+
+- Was ist DNS-Zone? 
+
+- DNS over TLS/HTTPS
+  - Unterschiede zwischen beiden Ansätzen 
+
+- 4 DNS-Typen (Dyn, Rev, Split,)
+  - sollten bekannt sein 
+
+### NTP 
+
+- Grundlegende Motivation und Funktionsweise erklären 
+
+### DHCP
+
+- Motivation erklären  
+- Zweistufige Funktion erklären
+
+### SOCKS
+
+- kommt nicht dran 
+
+  
 
 
 

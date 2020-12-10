@@ -2225,7 +2225,67 @@ OFPT_GET_CONFIG_REPLY (xid=0x4): frags=normal miss_send_len=0
 
 ```
 
-# Prüfungsvorbereitung 2: Wiederholung 
+# Prüfungsvorbereitung 2: TLDR 
 
-## Kapitel 1
+## Kapitel 1 - Grundlagen 
+
+- wichtige Standardisierungsorganisationen 
+  - IEEE
+    - Layer 2
+    - Berufsverband
+  - IETF
+    - alles ab Layer 2
+    - ARP, IP, Anwendungsschichtprotokolle
+    - Architekturen und Grundprinzipien
+    - Fragen: 
+      - wie organisiert? 
+        - Freiwilligenorganisation, nur Kompetenz zur Mitarbeit benötigt 
+        - arbeitet "hands-on" -> Implementierungen sollen betrachtet und standardisiert werden
+        - in 7 Areas aufgeteilt, diese wiederum in Arbeitsgruppen
+
+ - Übertragungsmodi: 
+  - verbindungsorientiert vs verbindungslos
+    - verbindungsorientiert: 
+      - Nachteile: 
+        - mehr Overhead
+    - verbindungslos: 
+      - Nachteil: 
+        - es ist nicht gesichert, ob Gegenseite überhaupt Verbindung aufbauen kann 
+ 
+  - leitungsvermittelt vs paketvermittelt 
+    - leitungsvermittelt: 
+      - Nachteil: 
+        - verfügbare Ressourcen womöglich nicht gut ausgenutzt
+    - paketvermittelt:
+      - Nachteil:
+        - QoS ist nicht unbedingt gesichert (nur in kontrollierten Umgebungen)
+  - Frage hier: Vor- und Nachteile  
+
+- ISO-OSI Referenzmodell: 
+  - sollte für Prüfung komplett verstanden sein
+  - Vor allem die Funktionen der einzelnen Schichten
+  - Unterscheidung zwischen Protokoll und Dienst: 
+    - Protokoll: Regeln zur Steuerung der Kommunikation 
+    - Dienst: Durch Schicht erbrachte Funktionalität
+
+- Layer: Bei Bezugnahme auf Layer -> Rückgriff auf ISO/OSI, sollte aber nicht direkt abgefragt werden 
+
+- TCP/IP-Modell: 
+  - Auch hier die Funktionen der einzelnen Schichten im Vergleich zu ISO/OSI
+
+- Elemente: 
+  - was sind Switches, was machen sie? 
+    - Zuordnung Ports und MAC-Adresse über Ethernet-Frame  
+  - Was sind Router, was machen sie?
+
+- Medien und Verkabelung wird nicht abgefragt 
+
+- PCAP -> Kennen und einordnen, nicht programmieren 
+
+## Kapitel 2 - 
+
+
+
+
+
 

@@ -1840,7 +1840,7 @@ Beschreiben Sie den Ablauf der Weiterleitung von IP-Paketen innerhalb des Hosts 
 
 Fragen: 
 a) Welche Kernaufgabe erfüllt die Transportschicht?
-b) Erstellen Sie eine Tabelle für den Vergleich des Transmission Control Protocols `TCP` mit dem User Datagram Protocol `UCP`. Gehen Sie in der Tabelle auf drei Charakteristika ein, in denen sich die beiden Protokolle unterscheiden
+b) Erstellen Sie eine Tabelle für den Vergleich des Transmission Control Protocols `TCP` mit dem User Datagram Protocol `UDP`. Gehen Sie in der Tabelle auf drei Charakteristika ein, in denen sich die beiden Protokolle unterscheiden
 
 Reihenfolgegarantie 
 Zuverlässigkeit 

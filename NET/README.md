@@ -2125,7 +2125,7 @@ OFPIT_EXPERIMENTER = 0xFFFF /* Für experimentelle Instruktionen */
 
 ![Openflow Nachrichtenbeispiel](resources/sdn-of-message.png)<!-- width=500px -->
 
-- Interaktion mittels Packet-In- und Packet-Out-Nachricht verdeutlicht diedetaillierte Kontrolle, die der Controller über die Abläufe im Netzwerk besitzt
+- Interaktion mittels Packet-In- und Packet-Out-Nachricht verdeutlicht die detaillierte Kontrolle, die der Controller über die Abläufe im Netzwerk besitzt
 - Packet-Out-Nachricht gibt Buffer-ID an, die in Packet-In-Nachricht als Referenz in Paketspeicher des Switches angegeben wurde oder inkludiert das gesamte weiterzuleitende Paket
 - Neben Angabe eines ausgehenden Ports können Header-Elemente des Pakets (z.B. IP-Quelladresse) verändert werden
 
@@ -2559,7 +2559,6 @@ Unterscheidung Inter- und Intra-AS-Protokolle
 
 
   
-
 
 
 

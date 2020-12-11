@@ -1988,7 +1988,7 @@ ns.meineTolleSeite.lol.         IN      A       127.0.0.1
   - aus Sicherheitsgründen könnte zum Beispiel das Verteilen von DHCP-Informationen auf einen bestimmten Port beschränkt werden
     - auch hier wieder Konfiguration nötig 
 - Konfiguration der verschiedenen Protokolle aufwendig und fehleranfällig
-- Verteilt vorhandene Konfigurationen (abgelegt in der „Control-Plane“) müssen konsistent sein
+- Verteilt vorhandene Konfigurationen (abgelegt in der „Control-Plane“) $\rightarrow$ müssen konsistent sein
 - Beispiel Differenzierung Control- und Dataplane
   - Control Plane entscheidet zum Beispiel über die Weiterleitung eines Pakets zu einem Ziel nach vordefinierten Regeln, hinterlegt diese Information in den Routing-Tables
   - Dataplane übernimmt fortan die Weiterleitung anhand der vorliegenden Informationen 
@@ -2559,7 +2559,6 @@ Unterscheidung Inter- und Intra-AS-Protokolle
 
 
   
-
 
 
 

@@ -2444,6 +2444,7 @@ Hilfprotokolle wichtig:
 
 - **hochgradig wichtig!**
   - Abfolgen von Calls bei Socketaufrufen und deren Funktion
+  - Raw-Sockets einordnen können (wofür notwendig); darüber hinaus nicht relevant
 
 ## Kapitel 5 - Routing
 
@@ -2559,7 +2560,6 @@ Unterscheidung Inter- und Intra-AS-Protokolle
 
 
   
-
 
 
 

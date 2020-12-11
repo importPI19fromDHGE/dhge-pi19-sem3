@@ -1850,7 +1850,7 @@ Congestion Control
 c) Was wird unter Congestion Control im Falle des TCP verstanden? Beschreiben Sie weiterhin wie Congestion-Control unter Verwendung des "Slow-Start"-Verfahrens umgesetzt wird. 
 
 - Handling von Überlast-Situationen zwischen Routern
-- Slow Start: anfangs nur wenig Bytes übertragen \rightarrow schrittweise erhöht
+- Slow Start: anfangs nur wenig Bytes übertragen $\rightarrow$ schrittweise erhöht
 - Paketgröße im Falle einer Überlast halbiert
 - Überlast an Paketverlust erkannt
 - Steuerung durch Congestion Window

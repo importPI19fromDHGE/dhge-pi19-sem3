@@ -1801,7 +1801,7 @@ Frage: Welche sieben Schichten werden durch das in der Vorlesung besprochene ISO
 ### Virtuelle LANs (6 Punkte)
 
 Frage: 
-In folgendem Szenario sehen Sie zwei Hosts (Host 1, Host 2), die sich in zwei unterschiedlichen Port-basierten VLANs befinden (VLAN 5 und VLAN 6). Ansonsten wurde noch nichts konfiguriert. Die Separation der VLANs soll erhalten bleiben, allerdings soll eine Kommunikation zwischen den beiden VLANs über den eingezeichenten Pfad (1-6) möglich sein. Welche Kommunikationsschritte sind zu durchlaufen, um diese Kommunikation zu ermöglichen? 
+In folgendem Szenario sehen Sie zwei Hosts (Host 1, Host 2), die sich in zwei unterschiedlichen Port-basierten VLANs befinden (VLAN 5 und VLAN 6). Ansonsten wurde noch nichts konfiguriert. Die Separation der VLANs soll erhalten bleiben, allerdings soll eine Kommunikation zwischen den beiden VLANs über den eingezeichenten Pfad (1-6) möglich sein. Welche Konfigurationsschritte sind zu durchlaufen, um diese Kommunikation zu ermöglichen? 
 
 ![VLAN-Abbildung](resources/klausur-abb1.png)<!-- width=500px -->
 

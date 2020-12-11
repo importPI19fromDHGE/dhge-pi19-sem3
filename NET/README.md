@@ -2137,7 +2137,7 @@ OFPIT_EXPERIMENTER = 0xFFFF /* Für experimentelle Instruktionen */
 - Grundprinzip:
   - Schicht-2-Daten werden über ein Schicht-3-Netz nur an diejenigen physischen Knoten übermittelt, die Mitglied eines Schicht-2-Overlay-Netzes (=VxLAN Segments) sind
   - Dazu: Kapselung von Ethernet-Frames in UDP-Pakete, die einen eindeutigen Identifier (`VNI`) des VxLAN-Segments enthalten
-  - VTEP sorgt dafür, dass die von der VM versendeten Pakete an diejenigen physischen Maschinen weitergeleitet werden, die auch VM´s des selben logischen VxLANs haben 
+  - VTEP sorgt dafür, dass die von der VM versendeten Pakete an diejenigen physischen Maschinen weitergeleitet werden, die auch VMs des selben logischen VxLANs haben 
 
 ![VxLAN-Übersicht](resources/sdn-vxlan-example.png)<!-- width=500px -->
 
@@ -2559,7 +2559,6 @@ Unterscheidung Inter- und Intra-AS-Protokolle
 
 
   
-
 
 
 

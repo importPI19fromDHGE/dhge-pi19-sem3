@@ -2502,7 +2502,7 @@ Unterscheidung Inter- und Intra-AS-Protokolle
 - Ablauf der Domänenregistrierung?
   - Hoster überprüft beim Betreiber der TLD ob die Domain noch frei ist 
   - wenn frei: Hoster registriert die Domain bei der TLD 
-  - Ressource-Records (insbesondere A-Level-Records) werden dann auf dem NS des Hosters hinterlegt
+  - Resource-Records (insbesondere A-Level-Records) werden dann auf dem NS des Hosters hinterlegt
   - es erfolgt kein Update auf den Root-Name-Servern!
  
 - Anfrage von Resolver an NS erfolgt rekursiv: Einmal Fragen und Antwort bekommen 
@@ -2559,7 +2559,6 @@ Unterscheidung Inter- und Intra-AS-Protokolle
 
 
   
-
 
 
 

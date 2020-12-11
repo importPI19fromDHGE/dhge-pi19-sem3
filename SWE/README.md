@@ -1305,7 +1305,7 @@ Beispielaufgabe:
 $\rightarrow$ Durch Ereignisse werden Transitionen ausgelöst.
 
 - ein ausgemalter Kreis kennzeichnet den Start
-- ein ausgemalter Kreis mit Umrandung kennzeichnet dasd Ende
+- ein ausgemalter Kreis mit Umrandung kennzeichnet das Ende
 - Zustände werden mit Kästchen dargestellt
 - Pfeile stellen die Transitionen (Übergänge) dar
 - An den Pfeilen werden die Ereignisse vermerkt

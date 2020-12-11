@@ -2344,7 +2344,7 @@ OFPT_GET_CONFIG_REPLY (xid=0x4): frags=normal miss_send_len=0
   - Schwächen: 
     - Bandbreite im Netz geht verloren, da Ports deaktiviert werden
     - bei Ausfall einer Verbindung erneute Ausführung und Neuberechnung -> Ausfallzeit
-    - Spanning-Tree weiss nichts von VLANS, also kein Spannbaum pro VLAN
+    - Spanning-Tree weiss nichts von VLANs, also kein Spannbaum pro VLAN
 
   - Erweiterungen zu STP 
     - RSTP: 
@@ -2559,7 +2559,6 @@ Unterscheidung Inter- und Intra-AS-Protokolle
 
 
   
-
 
 
 

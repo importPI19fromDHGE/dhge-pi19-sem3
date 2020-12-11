@@ -2358,7 +2358,7 @@ OFPT_GET_CONFIG_REPLY (xid=0x4): frags=normal miss_send_len=0
 - tagbasiert vs. portbasiert 
 - Inter-VLAN-Routing: 
   - Wie funktioniert es? 
-- **mögliches Prüfungsszenario: Beschreibung der Einrichtung eines VLAN´s á la Probeklausur**
+- **mögliches Prüfungsszenario: Beschreibung der Einrichtung eines VLANs á la Probeklausur**
 
 - VTP nicht relevant 
 
@@ -2559,7 +2559,6 @@ Unterscheidung Inter- und Intra-AS-Protokolle
 
 
   
-
 
 
 

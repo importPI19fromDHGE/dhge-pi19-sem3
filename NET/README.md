@@ -145,6 +145,44 @@ Rechnernetze - Grundlagen
     - [Domain Name System (4 Punkte)](#domain-name-system-4-punkte)
     - [VXLAN (2 Punkte)](#vxlan-2-punkte)
   - [Praxisübung: Aufsetzen eines DNS-Servers](#praxis%C3%BCbung-aufsetzen-eines-dns-servers)
+- [Virtualisierung / Software-Defined-Networks](#virtualisierung--software-defined-networks)
+  - [Problemfall: Geswitchtes Netzwerk](#problemfall-geswitchtes-netzwerk)
+  - [Problemfall: Virtualisierung](#problemfall-virtualisierung)
+  - [Software-Defined-Networking: Übersicht](#software-defined-networking-%C3%BCbersicht)
+  - [Northbound / Southbound API](#northbound--southbound-api)
+  - [Open Networking Foundation (ONF) / Openflow](#open-networking-foundation-onf--openflow)
+    - [Flow-Tabellen](#flow-tabellen)
+    - [Paketverarbeitung](#paketverarbeitung)
+    - [Protokoll](#protokoll)
+    - [Nachrichtenbeispiel](#nachrichtenbeispiel)
+  - [VxLAN](#vxlan)
+    - [Übersicht](#%C3%BCbersicht)
+    - [Ablauf](#ablauf)
+    - [Implementierungen und Header](#implementierungen-und-header)
+  - [Diskussion SDN-Layer Verortung](#diskussion-sdn-layer-verortung)
+  - [Open VSwitch](#open-vswitch)
+    - [Übersicht zur Architektur](#%C3%BCbersicht-zur-architektur)
+    - [Beispiele](#beispiele)
+- [Prüfungsvorbereitung 2: TLDR](#pr%C3%BCfungsvorbereitung-2-tldr)
+  - [Kapitel 1 - Grundlagen](#kapitel-1---grundlagen)
+  - [Kapitel 2](#kapitel-2)
+    - [Spanning-Tree **wichtig**](#spanning-tree-wichtig)
+    - [VLANs](#vlans)
+  - [Kapitel 3 - Schicht 3, Internet Protocol](#kapitel-3---schicht-3-internet-protocol)
+    - [IPv4](#ipv4-1)
+    - [IPv6](#ipv6-1)
+  - [Kapitel 4 - Transportschicht](#kapitel-4---transportschicht)
+  - [Kapitel 5 - Routing](#kapitel-5---routing)
+    - [AS](#as)
+  - [Kapitel 6 - Anwendungsschicht](#kapitel-6---anwendungsschicht)
+    - [DNS](#dns)
+    - [NTP](#ntp)
+    - [DHCP](#dhcp-1)
+    - [SOCKS](#socks)
+  - [Kapitel 7 - Software-Defined-Networking](#kapitel-7---software-defined-networking)
+    - [Openflow](#openflow)
+    - [VxLAN](#vxlan-1)
+    - [Open VSwitch](#open-vswitch-1)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -1937,3 +1975,591 @@ ns.meineTolleSeite.lol.         IN      A       127.0.0.1
 
 - IP-Adresse bei ``IN A`` auf den eigenen Webserver zeigen lassen <!--wie du hast keinen? Jeder hat doch einen!-->
 - ``sudo systemctl restart bind9``
+
+
+# Virtualisierung / Software-Defined-Networks
+
+## Problemfall: Geswitchtes Netzwerk
+
+![PF Geswitchtes Netzwerk](resources/virt-switched.png)<!-- width=500px -->
+
+- Administratoren müssen eine Vielzahl von Protokollen und ihr Zusammenspiel beherrschen
+  - VLANs müssen hier zum Beispiel auf jedem Switch konsistent konfiguriert werden 
+  - aus Sicherheitsgründen könnte zum Beispiel das Verteilen von DHCP-Informationen auf einen bestimmten Port beschränkt werden
+    - auch hier wieder Konfiguration nötig 
+- Konfiguration der verschiedenen Protokolle aufwendig und fehleranfällig
+- Verteilt vorhandene Konfigurationen (abgelegt in der „Control-Plane“) $\rightarrow$ müssen konsistent sein
+- Beispiel Differenzierung Control- und Dataplane
+  - Control Plane entscheidet zum Beispiel über die Weiterleitung eines Pakets zu einem Ziel nach vordefinierten Regeln, hinterlegt diese Information in den Routing-Tables
+  - Dataplane übernimmt fortan die Weiterleitung anhand der vorliegenden Informationen 
+- Switches verfügen über keine globale Perspektive auf das gesamte Netzwerk $\rightarrow$ z.B. keine globale Überlastbehandlung
+- Keine Interaktion mit Konfigurationsinformation weiterer Schichten
+
+## Problemfall: Virtualisierung
+![PF Virtualisierung](resources/virt-virt.png)<!-- width=500px -->
+
+- z.B. getrennte Kundennetze in einem Rechenzentrum
+- Switch speichert MAC-Adressen aller Virtuellen Maschinen (VMs) $\rightarrow$ Skalierungsprobleme
+- Falls zwischen VMs VLANs ausgebildet werden, müssen diese ohne technologische Erweiterungen von dem angebundenen Switch unterstützt werden
+- Zudem existieren die im Zusammenhang mit physischer, geswitchter Infrastruktur erwähnten Probleme in besonderem Maße
+
+## Software-Defined-Networking: Übersicht 
+![SDN - Übersicht](resources/virt-sdn-overview.png)<!-- width=500px -->
+
+- SDN ist ein Ansatz zur Realisierung von Computernetzen, bei dem die Kontrolle über die Datenflüsse und die eigentliche Weiterleitung auf zentral zugreifbare Netzknoten ausgelagert wird
+- SDN $\rightarrow$ Separation von Control- und Data-Plane
+- Ansatz geht auf Arbeiten der UC Berkeley und Stanford University zurück
+
+- Control-Plane ist nicht mehr in den einzelnen Kopplungselementen enthalten, diese sind nur noch Teil der Dataplane
+  - Control-Plane ist an einer zentralen Stelle im Netzwerk verfügbar 
+  - von dort aus werden die einzelnen Switches entsprechend konfiguriert
+  - Anwendung sprechen mit der Control-Plane, diese setzt Anforderungen um 
+  - Beispiel: 
+    - Firewall überhalb der CP
+      - bestimmte IP-Adress-Range soll freigeschalten werden 
+      - Firewall schickt diese Anforderung an den SPN-Controller
+      - der Controller führt diese Anforderung auf den Switches aus 
+  - Vorteile: 
+    - bei spontan nötigen Regeländerungen ist eine schnelle Änderung für die gesamte Infrastruktur möglich 
+    - Gesamtüberblick über den Zustand der Infrastruktur jederzeit vorhanden
+      - damit Lastverteilung regelbar 
+  - Nachteil: 
+    - möglicher Single-Point-of-Failure, jedoch Redundanz möglich 
+
+![SDN zum Nachlesen / wikipedia](https://en.wikipedia.org/wiki/List_of_SDN_controller_software)
+
+## Northbound / Southbound API
+![NB and SB-API](resources/virt-sdn-northandsouth.png)<!-- width=500px -->
+
+- Neben Zugriff durch fokussierte Anwendungen wird Northbound API durch umfassende Virtualisierungslösungen verwendet; beispielsweise Zugriff durch OpenStack Neutron
+- Schnittstellen inklusive zugehöriger Protokolle für die beiden Interaktionspunkte sollen durch Standards wohldefiniert werden
+- Beispielsweise: OpenFlow (Southbound API)
+
+## Open Networking Foundation (ONF) / Openflow
+
+- *„Open Networking Foundation (ONF) is a user-driven organization dedicated to the promotion and adoption of Software-Defined Networking (SDN) through open standards development.*
+- Zahlreiche große Unternehmen sind Mitglieder der Organisation, u.a.: Facebook, Deutsche Telekom, Google, Yahoo! und Microsoft
+- Aktiv seit dem 21.3.2011
+- Hauptaktivitäten:
+  - Spezifikation einer Referenzarchitektur für SDN
+  - Pflege und Verwaltung der Spezifikation von OpenFlow, einem Kommunikationsprotokoll samt Architektur- und Schnittstellenbeschreibung für die Separation von Data- und Control-Plane
+
+- Grundlegender Gedanke: 
+  - Controller kommuniziert mit Open-Flow-Switch 
+  - Layer des Switches dabei nicht genau definiert, ist auch nahezu unerheblich 
+- Wesentlicher Ablauf: 
+  - Flow-Tables werden angelegt und beschreiben, welche Aktionen für bestimmte Pakete ausgeführt werden sollen 
+
+![Openflow](resources/virt-sdn-northandsouth.png)<!-- width=500px -->
+
+
+### Flow-Tabellen 
+
+- Jede Flow-Tabelle enthält eine Menge von Einträgen mit fester Struktur: 
+![Struktur Flow-Tables ](resources/sdn-of-flowtable.png)<!-- width=500px -->
+- Abzugleichende Informationen: Charakteristika auf die hin das eingehende Paket untersucht wird
+- Priorität: Ermöglicht Selektion eines Eintrags bei mehreren passenden Einträgen
+- Zähler: Hält Information, wie häufig Eintrag angewendet wurde
+- Timeouts: Maximale Zeit oder Inaktivitätszeit bevor der Eintrag vom Switch entfernt wird
+- Cookie: Eindeutiger Identifikator, der vom Controller zu Referenzzwecken verwendet wird
+- Unterscheidung Instruktion und Aktion 
+  - Instruktion entscheidet, was innerhalb des Switches passiert (siehe Instruktionsübersicht)
+  - Aktion bestimmt, was mit dem Paket gemacht werden soll
+
+Mögliche Instruktionen (= bestimmen Vorgehen bei der Auswertung des Pakets)
+```c
+enum ofp_instruction_type {
+OFPIT_GOTO_TABLE = 1, /* Gehe zur nächsten Tabelle in der Pipeline */
+OFPIT_WRITE_METADATA = 2, /* Fülle das Metadaten-Feld für die nächste Tabelle */
+OFPIT_WRITE_ACTIONS = 3, /* Schreibe eine Aktion / Aktionen in die Aktionsmenge */
+OFPIT_APPLY_ACTIONS = 4, /* Wende die Aktionen sofort an */
+OFPIT_CLEAR_ACTIONS = 5, /* Lösche die Aktionsmenge */
+OFPIT_METER = 6, /* Wende einen Meter für z.B. Limitierung der Datenrate an */
+OFPIT_EXPERIMENTER = 0xFFFF /* Für experimentelle Instruktionen */
+};
+```
+
+### Paketverarbeitung 
+
+- Charakteristika von eingehenden Paketen werden mit Einträgen einer Flow-Tabelle abgeglichen und die zugehörigen Instruktionen bei erfolgreichem Abgleich angewendet
+- Als Instruktion bei einem Match mit einem Eintrag kann das Paket zur weiteren Verarbeitung an eine weitere Tabelle übergeben werden, für deren Einträge ebenfalls ein sequentieller Abgleich erfolgt $\rightarrow$ Pipeline-Verarbeitung
+- Falls es keinen Match eines Pakets mit den Regeln einer Tabelle gibt, wird ein für diesen Fall vordefinierter Eintrag selektiert („table-miss flow entry“) 
+  - z.B. Optionen:
+    - Verwerfen des Pakets
+    - Weiterleiten an eine andere Tabelle 
+    - Senden des Pakets an den Controller
+![1. Beispiel Paketverarbeitung](resources/sdn-of-packets.png)<!-- width=500px -->
+
+### Protokoll
+![Openflow Protokoll](resources/sdn-of-packets2.png)<!-- width=500px -->
+
+- Für den Abgleich mit Tabelleneinträgen kann der Ingress-Port, die von einer vorherigen Tabelle dem Paket zugeordneten Metadaten und der Paketheader verwendet werden
+- Pro Tabelle wird nur ein Eintrag (Eintrag mit höchster Priorität) selektiert
+
+![Openflow Channel-Etablierung](resources/sdn-of-protocol.png)<!-- width=500px -->
+
+- Bevor OpenFlow-Nachrichten ausgetauscht werden, wird ein OpenFlow-Channel etabliert
+- Jeder Switch kann einen Channel zu mehreren Controllern aufbauen (z.B. zur Steigerung der Zuverlässigkeit)
+- Bei mehreren Controllern kann einer der Controller als Master fungieren, dessen Anweisungen die höchste Priorität aufweisen
+- Nach Etablierung des Channels können Nachrichten aus drei verschiedenen Klassen ausgetauscht werden
+
+1. **Controller-zu-Switch-Nachrichten**
+- Vom Controller initiierte Nachrichten 
+- Beispiele: 
+  - Ermittlung des Funktionsumfangs eines Switches
+  - Hinzufügen/Modifizieren/Entfernen von Einträgen der Flow-Tabelle
+2. **Asynchrone Nachrichten**
+- Nachrichten werden ohne vorherige Anfrage des Controllers vom Switch an den Controller gesendet 
+- Beispiele: 
+  - Packet-In-Nachricht, kann bei Ankunft eines Paketes versendet werden 
+  - Flow-Removed-Nachricht: ein Eintrag wurde aus der Flow-Tabelle entfernt 
+3. **Symmetrische Nachrichten**
+- Ohne Anfrage von einer der beiden Seiten versendet
+- Realisieren überwiegend Hilfsfunktionalitäten
+- Beispiele: 
+  - Hello-Nachrichten für die Etablierung des Channels 
+  - Fehlermeldungen
+  - EchoRequest-/EchoReply-Nachrichten
+
+### Nachrichtenbeispiel 
+
+![Openflow Nachrichtenbeispiel](resources/sdn-of-message.png)<!-- width=500px -->
+
+- Interaktion mittels Packet-In- und Packet-Out-Nachricht verdeutlicht die detaillierte Kontrolle, die der Controller über die Abläufe im Netzwerk besitzt
+- Packet-Out-Nachricht gibt Buffer-ID an, die in Packet-In-Nachricht als Referenz in Paketspeicher des Switches angegeben wurde oder inkludiert das gesamte weiterzuleitende Paket
+- Neben Angabe eines ausgehenden Ports können Header-Elemente des Pakets (z.B. IP-Quelladresse) verändert werden
+
+## VxLAN 
+
+### Übersicht 
+- Virtual Extensible LAN (VxLAN) zielt auf die Beseitigung von Skalierbarkeitsproblemen in großen virtualisierten Infrastrukturen
+- Spezifikation ist als „informational RFC“ verfügbar (RFC 7348)
+- Grundprinzip:
+  - Schicht-2-Daten werden über ein Schicht-3-Netz nur an diejenigen physischen Knoten übermittelt, die Mitglied eines Schicht-2-Overlay-Netzes (=VxLAN Segments) sind
+  - Dazu: Kapselung von Ethernet-Frames in UDP-Pakete, die einen eindeutigen Identifier (`VNI`) des VxLAN-Segments enthalten
+  - VTEP sorgt dafür, dass die von der VM versendeten Pakete an diejenigen physischen Maschinen weitergeleitet werden, die auch VMs des selben logischen VxLANs haben 
+
+![VxLAN-Übersicht](resources/sdn-vxlan-example.png)<!-- width=500px -->
+
+### Ablauf
+![VxLAN-Ablauf](resources/sdn-vxlan-example2.png)<!-- width=500px -->
+
+1. Virtuelle Maschine 1 sendet ARP-Broadcast, da sich das Ziel (Virtuelle Maschine 2) im selben IP-Subnetz befindet
+2. Der VTEP ergänzt den zu der VM gehörigen VxLAN VNI und sendet den Frame an eine für den VNI verfügbare IP-Multicastadresse; das Paket wird mittels UDP an den VxLAN-Port (gemäß IANA: 4789) adressiert
+3. VTEP der physischen Maschine, die die adressierte VM ausführt, nimmt UDP-Paket entgegen und entfernt die ergänzten Header, so dass nur das ursprüngliche Ethernet-Frame bleibt
+- VTEP speichert eine Abbildung der Quell-MAC-Adresse des gekapselten Ethernet-Frames und der Quell-IP-Adresse des kapselnden IP-Headers $\rightarrow$ Antwort an MAC-Adresse kann mittels IP-Unicast realisiert werden
+4. Ethernet-Frame wird transparent an diejenigen VMs, die Mitglied des adressierten VxLAN-Segments sind, weitergeleitet
+
+### Implementierungen und Header
+
+- Implementierungen verwenden für
+  - IPv4-Multicast-Gruppenverwaltung Internet Group Management Protocol (IGMP)
+  - IPv6-Multicast: Multicast Listener Discovery (MLD)
+- VxLAN-Header besteht im Wesentlichen aus einem 24-Bit-Feld für den VNI
+
+![VxLAN-Header](resources/sdn-vxlan-header.png)<!-- width=500px -->
+
+## Diskussion SDN-Layer Verortung 
+
+- Frage: An welcher Stelle befindet sich der SDN-Layer eigentlich? 
+  - auf den Hosts selber? 
+  - auf den physischen Switches? 
+
+- sinnvolle Variante: 
+  - Realisierung auf den Hosts selbst, also Softwarebasiert
+  - dadurch kann Overhead verhindert werden, zum Beispiel werden doppelt versendete Pakete vermieden 
+  - durch virtuelle Switches ermöglicht, z.B Open VSwitch 
+
+## Open VSwitch 
+
+- In Software realisierter, unter Apache-Lizenz stehender Multi-Layer-Switch
+- Implementierungsfokus: Linux
+- Unterstützt große Zahl an Standards und Funktionalitäten, u.a.:
+  - STP (IEEE 802.1D-1998)
+  - Bonding / IEEE 802.3ad
+  - sFlow / NetFlow / IPFIX
+  - IPv6-Unterstützung
+  - VLANs nach IEEE 802.1Q
+  - OpenFlow
+
+- Implementierung umfasst ein Kernelmodul, Daemonen-Programme und Kommandozeilenwerkzeuge für Konfigurations- und Monitoringzwecke
+
+- Hinweis für die Praxis:   
+  - auch auf Software-Switching-Ebene können Zyklen entstehen und sind unter Umständen deutlich schwerer zu debuggen 
+
+- Ausgewählte Werkzeuge:
+  - `ovs−vsctl`: Werkzeug zur Statusabfrage und Konfiguration des OpenvSwitch-Daemons
+  - `ovs−dpctl`: Werkzeug zur Konfiguration von Daten-Pfaden („data paths“;vergleichbar zu den Konzepten von OpenFlow)
+  - `ovs−controller`: Implementierung eines OpenFlow-Controllers
+  - `ovs−vlan−test`: Werkzeug zur Problemanalyse bei VLANs
+  - `ovsdb-tool`: Ermöglicht Zugriff auf die Open vSwitch Datenbank
+  - `ovs−ofctl`: Ermöglicht Interaktion mittels OpenFlow-Protokoll mit Switch
+
+### Übersicht zur Architektur
+
+![Open VSwitch Architektur](resources/sdn-ovs-architecture.png)<!-- width=500px -->
+
+- netlink: IPC-Mechanismus für die Kommunikation zwischen Kernel- und User-Space (siehe auch RFC 3549)
+
+![Für Implementierungsdetails siehe:](https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable.git/tree/net/openvswitch)
+
+### Beispiele
+
+- Beispiel: Ausgabe von ovsdb-tool show-log –m, nachdem:
+1. mit ovs-vsctl add-br br0 eine Bridge angelegt wurde
+2. mit ovs-vsctl add-port br0 eth0 die Bridge mit eth0 verbunden wurde
+
+```sh
+#ovsdb-tool show-log -m
+record 0: "Open_vSwitch" schema, version="7.3.0", cksum="2483452374 20182"
+
+record 1: 2014-01-20 09:21:55.949 "ovs-vsctl: ovs-vsctl --no-wait init"
+  table Open_vSwitch insert row 6aef7b99:
+
+record 2: 2014-01-20 09:23:14.017 "ovs-vsctl: ovs-vsctl add-br br0"
+  table Port insert row "br0" (5d421d22):
+  table Interface insert row "br0" (a40faf68):
+  table Bridge insert row "br0" (0da81efb):
+  table Open_vSwitch row 6aef7b99 (6aef7b99):
+
+record 3: 2014-01-20 09:23:14.029
+  table Interface row "br0" (a40faf68):
+  table Open_vSwitch row 6aef7b99 (6aef7b99):
+
+record 4: 2014-01-20 09:23:32.886 "ovs-vsctl: ovs-vsctl add-port br0 eth0"
+  table Port insert row "eth0" (5721baea):
+  table Interface insert row "eth0" (22564baa):
+  table Bridge row "br0" (0da81efb):
+  table Open_vSwitch row 6aef7b99 (6aef7b99):
+
+record 5: 2014-01-20 09:23:32.888
+  table Interface row "eth0" (22564baa):
+  table Open_vSwitch row 6aef7b99 (6aef7b99):
+```
+
+- Mit ovs-ofctl kann per OpenFlow mit dem Switch interagiert werden, um z.B. Informationen abzufragen
+- Vergleiche für die unten angegebenen Felder der OFPT_FEATURES_REPLY-Nachricht Kapitel 7.3.1 („Handshake“) der Open-vSwitch-Spezifikation
+
+```sh
+#sudo ovs-ofctl show br0
+OFPT_FEATURES_REPLY (xid=0x2): dpid:00000022680e43ca
+n_tables:254, n_buffers:256
+capabilities: FLOW_STATS TABLE_STATS PORT_STATS QUEUE_STATS ARP_MATCH_IP
+actions: OUTPUT SET_VLAN_VID SET_VLAN_PCP STRIP_VLAN SET_DL_SRC
+SET_DL_DST SET_NW_SRC SET_NW_DST SET_NW_TOS SET_TP_SRC SET_TP_DST
+ENQUEUE
+  1(eth0): addr:00:22:68:0e:43:ca
+    config: 0
+    state: LINK_DOWN
+    current: COPPER AUTO_NEG
+    advertised: 10MB-HD 10MB-FD 100MB-HD 100MB-FD 1GB-FD COPPER AUTO_NEG
+    supported: 10MB-HD 10MB-FD 100MB-HD 100MB-FD 1GB-FD COPPER AUTO_NEG
+    speed: 0 Mbps now, 1000 Mbps max
+LOCAL(br0): addr:00:22:68:0e:43:ca
+    config: 0
+    state: 0
+    speed: 0 Mbps now, 0 Mbps max
+OFPT_GET_CONFIG_REPLY (xid=0x4): frags=normal miss_send_len=0
+
+```
+
+# Prüfungsvorbereitung 2: TLDR 
+
+## Kapitel 1 - Grundlagen 
+
+- wichtige Standardisierungsorganisationen 
+  - IEEE
+    - Layer 2
+    - Berufsverband
+  - IETF
+    - alles ab Layer 2
+    - ARP, IP, Anwendungsschichtprotokolle
+    - Architekturen und Grundprinzipien
+    - Fragen: 
+      - wie organisiert? 
+        - Freiwilligenorganisation, nur Kompetenz zur Mitarbeit benötigt 
+        - arbeitet "hands-on" -> Implementierungen sollen betrachtet und standardisiert werden
+        - in 7 Areas aufgeteilt, diese wiederum in Arbeitsgruppen
+
+ - Übertragungsmodi: 
+  - verbindungsorientiert vs verbindungslos
+    - verbindungsorientiert: 
+      - Nachteile: 
+        - mehr Overhead
+    - verbindungslos: 
+      - Nachteil: 
+        - es ist nicht gesichert, ob Gegenseite überhaupt Verbindung aufbauen kann 
+ 
+  - leitungsvermittelt vs paketvermittelt 
+    - leitungsvermittelt: 
+      - Nachteil: 
+        - verfügbare Ressourcen womöglich nicht gut ausgenutzt
+    - paketvermittelt:
+      - Nachteil:
+        - QoS ist nicht unbedingt gesichert (nur in kontrollierten Umgebungen)
+  - Frage hier: Vor- und Nachteile  
+
+- ISO-OSI Referenzmodell: 
+  - sollte für Prüfung komplett verstanden sein
+  - Vor allem die Funktionen der einzelnen Schichten
+  - Unterscheidung zwischen Protokoll und Dienst: 
+    - Protokoll: Regeln zur Steuerung der Kommunikation 
+    - Dienst: Durch Schicht erbrachte Funktionalität
+
+- Layer: Bei Bezugnahme auf Layer -> Rückgriff auf ISO/OSI, sollte aber nicht direkt abgefragt werden 
+
+- TCP/IP-Modell: 
+  - Auch hier die Funktionen der einzelnen Schichten im Vergleich zu ISO/OSI
+
+- Elemente: 
+  - was sind Switches, was machen sie? 
+    - Zuordnung Ports und MAC-Adresse über Ethernet-Frame  
+  - Was sind Router, was machen sie?
+
+- Medien und Verkabelung wird nicht abgefragt 
+
+- PCAP -> Kennen und einordnen, nicht programmieren 
+
+## Kapitel 2 
+
+- Ethernet einordnen und grob über den Headeraufbau Bescheid wissen 
+  - Auch VLAN-Tag sollte gewusst sein
+
+- Switchtypen und -kenngrößen sind nicht relevant
+
+### Spanning-Tree **wichtig**
+  - Vorteile und Schwächen
+  - wie funktioniert es? 
+
+  - Phase 1: 
+    -  Root-Bridge wird bestimmt
+      - Bridge-ID wird versendet 
+      - besteht aus Priorität (kann vom Admin festgelegt werden) und MAC-Adresse
+      - anhand von Prio und MAC-Adresse wird eine Root-Bridge festgelegt
+  - Phase 2: 
+    - kürzeste Wege werden bestimmt, indem Root-Bridge Pakete versendet
+    - mit diesem Paketen werden Kosten der Pfade bestimmt 
+    - Ports mit längeren Pfaden zur Root-Bridge werden blockiert 
+
+  - Schwächen: 
+    - Bandbreite im Netz geht verloren, da Ports deaktiviert werden
+    - bei Ausfall einer Verbindung erneute Ausführung und Neuberechnung -> Ausfallzeit
+    - Spanning-Tree weiss nichts von VLANs, also kein Spannbaum pro VLAN
+
+  - Erweiterungen zu STP 
+    - RSTP: 
+      - Backup-Ports werden sich gemerkt um bei Topologieänderungen schneller reagieren zu können
+      - dazu: "Alternate-Ports"
+
+### VLANs
+
+- basierend auf physischer Topologie eines Netzes können verschiedene Broadcast-Domains etabliert werden
+  - mehrere logische L2-Netze auf einem physischen L2 Netz
+- tagbasiert vs. portbasiert 
+- Inter-VLAN-Routing: 
+  - Wie funktioniert es? 
+- **mögliches Prüfungsszenario: Beschreibung der Einrichtung eines VLANs á la Probeklausur**
+
+- VTP nicht relevant 
+
+- VLANs und STP ist relevant: wie wird das realisiert? 
+
+- TRILL **höchstgradig prüfungsrelevant**
+  - Grundgedanke und Funktionsweise
+  - Vorteil zu STP
+- Stacking nicht unbedingt relevant
+
+## Kapitel 3 - Schicht 3, Internet Protocol
+
+Header müssen nicht auswendig gelernt werden, Mechanismen sollten verstanden sein 
+
+Hilfprotokolle wichtig: 
+- ARP (IPv4), ICMP, NDP (IPv6)
+
+### IPv4
+
+- Fragmentierung sollte erklärt werden können 
+  - wenn Paket größer ist als die MTU, wird bei IPv4 das Paket vom Router, bei IPv6 vom Sender fragmentiert (vorher pass-MTU ermittelt) 
+    - weitere Einzelheiten noch interessant 
+- Bedeutung der TTL: 
+  - Zyklenvermeidung 
+  - Dekrementierung des TTL-Wertes bei jedem Hop, wenn mit TTL=1 empfangen, wird Paket verworfen 
+
+- Aufteilung in verschiedene Subnetze ist prüfungsrelevant
+  - wichtig: auch über Oktettgrenzen hinweg 
+
+- ARP 
+  - Grundgedanke
+    - MAC-Adresse des next-hops ermitteln 
+  - Funktionsweise erklären 
+
+- ICMP einordnen, nur oberflächlich 
+
+- Schwächen von IPv4 
+  - Adressraum 
+  - ineffizientes Routing 
+  - keine automatische Konfiguration 
+
+### IPv6 
+
+- warum ist IPv6 effizienter als IPv4? 
+  - konstant große Länge des Headers und "next-header"-Feld 
+  - Fragmentierung der Pakete beim Sender
+
+- Notation und Adresskürzung (und umgekehrt) sollte gekonnt werden 
+
+- Uni-, Multi- und Anycast differenzieren 
+
+- SLAAC 
+  - Funktionsweise
+  - Privacy-Extensions 
+
+- Migrationsmechanismen IPv4->IPv6 
+  - nennen können 
+
+## Kapitel 4 - Transportschicht
+
+- Aufgaben der Transportschicht
+  - Realisierung von Ende-zu-Ende-Kommunikation, durch Bereitstellung einer Adressierungsmöglichkeit `Ports`
+
+- Vergleich zwischen TCP und UDP 
+  - kleine Tabelle, 4 Charakteristika
+
+- TCP
+  - Grundlegende Mechanismen 
+  - bestätigtes Protokoll
+    - in dem Paket enthaltene Bytes werden bestätigt 
+  - Congestion-Control (Zusammenhang Congestion- und Receiving-Window)
+    - Slow-Start-Verfahren
+  - Verbindungsaufbau - 3-Wege-Handshake
+    - wechselseitiges Synchronisieren der Sequenznummer
+  - Schwächen von TCP 
+  - TCP-Fast-Open / SYN-Cookies sollten eingeordnet werden können 
+  - TLS sollte eingeordnet werden können
+    - Schwäche: zusammen mit TCP-3WH großer Overhead
+
+- Vorteile QUIC 
+  - Verschlüsselung auf Paketebene 
+  - Overhead von TCP mit TLS entfällt
+
+- **hochgradig wichtig!**
+  - Abfolgen von Calls bei Socketaufrufen und deren Funktion
+  - Raw-Sockets einordnen können (wofür notwendig); darüber hinaus nicht relevant
+
+## Kapitel 5 - Routing
+
+### AS 
+
+- Konzept der AS erklären
+  - Was ist ein AS?
+  - Voraussetzung für Registrierung eines AS und einer eigenen IP-Adressrange
+    - Mitglied bei RIPE werden 
+    - Public IP-Adressranges beantragen
+    - Nachweis über Bedingungserfüllung für ein AS 
+      - Links zu zwei anderen AS 
+      - Single and Clearly defined Routing Policy   
+  - Transit- und Peer- sollte bekannt sein 
+
+Unterscheidung Inter- und Intra-AS-Protokolle
+
+- Intra-AS-Protokolle 
+  - was ist Distanzvektor, was ist LS-Protokoll?
+
+- kein RIP
+
+- OSPF: 
+  - Grundlegender Ablauf 
+    - Broadcast ins lokale Netz mit Hello-Paketen
+    - Router lauschen auf Hello-Pakete
+      - um Adjazenz auszubilden:
+        - Area-ID muss gleich sein 
+        - Authentisierung muss stimmen
+        - Hello und Dead-Intervalle müssen gleich sein
+    - nach Adjazenzausbildung: 
+      - LSA zwischen allen Routern in der Area werden geflutet
+
+  - Einteilung in Areas und Begründung warum diese Einteilung vorgenommen wird
+    - Nachrichtenaufkommen wird reduziert, da nicht mehr alle LSAs an alle Router gesendet werden
+    - von Area zu Area wird nur Information über prinzipiell erreichbare Subnetze weitergegeben, nicht aber die Topologie 
+
+- BGP:
+  - allgemeine Einordnung: 
+    - soll Pfade von AS bekannt machen 
+  - welche Konigurationsinformationen müssen angegeben werden? 
+    - Eigene AS-Nummer
+    - im AS vorhandene Adressrange
+    - IP-Adresse des Nachbarn 
+    - AS-Nummer des Nachbarn 
+  - grundlegende Funktionsweise: 
+    - Mandatory Attributes wichtig
+    - <!-- noch ergänzen--> 
+
+
+## Kapitel 6 - Anwendungsschicht
+
+### DNS 
+
+- Wie wird eine Domäne aufgelöst? 
+- Ablauf der Domänenregistrierung?
+  - Hoster überprüft beim Betreiber der TLD ob die Domain noch frei ist 
+  - wenn frei: Hoster registriert die Domain bei der TLD 
+  - Resource-Records (insbesondere A-Level-Records) werden dann auf dem NS des Hosters hinterlegt
+  - es erfolgt kein Update auf den Root-Name-Servern!
+ 
+- Anfrage von Resolver an NS erfolgt rekursiv: Einmal Fragen und Antwort bekommen 
+- NS fragt iterativ immer wieder an, bis er die Antwort erhält
+  - dadurch kann intensives Caching erfolgen und somit späterer Traffic reduziert werden 
+
+- Ressource-Records
+  - was ist das? 
+
+- Was ist DNS-Zone? 
+
+- DNS over TLS/HTTPS
+  - Unterschiede zwischen beiden Ansätzen 
+
+- 4 DNS-Typen (Dyn, Rev, Split,)
+  - sollten bekannt sein 
+
+### NTP 
+
+- Grundlegende Motivation und Funktionsweise erklären 
+
+### DHCP
+
+- Motivation erklären  
+- Zweistufige Funktion erklären
+
+### SOCKS
+
+- kommt nicht dran 
+
+## Kapitel 7 - Software-Defined-Networking
+
+- Definition SDN 
+  - beschreibt einen Ansatz, bei dem die Controlplane von der Dataplane separiert wird, während die Controlplane zentralisiert wird. 
+    - Durch Schnittstellen der Controlplane werden dann Anwendungsanforderungen über den SDN-Controller (Controllplane) bearbeitet und die so erstellten Regeln durch die Dataplane nur noch umgesetzt
+
+### Openflow
+
+- Einordnen und Funktion beschreiben 
+
+### VxLAN 
+
+- Einordnen und Funktion beschreiben 
+
+### Open VSwitch 
+
+- Einordnung (Folie 18)
+
+
+
+  
+
+
+
+
+  
+
+
+

@@ -726,7 +726,6 @@ quota --version # Kontrolle
 - Nachteile:
   - eigene Resourcen zum Betrieb nötig
   - hoher Konfigurationsaufwand <!--naja nee-->
--
 
 ## Prüfungsvorbereitung <!--Hallelujah-->
 

@@ -2198,7 +2198,7 @@ OFPIT_EXPERIMENTER = 0xFFFF /* Für experimentelle Instruktionen */
 
 ### Übersicht zur Architektur
 
-[Open VSwitch Architektur](resources/sdn-ovs-architecture.png)<!-- width=500px -->
+![Open VSwitch Architektur](resources/sdn-ovs-architecture.png)<!-- width=500px -->
 
 - netlink: IPC-Mechanismus für die Kommunikation zwischen Kernel- und User-Space (siehe auch RFC 3549)
 

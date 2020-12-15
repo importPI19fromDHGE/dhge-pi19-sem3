@@ -79,6 +79,10 @@ Systemanalyse
     - [Eigenschaften der Objektorientierung](#eigenschaften-der-objektorientierung)
   - [Klassendiagramm](#klassendiagramm)
   - [Objekt-Diagramm](#objekt-diagramm)
+  - [Klassen-Diagramm mit Assoziationen](#klassen-diagramm-mit-assoziationen)
+  - [Verhaltensdiagramme](#verhaltensdiagramme)
+  - [Zustandsdiagramme](#zustandsdiagramme)
+  - [Aktivitätsdiagramm](#aktivit%C3%A4tsdiagramm)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -1249,3 +1253,92 @@ HUND -up-|> TIER
 - beschreibt Instanz einer Klasse
 
 ![Beispiel Objektdiagramm](resources/uml-objects.png)<!-- width=200px -->
+
+## Klassen-Diagramm mit Assoziationen
+- Beziehungen zwischen Klassen werden dargestellt (Vererbung ist damit nicht gemeint)
+![Beispiel Klassen-Diagramm mit Assoziation](resources/uml-association.png)<!-- width=200px -->
+- Kardinalität angebbar
+  - `*`: beliebig
+  - `a...b`: mindestens `a` maximal `b`
+  - `a`: genau `a` viele
+
+- Komposition: gleiche Lebenszeiten
+
+![Komposition](resources/uml-komposition.png)<!-- width=200px -->
+
+- Aggregation: unabhängige Lebenszeiten
+
+![Aggregation](resources/uml-aggregation.png)<!-- width=200px -->
+
+Beispiel: Hier hat eine Destruktion von A auch eine Destruktion von B zur Folge.
+
+![Beispiel Klassen-Diagramm mit Assoziation](resources/uml-komposition-bsp.png)<!-- width=200px -->
+
+Navigierbarkeit wird mit Pfeilen dargestellt
+
+- $\rightarrow$ in eine Richtung navigierbar
+- $*\rightarrow$ keine Navigierbarkeit von B nach A
+
+Beispielaufgabe: 
+
+![Beispiel Tiere](resources/uml-tiere-bsp.png)<!-- width=200px -->
+
+## Verhaltensdiagramme
+
+- Sequenzdiagramm
+  - aktive Form des Objekt-Diagramms
+  - Zeit läuft von oben nach unten
+  - Darstellung der Beteiligten durch Rechteck 
+  - Nachrichten durch Linien dargestellt
+    - synchrone Nachricht $\rightarrow$ Pfeil mit festem Strich & ausgemalt
+    - Antwort $\rightarrow$ Pfeil, gestrichelt & nicht ausgemalt
+    - asynchrone Nachricht $\rightarrow$ wie Antwort
+    - Mit ausgemaltem Punkt auf einer Seite des Pfeils wird ausgedrückt, dass Sender bzw. Empfänger unbekannt ist
+
+![Beispiel Sequenzdiagramm](resources/uml-sequenz.png)<!-- width=200px -->
+
+## Zustandsdiagramme
+
+- State Machine
+- Abstrakte Automaten
+
+$\rightarrow$ Durch Ereignisse werden Transitionen ausgelöst.
+
+- ein ausgemalter Kreis kennzeichnet den Start
+- ein ausgemalter Kreis mit Umrandung kennzeichnet das Ende
+- Zustände werden mit Kästchen dargestellt
+- Pfeile stellen die Transitionen (Übergänge) dar
+- An den Pfeilen werden die Ereignisse vermerkt
+
+![Beispiel State-Diagramm](resources/uml-state-mensch.png)<!-- width=200px -->
+
+Hier ein Beispiel von Zuständen, die durch einen Standesbeamten "gesteuert" werden
+![Beispiel Standesbeamter](resources/uml-standesbeamter-bsp.png)<!-- width=200px -->
+
+## Aktivitätsdiagramm
+
+- Ausschnitt aus Programmablauf
+
+![Beispiel Aktivitätsdiagramm](resources/uml-activity-bsp.png)<!-- width=200px -->
+
+**Objektorientierte Analyse**
+
+- Informationen (Daten, Eigenschaften)
+- Funktionalität (Verhalten, Methoden)
+
+$\Rightarrow$ Voraussetzung: Makroperspektive
+
+- $\rightarrow$ Lastenheft
+- $\rightarrow$ Backlog
+
+$\Rightarrow$ Eigenschaften (statisches Modell) + Änderungen (dynamisches Modell)
+
+OO-Analyse $\rightarrow$ OO-Design $\rightarrow$ OO-Programmierung
+
+OO-Design aus der OO-Programmierung automatisch generieren lassen $\rightarrow$ zur Überprüfung
+
+In der OO-Analyse bereits Objekte erkennen (Muster)
+
+- Klassen ableiten
+- Klassen strukturieren
+- Zusammenarbeit festlegen

@@ -1839,7 +1839,7 @@ Frage: Welche sieben Schichten werden durch das in der Vorlesung besprochene ISO
 ### Virtuelle LANs (6 Punkte)
 
 Frage: 
-In folgendem Szenario sehen Sie zwei Hosts (Host 1, Host 2), die sich in zwei unterschiedlichen Port-basierten VLANs befinden (VLAN 5 und VLAN 6). Ansonsten wurde noch nichts konfiguriert. Die Separation der VLANs soll erhalten bleiben, allerdings soll eine Kommunikation zwischen den beiden VLANs über den eingezeichenten Pfad (1-6) möglich sein. Welche Kommunikationsschritte sind zu durchlaufen, um diese Kommunikation zu ermöglichen? 
+In folgendem Szenario sehen Sie zwei Hosts (Host 1, Host 2), die sich in zwei unterschiedlichen Port-basierten VLANs befinden (VLAN 5 und VLAN 6). Ansonsten wurde noch nichts konfiguriert. Die Separation der VLANs soll erhalten bleiben, allerdings soll eine Kommunikation zwischen den beiden VLANs über den eingezeichenten Pfad (1-6) möglich sein. Welche Konfigurationsschritte sind zu durchlaufen, um diese Kommunikation zu ermöglichen? 
 
 ![VLAN-Abbildung](resources/klausur-abb1.png)<!-- width=500px -->
 
@@ -1878,7 +1878,7 @@ Beschreiben Sie den Ablauf der Weiterleitung von IP-Paketen innerhalb des Hosts 
 
 Fragen: 
 a) Welche Kernaufgabe erfüllt die Transportschicht?
-b) Erstellen Sie eine Tabelle für den Vergleich des Transmission Control Protocols `TCP` mit dem User Datagram Protocol `UCP`. Gehen Sie in der Tabelle auf drei Charakteristika ein, in denen sich die beiden Protokolle unterscheiden
+b) Erstellen Sie eine Tabelle für den Vergleich des Transmission Control Protocols `TCP` mit dem User Datagram Protocol `UDP`. Gehen Sie in der Tabelle auf drei Charakteristika ein, in denen sich die beiden Protokolle unterscheiden
 
 Reihenfolgegarantie 
 Zuverlässigkeit 
@@ -1888,7 +1888,7 @@ Congestion Control
 c) Was wird unter Congestion Control im Falle des TCP verstanden? Beschreiben Sie weiterhin wie Congestion-Control unter Verwendung des "Slow-Start"-Verfahrens umgesetzt wird. 
 
 - Handling von Überlast-Situationen zwischen Routern
-- Slow Start: anfangs nur wenig Bytes übertragen \rightarrow schrittweise erhöht
+- Slow Start: anfangs nur wenig Bytes übertragen $\rightarrow$ schrittweise erhöht
 - Paketgröße im Falle einer Überlast halbiert
 - Überlast an Paketverlust erkannt
 - Steuerung durch Congestion Window
@@ -2197,11 +2197,11 @@ OFPIT_EXPERIMENTER = 0xFFFF /* Für experimentelle Instruktionen */
 
 ### Übersicht zur Architektur
 
-![Open VSwitch Architektur](resources/sdn-ovs-architecture.png)<!-- width=500px -->
+[Open VSwitch Architektur](resources/sdn-ovs-architecture.png)<!-- width=500px -->
 
 - netlink: IPC-Mechanismus für die Kommunikation zwischen Kernel- und User-Space (siehe auch RFC 3549)
 
-![Für Implementierungsdetails siehe:](https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable.git/tree/net/openvswitch)
+[Implementierungsdetails](https://git.kernel.org/cgit/linux/kernel/git/stable/linux-stable.git/tree/net/openvswitch)
 
 ### Beispiele
 

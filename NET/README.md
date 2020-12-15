@@ -2026,7 +2026,7 @@ ns.meineTolleSeite.lol.         IN      A       127.0.0.1
   - Nachteil: 
     - möglicher Single-Point-of-Failure, jedoch Redundanz möglich 
 
-![SDN zum Nachlesen / wikipedia](https://en.wikipedia.org/wiki/List_of_SDN_controller_software)
+[SDN zum Nachlesen / wikipedia](https://en.wikipedia.org/wiki/List_of_SDN_controller_software)
 
 ## Northbound / Southbound API
 ![NB and SB-API](resources/virt-sdn-northandsouth.png)<!-- width=500px -->
@@ -2197,7 +2197,7 @@ OFPIT_EXPERIMENTER = 0xFFFF /* Für experimentelle Instruktionen */
 
 ### Übersicht zur Architektur
 
-[Open VSwitch Architektur](resources/sdn-ovs-architecture.png)<!-- width=500px -->
+![Open VSwitch Architektur](resources/sdn-ovs-architecture.png)<!-- width=500px -->
 
 - netlink: IPC-Mechanismus für die Kommunikation zwischen Kernel- und User-Space (siehe auch RFC 3549)
 

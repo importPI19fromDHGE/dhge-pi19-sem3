@@ -247,7 +247,7 @@ Dazu muss ein **Load Balancer** die Anfragen beispielsweise an diejenigen MS mit
 
 # Service-Orientierte-Architekturen (SOA)
 
-![Service-Orientierte-Architektur](assets/SOA-Example.png)<!-- width=350px -->
+![Service-Orientierte-Architektur](assets/soa-example.png)<!-- width=350px -->
 
 ## REST - Schnittstellen - Representational State Transfer
 
@@ -324,7 +324,7 @@ https://backstage.dhge.de/course/view.php?id=2718
 4. Parallelisierung auf GRID-Ebene
     - mehrere zusammengefasste Cluster
 
-![Cluster und Grid Computing](assets/Rechner_Cluster_Grid.png)<!-- width=350px -->
+![Cluster und Grid Computing](assets/rechner-cluster-grid.png)<!-- width=350px -->
 
 ### Cluster-Computing
 
@@ -350,7 +350,7 @@ https://backstage.dhge.de/course/view.php?id=2718
 - Vorteil ist die gute Skalierbarkeit
 - Ressourcen und Zugriff sind dezentral
 
-![Grid Computing](assets/GRID_Computing.png)<!-- width=350px -->
+![Grid Computing](assets/grid-computing.png)<!-- width=350px -->
 
 ## Warum (keine) Cloud
 
@@ -469,7 +469,7 @@ Dann noch **Passwort abrufen** klicken um mit dem SSH-Keypair das Passwort zu en
 
 # Machine Learning - KI, neuronale Netzwerke, ...
 
-![Übersicht: Machine Learning](assets/Machine_Learning.png)<!-- width=350 -->
+![Übersicht: Machine Learning](assets/machine-learning.png)<!-- width=350 -->
 
 Arthur Samuel (1959): 
 
@@ -510,7 +510,7 @@ Tom Mitchell:
 
 ![Guetefunktion](assets/guetefunktion.png)<!-- width=350px -->
 
-![Guetefunktion2](assets/guetefunktion2.png)<!-- width=350px -->
+![guetefunktion-2](assets/guetefunktion-2.png)<!-- width=350px -->
 
 ### Erkennen ohne Lernen 
 

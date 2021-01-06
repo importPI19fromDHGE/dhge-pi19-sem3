@@ -11,4 +11,4 @@ jobs:
         # Git commit name.
         COMMIT_NAME: "TOCGEN"
         CREATE_PR: false
-        TARGET_PATHS: "./DBS/README.md, ./RES/README.md, ./PRO/README.md, ./SWE/README.md, ./NET/README.md"
+        TARGET_PATHS: "./DBS-DORENDORF/**README.md, ./RES-GUENTHER/**README.md, ./PRO-KASCHE/**README.md, ./SWE-KASCHE/**README.md, ./NET-FELDMANN/**README.md"

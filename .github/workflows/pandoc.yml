@@ -14,28 +14,28 @@ jobs:
       - run: |
           mkdir .old &&
           rsync -vr ./* .old/ --exclude .old &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{gsub("<!----------","---")};{gsub("---------->","...")};{print}' .old/DBS/README.md > DBS/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{gsub("<!----------","---")};{gsub("---------->","...")};{print}' .old/SWE/README.md > SWE/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{gsub("<!----------","---")};{gsub("---------->","...")};{print}' .old/PRO/README.md > PRO/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{gsub("<!----------","---")};{gsub("---------->","...")};{print}' .old/RES/README.md > RES/README.md &&
-          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{gsub("<!----------","---")};{gsub("---------->","...")};{print}' .old/NET/README.md > NET/README.md
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{gsub("<!----------","---")};{gsub("---------->","...")};{print}' .old/DBS-DORENDORF/README.md > DBS-DORENDORF/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{gsub("<!----------","---")};{gsub("---------->","...")};{print}' .old/SWE-KASCHE/README.md > SWE-KASCHE/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{gsub("<!----------","---")};{gsub("---------->","...")};{print}' .old/PRO-KASCHE/README.md > PRO-KASCHE/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{gsub("<!----------","---")};{gsub("---------->","...")};{print}' .old/RES-GUENTHER/README.md > RES-GUENTHER/README.md &&
+          awk '/!\[/{gsub(/<!--/,"{");gsub(/-->/,"}")};{gsub("<!--pagebreak-->","\\pagebreak")};{gsub("<!--newpage-->","\\newpage")};{gsub("<!--clearpage-->","\\clearpage")};{gsub("<!----------","---")};{gsub("---------->","...")};{print}' .old/NET-FELDMANN/README.md > NET-FELDMANN/README.md
       - run: |
           mkdir output
-      - uses: docker://rstropek/pandoc-latex:latest # generate DBS pdf
+      - uses: docker://rstropek/pandoc-latex:latest # generate DBS-DORENDORF pdf
         with:
-          args: --output=output/DBS.pdf --resource-path=DBS/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose DBS/README.md
-      - uses: docker://rstropek/pandoc-latex:latest # generate SWE pdf
+          args: --output=output/DBS-DORENDORF.pdf --resource-path=DBS-DORENDORF/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose DBS-DORENDORF/README.md
+      - uses: docker://rstropek/pandoc-latex:latest # generate SWE-KASCHE pdf
         with:
-          args: --output=output/SWE.pdf --resource-path=SWE/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose SWE/README.md
-      - uses: docker://rstropek/pandoc-latex:latest # generate PRO pdf
+          args: --output=output/SWE-KASCHE.pdf --resource-path=SWE-KASCHE/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose SWE-KASCHE/README.md
+      - uses: docker://rstropek/pandoc-latex:latest # generate PRO-KASCHE pdf
         with:
-          args: --output=output/PRO.pdf --resource-path=PRO/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose PRO/README.md
+          args: --output=output/PRO-KASCHE.pdf --resource-path=PRO-KASCHE/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose PRO-KASCHE/README.md
       - uses: docker://rstropek/pandoc-latex:latest # generate RES pdf
         with:
-          args: --output=output/RES.pdf --resource-path=RES/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose RES/README.md
-      - uses: docker://rstropek/pandoc-latex:latest # generate NET pdf
+          args: --output=output/RES-GUENTHER.pdf --resource-path=RES-GUENTHER/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose RES-GUENTHER/README.md
+      - uses: docker://rstropek/pandoc-latex:latest # generate NET-FELDMANN pdf
         with:
-          args: --output=output/NET.pdf --resource-path=NET/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose NET/README.md
+          args: --output=output/NET-FELDMANN.pdf --resource-path=NET-FELDMANN/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose NET-FELDMANN/README.md
       - uses: actions/upload-artifact@master # upload pdfs as an artifact
         with:
           name: output
@@ -47,7 +47,7 @@ jobs:
           name: PDFs
           body: Automated release
           gzip: false
-          files: output/DBS.pdf
+          files: output/DBS-DORENDORF.pdf
           allow_override: true
       - uses: meeDamian/github-release@2.0 # override release to attach another pdf
         with:
@@ -56,7 +56,7 @@ jobs:
           name: PDFs
           body: Automated release
           gzip: false
-          files: output/PRO.pdf
+          files: output/PRO-KASCHE.pdf
           allow_override: true
       - uses: meeDamian/github-release@2.0 # override release to attach another pdf
         with:
@@ -65,7 +65,7 @@ jobs:
           name: PDFs
           body: Automated release
           gzip: false
-          files: output/SWE.pdf
+          files: output/SWE-KASCHE.pdf
           allow_override: true
       - uses: meeDamian/github-release@2.0 # override release to attach another pdf
         with:
@@ -74,7 +74,7 @@ jobs:
           name: PDFs
           body: Automated release
           gzip: false
-          files: output/NET.pdf
+          files: output/RES-GUENTHER.pdf
           allow_override: true
       - uses: meeDamian/github-release@2.0 # override release to attach another pdf
         with:
@@ -83,5 +83,5 @@ jobs:
           name: PDFs
           body: Automated release
           gzip: false
-          files: output/NET.pdf
+          files: output/NET-FELDMANN.pdf
           allow_override: true

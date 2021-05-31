@@ -1102,7 +1102,7 @@ $MM_{korrigiert}=K_u \cdot K_p \cdot MM$
 ### Function-Point-Methode
 
 - anstatt Codezeilen zu schätzen $\Rightarrow$ Evaluierung von Eingangsgrößen von Funktionen
-- somit entsteht ein ralatives Maß zur Bewertung von Funktionen $\rightarrow$ `function-points`
+- somit entsteht ein relatives Maß zur Bewertung von Funktionen $\rightarrow$ `function-points`
 - $\copyright$ A. Albrecht 1979 bei IBM
 - *wenn* Kosten pro Funktion Point bekannt, dann ist eine Kostenschätzung möglich
 
@@ -1145,7 +1145,7 @@ $MM_{korrigiert}=K_u \cdot K_p \cdot MM$
 | Externe Schnittstellen | $\cdot 5$ | $\cdot 7$  | $\cdot 10$ |
 | Interne Schnittstellen | $\cdot 7$ | $\cdot 10$ | $\cdot 15$ |
 
-Funktion Point Roh-Wert wird mit dieser Tabelle verrechnet und führt so zum Gesamtergebnis!
+Funktion Point Roh-Wert ergibt sich aus der Spaltensumme der Zeilensummen dieser Tabelle!
 
 $Function Points = FP_{Roh}* Korrekturfaktoren$
 

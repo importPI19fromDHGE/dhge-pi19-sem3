@@ -945,7 +945,7 @@ $$f(Qualitätsmaße) \hat{=}Kennzahlen \rightarrow Aufwand=g(LOC) \cdot f_1(Q,Ma
 
 - mehrere unabhängige Experten
 - mehrere Runden
-- $\oplus$ Schätzungen kovergieren i.d.R.
+- $\oplus$ Schätzungen konvergieren i.d.R.
 - $\oplus$ eliminiert Ausreiser
 - $\ominus$ relativ hoher Aufwand
 

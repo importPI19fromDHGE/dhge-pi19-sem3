@@ -347,7 +347,7 @@ Hier wird immer wieder in eine Phase "zurück gesprungen", falls etwas nicht pas
 
 | Vorteile                                              | Nachteile                                                                                                         |
 | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| klarer Ablauf (nächster Schritt bei Fehler wird klar) | Fehler in der Anaylse-Phase erst sehr spät sichtbar (früher mehr Kommunikation mit dem Kunden und MVP als Lösung) |
+| klarer Ablauf (nächster Schritt bei Fehler wird klar) | Fehler in der Analyse-Phase erst sehr spät sichtbar (früher mehr Kommunikation mit dem Kunden und MVP als Lösung) |
 | klare Test-Struktur vorgegeben                        |                                                                                                                   |
 | Iterationen bis alle Tests der Phase OK sind          |                                                                                                                   |
 

@@ -347,7 +347,7 @@ Hier wird immer wieder in eine Phase "zurück gesprungen", falls etwas nicht pas
 
 | Vorteile                                              | Nachteile                                                                                                         |
 | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| klarer Ablauf (nächster Schritt bei Fehler wird klar) | Fehler in der Anaylse-Phase erst sehr spät sichtbar (früher mehr Kommunikation mit dem Kunden und MVP als Lösung) |
+| klarer Ablauf (nächster Schritt bei Fehler wird klar) | Fehler in der Analyse-Phase erst sehr spät sichtbar (früher mehr Kommunikation mit dem Kunden und MVP als Lösung) |
 | klare Test-Struktur vorgegeben                        |                                                                                                                   |
 | Iterationen bis alle Tests der Phase OK sind          |                                                                                                                   |
 
@@ -945,7 +945,7 @@ $$f(Qualitätsmaße) \hat{=}Kennzahlen \rightarrow Aufwand=g(LOC) \cdot f_1(Q,Ma
 
 - mehrere unabhängige Experten
 - mehrere Runden
-- $\oplus$ Schätzungen kovergieren i.d.R.
+- $\oplus$ Schätzungen konvergieren i.d.R.
 - $\oplus$ eliminiert Ausreiser
 - $\ominus$ relativ hoher Aufwand
 
@@ -1102,7 +1102,7 @@ $MM_{korrigiert}=K_u \cdot K_p \cdot MM$
 ### Function-Point-Methode
 
 - anstatt Codezeilen zu schätzen $\Rightarrow$ Evaluierung von Eingangsgrößen von Funktionen
-- somit entsteht ein ralatives Maß zur Bewertung von Funktionen $\rightarrow$ `function-points`
+- somit entsteht ein relatives Maß zur Bewertung von Funktionen $\rightarrow$ `function-points`
 - $\copyright$ A. Albrecht 1979 bei IBM
 - *wenn* Kosten pro Funktion Point bekannt, dann ist eine Kostenschätzung möglich
 
@@ -1145,7 +1145,7 @@ $MM_{korrigiert}=K_u \cdot K_p \cdot MM$
 | Externe Schnittstellen | $\cdot 5$ | $\cdot 7$  | $\cdot 10$ |
 | Interne Schnittstellen | $\cdot 7$ | $\cdot 10$ | $\cdot 15$ |
 
-Funktion Point Roh-Wert wird mit dieser Tabelle verrechnet und führt so zum Gesamtergebnis!
+Funktion Point Roh-Wert ergibt sich aus der Spaltensumme der Zeilensummen dieser Tabelle!
 
 $Function Points = FP_{Roh}* Korrekturfaktoren$
 

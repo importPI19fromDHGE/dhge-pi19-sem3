@@ -466,7 +466,7 @@ WHERE v1.id != v2.id
 ORDER BY v1.ort;
 ```
 
-- Joins mit ``WHERE a.id = b.id`` werden explizite Joins genannt
+- Joins mit ``WHERE a.id = b.id`` werden implizite Joins genannt
 
 ## Daten verändern
 

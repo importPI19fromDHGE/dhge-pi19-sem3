@@ -308,7 +308,7 @@ ON UPDATE CASCADE;
 
 ## Daten einfügen
 
-- Syntax: ``INSERT INTO (zu,befüllende,spalten) VALUES (daten,hier,eintragen)``
+- Syntax: ``INSERT INTO tabellenname(zu,befüllende,spalten) VALUES (daten,hier,eintragen)``
   - die Spaltenliste und ``VALUES`` muss nicht angegeben werden, wenn alle Spalten in der richtigen Reihenfolge eingetragen werden
 
 ## Daten lesen

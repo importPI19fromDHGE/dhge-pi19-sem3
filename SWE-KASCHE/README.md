@@ -345,11 +345,10 @@ Hier wird immer wieder in eine Phase "zurück gesprungen", falls etwas nicht pas
 
 ![Schematische Darstellung des V-Modells](assets/v-modell.png)<!-- width=400px -->
 
-| Vorteile                                              | Nachteile                                                                                                         |
-| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| klarer Ablauf (nächster Schritt bei Fehler wird klar) | Fehler in der Analyse-Phase erst sehr spät sichtbar (früher mehr Kommunikation mit dem Kunden und MVP als Lösung) |
-| klare Test-Struktur vorgegeben                        |                                                                                                                   |
-| Iterationen bis alle Tests der Phase OK sind          |                                                                                                                   |
+| Vorteile | Nachteile |
+| -------- | --------- |
+| klarer Ablauf (nächster Schritt bei Fehler wird klar) | Fehler in der Analyse-Phase erst sehr spät sichtbar (früher mehr Kommunikation mit dem Kunden und MVP als Lösung) | klare Test-Struktur vorgegeben |
+| Iterationen bis alle Tests der Phase OK sind | |
 
 ### Eine Ausprägung des V-Modells: "V-Modell XT"
 
@@ -1019,15 +1018,15 @@ $\Rightarrow$ d.h. Story-Points
 
 ### High-Low-Showdown
 
-- Ziel: Stories (Aufgaben, Epics) eingeteilt in XS, S, M, L, XL 
+- Ziel: Stories (Aufgaben, Epics) eingeteilt in XS, S, M, L, XL
 - 100 Stories in 15 Min kategorisieren
-- Ablauf: 
+- Ablauf:
   - jeder Teilnehmer bekommt gleichzeitig 5 Stories
   - jeder ordnet diese den Kategorien zu
   1. Einzelperson: begründet Zuordnung & legt diese Story in die "Sammelstelle"
   2. nächste Einzelperson: entweder 1. oder ordnet alte Zurordnung *neu* zu
   3. maximal 2 Umsortierungen pro Karte
-  4. die nächste Einzelperson geht zu 2. 
+  4. die nächste Einzelperson geht zu 2.
 
 $\Rightarrow$ **Ergebnis**: Gruppe von Aufgaben, die ähnlichen Aufwand haben
 

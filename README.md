@@ -14,11 +14,11 @@ Alle Kommilitonen sind dazu eingeladen, ihre eigenen Beiträge zu diesem Projekt
 
 ## Module
 
-- [DBS - Datenbanken](./DBS)
-- [RES - Betriebssystemverwaltung](./RES)
-- [PRO - IT-Trends](./PRO)
-- [SWE - Systemanalyse](./SWE)
-- [NET - Rechnernetze](./NET)
+- [DBS - Datenbanken](./DBS-DORENDORF)
+- [RES - Betriebssystemverwaltung](./RES-GUENTHER)
+- [PRO - IT-Trends](./PRO-KASCHE)
+- [SWE - Systemanalyse](./SWE-KASCHE)
+- [NET - Rechnernetze](./NET-FELDMANN)
 
 ## Markdown-Erweiterungen
 

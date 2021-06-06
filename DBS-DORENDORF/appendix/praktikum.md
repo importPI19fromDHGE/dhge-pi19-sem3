@@ -84,11 +84,11 @@ Info-Seite -> https://docs.microsoft.com/de-de/sql/ssms/download-sql-server-mana
 
 Die Bestandteile:
 
-![Bestandteile eines ERD](resources/ERD_Bestandteile.png)<!-- width=400px -->
+![Bestandteile eines ERD](assets/ERD_Bestandteile.png)<!-- width=400px -->
 
 Beispiel-ERD:
 
-![Beispiel-ERD](resources/unternehmenERD.png)<!-- width=400px -->
+![Beispiel-ERD](assets/unternehmenERD.png)<!-- width=400px -->
 
 ## Tabellenschema
 
@@ -110,7 +110,7 @@ Beispiel-ERD:
 | höchstens eins             | optionale Beziehung, ?:1      |
 | keins oder eins oder viele | optionale Beziehung, ?:n      |
 
-![Arten von Constraints](resources/constraints.png)<!-- width=400px -->
+![Arten von Constraints](assets/constraints.png)<!-- width=400px -->
 
 - im Zweifelsfall das flexiblere verwenden, für den Fall, dass sich in der Zukunft die Anforderungen ändern
 
@@ -308,7 +308,7 @@ ON UPDATE CASCADE;
 
 ## Daten einfügen
 
-- Syntax: ``INSERT INTO (zu,befüllende,spalten) VALUES (daten,hier,eintragen)``
+- Syntax: ``INSERT INTO tabellenname(zu,befüllende,spalten) VALUES (daten,hier,eintragen)``
   - die Spaltenliste und ``VALUES`` muss nicht angegeben werden, wenn alle Spalten in der richtigen Reihenfolge eingetragen werden
 
 ## Daten lesen
@@ -337,7 +337,7 @@ ON UPDATE CASCADE;
   - bei Sonderzeichen in eckigen Klammern: ``SELECT Mitarbeiter.vorname [MA Vorname]``
   - Schlüsselwort ``AS`` optional
   - kann auch im ``FROM`` stehen
-- Nach ``WHERE`` kann das Schlüsselwort ``IN`` folgen, um bspw. Auswahllisten abzufragen: ``SELECT * FROM Autor.Name IN ('Goethe', 'Schiller', 'Lessing')``
+- Nach ``WHERE`` kann das Schlüsselwort ``IN`` folgen, um bspw. Auswahllisten abzufragen: ``SELECT * FROM Autor WHERE Autor.Name IN ('Goethe', 'Schiller', 'Lessing')``
   - nicht kombinierbar mit ``LIKE``
 - Limitieren von Ergebniszeilen mit Schlüsselwort ``TOP``: ``SELECT TOP (10) Titel, Seiten FROM buch ORDER BY Seiten``
 - bei der Verwendung von ``ORDER BY`` und ``TOP`` in Kombination kann das Schlüsselwort ``WITH TIES`` verwendet werden, damit "Ties" mit angezeigt werden: ``SELECT TOP (5) WITH TIES Titel, Seiten FROM buch ORDER BY Seiten`` --> zeigt ggf. mehr als 5 an
@@ -441,7 +441,7 @@ GROUP BY autor.name, autor.Vorname HAVING COUNT(*) > 1;
 
 - Vereinigung von Abfragen
 
-![Übersicht von Joins](./resources/joins.png)<!-- width=500px -->
+![Übersicht von Joins](./assets/joins.png)<!-- width=500px -->
 
 ```sql
 SELECT titel, name FROM buch, verlag WHERE buch.verlag_id = verlag.id;
@@ -466,7 +466,7 @@ WHERE v1.id != v2.id
 ORDER BY v1.ort;
 ```
 
-- Joins mit ``WHERE a.id = b.id`` werden explizite Joins genannt
+- Joins mit ``WHERE a.id = b.id`` werden implizite Joins genannt
 
 ## Daten verändern
 

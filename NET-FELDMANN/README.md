@@ -212,7 +212,7 @@ Rechnernetze - Grundlagen
 
 ### Kommunikationsszenario
 
-![Network Interface Card](resources/nic.png)<!-- width=500px -->
+![Network Interface Card](assets/nic.png)<!-- width=500px -->
 
 Bei Abruf einer Website durch `Host A` von `Server A` sind vielfältige Technologien zur Realisierung des Szenarios erforderlich.
 
@@ -265,7 +265,7 @@ IETF-Arbeitsgruppen sind einem von 7 Bereichen (Areas) zugeordnet:
 
 #### ISO/OSI Referenzmodell  <!-- hochgradig Prüfungsrelevant-->
 
-![ISO/OSI Referenzmodell](resources/iso-osi.png)<!-- width=500px -->
+![ISO/OSI Referenzmodell](assets/iso-osi.png)<!-- width=500px -->
 
 - **Anwendungsschicht:** Durch anwendungsspezifische Protokolle verwendet
 - **Darstellungsschicht:** Umwandlung von Daten in unabhängiges Format
@@ -279,18 +279,18 @@ IETF-Arbeitsgruppen sind einem von 7 Bereichen (Areas) zugeordnet:
 
 Integriert das Referenzmodell unter Verwendung von vier Schichten:
 
-![TCP/IP als Ableitung des ISO/OSI Referenzmodells](resources/tcpip.png)<!-- width=500px -->
+![TCP/IP als Ableitung des ISO/OSI Referenzmodells](assets/tcpip.png)<!-- width=500px -->
 
 - **Anwendungsschicht:** Umfasst obere drei Schichten des OSI-Modells, weitere Unterteilung obliegt Anwendungsprotokoll
 - **Transportschicht:** Ende-zu-Ende-Kommunikation zwischen Anwendungen
 - **Internetschicht:** Ermöglicht Kommunikation zwischen Hosts in unterschiedlichen Netzwerken
 - **Link Layer:** Kommunikation mit direkten Nachbarn
 
-![Aufbau des TCP/IP-Headers](resources/tcpip-header.png)<!-- width=500px -->
+![Aufbau des TCP/IP-Headers](assets/tcpip-header.png)<!-- width=500px -->
 
 ### Kopplungselemente
 
-![Switches und Router](resources/l2-net.png)<!-- width=500px -->
+![Switches und Router](assets/l2-net.png)<!-- width=500px -->
 
 **Switches (auch: Bridge, L2-Switch)**
 
@@ -315,7 +315,7 @@ Unterscheidung zwischen physikalischer und logischer Topologie:
 - Physikalisch Topologie: tatsächlich vorhandenen Netzwerkkomponenten und ihrer Verbindungen
 - Logisch Topologie: Kommunikationsbeziehungen und Struktur des Datenflusses
 
-![Schematische Darstellung verschiedener Topologien](resources/topologie.png)<!-- width=500px -->
+![Schematische Darstellung verschiedener Topologien](assets/topologie.png)<!-- width=500px -->
 
 > SPF (single point of failure) im Netz? Wenn ja: Ausfallsicherheit gering
 
@@ -362,7 +362,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 
 ## Aufbau eines Ethernet Frames
 
-![Ethernet Frame](resources/eth-frame.png)<!-- width=500px -->
+![Ethernet Frame](assets/eth-frame.png)<!-- width=500px -->
 
 - Präambel: Synchronisation zwischen Kommunikationspartnern
 - SFD: Start of Frame Delimiter (fest Bitfolge zur Identifikation des Frame-Anfangs)
@@ -447,7 +447,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 
 **Aufbau** (4 Bytes)
 
-![](resources/vlan-tag.png)<!-- width=500px -->
+![](assets/vlan-tag.png)<!-- width=500px -->
 
 - **Tag Protocol Identifier:** fixer Hex-Wert
 - **Priority Code Point:** Prioritätsinformationen
@@ -506,7 +506,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 
 ### IPv4-Header
 
-![Aufbau des IPv4-Headers](resources/ip-paket-aufbau.png)<!-- width=500px -->
+![Aufbau des IPv4-Headers](assets/ip-paket-aufbau.png)<!-- width=500px -->
 
 - Version: 4 Bits, Protokollversion
 - Internet Header Length (IHL): 4 Bits, Länge des Headers in 32 Bit Wörtern, Standardwert 5 -> 5 * 32 Bit = 20 Byte
@@ -527,7 +527,7 @@ Lichtwellenleiter, Singlemode Lichtwellenleiter, ...
 
 ### Fragmentierung
 
-![Fragmentierung](resources/ip-fragmentierung.png)<!-- width=500px -->
+![Fragmentierung](assets/ip-fragmentierung.png)<!-- width=500px -->
 
 - 1:1 Übersetzung von IP-Paket und ETH-Frame
 - Maximum Transmission Unit (MTU): Maximalgröße des ETH-Payloads
@@ -559,13 +559,13 @@ ip addr show
 - insbesondere durch IPv4-Adress-Knappheit werden öff. Adressen durch Network Address Translation (NAT) auf mehrere Hosts abgebildet
 - Routing:
 
-![Schema Router](resources/routing-bsp.png)<!-- width=500px -->
+![Schema Router](assets/routing-bsp.png)<!-- width=500px -->
 
 ## Address Resolution Protocol (ARP)
 
 ### Einordnung
 
-![Ablauf ARP](resources/ip-arp-ablauf.png)<!-- width=500px -->
+![Ablauf ARP](assets/ip-arp-ablauf.png)<!-- width=500px -->
 
 - ARP ermittelt zu IP-Adressen und weiteren Adressfamilien die zugehörigen Hardwareadressen
 - Request-Reply-Protokoll
@@ -573,7 +573,7 @@ ip addr show
 - wenn Ziel-NIC außerhalb des eigenen Netzwerks: Ermittlung der MAC-Adresse des **Gateways**, nichts dahinter
   - siehe folgendes Bild:
 
-![Beispiel ARP](resources/ip-arp-bsp.png)<!-- width=500px -->
+![Beispiel ARP](assets/ip-arp-bsp.png)<!-- width=500px -->
 
 ```
 # Für Anzeige von ARP-Anfragen (Beispiel)
@@ -628,7 +628,7 @@ Exkurs Namespaces:
 
 Verknüpfung von 3 Network Namespaces:
 
-![Aufgabenstellung](resources/exercise-1.png)<!-- width=500px -->
+![Aufgabenstellung](assets/exercise-1.png)<!-- width=500px -->
 
 - 3 Namespaces erstellen:
 
@@ -690,7 +690,7 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 - soll in nächsten Jahren schrittweise IPv4 ablösen
 - Vereinfachung des Headers:
 
- ![IPv6-Header](resources/ipv6-header.png)<!-- width=500px -->
+ ![IPv6-Header](assets/ipv6-header.png)<!-- width=500px -->
 
 - Traffic-Class: Prioritätsangabe
 - Flow Label: Klassifizierung von Datagrammen in verschiedenen Flows mit gleichem Label
@@ -703,7 +703,7 @@ echo 1 > /proc/sys/net/ipv4/ip_forward
 - in Zusammenhang mit Next-Header-Feld verwendet
 - verweist auf Header eines Protokolls der nächsthöheren Schicht oder Extension-Header wird in das Datagramm eingebettet
 
-![IPv6 Extension Header](resources/ipv6-header-ext.png)<!-- width=500px -->
+![IPv6 Extension Header](assets/ipv6-header-ext.png)<!-- width=500px -->
 
 - Diverse Optionen: Hop-by-Hop Options, Fragment, Destination Options, Routing, Auth, ...
 
@@ -761,7 +761,7 @@ Typ einer Adresse kann an den höchstwertigsten Bits erkannt werden:
 
 ### IPv6-Multicasts
 
-![Aufbau einer IPv6 Multicast-Adresse](resources/ipv6-multicast.png)<!-- width=500px -->
+![Aufbau einer IPv6 Multicast-Adresse](assets/ipv6-multicast.png)<!-- width=500px -->
 
 - es gibt mehrere Multicast-Gruppen an denen teilgenommen werden kann
 - es existieren zudem festgelegte "well-known" Multicast-Adressen
@@ -814,7 +814,7 @@ versendet -> ist Adresse bereits verwendet sendet entsprechender Host Neighbor-A
 	- Providerinfrastruktur kann auf IPv6 umgestellt werden
 	- IPv4-Adressen beim Provider werden eingespart
 
-![Dual-Stack Lite](resources/ds-lite.png)<!-- width=500px -->
+![Dual-Stack Lite](assets/ds-lite.png)<!-- width=500px -->
 
 ### Exkurs: Raw Sockets
 
@@ -901,7 +901,7 @@ ExecStart=/bin/sh -c 'exec /sbin/ip netns exec ns1 /usr/bin/radvd --nodaemon'
 - Adressierungsmöglichkeit = **Ports** (`bind()` bindet Kommunikation an Port)
 - Beispiel: zielgerichtete Adressierung von `http`-Server über Port 80 (alle Ports<1024 = *well-known* Ports -> benötigen `root`)
 
-![Übersicht Transportschicht](resources/transportschicht.png)<!-- width=500px -->
+![Übersicht Transportschicht](assets/transportschicht.png)<!-- width=500px -->
 
 ## User Datagram Protocol (UDP)
 
@@ -913,7 +913,7 @@ ExecStart=/bin/sh -c 'exec /sbin/ip netns exec ns1 /usr/bin/radvd --nodaemon'
 - geringer Protokolloverhead -> sehr effizient (besonders für Video-/Audiodaten)
 - eingesetzt von DNS, DHCP, NTP, SNMP, ...
 
-![UDP-Header](resources/udp-header.png)<!-- width=500px -->
+![UDP-Header](assets/udp-header.png)<!-- width=500px -->
 
 ## Transmission Control Protocol (TCP)
 
@@ -927,7 +927,7 @@ ExecStart=/bin/sh -c 'exec /sbin/ip netns exec ns1 /usr/bin/radvd --nodaemon'
 - Congestion Control (Überlaststeuerung) -> bei verlorenen Pakten dynamische Reduktion der Paketgröße
 - Segmentierung von Anwendungsdaten in übertragbare Einheiten (auf Grundlage der Maximum Segment Size - MSS)
 
-![TCP-Header](resources/tcp-header.png)<!-- width=500px -->
+![TCP-Header](assets/tcp-header.png)<!-- width=500px -->
 
 Sequenznummer: bezieht sich auf das erstes Byte eines Paketes
 Acknowledgement Number: Bestätigung der Sequenznummer der erhaltenen Bytes (ohne Ack -> wiederholtes Senden des Pakets)
@@ -947,7 +947,7 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 - TCP-Verbindungen sind **bidirektional** -> Sender und Empfänger nehmen ebenso die umgekehrte Rolle ein
 - Abbau der bidirektional Verbidnungen separat (`FIN`-Flag) -> können auch unidirektional abgebaut werden
 
-![Schematische Darstellung der Ein-/Ausgangspuffer einer TCP-Verbindung](resources/tcp-windows.png)<!-- width=500px -->
+![Schematische Darstellung der Ein-/Ausgangspuffer einer TCP-Verbindung](assets/tcp-windows.png)<!-- width=500px -->
 
 - `ECN`-Feld im IP-Header: wird von Router bei Überlast gesetzt
 - Rückmeldung an den Sender durch das Setzen des Feldes bei ausgehenden IP-Paketen
@@ -966,7 +966,7 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 
 ### Verbindungsaufbau
 
-![TCP-Zustandsdiagramm (Auszug)](resources/tcp-states.png)<!-- width=500px -->
+![TCP-Zustandsdiagramm (Auszug)](assets/tcp-states.png)<!-- width=500px -->
 
 <!--Handshake (+ besonders sync-flag) = prüfungsrelevant-->
 
@@ -974,7 +974,7 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 - Server antwortet mit `SYN-ACK` -> Client bestätigt mit `ACK`
 - neuer Zustand: Established (zum Schließen: `FIN`-Paket)
 
-![TCP-Handshake](resources/tcp-handshake.png)<!-- width=500px -->
+![TCP-Handshake](assets/tcp-handshake.png)<!-- width=500px -->
 
 - `SYN`: Synchronisation von Sequenznummern (zufällig gewählt im Angriffsvektoren zuverringern)
 	- ist `SYN`-Flag gesetzt wird mitgesendete Sequenznummer als Startsequenznummer festgelegt
@@ -1000,7 +1000,7 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 - Senkung der Latenz und Page Load Time (`PLT`) besonders für Webcrawler bedeutend
 - Spezifikation ist als [Experimental RFC der IETF](https://tools.ietf.org/html/rfc7413) verfügbar
 
-![TCP Fast-Open](resources/tcp-fastopen.png)<!-- width=200px -->
+![TCP Fast-Open](assets/tcp-fastopen.png)<!-- width=200px -->
 
 ### Multipath TCP (MTCP)
 
@@ -1022,7 +1022,7 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 
 ## Quick UDP Internet Connections (QUIC)
 
-![QUIC](resources/quic.png)<!-- width=500px -->
+![QUIC](assets/quic.png)<!-- width=500px -->
 
 - Implementation wichtiger Protokollmechanismen (u.a. Übertragungswiederholung bei Verlusten, Congestion Control, Flow Control) oberhalb von UDP
 - bietet Möglichkeit, ab dem ersten Paket Anwendungsdaten zu übermitteln
@@ -1034,7 +1034,7 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 - Software-Schnittstelle über die Netzwerk- und Interprozess-Kommunikation durchgeführt werden kann
 - Anlegen durch Systemaufruf `socket()`: `int socket(int domain, int type, int protocol)`
 
-![Unterteilung von Sockets](resources/sockets.png)
+![Unterteilung von Sockets](assets/sockets.png)
 
 ### SOCK_STREAM
 
@@ -1047,7 +1047,7 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 
 <!--Abbildung höchstgradig prüfungsrelevant-->
 
-![Schematischer Ablauf der Server/Client-Kommunikation über SOCK_STREAM](resources/sockets-stream.png)<!-- width=500px -->
+![Schematischer Ablauf der Server/Client-Kommunikation über SOCK_STREAM](assets/sockets-stream.png)<!-- width=500px -->
 
 ### SOCK_DGRAM
 
@@ -1059,16 +1059,16 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 
 <!--Abbildung höchstgradig prüfungsrelevant-->
 
-![Schematischer Ablauf der Server/Client-Kommunikation über SOCK_DGRAM](resources/sockets-dgram.png)<!-- width=500px -->
+![Schematischer Ablauf der Server/Client-Kommunikation über SOCK_DGRAM](assets/sockets-dgram.png)<!-- width=500px -->
 
 <!--Vergleich von TCP und UDP gerne Prüfungsfrage-->
 
 
 # Exkurs: Routing
 
-## Einleitung 
+## Einleitung
 
-![Überblick Routing](resources/routing-ueberblick.png)<!-- width=500px -->
+![Überblick Routing](assets/routing-ueberblick.png)<!-- width=500px -->
 
 - Wie werden Informationen bezüglich der Topologie ausgetauscht?
 - Wie werden Pfade auf Grundlage der topologischen Informationen berechnet?
@@ -1076,45 +1076,45 @@ Flags: Bitflags zur Steuerung der Kommunikation (z.B. Aufbau, Trennung, der Verb
 - Wie kann Routing in einem mehrere hunderttausend Router umfassenden Netz realisiert werden?
 
 ## Allgemeines zu Routing
-### Beispiel Routingtabellen 
-![Beispiel Routingtabellen](resources/routing-tabellen.png)<!-- width=500px -->
+### Beispiel Routingtabellen
+![Beispiel Routingtabellen](assets/routing-tabellen.png)<!-- width=500px -->
 
 - alternatives Kommando `ip route show`
-- Flags: 
-  - `U`: Verwendete Schnittstelle ist verfügbar 
+- Flags:
+  - `U`: Verwendete Schnittstelle ist verfügbar
   - `G`: Die Route verwendet eien Gateway
   - `H`: Über diese Route kann nur ein einzelner Host erreicht werden
 - `Ref`: Anzahl weiterer Referenzen zu dieser Route
-- `Use`: Anzahl der Lookups für diese Route 
+- `Use`: Anzahl der Lookups für diese Route
 
 ### Zusammenfassung von Subnetzen
 <!--Mögliche Prüfungsaufgabe-->
 
-Benachbarte Subnetze können beim Routing zusammengefasst werden, wie im folgenden Beispiel zu sehen: 
-![Nachbarnetze zusammenfassen](resources/routing-nachbarnetze-zusammenfassen.png)<!-- width=500px -->
+Benachbarte Subnetze können beim Routing zusammengefasst werden, wie im folgenden Beispiel zu sehen:
+![Nachbarnetze zusammenfassen](assets/routing-nachbarnetze-zusammenfassen.png)<!-- width=500px -->
 
-### Aufteilen von Subnetzen 
+### Aufteilen von Subnetzen
 <!--Mögliche Prüfungsaufgabe-->
 
-Beispiel: 
-- 192.168.42.0/24 ist uns zugewiesen 
+Beispiel:
+- 192.168.42.0/24 ist uns zugewiesen
 - soll in 5 gleichgroße Netze aufgeteilt werden
 
 Anwendung:
 
 1. Aufteilung immer nur in Zweierpotenzen möglich
 - in diesem Fall ist die nächstgrößere Zweierpotenz 8 ($2^3$)
-   - daher Aufteilung in 8 Netze vornehmen 
-2. Aktualisieren der Subnetzmaske 
+   - daher Aufteilung in 8 Netze vornehmen
+2. Aktualisieren der Subnetzmaske
 - bisher:
   - `11111111.11111111.11111111.00000000` bzw. `255.255.255.0`
-  - `/24` in CIDR bedeutet, dass die ersten 24 Bits (von links) auf 1 gesetzt sind 
+  - `/24` in CIDR bedeutet, dass die ersten 24 Bits (von links) auf 1 gesetzt sind
   - da in 8 Netze aufgeteilt wird (**3.** Potenz von 2), werden entsprechend 3 Bits in der neuen Subnetzmaske auf 1 gesetzt
-- neue Maske: 
+- neue Maske:
   - `11111111.11111111.11111111.11100000` bzw `255.255.255.224`
   - `/27` in CIDR
-3. Ensprechend der uns zugewiesenen Adresse mit SN-Maske sind die ersten drei Oktette, also `192.168.42.x` gesetzt und nur das letzte Oktett kann verteilt werden 
-  - die ersten drei Bits des letzten Oktetts werden nach folgendem Muster zur Aufteilung genutzt: 
+3. Ensprechend der uns zugewiesenen Adresse mit SN-Maske sind die ersten drei Oktette, also `192.168.42.x` gesetzt und nur das letzte Oktett kann verteilt werden
+  - die ersten drei Bits des letzten Oktetts werden nach folgendem Muster zur Aufteilung genutzt:
   ```bash
     - 000(00000) -> 0    -> 192.168.42.0/27
     - 001(00000) -> 32   -> 192.168.42.32/27
@@ -1122,7 +1122,7 @@ Anwendung:
     - 011(00000) -> 96   -> 192.168.42.96/27
     - 100(00000) -> 128  -> 192.168.42.128/27
 
-    # Zusätzlich verfügbar: 
+    # Zusätzlich verfügbar:
     - 101(00000) -> 160
     - 110(00000) -> 192
     - 111(00000) -> 224
@@ -1134,32 +1134,32 @@ Anwendung:
 
 ### Schema für IP-Forwarding Algorithmus
 
-Begriffsunterscheidung: 
-- Forwarding Information Base (FIB) und Routingtabellen unterscheiden sich eigentlich, sind jedoch in Theorie und Praxis nicht einheitlich bezeichnet 
+Begriffsunterscheidung:
+- Forwarding Information Base (FIB) und Routingtabellen unterscheiden sich eigentlich, sind jedoch in Theorie und Praxis nicht einheitlich bezeichnet
 
 ```
-Ziel: D 
-N = Präfix bzw. Netz von D 
+Ziel: D
+N = Präfix bzw. Netz von D
 
-if (N ist direkt am lokalen Link angeschlossen) 
+if (N ist direkt am lokalen Link angeschlossen)
 {
   ermittle MAC-Adresse von D
   sende Paket an MAC-Adresse von D
 }
 
-else if (es existiert ein Routingtabelleneintrag für N) 
+else if (es existiert ein Routingtabelleneintrag für N)
 {
   ermittle ausgehende Schnittstelle
   ermittle MAC-Adresse des nächsten Hops H
-  sende Paket an H 
+  sende Paket an H
 }
 
 else if (es existiert ein Default-Gateway von G)
 {
   ermittle MAC-Adresse von G
-  sende Paket an G 
+  sende Paket an G
 }
-else 
+else
 {
   sende ICMP-Fehlermeldung an Quelle des Pakets
 }
@@ -1170,9 +1170,9 @@ else
 
 ## Hierarchische Struktur des Internets (Autonome Systeme)
 
-- zur Ausbildung eines hierarchischen Netzwerkes und damit eines skalierbareren Routings wird das Internet unterteilt in Autonome Systeme 
+- zur Ausbildung eines hierarchischen Netzwerkes und damit eines skalierbareren Routings wird das Internet unterteilt in Autonome Systeme
 - *"An AS is a connected group of on or more IP prefixes run by one or more network operators which has a SINGLE and CLEARLY DEFINED routing policy"*
-- Unterscheidung in: 
+- Unterscheidung in:
   - Registrierte AS:
     - Erhalten eine weltweit eindeutige 16-Bit bzw. 32-Bit AS-Nummer
     - werden von den Regional Internet Registries verwaltet
@@ -1183,90 +1183,90 @@ else
 
 Wie kann ich ein AS beantragen?
   - Beantragung bei der RIPE
-    - dazu muss RIPE-Mitgliedschaft vorhanden sein 
+    - dazu muss RIPE-Mitgliedschaft vorhanden sein
 
   - Voraussetzungen:
     - einheitliche Routing-Policy vorweisen
-    - Bedarf begründen 
+    - Bedarf begründen
     - AS muss (physische) Verbindungen in mindestens 2 andere AS haben
 
 **"Das Internet" ist also eine Menge aus autonomen Systemen, die jeweils von den Grenzroutern wissen. Über deren jeweilige Funktionsweise müssen keine Informationen vorhanden sein.**
 
 
-![Übersicht AS](resources/routing-as.png)<!-- width=500px -->
+![Übersicht AS](assets/routing-as.png)<!-- width=500px -->
 
 ### Klassifizierung von AS
 
-- Relation zu AS: 
+- Relation zu AS:
   - Transit:
-    - Betreiber eines AS zahlt für die Weiterleitung von Daten durch das zweite AS 
-  - Peering: 
+    - Betreiber eines AS zahlt für die Weiterleitung von Daten durch das zweite AS
+  - Peering:
     - Aufgrund von Abkommen werden Daten zwischen den AS kostenfrei ausgetauscht
   - Kunde:
     - Kostenpflichtige Nutzung eines AS als Zugang zum Internet
 
-![Übersicht AS-Tiers](resources/routing-as-tiers.png)<!-- width=500px -->
+![Übersicht AS-Tiers](assets/routing-as-tiers.png)<!-- width=500px -->
 
 ### AS und Routing
 
-- Routing-Protokolle für die Wegewahl **zwischen** AS: 
+- Routing-Protokolle für die Wegewahl **zwischen** AS:
   - Inter-AS-Protokolle / Exterior Gateway Protocols (EGP)
     - Müssen bei Routing betriebswirtschaftliche Aspekte berücksichtigen (Policy- / Regelbasiert)
     - Geben einen Pfad von AS vor, durch den ein Paket zu leiten ist
     - Beispiel (und gleichzeitig einziges praktisch bedeutsames EGP):
       - Border Gateway Protocol (BGP)
-- Routing-Protokolle für die Wegewahl **innerhalb** eines AS 
+- Routing-Protokolle für die Wegewahl **innerhalb** eines AS
   - Intra-AS-Protokolle / Interior Gateway Protocols (IGP)
     - Beispiele:
       - Routing Information Protocol (RIP Version 1 und 2)
       - Open Shortest Path First (OSPF)
       - Enhanced Interior Gateway Routing Protocol (EIGRP)
-      - Babel 
+      - Babel
       - Intermediate System to Intermediate System Protocol (IS-IS)
 
-![Übersicht AS-Routing](resources/routing-as-protokolle.png)<!-- width=500px -->
+![Übersicht AS-Routing](assets/routing-as-protokolle.png)<!-- width=500px -->
 
 ## Distanzvektor- und Link-State-Protokolle
 
 - Distanzvektorroutingprotokolle
   - Router haben keine Informationen über die gesamte Topologie des Netzes, sondern speichern nur, welcher Knoten mit welcher Distanz über welchen Nachbarn zu erreichen ist
   - Distanzinformationen für Ziele werden an Nachbarrouter in regelmäßigen Abständen propagiert
-  - Vorteile: 
-    - geringe Komplexität 
-    - geringes Nachrichtenaufkommen 
-  - Nachteile: 
+  - Vorteile:
+    - geringe Komplexität
+    - geringes Nachrichtenaufkommen
+  - Nachteile:
     - Mangelnde Topologieinformation kann zu schlechten Routingentscheidungen führen (z.B. `Count-to-Infinity-Problem`)
-  - Beispiele: 
+  - Beispiele:
     - RIP
     - Babel
     - EIGRP
 
-![Übersicht Distanzvektoren](resources/routing-distanzvektoren.png)<!-- width=200px -->
+![Übersicht Distanzvektoren](assets/routing-distanzvektoren.png)<!-- width=200px -->
 
 - Link-State-Routing-Protokolle
-  - regelmäßiger Versand von Informationen (`Link-State-Advertisements (LSA)`) über alle bekannten Nachbarn eines Knotens samt Distanzangabe 
-  - Distanzinformation wird an Nachbarrouter propagiert und von dort weiter in das Netz geflutet 
-  - Aus den Informationen wird ein Graph konstruiert für den z.B. mittels `Dijkstra-Algorithmus` kürzeste Wege zu allen Zielen berechnet werden können 
-  - Vorteile: 
+  - regelmäßiger Versand von Informationen (`Link-State-Advertisements (LSA)`) über alle bekannten Nachbarn eines Knotens samt Distanzangabe
+  - Distanzinformation wird an Nachbarrouter propagiert und von dort weiter in das Netz geflutet
+  - Aus den Informationen wird ein Graph konstruiert für den z.B. mittels `Dijkstra-Algorithmus` kürzeste Wege zu allen Zielen berechnet werden können
+  - Vorteile:
     - jeder Router kennt die Topologie des Netzes
-  - Nachteile: 
-    - hohe Komplexität 
-    - hohes Nachrichtenaufkommen 
-  - Beispiele: 
+  - Nachteile:
+    - hohe Komplexität
+    - hohes Nachrichtenaufkommen
+  - Beispiele:
     - OSPF
     - IS-IS
 
-![Übersicht LSA](resources/routing-lsa.png)<!-- width=200px -->
+![Übersicht LSA](assets/routing-lsa.png)<!-- width=200px -->
 
 ### Bellman-Ford-Algorithmus
 
 - Verfahren, welches in Distanzvektorverfahren eingesetzt wird
 - Zeitkomplexität `O(n * m)` (n= Anzahl Knoten, m= Anzahl Kanten)
-- Grundlegender Ablauf: 
-  - Grundgedanke: 
+- Grundlegender Ablauf:
+  - Grundgedanke:
     - Es wird für alle Kanten aller Knoten geprüft, ob Kosten zur Erreichung des Anfangsknotens der Kante plus Kosten für die Verwendung der Kante niedriger sind, als aktuell gespeicherte Kosten des Zielknotens der Kante sind
   - Initialisierung:
-    - Setze Distanz zu lokalen Knoten auf 0 und zu allen anderen auf unendlich 
+    - Setze Distanz zu lokalen Knoten auf 0 und zu allen anderen auf unendlich
 
     ```
     für j von 1 bis (n-1)
@@ -1274,10 +1274,10 @@ Wie kann ich ein AS beantragen?
         falls distanz[a] + w < distanz[b]:
           distanz[b] := distanz[a] + w
           vorgaenger[b] := a
-    ``` 
+    ```
   - Abschließend wird geprüft, ob ein Zyklus mit negativem Gewicht existiert
-  - Nachteile für Routing-Algorithmen: 
-    - keine gute Skalierbarkeit 
+  - Nachteile für Routing-Algorithmen:
+    - keine gute Skalierbarkeit
     - `Count-to-infinity-Problem`
 
 $\rightarrow$ Zahlreiche Erweiterungen bzw. Alternativen (insb. Dijkstra verfügbar)
@@ -1287,47 +1287,47 @@ $\rightarrow$ Zahlreiche Erweiterungen bzw. Alternativen (insb. Dijkstra verfüg
 - Berechnung von kürzesten Pfaden in einem kantengewichteten Graphen
 - Zeitkomplexität stark von Implementierung abhängig:
   - z.B. mit Fibonacci-Heap wird Zeitkomplexität `O(n * log n + m)` erreicht (n = Anzahl Knoten, m = Anzahl Kanten)
-- Grundlegender Ablauf: 
+- Grundlegender Ablauf:
   - Für jeden Zielknoten ungleich dem lokalen Knoten führe aus:
     1. Setze Distanz zu lokalem Knoten auf 0 und zu allen anderen auf unendlich
-    2. Falls es noch unbesuchte Knoten gibt: 
+    2. Falls es noch unbesuchte Knoten gibt:
         1. Selektiere Knoten mit geringster Distanz zum lokalen Knoten
         2. Speichere selektierten Knoten als besucht
         3. Berechne für alle unbesuchten Nachbarn des selektierten Knoten die Distanz zum lokalen Knoten
         4. Falls berechnete Distanz kleiner als die bisher für Nachbarn berechnete Distanz, ersetze bisher gespeicherte Distanz und vermerke selektierten Knoten als Vorgänger für unbesuchten Nachbarn
 
-![Dijkstra-Ablauf](resources/routing-dijkstra.png)<!-- width=500px -->
+![Dijkstra-Ablauf](assets/routing-dijkstra.png)<!-- width=500px -->
 
 ## Ausgewählte Routing-Protokolle
 
 ### Routing Information Protocol (RIP)
 
 - sehr schlichtes und einfach zu implementierendes Protokoll
-- Drei Versionen verfügbar: 
+- Drei Versionen verfügbar:
   - RIPv1 (praktisch irrelevant)
     - im Gegensatz zu v2 noch keine CIDR-Unterstützung
   - RIPv2
     - einziges mit praktischer Relevanz
   - RIPng (mit IPv6 Unterstützung)
-- Router versenden Response-Nachrichten 
+- Router versenden Response-Nachrichten
   - in regelmäßigen Intervallen (Broadcast)
   - falls es eine Änderung in den Routing-Tabellen gab (Broadcast)
   - auf Anfrage (mittels RIP-Request-Nachricht)
 - jede Nachricht kann bis zu 25 RIP-Einträge beinhalten
 
-![Dijkstra-Ablauf](resources/routing-rip.png)<!-- width=500px -->
+![Dijkstra-Ablauf](assets/routing-rip.png)<!-- width=500px -->
 
 #### (ausgewählte) Schwächen von RIP
 
 - Hop-Limit von 15
   - Falls ein Knoten über mehr als 15 Hops erreichbar ist, gilt er für RIP als unerreichbar
-- keine Separation in Broadcast-Domänen 
+- keine Separation in Broadcast-Domänen
   - Netz wird durch Broadcasts geflutet
   - keine Möglichkeit, große Netze in RIP-Bereiche einzuteilen, die nur innerhalb des Bereichs Informationen austauschen
 - Hops als einzige Metrik
   - keine Möglichkeit, unterschiedliche Kosten in Routingentscheidungen einzubeziehen
 - nur nächster Hop ist benannt
-  - Topologische Informationen jenseits des ersten Hops können für Routingentscheidungen nicht verwendet werden 
+  - Topologische Informationen jenseits des ersten Hops können für Routingentscheidungen nicht verwendet werden
 - Langsame Konvergenz im Fall von topologischen Änderungen
   - Topologische Änderungen propagieren sich langsam durch das Netz, da jeder Knoten zunächst lokale Tabellen aktualisiert und dann Änderungen propagiert
 
@@ -1337,68 +1337,68 @@ $\rightarrow$ Schwächen werden u.a. durch Open Shortest Path First adressiert
 
 ### Open Shortest Path First (OSPF)
 
-- eines der am häufigsten innerhalb von AS eingesetzten Protokolle im Internet 
+- eines der am häufigsten innerhalb von AS eingesetzten Protokolle im Internet
 - für IPv4 und IPv6 verfügbar, nur kleine Unterschiede
-- Ablauf: 
+- Ablauf:
   - Nachbarn propagieren in regelmäßigen Abständen `Hello-Pakete`
-  - Nach der Ausbildung der Nachbarschaftsbeziehungen werden LSA an Nachbarn gesendet, die diese wiederum an ihre Nachbarn verteilen 
+  - Nach der Ausbildung der Nachbarschaftsbeziehungen werden LSA an Nachbarn gesendet, die diese wiederum an ihre Nachbarn verteilen
     - dadurch Erzeugung von transitiven Beziehungen
 
-![OSPF-Einordnung](resources/routing-ospf.png)<!-- width=500px -->
+![OSPF-Einordnung](assets/routing-ospf.png)<!-- width=500px -->
 
 #### OSPF-Areas
-- `hello-pakete` wie auch LS-Informationen werden geflutet 
-- Zur Reduktion der Paketzahl wurden `Areas` eingeführt 
-- Nur die Router, die in einer Area lokalisierte Schnittstellen aufweisen, nehmen an der gleichen Instanz des Routing-Algorithmus teil 
-- Minimal liegt Area 0 (alternativ: 0.0.0.0) vor, zu der alle anderen Areas direkt oder via virtuellem Links verbunden sein müssen 
-- Routen zwischen Areas führen immer über Area 0 
-- Areas führen zu einer Klassifikation von Routern 
+- `hello-pakete` wie auch LS-Informationen werden geflutet
+- Zur Reduktion der Paketzahl wurden `Areas` eingeführt
+- Nur die Router, die in einer Area lokalisierte Schnittstellen aufweisen, nehmen an der gleichen Instanz des Routing-Algorithmus teil
+- Minimal liegt Area 0 (alternativ: 0.0.0.0) vor, zu der alle anderen Areas direkt oder via virtuellem Links verbunden sein müssen
+- Routen zwischen Areas führen immer über Area 0
+- Areas führen zu einer Klassifikation von Routern
 
-![Übersicht Areas](resources/routing-as-ospf.png)<!-- width=500px -->
+![Übersicht Areas](assets/routing-as-ospf.png)<!-- width=500px -->
 
 #### OSPF - Hello-Pakete
 
-- Dienen dem Detektieren von benachbarten Routern 
-- Nach Prüfung von in Paketen enthaltenen Informationen wird für jeden benachbarten Knoten ein Eintrag in einer dem empfangenden Interface zugeordneten Datenstruktur vermerkt 
-- zu ausgewählten Nachbarn wird eine "Adjazenz" ausgebildet 
+- Dienen dem Detektieren von benachbarten Routern
+- Nach Prüfung von in Paketen enthaltenen Informationen wird für jeden benachbarten Knoten ein Eintrag in einer dem empfangenden Interface zugeordneten Datenstruktur vermerkt
+- zu ausgewählten Nachbarn wird eine "Adjazenz" ausgebildet
 
-![Übersicht Hello](resources/routing-as-ospf-hello.png)<!-- width=500px -->
+![Übersicht Hello](assets/routing-as-ospf-hello.png)<!-- width=500px -->
 
 #### OSPF- Designated Router
 
-- Bei n Routern in einem Netz bestehen $(n*(n-1))/2$ mögliche Nachbarschaftbeziehungen 
-- Führt zu extensivem Fluten mit LSAs bereits bei wenigen Routern in Broadcastnetzen 
+- Bei n Routern in einem Netz bestehen $(n*(n-1))/2$ mögliche Nachbarschaftbeziehungen
+- Führt zu extensivem Fluten mit LSAs bereits bei wenigen Routern in Broadcastnetzen
 - zur Vermeidung nimmt ein Router die Rolle des `Designated Routers` ein
-- DR nimmt LSAs von adjazenten Routern entgegen und verteilt sie an alle anderen Router im Netz 
+- DR nimmt LSAs von adjazenten Routern entgegen und verteilt sie an alle anderen Router im Netz
 - Bei Ausfall des DR übernimmt ein zweites Router-Interface unmittelbar dessen Rolle (`Backup-Designated-Router (BDR)`)
-- DR und BDR werden im Rahmen des Hello-Protokolls bestimmt: 
+- DR und BDR werden im Rahmen des Hello-Protokolls bestimmt:
   - Im Hello-Paket enthaltene Router-Priorität wird zur Bestimmung verwendet (Höchste Priorität = DR)
-  - Bei gleichen Prioritätswerten, wird Router mit höchster Rouer-ID (meist IP) verwendet 
+  - Bei gleichen Prioritätswerten, wird Router mit höchster Rouer-ID (meist IP) verwendet
 
-![Designated Router](resources/routing-ospf-dr.png)<!-- width=500px -->
+![Designated Router](assets/routing-ospf-dr.png)<!-- width=500px -->
 
 #### OSPF Link-State-Advertisements
 <!-- Nicht prüfungsrelevant - muss nicht auswendig gelernt werden  -->
 
-- nach der Ausbildung der Adjazenz werden Link-State-Advertisement-Nachrichten ausgetauscht 
-- Unterscheidung von fünf LSA-Typen: 
+- nach der Ausbildung der Adjazenz werden Link-State-Advertisement-Nachrichten ausgetauscht
+- Unterscheidung von fünf LSA-Typen:
   - Router-LSA (Typ 1)
     - Versendet von allen Routern innerhalb einer einzelnen Area
     - Beschreibt die Zustände aller Interfaces des Routers innerhalb einer Area
   - Network-LSA
-    - Von Designated-Router innerhalb einer einzelnen Area versendet 
+    - Von Designated-Router innerhalb einer einzelnen Area versendet
     - LSA beinhaltet Liste von Routern, die mit einem spezilellen Netzwerk verbunden sind
   - Summary LSAs (Typ 3 und 4)
     - Versendet von Area Border Routers
     - Jedes LSA beschreibt eine Route zu einem Ziel außerhalb der OSPF-Area, aber noch innerhalb des AS
-    - Typ 3: Network Summary, beschreiben Pfade zu Netzwerken 
-    - Typ 4: ASBR Summary, beschreiben Pfade zu AS Boundary Routers 
+    - Typ 3: Network Summary, beschreiben Pfade zu Netzwerken
+    - Typ 4: ASBR Summary, beschreiben Pfade zu AS Boundary Routers
   - AS-external-LSA (Typ 5)
-    - Von AS-Boundary Router in das Netzwerk geflutet 
-    - jedes LSA beschreibt einen Pfad zu einem Ziel in einem anderen AS 
-. Auf Grundlage der LSAs kann jeder Router eine spezifische Topologie des Netzes erstellen und über Dijkstra kürzeste Pfade berechnen 
+    - Von AS-Boundary Router in das Netzwerk geflutet
+    - jedes LSA beschreibt einen Pfad zu einem Ziel in einem anderen AS
+. Auf Grundlage der LSAs kann jeder Router eine spezifische Topologie des Netzes erstellen und über Dijkstra kürzeste Pfade berechnen
 
-![Übersicht OSPF-LSA](resources/routing-ospf-lsa.png)<!-- width=500px -->
+![Übersicht OSPF-LSA](assets/routing-ospf-lsa.png)<!-- width=500px -->
 
 #### Praxisbeispiel - Router-Daemonen-Implementierung (BIRD)
 
@@ -1407,11 +1407,11 @@ $\rightarrow$ Schwächen werden u.a. durch Open Shortest Path First adressiert
 
 ### Border Gateway Protocol (BGP)
 
-- Zielsetzung: Routing von IP durch AS 
+- Zielsetzung: Routing von IP durch AS
 - Aktuelle Version 4 beschrieben in RFC 4271
 
 - BGP ermöglicht keine Einflussnahme jenseits des eigenen AS
-- Zentrales Prinzip für BGP-Routing: 
+- Zentrales Prinzip für BGP-Routing:
 
   *"BGP does not enable one AS to send traffic to a neighboring AS for
   forwarding to some destination (reachable through but) beyond that
@@ -1422,123 +1422,123 @@ $\rightarrow$ Schwächen werden u.a. durch Open Shortest Path First adressiert
   $\rightarrow$ BGP ermöglicht keine Einflussnahme jenseits des eigenen AS
 
 
-![BGP-Nutzungsmotivation Überblick](resources/routing-as-bgp.png)<!-- width=500px -->
+![BGP-Nutzungsmotivation Überblick](assets/routing-as-bgp.png)<!-- width=500px -->
 
-- zum Beispiel: 
-  - sobald eine Entscheidungsmöglichkeit mehrerer Routen (über mehrere ISP) vorliegt, lohnt sich der Einsatz von BGP 
+- zum Beispiel:
+  - sobald eine Entscheidungsmöglichkeit mehrerer Routen (über mehrere ISP) vorliegt, lohnt sich der Einsatz von BGP
 
 #### BGP-Peers /-Nachbarschaften
 
-- BGP-Router etabliert Verbindung mit ausgewählten Peers und tauscht mit diesen Pfadinformationen aus 
-- Konfiguration von Verbindungen zu Peers erfolgt manuell 
-- BGP definiert vier wichtige Nachrichten für Kommunikation zwischen Peers: 
-  - `OPEN`: Teilt Peer initial BGP-Version, AS-Nr., Hold-Timer, BGP Identifier mit 
+- BGP-Router etabliert Verbindung mit ausgewählten Peers und tauscht mit diesen Pfadinformationen aus
+- Konfiguration von Verbindungen zu Peers erfolgt manuell
+- BGP definiert vier wichtige Nachrichten für Kommunikation zwischen Peers:
+  - `OPEN`: Teilt Peer initial BGP-Version, AS-Nr., Hold-Timer, BGP Identifier mit
   - `NOTIFICATION`: Dient zur Beendigung einer Verbindung mit Fehlermeldung
-  - `KEEPALIVE`: Wird für Verbidnungserhaltung regelmäßig gesendet 
+  - `KEEPALIVE`: Wird für Verbidnungserhaltung regelmäßig gesendet
     - Hold Timer bestimmt max. Zeitraum zwischen KEEPALIVE-Nachrichten
-  - `UPDATE`: Informiert Peers über Routen 
+  - `UPDATE`: Informiert Peers über Routen
 
-![BGP-Finite-State-Machine](resources/routing-bgp-finitestate.png)<!-- width=500px -->  
+![BGP-Finite-State-Machine](assets/routing-bgp-finitestate.png)<!-- width=500px -->  
 
-- Konfiguration von Nachbarschaftsbeziehungen erfolgt manuell 
-- zur Konfiguration wird IP-Adresse des Nachbarn samt AS-Nummer angegeben 
-- Unterscheidung zwischen Nachbarschaftsbeziehungen: 
+- Konfiguration von Nachbarschaftsbeziehungen erfolgt manuell
+- zur Konfiguration wird IP-Adresse des Nachbarn samt AS-Nummer angegeben
+- Unterscheidung zwischen Nachbarschaftsbeziehungen:
   - innerhalb eines AS: internal BGP (iBGP)
   - außerhalb eines AS: external BGP (eBGP)
-- Beispiel: Konfiguration von BGP-Nachbarschaften via CLI auf Cisco-Router: 
+- Beispiel: Konfiguration von BGP-Nachbarschaften via CLI auf Cisco-Router:
 
-![BGP-Beispielconfig ](resources/routing-as-bgp-config.png)<!-- width=500px -->
+![BGP-Beispielconfig ](assets/routing-as-bgp-config.png)<!-- width=500px -->
 
 - Standardmäßig wird zum Nachbar nächstliegendes Interfaces als Quell-Interface für BGP-Kommunikation verwendet
 
 - Nach dem Etablieren einer Verbindung zu einem Nachbarn werden in regelmäßigen Abständen `UPDATE`-Nachrichten ausgetauscht
 - `UPDATE`-Nachrichten dienen dem Bewerben neuer und dem Verwerfen invalid gewordenener Ziele
 
-![BGP-Update Aufbau](resources/routing-bgp-update.png)<!-- width=500px -->
+![BGP-Update Aufbau](assets/routing-bgp-update.png)<!-- width=500px -->
 
-- Felder: 
-  - Withdrawn Routes: 
+- Felder:
+  - Withdrawn Routes:
     - Beinhaltet eine Liste von IP-Adress-Präfixen, deren Routing-Informationen nicht mehr valide sind
   - Path Attributes
     - Eigenschaften / Attribute für die mit der UPDATE-Nachricht beworbenen Ziele (für alle in der Nachricht aufgeführten Routen identisch)
-  - Network Layer Reachability Information: 
-    - Liste von Zielen, die die gleichen Eigenschaften teilen 
+  - Network Layer Reachability Information:
+    - Liste von Zielen, die die gleichen Eigenschaften teilen
     - Durtch IP-Adress-Präfix spezifiziert   
 
-![BGP-UPDATE-Attribute ](resources/routing-as-bgp-attributes.png)<!-- width=500px -->
+![BGP-UPDATE-Attribute ](assets/routing-as-bgp-attributes.png)<!-- width=500px -->
 
-- Mandatory Attributes: 
+- Mandatory Attributes:
   - `ORIGIN`: Definiert die allgemeine Herkunft der Pfadinformationen (drei Werte möglich: `IGP`, `EGP`, `INCOMPLETE`)
   - `AS_PATH`: Beschreibt den bisherigen Pfad von AS (Angabe der AS-Nummer), den das Update durchlaufen hat
   - `NEXT_HOP`: Verweist auf die IP-Adresse des Routers, der als nächster Router auf dem im Update enthaltenen Pfad verwendet werden sollte
 
 
-#### BGP-Pfadauswahl 
+#### BGP-Pfadauswahl
 
 - RFC 4271 macht keine Vorgaben zur Selektion eines Pfades (vgl. Sektion 9.3)
-- Informationen zur Selektion sind sehr allgemein: 
+- Informationen zur Selektion sind sehr allgemein:
   - *"If the local AS appears in the AS path of the new route being considered, then that new route cannot be viewed as better than any other route..."*
   - *"In order to achieve a successful distributed operation, only routes with a likelihood of stability can be chosen."*
 
 - Möglicher Ansatz im folgenden Beispiel: Wahl der Route mit dem kürzesten AS-Pfad (via AS 500)
 
-![BGP-Pfadauswahl Beispiel ](resources/routing-bgp-paths.png)<!-- width=500px -->
+![BGP-Pfadauswahl Beispiel ](assets/routing-bgp-paths.png)<!-- width=500px -->
 
-Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzend Regeln, die bis zu einem Match schrittweise durchlaufen werden, z.B: 
+Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzend Regeln, die bis zu einem Match schrittweise durchlaufen werden, z.B:
   - Der Pfad mit dem höchsten `Weight`-Wert (proprietäres Attribut) wird bevorzugt
   - Bei gleicher `AS_PATH`-Länge selektiere Pfad mit niedrigstem Origin-Typ (IGP < EGP < Incomplete)
-  - Fallback: Bevorzuge Pfad mit niedrigster Router-ID des BGP-Nachbarn 
+  - Fallback: Bevorzuge Pfad mit niedrigster Router-ID des BGP-Nachbarn
 
 #### Anmerkung zur Sicherheit
 
-- Fehlkonfigurationen der AS können schwerwiegende Folgen haben 
-- Beispiel malaysischer Provider mit AS-Beziehungen zu Nachbarn 
-  - Fehlkonfiguration: 
+- Fehlkonfigurationen der AS können schwerwiegende Folgen haben
+- Beispiel malaysischer Provider mit AS-Beziehungen zu Nachbarn
+  - Fehlkonfiguration:
     - Ziel-IP-Adressen im gesamten Bereich wurden mit Kosten von 0 definiert
     - Information wurde von vielen AS verteilt
-    - daher wurden massiver Traffic über diesen einen Provider geschleust 
-    - -> große Teile des Internet zusammengebrochen 
-  - Problem hier: 
-    - keine Validation der propagierten Informationen 
+    - daher wurden massiver Traffic über diesen einen Provider geschleust
+    - -> große Teile des Internet zusammengebrochen
+  - Problem hier:
+    - keine Validation der propagierten Informationen
 - Beispiel Hijack eines BGP-Routers
-  - mit gezielter Verteilung von (Fehl-)Informationen kann dann Traffic gezielt umgeleitet und abgegriffen werden 
+  - mit gezielter Verteilung von (Fehl-)Informationen kann dann Traffic gezielt umgeleitet und abgegriffen werden
 
 # Anwendungsschicht / Application-Layer
 
-## Einleitung 
+## Einleitung
 
-- auf der Anwendungsschicht existiert eine Vielzahl verschiedener Protokolle -> zu viel um alle zu kennen und zu behandeln 
+- auf der Anwendungsschicht existiert eine Vielzahl verschiedener Protokolle -> zu viel um alle zu kennen und zu behandeln
 - daher Klassifizierung von Protokollen nötig
 
 ## Anwendungsschicht: Bezug zum OSI-Referenzmodell
 
 
-- Anwendungsschicht übernimmt Aufgaben der obersten drei Schichten des OSI-Modells: 
+- Anwendungsschicht übernimmt Aufgaben der obersten drei Schichten des OSI-Modells:
   - Sitzungsschicht
   - Darstellungsschicht
   - Anwendungsschicht
 
 - die Anwendungsschicht setzt dabei auf der Transportschicht auf und greift auf diese beispielsweise über die Socket-Schnittstelle zu
 
-![OSI/TCP Vergleich Anwendungsschicht](resources/al-osi-tcp.png)<!-- width=500px -->
+![OSI/TCP Vergleich Anwendungsschicht](assets/al-osi-tcp.png)<!-- width=500px -->
 
 - Unterscheidung von zwei Formen von Anwendungsprotokollen gemäß RFC 1122
   - Anwenderprotokolle ("User Protocols"):
-    - verwendet von Clients, User steht dahinter und triggert bestimmte Schritte 
-    - HTTP, SMTP, SSH 
+    - verwendet von Clients, User steht dahinter und triggert bestimmte Schritte
+    - HTTP, SMTP, SSH
   - Unterstützungsprotokolle ("Support Protocols")
-    - NTP, DNS, DHCP, SOCKS 
+    - NTP, DNS, DHCP, SOCKS
 
-## Ausführung von Systemdiensten 
+## Ausführung von Systemdiensten
 
-- Unterstützungsprotokolle finden meist in kontinuierlich auf einen Betriebssystem laufenden Diensten / Daemon-Programmen Einsatz 
-- Zur Kontrolle der Dienste / Daemonen wird ein Initialisierungssystem eingesetz -> init-System in unixoiden OS 
+- Unterstützungsprotokolle finden meist in kontinuierlich auf einen Betriebssystem laufenden Diensten / Daemon-Programmen Einsatz
+- Zur Kontrolle der Dienste / Daemonen wird ein Initialisierungssystem eingesetz -> init-System in unixoiden OS
 - Init-System startet bei Systemstart die gewünschten Dienste
-  - zum Abschluss des Startvorgangs ist das System dann im gewünschten Zustand 
+  - zum Abschluss des Startvorgangs ist das System dann im gewünschten Zustand
 
-- Tool `pstree` zeigt die Hierarchie der laufenden Prozesse an 
+- Tool `pstree` zeigt die Hierarchie der laufenden Prozesse an
 
-![Init-Systeme](resources/al-init-systeme.png)<!-- width=500px -->
+![Init-Systeme](assets/al-init-systeme.png)<!-- width=500px -->
 
 ## Domain Name System (DNS)
 
@@ -1546,72 +1546,72 @@ Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzen
 
 - Anfrage bei Providern, wie z.B. strato
   - dort Registrierung auf den dortigen Nameservern und Verknüpfung mit der IP-Adresse des eigenen Webservers
-  - diese Verbindung wird in einem `resource-record` auf dem Nameserver hinterlegt 
+  - diese Verbindung wird in einem `resource-record` auf dem Nameserver hinterlegt
     - zusätzlich Typinformation hinterlegt (z.B. `A-Record`)
-  - Problem zu dem Zeitpunkt: 
-    - Nutzer, die mit diesem Server kommunizieren wollen, wissen noch nicht, welchen Nameserver sie abfragen müssen um an die IP zu gelangen 
+  - Problem zu dem Zeitpunkt:
+    - Nutzer, die mit diesem Server kommunizieren wollen, wissen noch nicht, welchen Nameserver sie abfragen müssen um an die IP zu gelangen
   - daher: `DNS`
     - Nutzer verwendet einen `Resolver` (in Linux: `/etc/resolv.conf`)
-    - in der config stehen die Nameserver z.B. des ISP 
+    - in der config stehen die Nameserver z.B. des ISP
   - bisher hat der Nameserver des ISP aber die Information über die neue Domain noch gar nicht
     - Trennung der Domain in die TLD und den TLD-spezifischen Namen
-    - ISP-Nameserver steuert daraufhin einen der 13 Root-NS an 
-    - dort wird angefragt, wer für die TLD verantwortlich ist 
-    - Root-Server gibt `resource-record` für den TLD-Nameserver zurück 
+    - ISP-Nameserver steuert daraufhin einen der 13 Root-NS an
+    - dort wird angefragt, wer für die TLD verantwortlich ist
+    - Root-Server gibt `resource-record` für den TLD-Nameserver zurück
   - für .de -> DENIC (eingetragener Verein)
     - diese betreiben eine ganze Reihe von NS
   - daraufhin Anfrage an NS von DENIC
     - Wer ist für den Namen der Domain verantwortlich? (im Beispiel: br1it -> Strato)
-    - DNS gibt `resource-record` für Strato-NS zurück 
+    - DNS gibt `resource-record` für Strato-NS zurück
     - Eintrag von Strato auf dem DENIC-NS erfolgte bei Registrierung der Domain
-  - daraufhin Anfrage bei Strato-NS 
-    - dieser gibt dann `resource-record` für die Domain zurück 
-  - NS des ISP leitet diesen an Resolver des Nutzers weiter 
-    - Dieser hat dann die IP des Webservers und kann auf diesen zugreifen 
-  - Informationen werden auf allen Ebenen teilweise gecached: 
+  - daraufhin Anfrage bei Strato-NS
+    - dieser gibt dann `resource-record` für die Domain zurück
+  - NS des ISP leitet diesen an Resolver des Nutzers weiter
+    - Dieser hat dann die IP des Webservers und kann auf diesen zugreifen
+  - Informationen werden auf allen Ebenen teilweise gecached:
     - in Windows Resolvercache anzeigen: `ipconfig /displaydns`
 
-  ![DNS-Resolve](resources/al-dns-resolve.png)<!-- width=500px -->
+  ![DNS-Resolve](assets/al-dns-resolve.png)<!-- width=500px -->
 
 ### Load-Balancing durch DNS
 - spielt auch wichtige Aufgaben im Load-Balancing
-  - Mit einem Namen können mehrere IP-Adressen verbunden sein 
+  - Mit einem Namen können mehrere IP-Adressen verbunden sein
   - Reihenfolge der Auslieferung entscheidet über die anzusteuernde IP-Adresse
   - Auf DNS-Ebene kann somit also Load-Balancing erfolgen, wenn die Reihenfolge geändert wird
 
-### DNS-Überblick 
+### DNS-Überblick
 <!-- Prüfungsfrage: Warum wird zwischen iterativen und rekursiven Anfragen unterschieden: Mit rekursiven Anfragen könnte kein Caching vorgenommen werden-->
 
 - DNS ist ein hierarchisch organisierter Verzeichnisdienst zur Verwaltung von Informationen über Domänen (vor allem IP-Adressinformationen)
-- der Domänen-Namensraum ist in **Zonen** untergliedert, die verschiedenen Nameservern innerhalb der Serverhierarchie zugeteilt werden 
-- Namensauflösung erfolgt durch Delegation oder Weiterleitung; als Fallback werden Root-Server in die Auflösung einbezogen 
-- Server nehmen intensives Caching vor, um Anfragen möglichst lokal beantworten zu können 
+- der Domänen-Namensraum ist in **Zonen** untergliedert, die verschiedenen Nameservern innerhalb der Serverhierarchie zugeteilt werden
+- Namensauflösung erfolgt durch Delegation oder Weiterleitung; als Fallback werden Root-Server in die Auflösung einbezogen
+- Server nehmen intensives Caching vor, um Anfragen möglichst lokal beantworten zu können
 
-![DNS-Strukturübersicht](resources/al-dns-structure.png)<!-- width=500px -->
+![DNS-Strukturübersicht](assets/al-dns-structure.png)<!-- width=500px -->
 
 ### Resource Records
 
 - Resource Records sind Informationsentitäten, die in Zonendateien, in DNS-Caches und bei der Kommunikation zwischen DNS-Teilnehmern verwendet werden
-- wurden zunächst mit der ursprünglichen DNS-Spezifikation eingeführt und durch zusätzliche RFCs deutlich erweitert 
+- wurden zunächst mit der ursprünglichen DNS-Spezifikation eingeführt und durch zusätzliche RFCs deutlich erweitert
 - Informationen werden meist einem Domainnamen zugeordnet und weisen eine Protokollklasse (meist `IN`-Internet), eine Typangabe und eine Gültigkeitsdauer auf
-- Ausgewählte Typen: 
-  - `A`: Ordnen Domainnamen eine IP-Adresse zu, beispielsweise 
+- Ausgewählte Typen:
+  - `A`: Ordnen Domainnamen eine IP-Adresse zu, beispielsweise
     ```
     www.tu-dresden.de.  3000  IN  A 141.30.2.2
     ```
-  - `AAAA`: Ordnen Domainnamen eine IPv6-Adresse zu 
+  - `AAAA`: Ordnen Domainnamen eine IPv6-Adresse zu
   - `MX`: Spezifiziert den Mailserver einer Domain
   - `CNAME`: Gibt einen alternativen Namen/Alias für einen Domainnamen an (CNAME = canonical name)
-  - `DNSKEY`: Gibt einen öffentlichen Schlüssel eines asymmetrischen kryptographischen Verfahrens für eine Domain an 
+  - `DNSKEY`: Gibt einen öffentlichen Schlüssel eines asymmetrischen kryptographischen Verfahrens für eine Domain an
   - `NS`: Gibt einen autoritativen Nameserver für eine Domain an; zusätzlich Verwendung zur Zonendelegation
 
-Überblick PTR-Record bei Mailversand: 
- ![PTR-Record](resources/al-dns-ptr.png)<!-- width=500px -->
+Überblick PTR-Record bei Mailversand:
+ ![PTR-Record](assets/al-dns-ptr.png)<!-- width=500px -->
 
-### Protokoll / Anfragedetails 
+### Protokoll / Anfragedetails
 
 - basiert auf einfachem Query-/Response-Prinzip
-- DNS-Nachrichten sind in 5 Sektionen unterteilt: 
+- DNS-Nachrichten sind in 5 Sektionen unterteilt:
   - Header
     - beinhaltet 16-Bit Identifier, Flags und Angaben zu den weiteren Nachrichteninhalten
   - Question
@@ -1625,16 +1625,16 @@ Beispiel Cisco: Selektion eines Pfads über Auswahlprozess mit etwa einem Dutzen
 
 Wichtig: Protokollkommunikation erfolgt über UDP
 - Anfragen sind sehr kurz/klein (nur wenige Bytes)
-- passt daher gut in ein UDP-Paket 
-- Problembehandlung auf Anwendungsebene einfach 
+- passt daher gut in ein UDP-Paket
+- Problembehandlung auf Anwendungsebene einfach
 
 ### Zonendefinition / Zonentransfer
 
 - Zonen werden in Zonendateien definiert, deren Format in RFC 1035 (Sektion 5 "Master Files") spezifiziert wurde
 - Zonendateien beinhalten Einträge analog zu Resource-Records
-- Informationen aus Zonendateien können zu Replikationszwecken zwischen Nameservern übertragen werden 
-- Schematische Darstellung des Zonentransfers: 
-![Zonentransfer-Schema](resources/al-dns-zonetransfer.png)<!-- width=500px --> 
+- Informationen aus Zonendateien können zu Replikationszwecken zwischen Nameservern übertragen werden
+- Schematische Darstellung des Zonentransfers:
+![Zonentransfer-Schema](assets/al-dns-zonetransfer.png)<!-- width=500px -->
 
 - Zur Information von Slave-Servern können diese nach Veränderungen in regelmäßigen Intervallen anfragen oder werden asynchron über Veränderungen informiert, z.B. via:
   - Abfrage des "Start of Authority Resource Records" (SOA RR), der eine bei jeder Änderung inkrementierte Seriennummer enthält
@@ -1643,26 +1643,26 @@ Wichtig: Protokollkommunikation erfolgt über UDP
   - `AXFR`: Asynchronous Full Transfer Zone; DNS Zone Transfer Protocol (RFC 5936); realisiert kompletten Zonentransfer
   - `ICFR`: Incremental Zone Transfer in DNS (RFC 1995)
 
-- nach einem SOA-RR-Eintrag beinhaltet eine Zonendatei Einträge wie z.B: 
+- nach einem SOA-RR-Eintrag beinhaltet eine Zonendatei Einträge wie z.B:
   - `www.example.com. 2400 IN A 141.76.40.2`
 - Auszüge aus Konfigurationsdatei des Nameservers `BIND`
   - z.B `/etc/named.conf`
 
-![Zonentransfer-Beispiel](resources/al-dns-zonetransfer2.png)<!-- width=500px --> 
+![Zonentransfer-Beispiel](assets/al-dns-zonetransfer2.png)<!-- width=500px -->
 
 
-### DNS over TLS / HTTPS 
+### DNS over TLS / HTTPS
 
-- Schwächen von DNS: 
+- Schwächen von DNS:
   - Anfragen können leicht mitprotokolliert werden
   - Einfach zu filtern (zu blockieren)
-- Zwei durch IETF standardisierte Ansätze zur verschlüsselten DNS-Kommunikation: 
+- Zwei durch IETF standardisierte Ansätze zur verschlüsselten DNS-Kommunikation:
   - DNS over TLS (DoT): RFC 7858
     - Kommunikation via Port 853
   - DNS over HTTPS (DoH): RFC 8484
     - Kommunikation über Port 443
     - Anfrage via GET oder POST
-    - Beispiel aus RFC 8484: 
+    - Beispiel aus RFC 8484:
       ```
       :method = POST
       :scheme = https
@@ -1678,20 +1678,20 @@ Wichtig: Protokollkommunikation erfolgt über UDP
       ```
 
 - Kommunikation via TLS bzw. HTTPS zwischen DoT-/DoH-Client zu öffentlichem DNS-Resolver
-- Anwendungen können eigenen Resolver vorgeben 
+- Anwendungen können eigenen Resolver vorgeben
 
-### Dynamic DNS / Reverse DNS 
+### Dynamic DNS / Reverse DNS
 
-1. Dynamic DNS: 
-- Bei Wechsel einer IP-Adresse müsüsen DNS-Einträge dynamisch und effizient aktualisiert werden können 
-- Zwei Ansätze der Aktualisierung werden unter dem Begriff subsumiert: 
+1. Dynamic DNS:
+- Bei Wechsel einer IP-Adresse müsüsen DNS-Einträge dynamisch und effizient aktualisiert werden können
+- Zwei Ansätze der Aktualisierung werden unter dem Begriff subsumiert:
   - "Dynamic Updates in the Domain Name System (`DNS UPDATE`)", RFC 2136, verwendet speziellen Opcode des DNS-Protokolls
   - Aktualisierung über eine wohldefinierte HTTP(S)-/REST-Schnittstelle
 
 2. Reverse DNS
 - Reverse DNS Lookup (`rDNS`) ermöglicht Abbildung von IP-Adressen auf zugehörige Domains
 - um eine aufwendige Suche in den Resource-Records zu vermeiden, wird ein spezieller PTR(Pointer)-Resource-Record-Typ verwendet
-- dabei wird die IP-Adresse in umgekehrter Reihenfolge angegeben 
+- dabei wird die IP-Adresse in umgekehrter Reihenfolge angegeben
   - für IPv4: "IP-ADRESSE.in-addr.arpa"
     - z.B.: 2.2.30.141-in-addr.arpa
   - für IPv6: "IP-ADRESSE.ip6.arpa"
@@ -1704,82 +1704,82 @@ Wichtig: Protokollkommunikation erfolgt über UDP
 - z.B. bei XMPP eingesetzt
 
 4. Split-horizon DNS
-- DNS-Anfragen können - typischerweise- in Abhängigkeit der Quell-IP-Adresse der Anfrage unterschiedlich behandelt werden 
+- DNS-Anfragen können - typischerweise- in Abhängigkeit der Quell-IP-Adresse der Anfrage unterschiedlich behandelt werden
 - ermöglicht beispielsweise "GeoDNS"
-  - `CDN`- Content Distribution Network: 
-    - Medieninhalte nicht von ursprünglichem RZ bereitstellen, sondern weltweit verteilen 
+  - `CDN`- Content Distribution Network:
+    - Medieninhalte nicht von ursprünglichem RZ bereitstellen, sondern weltweit verteilen
     - diese dann dem Nutzer von möglichst nahem RZ bereitstellen um weite Wege zu vermeiden  
       - Internet wird weniger belastet
       - geringere Latenzen und round-trip-times
     - z.B bei Streamingdiensten
 
-### DNS - manuelle Abfragen 
+### DNS - manuelle Abfragen
 
-- Werkzeuge für die Abfrage von DNS-Informationen von der Kommandozeile oder aus Shell-Skripten heraus 
+- Werkzeuge für die Abfrage von DNS-Informationen von der Kommandozeile oder aus Shell-Skripten heraus
   - z.B. `dig`, `host`, `nslookup (deprecated!)`
 
-![Manuelle Beispielabfrage](resources/al-dns-manual.png)<!-- width=500px --> 
+![Manuelle Beispielabfrage](assets/al-dns-manual.png)<!-- width=500px -->
 
-## Zeitsynchronisation - NTP 
+## Zeitsynchronisation - NTP
 
-### Motivation 
-- Uhren in Rechnernetzknoten unterliegen im Normalfall einem kontinuierlichen Drift 
-- zunehmende Abweichung zwischen lokalen Zeitinformationen führt u.a. zu Problemen bei: 
+### Motivation
+- Uhren in Rechnernetzknoten unterliegen im Normalfall einem kontinuierlichen Drift
+- zunehmende Abweichung zwischen lokalen Zeitinformationen führt u.a. zu Problemen bei:
 
 1. Identifikation von Kausalitäten zwischen verteilten Ereignissen
-![Beispiel verteilte Ereignisse](resources/al-ntp-motivation.png)<!-- width=500px -->
-2. zahlreichen Protokollen in Rechnernetzen / verteilten Systemen, die Zeitstempel zur Prüfung der Aktualität und Validität einer Anfrage verwenden 
+![Beispiel verteilte Ereignisse](assets/al-ntp-motivation.png)<!-- width=500px -->
+2. zahlreichen Protokollen in Rechnernetzen / verteilten Systemen, die Zeitstempel zur Prüfung der Aktualität und Validität einer Anfrage verwenden
 - Beispiel: Aktualitätsprüfung bei Dynamic-DNS-Servern
 
-$\rightarrow$ Uhren müssen möglichst synchronisiert werden 
+$\rightarrow$ Uhren müssen möglichst synchronisiert werden
 
-### Network Time Protocol - Architektur 
+### Network Time Protocol - Architektur
 
-- in RFC 5905 (Version 4) definiertes Protokoll zur Synchronisation von Uhren 
+- in RFC 5905 (Version 4) definiertes Protokoll zur Synchronisation von Uhren
 - setzt UDP zuer Verteilung der Protokollinformationen ein (Port 123)
-- Flexibel einsetzbar für die Synchronisation mit einzelnen Referenzzeitgebern oder in einem großen Verbund von NTP-Systemen 
-- Beispielarchitektur: 
-![NTP-Architektur](resources/al-ntp-struktur.png)<!-- width=500px -->
+- Flexibel einsetzbar für die Synchronisation mit einzelnen Referenzzeitgebern oder in einem großen Verbund von NTP-Systemen
+- Beispielarchitektur:
+![NTP-Architektur](assets/al-ntp-struktur.png)<!-- width=500px -->
 
-### NTP On-Wire Protocol 
+### NTP On-Wire Protocol
 
-![NTP-On Wire](resources/al-ntp-onwire.png)<!-- width=500px -->
+![NTP-On Wire](assets/al-ntp-onwire.png)<!-- width=500px -->
 
-- Funktion `save()` $\rightarrow$ lokale Speicherung der übergebenen Zeitstempel in einer Variable TX 
+- Funktion `save()` $\rightarrow$ lokale Speicherung der übergebenen Zeitstempel in einer Variable TX
   - z.B. `save(t1)` $\rightarrow$ Speicherung in T1
 - Nach Empfang der Zeitstempel wird eine Validitätsprüfung durchgeführt
-  - v.a. zur Detektion von Duplikaten und zur Vermeidung von Replay-Angriffen 
-  - Methode: 
+  - v.a. zur Detektion von Duplikaten und zur Vermeidung von Replay-Angriffen
+  - Methode:
     - Überprüfung, ob Sendezeitstempel tX != T(X-2)
     - Überprüfung, ob Sendezeitstempel tY == TY
 - Aus Zeitstempeln werden zwei Werte berechnet, die anschließend statistischen Analysen und Filterungen unterzogen werden:
-  - Offset: 
+  - Offset:
     - Wahrscheinlichste Abweichung der Serverzeit (= Zeit des Kommunikationspartners) relativ zur lokalen Systemzeit
     - Beispielrechnung für Zeitpunkt t4, der vorigen Abb:
       - $theta 1 = 1/2 * [(T2-T1)+(T3-T4)$
-  - Delay: 
+  - Delay:
     - Round-Trip-Time zwischen Client und Server
     - Beispielrechnung für Zeitpunkt t4, der vorigen Abb:
       - $delta 1 = (T4-T1)-(T3-T2)$
-- Optimum: 
+- Optimum:
   - Uhren sind synchron und es gibt eine konstante RTT
   - $Theta$i (=0) und $delta$i sind im Zeitverlauf konstant
-- Akkurate Synchronisation ist vor allem Servern gegenüber mit geringer RTT und geringer Varianz der RTT möglich 
+- Akkurate Synchronisation ist vor allem Servern gegenüber mit geringer RTT und geringer Varianz der RTT möglich
 
-$\rightarrow$ Auswahl entsprechender Server unter den insgesamt verfügbaren Servern 
+$\rightarrow$ Auswahl entsprechender Server unter den insgesamt verfügbaren Servern
 
 ### SNTP - Simple Network Time Protocol
 
-- in RFC 4330 definierte, vereinfachte Version von NTP 
+- in RFC 4330 definierte, vereinfachte Version von NTP
 - Zustandsinformationen, die auf Client-System gespeichert werden müssen, sind deutlich reduziert
-- Besonders geeignet für eingebettete Systeme und falls keine hohen Anforderungen an die Zeitsynchronisation vorliegen 
-- Von Server kommunizierte Informationen sind identisch zu NTP-Informationen 
+- Besonders geeignet für eingebettete Systeme und falls keine hohen Anforderungen an die Zeitsynchronisation vorliegen
+- Von Server kommunizierte Informationen sind identisch zu NTP-Informationen
   - $\hookrightarrow$ auf Serverseite kann nicht differenziert werden, ob es sich um einen NTP- oder SNTP-Client handelt
 - Zur Synchronisation der Uhrzeit wird das NTP On-Wire Protocol verwendet
 - Synchronisation erfolgt meist nur mit einem Server
 - Einsatz wird nur für Blätter / Knoten im höchsten Stratum eines Netzwerks empfohlen
 
-![NTP-On Wire](resources/al-ntp-sntp.png)<!-- width=500px -->
+![NTP-On Wire](assets/al-ntp-sntp.png)<!-- width=500px -->
 
 ### NTP - Implementierungsbeispiele
 
@@ -1791,11 +1791,11 @@ $\rightarrow$ Auswahl entsprechender Server unter den insgesamt verfügbaren Ser
   - `ntpsweep`: Ermittlung von Eigenschaften (Stratum-Level, Betriebssystem, Prozessor, NTP-Daemon-Version, Offset-Wert) eines NTP-Servers
 
 
-## DHCP 
+## DHCP
 
 - Dynamic Horst Configuration Protocol (DHCP) ermöglicht die automatische Konfiguration von TCP/IP-Netzwerkinformationen (RFC 2131)
 - für IPv4 und IPv6
-- Prinzip: 
+- Prinzip:
   - DHCP-Client sendet ein Broadcast an das Netz und ermittelt durch das Kommando `DHCPDISCOVER` verfügbare DHCP-Server
   - DHCP-Server offerieren Netzwerkkonfigurationen an anfragenden Client (mittesl Optionen-Feld in DHCP-Nachricht)
   - Client wählt eine Konfiguration und bestätigt die (ggf. temporäre) Verwendung der Konfiguration gegenüber dem Server durch das Kommando `DHCPREQUEST`
@@ -1803,11 +1803,11 @@ $\rightarrow$ Auswahl entsprechender Server unter den insgesamt verfügbaren Ser
 
 ### DHCPv6
 
-- IPv6 bietet durch `SLAAC`und `NDP` Mechanismen, um Netzwerkkonfiguration ohne dedizierte Infrastruktur zu ermitteln 
-- Davon ausgeschlossen: DNS-Konfiguration 
-- zwei Ansätze der DNS-Konfiguration für IPv6: 
+- IPv6 bietet durch `SLAAC`und `NDP` Mechanismen, um Netzwerkkonfiguration ohne dedizierte Infrastruktur zu ermitteln
+- Davon ausgeschlossen: DNS-Konfiguration
+- zwei Ansätze der DNS-Konfiguration für IPv6:
   - "IPv6 Router Advertisement Options for DNS Configuration" (RFC 6106)
-    - realisiert Konfiguration durch NDP-Erweiterung 
+    - realisiert Konfiguration durch NDP-Erweiterung
   - "Dynamic Host Configuration Protocol for IPv6 (DHCPv6)" (RFC 3315)
 - DHCPv6 unterstützt wie auch DHCPv4 gegenseitige Authentifizierung zwischen Client und Server
 
@@ -1815,15 +1815,15 @@ $\rightarrow$ Auswahl entsprechender Server unter den insgesamt verfügbaren Ser
 
 - in RFC 1928 (v5) definiertes Protokoll zur transparenten Weiterleitung von Anwendungsdaten über einen Proxyserver
 - Zwischen Transportschicht und Anwendungsprotokoll angesiedelt - `shim-layer`
-- Protokoll ermöglicht Kommunikation von Befehlen an Proxy, um hinter dem Proxy TCP-Verbindungen zu etablieren oder UDP-Datagramme weiterzuleiten 
-- Beispiel: 
-![SOCKS-Beispiel](resources/al-socks-example.png)<!-- width=500px -->
+- Protokoll ermöglicht Kommunikation von Befehlen an Proxy, um hinter dem Proxy TCP-Verbindungen zu etablieren oder UDP-Datagramme weiterzuleiten
+- Beispiel:
+![SOCKS-Beispiel](assets/al-socks-example.png)<!-- width=500px -->
 
 
-# Prüfungsvorbereitung 
+# Prüfungsvorbereitung
 
-## Formalien 
-- Stichpunkte sind möglich, aber nicht zu verkürzt 
+## Formalien
+- Stichpunkte sind möglich, aber nicht zu verkürzt
 - eigene handschriftliche Mitschriften (1 A4-Blatt, beidseitig beschrieben sind erlaubt)
 
 ## Beispielklausur
@@ -1834,30 +1834,30 @@ Frage: Um was handelt es sich bei der Internet Engineering Taskforce? Welche Auf
 
 ### ISO/OSI-Referenzmodell (7 Punkte)
 
-Frage: Welche sieben Schichten werden durch das in der Vorlesung besprochene ISO/OSI-Referenzmodell unterschieden? Was sind jeweils die zentralen Dienste bzw. Funktionen der sieben Schichten? 
+Frage: Welche sieben Schichten werden durch das in der Vorlesung besprochene ISO/OSI-Referenzmodell unterschieden? Was sind jeweils die zentralen Dienste bzw. Funktionen der sieben Schichten?
 
 ### Virtuelle LANs (6 Punkte)
 
-Frage: 
-In folgendem Szenario sehen Sie zwei Hosts (Host 1, Host 2), die sich in zwei unterschiedlichen Port-basierten VLANs befinden (VLAN 5 und VLAN 6). Ansonsten wurde noch nichts konfiguriert. Die Separation der VLANs soll erhalten bleiben, allerdings soll eine Kommunikation zwischen den beiden VLANs über den eingezeichenten Pfad (1-6) möglich sein. Welche Konfigurationsschritte sind zu durchlaufen, um diese Kommunikation zu ermöglichen? 
+Frage:
+In folgendem Szenario sehen Sie zwei Hosts (Host 1, Host 2), die sich in zwei unterschiedlichen Port-basierten VLANs befinden (VLAN 5 und VLAN 6). Ansonsten wurde noch nichts konfiguriert. Die Separation der VLANs soll erhalten bleiben, allerdings soll eine Kommunikation zwischen den beiden VLANs über den eingezeichenten Pfad (1-6) möglich sein. Welche Konfigurationsschritte sind zu durchlaufen, um diese Kommunikation zu ermöglichen?
 
-![VLAN-Abbildung](resources/klausur-abb1.png)<!-- width=500px -->
+![VLAN-Abbildung](assets/klausur-abb1.png)<!-- width=500px -->
 
 ### Internet Protocol (4 Punkte)
 
-Frage: 
-a) Nennen und beschreiben Sie drei zentrale Vorteile, die IPv6 im Vergleich zu IPv4 bietet. 
+Frage:
+a) Nennen und beschreiben Sie drei zentrale Vorteile, die IPv6 im Vergleich zu IPv4 bietet.
 b) Beschreiben Sie schrittweise, wie durch das Verfahren Stateless Adress Autoconfiguration zunächst eine lokal eindeutige und anschließend eine global eindeutige IPv6-Adresse vergeben wird
 
 ### IP-Subnetze (6 Punkte)
 
-Frage: 
-Ihnen wurde die IP-Adress-Range 192.168.40.0/22 zur Verfügung gestellt. Innerhalb dieses Ranges sollen sechs möglichst große wie auch gleich große Netze entstehen. Geben sie jeweils die Netzadressen der sechs Netze an und beschreiben Sie kurz den Ablauf zur Ermittlung der sechs Netzadressen. 
+Frage:
+Ihnen wurde die IP-Adress-Range 192.168.40.0/22 zur Verfügung gestellt. Innerhalb dieses Ranges sollen sechs möglichst große wie auch gleich große Netze entstehen. Geben sie jeweils die Netzadressen der sechs Netze an und beschreiben Sie kurz den Ablauf zur Ermittlung der sechs Netzadressen.
 
 - 6 Netze benötigt $\rightarrow$ nächstgrößere Zweierpotenz ist $2^3=8$
 - Alte Subnetzmaske aktualisieren: /22 $\rightarrow$ /25
 - An Stelle der 3 "Masken"-Bit die Unterteilung vornehmen:
-  - ACHTUNG: Überschreiten der Oktettgrenze beachten: 
+  - ACHTUNG: Überschreiten der Oktettgrenze beachten:
     - (129.168).001010**00.0**0000000 = 129.168.40.0/25
     - (129.168).001010**00.1**0000000 = 129.168.40.128/25
     - (129.168).001010**01.0**0000000 = 129.168.41.0/25
@@ -1869,23 +1869,23 @@ Ihnen wurde die IP-Adress-Range 192.168.40.0/22 zur Verfügung gestellt. Innerha
 
 ### Routing (6 Punkte)
 
-Frage: 
+Frage:
 Von einem Host mit der IP-Adresse `87.76.23.2` sollen IP-Pakete an die IP-Adresse `1.1.1.1` gesendet werden. Dabei wird davon ausgegangen, dass neben dem Eintrag für das Netz `87.76.23.0./25` als einzige Eintrag in der Routing-Tabelle das Default-Gateway (IP: `87.76.23.1`) vorliegt.
-Beschreiben Sie den Ablauf der Weiterleitung von IP-Paketen innerhalb des Hosts ("Forwarding"). Gehen Sie dabei auf die Aufgabe der "Routing-Tabelle", des Adress Resolution Protocols wie auch des Default-Gateways ein. 
+Beschreiben Sie den Ablauf der Weiterleitung von IP-Paketen innerhalb des Hosts ("Forwarding"). Gehen Sie dabei auf die Aufgabe der "Routing-Tabelle", des Adress Resolution Protocols wie auch des Default-Gateways ein.
 
 
 ### Transportschicht (9 Punkte)
 
-Fragen: 
+Fragen:
 a) Welche Kernaufgabe erfüllt die Transportschicht?
 b) Erstellen Sie eine Tabelle für den Vergleich des Transmission Control Protocols `TCP` mit dem User Datagram Protocol `UDP`. Gehen Sie in der Tabelle auf drei Charakteristika ein, in denen sich die beiden Protokolle unterscheiden
 
-Reihenfolgegarantie 
-Zuverlässigkeit 
+Reihenfolgegarantie
+Zuverlässigkeit
 Protokolloverhead
 Congestion Control
 
-c) Was wird unter Congestion Control im Falle des TCP verstanden? Beschreiben Sie weiterhin wie Congestion-Control unter Verwendung des "Slow-Start"-Verfahrens umgesetzt wird. 
+c) Was wird unter Congestion Control im Falle des TCP verstanden? Beschreiben Sie weiterhin wie Congestion-Control unter Verwendung des "Slow-Start"-Verfahrens umgesetzt wird.
 
 - Handling von Überlast-Situationen zwischen Routern
 - Slow Start: anfangs nur wenig Bytes übertragen $\rightarrow$ schrittweise erhöht
@@ -1981,55 +1981,54 @@ ns.meineTolleSeite.lol.         IN      A       127.0.0.1
 
 ## Problemfall: Geswitchtes Netzwerk
 
-![PF Geswitchtes Netzwerk](resources/virt-switched.png)<!-- width=500px -->
+![PF Geswitchtes Netzwerk](assets/virt-switched.png)<!-- width=500px -->
 
 - Administratoren müssen eine Vielzahl von Protokollen und ihr Zusammenspiel beherrschen
-  - VLANs müssen hier zum Beispiel auf jedem Switch konsistent konfiguriert werden 
+  - VLANs müssen hier zum Beispiel auf jedem Switch konsistent konfiguriert werden
   - aus Sicherheitsgründen könnte zum Beispiel das Verteilen von DHCP-Informationen auf einen bestimmten Port beschränkt werden
-    - auch hier wieder Konfiguration nötig 
+    - auch hier wieder Konfiguration nötig
 - Konfiguration der verschiedenen Protokolle aufwendig und fehleranfällig
 - Verteilt vorhandene Konfigurationen (abgelegt in der „Control-Plane“) $\rightarrow$ müssen konsistent sein
 - Beispiel Differenzierung Control- und Dataplane
   - Control Plane entscheidet zum Beispiel über die Weiterleitung eines Pakets zu einem Ziel nach vordefinierten Regeln, hinterlegt diese Information in den Routing-Tables
-  - Dataplane übernimmt fortan die Weiterleitung anhand der vorliegenden Informationen 
+  - Dataplane übernimmt fortan die Weiterleitung anhand der vorliegenden Informationen
 - Switches verfügen über keine globale Perspektive auf das gesamte Netzwerk $\rightarrow$ z.B. keine globale Überlastbehandlung
 - Keine Interaktion mit Konfigurationsinformation weiterer Schichten
 
 ## Problemfall: Virtualisierung
-![PF Virtualisierung](resources/virt-virt.png)<!-- width=500px -->
+![PF Virtualisierung](assets/virt-virt.png)<!-- width=500px -->
 
 - z.B. getrennte Kundennetze in einem Rechenzentrum
 - Switch speichert MAC-Adressen aller Virtuellen Maschinen (VMs) $\rightarrow$ Skalierungsprobleme
 - Falls zwischen VMs VLANs ausgebildet werden, müssen diese ohne technologische Erweiterungen von dem angebundenen Switch unterstützt werden
 - Zudem existieren die im Zusammenhang mit physischer, geswitchter Infrastruktur erwähnten Probleme in besonderem Maße
 
-## Software-Defined-Networking: Übersicht 
-![SDN - Übersicht](resources/virt-sdn-overview.png)<!-- width=500px -->
+## Software-Defined-Networking: Übersicht
+![SDN - Übersicht](assets/virt-sdn-overview.png)<!-- width=500px -->
 
 - SDN ist ein Ansatz zur Realisierung von Computernetzen, bei dem die Kontrolle über die Datenflüsse und die eigentliche Weiterleitung auf zentral zugreifbare Netzknoten ausgelagert wird
 - SDN $\rightarrow$ Separation von Control- und Data-Plane
 - Ansatz geht auf Arbeiten der UC Berkeley und Stanford University zurück
 
 - Control-Plane ist nicht mehr in den einzelnen Kopplungselementen enthalten, diese sind nur noch Teil der Dataplane
-  - Control-Plane ist an einer zentralen Stelle im Netzwerk verfügbar 
+  - Control-Plane ist an einer zentralen Stelle im Netzwerk verfügbar
   - von dort aus werden die einzelnen Switches entsprechend konfiguriert
-  - Anwendung sprechen mit der Control-Plane, diese setzt Anforderungen um 
-  - Beispiel: 
-    - Firewall überhalb der CP
-      - bestimmte IP-Adress-Range soll freigeschalten werden 
-      - Firewall schickt diese Anforderung an den SPN-Controller
-      - der Controller führt diese Anforderung auf den Switches aus 
-  - Vorteile: 
-    - bei spontan nötigen Regeländerungen ist eine schnelle Änderung für die gesamte Infrastruktur möglich 
-    - Gesamtüberblick über den Zustand der Infrastruktur jederzeit vorhanden
-      - damit Lastverteilung regelbar 
-  - Nachteil: 
-    - möglicher Single-Point-of-Failure, jedoch Redundanz möglich 
+  - Anwendung sprechen mit der Control-Plane, diese setzt Anforderungen um
+  - Beispiel:
+    - Firewall überhalb der CP:
+    - bestimmte IP-Adress-Range soll freigeschalten werden
+    - Firewall schickt diese Anforderung an den SPN-Controller
+    - der Controller führt diese Anforderung auf den Switches aus
+  - Vorteile:
+    - bei spontan nötigen Regeländerungen ist eine schnelle Änderung für die gesamte Infrastruktur möglich
+    - Gesamtüberblick über den Zustand der Infrastruktur jederzeit vorhanden -> damit Lastverteilung regelbar
+  - Nachteil: möglicher Single-Point-of-Failure, jedoch Redundanz möglich
 
-![SDN zum Nachlesen / wikipedia](https://en.wikipedia.org/wiki/List_of_SDN_controller_software)
+[SDN zum Nachlesen / wikipedia](https://en.wikipedia.org/wiki/List_of_SDN_controller_software)
 
 ## Northbound / Southbound API
-![NB and SB-API](resources/virt-sdn-northandsouth.png)<!-- width=500px -->
+
+![NB and SB-API](assets/virt-sdn-northandsouth.png)<!-- width=500px -->
 
 - Neben Zugriff durch fokussierte Anwendungen wird Northbound API durch umfassende Virtualisierungslösungen verwendet; beispielsweise Zugriff durch OpenStack Neutron
 - Schnittstellen inklusive zugehöriger Protokolle für die beiden Interaktionspunkte sollen durch Standards wohldefiniert werden
@@ -2037,117 +2036,126 @@ ns.meineTolleSeite.lol.         IN      A       127.0.0.1
 
 ## Open Networking Foundation (ONF) / Openflow
 
-- *„Open Networking Foundation (ONF) is a user-driven organization dedicated to the promotion and adoption of Software-Defined Networking (SDN) through open standards development.*
+- *Open Networking Foundation (ONF) is a user-driven organization dedicated to the promotion and adoption of Software-Defined Networking (SDN) through open standards development.*
 - Zahlreiche große Unternehmen sind Mitglieder der Organisation, u.a.: Facebook, Deutsche Telekom, Google, Yahoo! und Microsoft
 - Aktiv seit dem 21.3.2011
 - Hauptaktivitäten:
   - Spezifikation einer Referenzarchitektur für SDN
   - Pflege und Verwaltung der Spezifikation von OpenFlow, einem Kommunikationsprotokoll samt Architektur- und Schnittstellenbeschreibung für die Separation von Data- und Control-Plane
 
-- Grundlegender Gedanke: 
-  - Controller kommuniziert mit Open-Flow-Switch 
-  - Layer des Switches dabei nicht genau definiert, ist auch nahezu unerheblich 
-- Wesentlicher Ablauf: 
-  - Flow-Tables werden angelegt und beschreiben, welche Aktionen für bestimmte Pakete ausgeführt werden sollen 
+- Grundlegender Gedanke:
+  - Controller kommuniziert mit Open-Flow-Switch
+  - Layer des Switches dabei nicht genau definiert, ist auch nahezu unerheblich
+- Wesentlicher Ablauf:
+  - Flow-Tables werden angelegt und beschreiben, welche Aktionen für bestimmte Pakete ausgeführt werden sollen
 
-![Openflow](resources/virt-sdn-northandsouth.png)<!-- width=500px -->
+![Openflow](assets/virt-sdn-northandsouth.png)<!-- width=500px -->
 
 
-### Flow-Tabellen 
+### Flow-Tabellen
 
-- Jede Flow-Tabelle enthält eine Menge von Einträgen mit fester Struktur: 
-![Struktur Flow-Tables ](resources/sdn-of-flowtable.png)<!-- width=500px -->
+- Jede Flow-Tabelle enthält eine Menge von Einträgen mit fester Struktur:
+
+![Struktur Flow-Tables ](assets/sdn-of-flowtable.png)<!-- width=500px -->
+
 - Abzugleichende Informationen: Charakteristika auf die hin das eingehende Paket untersucht wird
 - Priorität: Ermöglicht Selektion eines Eintrags bei mehreren passenden Einträgen
 - Zähler: Hält Information, wie häufig Eintrag angewendet wurde
 - Timeouts: Maximale Zeit oder Inaktivitätszeit bevor der Eintrag vom Switch entfernt wird
 - Cookie: Eindeutiger Identifikator, der vom Controller zu Referenzzwecken verwendet wird
-- Unterscheidung Instruktion und Aktion 
+- Unterscheidung Instruktion und Aktion
   - Instruktion entscheidet, was innerhalb des Switches passiert (siehe Instruktionsübersicht)
   - Aktion bestimmt, was mit dem Paket gemacht werden soll
 
 Mögliche Instruktionen (= bestimmen Vorgehen bei der Auswertung des Pakets)
+
 ```c
 enum ofp_instruction_type {
-OFPIT_GOTO_TABLE = 1, /* Gehe zur nächsten Tabelle in der Pipeline */
-OFPIT_WRITE_METADATA = 2, /* Fülle das Metadaten-Feld für die nächste Tabelle */
-OFPIT_WRITE_ACTIONS = 3, /* Schreibe eine Aktion / Aktionen in die Aktionsmenge */
-OFPIT_APPLY_ACTIONS = 4, /* Wende die Aktionen sofort an */
-OFPIT_CLEAR_ACTIONS = 5, /* Lösche die Aktionsmenge */
-OFPIT_METER = 6, /* Wende einen Meter für z.B. Limitierung der Datenrate an */
-OFPIT_EXPERIMENTER = 0xFFFF /* Für experimentelle Instruktionen */
+OFPIT_GOTO_TABLE = 1,       // Gehe zur nächsten Tabelle in der Pipeline
+OFPIT_WRITE_METADATA = 2,   // Fülle das Metadaten-Feld für die nächste Tabelle
+OFPIT_WRITE_ACTIONS = 3,    // Schreibe eine Aktion / Aktionen in die Aktionsmenge
+OFPIT_APPLY_ACTIONS = 4,    // Wende die Aktionen sofort an
+OFPIT_CLEAR_ACTIONS = 5,    // Lösche die Aktionsmenge
+OFPIT_METER = 6,            // Wende einen Meter für z.B. Limitierung der Datenrate an
+OFPIT_EXPERIMENTER = 0xFFFF // Für experimentelle Instruktionen
 };
 ```
 
-### Paketverarbeitung 
+### Paketverarbeitung
 
 - Charakteristika von eingehenden Paketen werden mit Einträgen einer Flow-Tabelle abgeglichen und die zugehörigen Instruktionen bei erfolgreichem Abgleich angewendet
 - Als Instruktion bei einem Match mit einem Eintrag kann das Paket zur weiteren Verarbeitung an eine weitere Tabelle übergeben werden, für deren Einträge ebenfalls ein sequentieller Abgleich erfolgt $\rightarrow$ Pipeline-Verarbeitung
-- Falls es keinen Match eines Pakets mit den Regeln einer Tabelle gibt, wird ein für diesen Fall vordefinierter Eintrag selektiert („table-miss flow entry“) 
+- Falls es keinen Match eines Pakets mit den Regeln einer Tabelle gibt, wird ein für diesen Fall vordefinierter Eintrag selektiert („table-miss flow entry“)
   - z.B. Optionen:
     - Verwerfen des Pakets
-    - Weiterleiten an eine andere Tabelle 
+    - Weiterleiten an eine andere Tabelle
     - Senden des Pakets an den Controller
-![1. Beispiel Paketverarbeitung](resources/sdn-of-packets.png)<!-- width=500px -->
+
+![1. Beispiel Paketverarbeitung](assets/sdn-of-packets.png)<!-- width=500px -->
 
 ### Protokoll
-![Openflow Protokoll](resources/sdn-of-packets2.png)<!-- width=500px -->
+![Openflow Protokoll](assets/sdn-of-packets2.png)<!-- width=500px -->
 
 - Für den Abgleich mit Tabelleneinträgen kann der Ingress-Port, die von einer vorherigen Tabelle dem Paket zugeordneten Metadaten und der Paketheader verwendet werden
 - Pro Tabelle wird nur ein Eintrag (Eintrag mit höchster Priorität) selektiert
 
-![Openflow Channel-Etablierung](resources/sdn-of-protocol.png)<!-- width=500px -->
+![Openflow Channel-Etablierung](assets/sdn-of-protocol.png)<!-- width=500px -->
 
 - Bevor OpenFlow-Nachrichten ausgetauscht werden, wird ein OpenFlow-Channel etabliert
 - Jeder Switch kann einen Channel zu mehreren Controllern aufbauen (z.B. zur Steigerung der Zuverlässigkeit)
 - Bei mehreren Controllern kann einer der Controller als Master fungieren, dessen Anweisungen die höchste Priorität aufweisen
 - Nach Etablierung des Channels können Nachrichten aus drei verschiedenen Klassen ausgetauscht werden
 
+
 1. **Controller-zu-Switch-Nachrichten**
-- Vom Controller initiierte Nachrichten 
-- Beispiele: 
+
+
+- Vom Controller initiierte Nachrichten
+- Beispiele:
   - Ermittlung des Funktionsumfangs eines Switches
   - Hinzufügen/Modifizieren/Entfernen von Einträgen der Flow-Tabelle
+
 2. **Asynchrone Nachrichten**
-- Nachrichten werden ohne vorherige Anfrage des Controllers vom Switch an den Controller gesendet 
-- Beispiele: 
-  - Packet-In-Nachricht, kann bei Ankunft eines Paketes versendet werden 
-  - Flow-Removed-Nachricht: ein Eintrag wurde aus der Flow-Tabelle entfernt 
+
+- Nachrichten werden ohne vorherige Anfrage des Controllers vom Switch an den Controller gesendet
+- Beispiele:
+  - Packet-In-Nachricht, kann bei Ankunft eines Paketes versendet werden
+  - Flow-Removed-Nachricht: ein Eintrag wurde aus der Flow-Tabelle entfernt
 3. **Symmetrische Nachrichten**
 - Ohne Anfrage von einer der beiden Seiten versendet
 - Realisieren überwiegend Hilfsfunktionalitäten
-- Beispiele: 
-  - Hello-Nachrichten für die Etablierung des Channels 
+- Beispiele:
+  - Hello-Nachrichten für die Etablierung des Channels
   - Fehlermeldungen
   - EchoRequest-/EchoReply-Nachrichten
 
-### Nachrichtenbeispiel 
+### Nachrichtenbeispiel
 
-![Openflow Nachrichtenbeispiel](resources/sdn-of-message.png)<!-- width=500px -->
+![Openflow Nachrichtenbeispiel](assets/sdn-of-message.png)<!-- width=500px -->
 
 - Interaktion mittels Packet-In- und Packet-Out-Nachricht verdeutlicht die detaillierte Kontrolle, die der Controller über die Abläufe im Netzwerk besitzt
 - Packet-Out-Nachricht gibt Buffer-ID an, die in Packet-In-Nachricht als Referenz in Paketspeicher des Switches angegeben wurde oder inkludiert das gesamte weiterzuleitende Paket
 - Neben Angabe eines ausgehenden Ports können Header-Elemente des Pakets (z.B. IP-Quelladresse) verändert werden
 
-## VxLAN 
+## VxLAN
 
-### Übersicht 
+### Übersicht
 - Virtual Extensible LAN (VxLAN) zielt auf die Beseitigung von Skalierbarkeitsproblemen in großen virtualisierten Infrastrukturen
 - Spezifikation ist als „informational RFC“ verfügbar (RFC 7348)
 - Grundprinzip:
   - Schicht-2-Daten werden über ein Schicht-3-Netz nur an diejenigen physischen Knoten übermittelt, die Mitglied eines Schicht-2-Overlay-Netzes (=VxLAN Segments) sind
   - Dazu: Kapselung von Ethernet-Frames in UDP-Pakete, die einen eindeutigen Identifier (`VNI`) des VxLAN-Segments enthalten
-  - VTEP sorgt dafür, dass die von der VM versendeten Pakete an diejenigen physischen Maschinen weitergeleitet werden, die auch VMs des selben logischen VxLANs haben 
+  - VTEP sorgt dafür, dass die von der VM versendeten Pakete an diejenigen physischen Maschinen weitergeleitet werden, die auch VMs des selben logischen VxLANs haben
 
-![VxLAN-Übersicht](resources/sdn-vxlan-example.png)<!-- width=500px -->
+![VxLAN-Übersicht](assets/sdn-vxlan-example.png)<!-- width=500px -->
 
 ### Ablauf
-![VxLAN-Ablauf](resources/sdn-vxlan-example2.png)<!-- width=500px -->
+![VxLAN-Ablauf](assets/sdn-vxlan-example2.png)<!-- width=500px -->
 
 1. Virtuelle Maschine 1 sendet ARP-Broadcast, da sich das Ziel (Virtuelle Maschine 2) im selben IP-Subnetz befindet
 2. Der VTEP ergänzt den zu der VM gehörigen VxLAN VNI und sendet den Frame an eine für den VNI verfügbare IP-Multicastadresse; das Paket wird mittels UDP an den VxLAN-Port (gemäß IANA: 4789) adressiert
 3. VTEP der physischen Maschine, die die adressierte VM ausführt, nimmt UDP-Paket entgegen und entfernt die ergänzten Header, so dass nur das ursprüngliche Ethernet-Frame bleibt
-- VTEP speichert eine Abbildung der Quell-MAC-Adresse des gekapselten Ethernet-Frames und der Quell-IP-Adresse des kapselnden IP-Headers $\rightarrow$ Antwort an MAC-Adresse kann mittels IP-Unicast realisiert werden
+-> VTEP speichert eine Abbildung der Quell-MAC-Adresse des gekapselten Ethernet-Frames und der Quell-IP-Adresse des kapselnden IP-Headers -> Antwort an MAC-Adresse kann mittels IP-Unicast realisiert werden
 4. Ethernet-Frame wird transparent an diejenigen VMs, die Mitglied des adressierten VxLAN-Segments sind, weitergeleitet
 
 ### Implementierungen und Header
@@ -2157,20 +2165,20 @@ OFPIT_EXPERIMENTER = 0xFFFF /* Für experimentelle Instruktionen */
   - IPv6-Multicast: Multicast Listener Discovery (MLD)
 - VxLAN-Header besteht im Wesentlichen aus einem 24-Bit-Feld für den VNI
 
-![VxLAN-Header](resources/sdn-vxlan-header.png)<!-- width=500px -->
+![VxLAN-Header](assets/sdn-vxlan-header.png)<!-- width=500px -->
 
-## Diskussion SDN-Layer Verortung 
+## Diskussion SDN-Layer Verortung
 
-- Frage: An welcher Stelle befindet sich der SDN-Layer eigentlich? 
-  - auf den Hosts selber? 
-  - auf den physischen Switches? 
+- Frage: An welcher Stelle befindet sich der SDN-Layer eigentlich?
+  - auf den Hosts selber?
+  - auf den physischen Switches?
 
-- sinnvolle Variante: 
+- sinnvolle Variante:
   - Realisierung auf den Hosts selbst, also Softwarebasiert
-  - dadurch kann Overhead verhindert werden, zum Beispiel werden doppelt versendete Pakete vermieden 
-  - durch virtuelle Switches ermöglicht, z.B Open VSwitch 
+  - dadurch kann Overhead verhindert werden, zum Beispiel werden doppelt versendete Pakete vermieden
+  - durch virtuelle Switches ermöglicht, z.B. Open VSwitch
 
-## Open VSwitch 
+## Open VSwitch
 
 - In Software realisierter, unter Apache-Lizenz stehender Multi-Layer-Switch
 - Implementierungsfokus: Linux
@@ -2185,19 +2193,19 @@ OFPIT_EXPERIMENTER = 0xFFFF /* Für experimentelle Instruktionen */
 - Implementierung umfasst ein Kernelmodul, Daemonen-Programme und Kommandozeilenwerkzeuge für Konfigurations- und Monitoringzwecke
 
 - Hinweis für die Praxis:   
-  - auch auf Software-Switching-Ebene können Zyklen entstehen und sind unter Umständen deutlich schwerer zu debuggen 
+  - auch auf Software-Switching-Ebene können Zyklen entstehen und sind unter Umständen deutlich schwerer zu debuggen
 
 - Ausgewählte Werkzeuge:
-  - `ovs−vsctl`: Werkzeug zur Statusabfrage und Konfiguration des OpenvSwitch-Daemons
-  - `ovs−dpctl`: Werkzeug zur Konfiguration von Daten-Pfaden („data paths“;vergleichbar zu den Konzepten von OpenFlow)
-  - `ovs−controller`: Implementierung eines OpenFlow-Controllers
-  - `ovs−vlan−test`: Werkzeug zur Problemanalyse bei VLANs
-  - `ovsdb-tool`: Ermöglicht Zugriff auf die Open vSwitch Datenbank
-  - `ovs−ofctl`: Ermöglicht Interaktion mittels OpenFlow-Protokoll mit Switch
+  - ``ovs-vsctl``: Werkzeug zur Statusabfrage und Konfiguration des OpenvSwitch-Daemons
+  - ``ovs-dpctl``: Werkzeug zur Konfiguration von Daten-Pfaden ("data paths"; vergleichbar zu den Konzepten von OpenFlow)
+  - ``ovs-controller``: Implementierung eines OpenFlow-Controllers
+  - ``ovs-vlan-test``: Werkzeug zur Problemanalyse bei VLANs
+  - ``ovsdb-tool``: Ermöglicht Zugriff auf die Open vSwitch Datenbank
+  - ``ovs-ofctl``: Ermöglicht Interaktion mittels OpenFlow-Protokoll mit Switch
 
 ### Übersicht zur Architektur
 
-[Open VSwitch Architektur](resources/sdn-ovs-architecture.png)<!-- width=500px -->
+![Open VSwitch Architektur](assets/sdn-ovs-architecture.png)<!-- width=500px -->
 
 - netlink: IPC-Mechanismus für die Kommunikation zwischen Kernel- und User-Space (siehe auch RFC 3549)
 
@@ -2205,7 +2213,7 @@ OFPIT_EXPERIMENTER = 0xFFFF /* Für experimentelle Instruktionen */
 
 ### Beispiele
 
-- Beispiel: Ausgabe von ovsdb-tool show-log –m, nachdem:
+- Beispiel: Ausgabe von ovsdb-tool show-log -m, nachdem:
 1. mit ovs-vsctl add-br br0 eine Bridge angelegt wurde
 2. mit ovs-vsctl add-port br0 eth0 die Bridge mit eth0 verbunden wurde
 
@@ -2260,110 +2268,83 @@ LOCAL(br0): addr:00:22:68:0e:43:ca
     state: 0
     speed: 0 Mbps now, 0 Mbps max
 OFPT_GET_CONFIG_REPLY (xid=0x4): frags=normal miss_send_len=0
-
 ```
 
-# Prüfungsvorbereitung 2: TLDR 
+# Prüfungsvorbereitung 2: TLDR
 
-## Kapitel 1 - Grundlagen 
+## Kapitel 1 - Grundlagen
 
-- wichtige Standardisierungsorganisationen 
-  - IEEE
-    - Layer 2
-    - Berufsverband
+- wichtige Standardisierungsorganisationen
+  - IEEE: Layer 2, Berufsverband
   - IETF
     - alles ab Layer 2
     - ARP, IP, Anwendungsschichtprotokolle
     - Architekturen und Grundprinzipien
-    - Fragen: 
-      - wie organisiert? 
-        - Freiwilligenorganisation, nur Kompetenz zur Mitarbeit benötigt 
-        - arbeitet "hands-on" -> Implementierungen sollen betrachtet und standardisiert werden
-        - in 7 Areas aufgeteilt, diese wiederum in Arbeitsgruppen
-
- - Übertragungsmodi: 
+    - Fragen: wie organisiert?
+    - Freiwilligenorganisation, nur Kompetenz zur Mitarbeit benötigt
+    - arbeitet "hands-on" -> Implementierungen sollen betrachtet und standardisiert werden
+    - in 7 Areas aufgeteilt, diese wiederum in Arbeitsgruppen
+ - Übertragungsmodi:
   - verbindungsorientiert vs verbindungslos
-    - verbindungsorientiert: 
-      - Nachteile: 
-        - mehr Overhead
-    - verbindungslos: 
-      - Nachteil: 
-        - es ist nicht gesichert, ob Gegenseite überhaupt Verbindung aufbauen kann 
- 
-  - leitungsvermittelt vs paketvermittelt 
-    - leitungsvermittelt: 
-      - Nachteil: 
-        - verfügbare Ressourcen womöglich nicht gut ausgenutzt
-    - paketvermittelt:
-      - Nachteil:
-        - QoS ist nicht unbedingt gesichert (nur in kontrollierten Umgebungen)
+    - verbindungsorientiert -> Nachteile: mehr Overhead
+    - verbindungslos -> Nachteil: es ist nicht gesichert, ob Gegenseite überhaupt Verbindung aufbauen kann
+  - leitungsvermittelt vs paketvermittelt
+    - leitungsvermittelt -> Nachteil: verfügbare Ressourcen womöglich nicht gut ausgenutzt
+    - paketvermittelt -> Nachteil: QoS ist nicht unbedingt gesichert (nur in kontrollierten Umgebungen)
   - Frage hier: Vor- und Nachteile  
-
-- ISO-OSI Referenzmodell: 
+- ISO-OSI Referenzmodell:
   - sollte für Prüfung komplett verstanden sein
   - Vor allem die Funktionen der einzelnen Schichten
-  - Unterscheidung zwischen Protokoll und Dienst: 
-    - Protokoll: Regeln zur Steuerung der Kommunikation 
+  - Unterscheidung zwischen Protokoll und Dienst:
+    - Protokoll: Regeln zur Steuerung der Kommunikation
     - Dienst: Durch Schicht erbrachte Funktionalität
-
-- Layer: Bei Bezugnahme auf Layer -> Rückgriff auf ISO/OSI, sollte aber nicht direkt abgefragt werden 
-
-- TCP/IP-Modell: 
+- Layer: Bei Bezugnahme auf Layer -> Rückgriff auf ISO/OSI, sollte aber nicht direkt abgefragt werden
+- TCP/IP-Modell:
   - Auch hier die Funktionen der einzelnen Schichten im Vergleich zu ISO/OSI
-
-- Elemente: 
-  - was sind Switches, was machen sie? 
-    - Zuordnung Ports und MAC-Adresse über Ethernet-Frame  
+- Elemente:
+  - was sind Switches, was machen sie? -> Zuordnung Ports und MAC-Adresse über Ethernet-Frame  
   - Was sind Router, was machen sie?
+- Medien und Verkabelung wird nicht abgefragt
+- PCAP -> Kennen und einordnen, nicht programmieren
 
-- Medien und Verkabelung wird nicht abgefragt 
+## Kapitel 2
 
-- PCAP -> Kennen und einordnen, nicht programmieren 
-
-## Kapitel 2 
-
-- Ethernet einordnen und grob über den Headeraufbau Bescheid wissen 
+- Ethernet einordnen und grob über den Headeraufbau Bescheid wissen
   - Auch VLAN-Tag sollte gewusst sein
-
 - Switchtypen und -kenngrößen sind nicht relevant
 
 ### Spanning-Tree **wichtig**
-  - Vorteile und Schwächen
-  - wie funktioniert es? 
 
-  - Phase 1: 
-    -  Root-Bridge wird bestimmt
-      - Bridge-ID wird versendet 
-      - besteht aus Priorität (kann vom Admin festgelegt werden) und MAC-Adresse
-      - anhand von Prio und MAC-Adresse wird eine Root-Bridge festgelegt
-  - Phase 2: 
-    - kürzeste Wege werden bestimmt, indem Root-Bridge Pakete versendet
-    - mit diesem Paketen werden Kosten der Pfade bestimmt 
-    - Ports mit längeren Pfaden zur Root-Bridge werden blockiert 
-
-  - Schwächen: 
-    - Bandbreite im Netz geht verloren, da Ports deaktiviert werden
-    - bei Ausfall einer Verbindung erneute Ausführung und Neuberechnung -> Ausfallzeit
-    - Spanning-Tree weiss nichts von VLANs, also kein Spannbaum pro VLAN
-
-  - Erweiterungen zu STP 
-    - RSTP: 
-      - Backup-Ports werden sich gemerkt um bei Topologieänderungen schneller reagieren zu können
-      - dazu: "Alternate-Ports"
+- Vorteile und Schwächen
+- wie funktioniert es?
+- Phase 1:
+  -  Root-Bridge wird bestimmt
+    - Bridge-ID wird versendet
+    - besteht aus Priorität (kann vom Admin festgelegt werden) und MAC-Adresse
+    - anhand von Prio und MAC-Adresse wird eine Root-Bridge festgelegt
+- Phase 2:
+  - kürzeste Wege werden bestimmt, indem Root-Bridge Pakete versendet
+  - mit diesem Paketen werden Kosten der Pfade bestimmt
+  - Ports mit längeren Pfaden zur Root-Bridge werden blockiert
+- Schwächen:
+  - Bandbreite im Netz geht verloren, da Ports deaktiviert werden
+  - bei Ausfall einer Verbindung erneute Ausführung und Neuberechnung -> Ausfallzeit
+  - Spanning-Tree weiss nichts von VLANs, also kein Spannbaum pro VLAN
+- Erweiterungen zu STP
+  - RSTP:
+    - Backup-Ports werden sich gemerkt um bei Topologieänderungen schneller reagieren zu können
+    - dazu: "Alternate-Ports"
 
 ### VLANs
 
 - basierend auf physischer Topologie eines Netzes können verschiedene Broadcast-Domains etabliert werden
   - mehrere logische L2-Netze auf einem physischen L2 Netz
-- tagbasiert vs. portbasiert 
-- Inter-VLAN-Routing: 
-  - Wie funktioniert es? 
+- tagbasiert vs. portbasiert
+- Inter-VLAN-Routing:
+  - Wie funktioniert es?
 - **mögliches Prüfungsszenario: Beschreibung der Einrichtung eines VLANs á la Probeklausur**
-
-- VTP nicht relevant 
-
-- VLANs und STP ist relevant: wie wird das realisiert? 
-
+- VTP nicht relevant
+- VLANs und STP ist relevant: wie wird das realisiert?
 - TRILL **höchstgradig prüfungsrelevant**
   - Grundgedanke und Funktionsweise
   - Vorteil zu STP
@@ -2371,159 +2352,158 @@ OFPT_GET_CONFIG_REPLY (xid=0x4): frags=normal miss_send_len=0
 
 ## Kapitel 3 - Schicht 3, Internet Protocol
 
-Header müssen nicht auswendig gelernt werden, Mechanismen sollten verstanden sein 
+Header müssen nicht auswendig gelernt werden, Mechanismen sollten verstanden sein
 
-Hilfprotokolle wichtig: 
+Hilfsprotokolle wichtig:
 - ARP (IPv4), ICMP, NDP (IPv6)
 
 ### IPv4
 
-- Fragmentierung sollte erklärt werden können 
-  - wenn Paket größer ist als die MTU, wird bei IPv4 das Paket vom Router, bei IPv6 vom Sender fragmentiert (vorher pass-MTU ermittelt) 
-    - weitere Einzelheiten noch interessant 
-- Bedeutung der TTL: 
-  - Zyklenvermeidung 
-  - Dekrementierung des TTL-Wertes bei jedem Hop, wenn mit TTL=1 empfangen, wird Paket verworfen 
+- Fragmentierung sollte erklärt werden können
+  - wenn Paket größer ist als die MTU, wird bei IPv4 das Paket vom Router, bei IPv6 vom Sender fragmentiert (vorher pass-MTU ermittelt)
+    - weitere Einzelheiten noch interessant
+- Bedeutung der TTL:
+  - Zyklenvermeidung
+  - Dekrementierung des TTL-Wertes bei jedem Hop, wenn mit TTL=1 empfangen, wird Paket verworfen
 
 - Aufteilung in verschiedene Subnetze ist prüfungsrelevant
-  - wichtig: auch über Oktettgrenzen hinweg 
+  - wichtig: auch über Oktettgrenzen hinweg
 
-- ARP 
+- ARP
   - Grundgedanke
-    - MAC-Adresse des next-hops ermitteln 
-  - Funktionsweise erklären 
+    - MAC-Adresse des next-hops ermitteln
+  - Funktionsweise erklären
 
-- ICMP einordnen, nur oberflächlich 
+- ICMP einordnen, nur oberflächlich
 
-- Schwächen von IPv4 
-  - Adressraum 
-  - ineffizientes Routing 
-  - keine automatische Konfiguration 
+- Schwächen von IPv4
+  - Adressraum
+  - ineffizientes Routing
+  - keine automatische Konfiguration
 
-### IPv6 
+### IPv6
 
-- warum ist IPv6 effizienter als IPv4? 
-  - konstant große Länge des Headers und "next-header"-Feld 
+- warum ist IPv6 effizienter als IPv4?
+  - konstant große Länge des Headers und "next-header"-Feld
   - Fragmentierung der Pakete beim Sender
 
-- Notation und Adresskürzung (und umgekehrt) sollte gekonnt werden 
+- Notation und Adresskürzung (und umgekehrt) sollte gekonnt werden
 
-- Uni-, Multi- und Anycast differenzieren 
+- Uni-, Multi- und Anycast differenzieren
 
-- SLAAC 
+- SLAAC
   - Funktionsweise
-  - Privacy-Extensions 
+  - Privacy-Extensions
 
-- Migrationsmechanismen IPv4->IPv6 
-  - nennen können 
+- Migrationsmechanismen IPv4->IPv6
+  - nennen können
 
 ## Kapitel 4 - Transportschicht
 
 - Aufgaben der Transportschicht
   - Realisierung von Ende-zu-Ende-Kommunikation, durch Bereitstellung einer Adressierungsmöglichkeit `Ports`
 
-- Vergleich zwischen TCP und UDP 
+- Vergleich zwischen TCP und UDP
   - kleine Tabelle, 4 Charakteristika
 
 - TCP
-  - Grundlegende Mechanismen 
+  - Grundlegende Mechanismen
   - bestätigtes Protokoll
-    - in dem Paket enthaltene Bytes werden bestätigt 
+    - in dem Paket enthaltene Bytes werden bestätigt
   - Congestion-Control (Zusammenhang Congestion- und Receiving-Window)
     - Slow-Start-Verfahren
   - Verbindungsaufbau - 3-Wege-Handshake
     - wechselseitiges Synchronisieren der Sequenznummer
-  - Schwächen von TCP 
-  - TCP-Fast-Open / SYN-Cookies sollten eingeordnet werden können 
+  - Schwächen von TCP
+  - TCP-Fast-Open / SYN-Cookies sollten eingeordnet werden können
   - TLS sollte eingeordnet werden können
     - Schwäche: zusammen mit TCP-3WH großer Overhead
 
-- Vorteile QUIC 
-  - Verschlüsselung auf Paketebene 
+- Vorteile QUIC
+  - Verschlüsselung auf Paketebene
   - Overhead von TCP mit TLS entfällt
 
-- **hochgradig wichtig!**
-  - Abfolgen von Calls bei Socketaufrufen und deren Funktion
-  - Raw-Sockets einordnen können (wofür notwendig); darüber hinaus nicht relevant
+**hochgradig wichtig!**
+
+- Abfolgen von Calls bei Socketaufrufen und deren Funktion
+- Raw-Sockets einordnen können (wofür notwendig); darüber hinaus nicht relevant
 
 ## Kapitel 5 - Routing
 
-### AS 
+### AS
 
-- Konzept der AS erklären
-  - Was ist ein AS?
-  - Voraussetzung für Registrierung eines AS und einer eigenen IP-Adressrange
-    - Mitglied bei RIPE werden 
-    - Public IP-Adressranges beantragen
-    - Nachweis über Bedingungserfüllung für ein AS 
-      - Links zu zwei anderen AS 
-      - Single and Clearly defined Routing Policy   
-  - Transit- und Peer- sollte bekannt sein 
+Konzept der AS erklären
+
+- Was ist ein AS?
+- Voraussetzung für Registrierung eines AS und einer eigenen IP-Adressrange
+  - Mitglied bei RIPE werden
+  - Public IP-Adressranges beantragen
+  - Nachweis über Bedingungserfüllung für ein AS
+    - Links zu zwei anderen AS
+    - Single and Clearly defined Routing Policy   
+- Transit- und Peer- sollte bekannt sein
 
 Unterscheidung Inter- und Intra-AS-Protokolle
 
-- Intra-AS-Protokolle 
+- Intra-AS-Protokolle
   - was ist Distanzvektor, was ist LS-Protokoll?
 
 - kein RIP
 
-- OSPF: 
-  - Grundlegender Ablauf 
-    - Broadcast ins lokale Netz mit Hello-Paketen
-    - Router lauschen auf Hello-Pakete
-      - um Adjazenz auszubilden:
-        - Area-ID muss gleich sein 
-        - Authentisierung muss stimmen
-        - Hello und Dead-Intervalle müssen gleich sein
-    - nach Adjazenzausbildung: 
-      - LSA zwischen allen Routern in der Area werden geflutet
-
+OSPF:
+- Grundlegender Ablauf
+  - Broadcast ins lokale Netz mit Hello-Paketen
+  - Router lauschen auf Hello-Pakete
+    - um Adjazenz auszubilden: Area-ID muss gleich sein, Authentifizierung muss stimmen, Hello und Dead-Intervalle müssen gleich sein
+  - nach Adjazenzausbildung:
+    - LSA zwischen allen Routern in der Area werden geflutet
   - Einteilung in Areas und Begründung warum diese Einteilung vorgenommen wird
     - Nachrichtenaufkommen wird reduziert, da nicht mehr alle LSAs an alle Router gesendet werden
-    - von Area zu Area wird nur Information über prinzipiell erreichbare Subnetze weitergegeben, nicht aber die Topologie 
+    - von Area zu Area wird nur Information über prinzipiell erreichbare Subnetze weitergegeben, nicht aber die Topologie
 
-- BGP:
-  - allgemeine Einordnung: 
-    - soll Pfade von AS bekannt machen 
-  - welche Konigurationsinformationen müssen angegeben werden? 
-    - Eigene AS-Nummer
-    - im AS vorhandene Adressrange
-    - IP-Adresse des Nachbarn 
-    - AS-Nummer des Nachbarn 
-  - grundlegende Funktionsweise: 
-    - Mandatory Attributes wichtig
-    - <!-- noch ergänzen--> 
+BGP:
+
+- allgemeine Einordnung:
+  - soll Pfade von AS bekannt machen
+- welche Konigurationsinformationen müssen angegeben werden?
+  - Eigene AS-Nummer
+  - im AS vorhandene Adressrange
+  - IP-Adresse des Nachbarn
+  - AS-Nummer des Nachbarn
+- grundlegende Funktionsweise:
+  - Mandatory Attributes wichtig
+  - <!-- noch ergänzen-->
 
 
 ## Kapitel 6 - Anwendungsschicht
 
-### DNS 
+### DNS
 
-- Wie wird eine Domäne aufgelöst? 
+- Wie wird eine Domäne aufgelöst?
 - Ablauf der Domänenregistrierung?
-  - Hoster überprüft beim Betreiber der TLD ob die Domain noch frei ist 
-  - wenn frei: Hoster registriert die Domain bei der TLD 
+  - Hoster überprüft beim Betreiber der TLD ob die Domain noch frei ist
+  - wenn frei: Hoster registriert die Domain bei der TLD
   - Resource-Records (insbesondere A-Level-Records) werden dann auf dem NS des Hosters hinterlegt
   - es erfolgt kein Update auf den Root-Name-Servern!
- 
-- Anfrage von Resolver an NS erfolgt rekursiv: Einmal Fragen und Antwort bekommen 
+
+- Anfrage von Resolver an NS erfolgt rekursiv: Einmal Fragen und Antwort bekommen
 - NS fragt iterativ immer wieder an, bis er die Antwort erhält
-  - dadurch kann intensives Caching erfolgen und somit späterer Traffic reduziert werden 
+  - dadurch kann intensives Caching erfolgen und somit späterer Traffic reduziert werden
 
 - Ressource-Records
-  - was ist das? 
+  - was ist das?
 
-- Was ist DNS-Zone? 
+- Was ist DNS-Zone?
 
 - DNS over TLS/HTTPS
-  - Unterschiede zwischen beiden Ansätzen 
+  - Unterschiede zwischen beiden Ansätzen
 
 - 4 DNS-Typen (Dyn, Rev, Split,)
-  - sollten bekannt sein 
+  - sollten bekannt sein
 
-### NTP 
+### NTP
 
-- Grundlegende Motivation und Funktionsweise erklären 
+- Grundlegende Motivation und Funktionsweise erklären
 
 ### DHCP
 
@@ -2532,34 +2512,22 @@ Unterscheidung Inter- und Intra-AS-Protokolle
 
 ### SOCKS
 
-- kommt nicht dran 
+- kommt nicht dran
 
 ## Kapitel 7 - Software-Defined-Networking
 
-- Definition SDN 
-  - beschreibt einen Ansatz, bei dem die Controlplane von der Dataplane separiert wird, während die Controlplane zentralisiert wird. 
+- Definition SDN
+  - beschreibt einen Ansatz, bei dem die Controlplane von der Dataplane separiert wird, während die Controlplane zentralisiert wird.
     - Durch Schnittstellen der Controlplane werden dann Anwendungsanforderungen über den SDN-Controller (Controllplane) bearbeitet und die so erstellten Regeln durch die Dataplane nur noch umgesetzt
 
 ### Openflow
 
-- Einordnen und Funktion beschreiben 
+- Einordnen und Funktion beschreiben
 
-### VxLAN 
+### VxLAN
 
-- Einordnen und Funktion beschreiben 
+- Einordnen und Funktion beschreiben
 
-### Open VSwitch 
+### Open VSwitch
 
 - Einordnung (Folie 18)
-
-
-
-  
-
-
-
-
-  
-
-
-

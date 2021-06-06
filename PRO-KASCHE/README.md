@@ -81,7 +81,7 @@ IT-Trends
 
 ## Cloud Computing
 
-![Skizze einer Cloud](resources/cloud-skizze.svg)<!-- width=350px -->
+![Skizze einer Cloud](assets/cloud-skizze.svg)<!-- width=350px -->
 
 **Vorteile:**
 
@@ -93,7 +93,7 @@ IT-Trends
 
 ### Edge Computing
 
-![Edge Computing](resources/edge-computing-skizze.svg)<!-- width=350px -->
+![Edge Computing](assets/edge-computing-skizze.svg)<!-- width=350px -->
 
 
 - Anwendung: "am Rand des großen Netzwerks" --> für Geräte, die nicht in einem Netzwerk liegen (z.B. IoT-Sensoren)
@@ -196,7 +196,7 @@ z.B.:
 
 Diese können wiederum aus Microservices zusammengesetzt sein, die untereinander vernetzt sind, siehe Schaubild.
 
-![Microservices Schema](resources/microservice.png)<!-- width=350px -->
+![Microservices Schema](assets/microservice.png)<!-- width=350px -->
 
 ## Dienste
 
@@ -247,7 +247,7 @@ Dazu muss ein **Load Balancer** die Anfragen beispielsweise an diejenigen MS mit
 
 # Service-Orientierte-Architekturen (SOA)
 
-![Service-Orientierte-Architektur](resources/SOA-Example.png)<!-- width=350px -->
+![Service-Orientierte-Architektur](assets/soa-example.png)<!-- width=350px -->
 
 ## REST - Schnittstellen - Representational State Transfer
 
@@ -324,7 +324,7 @@ https://backstage.dhge.de/course/view.php?id=2718
 4. Parallelisierung auf GRID-Ebene
     - mehrere zusammengefasste Cluster
 
-![Cluster und Grid Computing](resources/Rechner_Cluster_Grid.png)<!-- width=350px -->
+![Cluster und Grid Computing](assets/rechner-cluster-grid.png)<!-- width=350px -->
 
 ### Cluster-Computing
 
@@ -350,7 +350,7 @@ https://backstage.dhge.de/course/view.php?id=2718
 - Vorteil ist die gute Skalierbarkeit
 - Ressourcen und Zugriff sind dezentral
 
-![Grid Computing](resources/GRID_Computing.png)<!-- width=350px -->
+![Grid Computing](assets/grid-computing.png)<!-- width=350px -->
 
 ## Warum (keine) Cloud
 
@@ -391,7 +391,7 @@ https://backstage.dhge.de/course/view.php?id=2718
 
 ## IT-Aufbau
 
-![Aufbau einer IT](resources/it-aufbau.png)<!-- width=350px -->
+![Aufbau einer IT](assets/it-aufbau.png)<!-- width=350px -->
 
 ## AWS-Einführung
 
@@ -469,7 +469,7 @@ Dann noch **Passwort abrufen** klicken um mit dem SSH-Keypair das Passwort zu en
 
 # Machine Learning - KI, neuronale Netzwerke, ...
 
-![Übersicht: Machine Learning](resources/Machine_Learning.png)<!-- width=350 -->
+![Übersicht: Machine Learning](assets/machine-learning.png)<!-- width=350 -->
 
 Arthur Samuel (1959): 
 
@@ -508,9 +508,9 @@ Tom Mitchell:
 
 ## Mathe-Perspektive 
 
-![Guetefunktion](resources/guetefunktion.png)<!-- width=350px -->
+![Guetefunktion](assets/guetefunktion.png)<!-- width=350px -->
 
-![Guetefunktion2](resources/guetefunktion2.png)<!-- width=350px -->
+![guetefunktion-2](assets/guetefunktion-2.png)<!-- width=350px -->
 
 ### Erkennen ohne Lernen 
 
@@ -525,7 +525,7 @@ $tilde{f}(z_{1}, param_{2})=z_{2}$
 
 $dbtilde{f}(z_{2}, param{3})= y$
 
-![Konstruktion Neuronales Netz](resources/neuronales-netz.png)<!-- width=350px -->
+![Konstruktion Neuronales Netz](assets/neuronales-netz.png)<!-- width=350px -->
 
 <!-- TODO: Layer-Abbildung schön machen und erklären -->
 

@@ -343,11 +343,11 @@ Hier wird immer wieder in eine Phase "zurück gesprungen", falls etwas nicht pas
 >
 > -> Zeit + Kosten + Leistung können nicht gleichzeitig verbessert werden
 
-![Schematische Darstellung des V-Modells](resources/v-modell.png)<!-- width=400px -->
+![Schematische Darstellung des V-Modells](assets/v-modell.png)<!-- width=400px -->
 
 | Vorteile                                              | Nachteile                                                                                                         |
 | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| klarer Ablauf (nächster Schritt bei Fehler wird klar) | Fehler in der Anaylse-Phase erst sehr spät sichtbar (früher mehr Kommunikation mit dem Kunden und MVP als Lösung) |
+| klarer Ablauf (nächster Schritt bei Fehler wird klar) | Fehler in der Analyse-Phase erst sehr spät sichtbar (früher mehr Kommunikation mit dem Kunden und MVP als Lösung) |
 | klare Test-Struktur vorgegeben                        |                                                                                                                   |
 | Iterationen bis alle Tests der Phase OK sind          |                                                                                                                   |
 
@@ -769,7 +769,7 @@ ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **E
 | Import            | Größe Block     | Ereignisse     | Dark-Mode      | Smart Art          |
 | Read Only Mode    | RS-Prüfung      |                | Sprachen       | Einfärben          |
 | Speichern         | Tabellen        |                |                | Zuschneiden        |
-| Export            |                 |
+| Export            |                 |                |                |                    |
 
 - Liste wird mit dem Nutzer durchgegangen -> Sortierung der Features innerhalb der Spalten nach Priorität
 - dann kann abgegrenzt werden, was alles in MVP 1, 2, 3 etc. enthalten sein soll
@@ -810,6 +810,7 @@ ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **E
 7. PBSK ... Papier, Bleistift, Schere, Kleber
 
 # Design-Thinking
+
 ist eine Methode für den Innovationsprozess
 
 **Idee**:
@@ -918,7 +919,7 @@ $$f(Qualitätsmaße) \hat{=}Kennzahlen \rightarrow Aufwand=g(LOC) \cdot f_1(Q,Ma
 
 ### Magisches Dreieck / Teufelsquadrat
 
-![Magisches Dreieck wird zum Quadrat](resources/magisches-dreieck.png)<!-- width=500px -->
+![Magisches Dreieck wird zum Quadrat](assets/magisches-dreieck.png)<!-- width=500px -->
 
 **Idee**
 
@@ -944,7 +945,7 @@ $$f(Qualitätsmaße) \hat{=}Kennzahlen \rightarrow Aufwand=g(LOC) \cdot f_1(Q,Ma
 
 - mehrere unabhängige Experten
 - mehrere Runden
-- $\oplus$ Schätzungen kovergieren i.d.R.
+- $\oplus$ Schätzungen konvergieren i.d.R.
 - $\oplus$ eliminiert Ausreiser
 - $\ominus$ relativ hoher Aufwand
 
@@ -1101,7 +1102,7 @@ $MM_{korrigiert}=K_u \cdot K_p \cdot MM$
 ### Function-Point-Methode
 
 - anstatt Codezeilen zu schätzen $\Rightarrow$ Evaluierung von Eingangsgrößen von Funktionen
-- somit entsteht ein ralatives Maß zur Bewertung von Funktionen $\rightarrow$ `function-points`
+- somit entsteht ein relatives Maß zur Bewertung von Funktionen $\rightarrow$ `function-points`
 - $\copyright$ A. Albrecht 1979 bei IBM
 - *wenn* Kosten pro Funktion Point bekannt, dann ist eine Kostenschätzung möglich
 
@@ -1114,7 +1115,7 @@ $MM_{korrigiert}=K_u \cdot K_p \cdot MM$
    - Schnittstellen zu externen Datenbeständen
    - interne Datenbankanfragen (im weitesten Sinne)
 
-![Abbildung Transaktionszählung](resources/function-points-count.png)<!-- width=500px -->
+![Abbildung Transaktionszählung](assets/function-points-count.png)<!-- width=500px -->
 
 2. Werte werden gewichtet
    - S $\rightarrow$ einfach
@@ -1134,7 +1135,7 @@ $MM_{korrigiert}=K_u \cdot K_p \cdot MM$
 
 4. Gesamtergebnis
 
-![Screenshot Ergebnisberechnung](resources/function-points-solution.png)<!-- width=500px -->
+![Screenshot Ergebnisberechnung](assets/function-points-solution.png)<!-- width=500px -->
 
 |                        | S         | M          | L          |
 | ---------------------- | --------- | ---------- | ---------- |
@@ -1144,7 +1145,7 @@ $MM_{korrigiert}=K_u \cdot K_p \cdot MM$
 | Externe Schnittstellen | $\cdot 5$ | $\cdot 7$  | $\cdot 10$ |
 | Interne Schnittstellen | $\cdot 7$ | $\cdot 10$ | $\cdot 15$ |
 
-Funktion Point Roh-Wert wird mit dieser Tabelle verrechnet und führt so zum Gesamtergebnis!
+Funktion Point Roh-Wert ergibt sich aus der Spaltensumme der Zeilensummen dieser Tabelle!
 
 $Function Points = FP_{Roh}* Korrekturfaktoren$
 
@@ -1186,7 +1187,7 @@ $Function Points = FP_{Roh}* Korrekturfaktoren$
     - Kommunikation
   - Use Case
 
-![Überblick UML-Diagrammtypen](resources/uml-diagrams.png)<!-- width=500px -->
+![Überblick UML-Diagrammtypen](assets/uml-diagrams.png)<!-- width=500px -->
 
 ### Eigenschaften der Objektorientierung
 
@@ -1211,7 +1212,7 @@ $Function Points = FP_{Roh}* Korrekturfaktoren$
   - statische Infos der Klasse einbeziehen
   - Beziehungen zu anderen Klassen darstellen
 
-![Beispiel Klassendiagramm](resources/uml-class.png)<!-- width=200px -->
+![Beispiel Klassendiagramm](assets/uml-class.png)<!-- width=200px -->
 
 - Vorgehen:
   - Klasse in Rechteck fassen, oberes Feld Klassenname
@@ -1252,11 +1253,11 @@ HUND -up-|> TIER
 
 - beschreibt Instanz einer Klasse
 
-![Beispiel Objektdiagramm](resources/uml-objects.png)<!-- width=200px -->
+![Beispiel Objektdiagramm](assets/uml-objects.png)<!-- width=200px -->
 
 ## Klassen-Diagramm mit Assoziationen
 - Beziehungen zwischen Klassen werden dargestellt (Vererbung ist damit nicht gemeint)
-![Beispiel Klassen-Diagramm mit Assoziation](resources/uml-association.png)<!-- width=200px -->
+![Beispiel Klassen-Diagramm mit Assoziation](assets/uml-association.png)<!-- width=200px -->
 - Kardinalität angebbar
   - `*`: beliebig
   - `a...b`: mindestens `a` maximal `b`
@@ -1264,15 +1265,15 @@ HUND -up-|> TIER
 
 - Komposition: gleiche Lebenszeiten
 
-![Komposition](resources/uml-komposition.png)<!-- width=200px -->
+![Komposition](assets/uml-komposition.png)<!-- width=200px -->
 
 - Aggregation: unabhängige Lebenszeiten
 
-![Aggregation](resources/uml-aggregation.png)<!-- width=200px -->
+![Aggregation](assets/uml-aggregation.png)<!-- width=200px -->
 
 Beispiel: Hier hat eine Destruktion von A auch eine Destruktion von B zur Folge.
 
-![Beispiel Klassen-Diagramm mit Assoziation](resources/uml-komposition-bsp.png)<!-- width=200px -->
+![Beispiel Klassen-Diagramm mit Assoziation](assets/uml-komposition-bsp.png)<!-- width=200px -->
 
 Navigierbarkeit wird mit Pfeilen dargestellt
 
@@ -1281,7 +1282,7 @@ Navigierbarkeit wird mit Pfeilen dargestellt
 
 Beispielaufgabe: 
 
-![Beispiel Tiere](resources/uml-tiere-bsp.png)<!-- width=200px -->
+![Beispiel Tiere](assets/uml-tiere-bsp.png)<!-- width=200px -->
 
 ## Verhaltensdiagramme
 
@@ -1295,7 +1296,7 @@ Beispielaufgabe:
     - asynchrone Nachricht $\rightarrow$ wie Antwort
     - Mit ausgemaltem Punkt auf einer Seite des Pfeils wird ausgedrückt, dass Sender bzw. Empfänger unbekannt ist
 
-![Beispiel Sequenzdiagramm](resources/uml-sequenz.png)<!-- width=200px -->
+![Beispiel Sequenzdiagramm](assets/uml-sequenz.png)<!-- width=200px -->
 
 ## Zustandsdiagramme
 
@@ -1310,16 +1311,16 @@ $\rightarrow$ Durch Ereignisse werden Transitionen ausgelöst.
 - Pfeile stellen die Transitionen (Übergänge) dar
 - An den Pfeilen werden die Ereignisse vermerkt
 
-![Beispiel State-Diagramm](resources/uml-state-mensch.png)<!-- width=200px -->
+![Beispiel State-Diagramm](assets/uml-state-mensch.png)<!-- width=200px -->
 
 Hier ein Beispiel von Zuständen, die durch einen Standesbeamten "gesteuert" werden
-![Beispiel Standesbeamter](resources/uml-standesbeamter-bsp.png)<!-- width=200px -->
+![Beispiel Standesbeamter](assets/uml-standesbeamter-bsp.png)<!-- width=200px -->
 
 ## Aktivitätsdiagramm
 
 - Ausschnitt aus Programmablauf
 
-![Beispiel Aktivitätsdiagramm](resources/uml-activity-bsp.png)<!-- width=200px -->
+![Beispiel Aktivitätsdiagramm](assets/uml-activity-bsp.png)<!-- width=200px -->
 
 **Objektorientierte Analyse**
 

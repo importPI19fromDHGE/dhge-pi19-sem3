@@ -1,0 +1,47 @@
+# ignore everything by default #################################################
+
+**
+
+# root-level README ############################################################
+
+!/README.md
+
+# github workflows #############################################################
+
+!/.github/
+!/.github/workflows
+!/.github/workflows/*.yml
+
+# modul folders ################################################################
+
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/README.md
+
+# appendix folder ##############################################################
+
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/appendix
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/appendix/*.md
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/appendix/assets/
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/appendix/assets/*.svg
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/appendix/assets/*.png
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/appendix/assets/*.jpg
+
+# assets folder ################################################################
+
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/assets
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/assets/*.svg
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/assets/*.png
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/assets/*.jpg
+
+# extras folder ################################################################
+
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/extra
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/extra/**/
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/extra/**/*.md
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/extra/**/*.pdf
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/extra/**/*.svg
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/extra/**/*.png
+!/[A-Z]*[A-Z]-[A-Z]*[A-Z]/extra/**/*.jpg
+
+# just in case #################################################################
+!.gitignore

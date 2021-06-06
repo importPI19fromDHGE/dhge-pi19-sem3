@@ -11,14 +11,15 @@ Systemanalyse
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Inhaltsverzeichnis**
 
-- [Einführung / Überblick](#einf%C3%BChrung--%C3%BCberblick)
+- [Systemanalyse](#systemanalyse)
+- [Einführung / Überblick](#einführung--überblick)
   - [User Story Format](#user-story-format)
-  - [Was gehört alles zur Systemanalyse?](#was-geh%C3%B6rt-alles-zur-systemanalyse)
-- [Regeln für Software-Entwicklung](#regeln-f%C3%BCr-software-entwicklung)
+  - [Was gehört alles zur Systemanalyse?](#was-gehört-alles-zur-systemanalyse)
+- [Regeln für Software-Entwicklung](#regeln-für-software-entwicklung)
   - [(1) Klartext](#1-klartext)
     - [Wasserfallmodell](#wasserfallmodell)
     - [Agil](#agil)
-  - [(2) Gründliche Vertragsgestaltung](#2-gr%C3%BCndliche-vertragsgestaltung)
+  - [(2) Gründliche Vertragsgestaltung](#2-gründliche-vertragsgestaltung)
     - [Wasserfallmodell](#wasserfallmodell-1)
     - [Agil](#agil-1)
   - [(3) Wandelnde Anforderungen: Wie gehe ich damit um?](#3-wandelnde-anforderungen-wie-gehe-ich-damit-um)
@@ -27,10 +28,10 @@ Systemanalyse
   - [Vorgehensmodelle](#vorgehensmodelle)
     - [Phasenmodell](#phasenmodell)
     - [Iteriertes Phasenmodell](#iteriertes-phasenmodell)
-    - [Evolutionäre SW-Entwicklung](#evolution%C3%A4re-sw-entwicklung)
+    - [Evolutionäre SW-Entwicklung](#evolutionäre-sw-entwicklung)
     - [Spiralen Modell](#spiralen-modell)
     - [V-Modell](#v-modell)
-    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-auspr%C3%A4gung-des-v-modells-v-modell-xt)
+    - [Eine Ausprägung des V-Modells: "V-Modell XT"](#eine-ausprägung-des-v-modells-v-modell-xt)
     - [Extreme Programming (XP)](#extreme-programming-xp)
 - [SCRUM](#scrum)
   - [Empirische Prozess Kontrolle](#empirische-prozess-kontrolle)
@@ -49,7 +50,7 @@ Systemanalyse
     - [Definition of Done](#definition-of-done)
     - [DoR: Definition of Ready](#dor-definition-of-ready)
   - [SCRUM-Manifest](#scrum-manifest)
-    - [Häufige / gern gemachte Fehler bezüglich des Manifests](#h%C3%A4ufige--gern-gemachte-fehler-bez%C3%BCglich-des-manifests)
+    - [Häufige / gern gemachte Fehler bezüglich des Manifests](#häufige--gern-gemachte-fehler-bezüglich-des-manifests)
   - [Vor- und Nachteile von SCRUM](#vor--und-nachteile-von-scrum)
   - [SCRUM-Ban als SCRUM Derivat](#scrum-ban-als-scrum-derivat)
 - [Story Board](#story-board)
@@ -59,21 +60,21 @@ Systemanalyse
   - [4 Prozess-Schritte](#4-prozess-schritte)
   - [Hinweise](#hinweise)
 - [Requirement Engineering / Aufwandsanalyse](#requirement-engineering--aufwandsanalyse)
-  - [Aufwandsschätzung](#aufwandssch%C3%A4tzung)
+  - [Aufwandsschätzung](#aufwandsschätzung)
     - [LOC (Lines of Code) als Basis im klassischen Fall](#loc-lines-of-code-als-basis-im-klassischen-fall)
     - [weitere Faktoren](#weitere-faktoren)
     - [Magisches Dreieck / Teufelsquadrat](#magisches-dreieck--teufelsquadrat)
-  - [Empirische Schätzung](#empirische-sch%C3%A4tzung)
-    - [Expertenschätzung](#expertensch%C3%A4tzung)
+  - [Empirische Schätzung](#empirische-schätzung)
+    - [Expertenschätzung](#expertenschätzung)
     - [Delphi-Methode](#delphi-methode)
     - [Divide et Impera (Teile und Hersche)](#divide-et-impera-teile-und-hersche)
     - [SCRUM-Poker](#scrum-poker)
     - [High-Low-Showdown](#high-low-showdown)
-  - [Algorithmische Schätzverfahren](#algorithmische-sch%C3%A4tzverfahren)
+  - [Algorithmische Schätzverfahren](#algorithmische-schätzverfahren)
     - [COCOMO](#cocomo)
     - [Function-Point-Methode](#function-point-methode)
 - [Objektorientierung](#objektorientierung)
-  - [Überblick](#%C3%BCberblick)
+  - [Überblick](#überblick)
     - [UML: Unified Modelling Language](#uml-unified-modelling-language)
     - [Diagramme](#diagramme)
     - [Eigenschaften der Objektorientierung](#eigenschaften-der-objektorientierung)
@@ -82,7 +83,7 @@ Systemanalyse
   - [Klassen-Diagramm mit Assoziationen](#klassen-diagramm-mit-assoziationen)
   - [Verhaltensdiagramme](#verhaltensdiagramme)
   - [Zustandsdiagramme](#zustandsdiagramme)
-  - [Aktivitätsdiagramm](#aktivit%C3%A4tsdiagramm)
+  - [Aktivitätsdiagramm](#aktivitätsdiagramm)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -345,11 +346,10 @@ Hier wird immer wieder in eine Phase "zurück gesprungen", falls etwas nicht pas
 
 ![Schematische Darstellung des V-Modells](assets/v-modell.png)<!-- width=400px -->
 
-| Vorteile                                              | Nachteile                                                                                                         |
-| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| klarer Ablauf (nächster Schritt bei Fehler wird klar) | Fehler in der Analyse-Phase erst sehr spät sichtbar (früher mehr Kommunikation mit dem Kunden und MVP als Lösung) |
-| klare Test-Struktur vorgegeben                        |                                                                                                                   |
-| Iterationen bis alle Tests der Phase OK sind          |                                                                                                                   |
+| Vorteile | Nachteile |
+| -------- | --------- |
+| klarer Ablauf (nächster Schritt bei Fehler wird klar) | Fehler in der Analyse-Phase erst sehr spät sichtbar (früher mehr Kommunikation mit dem Kunden und MVP als Lösung) | klare Test-Struktur vorgegeben |
+| Iterationen bis alle Tests der Phase OK sind | |
 
 ### Eine Ausprägung des V-Modells: "V-Modell XT"
 
@@ -1019,15 +1019,15 @@ $\Rightarrow$ d.h. Story-Points
 
 ### High-Low-Showdown
 
-- Ziel: Stories (Aufgaben, Epics) eingeteilt in XS, S, M, L, XL 
+- Ziel: Stories (Aufgaben, Epics) eingeteilt in XS, S, M, L, XL
 - 100 Stories in 15 Min kategorisieren
-- Ablauf: 
+- Ablauf:
   - jeder Teilnehmer bekommt gleichzeitig 5 Stories
   - jeder ordnet diese den Kategorien zu
   1. Einzelperson: begründet Zuordnung & legt diese Story in die "Sammelstelle"
   2. nächste Einzelperson: entweder 1. oder ordnet alte Zurordnung *neu* zu
   3. maximal 2 Umsortierungen pro Karte
-  4. die nächste Einzelperson geht zu 2. 
+  4. die nächste Einzelperson geht zu 2.
 
 $\Rightarrow$ **Ergebnis**: Gruppe von Aufgaben, die ähnlichen Aufwand haben
 

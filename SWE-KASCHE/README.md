@@ -802,9 +802,9 @@ ist eine öffentliche Erklärung von Zielen / Absichten im SCRUM-Prozess als **E
    (Manulating, Wizard of Oz, Flintstoning)
 2. Pinocchio ... form and fit validation  
    leblose Produkt-Vision zum **Begreifen**
-4. Potemkinsche Dorf ... "Fake Door"
-5. Infiltrator ... benutzt bestehendes Setting, um das Produkt zu platzieren und der Kunde wird beobachtet
-6. Pretend-To-Own ... benötigte Produkte leihen und so tun, als würden sie dem Anbieter gehören
+3. Potemkinsche Dorf ... "Fake Door"
+4. Infiltrator ... benutzt bestehendes Setting, um das Produkt zu platzieren und der Kunde wird beobachtet
+5. Pretend-To-Own ... benötigte Produkte leihen und so tun, als würden sie dem Anbieter gehören
 7. PBSK ... Papier, Bleistift, Schere, Kleber
 
 # Design-Thinking

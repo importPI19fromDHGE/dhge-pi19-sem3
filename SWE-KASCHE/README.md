@@ -312,9 +312,9 @@ Hier wird immer wieder in eine Phase "zurück gesprungen", falls etwas nicht pas
 
 ### Spiralen Modell
 
-| (1) | **ZIELE**, Alternativen, Rahmenbedingungen | (2) | Evaluierung der Alternativen, **RISIKEN** abschätzen, reduzieren |
-| --- | ------------------------------------------ | --- | ---------------------------------------------------------------- |
-| (4) | **PLAN** für nächsten Zyklus               | (3) | **REALISIERUNG** + Überprüfung                                   |
+| `(1)` | **ZIELE**, Alternativen, Rahmenbedingungen | `(2)` | Evaluierung der Alternativen, **RISIKEN** abschätzen, reduzieren |
+|-------|--------------------------------------------|-------|------------------------------------------------------------------|
+| `(4)` | **PLAN** für nächsten Zyklus               | `(3)` | **REALISIERUNG** + Überprüfung                                   |
 
 **USP:** Risikobetrachtung
 

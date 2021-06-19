@@ -23,19 +23,19 @@ jobs:
           mkdir output
       - uses: docker://rstropek/pandoc-latex:latest # generate DBS-DORENDORF pdf
         with:
-          args: --output=output/DBS-DORENDORF.pdf --resource-path=DBS-DORENDORF/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose DBS-DORENDORF/README.md
+          args: --output=output/DBS-DORENDORF.pdf --resource-path=DBS-DORENDORF/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v2.0.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose DBS-DORENDORF/README.md
       - uses: docker://rstropek/pandoc-latex:latest # generate SWE-KASCHE pdf
         with:
-          args: --output=output/SWE-KASCHE.pdf --resource-path=SWE-KASCHE/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose SWE-KASCHE/README.md
+          args: --output=output/SWE-KASCHE.pdf --resource-path=SWE-KASCHE/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v2.0.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose SWE-KASCHE/README.md
       - uses: docker://rstropek/pandoc-latex:latest # generate PRO-KASCHE pdf
         with:
-          args: --output=output/PRO-KASCHE.pdf --resource-path=PRO-KASCHE/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose PRO-KASCHE/README.md
+          args: --output=output/PRO-KASCHE.pdf --resource-path=PRO-KASCHE/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v2.0.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose PRO-KASCHE/README.md
       - uses: docker://rstropek/pandoc-latex:latest # generate RES pdf
         with:
-          args: --output=output/RES-GUENTHER.pdf --resource-path=RES-GUENTHER/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose RES-GUENTHER/README.md
+          args: --output=output/RES-GUENTHER.pdf --resource-path=RES-GUENTHER/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v2.0.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose RES-GUENTHER/README.md
       - uses: docker://rstropek/pandoc-latex:latest # generate NET-FELDMANN pdf
         with:
-          args: --output=output/NET-FELDMANN.pdf --resource-path=NET-FELDMANN/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v1.4.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose NET-FELDMANN/README.md
+          args: --output=output/NET-FELDMANN.pdf --resource-path=NET-FELDMANN/ --template https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/v2.0.0/eisvogel.tex --pdf-engine=xelatex --listings -f markdown+raw_tex --verbose NET-FELDMANN/README.md
       - uses: actions/upload-artifact@master # upload pdfs as an artifact
         with:
           name: output

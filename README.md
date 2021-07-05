@@ -12,7 +12,8 @@ Du kannst folgendermaßen vorgehen:
 - Beantrage ggf. [Github Student Developer Pack](https://education.github.com/students) (optional, aber nice to have)
 - **Such dir engagierte Leute** und
 - Informiere dich bei deinen Kommilitonen, ob schon jemand ein Repo / eine Orga angelegt hat. Falls wir (PI19) das mitkriegen folgt hier ein Link:
-  - (noch nichts bekannt) *28.06.21*
+  - https://github.com/importPI20fromDHGE
+  - Ansprechpartner: J. Müller, PIB20
 - Es gibt schon ein Repo oder eine Orga? Dort weiterlesen.
 - Es gibt noch kein Repo? Übernimm Verantwortung:
 1. Lege eine Organisation mit passendem Namen und Einstellungen an. (Wie wäre es mit importPI20fromDHGE?)

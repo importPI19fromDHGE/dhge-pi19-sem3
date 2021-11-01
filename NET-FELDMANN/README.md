@@ -1171,7 +1171,9 @@ else
 ## Hierarchische Struktur des Internets (Autonome Systeme)
 
 - zur Ausbildung eines hierarchischen Netzwerkes und damit eines skalierbareren Routings wird das Internet unterteilt in Autonome Systeme
-- *"An AS is a connected group of on or more IP prefixes run by one or more network operators which has a SINGLE and CLEARLY DEFINED routing policy"*
+
+> *"An AS is a connected group of one or more IP prefixes run by one or more network operators which has a SINGLE and CLEARLY DEFINED routing policy"*
+
 - Unterscheidung in:
   - Registrierte AS:
     - Erhalten eine weltweit eindeutige 16-Bit bzw. 32-Bit AS-Nummer

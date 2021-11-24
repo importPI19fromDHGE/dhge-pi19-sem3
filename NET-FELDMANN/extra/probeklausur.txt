@@ -1,0 +1,341 @@
+1) Welche Ziele verfolgt die IETF und wie ist sie grundlegend organisiert?
+
+- Internet Engeneering Task Force = Freiwilligenorganisation
+- Weiterentwicklung von Internetstandards = Aufteilung in sieben Arbeitsgruppen
+
+2) Welche Schichten werden durch das ISO/OSI-Referenzmodell definiert und welche Aufgaben haben sie jeweils?
+
+- Anwendungschicht: Kommunikation zw. Anwendungen
+- Darstellungsschicht: Transformation zw. Datenformaten, Verschlüsselung
+- Sitzungsschicht: Dialogsteuerung, Synchronisation
+- Transportschicht: Ende-zu-Ende-Kommunikation zw. Prozessen
+- Vermittlungsschicht: Wegewahl Sender -> Empfänger, Kopplung heterogener Teilnetze
+- Sicherungsschicht: Behandlung von Übertragungsfehlern
+- Bitübertragungsschicht: physikalische Ebene -> Übertragung von Signalen
+
+3) Was ist unter den Begriffen "Protokoll" und "Dienst" im Kontext des ISO/OSI-Referenzmodells zu verstehen?
+
+- Protokoll = Regeln zur Steuerung der Kommunikation
+- Dienst = durch Sicht erbrachte Funktionalität
+
+4) Welchen Unterschied zwischen dem ISO/OSI-Referenzmodell und dem TCP/IP-Modell gibt es? Wieso hat sich dieser Unterschied ergeben?
+
+- Zusammenfassung von ADS in Anwendungsschicht
+- Vermittlungsschicht -> Internetschicht
+- Sicherungs+Bitübertragung -> Netzzugangschicht
+
+- Aufbrechen des Theoretischen Modells
+
+5) Welche Aufgaben haben die Schichten des TCP/IP-Modells?
+
+- Anwendungsschicht: Anwendungsprotokoll
+- Transportschicht: Ende-zu-Ende-Kommunikation zw. Prozessen
+- Internetschicht: Kommunikation zwischen Hosts in unterschiedlichen Netzwerken
+- Netzzugangschicht: Kommunikation zwischen direkten Nachbarn
+
+6) Was ist ein "Protokoll-Header" und welche Informationen beinhaltet er jeweils für die jeweilige Schicht des TCP/IP-Modells?
+
+- Beinhaltet Information für Verarbeitung
+- TCP-Paket in IP-Header gekapselt
+
+========================================
+
+1) Welcher Schicht des TCP/IP-Modells ist Ethernet zuzuordnen? Welchen Dienst erfüllt Ethernet?
+
+- Netzzungansschicht -> Kommunikation im lokalen Netz
+
+2) Was wird unter der MTU verstanden?
+
+- maximale Framegröße, die übertragen werden kann
+
+3) Nennen Sie vier wichtige Informationen, die in einem Ethernet-Frame enthalten sind (Header/Trailer-Informationen).
+
+- Zieladresse
+- Quelladresse
+- Typ-Feld (Typ der nächsthöheren Schicht)
+- Checksum
+
+4) Skizzieren Sie den Ablauf des Spanning Tree Protocols. Wozu wird das Protokoll eingesetzt? Welche zwei Phasen können unterschieden werden?
+
+- Phase 1: Root Bridge bestimmen
+-- Alle Switches tauschen ihre BPDUs untereinander aus 
+-- Switch mit niedrigester MAC/höchster Priorität wird root
+
+- Phase 2: Bestimmung aller kürzesten Pfade zur Root-Bridge
+-- Bei Zyklus: Port zur Root-Bridge blockieren
+
+5) Welche Nachteile hat das Spanning Tree Protocol?
+
+- dauert lange (>30s) -> legt Kommunikation im Netz in dieser Zeit lahm
+- ungenutzte Links
+- unterstützt keine VLANs
+ 
+6) Welche Aufgabe haben VLANs?
+
+- logische Separation von Netzen
+- Verkleinerung der Broadcast-Domänen
+
+7) Welche zwei Typen von VLANs können unterschieden werden und wofür werden diese jeweils eingesetzt?
+
+- portbasiert: Endgeräte -> keine VLAN-Tag-Unterstützung notwendig
+- tagbasiert: Port in mehreren VLANs -> zwischen Switch und Router
+
+8) In welchem Verhältnis steht das STP zu VLANs?
+
+- STP kennt keine VLANs! Spannbaum über komplettes physisches Netz
+- Lösung: MSTP -> Spanning Tree pro VLAN + einer über ganzes Netz
+
+=======================================
+
+1. Was ist ein IP-Subnetz? Wie wird ein Subnetz angegeben?
+
+- Subnetz = Teilnetz eines Netzwerkes in einer IP-Range (Subnetzmaske)
+- entweder in CIDR-Notation (192.168.42.0/24) oder in vier Okteten angegeben (255.255.255.0)
+
+2. Teilen Sie das Netz 87.50.20.0/24 in vier gleichgroße Subnetze auf.
+
+00 -> 87.50.20.0/26
+01 -> 87.50.20.64/26
+10 -> 87.50.20.128/26
+11 -> 87.50.20.192/26
+
+3. Wieso werden IP-Pakete fragmentiert? Beschreiben Sie den Fragmentierungsprozess für IPv4.
+
+- Überschreitung der MTU
+- Sendender Router fragmentiert (mehrfach pro Route möglich) wird bei Überschreitung per ICMP vom Empfänger informiert
+- IP-Header nicht fragmentierbar, nur Nutzdaten
+
+4. Wozu dient ARP? Beschreiben Sie den Ablauf einer ARP-Anfrage und -Antwort.
+
+- Ermittlung von MAC-Adressen zu IPs in L2-Netz
+- ARP-Request: Host sendet Broadcast (suchte IP zu bestimmter MAC) 
+- ARP Response: Host sendet ARP-Response (gesuchte MAC zu IP) -> angefragender Host speichert IP->MAC Zuordnung temporär in ARP-Table
+
+5. Welche Nachteile hat IPv4?
+
+- ausgeschöpfter Addressraum (32-bit)
+- ineffizentes Routing (variable Headergröße, Router fragmentieren)
+- keine automatische Address-Konfiguration (manuell oder DHCP nötig)
+
+6. Wie sind IPv6-Adressen aufgebaut? Aus welchen zwei Teilen besteht eine IPv6-Adresse?
+
+- 128-bit -> 8*4 Hexadezimalziffern -> ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/64
+- Präfix und Interface Identifier
+
+7. Beschreiben Sie, wie mittels SLAAC zunächst eine link-lokale Adresse und anschließend eine globale Adresse vergeben wird.
+
+- Erzeugung Link-local Adresse
+-- Erzeugung von Interface Identifier aus MAC/Privacy Extension
+-- Beitritten der All-Nodes-Multicast-Adresse und der Solicited-Node-Multicast-Adresse der erzeugten Link-lokalen Adresse 
+-- Neighbor-Solicitacion Nachricht an generierte Adresse
+-- Bei ausbleibender Antwort -> Zuweisung der Link-lokalen Adresse -> Neighbor-Advertisement an alle Host des Links
+
+- Erzeugen einer weltweit eindeutigen Global-Unicast-Adresse
+-- Anfrage von Router Advertisement mittels Router-Solicitation-Nachricht
+-- Erzeugen einer Global-Unicast-Adresse aus Prefix und Link-localer Adresse
+-- Betritt der Solicited-Node-Multicast-Adresse für die Global Unicast-Adresse
+-- Neighbor-Solicitacion Nachricht an generierte Adresse
+-- Bei ausbleibender Antwort -> Zuweisen der Adresse
+
+8. Wozu wird NDP eingesetzt? Nennen Sie mindestens zwei Aufgaben, die das Protokoll erfüllt.
+
+- Ermitteln verfügbarer Router
+- Bestimmung der Link-Layer-Adresse eines Knotens
+- Verwaltung von Erreichbarkeitsinformation eines Knotens
+- Grundlage für SLAAC
+
+9. Welche Kategorien von Migrationsansätzen zwischen IPv4 und IPv6 existieren?
+
+- Dual-Stack (IPv4 und IPv6 parallel)
+- Tunnelmechanismen (4in6, 6in4, 4over6)
+- Translationsmechanismen (NAT64)
+
+============================================================================================
+
+1. Was ist der zentrale Dienst, der von der Transportschicht angeboten wird?
+
+- Realisierung einer Ende-zu-Ende-Kommunikation zw. Prozessen durch Bereitstellung einer Adressierungsmöglichkeit (Ports)
+
+2. Nennen und beschreiben Sie drei Kernunterschiede zwischen UDP und TCP.
+
+- UDP
+-- verbindungslos
+-- unzuverlässig 
+-- geringer Protokoll-Overhead
+-- keine Reihenfolgegarantie 
+
+- TCP
+-- verbindungsorientiert
+-- zuverlässig 
+-- höherer Protokoll-Overhead
+-- Reihenfolgegarantie 
+
+3. Beschreiben Sie den 3-Wege-Handshake, den TCP für den Verbindungsaufbau durchläuft. Begründen Sie die einzelnen Schritte.
+
+C |->   SYN   ->| S: Synchronisation der initialen Sequenznummer A
+C |<- SYN,ACK <-| S: Bestätigung von A+1, Generierung weiterer Sequenznummer B
+C |->   ACK   ->| S: Bestätigung der Sequenznummer B+1
+  |             |
+C |<-   ...   ->| S: Austausch von Anwendungsdaten
+
+SYN = Senden der Sequenznummer
+ACK = Bestätigen der Sequenznummer
+
+4. Welches Problem in Bezug auf Denial-of-Service-Angriffe besteht beim 3-Wege-Handshake?
+
+- Hohes Datenaufkommen bei vielen halboffenen Verbindungen (SYN-Flooding)
+
+5. Was wird unter einem Sendefenster, was unter einem Empfangsfenster verstanden? Wie werden diese Fenster bei TCP verwaltet?
+
+- Sendefenster: max. Datenmenge die zu einem Zeitpunkt gesendet werden kann 
+-- variable Größe zur Kompensation von Überlast auf dem Pfad (max = Rec. Window)
+- Empfangsfenster: max. Datenmenge, die Empfangen werden kann, ohne diese zu bestätigen 
+-- wird dem Sender vom Empfänger im TCP-Header angegeben
+-- stellt sicher, dass alle Daten verarbeitet werden können
+
+6. Um was handelt es sich beim TCP-Slow-Start-Verfahren? Wieso wurde dieses Verfahren eingeführt?
+
+- Teil der Überlaststeuerung -> soll verhindern, dass mehr Daten gesendet werden als das Netzwerk verarbeiten kann
+- Größe des Sendefensters wird schrittweise erhöht, bis Paketverluste auftretten oder die Größe des Empfangsfenster erreicht wird
+
+7. Wie arbeitet der Cubic-Algorithmus als Ansatz für TCP-Congestion-Control?
+
+- Größe des Sendefenster = Cubischen Funktion ^3 der Zeit seit dem letzten Paketverlust
+- Bei Verlust: Zurücksetzen auf Größe im letzten Schritt
+
+8. Beschreiben Sie den Ablauf auf Client- und Server-Seite für die Socket-Kommunikation im Falle der Verwendung von UDP bzw. TCP. 
+   Welche Aufgaben erfüllen die einzelnen Funktionsaufrufe?
+
+- UDP
+
+C                   socket() S - Anlegen eines Sockets auf Server-Seite
+C socket()            bind() S - Anlegen eines Sockets auf Client-Seite; Socket auf Server-Seite on Port binden
+C sendto()   -->   recfrom() S - Client sendet Daten (kein Verbindungsaufbau); Server empfängt Daten (blockierend)
+C recfrom()  <--    sendto() S - Server sendet Daten; Client empfängt Daten (blockierend)
+C close()            close() S - Schließen der Sockets
+
+- TCP
+
+C                   socket() S - Anlegen eines Sockets auf Server-Seite
+C                     bind() S - Socket auf Server-Seite on Port binden
+C socket()          listen() S - Anlegen eines Sockets auf Client-Seite; Socket des Server als passiv markieren
+C connect()  -->    accept() S - Verbindungsaufbau durch Client; Server akzeptiert Verbindung (3W-Handshake)
+C send()     -->      recv() S - Client sendet Daten; Server empfängt Daten (blockierend)
+C recv()     <--      send() S - Server sendet Daten; Client empfängt Daten (blockierend)
+C close()            close() S - Schließen der Verbindung und der Sockets
+
+============================================================================================
+
+1. Beschreiben Sie den Ablauf der Weiterleitung von IP-Paketen innerhalb eines Routers ("Forwarding"). 
+   Gehen Sie dabei auf die Begriffe "Routing-Tabelle", ARP wie auch Default-Gateway ein.
+
+Ziel: D
+N = Präfix bzw. Netz von D
+if(N ist direkt an lokalen Link angeschlossen){
+	ermittle MAC-Adresse von D mit ARP
+	sende Paket an MAC-Adresse von D
+}else if(es existiert einen Routingtabelleneintrag für N){
+	ermittle ausgehende Schnittstelle
+	ermittle MAC-Adresse des nächsten Hops H (z.B. Gateway)
+	sende Paket an H
+}else if(es existiert ein Default-Gateway G){
+	ermittle MAC-Adresse von G
+	sende Paket an G
+}else {
+	sende ICMP-Fehlermeldung an Quelle des Pakets
+}
+
+2. Was wird unter einem Autonomen System verstanden und wieso wurden Autonome Systeme eingeführt?
+
+- AS = Gruppe von IP-Prefixen, die von min. einem Netzwerkoperator betrieben werden und eine einzige klar definierte Routing Policy besitzen
+- Verbindungen zu min. zwei anderen AS
+- Ziel: Skalierbarkeit
+
+3. Beschreiben Sie den Gesamtprozess zur Beantragung eines AS wie auch eines providerunabhängigen IP-Ranges.
+
+- Beitreten der Regional Internet Registries (Europa-Zentralasien -> RIPE)
+- AS-Nummer beantragen (Routing-Policy+Begründung vorlegen)
+- IP-Ranges erhalten
+
+4. Was ist der Kernunterschied zwischen Distanzvektorroutingprotokollen und Link-State-Routingprotokollen? 
+   Welche Nachteile weisen Distanzverktorroutingprotokolle auf?
+   
+- Distanzvektor: jeder Pfadlängen zu allen, aber nicht optimale Wege
+- Link-State: Pfade zu benachbarten Routern -> Topologie im Netz verteilen
+
+5. Wie arbeitet OSPF grundlegend? Gehen Sie dabei auf die Adjazenzbildung wie auch die Verteilung von Link State Advertisements ein.
+
+- Hello-Pakete mit Nachbarn austauschen (gleiche Hello-,Dead-,...-Intervalle nötig)
+- Nachbarschaftsbeziehungen mit Netzwerk teilen
+
+6. Wozu wurden Areas bei OSPF eingeführt? Welchen Zweck erfüllen sie?
+
+- LSA-Flood begrenzen
+
+7. Wofür wird das Border Gateway Protocol (BGP) eingesetzt? 
+   Welche grundlegenden Konfigurationsinformationen müssen für die Konfiguration eines BGP-Routers vorliegen?
+
+- manuelle Konfiguration (ASN, eigene IP-Ranges)
+- Verteilung der Routing-Informationen zu Nachbarn
+- Keep-Alive, um Topologie-Änderungen zu erkennen
+- Updates um Routing-Informationen zurückzusetzen/zu verteilen (WITHDRAW/ANNOUNCE)
+
+============================================================================================
+
+1. Beschreiben Sie die Auflösung von Namen im DNS und gehen Sie dabei auf die Architektur des DNS ein. 
+   Gehen Sie dabei auch auf die Begriffe "Zone" und "autoritativer Nameserver" ein.
+
+- Resolver -> ISP-DNS <-> Root-DNS 
+                      <-> TLD-DNS 
+					  <-> zuständiger NS (Resource-Record)
+					  
+- iterativer Ablauf^^ -> caching
+- Zone = Teil des Domänenbaums (Ziel: Deligieren von Kontrolle)
+
+2. Welche Informationen werden im DNS pro Resource Record gespeichert?
+
+- Record-Type + Domain-Name + IP + TTL
+
+3. Nennen und beschreiben Sie vier verschiedene Resource Records.
+
+- A - IPv4
+- AAAA - IPv6
+- CNAME - Alias
+- MX - Mail
+- PTR - Reverse DNS (IP -> Domain)
+
+4. Begründen Sie, wieso die Synchronisation von Uhren in Rechnernetzen und 
+   Verteilten Systemen eine besondere Herausforderung bildet.
+
+- Uhren unterliegen kontinuierlichen Drift
+- Latenz (Round-Trip-Time) 
+   
+5. Wie arbeitet NTP grundlegend?
+
+- Verteilung der Referenzzeit (z.B. Atomuhr) über mehrere Ebenen:
+- Latenz bestimmen (Uhrzeiten mehrfach austauschen -> Mittelwert bilden)
+- Anschließend Uhrzeit abzüglich bestimmter Latenz setzen
+
+6. Beschreiben Sie den Ablauf, der bei DHCP vorliegt, 
+   um automatisch auf ein Interface eine IP-Adresse zuzuweisen. 
+   
+- DHCP-DISCOVER
+- DHCP-OFFER
+- DHCP-REQUEST
+- DHCP-ACK   
+- Default-Gateway, Subnetz, IP, (DNS), (Timeserver)
+
+
+13.236.144.0/22 soll in 5 gleich große Netze aufgeteilt werden!
+
+4<5<8 -> /25
+                        !!.!
+00000000.00000000.00000000.00000000   -> 13.236.144.0  /25
+                        00.1          -> 13.236.144.128/25
+						01.0          -> 13.236.145.0  /25
+						01.1          -> 13.236.145.128/25
+						10.0          -> 13.236.146.0  /25
+----------------------------------------------------------
+						10.1          -> 13.236.146.128/25
+						11.0          -> 13.236.147.0  /25
+						11.1          -> 13.236.147.128/25

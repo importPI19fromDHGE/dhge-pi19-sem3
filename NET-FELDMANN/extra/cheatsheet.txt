@@ -1,0 +1,279 @@
+# Grundlagen
+
+- IETF: Freiwilligenvereinigung -> Weiterentwicklung INET - Spezifikation wichtiger Protokolle > Arbeit in Gruppen
+- IEEE: Berufsverband, L2
+
+
+- verbindungslos: keine Info über Existenz einer Beziehung, Kommunikation ohne Verbindungsaufbau
+- verbindungsorientiert: Info über Existenz der Beziehung zw. Sender+Empfänger
+- leitungsvermittelt: feste Durchschaltung, Zusicherung von QoS
+- paketvermittelt: gemeinsame Nutzung von Leitungen, Pakete mit Empfänger-Informationen
+
+# ISO/OSI
+- Anwendungsschicht: Kommunikation zw. Anwendungen
+- Darstellungsschicht: Transformation zw. Datenformaten, Verschlüsselung
+- Sitzungsschicht: Dialogsteuerung, Synchronisation
+- Transportschicht: Ende-zu-Ende-Kommunikation zw. Prozessen
+- Vermittlungsschicht: Wegewahl Sender -> Empfänger, Kopplung heterogener Teilnetze
+- Sicherungsschicht: Behandlung von Übertragungsfehlern
+- Bitübertragungsschicht: physikalische Ebene -> Übertragung von Signalen
+
+
+- Protokoll = Regeln zur Steuerung der Kommunikation
+- Dienst = durch Sicht erbrachte Funktionalität
+
+# Netzwerkkomponenten
+- Switch: Verbindung von einzelnen Netzsegmenten zu lokalem Netz
+- Router: Weiterleitung zw. Unterschiedlichen Netzen
+
+--------------------------------------------------------------------
+
+- Ethernet-Header: Ziel+Quell-Adr, Typ, Nutzdaten, Checksum
+
+
+# STP
+- Phase 1: Root Bridge bestimmen
+-- Alle Switches tauschen BPDUs aus
+-- MAC--/Priorität++ wird root
+- Phase 2: Bestimmung aller kürzesten Pfade zur Root-Bridge
+-- Bei Zyklus: Port zur Root-Bridge blockieren
+-> dauert lange; ungenutzte Links; keine VLANs
+
+# VLANs: logische Separation von Netzen (kleiner Broadcast-Domäne)  
+- port: Endgeräte -> keine VLAN-Tag Unterstützung
+- tag: Port in mehreren VLANs -> zw. Switch, Router                             (2^12) − 2
+- inter-VLAN-Routing:
+-- Router mit zwei NIC in versch. Port-VLANs + Routing-Eintrag
+-- Router mit Tag-Unterstützung + Routing-Eintrag
+
+
+# TRILL: Routing auf L2 -> Nutzung aller Pfade
+- Kapselung von Frames in Trill-Header
+- IS-IS zw. RBridges -> Hop-Count gegen Zyklen
+
+# IPv4                               vs IPv6
+```
+- 32bit Adressen  (NAT!)            | - 128bit Adressen
+- !autom. Adr-Conf.                 | - SLAAC
+- var Head -> ineffizentes Routing  | - const Head + Ext
+- Fragmentierung durch Router       | - Fragmentierung durch Sender
+```
+
+# ARP: IP -> MAC
+- ARP-Request: Host sendet Broadcast (suche MAC zu IP)
+- ARP-Reply: Host erhält MAC -> speichert Zuordnung temporär in ARP-Table
+
+# ICMP
+- Kommunikation von Fehlern und Statusinfos in Netzwerken
+- z.B. Echo Reply, Dest. Unreachable, Router Advertisement, ...
+
+# IPv6-Addr.                          [addr]:port
+- Präfix + Interface Identifier
+- 8*(4*16bit): Nullen einmalig durch :: abkürzbar
+- Unicast: Addressierung eines Empfängers
+- Anycast: Addr. Gruppe + Einer antwortet (DNS)
+- Multicast: Addr. Gruppe + Alle antworten
+
+# NDP (Funktionen)
+- Ermitteln verfügbarer Router
+- Bestimmung der Link-Layer-Adresse eines Knotens
+- Verwaltung von Erreichbarkeitsinformation eines Knotens
+- Grundlage für SLAAC
+
+# SLAAC
+- Phase 1: Erzeugung Link-local Adresse
+-- Erzeugung von Interface Identifier aus MAC/Privacy Extension
+-- Beitritten der All-Nodes-Multicast-Adresse + Solicited-Node-Multicast-Adresse der erzeugten Link-lokalen Adresse
+-- Neighbor-Solicitacion Nachricht an generierte Adresse
+-- bei Ausbleiben der Antwort -> Zuweisung der Link-lokalen Adresse -> Neighbor-Advertisement an alle Host des Links
+- Phase 2: Erzeugen einer weltweit eindeutigen Global-Unicast-Adresse
+-- Anfrage von Router-Advertisement mittels Router-Solicitation-Nachricht
+-- Erzeugen einer Global-Unicast-Adresse aus Prefix und Link-local Adresse
+-- Betritt der Solicited-Node-Multicast-Adresse für die Global Unicast-Adresse
+-- mehrere Neighbor-Solicitacion Nachrichten an generierte Adresse
+-- bei Ausbleiben der Antwort -> Zuweisen der Adresse
+
+# Migrationsansätze
+- Dual-Stack (IPv4 und IPv6 parallel)
+- Tunnelmechanismen (4in6, 6in4, 4over6)
+- Translationsmechanismen (NAT64)
+
+
+# Raw Sockets: Ermöglichen die Instanziierung von IP-Headern und Implementierung von Protokollen im User-Space
+
+----------------------------------------------------------------------------------
+
+# Transportschicht: Ende zu Ende Kommunikation zw. Prozessen durch Bereitstellung von Ports als Addressierungsmöglichkeit
+
+# UDP                            vs TCP
+- verbindungslos                 | - verbindungsorientiert
+- unzuverlässig                  | - zuverlässig
+- geringer Protokoll-Overhead    | - höherer Protokoll-Overhead
+- keine Reihenfolgegarantie      | - Reihenfolgegarantie
+- Anw.: DNS, DHCP, NTP, SNMP     | - Flusskontrolle, Überlaststeuerung
+
+
+# TCP-Handshake
+```
+C                 S
+l |->   SYN   ->| e
+i |<- SYN,ACK <-| r
+e |->   ACK   ->| v
+n |             | e
+t |<-   ...   ->| r
+```
+SYN = Senden der SeqNr
+ACK = Bestätigen der SeqNr
+
+SYN-Flooding = hohes Datenaufkommen bei vielen halboffenen Verbindungen
+Lösung: SYN-Cookie = Verbindungsinformationen müssen vom Client zurückgesendet werden
+
+# TCP-Windows
+- Sendefenster: max. Datenmenge die ab Zeitpunkt gesendet werden kann
+-- variable Größe zur Kompensation von Überlast auf Pfad (max = Rec. Window)
+- Empfangsfenster: max. Datenmenge, die Empfangen werden kann, ohne diese zu bestätigen
+-- wird dem Sender vom Empfänger im TCP-Header angegeben
+-- stellt sicher, dass alle Daten verarbeitet werden können
+
+
+# Nachteil von TCP: Overhead des 3W-Handshakes
+- Lösung TCP-Fast-Open: TFO-Cookie nach erster Verbindung -> direkte Datenübertragung
+
+
+
+# TLS
+- Authentisierung+Schlüsselaustausch
+- Verschlüsselung (Bytes)
+- Kryptogr. Hashfunktionen
+-> großer Overhead zusammen mit TCP
+
+
+
+# QUIC
+- Impl. wichtiger Protokollmechanismen (PL,CC,FC) oberhalb von UDP
+- Möglichkeit, ab dem ersten Paket Anwendungsdaten zu übermitteln
+- Verbindungsaufbau und Tausch kryptografischer Parameter in einem Schritt
+- Verbindungen besitzen UID -> unabhängig von IP+Port
+
+
+# Sockets
+
+## SOCK_STREAM - TCP
+```
+C                   socket() S - Anlegen eines Sockets
+l                     bind() e - Socket an Port binden
+i socket()          listen() r - Socket als passiv markieren
+e connect()  -->    accept() v - Verbindungsaufbau (3W-Handshake)
+n send()     -->      recv() e - Daten senden/empfangen(blockierend)
+t recv()     <--      send() r - Daten senden/empfangen(blockierend)
+  close()            close()   - Schließen der Verbindung+Sockets
+```
+-> bei SOCK_DGRAM - UDP ohne Verbindungsaufbau/listen, mit recfrom/sendto
+-------------------------------------------------------------------------------------------
+
+# Autonome Systeme
+- AS = Gruppe von IP-Prefixen
+- min. von einem Netzwerkoperator betrieben
+- einzige klar definierte Routing Policy
+- Verbindungen zu min. zwei anderen AS (peer = free != transit)
+- Ziel: Skalierbarkeit
+
+# ASN beantragen
+- Beitreten der Regional Internet Registries (Europa -> RIPE)
+- AS-Nummer beantragen (Routing-Policy+Begründung vorlegen) -> IP-Ranges erhalten
+
+
+# Distanzvektor: jeder Pfadlängen zu allen, aber nicht optimale Wege
+# Link-State: Pfade zu benachbarten Routern -> Topologie im Netz verteilen
+
+
+# IP-Forwarding
+
+```
+Ziel: D
+N = Präfix bzw. Netz von D
+if(N ist direkt an lokalen Link angeschlossen){
+	ermittle MAC-Adresse von D mit ARP
+	sende Paket an MAC-Adresse von D
+}else if(es existiert ein Routingtabelleneintrag für N){
+	ermittle ausgehende Schnittstelle
+	ermittle MAC-Adresse des nächsten Hops H mit ARP
+	sende Paket an H
+}else if(existiert Default-GW G){
+	ermittle MAC-Adresse von G mit ARP
+	sende Paket an G
+}else {
+	sende ICMP-Fehlermeldung an Quelle des Pakets
+}
+```
+
+
+# OSPF (intra-AS; IGP; LS)
+- Hello-Pakete mit Nachbarn austauschen (Area, Auth, Intervalle gleich)
+- Nachbarschaftsbeziehungen/Adjazenzen (LSA) im Netzwerk/Area teilen
+- Alternativ: Austausch über Designated-Router
+- Areas zur Reduktion der LSA-Flood (nur erreichbare Subnetze an andere Areas teilen)
+
+
+
+# BGP (inter-AS; EGP; DV)
+- manuelle Konfiguration (ASN, eigene IP-Ranges, Nachbarn)
+- transitive Verteilung der Routing-Informationen zu Nachbarn
+- Keep-Alive, um Topologie-Änderungen zu erkennen
+- Updates um Routing-Informationen zurückzusetzen/zu verteilen (WITHDRAW/ANNOUNCE)
+- Mandatory: ORIGIN (IGP/EGP), AS_PATH (Bisher), NEXT_HOP (Update)
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+# DNS-Namensauflösung
+```
+                       <-> 1. Root-DNS (/cache)
+- Resolver <-> ISP-DNS <-> 2. TLD-DNS (/cache)
+                       <-> 3. autoritativer NS (Resource-Record)
+```
+
+# DNS-Zone = Teil des Domänenbaums (Ziel: Deligieren von Kontrolle)
+- Einträge analog zu RR -> Verteilung zu Replikationszwecken möglich
+
+# Domain-Registrierung: Hoster (Anlegen RR) <-> TLD-Betreiber (Verweise)
+
+# DNSoverTLS/HTTPS: Verschlüsselung von DNS-Abfragen
+
+- DynDNS: dynamische Aktualisierung bei IP-Änderung
+- Reverse DNS: Abbildung IP -> Domain (PTR)
+- Multicast DNS: ohne dedizierten NServer ".local"
+- Split-Horizon DNS: Auflösung in Abhängigkeit von Quell-IP -> GeoDNS
+
+# NTP
+- Kausalitäten zwischen verteilten Ereignissen
+- Protokolle verwenden Zeitstempel für Aktualität/Validität
+- Probleme: Uhren unterliegen kontinuierlichen Drift; Latenz (Round-Trip-Time); Jitter
+
+# NTP-Funktionsweise
+- Verteilung der Referenzzeit (z.B. Atomuhr) über mehrere Strata:
+- Latenz bestimmen (Uhrzeiten mehrfach austauschen -> Mittelwert bilden)
+- Anschließend Uhrzeit abzüglich bestimmter Latenz setzen
+
+# DHCP
+- DISCOVER: Server im lok. Netz suchen
+- OFFER: Server offerieren Basis-Konfiguration
+- REQUEST: Client bestätigt Konfiguration
+- ACK: Server bestätigt, opt. Config
+
+- Config: Default-GW, Subnetz, IP, (DNS), (Timeserver)
+
+---------------------------------------------------------------------------------------------
+
+# Software defined Networking
+- Ansatz: Controlplane von der Dataplane separieren -> Zentralisierung der Controlplane (SDN-Controller)
+- Anwendungen können über Northbound-Schnittstelle mit Controlplane interagieren -> Umsetzung in der Dataplane
+
+# Openflow (Southbound): Verarbeitung auf Basis von Tabellen -> bei Match: Durchführung von Operationen
+
+# VXLAN
+- Kapselung von Eth (+VXLAN-Header) in UDP
+- L2 über Tunnel in L3 zu gleichen VXLAN Knoten schicken
+- vgl. Software basierte VLANs
+
+#OpenVSwitch = Software Switch
